@@ -66,16 +66,16 @@ class InterviewGroup(Model):
 class InterviewGroupMembership(Model):
 
     InterviewGroupStatusChoices = (
-        ( 0, 'not yet started' ),
-        ( 1, 'in-progress' ),
-        ( 2, 'finalized' ),
-        ( 3, 'review' ),
-        ( 4, 'review completed' )
+        ( 'not yet started', 'not yet started' ),
+        ( 'in-progress', 'in-progress' ),
+        ( 'finalized', 'finalized' ),
+        ( 'review', 'review' ),
+        ( 'review completed', 'review completed' )
     )
 
     user = ForeignKey(User)
     int_group = ForeignKey(InterviewGroup)
-    status = IntegerField( choices = InterviewGroupStatusChoices, default=0 )
+    status = CharField( max_length=30, choices = InterviewGroupStatusChoices, default='not yet started' )
     
     class Meta:
         db_table = u'gwst_groupmemb'

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>{{interview.name}} Interview Status</h3>
+<ul>
+<li><a href="/show_main_questions/{{interview.id}}/">General questions</a></li>
+{% for object in object_list %}
+<li>
+{% ifequal object.status "finalized" %}
+<a href="/group_qs/{{object.id}}/view/">
+{% else %}
+<a href="/group_qs/{{object.id}}/answer/">
+{% endifequal %}
+{{ object.int_group.name }}</a>: {{object.status}} {% ifequal object.status "in-progress" %} <a href="/finalize_group/{{object.id}}/">Finalize this group</a> {% endifequal %}
+</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

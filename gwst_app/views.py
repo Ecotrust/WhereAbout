@@ -40,17 +40,24 @@ def select_interview(request):
                 return HttpResponseRedirect('/assign_groups/')
         
             else:
+                # see if there are group memberships
+                int_groups = InterviewGroup.objects.filter(interview=selected_interview)
+                num_group_membs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).count()
+                
+                if num_group_membs == 0:
+                    # redirect to assign_groups
+                    return HttpResponseRedirect('/assign_groups/')
+                
                 status = status_object_qs[0]
                 status.last_login = datetime.datetime.today()
                 status.num_logins = status.num_logins + 1
                 status.save()
                 
                 # redirect to interview_group_status
-                return render_to_response( 'test.html', RequestContext(request,{}))
-    
-    # error cases (form not valid)
-    return render_to_response( 'test.html', RequestContext(request,{}))
-        
+                return HttpResponseRedirect('/group_status/')
+                
+        # validation errors
+        return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))        
     
 # on first entrance to a new interview, user selects which groups they belong to    
 def assign_groups(request):
@@ -73,19 +80,23 @@ def assign_groups(request):
                 new_group.int_group = group
                 new_group.save()
                 
+            # redirect to interview_group_status
+            return HttpResponseRedirect('/group_status/')
         
-        # redirect to interview_group_status
-        return render_to_response( 'test.html', RequestContext(request,{}))
+        # validation errors
+        return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))
     
     
 # show a list of user's groups and current status of each
-def interview_group_status(request):
+def group_status(request):
     # show list of interview groups with current status (including global interview questions)
-    return render_to_response( 'test.html', RequestContext(request,{}))
+    int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+    qs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups)
+    return render_to_response( 'group_status.html', RequestContext(request,{'interview':request.session['interview'], 'object_list':qs}))
     
     
 # show the questions for an indicated group
-def show_group_questions(request):
+def answer_questions(request):
     if request.method == 'GET':
         # show questions for this group, with any existing user answers
         return render_to_response( 'test.html', RequestContext(request,{}))
@@ -132,11 +143,16 @@ def assign_pennies(request):
 
 
 # user finalizes group
-def group_completed(request):
-    if request.method == 'POST':
+def finalize_group(request,id):
+    if request.method == 'GET':
         # update InterviewGroupMembership record
+        group = InterviewGroupMembership.objects.get(pk=id)
         
-        # send to interview_group_status
-        return render_to_response( 'test.html', RequestContext(request,{}))
+        if group.user == request.user:
+            group.status = 'finalized'
+            group.save()
+        
+        # redirect to interview_group_status
+        return HttpResponseRedirect('/group_status/')
     
     
