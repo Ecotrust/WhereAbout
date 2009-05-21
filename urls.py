@@ -7,14 +7,7 @@ admin.autodiscover()
 from django.contrib import databrowse
 
 urlpatterns = patterns('',
-    # Example:
-    # (r'^gwst/', include('gwst.foo.urls')),
-
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
-    # to INSTALLED_APPS to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
+    (r'^', include('gwst_app.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^databrowse/(.*)', databrowse.site.root),
 )

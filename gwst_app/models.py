@@ -41,7 +41,7 @@ class Interview(Model):
     name = CharField( max_length=100, unique=True )
     organization = CharField( max_length=100 )
     description = CharField( max_length=200 )
-    code = CharField( max_length=10, unique=True )
+    code = CharField( max_length=20, unique=True )
     class Meta:
         db_table = u'gwst_interview'
         
@@ -64,8 +64,18 @@ class InterviewGroup(Model):
 
         
 class InterviewGroupMembership(Model):
+
+    InterviewGroupStatusChoices = (
+        ( 0, 'not yet started' ),
+        ( 1, 'in-progress' ),
+        ( 2, 'finalized' ),
+        ( 3, 'review' ),
+        ( 4, 'review completed' )
+    )
+
     user = ForeignKey(User)
     int_group = ForeignKey(InterviewGroup)
+    status = IntegerField( choices = InterviewGroupStatusChoices, default=0 )
     
     class Meta:
         db_table = u'gwst_groupmemb'
@@ -84,11 +94,17 @@ class InterviewAnswerOption(Model):
     def __unicode__(self):
         return unicode('%s' % (self.eng_text[0:100]))
         
-       
+      
 class InterviewQuestion(Model):
-    int_group = ForeignKey(InterviewGroup, null=True, help_text='set to ask question only of this group')
-    interview = ForeignKey(Interview, null=True, help_text='set to ask question of all groups in this interview')
-    answer_type = IntegerField( help_text='0=integer, 1=decimal, 2=list option, 3=text') # numeric value, text, list selection
+    AnswerTypeChoices = (
+        ( 0, 'integer value' ),
+        ( 1, 'decimal value' ),
+        ( 2, 'select from list of values' ),
+        ( 3, 'enter text' ),
+    )
+    int_group = ForeignKey(InterviewGroup, null=True, blank=True, help_text='set to ask question only of this group')
+    interview = ForeignKey(Interview, null=True, blank=True, help_text='set to ask question of all groups in this interview')
+    answer_type = IntegerField( choices=AnswerTypeChoices, help_text='0=integer, 1=decimal, 2=list option, 3=text') # numeric value, text, list selection
     val_min = FloatField( help_text='minimum value for numeric answers', blank=True, null=True )
     val_max = FloatField( help_text='maximum value for numeric answers', blank=True, null=True )
     options = ManyToManyField(InterviewAnswerOption, help_text='if a list question, multi-select valid responses', blank=True, null=True)
@@ -99,9 +115,13 @@ class InterviewQuestion(Model):
     
     class Meta:
         db_table = u'gwst_question'
+        ordering = ('interview','int_group','question_set','display_order')
         
     def __unicode__(self):
-        return unicode('%s: %s' % (self.int_group, self.eng_text[0:100]))
+        if self.int_group:
+            return unicode('%s: %s' % (self.int_group, self.eng_text[0:100]))
+        else:
+            return unicode('%s: %s' % (self.interview, self.eng_text[0:100]))
         
         
 # localization tables, for future use

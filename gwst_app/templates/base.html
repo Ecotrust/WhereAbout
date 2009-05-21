@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en-us" />
+    <title>{% block title %}GWST{% endblock %}</title>
+    <meta name="description" content=" " />
+    <meta name="keywords" content=" " />
+    <meta name="robots" content="index, follow" /> 
+    <link rel="shortcut icon" href="/media/images/favicon.ico" />
+    {% block styles %}
+    <link href="/media/css/base.css" rel="stylesheet" type="text/css" media="screen" />
+    {% endblock %}
+    {% block js %}
+    {% endblock %}
+  </head>
+  
+  <body {% block body_attribs %}{% endblock %}>
+  <div id="wrap">
+  <div id="header">
+  </div>
+  <div id="main">
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+  </div>
+  <div id="footer"> 
+  {% if user.is_superuser %}
+      Viewing as <b>administrator</b>
+  {% endif %}
+  <br />
+     {% if user.is_staff %}
+       <a href="/admin/">Site Admin</a> |
+       <a href="/modelviz/">Site Database Diagram</a> |
+       <a href="/databrowse/">Databrowse</a>
+     {% endif %}
+     <br /><br />
+  </div>
+  </div>
+</body>
+</html>
