@@ -96,19 +96,25 @@ def group_status(request):
     
     
 # show the questions for an indicated group
-def answer_questions(request):
+def answer_questions(request,group_id):
     if request.method == 'GET':
         # show questions for this group, with any existing user answers
-        return render_to_response( 'test.html', RequestContext(request,{}))
+        questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
+        form = AnswerForm(questions)
         
     else:
-        # save InterviewAnswer records
-        
-        # if not global questions, proceed to draw_group_shapes
-        return render_to_response( 'test.html', RequestContext(request,{}))
+        # form validation
+        questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
+        form = AnswerForm(questions, request.POST)
+        if form.is_valid():
+            # save InterviewAnswer records
+            # if not global questions, proceed to draw_group_shapes
+            return render_to_response( 'test.html', RequestContext(request,{}))
+
+    return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))    
     
     
-# start drawing shapes for indicated group    
+# start draw shapes for indicated group    
 def draw_group_shapes(request):
     if request.method == 'GET':
         # get list of resources for this group

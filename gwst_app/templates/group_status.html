@@ -7,11 +7,11 @@
 {% for object in object_list %}
 <li>
 {% ifequal object.status "finalized" %}
-<a href="/group_qs/{{object.id}}/view/">
+<a href="/group_qs/{{object.int_group.id}}/view/">
 {% else %}
-<a href="/group_qs/{{object.id}}/answer/">
+<a href="/group_qs/{{object.int_group.id}}/answer/">
 {% endifequal %}
-{{ object.int_group.name }}</a>: {{object.status}} {% ifequal object.status "in-progress" %} <a href="/finalize_group/{{object.id}}/">Finalize this group</a> {% endifequal %}
+{{ object.int_group.name }}</a>: {{object.status}} {% ifequal object.status "in-progress" %} <a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a> {% endifequal %}
 </li>
 {% endfor %}
 </ul>

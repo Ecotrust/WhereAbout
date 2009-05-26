@@ -99,8 +99,10 @@ class InterviewQuestion(Model):
     AnswerTypeChoices = (
         ( 0, 'integer value' ),
         ( 1, 'decimal value' ),
-        ( 2, 'select from list of values' ),
-        ( 3, 'enter text' ),
+        ( 2, 'true/false' ),
+        ( 3, 'select from list of values' ),
+        ( 4, 'list of values w/"other" text' ),
+        ( 5, 'enter text' ),
     )
     int_group = ForeignKey(InterviewGroup, null=True, blank=True, help_text='set to ask question only of this group')
     interview = ForeignKey(Interview, null=True, blank=True, help_text='set to ask question of all groups in this interview')
