@@ -97,16 +97,16 @@ class InterviewAnswerOption(Model):
       
 class InterviewQuestion(Model):
     AnswerTypeChoices = (
-        ( 0, 'integer value' ),
-        ( 1, 'decimal value' ),
-        ( 2, 'true/false' ),
-        ( 3, 'select from list of values' ),
-        ( 4, 'list of values w/"other" text' ),
-        ( 5, 'enter text' ),
+        ( 'integer', 'integer value' ),
+        ( 'float', 'decimal value' ),
+        ( 'boolean', 'true/false' ),
+        ( 'select', 'select from list of values' ),
+        ( 'select/other', 'list of values w/"other" text' ),
+        ( 'text', 'enter text' ),
     )
     int_group = ForeignKey(InterviewGroup, null=True, blank=True, help_text='set to ask question only of this group')
     interview = ForeignKey(Interview, null=True, blank=True, help_text='set to ask question of all groups in this interview')
-    answer_type = IntegerField( choices=AnswerTypeChoices, help_text='0=integer, 1=decimal, 2=list option, 3=text') # numeric value, text, list selection
+    answer_type = CharField( max_length=20, choices=AnswerTypeChoices, help_text='0=integer, 1=decimal, 2=list option, 3=text') # numeric value, text, list selection
     val_min = FloatField( help_text='minimum value for numeric answers', blank=True, null=True )
     val_max = FloatField( help_text='maximum value for numeric answers', blank=True, null=True )
     options = ManyToManyField(InterviewAnswerOption, help_text='if a list question, multi-select valid responses', blank=True, null=True)

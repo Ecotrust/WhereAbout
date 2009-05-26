@@ -22,36 +22,39 @@ class AnswerForm(forms.Form):
         for i, question in enumerate(questions):
             dynamic_args = {}
             dynamic_args['label'] = question.eng_text
-                
-            if question.answer_type == 0: # integer
-                if question.val_min:
+            
+            # set up the appropriate widget
+            if question.answer_type == 'integer': # integer
+                if question.val_min != None:
                     dynamic_args['min_value']=int(question.val_min)
-                if question.val_max:
+                if question.val_max != None:
                     dynamic_args['max_value']=int(question.val_max)
                 self.fields['question_%d' % question.id] = forms.IntegerField( **dynamic_args )
                 
-            elif question.answer_type == 1: # decimal  
-                if question.val_min:
+            elif question.answer_type == 'float': # decimal  
+                if question.val_min != None:
                     dynamic_args['min_value']=question.val_min
-                if question.val_max:
+                if question.val_max != None:
                     dynamic_args['max_value']=question.val_max
                 self.fields['question_%d' % question.id] = forms.FloatField( **dynamic_args )
                 
-            elif question.answer_type == 2: # boolean  
+            elif question.answer_type == 'boolean': # boolean  
                 self.fields['question_%d' % question.id] = forms.BooleanField( **dynamic_args )
                 
-            elif question.answer_type == 3: #choice list 
+            elif question.answer_type == 'select': #choice list 
                 dynamic_args['queryset'] = question.options
                 self.fields['question_%d' % question.id] = forms.ModelChoiceField( **dynamic_args )
                 
-            elif question.answer_type == 4: #choice w/enter text for other
+            elif question.answer_type == 'select/other': #choice w/enter text for other
                 dynamic_args['queryset'] = question.options
                 self.fields['question_%d' % question.id] = forms.ModelChoiceField( **dynamic_args )
+                self.fields['question_%d_other' % question.id] = forms.CharField( label='Other value for '+question.eng_text, max_length=300, required=False )
             
-            elif question.answer_type == 5: #text
+            elif question.answer_type == 'text': #text
                 dynamic_args['max_length'] = 300
                 self.fields['question_%d' % question.id] = forms.CharField( **dynamic_args )
-                
+            
+            # now add any tooltip text
             if question.eng_tooltip:
                 self.fields['question_%d' % question.id].widget.attrs.update({'title':question.eng_tooltip})
 
