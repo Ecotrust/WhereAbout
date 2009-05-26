@@ -100,14 +100,36 @@ def answer_questions(request,group_id):
     if request.method == 'GET':
         # show questions for this group, with any existing user answers
         questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
-        form = AnswerForm(questions)
+        answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
+        form = AnswerForm(questions, answers)
         
     else:
         # form validation
         questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
-        form = AnswerForm(questions, request.POST)
+        form = AnswerForm(questions, InterviewAnswer.objects.none(), request.POST)
+        
         if form.is_valid():
-            # save InterviewAnswer records
+            # create or update InterviewAnswer records
+            for field_name in form.fields:
+                answer = InterviewAnswer()
+                field = form.fields[field_name]
+                answer.int_question = field.question
+                answer.user = request.user
+                if field.question.answer_type == 'integer':
+                    answer.integer_val = form.cleaned_data['question_%d' % field.question.id]
+                elif field.question.answer_type == 'decimal':
+                    answer.decimal_val = form.cleaned_data['question_%d' % field.question.id]
+                elif field.question.answer_type == 'boolean':
+                    answer.boolean_val = form.cleaned_data['question_%d' % field.question.id]
+                elif field.question.answer_type == 'select':
+                    answer.option_val = form.cleaned_data['question_%d' % field.question.id]
+                elif field.question.answer_type == 'other':
+                    answer.option_val = form.cleaned_data['question_%d' % field.question.id]
+                    answer.text_val = form.cleaned_data['question_%d_other' % field.question.id]
+                elif field.question.answer_type == 'text':
+                    answer.text_val = form.cleaned_data['question_%d' % field.question.id]
+                answer.save()
+            
             # if not global questions, proceed to draw_group_shapes
             return render_to_response( 'test.html', RequestContext(request,{}))
 
