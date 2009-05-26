@@ -106,15 +106,22 @@ def answer_questions(request,group_id):
     else:
         # form validation
         questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
-        form = AnswerForm(questions, InterviewAnswer.objects.none(), request.POST)
+        answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
+        form = AnswerForm(questions, answers, request.POST)
         
         if form.is_valid():
             # create or update InterviewAnswer records
             for field_name in form.fields:
-                answer = InterviewAnswer()
                 field = form.fields[field_name]
-                answer.int_question = field.question
-                answer.user = request.user
+                if field.answer.count() == 1:
+                    answer = field.answer[0]
+                    answer.last_modified = datetime.datetime.today()
+                    answer.num_times_saved = answer.num_times_saved + 1
+                else:
+                    answer = InterviewAnswer()
+                    answer.int_question = field.question
+                    answer.user = request.user
+                    
                 if field.question.answer_type == 'integer':
                     answer.integer_val = form.cleaned_data['question_%d' % field.question.id]
                 elif field.question.answer_type == 'decimal':

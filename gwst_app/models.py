@@ -164,7 +164,7 @@ class InterviewAnswer(Model):
     boolean_val = NullBooleanField(null=True, blank=True)
     creation_date = DateTimeField(default=datetime.datetime.today())
     last_modified = DateTimeField(default=datetime.datetime.today())
-    num_times_saved = IntegerField(default=0)
+    num_times_saved = IntegerField(default=1)
     
     class Meta:
         db_table = u'gwst_useranswer'

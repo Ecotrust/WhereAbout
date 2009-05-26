@@ -93,6 +93,7 @@ class AnswerForm(forms.Form):
                 self.fields['question_%d' % question.id].widget.attrs.update({'title':question.eng_tooltip})
                 
             self.fields['question_%d' % question.id].question = question
+            self.fields['question_%d' % question.id].answer = answer
 
 
 
