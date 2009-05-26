@@ -98,17 +98,18 @@ class InterviewAnswerOption(Model):
 class InterviewQuestion(Model):
     AnswerTypeChoices = (
         ( 'integer', 'integer value' ),
-        ( 'float', 'decimal value' ),
-        ( 'boolean', 'true/false' ),
+        ( 'decimal', 'decimal value' ),
+        ( 'boolean', 'boolean (true/false) value' ),
         ( 'select', 'select from list of values' ),
-        ( 'select/other', 'list of values w/"other" text' ),
+        ( 'other', 'list of values w/"other" text' ),
         ( 'text', 'enter text' ),
     )
     int_group = ForeignKey(InterviewGroup, null=True, blank=True, help_text='set to ask question only of this group')
     interview = ForeignKey(Interview, null=True, blank=True, help_text='set to ask question of all groups in this interview')
-    answer_type = CharField( max_length=20, choices=AnswerTypeChoices, help_text='0=integer, 1=decimal, 2=list option, 3=text') # numeric value, text, list selection
+    answer_type = CharField( max_length=20, choices=AnswerTypeChoices )
     val_min = FloatField( help_text='minimum value for numeric answers', blank=True, null=True )
     val_max = FloatField( help_text='maximum value for numeric answers', blank=True, null=True )
+    val_default = CharField( max_length=100, help_text='default value displayed when form appears', blank=True, null = True )
     options = ManyToManyField(InterviewAnswerOption, help_text='if a list question, multi-select valid responses', blank=True, null=True)
     eng_text = TextField( help_text='the question asked of the user' )
     eng_tooltip = CharField( max_length=200, help_text='hover help text shown to user', blank=True, null=True )
