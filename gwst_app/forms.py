@@ -20,35 +20,40 @@ class AnswerForm(forms.Form):
     def __init__(self, questions, *args, **kwargs):
         forms.Form.__init__(self, *args, **kwargs)
         for i, question in enumerate(questions):
+            dynamic_args = {}
+            dynamic_args['label'] = question.eng_text
+                
             if question.answer_type == 0: # integer
-                value_range_args = {}
-                value_range_args['label'] = question.eng_text
                 if question.val_min:
-                    value_range_args['min_value']=int(question.val_min)
+                    dynamic_args['min_value']=int(question.val_min)
                 if question.val_max:
-                    value_range_args['max_value']=int(question.val_max)
-                self.fields['question_%d' % question.id] = forms.IntegerField( **value_range_args )
+                    dynamic_args['max_value']=int(question.val_max)
+                self.fields['question_%d' % question.id] = forms.IntegerField( **dynamic_args )
                 
             elif question.answer_type == 1: # decimal  
-                value_range_args = {}
-                value_range_args['label'] = question.eng_text
                 if question.val_min:
-                    value_range_args['min_value']=question.val_min
+                    dynamic_args['min_value']=question.val_min
                 if question.val_max:
-                    value_range_args['max_value']=question.val_max
-                self.fields['question_%d' % question.id] = forms.FloatField( label=question.eng_text )
+                    dynamic_args['max_value']=question.val_max
+                self.fields['question_%d' % question.id] = forms.FloatField( **dynamic_args )
                 
             elif question.answer_type == 2: # boolean  
-                self.fields['question_%d' % question.id] = forms.BooleanField( label=question.eng_text )
+                self.fields['question_%d' % question.id] = forms.BooleanField( **dynamic_args )
                 
             elif question.answer_type == 3: #choice list 
-                self.fields['question_%d' % question.id] = forms.ModelChoiceField( label=question.eng_text, queryset=question.options )
+                dynamic_args['queryset'] = question.options
+                self.fields['question_%d' % question.id] = forms.ModelChoiceField( **dynamic_args )
                 
             elif question.answer_type == 4: #choice w/enter text for other
-                self.fields['question_%d' % question.id] = forms.ModelChoiceField( label=question.eng_text, queryset=question.options )
+                dynamic_args['queryset'] = question.options
+                self.fields['question_%d' % question.id] = forms.ModelChoiceField( **dynamic_args )
             
             elif question.answer_type == 5: #text
-                self.fields['question_%d' % question.id] = forms.CharField( label=question.eng_text, max_length=300 )
+                dynamic_args['max_length'] = 300
+                self.fields['question_%d' % question.id] = forms.CharField( **dynamic_args )
+                
+            if question.eng_tooltip:
+                self.fields['question_%d' % question.id].widget.attrs.update({'title':question.eng_tooltip})
 
 
 
