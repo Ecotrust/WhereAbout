@@ -16,4 +16,8 @@
 {% endfor %}
 </ul>
 
+{% if allow_finalize %}
+<a href="/finalize_interview/{{interview.id}}/">Finalize this interview</a>
+{% endif %}
+
 {% endblock %}

@@ -18,6 +18,7 @@ def select_interview(request):
         return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))
         
     else:
+        # handle the user's interview selection from a POST
         form = SelectInterviewForm(request.POST)
         form.fields['interview'].queryset = Interview.objects.all()
         
@@ -40,19 +41,27 @@ def select_interview(request):
                 return HttpResponseRedirect('/assign_groups/')
         
             else:
-                # see if there are group memberships
-                int_groups = InterviewGroup.objects.filter(interview=selected_interview)
-                num_group_membs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).count()
-                
-                if num_group_membs == 0:
-                    # redirect to assign_groups
-                    return HttpResponseRedirect('/assign_groups/')
-                
                 status = status_object_qs[0]
+                
+                # see if the interview has been marked complete
+                if status.completed:
+                    # redirect to interview_complete
+                    return HttpResponseRedirect('/interview_complete/')
+                    
+                # update user access timestamp if they are returning to a live interview
                 status.last_login = datetime.datetime.today()
                 status.num_logins = status.num_logins + 1
                 status.save()
+            
+                # see if there are any group memberships
+                int_groups = InterviewGroup.objects.filter(interview=selected_interview)
+                num_group_membs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).count()
                 
+                # if there are no group memberships, a user may have aborted before selecting them before, give them another chance now
+                if num_group_membs == 0:
+                    # redirect to assign_groups
+                    return HttpResponseRedirect('/assign_groups/')
+                 
                 # redirect to interview_group_status
                 return HttpResponseRedirect('/group_status/')
                 
@@ -90,9 +99,14 @@ def assign_groups(request):
 # show a list of user's groups and current status of each
 def group_status(request):
     # show list of interview groups with current status (including global interview questions)
-    int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+    int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])   
     qs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups)
-    return render_to_response( 'group_status.html', RequestContext(request,{'interview':request.session['interview'], 'object_list':qs}))
+    
+    # if user has finalized each of their registered groups, let them finalize their interview
+    finalized_groups = qs.filter(status='finalized')
+    allow_finalize = qs.count() == finalized_groups.count()
+    
+    return render_to_response( 'group_status.html', RequestContext(request,{'interview':request.session['interview'], 'object_list':qs, 'allow_finalize':allow_finalize}))
     
     
 def answer_main_questions(request,interview_id):
@@ -106,6 +120,18 @@ def answer_group_questions(request,group_id):
     filter_dict = {}
     filter_dict['int_group__pk']=group_id
     success_return='/draw_group_shapes/'
+    
+    # update the InterviewGroupMembership to show in-progress status
+    group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=group_id)
+    if group_memb.count()==1:
+        updated_group = group_memb[0]
+        if updated_group.status == 'not yet started':
+            updated_group.date_started = datetime.datetime.now()
+        updated_group.status = 'in-progress'
+        updated_group.save()
+    else: #404
+        return render_to_response( 'test.html', RequestContext(request,{}))
+    
     return answer_questions(request,filter_dict,success_return)
     
     
@@ -143,6 +169,7 @@ def answer_questions(request,filter_dict,success_return):
                     answer.boolean_val = form.cleaned_data['question_%d' % field.question.id]
                 elif field.question.answer_type == 'select':
                     answer.option_val = form.cleaned_data['question_%d' % field.question.id]
+                    answer.text_val = answer.option_val.eng_text # makes the db a little more human readable
                 elif field.question.answer_type == 'other':
                     answer.option_val = form.cleaned_data['question_%d' % field.question.id]
                     answer.text_val = form.cleaned_data['question_%d_other' % field.question.id]
@@ -194,13 +221,35 @@ def assign_pennies(request):
 def finalize_group(request,id):
     if request.method == 'GET':
         # update InterviewGroupMembership record
-        group = InterviewGroupMembership.objects.get(pk=id)
+        group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=id)
         
-        if group.user == request.user:
-            group.status = 'finalized'
-            group.save()
+        if group_memb.count() == 1:
+            update_memb = group_memb[0]
+            update_memb.status = 'finalized'
+            update_memb.date_completed = datetime.datetime.now()
+            update_memb.save()
+        else: #404
+            return render_to_response( 'test.html', RequestContext(request,{}))
         
         # redirect to interview_group_status
         return HttpResponseRedirect('/group_status/')
+        
+        
+# user finalizes group
+def finalize_interview(request,id):
+    if request.method == 'GET':
+
+        # make sure this interview is the current one for this user session
+        if int(id) == request.session['interview'].id:
+            # get the interviewstatus object
+            int_status = InterviewStatus.objects.get(user=request.user,interview=id)
+            int_status.completed = True
+            int_status.complete_date = datetime.datetime.today()
+            int_status.save()
+        
+        # redirect to finished page
+        return HttpResponseRedirect('/interview_complete/')
     
-    
+   
+def interview_complete(request):
+    return render_to_response( 'interview_complete.html', RequestContext(request,{'name':request.session['interview'].name}))

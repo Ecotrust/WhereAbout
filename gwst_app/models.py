@@ -76,6 +76,11 @@ class InterviewGroupMembership(Model):
     user = ForeignKey(User)
     int_group = ForeignKey(InterviewGroup)
     status = CharField( max_length=30, choices = InterviewGroupStatusChoices, default='not yet started' )
+    date_started = DateTimeField( blank=True, null=True )
+    completed = BooleanField( default=False )
+    date_completed = DateTimeField( blank=True, null=True )
+    reviewed = BooleanField( default = False )
+    date_reviewed = DateTimeField( blank=True, null=True )
     
     class Meta:
         db_table = u'gwst_groupmemb'
@@ -181,7 +186,7 @@ class InterviewStatus(Model):
     first_login = DateTimeField(null=True)
     last_login = DateTimeField(null=True)
     num_logins = IntegerField(default=0)
-    complete_date = DateField(null=True)
+    complete_date = DateTimeField(null=True)
     notes = TextField(null=True)
     
     class Meta:
