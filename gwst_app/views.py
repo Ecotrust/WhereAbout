@@ -95,17 +95,30 @@ def group_status(request):
     return render_to_response( 'group_status.html', RequestContext(request,{'interview':request.session['interview'], 'object_list':qs}))
     
     
-# show the questions for an indicated group
-def answer_questions(request,group_id):
+def answer_main_questions(request,interview_id):
+    filter_dict = {}
+    filter_dict['interview__pk']=interview_id
+    success_return='/group_status/'
+    return answer_questions(request,filter_dict,success_return)
+    
+    
+def answer_group_questions(request,group_id):
+    filter_dict = {}
+    filter_dict['int_group__pk']=group_id
+    success_return='/draw_group_shapes/'
+    return answer_questions(request,filter_dict,success_return)
+    
+    
+def answer_questions(request,filter_dict,success_return):
     if request.method == 'GET':
         # show questions for this group, with any existing user answers
-        questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
+        questions = InterviewQuestion.objects.filter(**filter_dict).order_by('question_set', 'display_order')
         answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
         form = AnswerForm(questions, answers)
         
     else:
         # form validation
-        questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
+        questions = InterviewQuestion.objects.filter(**filter_dict).order_by('question_set', 'display_order')
         answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
         form = AnswerForm(questions, answers, request.POST)
         
@@ -138,9 +151,9 @@ def answer_questions(request,group_id):
                 answer.save()
             
             # if not global questions, proceed to draw_group_shapes
-            return render_to_response( 'test.html', RequestContext(request,{}))
+            return HttpResponseRedirect(success_return)
 
-    return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))    
+    return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))     
     
     
 # start draw shapes for indicated group    
