@@ -36,6 +36,14 @@ def select_interview(request):
                 status.last_login = datetime.datetime.today()
                 status.num_logins = 1
                 status.save()
+                
+                # create group records for any required groups
+                required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
+                for group in required_groups:
+                    new_group = InterviewGroupMembership()
+                    new_group.user = request.user
+                    new_group.int_group = group
+                    new_group.save()
             
                 # redirect to assign_groups
                 return HttpResponseRedirect('/assign_groups/')
@@ -73,12 +81,12 @@ def assign_groups(request):
     if request.method == 'GET':
         # let user select which groups they are in
         form = SelectInterviewGroupsForm()
-        form.fields['groups'].queryset = InterviewGroup.objects.filter(interview=request.session['interview'])
+        form.fields['groups'].queryset = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
         return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))
         
     else:
         form = SelectInterviewGroupsForm( request.POST )
-        form.fields['groups'].queryset = InterviewGroup.objects.filter(interview=request.session['interview'])
+        form.fields['groups'].queryset = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
         if form.is_valid():       
             # save InterviewGroupMembership records
             selected_groups = form.cleaned_data['groups']
@@ -109,45 +117,21 @@ def group_status(request):
     return render_to_response( 'group_status.html', RequestContext(request,{'interview':request.session['interview'], 'object_list':qs, 'allow_finalize':allow_finalize}))
     
     
-def answer_main_questions(request,interview_id):
-    filter_dict = {}
-    filter_dict['interview__pk']=interview_id
-    success_return='/group_status/'
-    return answer_questions(request,filter_dict,success_return)
     
-    
-def answer_group_questions(request,group_id):
-    filter_dict = {}
-    filter_dict['int_group__pk']=group_id
-    success_return='/draw_group_shapes/'
-    
-    # update the InterviewGroupMembership to show in-progress status
-    group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=group_id)
-    if group_memb.count()==1:
-        updated_group = group_memb[0]
-        if updated_group.status == 'not yet started':
-            updated_group.date_started = datetime.datetime.now()
-        updated_group.status = 'in-progress'
-        updated_group.save()
-    else: #404
-        return render_to_response( 'test.html', RequestContext(request,{}))
-    
-    return answer_questions(request,filter_dict,success_return)
-    
-    
-def answer_questions(request,filter_dict,success_return):
+def answer_questions(request,group_id):
     if request.method == 'GET':
         # show questions for this group, with any existing user answers
-        questions = InterviewQuestion.objects.filter(**filter_dict).order_by('question_set', 'display_order')
+        questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
         answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
         form = AnswerForm(questions, answers)
         
     else:
         # form validation
-        questions = InterviewQuestion.objects.filter(**filter_dict).order_by('question_set', 'display_order')
+        questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
         answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
         form = AnswerForm(questions, answers, request.POST)
         
+
         if form.is_valid():
             # create or update InterviewAnswer records
             for field_name in form.fields:
@@ -176,9 +160,25 @@ def answer_questions(request,filter_dict,success_return):
                 elif field.question.answer_type == 'text':
                     answer.text_val = form.cleaned_data['question_%d' % field.question.id]
                 answer.save()
+                
+                # update the InterviewGroupMembership to show in-progress status
+                group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=group_id)
+                if group_memb.count()==1:
+                    updated_group = group_memb[0]
+                    if updated_group.status == 'not yet started':
+                        updated_group.date_started = datetime.datetime.now()
+                    updated_group.status = 'in-progress'
+                    updated_group.save()
+                else: #404
+                    return render_to_response( 'test.html', RequestContext(request,{}))
             
             # if not global questions, proceed to draw_group_shapes
-            return HttpResponseRedirect(success_return)
+            group = InterviewGroup.objects.get(pk=group_id)
+            
+            if group.user_draws_shapes:
+                return HttpResponseRedirect('/draw_group_shapes/')
+            else:
+                return HttpResponseRedirect('/group_status/')
 
     return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))     
     

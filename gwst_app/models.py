@@ -54,7 +54,9 @@ class InterviewGroup(Model):
     name = CharField( max_length=100 )
     description = CharField( max_length=200 )
     code = CharField( max_length=10 )
-    resources = ManyToManyField(Resource)
+    resources = ManyToManyField(Resource,blank=True,null=True)
+    required_group = BooleanField( default=False )
+    user_draws_shapes = BooleanField( default=True )
     
     class Meta:
         db_table = u'gwst_group'
@@ -110,7 +112,6 @@ class InterviewQuestion(Model):
         ( 'text', 'enter text' ),
     )
     int_group = ForeignKey(InterviewGroup, null=True, blank=True, help_text='set to ask question only of this group')
-    interview = ForeignKey(Interview, null=True, blank=True, help_text='set to ask question of all groups in this interview')
     answer_type = CharField( max_length=20, choices=AnswerTypeChoices )
     val_min = FloatField( help_text='minimum value for numeric answers', blank=True, null=True )
     val_max = FloatField( help_text='maximum value for numeric answers', blank=True, null=True )
@@ -123,7 +124,7 @@ class InterviewQuestion(Model):
     
     class Meta:
         db_table = u'gwst_question'
-        ordering = ('interview','int_group','question_set','display_order')
+        ordering = ('int_group__interview','int_group','question_set','display_order')
         
     def __unicode__(self):
         if self.int_group:

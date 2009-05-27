@@ -3,7 +3,6 @@
 {% block content %}
 <h3>{{interview.name}} Interview Status</h3>
 <ul>
-<li><a href="/show_main_questions/{{interview.id}}/">General questions</a></li>
 {% for object in object_list %}
 <li>
 {% ifequal object.status "finalized" %}
