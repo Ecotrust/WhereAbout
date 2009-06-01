@@ -3,9 +3,11 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.conf import settings
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest
+from django.conf import settings
 from models import *
 from forms import *
+from gwst_app.utils.geojson_encode import *
 
 
 @login_required
@@ -76,7 +78,8 @@ def select_interview(request):
         # validation errors
         return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))        
     
-# on first entrance to a new interview, user selects which groups they belong to    
+# on first entrance to a new interview, user selects which groups they belong to  
+@login_required  
 def assign_groups(request):
     if request.method == 'GET':
         # let user select which groups they are in
@@ -105,6 +108,7 @@ def assign_groups(request):
     
     
 # show a list of user's groups and current status of each
+@login_required
 def group_status(request):
     # show list of interview groups with current status (including global interview questions)
     int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])   
@@ -117,9 +121,10 @@ def group_status(request):
     return render_to_response( 'group_status.html', RequestContext(request,{'interview':request.session['interview'], 'object_list':qs, 'allow_finalize':allow_finalize}))
     
     
-    
+@login_required    
 def answer_questions(request,group_id):
     if request.method == 'GET':
+        
         # show questions for this group, with any existing user answers
         questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
         answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
@@ -174,6 +179,7 @@ def answer_questions(request,group_id):
             
             # if not global questions, proceed to draw_group_shapes
             group = InterviewGroup.objects.get(pk=group_id)
+            request.session['int_group'] = group
             
             if group.user_draws_shapes:
                 return HttpResponseRedirect('/draw_group_shapes/')
@@ -184,33 +190,51 @@ def answer_questions(request,group_id):
     
     
 # start draw shapes for indicated group    
+@login_required
 def draw_group_shapes(request):
     if request.method == 'GET':
         # get list of resources for this group
         
         # send template page for shape-drawing
-        return render_to_response( 'test.html', RequestContext(request,{}))
+        return render_to_response( 'map.html', RequestContext(request, {'debug': request.REQUEST.get('debug', False), 'dynamic': request.REQUEST.get('dynamic', False), 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
 
         
-# AJAX post to save a shape     
-def save_shape(request):
-    if request.method == 'POST':
-        # validate indicated group, resource
-        
-        # validate shape and return validation info
-        
-        # await confirm_shape from client
-        return render_to_response( 'test.html', RequestContext(request,{}))
+# AJAX post to validate a shape     
+@login_required
+def validate_shape(request):
+    # validate indicated group, resource
+    result = '{"status_code":"-1",  "success":"false",  "message":"error in validate_shape in views.py"}'
+    try:
+        m = InterviewShape(geometry=request.REQUEST["geometry"])
+        result = m.validate()
+    except Exception, e:
+        return HttpResponse(result + e.message, status=500)
+    return HttpResponse(result)
+ 
     
 
 # AJAX post that user accepted clipped shape    
-def confirm_shape(request):
-    if request.method == 'POST':
-        # ack to client to start next shape draw
-        return render_to_response( 'test.html', RequestContext(request,{}))
+@login_required
+def save_shape(request):
+    result = '{"status_code":"-1",  "success":"false",  "message":"error in save_shape in views.py"}'
+    try:
+        new_shape = InterviewShape()
+        new_shape.user = request.user
+        new_shape.int_group = request.session['int_group']
+        new_shape.geometry = request.REQUEST['geometry']
+        new_shape.geometry_clipped = request.REQUEST['geometry_clipped']
+        new_shape.resource_id = 1 # temp
+        
+        new_shape.save() 
+        result = '{"status_code":"1",  "success":"true", "message":"mpa saved successfully"'
+        result = new_shape.json()
+    except Exception, e:
+        return HttpResponse(result + e.message, status=500)
+    return HttpResponse(result)
 
 
 # AJAX post to set pennies for a shape
+@login_required
 def assign_pennies(request):
     if request.method == 'POST':
         # validate number of pennies set
@@ -218,6 +242,7 @@ def assign_pennies(request):
 
 
 # user finalizes group
+@login_required
 def finalize_group(request,id):
     if request.method == 'GET':
         # update InterviewGroupMembership record
@@ -236,6 +261,7 @@ def finalize_group(request,id):
         
         
 # user finalizes group
+@login_required
 def finalize_interview(request,id):
     if request.method == 'GET':
 
@@ -251,5 +277,101 @@ def finalize_interview(request,id):
         return HttpResponseRedirect('/interview_complete/')
     
    
+@login_required
 def interview_complete(request):
     return render_to_response( 'interview_complete.html', RequestContext(request,{'name':request.session['interview'].name}))
+    
+    
+# client-side usermanager support
+
+def user_client_object(user):
+    return {
+        'model': 'user',
+        'pk': user.pk,
+        'name': user.first_name + ' ' + user.last_name,
+        'username': user.username,
+        'email': user.email,
+        'is_staff': user.is_staff,
+    }
+
+@login_required
+def GetUser(request):
+    if request.user.is_authenticated():
+        user = request.user
+        retUser = {}
+        retUser["name"] = user.first_name + " " + user.last_name
+        retUser["email"] = user.email
+        retUser["studyRegion"] = {}
+        retUser["studyRegion"]["name"] = "California South Coast"
+        retUser["studyRegion"]["bounds"] = "-13477376.825366,3752140.84394,-12930699.199147,4134937.481539"
+        retUser["pk"] = user.pk
+        retUser["username"] = user.username
+        retUser['is_staff'] = user.is_staff
+        retUser['user'] = user_client_object(user)
+    
+        return HttpResponse(geojson_encode(retUser), mimetype='text/javascript')
+    else:
+        return HttpResponseBadRequest('user is not authenticated')
+        
+        
+def add_child(client_object, child):
+    if not 'display_properties' in client_object:
+        client_object['display_properties'] = {'children': []}
+    elif not 'children' in client_object['display_properties']:
+        client_object['display_properties']['children'] = []
+    client_object['display_properties']['children'].append(child)
+    
+        
+def create_folder(name, open=False, visibility=True, collapsible=True, toggle=True, hideByDefault=False, pk=None, description=None, context=False, model="folder"):
+    return {
+        'model': model, 
+        'name': name,
+        'display_properties': {
+            'open': open, 
+            'visibility': visibility,
+            'children': [],
+            'collapsible': True,
+            'toggle': toggle,
+            'hideByDefault': hideByDefault,
+            'description': description,
+            'context': context
+        },
+        'pk': pk
+    }
+
+def create_superfolder(name, icon=None, id=None, description=None):
+    obj = create_folder(name, open=True, visibility=True, collapsible=False, description=description)
+    obj['display_properties']['collapsible'] = False
+    if icon:
+        obj['display_properties']['icon'] = icon
+    obj['display_properties']['toggle'] = False
+    obj['pk'] = id
+    obj['display_properties']['classname'] = 'marinemap-tree-category'
+    return obj
+        
+def user_features_client_object(user):
+    folder = create_superfolder('My Shapes', icon=settings.MEDIA_URL+'images/silk/icons/status_online.png', id="userFeatures")
+    mpas = create_folder('Default resource', pk='user_mpas', toggle=True)
+    for mpa in InterviewShape.objects.filter(user=user):
+        add_child(mpas, mpa.client_object())
+    add_child(folder, mpas)
+    return folder
+    
+@login_required
+def get_user_shapes(request):
+    data = {}
+    u = request.user
+    data['me'] = {
+        'model': 'user',
+        'pk': u.pk,
+        'name': u.first_name + ' ' + u.last_name,
+        'username': u.username,
+        'email': u.email,
+    }
+    data['features'] = ( user_features_client_object(u), )
+    return HttpResponse(geojson_encode(data), mimetype='application/json')
+    
+@login_required
+def get_shape(request,id):
+    shape = InterviewShape.objects.filter(pk=id)
+    return HttpResponse(shape[0].geojson(), mimetype='application/json')

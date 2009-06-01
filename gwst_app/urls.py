@@ -13,4 +13,10 @@ urlpatterns = patterns('',
     
     (r'^finalize_group/(\d+)/$', finalize_group ),
     (r'^finalize_interview/(\d+)/$', finalize_interview ),
+    
+    (r'^validate_shape/$', validate_shape ),
+    (r'^save_shape/$', save_shape ),
+    (r'^user/$', GetUser ),
+    (r'^shapes/$', get_user_shapes ),
+    (r'^geojson/shape/(\d+)/$', get_shape ),
 )

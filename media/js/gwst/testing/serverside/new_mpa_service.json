@@ -1,0 +1,18 @@
+{
+    success: true,
+    results: [
+        {
+            "pk": 3, 
+            "model": "mmapp.publicmpas", 
+            "fields": {
+                "username": "admin", 
+                "name": "anp mpa", 
+                "date_modified": "2008-06-19 13:17:59", 
+                "designation_id": 2, 
+                "email": "apeters@fargeo.com", 
+                "displaygeometry": null, 
+                "originalgeometry": "POLYGON ((-1.2931034482758648 4.6875000000000000, -10.0862068965517260 21.6918103448275870, 29.9353448275862060 26.4116379310344840, 20.0000000000000000 15.0000000000000000, -1.2931034482758648 4.6875000000000000))"
+            }
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+[
+	{
+	    fieldLabel: 'Name',
+	    xtype: 'textfield',
+	    name: 'Name',
+	    id: 'name'
+        // vtype: 'daterange',
+        // endDateField: 'enddt' // id of the end date field
+	},
+	{
+	    xtype: 'hidden',
+	    fieldLabel: 'OriginalGeometry',
+	    id: 'originalGeometry'
+	}
+]

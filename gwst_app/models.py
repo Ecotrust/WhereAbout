@@ -11,11 +11,12 @@
 from django.contrib.gis.db.models import *
 from django.contrib.auth.models import User
 import datetime
+from gwst_app.utils.geojson_encode import *
 
 # ultimately the Region table needs to move to MM core
 class Region(Model):
     name = CharField( max_length=100, unique=True )
-    bounds = PolygonField(srid=4326, null=True, blank=True)
+    bounds = MultiPolygonField(srid=3310, null=True, blank=True)
     code = CharField( max_length=10, unique=True )
     
     class Meta:
@@ -204,7 +205,7 @@ class InterviewShape(Model):
     geometry = PolygonField(srid=4326, blank=True, null=True)
     geometry_clipped = PolygonField(srid=4326, blank=True, null=True)
     geometry_edited = PolygonField(srid=4326, blank=True, null=True)
-    pennies = IntegerField( default=1 )
+    pennies = IntegerField( default=0 )
     boundary_n = CharField( max_length=100, blank=True, null=True ) 
     boundary_s = CharField( max_length=100, blank=True, null=True )
     boundary_e = CharField( max_length=100, blank=True, null=True )
@@ -213,11 +214,53 @@ class InterviewShape(Model):
     edit_status = CharField( max_length=100, default='unedited' )
     creation_date = DateTimeField(default=datetime.datetime.today())
     last_modified = DateTimeField(default=datetime.datetime.today())
-    num_times_saved = IntegerField(default=0)
+    num_times_saved = IntegerField(default=1)
     
     class Meta:
         db_table = u'gwst_usershape'
         
     def __unicode__(self):
         return unicode('%s: %s %s' % (self.user, self.resource.code, self.int_group))
+        
+    def validate(self):
+        from django.db import connection
+        cursor = connection.cursor()
+        query_str = "SELECT gwst_validate_shape('%s')" % (self.geometry)
+        cursor.execute(query_str)
+        row = cursor.fetchone()
+        return row
+        
+    def client_object(self):
+        return {
+            'pk': self.pk,
+            'model': 'mpa',
+            'name': 'shape %d' % (self.pk),
+            'user': self.user_id,
+            'date_created': self.creation_date.ctime(),
+            'date_modified': self.last_modified.ctime(),
+            'display_properties': {
+                'toggle': True,
+                'context': True,
+                'select': True,
+                'doubleclick': True,
+                'collapsible': False,
+            }
+        }
+        
+    def json(self):
+        return self.geojson(attributes=True)
+        
+    def geojson(self, srid=900913, attributes=False):
+        #geo = self.geometry_clipped.simplify(20, preserve_topology=True)
+        #geo.transform(srid)
+        attr = {}    
+        if attributes:
+            attr = self.client_object()
+            attr['folder'] = 'folder_user_mpas'
+        attr['fillColor'] = '#FFFFFF' 
+        attr['strokeColor'] = "white"
+        attr['fillOpacity'] = "0.4"
+        #self.geometry.transform(srid)
+        attr['original_geometry'] = self.geometry.wkt
+        return '{"id": "mpa_%s", "type": "Feature", "geometry": %s, "properties": %s}' % (self.pk, self.geometry_clipped.geojson, geojson_encode(attr))
 
