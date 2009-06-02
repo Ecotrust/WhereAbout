@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Generalized Web Survey Tool</title>
+	<link rel="stylesheet" href="{{MEDIA_URL}}js/extjs/resources/css/ext-all.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/column-tree.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/grid-reorder-drop-target.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/gwst_ui.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{{MEDIA_URL}}mlpa/css/mpa-form.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/mm_style.css" type="text/css" media="screen" title="no title" charset="utf-8">    
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.99&amp;key={{GMAPS_API_KEY}}" type="text/javascript"></script>
+    <script src="{{MEDIA_URL}}js/OpenLayers-2.7/OpenLayers.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/proj4js/lib/proj4js-combined.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script src="{{MEDIA_URL}}js/ext-jquery-adapter.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/ext-all.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/proj4js/lib/defs/EPSG3310.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/proj4js/lib/defs/EPSG900913.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="{{MEDIA_URL}}js/gwst/gwst.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/swfobject.js"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/FABridge.js"></script> -->
+    <script src="{{MEDIA_URL}}js/lib/jquery-ui-1.7.1.custom.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/Mapfish/MapComponent.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/Mapfish/Toolbar.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/config.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/lib/SmartCheckBoxSelectionModel.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/data/StudyRegion.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/data/DataLayers.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="{{MEDIA_URL}}js/gwst/data/FisheryImpactLayers.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="{{MEDIA_URL}}js/gwst/urls.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/actions.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="{{MEDIA_URL}}js/gwst/controls/Identify.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="{{MEDIA_URL}}js/gwst/OpenLayers-Overrides.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/widgets/Map.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/widgets/ControlToolbar.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="{{MEDIA_URL}}js/gwst/widgets/IdentifyWindow.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="{{MEDIA_URL}}js/gwst/widgets/MapToolWindow.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/widgets/ColumnNodeUI.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/widgets/MapToolbar.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/widgets/DropdownMenu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/widgets/DropdownWindow.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/widgets/DataLayersMenu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/widgets/DataLayerTreePanel.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/widgets/RowExpander.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="{{MEDIA_URL}}js/gwst/widgets/Login.js" type="text/javascript" charset="utf-8"></script>-->
+    <!--<script src="{{MEDIA_URL}}js/gwst/widgets/PasswordResetForm.js" type="text/javascript" charset="utf-8"></script>-->
+	<!--<script src="{{MEDIA_URL}}js/gwst/widgets/PasswordChangeForm.js" type="text/javascript" charset="utf-8"></script>-->
+	<!--<script src="{{MEDIA_URL}}js/gwst/widgets/SplashScreen.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="{{MEDIA_URL}}js/gwst/widgets/GridReorderDropTarget.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/widgets/MmappSelectionModel.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="{{MEDIA_URL}}js/gwst/widgets/FisheryImpactSelectors.js" type="text/javascript" charset="utf-8"></script>-->
+    <!--<script src="{{MEDIA_URL}}js/gwst/widgets/FisheryImpactReport.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="{{MEDIA_URL}}js/gwst/app.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/copy.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="{{MEDIA_URL}}js/gwst/widgets/ReportsViewer.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="{{MEDIA_URL}}js/gwst/ui/core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/ui/breadcrumbs.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/ui/form.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/widgets/URLViewer.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="{{MEDIA_URL}}mlpa/js/mpa-form.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="{{MEDIA_URL}}js/gwst/ui/client_store.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/ui/tree.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/ui/data.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/ui/user_manager.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/data/mlpaFeatures.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/lib/jquery.metadata.2.0/jquery.metadata.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/gwst/widgets/FeaturesMenu.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+        // Hack to support IE. See http://trac.openlayers.org/wiki/FrequentlyAskedQuestions#WhywontmyvectorlayerworkinIEbeforemypageisdoneloading
+	    document.namespaces;
+        Ext.onReady(gwst.app.init, gwst.app);
+	</script>	  
+</head>
+<body>
+    {% include "gwst-ui.html" %}
+    <noscript>We're sorry, the Generalized Web Survey Tool was unable to load.  In 
+    order to run the GWST you must have 
+    Javascript enabled. If your web browser doesn't support 
+    Javascript you will need to install one that does.  Choices 
+    include Internet Explorer 7+, Firefox 2+, Safari 2+.</noscript>
+    <div id="loading-mask" style=""></div>
+    <div id="loading">
+      <div class="loading-indicator">
+        <img src="{{MEDIA_URL}}images/large-loading.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:top;"/>
+        Generalized Web Survey Tool<br />
+        <span id="loading-msg">Loading ...</span>
+      </div>  
+    </div>
+	<div width="100" height="100" id="map"></div>
+	<div tabindex="-1" id="ReportsViewer" class="inactive gwst-typography">
+	    <div class="header"><h2><img tabindexbindex="-1" src="{{MEDIA_URL}}images/silk/icons/chart_bar.png" />Reports</h2><ul id="selection-breadcrumbs"></ul></div>
+	    <div tabindex="-1" id="reports_content" width="100%" height="320">
+	        <p class="flashWarning">
+	            Reporting functionality requires Flash version 9.0.124 or higher. 
+	            Please go to the <a tabindex="-1" href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> 
+	            and download the latest version. After installation, be sure to reload the page.
+	        </p>
+	    </div>
+	</div>
+	<div id="jLoading">Loading...</div>
+</body>
+</html>

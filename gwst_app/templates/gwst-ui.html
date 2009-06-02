@@ -1,0 +1,33 @@
+<div id="marinemap-ui-preload">
+    <img width="41" height="41" src="{{MEDIA_URL}}images/marinemap-ui/close.png" />
+    <img class="throbber" src="{{MEDIA_URL}}images/marinemap-ui/ajax-loader.gif" width="220" height="19" />
+    <img src="{{MEDIA_URL}}images/marinemap-ui/wait_bg.png" />
+    <img src="{{MEDIA_URL}}images/marinemap-ui/wait_bg.png" />
+    <img src="{{MEDIA_URL}}images/modetoolbarbg.gif" />
+    <img src="{{MEDIA_URL}}images/marinemap-ui/modal_bg.png" />
+</div>
+<div id="marinemap-mask" style="display:none;">
+    <div id="marinemap-mask-actual"></div>
+    <!-- Place all modal windows that need to be nearly-fullscreen or somewhat smaller here -->
+    <div id="ie-bugfix"></div>
+    <div id="marinemap-large-modals" style="display:none;">
+        <div id="marinemap-htmlmodalbuttons" style="display:none;"><a style="display:none;" id="marinemap-htmlmodal-close" href="#" alt="close" title="close window (press Esc or x)"><img width="41" height="41" src="{{MEDIA_URL}}images/marinemap-ui/close.png" /></a></div>
+        <div id="marinemap-htmlmodal" class="marinemap-modal-window" style="display:none;"></div>
+    </div>
+    <!-- Place all small, alert-box style messages here -->
+    <div id="marinemap-small-modals" class="small-modals" style="display:none;">
+        <div id="marinemap-error" class="marinemap-modal-window" style="display:none;">
+            <h3>An Error Occurred</h3>
+            <p></p>
+            <button name="OK" value="OK">
+                OK
+            </button>
+            <br style="clear:both;" />
+        </div>
+        <div id="marinemap-wait" class="marinemap-modal-window" style="display:none;">
+            <h3>Please Wait</h3>
+            <p></p>
+            <img class="throbber" src="{{MEDIA_URL}}images/marinemap-ui/ajax-loader.gif" width="220" height="19" />
+        </div>        
+    </div>
+</div>
