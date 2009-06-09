@@ -499,10 +499,10 @@ gwst.actions.enterMPAGeometryEditMode = new Ext.Action({
     iconCls: 'editGeo',
     handler: function(target, e){
         var mpa = target.mpa;
-        if(mpa.editable != true){
+        /*if(mpa.editable != true){
             alert('This is a read-only MPA that cannot be edited or deleted.');
             return;
-        }
+        }*/
         if(mpa.user != gwst.app.userManager.user.pk){
             alert('You cannot edit the geometry of an MPA that does not belong to you.');
             return;
@@ -571,24 +571,6 @@ gwst.actions.metricMeasurements = new Ext.Action({
     }
 });
 
-gwst.actions.openMpaAttributes = new Ext.Action({
-    text: 'Full Info',
-    // tooltip: 'View attributes and editing options',
-    iconCls: 'attributes',
-    handler: function(target, e){
-        var pk = target.mpa.pk;
-        var url = gwst.urls.mpaAttributes + pk;
-        if(target['saved']){
-            url = url + "?saved=True";
-        }
-        gwst.ui.modal.show({width: 500, url: url, waitMsg: 'while we retrieve information for this MPA.', afterRender: function(){
-            $('li.editmpa a').bindButton(function(e){gwst.actions.nonExt.editMpaAttributes(e);}, {mpa: target.mpa});
-            $('li.deletempa a').bindButton(gwst.actions.nonExt.deleteMPA, {mpa: target.mpa});
-        }});
-    }
-});
-
-
 gwst.actions.nauticalMeasurements = new Ext.Action({
     text: 'nautical miles',
     enableToggle: true,
@@ -606,6 +588,24 @@ gwst.actions.nauticalMeasurements = new Ext.Action({
     }
 });
 
+
+gwst.actions.openMpaAttributes = new Ext.Action({
+    text: 'Full Info',
+    // tooltip: 'View attributes and editing options',
+    iconCls: 'attributes',
+    handler: function(target, e){
+        var pk = target.mpa.pk;
+        var url = gwst.urls.mpaAttributes + pk;
+        if(target['saved']){
+            url = url + "?saved=True";
+        }
+        gwst.ui.modal.show({width: 500, url: url, waitMsg: 'while we retrieve information for this MPA.', afterRender: function(){
+            $('li.editmpa a').bindButton(function(e){gwst.actions.nonExt.editMpaAttributes(e);}, {mpa: target.mpa});
+            $('li.deletempa a').bindButton(gwst.actions.nonExt.deleteMPA, {mpa: target.mpa});
+        }});
+    }
+});
+
 /********************** Start of non-Ext.Action actions *********************/
 
 gwst.actions.nonExt = {};
@@ -614,10 +614,10 @@ gwst.actions.nonExt.editMpaAttributes = function(e){
     $(this).unbind('click');
     // gwst.ui.modal.hide(false);
     var mpa = e.data.mpa;
-    if(mpa.editable != true){
-        alert('This is a read-only MPA that cannot be edited or deleted.');
+    /*if(mpa.editable != true){
+        alert('This is a read-only shape that cannot be edited or deleted.');
         return;
-    }
+    }*/
     mlpa.mpaForm.show({
        editUrl: mpa.editUrl(),
        success: function(new_mpa){
@@ -626,7 +626,7 @@ gwst.actions.nonExt.editMpaAttributes = function(e){
            gwst.app.selectionManager.setSelectedFeature(new_mpa);
        },
        error: function(response){
-           gwst.ui.error.show({errorText:'There was a problem saving your MPA attributes. Please try again.', logText: 'Problem saving mpa attributes.'});
+           gwst.ui.error.show({errorText:'There was a problem saving your shape attributes. Please try again.', logText: 'Problem saving mpa attributes.'});
        },
        cancel: function(){
        }
@@ -635,11 +635,11 @@ gwst.actions.nonExt.editMpaAttributes = function(e){
 
 gwst.actions.nonExt.deleteMPA = function(e){
     var mpa = e.data.mpa;
-    if(mpa.editable != true){
-        alert('This is a read-only MPA that cannot be edited or deleted.');
+    /*if(mpa.editable != true){
+        alert('This is a read-only shape that cannot be edited or deleted.');
         return;
-    }
-    var answer = confirm('Are you sure you want to delete this MPA?');
+    }*/
+    var answer = confirm('Are you sure you want to delete this shape?');
     // gwst.ui.modal.show({msg: 'while the mpa is deleted'});
     if(answer){
         gwst.ui.modal.hide(false, true);
@@ -659,7 +659,7 @@ gwst.actions.nonExt.deleteMPA = function(e){
     }
 }
 
-gwst.actions.nonExt.deleteArray = function(array){
+/*gwst.actions.nonExt.deleteArray = function(array){
     var answer = confirm('Are you sure you want to delete this Array? MPAs that you have created will be retained and put back into your MPA list.');
     if(answer){
         $(this).unbind('click');
@@ -717,7 +717,7 @@ gwst.actions.nonExt.deleteArrayAndMpas = function(array){
             });
         }
     }
-};
+};*/
 
 gwst.actions.nonExt.addMpasToInterface = function(mpas){
     //gwst.app.reportsVisor.update();
@@ -768,7 +768,7 @@ gwst.actions.async.clipGeometry = function(config){
     }
 };
 
-gwst.actions.nonExt.createOrModifyArray = function(pk){
+/*gwst.actions.nonExt.createOrModifyArray = function(pk){
     gwst.app.selectionManager.clearSelection();
     var url = '/gwst/arrays/';
     if(pk){
@@ -795,7 +795,7 @@ gwst.actions.nonExt.openUserInfo = function(user){
 
 gwst.actions.nonExt.openArrayBasicInfo = function(pk){
     gwst.ui.modal.show({width: 500, url: '/gwst/array/'+pk, waitMsg: 'while we retrieve information for this Array.'});
-};
+};*/
 
 gwst.actions.nonExt.openTreeTutorial = function(pk){
     gwst.ui.modal.show({width: 500, url: '/gwst/tree_tutorial'});
@@ -806,7 +806,7 @@ gwst.actions.nonExt.copyMpa = function(pk){
         waitMsg: 'While we copy this Marine Protected Area'
     });
     $.ajax({
-        url: '/gwst/mpa/copy/', 
+        url: '/gwst/shape/copy/', 
         type: 'POST', 
         data: {pk: pk}, 
         success: function(data){
@@ -841,7 +841,7 @@ gwst.actions.nonExt.copyMpa = function(pk){
     });
 };
 
-gwst.actions.nonExt.copyArray = function(pk){
+/*gwst.actions.nonExt.copyArray = function(pk){
     var answer = confirm('By copying an Array, all member MPAs will also be copied and assigned to you so that you can edit them. The Array will recieve the same name + "_copy" added to the end, and will be added to your Marine Protected Areas listing. This may take a moment, please be patient and give your computer a minute to load the new MPAs.');
     if(answer){
         gwst.ui.wait.show({
@@ -936,7 +936,7 @@ gwst.actions.openArrayReplication = function(arrayId){
 
 gwst.actions.openHabitatPauloFormat = function(arrayId){
     gwst.actions.openUrl('/gwst/report/array/habitat/antiquated/'+arrayId);
-}
+}*/
 
 gwst.actions.openUrl = function(url){
     window.onbeforeunload = null;

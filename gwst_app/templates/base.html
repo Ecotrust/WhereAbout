@@ -28,8 +28,9 @@
   </div>
   </div>
   <div id="footer"> 
+  Logged in as <b>{{ user.username }}</b>
   {% if user.is_superuser %}
-      Viewing as <b>administrator</b>
+      , viewing as <b>administrator</b>
   {% endif %}
   <br />
      {% if user.is_authenticated %}

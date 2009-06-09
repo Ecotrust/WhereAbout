@@ -166,7 +166,7 @@ jQuery.extend(gwst.data.mlpaFeatures.MPA.prototype, {
     saveGeometryChanges: function(geometry, geometry_clipped, opts){
         $.ajax({
             data: {geometry: geometry, geometry_clipped: geometry_clipped},
-            url: '/gwst/mpa/editgeom/'+this.pk,
+            url: '/gwst/shape/editgeom/'+this.pk,
             success: function(data, textStatus){
                 var mpa = gwst.data.mlpaFeatures.mpa_from_geojson(data);
                 if(typeof opts['success'] == 'function'){

@@ -165,17 +165,17 @@ gwst.widgets.FeaturesMenu = function(options){
                         gwst.actions.openMpaAttributes.execute(e.data, {});
                     },
                     iconcls: 'mm-context-view'
-                },
+                }/*,
                 {
                     name: 'Download KML',
                     iconcls: 'mm-context-kml',
                     handler: function(e){
                         gwst.actions.openUrl('/gwst/kml/mpa/'+e.data.mpa.pk);
                     }
-                }
+                }*/
             ];
             
-            if(_userManager.user){
+            /*if(_userManager.user){
                 actions.push({
                     name: 'Copy',
                     iconcls: 'mm-context-copy',
@@ -183,7 +183,7 @@ gwst.widgets.FeaturesMenu = function(options){
                         gwst.actions.nonExt.copyMpa(e.data.mpa.pk);
                     }
                 });
-            }
+            }*/
             
             if(_userManager.user && item.user == _userManager.user.pk){
                 actions.push({

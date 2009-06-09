@@ -198,47 +198,6 @@ def draw_group_shapes(request):
         # send template page for shape-drawing
         return render_to_response( 'map.html', RequestContext(request, {'debug': request.REQUEST.get('debug', False), 'dynamic': request.REQUEST.get('dynamic', False), 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
 
-        
-# AJAX post to validate a shape     
-@login_required
-def validate_shape(request):
-    # validate indicated group, resource
-    result = '{"status_code":"-1",  "success":"false",  "message":"error in validate_shape in views.py"}'
-    try:
-        m = InterviewShape(geometry=request.REQUEST["geometry"])
-        result = m.validate()
-    except Exception, e:
-        return HttpResponse(result + e.message, status=500)
-    return HttpResponse(result)
- 
-    
-
-# AJAX post that user accepted clipped shape    
-@login_required
-def save_shape(request):
-    result = '{"status_code":"-1",  "success":"false",  "message":"error in save_shape in views.py"}'
-    try:
-        new_shape = InterviewShape()
-        new_shape.user = request.user
-        new_shape.int_group = request.session['int_group']
-        new_shape.geometry = request.REQUEST['geometry']
-        new_shape.geometry_clipped = request.REQUEST['geometry_clipped']
-        new_shape.resource_id = 1 # temp
-        
-        new_shape.save() 
-        result = '{"status_code":"1",  "success":"true", "message":"mpa saved successfully"'
-        result = new_shape.json()
-    except Exception, e:
-        return HttpResponse(result + e.message, status=500)
-    return HttpResponse(result)
-
-
-# AJAX post to set pennies for a shape
-@login_required
-def assign_pennies(request):
-    if request.method == 'POST':
-        # validate number of pennies set
-        return render_to_response( 'test.html', RequestContext(request,{}))
 
 
 # user finalizes group
@@ -361,6 +320,7 @@ def user_features_client_object(user):
 def get_user_shapes(request):
     data = {}
     u = request.user
+    data['user'] = ( user_client_object(u), )
     data['me'] = {
         'model': 'user',
         'pk': u.pk,
@@ -371,7 +331,74 @@ def get_user_shapes(request):
     data['features'] = ( user_features_client_object(u), )
     return HttpResponse(geojson_encode(data), mimetype='application/json')
     
+    
 @login_required
 def get_shape(request,id):
     shape = InterviewShape.objects.filter(pk=id)
     return HttpResponse(shape[0].geojson(), mimetype='application/json')
+    
+    
+# AJAX post to validate a shape     
+@login_required
+def validate_shape(request):
+    # validate indicated group, resource
+    result = '{"status_code":"-1",  "success":"false",  "message":"error in validate_shape in views.py"}'
+    try:
+        m = InterviewShape(geometry=request.REQUEST["geometry"])
+        result = m.validate()
+    except Exception, e:
+        return HttpResponse(result + e.message, status=500)
+    return HttpResponse(result)
+ 
+    
+# AJAX post that user accepted clipped shape    
+@login_required
+def save_shape(request):
+    result = '{"status_code":"-1",  "success":"false",  "message":"error in save_shape in views.py"}'
+    try:
+        new_shape = InterviewShape()
+        new_shape.user = request.user
+        new_shape.int_group = request.session['int_group']
+        new_shape.geometry = request.REQUEST['geometry']
+        new_shape.geometry_clipped = request.REQUEST['geometry_clipped']
+        new_shape.resource_id = 1 # temp
+        
+        new_shape.save() 
+        result = '{"status_code":"1",  "success":"true", "message":"mpa saved successfully"'
+        result = new_shape.json()
+    except Exception, e:
+        return HttpResponse(result + e.message, status=500)
+    return HttpResponse(result)
+
+
+# AJAX post to set pennies for a shape
+@login_required
+def assign_pennies(request):
+    if request.method == 'POST':
+        # validate number of pennies set
+        return render_to_response( 'test.html', RequestContext(request,{}))
+    
+@login_required
+def delete_shape(request,id):
+    shape = InterviewShape.objects.filter(pk=id)
+    if shape.count() == 1 and shape[0].user == request.user:
+        msg = 'Shape %s deleted.' % (id, )
+        shape[0].delete()
+    else:
+        msg = 'Not authorized.'
+        
+    return HttpResponse(msg)    
+    
+@login_required
+def editgeom_shape(request,id):
+    result = '{"status_code":"-1",  "success":"false",  "message":"error in save_shape in views.py"}'
+    try:
+        edit_shape = InterviewShape.objects.get(pk=id)
+        edit_shape.geometry = request.REQUEST['geometry']
+        edit_shape.geometry_clipped = request.REQUEST['geometry_clipped'] 
+        edit_shape.save() 
+        result = '{"status_code":"1",  "success":"true", "message":"mpa saved successfully"'
+        result = edit_shape.json()
+    except Exception, e:
+        return HttpResponse(result + e.message, status=500)
+    return HttpResponse(result)   

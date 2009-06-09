@@ -31,9 +31,9 @@ gwst.urls = {
     submitNewMPA: '/gwst/mpa/create/',
     validateGeometry: '/validate_shape/',
     mpas: '/gwst/mpas/public/?srid=900913',
-    editMPA: '/gwst/mpa/edit/',
+    editMPA: '/gwst/shape/edit/',
     // mpas: '/gwst/mpas/public'
-    deleteMPA: '/gwst/mpa/delete/',
+    deleteMPA: '/gwst/shape/delete/',
     MPAKml: '/gwst/mpa/kml/',
     login: '/gwst/login/',
     logout: '/gwst/logout/',
