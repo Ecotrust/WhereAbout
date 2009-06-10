@@ -1,5 +1,6 @@
 from django import forms
 from models import *
+from django.forms.util import ValidationError
 
 class NameModelChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
@@ -97,6 +98,16 @@ class AnswerForm(forms.Form):
 
 class InterviewShapeAttributeForm(forms.ModelForm):
     pennies = forms.IntegerField( min_value=1, max_value=100, required=True )
+    
+    def clean_pennies(self):
+        new_pennies = self.cleaned_data['pennies']
+        total_pennies = new_pennies + self.group_pennies
+
+        if total_pennies > 100:
+            raise ValidationError('The total number of pennies across all shapes in this group cannot exceed 100.') 
+            
+        return self.cleaned_data['pennies']
+        
     class Meta:
         model = InterviewShape
         exclude = ('user','int_group','geometry','geometry_clipped','geometry_edited','edit_notes','edit_status','creation_date','last_modified','num_times_saved')

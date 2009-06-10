@@ -8,6 +8,9 @@ from django.conf import settings
 from models import *
 from forms import *
 from gwst_app.utils.geojson_encode import *
+from django.db.models import Sum
+
+
 
 
 @login_required
@@ -413,6 +416,11 @@ def edit_shape(request,id):
             
         else:
             form = InterviewShapeAttributeForm( request.POST )
+            
+            # calculate how many pennies are already assigned in this group and attach it to form before validation
+            group_pennies = InterviewShape.objects.filter(user=request.user,int_group=request.session['int_group'],resource=request.POST.get('resource',-1)).aggregate(Sum('pennies'))
+            form.group_pennies = group_pennies['pennies__sum']
+            
             form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=request.session['int_group'])
             if form.is_valid(): 
                 edit_shape = shape[0]
