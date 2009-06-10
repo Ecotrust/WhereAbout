@@ -159,13 +159,13 @@ gwst.widgets.FeaturesMenu = function(options){
         var data = {};
         if(item.model == 'mpa'){
             actions = [
-                {
+                /*{
                     name: 'View Attributes',
                     handler: function(e){
                         gwst.actions.openMpaAttributes.execute(e.data, {});
                     },
                     iconcls: 'mm-context-view'
-                }/*,
+                }*//*,
                 {
                     name: 'Download KML',
                     iconcls: 'mm-context-kml',
@@ -187,9 +187,14 @@ gwst.widgets.FeaturesMenu = function(options){
             
             if(_userManager.user && item.user == _userManager.user.pk){
                 actions.push({
-                    name: 'Edit',
+                    name: 'Edit Attributes',
                     handler: gwst.actions.nonExt.editMpaAttributes,
                     iconcls: 'mm-context-edit'
+                });
+                actions.push({
+                    name: 'Edit Geometry',
+                    handler: gwst.actions.nonExt.enterMPAGeometryEditMode,
+                    iconcls: 'mm-context-view'
                 });
                 actions.push({
                     name: 'Delete',

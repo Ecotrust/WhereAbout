@@ -343,7 +343,7 @@ gwst.widgets.Map = Ext.extend(mapfish.widgets.MapComponent, {
         // if(!user){
         //     throw('mpa.get_user not working!'+ mpa.client_id);
         // }
-        if(mpa.model != 'mpa'){
+        /*if(mpa.model != 'mpa'){
             throw('oh crap not an mpa', mpa);
         }
         html = this.balloonTemplate({mpa: mpa});
@@ -375,7 +375,7 @@ gwst.widgets.Map = Ext.extend(mapfish.widgets.MapComponent, {
             items: items,
             renderTo: 'mpaPopup'
         });
-        bbar.show();
+        bbar.show();*/
     },
     
     hideMPAPopup: function(feature){

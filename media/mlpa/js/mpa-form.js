@@ -59,7 +59,7 @@ mlpa.mpaForm = {
                 );
            },
            error: function(request, textStatus, errorThrown){
-               i.options['html'] = jQuery("<div/>").append(request.responseText.replace(/<script(.|\s)*?\/script>/g, "")).find(mlpa.mpaForm.selector);
+               i.options['html'] = jQuery("<div/>").append(request.responseText.replace(/<script(.|\s)*?\/script>/g, "")); //.find(mlpa.mpaForm.selector);
                // i.options['closable'] = false;
                i.options['url'] = false;
                i.options['afterRender'] = function(){

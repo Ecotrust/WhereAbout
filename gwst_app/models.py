@@ -234,7 +234,7 @@ class InterviewShape(Model):
         return {
             'pk': self.pk,
             'model': 'mpa',
-            'name': 'shape %d' % (self.pk),
+            'name': '%s shape (%d pennies)' % (self.resource.name, self.pennies),
             'user': self.user_id,
             'date_created': self.creation_date.ctime(),
             'date_modified': self.last_modified.ctime(),
@@ -256,7 +256,7 @@ class InterviewShape(Model):
         attr = {}    
         if attributes:
             attr = self.client_object()
-            attr['folder'] = 'folder_user_mpas'
+            attr['folder'] = self.resource.code
         attr['fillColor'] = '#FFFFFF' 
         attr['strokeColor'] = "white"
         attr['fillOpacity'] = "0.4"

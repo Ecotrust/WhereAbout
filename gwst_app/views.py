@@ -308,18 +308,20 @@ def create_superfolder(name, icon=None, id=None, description=None):
     obj['display_properties']['classname'] = 'marinemap-tree-category'
     return obj
         
-def user_features_client_object(user):
+def user_features_client_object(user,int_group):
     folder = create_superfolder('My Shapes', icon=settings.MEDIA_URL+'images/silk/icons/status_online.png', id="userFeatures")
-    mpas = create_folder('Default resource', pk='user_mpas', toggle=True)
-    for mpa in InterviewShape.objects.filter(user=user):
-        add_child(mpas, mpa.client_object())
-    add_child(folder, mpas)
+    for resource in int_group.resources.all():
+        mpas = create_folder(resource.name, pk=resource.code, toggle=True)
+        for mpa in InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource):
+            add_child(mpas, mpa.client_object())
+        add_child(folder, mpas)
     return folder
     
 @login_required
 def get_user_shapes(request):
     data = {}
     u = request.user
+    int_group = request.session['int_group']
     data['user'] = ( user_client_object(u), )
     data['me'] = {
         'model': 'user',
@@ -328,7 +330,7 @@ def get_user_shapes(request):
         'username': u.username,
         'email': u.email,
     }
-    data['features'] = ( user_features_client_object(u), )
+    data['features'] = ( user_features_client_object(u,int_group), )
     return HttpResponse(geojson_encode(data), mimetype='application/json')
     
     
@@ -400,6 +402,7 @@ def edit_shape(request,id):
         action = "/gwst/shape/edit/"+str(shape[0].pk)
         if request.method == 'GET':
             form = InterviewShapeAttributeForm( instance=shape[0] )
+            form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=request.session['int_group'])
             t = loader.get_template('base_form.html')
             opts = {
                 'form': form,
@@ -410,6 +413,7 @@ def edit_shape(request,id):
             
         else:
             form = InterviewShapeAttributeForm( request.POST )
+            form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=request.session['int_group'])
             if form.is_valid(): 
                 edit_shape = shape[0]
                 edit_shape.pennies = form.cleaned_data['pennies']
@@ -417,6 +421,7 @@ def edit_shape(request,id):
                 edit_shape.boundary_s = form.cleaned_data['boundary_s']
                 edit_shape.boundary_e = form.cleaned_data['boundary_e']
                 edit_shape.boundary_w = form.cleaned_data['boundary_w']
+                edit_shape.resource = form.cleaned_data['resource']
                 edit_shape.last_modified = datetime.datetime.now()
                 edit_shape.num_times_saved = edit_shape.num_times_saved + 1
                 edit_shape.save()

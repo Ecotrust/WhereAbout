@@ -451,8 +451,8 @@ gwst.actions.drawMPA = new Ext.Action({
                        gwst.actions.utils.enableComponents();
                        gwst.app.clientStore.add(mpa);
                        gwst.app.selectionManager.setSelectedFeature(mpa);
-                       gwst.ui.modal.hide(false, true);
-                       gwst.actions.openMpaAttributes.execute({mpa: mpa});
+                       //gwst.ui.modal.hide(false, true);
+                       //gwst.actions.openMpaAttributes.execute({mpa: mpa});
                    },
                    error: function(request, textStatus, errorThrown){
                        
@@ -495,15 +495,15 @@ gwst.actions.handlers = {};
 
 /********************* MPA Geometry Editing Actions *************************/
 
-gwst.actions.enterMPAGeometryEditMode = new Ext.Action({
+/*gwst.actions.enterMPAGeometryEditMode = new Ext.Action({
     text: 'Edit Geometry',
     iconCls: 'editGeo',
     handler: function(target, e){
         var mpa = target.mpa;
-        /*if(mpa.editable != true){
+        if(mpa.editable != true){
             alert('This is a read-only MPA that cannot be edited or deleted.');
             return;
-        }*/
+        }
         if(mpa.user != gwst.app.userManager.user.pk){
             alert('You cannot edit the geometry of an MPA that does not belong to you.');
             return;
@@ -535,7 +535,7 @@ gwst.actions.enterMPAGeometryEditMode = new Ext.Action({
             }
         });
     }
-});
+});*/
 
 gwst.actions.englishMeasurements = new Ext.Action({
     text: 'miles',
@@ -632,14 +632,43 @@ gwst.actions.nonExt.editMpaAttributes = function(e){
        cancel: function(){
        }
     });
-    
-    /*gwst.ui.modal.show({
-            width: 750, 
-            url: '/gwst/shape/edit/16', 
-            waitMsg: 'placeholder', 
-            afterRender: function(){ alert("hi!"); }
-        });   */
 }
+
+gwst.actions.nonExt.enterMPAGeometryEditMode = function(e){
+    $(this).unbind('click');
+    var mpa = e.data.mpa;
+    
+    if(mpa.user != gwst.app.userManager.user.pk){
+        alert('You cannot edit the geometry of an MPA that does not belong to you.');
+        return;
+    }
+    // gwst.actions.nonExt.removeMPAFromInterface(mpa);
+    gwst.app.map.removeMPAs([mpa]);
+    gwst.actions.utils.askUserToDefineGeometry({
+        geometry: mpa.feature.attributes.original_geometry,
+        finish: function(geometry, clipped){
+            gwst.ui.wait.show({msg:'While we save your geometry changes'});
+            mpa.saveGeometryChanges(geometry, clipped, {
+                success: function(mpa){
+                    gwst.ui.wait.hide();
+                    gwst.actions.utils.enableComponents();
+                    gwst.app.clientStore.add(mpa);
+                    gwst.app.selectionManager.setSelectedFeature(mpa);
+                },
+                error: function(request, textStatus, errorThrown){
+                    gwst.ui.error.show({errorText: 'Problem saving your geometry', debugText: request.responseText, logText: 'Problem saving geometry changes.'});
+                    gwst.actions.utils.enableComponents();
+                }
+            });
+        },
+        cancel: function(){
+            gwst.actions.utils.enableComponents();
+            
+            gwst.app.map.addMPAs([mpa]);
+            // gwst.app.selectionManager.setSelectedFeature(mpa, {});
+        }
+    });
+};
 
 gwst.actions.nonExt.deleteMPA = function(e){
     var mpa = e.data.mpa;
