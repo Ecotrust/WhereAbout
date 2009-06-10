@@ -375,7 +375,7 @@ gwst.widgets.Map = Ext.extend(mapfish.widgets.MapComponent, {
             items: items,
             renderTo: 'mpaPopup'
         });
-        bbar.show();        
+        bbar.show();
     },
     
     hideMPAPopup: function(feature){

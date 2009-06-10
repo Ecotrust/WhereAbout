@@ -23,7 +23,7 @@ mlpa.mpaForm = {
             gwst.ui.modal.hide(false, true);
             gwst.ui.modal.show({
                 width: this.options['width'],
-                url: url + ' ' + mlpa.mpaForm.selector,
+                url: url, // + ' ' + mlpa.mpaForm.selector,
                 closable: false,
                 afterRender: function(){
                     if(geometry){
@@ -47,7 +47,7 @@ mlpa.mpaForm = {
     
     submitHandler: function(e){
         e.preventDefault();
-        form = $('form.mpa-form');
+        form = $('form.gwst-form');
         var i = this;
         $.ajax({
            data: form.serializeArray(),
@@ -73,7 +73,7 @@ mlpa.mpaForm = {
                     if(typeof i.options['error'] == 'function'){
                         i.options['error'](request);
                     }else{
-                        gwst.ui.error.show({errorText:'There was a problem saving this MPA', debugText: request.responseText, logText:'Problem saving MPA Attributes'});
+                        gwst.ui.error.show({errorText:'There was a problem saving this shape', debugText: request.responseText, logText:'Problem saving MPA Attributes'});
                     }
                }
            },
@@ -81,20 +81,20 @@ mlpa.mpaForm = {
            url: form.attr('action')
         });
         // mlpa.mpaForm.hide(false);
-        gwst.ui.wait.show({msg: 'While we save your MPA'});
+        gwst.ui.wait.show({msg: 'While we save your shape'});
         return false;
     },
     
-    allowedUsesPropertyMousedown: function(e){
+    /*allowedUsesPropertyMousedown: function(e){
         var designation_id = $('select#id_designation option:selected').attr('value');
         if(this.purposesForDesignation(designation_id).length == 0){
             alert('The current MPA Designation does not allow any types of consumptive use. Please change the designation if you would like to add allowed uses.');
             return false;
             e.preventDefault();
         }
-    },
+    },*/
     
-    designationChange: function(e){
+    /*designationChange: function(e){
         var purposes = this.purposesForDesignation($('select#id_designation option:selected').attr('value'));
         if($('select#id_allowed_uses option:selected').length > 0){
             var msg = false;
@@ -120,9 +120,9 @@ mlpa.mpaForm = {
             this.currentDesignation = e.target.selectedIndex;
             this.updatePurposes(purposes);
         }
-    },
+    },*/
     
-    updatePurposes: function(purposes){
+    /*updatePurposes: function(purposes){
         var msg = 'Any type of allowed use can be added to an MPA of this designation.';
         var last_select = false;
         this.clearingAllowedUses = true;
@@ -147,9 +147,9 @@ mlpa.mpaForm = {
         }
         $('p#designation_purposes_warning').html(msg);
         $('#allowed_uses_widget select.choose').triggerHandler('change');
-    },
+    },*/
     
-    removeUsesNotMatchingDesignation: function(){
+    /*removeUsesNotMatchingDesignation: function(){
         var purposes = this.purposesForDesignation($('select#id_designation option:selected').attr('value'));
         var inst = this;
         $('#allowed_uses_widget table tbody tr').each(function(){
@@ -169,7 +169,7 @@ mlpa.mpaForm = {
                 }
             }
         });
-    },
+    },*/
     
     addToLookup: function(obj, use, item, a, b, c){
         var key = ' ' + a + b + c;
@@ -180,7 +180,7 @@ mlpa.mpaForm = {
         obj[key][item] = use;
     },
     
-    createLookups: function(){
+    /*createLookups: function(){
         this.currentDesignation = $('select#id_designation')[0].selectedIndex;
         this.allowed_uses = eval('(' + $('#all_allowed_uses').html() + ')');
         this.x_designations_purposes = eval('('+$('#x_designations_purposes').html()+')');
@@ -212,9 +212,9 @@ mlpa.mpaForm = {
                 this.addToLookup(lookup, use, use['purpose_id'], 'x',                 use['method_id'],   'o');
             }
         }
-    },
+    },*/
     
-    makeSureIEDoesntLetUsersSelectDisabledOptions: function(e){
+    /*makeSureIEDoesntLetUsersSelectDisabledOptions: function(e){
         var select = e.target;
         if(select.selectedIndex != 0){
             var option = select.options[select.selectedIndex];
@@ -232,7 +232,7 @@ mlpa.mpaForm = {
                 return false;
             }                
         }
-    },
+    },*/
     
     init: function(){
         this.successHandler = this.options['success']
@@ -249,12 +249,12 @@ mlpa.mpaForm = {
         //     $('select[name="designation"] option[value=""]').remove();
         // }
         
-        $('#mpaFormTabs button.cancel').click(function(e){
+        $('#content button.gwst_cancel').click(function(e){
             inst.hide();
             inst.cancelHandler();
         });
         
-        $('#allowed_uses_widget select.choose').bind('mousedown', function(e){
+        /*$('#allowed_uses_widget select.choose').bind('mousedown', function(e){
             inst.allowedUsesPropertyMousedown(e);
         });
         
@@ -293,15 +293,15 @@ mlpa.mpaForm = {
         
         $('#allowed_uses_widget select.choose').bind('change', function(e){
             inst.allowedUsePropertySelectionChange(e);
-        });
+        });*/
 
-        $('#mpaFormTabs input[type="submit"]').bind('click submit', function(e){
+        $('#content input[type="submit"]').bind('click submit', function(e){
             inst.submitHandler(e);
         });
         
 
         // Event handlers for the buttons
-        $('#forward').click(function(){
+        /*$('#forward').click(function(){
             if($('#forward').css('display') == 'block'){
                 var link = $('ul#form_shortcuts li.active').next().children('a');
                 link.click();
@@ -314,23 +314,21 @@ mlpa.mpaForm = {
                 $(li).children('a').click();
             }
             return false;
-        });
+        });*/
 
         // Setup event handlers for when the user tabs thru form elements
-        $('#mpaFormTabs').keydown(function(e){
+        $('#content').keydown(function(e){
             if(e.keyCode == 9){ //TAB
                 e.preventDefault();
                 return false;
             }else if(e.keyCode == 13){ //ENTER
-                if($('#mpaFormTabs.create').length == 0){
-                    var type = $(e.target).attr('type');
-                    if(type == 'textarea' || type == 'select' || type=='select-one'){
-                        return true;
-                    }else{
-                        e.preventDefault();
-                        $("#mpa_attr_submit").click();
-                        return false;
-                    }
+                var type = $(e.target).attr('type');
+                if(type == 'textarea' || type == 'select' || type=='select-one'){
+                    return true;
+                }else{
+                    e.preventDefault();
+                    $("#submit").click();
+                    return false;
                 }
             }
         });
@@ -338,19 +336,19 @@ mlpa.mpaForm = {
         // Clicking on these links starts all the functionality
         // If you feel like you need to call something akin to Form.openTabIndex(2),
         // instead find the appropriate link and fire its click event
-        $('ul#form_shortcuts li a').click(function(e){
-            if(mlpa.mpaForm.transitioning == true){
-                return false;
-            }else{            
-                // Figure out what panel is active, and keep the href for a callback
-                old_target = $('li.active a').attr('href');
-                var old_href = old_target.replace(/[^#]*/, "");
+        //$('ul#form_shortcuts li a').click(function(e){
+        //    if(mlpa.mpaForm.transitioning == true){
+        //        return false;
+        //    }else{            
+        //        // Figure out what panel is active, and keep the href for a callback
+        //        old_target = $('li.active a').attr('href');
+        //        var old_href = old_target.replace(/[^#]*/, "");
 
-                // Find what panel should be shown
-                var href = $(this).attr('href');
-                var href = href.replace(/[^#]*/, "");
+        //        // Find what panel should be shown
+        //        var href = $(this).attr('href');
+        //        var href = href.replace(/[^#]*/, "");
 
-                if(href == old_href){
+        /*        if(href == old_href){
                     e.preventDefault();
                     return false;
                 }
@@ -395,7 +393,7 @@ mlpa.mpaForm = {
                 e.preventDefault();
                 return false
             }
-        });
+        });*/
 
         var errors = $('ul.errorlist');
         if(errors.length > 0){
@@ -403,19 +401,19 @@ mlpa.mpaForm = {
             $('a[href*="'+id+'"]').click();
         }else{
             // go directly to the begining without animation
-            $('div.form_content').scrollLeft(0);
-            mlpa.mpaForm.enterPanel($("#first_page"));
-            $('#backward').css('display', 'none');
+            //$('div.form_content').scrollLeft(0);
+            //mlpa.mpaForm.enterPanel($("#first_page"));
+            //$('#backward').css('display', 'none');
             // link.click();
         }
         
-        this.createLookups();
-        this.updatePurposes(this.purposesForDesignation($('select#id_designation option:selected').attr('value')));
+        //this.createLookups();
+        //this.updatePurposes(this.purposesForDesignation($('select#id_designation option:selected').attr('value')));
     },
     
-    purposesLookup: {},
+    //purposesLookup: {},
     
-    purposesForDesignation: function(des_id){
+    /*purposesForDesignation: function(des_id){
         if(des_id == ''){
             des_id = 'null';
         }
@@ -554,7 +552,7 @@ mlpa.mpaForm = {
         }
         $(target).scrollTop(0);
         mlpa.mpaForm.transitioning = false;
-    },
+    },*/
     
     hide: function(){
         gwst.ui.modal.hide();
@@ -562,7 +560,7 @@ mlpa.mpaForm = {
     
     transitioning: false,
     
-    exitPanel: function(target){
+    /*exitPanel: function(target){
         target.css('overflow-y', 'visible');
-    }
+    }*/
 };

@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from django.template import RequestContext
+from django.template import RequestContext, loader
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest
 from django.conf import settings
@@ -378,6 +378,8 @@ def assign_pennies(request):
         # validate number of pennies set
         return render_to_response( 'test.html', RequestContext(request,{}))
     
+    
+# AJAX delete handler
 @login_required
 def delete_shape(request,id):
     shape = InterviewShape.objects.filter(pk=id)
@@ -389,9 +391,55 @@ def delete_shape(request,id):
         
     return HttpResponse(msg)    
     
+    
+# AJAX interview shape attribute form processing
+@login_required
+def edit_shape(request,id):
+    shape = InterviewShape.objects.filter(pk=id,user=request.user)
+    if shape.count() == 1:
+        action = "/gwst/shape/edit/"+str(shape[0].pk)
+        if request.method == 'GET':
+            form = InterviewShapeAttributeForm( instance=shape[0] )
+            t = loader.get_template('base_form.html')
+            opts = {
+                'form': form,
+                'action': action,
+                'value': 'Save'
+            }
+            return HttpResponse(t.render(RequestContext(request, opts)))
+            
+        else:
+            form = InterviewShapeAttributeForm( request.POST )
+            if form.is_valid(): 
+                edit_shape = shape[0]
+                edit_shape.pennies = form.cleaned_data['pennies']
+                edit_shape.boundary_n = form.cleaned_data['boundary_n']
+                edit_shape.boundary_s = form.cleaned_data['boundary_s']
+                edit_shape.boundary_e = form.cleaned_data['boundary_e']
+                edit_shape.boundary_w = form.cleaned_data['boundary_w']
+                edit_shape.last_modified = datetime.datetime.now()
+                edit_shape.num_times_saved = edit_shape.num_times_saved + 1
+                edit_shape.save()
+                return HttpResponse(edit_shape.json(), mimetype='application/json')
+                
+            else:
+                t = loader.get_template('base_form.html')
+                opts = {
+                    'form': form,
+                    'action': action,
+                    'value': 'Save'
+                }
+                return HttpResponseBadRequest(t.render(RequestContext(request, opts )))
+            
+    else:
+        # forbidden
+        return render_to_response( 'test.html', RequestContext())
+
+ 
+# AJAX edit geometry handler 
 @login_required
 def editgeom_shape(request,id):
-    result = '{"status_code":"-1",  "success":"false",  "message":"error in save_shape in views.py"}'
+    result = '{"status_code":"-1",  "success":"false",  "message":"error in editgeom_shape in views.py"}'
     try:
         edit_shape = InterviewShape.objects.get(pk=id)
         edit_shape.geometry = request.REQUEST['geometry']

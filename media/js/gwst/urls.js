@@ -40,7 +40,7 @@ gwst.urls = {
     user: '/user/',
     index: '/gwst/',
     geoserver: '/gwst/geoserver/wfs/',
-    mpaAttributes: '/gwst/mpa/',
+    mpaAttributes: '/gwst/shape/edit/',
     createArray: '/gwst/array/create/',
     // arrays : '/gwst/domains/arrays',
     addtoarray: '/gwst/mpa/addtoarray/',

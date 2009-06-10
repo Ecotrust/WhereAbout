@@ -27,5 +27,6 @@ urlpatterns = patterns('',
     (r'^gwst/shape/delete/(\d+)$', delete_shape ),
     (r'^gwst/shape/editgeom/(\d+)$', editgeom_shape ),
     #(r'^gwst/shape/copy/(\d+)$', copy_shape ),
-    #(r'^gwst/shape/edit/(\d+)$', edit_shape ),
+    (r'^gwst/shape/edit/(\d+)$', edit_shape ),
+    
 )

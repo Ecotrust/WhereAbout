@@ -95,5 +95,8 @@ class AnswerForm(forms.Form):
             self.fields['question_%d' % question.id].question = question
             self.fields['question_%d' % question.id].answer = answer
 
-
-
+class InterviewShapeAttributeForm(forms.ModelForm):
+    pennies = forms.IntegerField( min_value=1, max_value=100, required=True )
+    class Meta:
+        model = InterviewShape
+        exclude = ('user','int_group','resource','geometry','geometry_clipped','geometry_edited','edit_notes','edit_status','creation_date','last_modified','num_times_saved')

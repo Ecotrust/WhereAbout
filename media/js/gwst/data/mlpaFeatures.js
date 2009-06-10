@@ -55,7 +55,7 @@ gwst.data.mlpaFeatures = {
 jQuery.extend(gwst.data.mlpaFeatures.MPA.prototype, {
     
     editUrl: function(){
-        return '/gwst/mpa/edit/' + this.pk;
+        return '/gwst/shape/edit/' + this.pk;
     },
     
     get_array: function(){

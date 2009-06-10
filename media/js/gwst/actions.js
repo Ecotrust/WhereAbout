@@ -452,6 +452,7 @@ gwst.actions.drawMPA = new Ext.Action({
                        gwst.app.clientStore.add(mpa);
                        gwst.app.selectionManager.setSelectedFeature(mpa);
                        gwst.ui.modal.hide(false, true);
+                       gwst.actions.openMpaAttributes.execute({mpa: mpa});
                    },
                    error: function(request, textStatus, errorThrown){
                        
@@ -612,7 +613,7 @@ gwst.actions.nonExt = {};
 
 gwst.actions.nonExt.editMpaAttributes = function(e){
     $(this).unbind('click');
-    // gwst.ui.modal.hide(false);
+    //gwst.ui.modal.hide(false);
     var mpa = e.data.mpa;
     /*if(mpa.editable != true){
         alert('This is a read-only shape that cannot be edited or deleted.');
@@ -631,6 +632,13 @@ gwst.actions.nonExt.editMpaAttributes = function(e){
        cancel: function(){
        }
     });
+    
+    /*gwst.ui.modal.show({
+            width: 750, 
+            url: '/gwst/shape/edit/16', 
+            waitMsg: 'placeholder', 
+            afterRender: function(){ alert("hi!"); }
+        });   */
 }
 
 gwst.actions.nonExt.deleteMPA = function(e){
