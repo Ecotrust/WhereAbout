@@ -256,7 +256,7 @@ class InterviewShape(Model):
         attr = {}    
         if attributes:
             attr = self.client_object()
-            attr['folder'] = self.resource.code
+            attr['folder'] = 'folder_'+self.resource.code
         attr['fillColor'] = '#FFFFFF' 
         attr['strokeColor'] = "white"
         attr['fillOpacity'] = "0.4"

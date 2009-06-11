@@ -75,6 +75,7 @@ gwst.widgets.MapToolbar = Ext.extend(Ext.Toolbar, {
         // }
         // this.dataLayersMenu.window.setPosition({x: 0, y:10});
         this.dataLayersMenu.toggle(true);
+        this.featuresMenu.getExtButton().toggle(true);
         var self = this;
         /*$(this.userManager).bind('change', function(e, user, olduser){
             if(user == null && olduser != null){

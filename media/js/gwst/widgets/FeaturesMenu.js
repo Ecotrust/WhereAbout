@@ -27,7 +27,8 @@ gwst.widgets.FeaturesMenu = function(options){
                 }
             },
             bbar: [
-                gwst.actions.drawMPA
+                gwst.actions.drawMPA,
+                gwst.actions.finishGroup
                 //gwst.actions.createArray
             ]
             /*tbar: [{

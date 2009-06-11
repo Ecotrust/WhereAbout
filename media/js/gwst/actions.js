@@ -435,6 +435,16 @@ gwst.actions.userPrefsDropdown = new Ext.Action({
     user: null
 });
 
+gwst.actions.finishGroup = new Ext.Action({
+    text: 'Return to Interview Menu',
+    iconCls: 'yes-icon',
+    handler: function(target, e){
+        window.onbeforeunload = null;
+        //window.open("/group_status/");
+        window.location="/group_status/";
+    }
+});
+
 gwst.actions.drawMPA = new Ext.Action({
     text: 'Draw area',
     iconCls: 'add-icon',
