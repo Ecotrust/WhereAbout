@@ -627,7 +627,7 @@ gwst.actions.nonExt.editMpaAttributes = function(e){
            gwst.app.selectionManager.setSelectedFeature(new_mpa);
        },
        error: function(response){
-           gwst.ui.error.show({errorText:'There was a problem saving your shape attributes. Please try again.', logText: 'Problem saving mpa attributes.'});
+           gwst.ui.error.show({errorText:'There was a problem saving your shape attributes. Please try again.', logText: 'Problem saving shape attributes.'});
        },
        cancel: function(){
        }
@@ -643,32 +643,35 @@ gwst.actions.nonExt.enterMPAGeometryEditMode = function(e){
         return;
     }
     // gwst.actions.nonExt.removeMPAFromInterface(mpa);
-    gwst.app.map.removeMPAs([mpa]);
-    gwst.actions.utils.askUserToDefineGeometry({
-        geometry: mpa.feature.attributes.original_geometry,
-        finish: function(geometry, clipped){
-            gwst.ui.wait.show({msg:'While we save your geometry changes'});
-            mpa.saveGeometryChanges(geometry, clipped, {
-                success: function(mpa){
-                    gwst.ui.wait.hide();
-                    gwst.actions.utils.enableComponents();
-                    gwst.app.clientStore.add(mpa);
-                    gwst.app.selectionManager.setSelectedFeature(mpa);
-                },
-                error: function(request, textStatus, errorThrown){
-                    gwst.ui.error.show({errorText: 'Problem saving your geometry', debugText: request.responseText, logText: 'Problem saving geometry changes.'});
-                    gwst.actions.utils.enableComponents();
-                }
-            });
-        },
-        cancel: function(){
-            gwst.actions.utils.enableComponents();
-            
-            gwst.app.map.addMPAs([mpa]);
-            // gwst.app.selectionManager.setSelectedFeature(mpa, {});
-        }
+    mpa.callWithFeature( function(mpa){
+        gwst.app.map.removeMPAs([mpa]);
+        gwst.actions.utils.askUserToDefineGeometry({
+            geometry: mpa.feature.attributes.original_geometry,
+            finish: function(geometry, clipped){
+                gwst.ui.wait.show({msg:'While we save your geometry changes'});
+                mpa.saveGeometryChanges(geometry, clipped, {
+                    success: function(mpa){
+                        gwst.ui.wait.hide();
+                        gwst.actions.utils.enableComponents();
+                        gwst.app.clientStore.add(mpa);
+                        gwst.app.selectionManager.setSelectedFeature(mpa);
+                    },
+                    error: function(request, textStatus, errorThrown){
+                        gwst.ui.error.show({errorText: 'Problem saving your geometry', debugText: request.responseText, logText: 'Problem saving geometry changes.'});
+                        gwst.actions.utils.enableComponents();
+                    }
+                });
+            },
+            cancel: function(){
+                gwst.actions.utils.enableComponents();
+                
+                gwst.app.map.addMPAs([mpa]);
+                // gwst.app.selectionManager.setSelectedFeature(mpa, {});
+            }
+        });
     });
 };
+
 
 gwst.actions.nonExt.deleteMPA = function(e){
     var mpa = e.data.mpa;
