@@ -452,7 +452,7 @@ gwst.actions.drawMPA = new Ext.Action({
         gwst.actions.utils.askUserToDefineGeometry({
             finish: function(geometry, clipped){ 
                 $.ajax({
-                   data: {geometry:geometry, geometry_clipped:clipped}, //form.serializeArray(),
+                   data: {geometry:geometry, geometry_clipped:clipped, resource:target}, //form.serializeArray(),
                    dataType: 'json',
                    success: function(data, textStatus){
                        // gwst.ui.wait.hide(true);

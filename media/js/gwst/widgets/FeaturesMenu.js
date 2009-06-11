@@ -151,6 +151,9 @@ gwst.widgets.FeaturesMenu = function(options){
             var feature = _store.get(data['model'], data['pk']);
             $(self).trigger('featureDoubleClick', [feature]);
         }
+        else if(data['model'] == 'folder'){
+            $(self).trigger('folderDoubleClick', data['pk']);
+        }
     });
 
     

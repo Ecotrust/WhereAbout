@@ -284,7 +284,7 @@ def add_child(client_object, child):
     client_object['display_properties']['children'].append(child)
     
         
-def create_folder(name, open=False, visibility=True, collapsible=True, toggle=True, hideByDefault=False, pk=None, description=None, context=False, model="folder"):
+def create_folder(name, open=False, visibility=True, collapsible=True, toggle=True, hideByDefault=False, pk=None, description=None, context=False, model="folder", doubleclick=False):
     return {
         'model': model, 
         'name': name,
@@ -296,7 +296,8 @@ def create_folder(name, open=False, visibility=True, collapsible=True, toggle=Tr
             'toggle': toggle,
             'hideByDefault': hideByDefault,
             'description': description,
-            'context': context
+            'context': context,
+            'doubleclick': doubleclick
         },
         'pk': pk
     }
@@ -314,7 +315,7 @@ def create_superfolder(name, icon=None, id=None, description=None):
 def user_features_client_object(user,int_group):
     folder = create_superfolder('My Shapes', icon=settings.MEDIA_URL+'images/silk/icons/status_online.png', id="userFeatures")
     for resource in int_group.resources.all():
-        mpas = create_folder(resource.name, pk=resource.code, toggle=True)
+        mpas = create_folder(resource.name+' (double click to add new shape)', pk=resource.id, toggle=True, doubleclick=True)
         for mpa in InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource):
             add_child(mpas, mpa.client_object())
         add_child(folder, mpas)
@@ -366,7 +367,7 @@ def save_shape(request):
         new_shape.int_group = request.session['int_group']
         new_shape.geometry = request.REQUEST['geometry']
         new_shape.geometry_clipped = request.REQUEST['geometry_clipped']
-        new_shape.resource_id = 1 # temp
+        new_shape.resource_id = request.REQUEST['resource']
         
         new_shape.save() 
         result = '{"status_code":"1",  "success":"true", "message":"mpa saved successfully"'

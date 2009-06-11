@@ -171,6 +171,10 @@ gwst.app = function() {
                gwst.app.map.zoomToFeature(feature); 
             });
             
+            $(gwst.app.FeaturesMenu).bind('folderDoubleClick', function(e, pk){
+               gwst.actions.drawMPA.execute(pk, e); 
+            });
+            
             $(this.userManager).bind('change', function(e, user, oldUser){
                 gwst.app.selectionManager.clearSelection();
                 gwst.app.clientStore.clear();
