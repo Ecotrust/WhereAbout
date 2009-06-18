@@ -3,7 +3,7 @@ gwst.widgets.MapToolWindow = Ext.extend(Ext.Window, {
     id: 'map_tool_win',
     title: '',
     height: 40,
-    width: 136,
+    width: 115,
     closable: false,
     resizable: false,
     initComponent: function(){

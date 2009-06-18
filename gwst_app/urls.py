@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     
     (r'^group_status/$', group_status ),
     (r'^group_qs/(\d+)/answer/$', answer_questions ),
-    (r'^draw_group_shapes/$', draw_group_shapes ),
+    (r'^draw_group_shapes/(\d+)/$', draw_group_shapes ),
     
     (r'^finalize_group/(\d+)/$', finalize_group ),
     (r'^finalize_interview/(\d+)/$', finalize_interview ),

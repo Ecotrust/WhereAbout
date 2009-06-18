@@ -5,12 +5,15 @@
 <ul>
 {% for object in object_list %}
 <li>
-{% ifequal object.status "finalized" %}
-<a href="/group_qs/{{object.int_group.id}}/view/">
+{{ object.int_group.name }} ({{object.status}}): {% ifequal object.status "finalized" %}
+<a href="/group_qs/{{object.int_group.id}}/view/">View answers</a>
 {% else %}
-<a href="/group_qs/{{object.int_group.id}}/answer/">
+<a href="/group_qs/{{object.int_group.id}}/answer/">Answer questions</a> 
+{% ifequal object.status "in-progress" %}|
+{% if object.int_group.user_draws_shapes %}<a href="/draw_group_shapes/{{object.int_group.id}}/">Draw shapes</a> |
+{% endif %}
+<a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a> {% endifequal %}
 {% endifequal %}
-{{ object.int_group.name }}</a>: {{object.status}} {% ifequal object.status "in-progress" %} <a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a> {% endifequal %}
 </li>
 {% endfor %}
 </ul>

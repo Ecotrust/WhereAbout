@@ -184,19 +184,17 @@ def answer_questions(request,group_id):
             group = InterviewGroup.objects.get(pk=group_id)
             request.session['int_group'] = group
             
-            if group.user_draws_shapes:
-                return HttpResponseRedirect('/draw_group_shapes/')
-            else:
-                return HttpResponseRedirect('/group_status/')
+            return HttpResponseRedirect('/group_status/')
 
     return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))     
     
     
 # start draw shapes for indicated group    
 @login_required
-def draw_group_shapes(request):
+def draw_group_shapes(request, group_id):
     if request.method == 'GET':
-        # get list of resources for this group
+        group = InterviewGroup.objects.get(pk=group_id)
+        request.session['int_group'] = group
         
         # send template page for shape-drawing
         return render_to_response( 'map.html', RequestContext(request, {'debug': request.REQUEST.get('debug', False), 'dynamic': request.REQUEST.get('dynamic', False), 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))

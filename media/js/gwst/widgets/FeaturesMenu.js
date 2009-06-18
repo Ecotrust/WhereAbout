@@ -13,9 +13,9 @@ gwst.widgets.FeaturesMenu = function(options){
     }
     if(options['extWindow']){
         this.extWindow = new Ext.Window({
-            x: 50,
-            y: 50,
-            width: 350,
+            x: 0,
+            y: 230,
+            width: 300,
             height: 420,
             html: '<div id="extTreeContainer" style="font-size:1.4em;"><ul id="extWindow"></ul></div>',
             autoScroll: true,
@@ -27,10 +27,11 @@ gwst.widgets.FeaturesMenu = function(options){
                 }
             },
             bbar: [
-                gwst.actions.drawMPA,
+                //gwst.actions.drawMPA,
                 gwst.actions.finishGroup
                 //gwst.actions.createArray
-            ]
+            ],
+            title: 'Areas of Resource Use'
             /*tbar: [{
                 text: 'How to Use This',
                 handler: function(){
