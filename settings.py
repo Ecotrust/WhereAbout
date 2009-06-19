@@ -10,7 +10,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'gwst'             # Or path to database file if using sqlite3.
+DATABASE_NAME = 'mlpa-nc-rec-fish-survey'             # Or path to database file if using sqlite3.
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
@@ -63,7 +63,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'gwst.urls'
+ROOT_URLCONF = 'urls'
 
 import os.path
 TEMPLATE_DIRS = (
@@ -80,7 +80,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.databrowse',
-    'gwst.gwst_app',
+    'gwst_app'
+    #'mlpa-nc-rec-fish-survey.gwst_app',
 )
 
 try:
