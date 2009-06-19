@@ -1,0 +1,1 @@
+dropdb -U postgres gwst
