@@ -115,8 +115,8 @@ gwst.app = function() {
                 numZoomLevels: 18,
                 maxResolution: 156543.0339,
                 studyRegion: new gwst.data.StudyRegion({
-                    name: "California South Coast",
-                    bounds: "-13477376.825366,3752140.84394,-12930699.199147,4134937.481539"
+                    name: "California North Coast",
+                    bounds: "-14877376.825366,4202140.84394,-12930699.199147,5584937.481539"
                 }),
                 maxExtent: new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34),
                 //             restrictedExtent: new OpenLayers.Bounds(-13877376.825366, 3552140.84394,-12430699.199147, 4334937.481539),
