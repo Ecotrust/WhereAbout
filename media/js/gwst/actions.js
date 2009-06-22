@@ -851,14 +851,14 @@ gwst.actions.nonExt.openTreeTutorial = function(pk){
     gwst.ui.modal.show({width: 500, url: '/gwst/tree_tutorial'});
 };
 
-gwst.actions.nonExt.copyMpa = function(pk){
+gwst.actions.nonExt.copyMPA = function(e){
     gwst.ui.wait.show({
-        waitMsg: 'While we copy this Marine Protected Area'
+        waitMsg: 'While we copy this shape'
     });
     $.ajax({
         url: '/gwst/shape/copy/', 
         type: 'POST', 
-        data: {pk: pk}, 
+        data: {pk: e.data.mpa.pk}, 
         success: function(data){
             var mpa = gwst.data.mlpaFeatures.mpa_from_geojson(data);
             // var reader = new gwst.data.MLPAFeatureReader({root: 'mpa'}, gwst.data.MPA);

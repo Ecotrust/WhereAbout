@@ -393,7 +393,23 @@ def delete_shape(request,id):
     else:
         msg = 'Not authorized.'
         
-    return HttpResponse(msg)    
+    return HttpResponse(msg)  
+
+
+# AJAX copy handler
+@login_required
+def copy_shape(request):
+    if request.method == 'POST':
+        pk = request.POST.get('pk')
+        shape = InterviewShape.objects.filter(pk=pk)
+        if shape.count() == 1 and shape[0].user == request.user:
+            copy = shape[0].copy()
+            return HttpResponse(copy.json(), mimetype='application/json')
+        else:
+            return HttpResponseForbidden(
+                'You cannot copy shapes you do not have access to.')
+    else:
+        return HttpResponseBadRequest('Must use POST!')    
     
     
 # AJAX interview shape attribute form processing

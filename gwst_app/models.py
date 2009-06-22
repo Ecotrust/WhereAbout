@@ -263,4 +263,14 @@ class InterviewShape(Model):
         #self.geometry.transform(srid)
         attr['original_geometry'] = self.geometry.wkt
         return '{"id": "mpa_%s", "type": "Feature", "geometry": %s, "properties": %s}' % (self.pk, self.geometry_clipped.geojson, geojson_encode(attr))
+        
+    def copy(self):
+        m = self
+        shape_id = self.id
+        m.id = None
+        m.creation_date = datetime.datetime.now()
+        m.last_modified = datetime.datetime.now()
+        m.num_times_saved = 1
+        m.save() #This save generates the new mpa_id
+        return m
 

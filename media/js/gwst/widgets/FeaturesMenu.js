@@ -202,10 +202,15 @@ gwst.widgets.FeaturesMenu = function(options){
                     iconcls: 'mm-context-view'
                 });
                 actions.push({
+                    name: 'Copy',
+                    handler: gwst.actions.nonExt.copyMPA,
+                    iconcls: 'mm-context-copy'
+                });
+                actions.push({
                     name: 'Delete',
                     handler: gwst.actions.nonExt.deleteMPA,
                     iconcls: 'mm-context-delete'
-                })
+                });
             }
             data = {mpa: item};
         }else if(item.model=='array'){
