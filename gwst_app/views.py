@@ -310,13 +310,19 @@ def create_superfolder(name, icon=None, id=None, description=None):
     obj['display_properties']['classname'] = 'marinemap-tree-category'
     return obj
         
-def user_features_client_object(user,int_group):
-    folder = create_superfolder('My Shapes', icon=settings.MEDIA_URL+'images/silk/icons/status_online.png', id="userFeatures")
-    for resource in int_group.resources.all():
-        mpas = create_folder(resource.name+' (double click to add new shape)', pk=resource.id, toggle=True, doubleclick=True, context=True)
-        for mpa in InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource):
-            add_child(mpas, mpa.client_object())
-        add_child(folder, mpas)
+def user_features_client_object(user,interview):
+    folder = create_superfolder('Right click any item for options', icon=settings.MEDIA_URL+'images/silk/icons/status_online.png', id="userFeatures")
+    
+    for int_group in InterviewGroup.objects.filter(interview=interview,user_draws_shapes=True).all():
+        int_group_memb = InterviewGroupMembership.objects.filter(int_group=int_group,user=user)
+        if int_group_memb.count() == 1:
+            group = create_folder(int_group.name, pk=int_group.id, toggle=True)
+            for resource in int_group.resources.all():
+                mpas = create_folder(resource.name, pk=str(int_group.id)+'-'+str(resource.id), toggle=True, doubleclick=True, context=True)
+                for mpa in InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource):
+                    add_child(mpas, mpa.client_object())
+                add_child(group,mpas)
+            add_child(folder,group)
     return folder
     
 @login_required
@@ -362,10 +368,12 @@ def save_shape(request):
     try:
         new_shape = InterviewShape()
         new_shape.user = request.user
-        new_shape.int_group = request.session['int_group']
         new_shape.geometry = request.REQUEST['geometry']
         new_shape.geometry_clipped = request.REQUEST['geometry_clipped']
-        new_shape.resource_id = request.REQUEST['resource']
+        
+        int_group_id, resource_id = request.REQUEST['resource'].split('-')
+        new_shape.int_group_id = int(int_group_id)
+        new_shape.resource_id = int(resource_id)
         
         new_shape.save() 
         result = '{"status_code":"1",  "success":"true", "message":"mpa saved successfully"'
@@ -401,12 +409,15 @@ def copy_shape(request):
     
         source_id = request.POST.get('source')
         
-        target_resource_id = request.POST.get('target')
+        target = request.POST.get('target')
+        target_group_id, target_resource_id = target.split('-')
         target_resource = Resource.objects.get(pk=target_resource_id)
+        target_group = InterviewGroup.objects.get(pk=target_group_id)
         
         shape = InterviewShape.objects.filter(pk=source_id)
         if shape.count() == 1 and shape[0].user == request.user:
             copy = shape[0].copy()
+            copy.int_group = target_group
             copy.resource = target_resource
             copy.save()
             
@@ -430,18 +441,21 @@ def copy_shapes(request):
         if request.POST.get('type') == 'shape':
             return copy_shape(request)
     
-        target_resource_id = request.POST.get('target')
+        target = request.POST.get('target')
+        target_group_id, target_resource_id  = target.split('-')
         target_resource = Resource.objects.get(pk=target_resource_id)
+        target_group = InterviewGroup.objects.get(pk=target_group_id)
         
-        source_resource_id = request.POST.get('source')
-        group_id = request.session['int_group']
+        source = request.POST.get('source')
+        source_group_id, source_resource_id = source.split('-')
         
-        copy_shapes = InterviewShape.objects.filter(user=request.user,resource=source_resource_id,int_group=group_id)
+        copy_shapes = InterviewShape.objects.filter(user=request.user,resource=source_resource_id,int_group=source_group_id)
         
         new_copies = []
         if copy_shapes.count() > 0:
             for shape in copy_shapes.all():
                 copy = shape.copy()
+                copy.int_group = target_group
                 copy.resource = target_resource
                 copy.save()
                 new_copies.append( copy.json() )

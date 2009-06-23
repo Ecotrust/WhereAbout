@@ -256,7 +256,7 @@ class InterviewShape(Model):
         attr = {}    
         if attributes:
             attr = self.client_object()
-            attr['folder'] = 'folder_'+str(self.resource.id)
+            attr['folder'] = 'folder_'+str(self.int_group.id)+'-'+str(self.resource.id)
         attr['fillColor'] = '#FFFFFF' 
         attr['strokeColor'] = "white"
         attr['fillOpacity'] = "0.4"
@@ -271,7 +271,6 @@ class InterviewShape(Model):
         m.creation_date = datetime.datetime.now()
         m.last_modified = datetime.datetime.now()
         m.num_times_saved = 1
-        m.pennies = 0
         m.save() #This save generates the new mpa_id
         return m
 

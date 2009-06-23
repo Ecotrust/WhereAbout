@@ -896,9 +896,7 @@ gwst.actions.nonExt.copyShape = function(e){
     gwst.copySource = e.data.mpa.pk;
     gwst.copyType = 'shape';
     
-    gwst.ui.error.show({
-        errorText: 'Shape selected. Right-click a group and select paste to finish.'
-    }); 
+    alert( 'Shape selected. Right-click a group and select paste to finish.' ); 
 };
 
 gwst.actions.nonExt.copyAllShapes = function(e){
@@ -906,12 +904,15 @@ gwst.actions.nonExt.copyAllShapes = function(e){
     gwst.copySource = e.data.pk;
     gwst.copyType = 'resource';
     
-    gwst.ui.error.show({
-        errorText: 'Shapes selected. Right-click another group and select paste to finish.'
-    }); 
+    alert( 'Shapes selected. Right-click another group and select paste to finish.' ); 
 };
 
 gwst.actions.nonExt.copyToTarget = function(e){
+    if ( gwst.copyType='group' && gwst.copySource == e.data.pk ){
+        alert('You cannot copy shapes within a single group.');
+        return;
+    }
+    
     gwst.ui.wait.show({
         waitMsg: 'While we copy these shapes'
     });
