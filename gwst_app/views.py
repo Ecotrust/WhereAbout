@@ -313,7 +313,7 @@ def create_superfolder(name, icon=None, id=None, description=None):
 def user_features_client_object(user,int_group):
     folder = create_superfolder('My Shapes', icon=settings.MEDIA_URL+'images/silk/icons/status_online.png', id="userFeatures")
     for resource in int_group.resources.all():
-        mpas = create_folder(resource.name+' (double click to add new shape)', pk=resource.id, toggle=True, doubleclick=True)
+        mpas = create_folder(resource.name+' (double click to add new shape)', pk=resource.id, toggle=True, doubleclick=True, context=True)
         for mpa in InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource):
             add_child(mpas, mpa.client_object())
         add_child(folder, mpas)
@@ -409,7 +409,30 @@ def copy_shape(request):
             return HttpResponseForbidden(
                 'You cannot copy shapes you do not have access to.')
     else:
-        return HttpResponseBadRequest('Must use POST!')    
+        return HttpResponseBadRequest('Must use POST!')
+        
+# AJAX copy handler
+@login_required
+def copy_resource_shapes(request):
+    if request.method == 'POST':
+        pk = request.POST.get('pk')
+        resource = pk
+        group = request.session['int_group']
+        copy_shapes = InterviewShape.objects.filter(user=request.user,resource=resource,int_group=group)
+        new_copies = []
+        if copy_shapes.count() > 0:
+            for shape in copy_shapes.all():
+                copy = shape.copy()
+                new_copies.append( copy.json() )
+            
+            response = '{"type": "FeatureCollection", "features": [%s]}' % ( ','.join(new_copies), )
+            
+            return HttpResponse(response, mimetype='application/json')
+        else:
+            return HttpResponseForbidden(
+                'You cannot copy shapes you do not have access to.')
+    else:
+        return HttpResponseBadRequest('Must use POST!') 
     
     
 # AJAX interview shape attribute form processing

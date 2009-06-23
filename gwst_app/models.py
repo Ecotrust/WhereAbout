@@ -271,6 +271,7 @@ class InterviewShape(Model):
         m.creation_date = datetime.datetime.now()
         m.last_modified = datetime.datetime.now()
         m.num_times_saved = 1
+        m.pennies = 0
         m.save() #This save generates the new mpa_id
         return m
 

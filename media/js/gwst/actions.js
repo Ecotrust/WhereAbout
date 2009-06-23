@@ -891,6 +891,42 @@ gwst.actions.nonExt.copyMPA = function(e){
     });
 };
 
+gwst.actions.nonExt.copyAllShapes = function(e){
+    gwst.ui.wait.show({
+        waitMsg: 'While we copy these shapes'
+    });
+    $.ajax({
+        url: '/gwst/shapes/copy/', 
+        type: 'POST', 
+        data: {pk: e.data.pk}, 
+        success: function(data){
+            var mpas = gwst.data.mlpaFeatures.mpas_from_geojson(data);
+            gwst.ui.wait.hide();
+            gwst.app.clientStore.add(mpas);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            if(XMLHttpRequest.status == 401){
+                gwst.ui.error.show({
+                    errorText: 'You must be logged in to perform this operation.'
+                });                        
+            }else if(XMLHttpRequest.status == 403){
+                gwst.ui.error.show({
+                    errorText: 'You do not have permission to copy this object.'
+                });
+            }else if(XMLHttpRequest.status == 404){
+                gwst.ui.error.show({
+                    errorText: 'The object you are trying to copy does not exist.'
+                });
+            }else{
+                gwst.ui.error.show({
+                    errorText: 'An unknown server error occured. Please try again later.'
+                });
+            }
+        },
+        dataType: 'json'
+    });
+};
+
 /*gwst.actions.nonExt.copyArray = function(pk){
     var answer = confirm('By copying an Array, all member MPAs will also be copied and assigned to you so that you can edit them. The Array will recieve the same name + "_copy" added to the end, and will be added to your Marine Protected Areas listing. This may take a moment, please be patient and give your computer a minute to load the new MPAs.');
     if(answer){

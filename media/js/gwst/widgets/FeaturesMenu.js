@@ -159,6 +159,31 @@ gwst.widgets.FeaturesMenu = function(options){
 
     
     this.tree.bind('itemContext', function(event, mouseEvent, data, target){
+    
+        // handle folders first because they aren't actually in the store
+        if(data['model'] == 'folder') { 
+            actions = [
+                {
+                    name: 'Add new shape',
+                    handler: function(e){
+                        $(self).trigger('folderDoubleClick', data['pk']);
+                    },
+                    iconcls: 'mm-context-add'
+                },
+                {
+                    name: 'Copy all resource shapes',
+                    handler: gwst.actions.nonExt.copyAllShapes,                    
+                    iconcls: 'mm-context-copy'
+                }
+            ]
+            gwst.ui.ContextMenu.show({
+                x: mouseEvent.pageX,
+                y: mouseEvent.pageY,
+                actions: actions
+                }, data, target);
+            return;
+        }
+        
         var item = _store.get(data.model, data.pk);
         var actions = [];
         var data = {};
@@ -316,7 +341,6 @@ gwst.widgets.FeaturesMenu = function(options){
                     iconcls: 'mm-context-view'
                 }
             ]
-        
         }else{
             throw('cannot create contextmenu for item that is not an mpa or array.');
         }
