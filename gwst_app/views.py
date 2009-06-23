@@ -395,34 +395,55 @@ def delete_shape(request,id):
         
     return HttpResponse(msg)  
 
-
-# AJAX copy handler
-@login_required
+    
 def copy_shape(request):
     if request.method == 'POST':
-        pk = request.POST.get('pk')
-        shape = InterviewShape.objects.filter(pk=pk)
+    
+        source_id = request.POST.get('source')
+        
+        target_resource_id = request.POST.get('target')
+        target_resource = Resource.objects.get(pk=target_resource_id)
+        
+        shape = InterviewShape.objects.filter(pk=source_id)
         if shape.count() == 1 and shape[0].user == request.user:
             copy = shape[0].copy()
-            return HttpResponse(copy.json(), mimetype='application/json')
+            copy.resource = target_resource
+            copy.save()
+            
+            new_copy = []
+            new_copy.append( copy.json() )
+            
+            response = '{"type": "FeatureCollection", "features": [%s]}' % ( ','.join(new_copy), )
+            return HttpResponse(response, mimetype='application/json')
         else:
             return HttpResponseForbidden(
                 'You cannot copy shapes you do not have access to.')
     else:
         return HttpResponseBadRequest('Must use POST!')
+
         
 # AJAX copy handler
 @login_required
-def copy_resource_shapes(request):
+def copy_shapes(request):
     if request.method == 'POST':
-        pk = request.POST.get('pk')
-        resource = pk
-        group = request.session['int_group']
-        copy_shapes = InterviewShape.objects.filter(user=request.user,resource=resource,int_group=group)
+    
+        if request.POST.get('type') == 'shape':
+            return copy_shape(request)
+    
+        target_resource_id = request.POST.get('target')
+        target_resource = Resource.objects.get(pk=target_resource_id)
+        
+        source_resource_id = request.POST.get('source')
+        group_id = request.session['int_group']
+        
+        copy_shapes = InterviewShape.objects.filter(user=request.user,resource=source_resource_id,int_group=group_id)
+        
         new_copies = []
         if copy_shapes.count() > 0:
             for shape in copy_shapes.all():
                 copy = shape.copy()
+                copy.resource = target_resource
+                copy.save()
                 new_copies.append( copy.json() )
             
             response = '{"type": "FeatureCollection", "features": [%s]}' % ( ','.join(new_copies), )

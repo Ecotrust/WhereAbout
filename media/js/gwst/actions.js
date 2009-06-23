@@ -851,7 +851,7 @@ gwst.actions.nonExt.openTreeTutorial = function(pk){
     gwst.ui.modal.show({width: 500, url: '/gwst/tree_tutorial'});
 };
 
-gwst.actions.nonExt.copyMPA = function(e){
+/*gwst.actions.nonExt.copyMPA = function(e){
     gwst.ui.wait.show({
         waitMsg: 'While we copy this shape'
     });
@@ -889,16 +889,36 @@ gwst.actions.nonExt.copyMPA = function(e){
         },
         dataType: 'json'
     });
+};*/
+
+gwst.actions.nonExt.copyShape = function(e){
+    gwst.copyInProgress = true;
+    gwst.copySource = e.data.mpa.pk;
+    gwst.copyType = 'shape';
+    
+    gwst.ui.error.show({
+        errorText: 'Shape selected. Right-click a group and select paste to finish.'
+    }); 
 };
 
 gwst.actions.nonExt.copyAllShapes = function(e){
+    gwst.copyInProgress = true;
+    gwst.copySource = e.data.pk;
+    gwst.copyType = 'resource';
+    
+    gwst.ui.error.show({
+        errorText: 'Shapes selected. Right-click another group and select paste to finish.'
+    }); 
+};
+
+gwst.actions.nonExt.copyToTarget = function(e){
     gwst.ui.wait.show({
         waitMsg: 'While we copy these shapes'
     });
     $.ajax({
         url: '/gwst/shapes/copy/', 
         type: 'POST', 
-        data: {pk: e.data.pk}, 
+        data: {target: e.data.pk, source:gwst.copySource, type:gwst.copyType}, 
         success: function(data){
             var mpas = gwst.data.mlpaFeatures.mpas_from_geojson(data);
             gwst.ui.wait.hide();
@@ -925,6 +945,9 @@ gwst.actions.nonExt.copyAllShapes = function(e){
         },
         dataType: 'json'
     });
+    gwst.copyInProgress=false;
+    gwst.copySource='';
+    gwst.copyType = '';
 };
 
 /*gwst.actions.nonExt.copyArray = function(pk){
