@@ -20,10 +20,19 @@ class SelectInterviewGroupsForm( forms.Form ):
         forms.Form.__init__(self, *args, **kwargs)
         for i, group in enumerate(groups):
             dynamic_args = {}
+            
+            # group selection checkbox
             dynamic_args['label'] = group.name
             dynamic_args['required'] = False
             self.fields['group_%d' % group.id] = forms.BooleanField( **dynamic_args )
             self.fields['group_%d' % group.id].group = group
+            
+            # percent involvement field
+            dynamic_args['label'] = '% involvement in ' + group.name
+            dynamic_args['min_value']=1
+            dynamic_args['max_value']=100
+            self.fields['group_%d_pc' % group.id] = forms.IntegerField( **dynamic_args )
+            self.fields['group_%d_pc' % group.id].group = None
     
 # from http://code.djangoproject.com/wiki/CookBookNewFormsDynamicFields
 class AnswerForm(forms.Form):

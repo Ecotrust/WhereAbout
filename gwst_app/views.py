@@ -117,10 +117,11 @@ def assign_groups(request):
             # save InterviewGroupMembership records
             for field_name in form.fields:
                 field = form.fields[field_name]
-                if form.cleaned_data['group_%d' % field.group.id]:
+                if field.group and form.cleaned_data['group_%d' % field.group.id]:
                     new_group = InterviewGroupMembership()
                     new_group.user = request.user
                     new_group.int_group = field.group
+                    new_group.percent_involvement = form.cleaned_data['group_%d_pc' % field.group.id]
                     new_group.save()
                 
             # redirect to interview_group_status
@@ -135,7 +136,7 @@ def assign_groups(request):
 def group_status(request):
     # show list of interview groups with current status (including global interview questions)
     int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])   
-    qs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups)
+    qs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).order_by('-percent_involvement')
     
     # if user has finalized each of their registered groups, let them finalize their interview
     finalized_groups = qs.filter(status='finalized')
