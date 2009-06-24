@@ -43,6 +43,7 @@ class Interview(Model):
     organization = CharField( max_length=100 )
     description = CharField( max_length=200 )
     code = CharField( max_length=20, unique=True )
+    active = BooleanField( default=False )
     class Meta:
         db_table = u'gwst_interview'
         

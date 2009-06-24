@@ -11,75 +11,88 @@ from gwst_app.utils.geojson_encode import *
 from django.db.models import Sum
 
 
+def handleSelectInterview(request,selected_interview):
 
+    request.session['interview'] = selected_interview
+    status_object_qs = InterviewStatus.objects.filter(interview=selected_interview, user=request.user)
+            
+    if status_object_qs.count() == 0: # no InterviewStatus record exists?
+        # create InterviewStatus record
+        status = InterviewStatus()
+        status.user = request.user
+        status.interview = selected_interview
+        status.first_login = datetime.datetime.today()
+        status.last_login = datetime.datetime.today()
+        status.num_logins = 1
+        status.save()
+        
+        # create group records for any required groups
+        required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
+        for group in required_groups:
+            new_group = InterviewGroupMembership()
+            new_group.user = request.user
+            new_group.int_group = group
+            new_group.save()
+    
+        # redirect to assign_groups
+        return HttpResponseRedirect('/assign_groups/')
+
+    else:
+        status = status_object_qs[0]
+        
+        # see if the interview has been marked complete
+        if status.completed:
+            # redirect to interview_complete
+            return HttpResponseRedirect('/interview_complete/')
+            
+        # update user access timestamp if they are returning to a live interview
+        status.last_login = datetime.datetime.today()
+        status.num_logins = status.num_logins + 1
+        status.save()
+    
+        # see if there are any group memberships
+        int_groups = InterviewGroup.objects.filter(interview=selected_interview)
+        num_group_membs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).count()
+        
+        # if there are no group memberships, a user may have aborted before selecting them before, give them another chance now
+        if num_group_membs == 0:
+            # redirect to assign_groups
+            return HttpResponseRedirect('/assign_groups/')
+         
+        # redirect to interview_group_status
+        return HttpResponseRedirect('/group_status/')
+                
 
 @login_required
 def select_interview(request):
     
+    if request.user.is_staff:
+        active_interviews = Interview.objects.all()
+    else:
+        active_interviews = Interview.objects.filter(active=True)
+    
+    # special handling if there is only one active interview
+    if active_interviews.count() == 1:
+        return handleSelectInterview(request,active_interviews[0])
+    
     if request.method == 'GET':
         # show list of available interviews
         form = SelectInterviewForm()
-        form.fields['interview'].queryset = Interview.objects.all()
+        form.fields['interview'].queryset = active_interviews
         return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))
         
     else:
         # handle the user's interview selection from a POST
         form = SelectInterviewForm(request.POST)
-        form.fields['interview'].queryset = Interview.objects.all()
+        form.fields['interview'].queryset = active_interviews
         
         if form.is_valid():
             selected_interview = form.cleaned_data['interview']
-            request.session['interview'] = selected_interview
-            status_object_qs = InterviewStatus.objects.filter(interview=selected_interview, user=request.user)
-            
-            if status_object_qs.count() == 0: # no InterviewStatus record exists?
-                # create InterviewStatus record
-                status = InterviewStatus()
-                status.user = request.user
-                status.interview = selected_interview
-                status.first_login = datetime.datetime.today()
-                status.last_login = datetime.datetime.today()
-                status.num_logins = 1
-                status.save()
-                
-                # create group records for any required groups
-                required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
-                for group in required_groups:
-                    new_group = InterviewGroupMembership()
-                    new_group.user = request.user
-                    new_group.int_group = group
-                    new_group.save()
-            
-                # redirect to assign_groups
-                return HttpResponseRedirect('/assign_groups/')
-        
-            else:
-                status = status_object_qs[0]
-                
-                # see if the interview has been marked complete
-                if status.completed:
-                    # redirect to interview_complete
-                    return HttpResponseRedirect('/interview_complete/')
-                    
-                # update user access timestamp if they are returning to a live interview
-                status.last_login = datetime.datetime.today()
-                status.num_logins = status.num_logins + 1
-                status.save()
-            
-                # see if there are any group memberships
-                int_groups = InterviewGroup.objects.filter(interview=selected_interview)
-                num_group_membs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).count()
-                
-                # if there are no group memberships, a user may have aborted before selecting them before, give them another chance now
-                if num_group_membs == 0:
-                    # redirect to assign_groups
-                    return HttpResponseRedirect('/assign_groups/')
-                 
-                # redirect to interview_group_status
-                return HttpResponseRedirect('/group_status/')
+            return handleSelectInterview( request, selected_interview )
                 
         # validation errors
         return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))        
+    
     
 # on first entrance to a new interview, user selects which groups they belong to  
 @login_required  
@@ -88,7 +101,7 @@ def assign_groups(request):
         # let user select which groups they are in
         form = SelectInterviewGroupsForm()
         form.fields['groups'].queryset = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
-        return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))
+        return render_to_response( 'base_form.html', RequestContext(request,{'interview':request.session['interview'], 'form': form, 'value':'Continue'}))
         
     else:
         form = SelectInterviewGroupsForm( request.POST )
@@ -107,7 +120,7 @@ def assign_groups(request):
             return HttpResponseRedirect('/group_status/')
         
         # validation errors
-        return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))
+        return render_to_response( 'base_form.html', RequestContext(request,{'interview':request.session['interview'], 'form': form, 'value':'Continue'}))
     
     
 # show a list of user's groups and current status of each
@@ -319,8 +332,7 @@ def user_features_client_object(user,interview):
             group = create_folder(int_group.name, pk=int_group.id, toggle=True)
             for resource in int_group.resources.all():
                 resource_shapes = InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource)
-                resource_agg = resource_shapes.aggregate(Sum('pennies'))
-                mpas = create_folder(resource.name+' ('+ str(resource_agg['pennies__sum']) +' pennies)', pk=str(int_group.id)+'-'+str(resource.id), toggle=True, doubleclick=True, context=True)
+                mpas = create_folder(resource.name+' shapes', pk=str(int_group.id)+'-'+str(resource.id), toggle=True, doubleclick=True, context=True)
                 for mpa in resource_shapes:
                     add_child(mpas, mpa.client_object())
                 add_child(group,mpas)
