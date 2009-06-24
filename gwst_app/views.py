@@ -52,10 +52,16 @@ def handleSelectInterview(request,selected_interview):
     
         # see if there are any group memberships
         int_groups = InterviewGroup.objects.filter(interview=selected_interview)
+        req_groups = int_groups.filter(required_group=True)
         num_group_membs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).count()
         
         # if there are no group memberships, a user may have aborted before selecting them before, give them another chance now
         if num_group_membs == 0:
+            # redirect to assign_groups
+            return HttpResponseRedirect('/assign_groups/')
+           
+        # if the user has only the required groups, they may have aborted before selecting optional groups
+        if num_group_membs == req_groups.count() and req_groups.count() != int_groups.count():
             # redirect to assign_groups
             return HttpResponseRedirect('/assign_groups/')
          
