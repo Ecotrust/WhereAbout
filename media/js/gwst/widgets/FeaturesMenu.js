@@ -7,8 +7,8 @@ if(gwst.widgets == undefined){
 }
 
 gwst.copyInProgress = false;
-gwst.copySource = '';
-gwst.copyType = '';
+gwst.copySource = 'none';
+gwst.copySourceType = 'none';
 
 gwst.widgets.FeaturesMenu = function(options){
     var self = this;

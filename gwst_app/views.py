@@ -318,8 +318,10 @@ def user_features_client_object(user,interview):
         if int_group_memb.count() == 1:
             group = create_folder(int_group.name, pk=int_group.id, toggle=True)
             for resource in int_group.resources.all():
-                mpas = create_folder(resource.name, pk=str(int_group.id)+'-'+str(resource.id), toggle=True, doubleclick=True, context=True)
-                for mpa in InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource):
+                resource_shapes = InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource)
+                resource_agg = resource_shapes.aggregate(Sum('pennies'))
+                mpas = create_folder(resource.name+' ('+ str(resource_agg['pennies__sum']) +' pennies)', pk=str(int_group.id)+'-'+str(resource.id), toggle=True, doubleclick=True, context=True)
+                for mpa in resource_shapes:
                     add_child(mpas, mpa.client_object())
                 add_child(group,mpas)
             add_child(folder,group)
@@ -405,69 +407,76 @@ def delete_shape(request,id):
 
     
 def copy_shape(request):
-    if request.method == 'POST':
+    source_id = request.REQUEST.get('source')
+        
+    target = request.REQUEST.get('target')
+    target_group_id, target_resource_id = target.split('-')
+    target_resource = Resource.objects.get(pk=target_resource_id)
+    target_group = InterviewGroup.objects.get(pk=target_group_id)
     
-        source_id = request.POST.get('source')
+    shape = InterviewShape.objects.filter(pk=source_id)
+    if shape.count() == 1 and shape[0].user == request.user:
+        copy = shape[0].copy()
+        copy.int_group = target_group
+        copy.resource = target_resource
         
-        target = request.POST.get('target')
-        target_group_id, target_resource_id = target.split('-')
-        target_resource = Resource.objects.get(pk=target_resource_id)
-        target_group = InterviewGroup.objects.get(pk=target_group_id)
+        # do not copy pennies on single-shape copies
+        copy.pennies = 0;
+                
+        copy.save()
         
-        shape = InterviewShape.objects.filter(pk=source_id)
-        if shape.count() == 1 and shape[0].user == request.user:
-            copy = shape[0].copy()
-            copy.int_group = target_group
-            copy.resource = target_resource
-            copy.save()
-            
-            new_copy = []
-            new_copy.append( copy.json() )
-            
-            response = '{"type": "FeatureCollection", "features": [%s]}' % ( ','.join(new_copy), )
-            return HttpResponse(response, mimetype='application/json')
-        else:
-            return HttpResponseForbidden(
-                'You cannot copy shapes you do not have access to.')
+        new_copy = []
+        new_copy.append( copy.json() )
+        
+        response = '{"type": "FeatureCollection", "features": [%s]}' % ( ','.join(new_copy), )
+        return HttpResponse(response, mimetype='application/json')
     else:
-        return HttpResponseBadRequest('Must use POST!')
-
+        return HttpResponseForbidden(
+            'You cannot copy shapes you do not have access to.')
+            
         
 # AJAX copy handler
 @login_required
 def copy_shapes(request):
-    if request.method == 'POST':
+
+    if request.REQUEST.get('source_type') == 'shape':
+        return copy_shape(request)
+
+    target = request.REQUEST.get('target')
+    target_group_id, target_resource_id  = target.split('-')
+    target_resource = Resource.objects.get(pk=target_resource_id)
+    target_group = InterviewGroup.objects.get(pk=target_group_id)
     
-        if request.POST.get('type') == 'shape':
-            return copy_shape(request)
+    source = request.REQUEST.get('source')
+    source_group_id, source_resource_id = source.split('-')
     
-        target = request.POST.get('target')
-        target_group_id, target_resource_id  = target.split('-')
-        target_resource = Resource.objects.get(pk=target_resource_id)
-        target_group = InterviewGroup.objects.get(pk=target_group_id)
-        
-        source = request.POST.get('source')
-        source_group_id, source_resource_id = source.split('-')
-        
-        copy_shapes = InterviewShape.objects.filter(user=request.user,resource=source_resource_id,int_group=source_group_id)
-        
-        new_copies = []
-        if copy_shapes.count() > 0:
-            for shape in copy_shapes.all():
-                copy = shape.copy()
-                copy.int_group = target_group
-                copy.resource = target_resource
-                copy.save()
-                new_copies.append( copy.json() )
+    copy_shapes = InterviewShape.objects.filter(user=request.user,resource=source_resource_id,int_group=source_group_id)
+    
+    new_copies = []
+    if copy_shapes.count() > 0:
+    
+        # if the target group already has any pennies assigned, don't bring a copied groups pennies
+        resource_shapes = InterviewShape.objects.filter(user=request.user,int_group=target_group,resource=target_resource)
+        resource_agg = resource_shapes.aggregate(Sum('pennies'))
+    
+        for shape in copy_shapes.all():
+            copy = shape.copy()
+            copy.int_group = target_group
+            copy.resource = target_resource
             
-            response = '{"type": "FeatureCollection", "features": [%s]}' % ( ','.join(new_copies), )
+            if resource_agg['pennies__sum'] > 0:
+                copy.pennies = 0;
             
-            return HttpResponse(response, mimetype='application/json')
-        else:
-            return HttpResponseForbidden(
-                'You cannot copy shapes you do not have access to.')
+            copy.save()
+            new_copies.append( copy.json() )
+        
+        response = '{"type": "FeatureCollection", "features": [%s]}' % ( ','.join(new_copies), )
+        
+        return HttpResponse(response, mimetype='application/json')
     else:
-        return HttpResponseBadRequest('Must use POST!') 
+        return HttpResponseForbidden(
+            'You cannot copy shapes you do not have access to.')
+   
     
     
 # AJAX interview shape attribute form processing
@@ -478,7 +487,7 @@ def edit_shape(request,id):
         action = "/gwst/shape/edit/"+str(shape[0].pk)
         if request.method == 'GET':
             form = InterviewShapeAttributeForm( instance=shape[0] )
-            form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=request.session['int_group'])
+            form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=shape[0].int_group)
             t = loader.get_template('base_form.html')
             opts = {
                 'form': form,
@@ -491,10 +500,10 @@ def edit_shape(request,id):
             form = InterviewShapeAttributeForm( request.POST )
             
             # calculate how many pennies are already assigned in this group and attach it to form before validation
-            group_pennies = InterviewShape.objects.filter(user=request.user,int_group=request.session['int_group'],resource=request.POST.get('resource',-1)).aggregate(Sum('pennies'))
+            group_pennies = InterviewShape.objects.filter(user=request.user,int_group=shape[0].int_group,resource=request.POST.get('resource',-1)).aggregate(Sum('pennies'))
             form.group_pennies = group_pennies['pennies__sum'] - shape[0].pennies
             
-            form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=request.session['int_group'])
+            form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=shape[0].int_group)
             if form.is_valid(): 
                 edit_shape = shape[0]
                 edit_shape.pennies = form.cleaned_data['pennies']
