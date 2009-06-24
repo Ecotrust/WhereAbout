@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#
+# Sets the proper django environment
+# before running any custom python script
+#
+#  Usage: ./runpy shp2db.py
+#   to run a script..
+#
+# or:
+#
+#  Usage ./runpy 
+#   to enter python terminal
+#
+
+export DJANGO_SETTINGS_MODULE=settings
+export PYTHONSTARTUP=utilities/imports.py
+python $@

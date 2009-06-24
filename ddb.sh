@@ -1,1 +1,2 @@
-dropdb -U postgres gwst
+#!/bin/bash
+dropdb mlpa-nc-rec-fish-survey
