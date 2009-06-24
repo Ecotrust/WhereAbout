@@ -29,4 +29,6 @@ urlpatterns = patterns('',
     #(r'^gwst/shape/copy/(\d+)$', copy_shape ),
     (r'^gwst/shape/edit/(\d+)$', edit_shape ),
     
+    (r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),
+    
 )

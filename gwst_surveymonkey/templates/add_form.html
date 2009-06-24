@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block extrastyle %}<link rel="stylesheet" type="text/css" href="/mlpa_southcoast/media/css/login.css" />{% endblock %}
+{% load i18n %}
+
+{% block title %}Survey Monkey Import{% endblock %}
+
+{% block content %}
+<h1>Generate User Survey Accounts From Survey Monkey Results</h1>
+<div id="content-main">
+	<dl><dt>Allows you to register multiple recreational fisherman using a CSV file containing account information.</dt>
+    <dt>When an account is created an activation email is sent to the user, so don't use this unless you mean it!</dt>
+	<dt>Before you upload a CSV, make sure you remove all header rows, SurveyMonkey has 2 of them!  Don't remove or alter columns, even if they are empty</dt>	
+    </dl>
+	<form enctype="multipart/form-data" method="post" action="" id="login-form">
+		<div class="form-row">
+		  <label for="id_userfile">CSV File:</label>
+		  {{ form.userfile }}
+          {% if form.userfile.errors %}<span class="error">{{ form.userfile.errors|join:", " }}</span>{% endif %}
+		</div>
+	    <label>{{ form.num_to_register.label }}:</label>
+	    {{ form.num_to_register }}
+	    {% if form.num_to_register.errors %}
+	        <span class="error">{{ form.num_to_register.errors|join:", " }}</span>
+	    {% endif %}	
+		<div class="submit-row">
+		  <input type="submit" value="Add Users" />
+		</div>
+	</form>
+	
+	{% if form.upload_list %}
+	   <br/>
+	   <h2>Results</h2>
+	   <table><tr><th>Name</th><th>Username/Email</th><th>User groups</th><th>Account Status</th></tr>
+	   {% for rec in form.upload_list %}
+	       <tr>
+           {% for field in rec %}
+               <td>{{ field }}</td>
+           {% endfor %}                 
+	       </tr>
+	   {% endfor %}
+	   </table>
+	   <br/>
+	   Number of Successes: {{ form.num_success }}<br/>
+	   Number Failed or Skipped: {{ form.num_failed }}<br/> 
+	{% endif %}
+	
+</div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %} 
