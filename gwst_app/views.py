@@ -79,7 +79,7 @@ def select_interview(request):
     
     # special handling if there is only one active interview
     if active_interviews.count() == 1:
-        return handleSelectInterview(request,active_interviews[0])
+        return handleSelectInterview( request, active_interviews[0] )
     
     if request.method == 'GET':
         # show list of available interviews
@@ -227,15 +227,39 @@ def draw_group_shapes(request, group_id):
 def finalize_group(request,id):
     if request.method == 'GET':
         # update InterviewGroupMembership record
-        group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=id)
+        int_group = InterviewGroup.objects.get(pk=id)
+        group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group=int_group)
         
         if group_memb.count() == 1:
+        
+            # validation based on number of pennies assigned by user
+            if int_group.user_draws_shapes:
+            
+                total_shape_count = 0
+                
+                for resource in int_group.resources.all():
+                    resource_shapes = InterviewShape.objects.filter(user=request.user,int_group=int_group,resource=resource)
+                    shape_count = resource_shapes.count()
+                    if shape_count > 0:
+                        shape_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
+                    
+                        # check if user drew shapes but didn't get pennies to 100
+                        if shape_count > 0 and shape_pennies != 100:
+                            return HttpResponseRedirect('/group_status/')
+                        
+                        total_shape_count = total_shape_count + shape_count
+                    
+                # check if user failed to draw any shapes
+                if total_shape_count == 0:
+                    return HttpResponseRedirect('/group_status/')
+                
             update_memb = group_memb[0]
             update_memb.status = 'finalized'
             update_memb.date_completed = datetime.datetime.now()
             update_memb.save()
+            
         else: #404
-            return render_to_response( 'test.html', RequestContext(request,{}))
+            return render_to_response( 'notfound.html', RequestContext(request,{}))
         
         # redirect to interview_group_status
         return HttpResponseRedirect('/group_status/')
@@ -335,7 +359,7 @@ def user_features_client_object(user,interview):
     folder = create_superfolder('Right click any item for options', icon=settings.MEDIA_URL+'images/silk/icons/status_online.png', id="userFeatures")
     
     for int_group in InterviewGroup.objects.filter(interview=interview,user_draws_shapes=True).all():
-        int_group_memb = InterviewGroupMembership.objects.filter(int_group=int_group,user=user)
+        int_group_memb = InterviewGroupMembership.objects.filter(int_group=int_group,user=user).exclude(status='not yet started')
         if int_group_memb.count() == 1:
             group = create_folder(int_group.name, pk=int_group.id, toggle=True)
             for resource in int_group.resources.all():
@@ -351,7 +375,7 @@ def user_features_client_object(user,interview):
 def get_user_shapes(request):
     data = {}
     u = request.user
-    int_group = request.session['int_group']
+    interview = request.session['interview']
     data['user'] = ( user_client_object(u), )
     data['me'] = {
         'model': 'user',
@@ -360,7 +384,7 @@ def get_user_shapes(request):
         'username': u.username,
         'email': u.email,
     }
-    data['features'] = ( user_features_client_object(u,int_group), )
+    data['features'] = ( user_features_client_object(u,interview), )
     return HttpResponse(geojson_encode(data), mimetype='application/json')
     
     
