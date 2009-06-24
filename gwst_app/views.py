@@ -105,22 +105,23 @@ def select_interview(request):
 def assign_groups(request):
     if request.method == 'GET':
         # let user select which groups they are in
-        form = SelectInterviewGroupsForm()
-        form.fields['groups'].queryset = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
+        groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
+        form = SelectInterviewGroupsForm( groups )
         return render_to_response( 'base_form.html', RequestContext(request,{'interview':request.session['interview'], 'form': form, 'value':'Continue'}))
         
     else:
-        form = SelectInterviewGroupsForm( request.POST )
-        form.fields['groups'].queryset = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
+        groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
+        form = SelectInterviewGroupsForm( groups, request.POST )
+
         if form.is_valid():       
             # save InterviewGroupMembership records
-            selected_groups = form.cleaned_data['groups']
-            
-            for group in selected_groups:
-                new_group = InterviewGroupMembership()
-                new_group.user = request.user
-                new_group.int_group = group
-                new_group.save()
+            for field_name in form.fields:
+                field = form.fields[field_name]
+                if form.cleaned_data['group_%d' % field.group.id]:
+                    new_group = InterviewGroupMembership()
+                    new_group.user = request.user
+                    new_group.int_group = field.group
+                    new_group.save()
                 
             # redirect to interview_group_status
             return HttpResponseRedirect('/group_status/')

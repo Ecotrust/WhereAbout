@@ -85,6 +85,7 @@ class InterviewGroupMembership(Model):
     date_completed = DateTimeField( blank=True, null=True )
     reviewed = BooleanField( default = False )
     date_reviewed = DateTimeField( blank=True, null=True )
+    percent_involvement = IntegerField( blank=True, null=True )
     
     class Meta:
         db_table = u'gwst_groupmemb'
