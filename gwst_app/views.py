@@ -189,6 +189,14 @@ def group_status(request):
     
     
 @login_required    
+def view_answers(request,group_id):
+    # show questions for this group, with any existing user answers
+    questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
+    answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
+    return render_to_response( 'view_answers.html', RequestContext(request,{'questions': questions, 'answers':answers}))        
+    
+    
+@login_required    
 def answer_questions(request,group_id):
     if request.method == 'GET':
         
@@ -219,10 +227,13 @@ def answer_questions(request,group_id):
                     
                 if field.question.answer_type == 'integer':
                     answer.integer_val = form.cleaned_data['question_%d' % field.question.id]
+                    answer.text_val = str(answer.integer_val) # makes the db a little more human readable
                 elif field.question.answer_type == 'decimal':
                     answer.decimal_val = form.cleaned_data['question_%d' % field.question.id]
+                    answer.text_val = str(answer.decimal_val) # makes the db a little more human readable
                 elif field.question.answer_type == 'boolean':
                     answer.boolean_val = form.cleaned_data['question_%d' % field.question.id]
+                    answer.text_val = str(answer.boolean_val) # makes the db a little more human readable
                 elif field.question.answer_type == 'select':
                     answer.option_val = form.cleaned_data['question_%d' % field.question.id]
                     answer.text_val = answer.option_val.eng_text # makes the db a little more human readable

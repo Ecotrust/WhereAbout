@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Your Answers</h3>
+{% for question in questions %}
+{% for answer in answers %}
+{% ifequal question answer.int_question %}
+{{ question.eng_text }}: {{ answer.text_val }}<br>
+{% endifequal %}
+{% endfor %}
+{% endfor %}
+<p><a href="/group_status/">Return to Interview Menu</a></p>
+{% endblock %}
