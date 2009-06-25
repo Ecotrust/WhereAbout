@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 
 
     (r'^$', select_interview ),
+    (r'^select_interview/$', select_interview ),
     (r'^assign_groups/$', assign_groups ),
     (r'^interview_complete/$', interview_complete ),
     

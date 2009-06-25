@@ -134,9 +134,52 @@ def assign_groups(request):
 # show a list of user's groups and current status of each
 @login_required
 def group_status(request):
+
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
     # show list of interview groups with current status (including global interview questions)
-    int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])   
+       
     qs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).order_by('-percent_involvement')
+    
+    # update the user status message for each in-progress group
+    for group_memb in qs.all():
+    
+        if group_memb.status == 'in-progress' and group_memb.int_group.user_draws_shapes:
+        
+            num_shapes = InterviewShape.objects.filter(user=request.user,int_group=group_memb.int_group).count()
+            
+            if num_shapes == 0:
+                group_memb.user_status_msg = 'no shapes drawn'
+                
+            else:
+                # tally complete and incomplete resource groups
+                num_complete_resources = 0
+                num_incomplete_resources = 0
+                
+                for resource in group_memb.int_group.resources.all():
+                    res_shapes = InterviewShape.objects.filter(user=request.user,int_group=group_memb.int_group,resource=resource)
+                    res_count = res_shapes.count()
+                    if res_count > 0:
+                        res_pennies = res_shapes.aggregate(Sum('pennies'))['pennies__sum']
+                        if res_pennies == 100:
+                            num_complete_resources = num_complete_resources + 1
+                        else:
+                            num_incomplete_resources = num_incomplete_resources + 1
+                            
+                if num_incomplete_resources > 0:
+                    group_memb.user_status_msg = '%s/%s resource group(s) incomplete' % (num_incomplete_resources,num_incomplete_resources+num_complete_resources)
+                else:
+                    group_memb.user_status_msg = '%s resource group(s) complete' % (num_complete_resources,)
+                
+                group_memb.num_complete_resources = num_complete_resources
+                group_memb.num_incomplete_resources = num_incomplete_resources
+                
+            group_memb.save()
+                        
+            
     
     # if user has finalized each of their registered groups, let them finalize their interview
     finalized_groups = qs.filter(status='finalized')
@@ -358,17 +401,22 @@ def create_superfolder(name, icon=None, id=None, description=None):
 def user_features_client_object(user,interview):
     folder = create_superfolder('Right click any item for options', icon=settings.MEDIA_URL+'images/silk/icons/status_online.png', id="userFeatures")
     
-    for int_group in InterviewGroup.objects.filter(interview=interview,user_draws_shapes=True).all():
-        int_group_memb = InterviewGroupMembership.objects.filter(int_group=int_group,user=user).exclude(status='not yet started')
-        if int_group_memb.count() == 1:
-            group = create_folder(int_group.name, pk=int_group.id, toggle=True)
-            for resource in int_group.resources.all():
-                resource_shapes = InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource)
-                mpas = create_folder(resource.name+' shapes', pk=str(int_group.id)+'-'+str(resource.id), toggle=True, doubleclick=True, context=True)
-                for mpa in resource_shapes:
-                    add_child(mpas, mpa.client_object())
-                add_child(group,mpas)
-            add_child(folder,group)
+    int_groups = InterviewGroup.objects.filter(interview=interview,user_draws_shapes=True)
+    int_group_membs = InterviewGroupMembership.objects.filter(user=user, int_group__in=int_groups).exclude(status='not yet started').order_by('-percent_involvement')
+    
+    for int_group_memb in int_group_membs.all():
+        int_group = int_group_memb.int_group
+        group = create_folder(int_group.name, pk=int_group.id, toggle=True)
+        for resource in int_group.resources.all():
+            resource_shapes = InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource)
+            resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
+            if resource_pennies == None:
+                resource_pennies = 0
+            mpas = create_folder(resource.name+' shapes ('+str(resource_pennies)+' pennies)', pk=str(int_group.id)+'-'+str(resource.id), toggle=True, doubleclick=True, context=True)
+            for mpa in resource_shapes:
+                add_child(mpas, mpa.client_object())
+            add_child(group,mpas)
+        add_child(folder,group)
     return folder
     
 @login_required
@@ -428,13 +476,6 @@ def save_shape(request):
         return HttpResponse(result + e.message, status=500)
     return HttpResponse(result)
 
-
-# AJAX post to set pennies for a shape
-@login_required
-def assign_pennies(request):
-    if request.method == 'POST':
-        # validate number of pennies set
-        return render_to_response( 'test.html', RequestContext(request,{}))
     
     
 # AJAX delete handler
@@ -531,7 +572,7 @@ def edit_shape(request,id):
         action = "/gwst/shape/edit/"+str(shape[0].pk)
         if request.method == 'GET':
             form = InterviewShapeAttributeForm( instance=shape[0] )
-            form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=shape[0].int_group)
+            #form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=shape[0].int_group)
             t = loader.get_template('base_form.html')
             opts = {
                 'form': form,
@@ -544,10 +585,10 @@ def edit_shape(request,id):
             form = InterviewShapeAttributeForm( request.POST )
             
             # calculate how many pennies are already assigned in this group and attach it to form before validation
-            group_pennies = InterviewShape.objects.filter(user=request.user,int_group=shape[0].int_group,resource=request.POST.get('resource',-1)).aggregate(Sum('pennies'))
+            group_pennies = InterviewShape.objects.filter(user=request.user,int_group=shape[0].int_group,resource=shape[0].resource).aggregate(Sum('pennies'))
             form.group_pennies = group_pennies['pennies__sum'] - shape[0].pennies
             
-            form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=shape[0].int_group)
+            #form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=shape[0].int_group)
             if form.is_valid(): 
                 edit_shape = shape[0]
                 edit_shape.pennies = form.cleaned_data['pennies']
@@ -555,10 +596,17 @@ def edit_shape(request,id):
                 edit_shape.boundary_s = form.cleaned_data['boundary_s']
                 edit_shape.boundary_e = form.cleaned_data['boundary_e']
                 edit_shape.boundary_w = form.cleaned_data['boundary_w']
-                edit_shape.resource = form.cleaned_data['resource']
+                #edit_shape.resource = form.cleaned_data['resource']
                 edit_shape.last_modified = datetime.datetime.now()
                 edit_shape.num_times_saved = edit_shape.num_times_saved + 1
                 edit_shape.save()
+                
+                # check the status of the interview group membership for this shape and unfinalize it if necessary
+                group_memb = InterviewGroupMembership.objects.get(user=request.user,int_group=edit_shape.int_group)
+                if group_memb.status == 'finalized':
+                    group_memb.status = 'in-progress'
+                    group_memb.save()
+                
                 return HttpResponse(edit_shape.json(), mimetype='application/json')
                 
             else:
