@@ -187,6 +187,17 @@ gwst.data.mlpaFeatures.mpa_from_geojson = function(data){
     return mpa;
 }
 
+gwst.data.mlpaFeatures.mpas_from_geojson = function(data){
+    var mpas = [];
+    var features = gwst.data.mlpaFeatures.parser.read(data);
+    for(var i=0; i<features.length; i++){
+        var mpa = new gwst.data.mlpaFeatures.MPA(features[i].attributes);
+        mpa.setFeature(features[i]);
+        mpas.push(mpa);
+    }
+    return mpas;
+}
+
 gwst.data.mlpaFeatures.array_and_mpas_from_geojson = function(data){
     var array = new gwst.data.mlpaFeatures.Array(data['properties']);
     array.feature = true;

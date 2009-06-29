@@ -1,6 +1,7 @@
 from registration.models import *
 from django.db import models
-   
+from gwst_app.models import Interview, InterviewGroup
+
 class SMRegistrationManager(RegistrationManager):
     """
     The methods defined here provide shortcuts for account creation
@@ -35,7 +36,8 @@ class SMRegistrationManager(RegistrationManager):
         new_user.last_name = last_name
         new_user.is_active = False
         new_user.save()
-        
+       
+        #Create registration specific profile with activation key
         registration_profile = self.create_profile(new_user)
         
         if profile_callback is not None:
@@ -49,6 +51,9 @@ class SMRegistrationManager(RegistrationManager):
                                        { 'site': current_site })
             # Email subject *must not* contain newlines
             subject = ''.join(subject.splitlines())
+
+            #import pdb
+            #pdb.set_trace()
             
             message = render_to_string('registration/activation_email.txt',
                                        { 'activation_key': registration_profile.activation_key,
@@ -66,9 +71,7 @@ class SMRegistrationManager(RegistrationManager):
                          settings.DEFAULT_FROM_EMAIL, 
                          [new_user.email],
                          connection=connection,
-                         bcc=[settings.DEFAULT_FROM_EMAIL]).send()
-                                     
-            #send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [new_user.email])
+                         bcc=[settings.BCC_EMAIL]).send()                                     
         return new_user  
     
 class SMRegistrationProfile(RegistrationProfile):

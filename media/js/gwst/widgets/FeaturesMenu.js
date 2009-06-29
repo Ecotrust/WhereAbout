@@ -6,6 +6,10 @@ if(gwst.widgets == undefined){
     gwst.widgets = {};
 }
 
+gwst.copyInProgress = false;
+gwst.copySource = 'none';
+gwst.copySourceType = 'none';
+
 gwst.widgets.FeaturesMenu = function(options){
     var self = this;
     if(!(options && options['selectionManager'] && options['store'] && (options['renderTo'] || options['extWindow']))){
@@ -159,6 +163,40 @@ gwst.widgets.FeaturesMenu = function(options){
 
     
     this.tree.bind('itemContext', function(event, mouseEvent, data, target){
+    
+        // handle folders first because they aren't actually in the store
+        if(data['model'] == 'folder') { 
+            actions = [
+                {
+                    name: 'Add new shape',
+                    handler: function(e){
+                        $(self).trigger('folderDoubleClick', data['pk']);
+                    },
+                    iconcls: 'mm-context-add'
+                },
+                {
+                    name: 'Copy all resource shapes',
+                    handler: gwst.actions.nonExt.copyAllShapes,                    
+                    iconcls: 'mm-context-copy'
+                }
+            ];
+            
+            if (gwst.copyInProgress){
+                actions.push({
+                    name: 'Paste copied shapes here',
+                    handler: gwst.actions.nonExt.copyToTarget,
+                    iconcls: 'mm-context-paste'
+                });
+            }
+            
+            gwst.ui.ContextMenu.show({
+                x: mouseEvent.pageX,
+                y: mouseEvent.pageY,
+                actions: actions
+                }, data, target);
+            return;
+        }
+        
         var item = _store.get(data.model, data.pk);
         var actions = [];
         var data = {};
@@ -202,10 +240,15 @@ gwst.widgets.FeaturesMenu = function(options){
                     iconcls: 'mm-context-view'
                 });
                 actions.push({
+                    name: 'Copy',
+                    handler: gwst.actions.nonExt.copyShape,
+                    iconcls: 'mm-context-copy'
+                });
+                actions.push({
                     name: 'Delete',
                     handler: gwst.actions.nonExt.deleteMPA,
                     iconcls: 'mm-context-delete'
-                })
+                });
             }
             data = {mpa: item};
         }else if(item.model=='array'){
@@ -311,7 +354,6 @@ gwst.widgets.FeaturesMenu = function(options){
                     iconcls: 'mm-context-view'
                 }
             ]
-        
         }else{
             throw('cannot create contextmenu for item that is not an mpa or array.');
         }

@@ -51,4 +51,3 @@ admin.site.register(InterviewAnswer,IntAdmin)
 admin.site.register(InterviewStatus,IntAdmin)
 admin.site.register(InterviewShape,IntAdmin)
 
-

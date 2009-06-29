@@ -7,6 +7,7 @@ from django.conf import settings
 from django.forms.fields import email_re
 
 from gwst_app.models import *
+from registration.models import RegistrationProfile
 from models import SMRegistrationProfile
 
 from django.contrib.auth.models import User
@@ -82,6 +83,9 @@ class SMAddForm(forms.Form):
         try:
             while 1:
                 try:
+                    import pdb
+                    pdb.set_trace()
+                    
                     new_person = reader.next()
                     
                     #Skip header rows
@@ -89,7 +93,7 @@ class SMAddForm(forms.Form):
                         continue     
                     #Stop if we've added the number we want.                   
                     elif num_to_register and num_success == num_to_register:
-                        return {'status':'stop'}
+                        break
                                         
                     result = self.create_survey(new_person)            
                     
@@ -179,20 +183,28 @@ class SMAddForm(forms.Form):
             user_group_text=user_group_text
         )
 
+        #Get activated interview
+        active_interview = Interview.objects.filter(active=True)[0]
+        #Get active survey main question group
+        main_group = InterviewGroup.objects.filter(interview=active_interview,code='main')
+        #Create main question group record
+                
+        #Answer main profile questions
+
         #Create interview record
-        i = RecInterviewData(user=new_user, sm_id=sm_id)
-        i.save()
-        
+        #i = RecInterviewData(user=new_user, sm_id=sm_id)
+        #i.save()
+        # 
         #Add to rec user groups
-        if prvsl:    
-            new_user.recoverallgrp_set.create(grp_type='prvsl', mid_name='Private', long_name='Private Vessel')
-        if kyk:
-            new_user.recoverallgrp_set.create(grp_type='kyk', mid_name='Kayak', long_name='Kayak Angler')
-        if dive:
-            new_user.recoverallgrp_set.create(grp_type='dive', mid_name='Dive', long_name='Dive Angler - spear or hand take')
+        #if prvsl:    
+        #    new_user.recoverallgrp_set.create(grp_type='prvsl', mid_name='Private', long_name='Private Vessel')
+        #if kyk:
+        #    new_user.recoverallgrp_set.create(grp_type='kyk', mid_name='Kayak', long_name='Kayak Angler')
+        #if dive:
+        #    new_user.recoverallgrp_set.create(grp_type='dive', mid_name='Dive', long_name='Dive Angler - spear or hand take')
         
         #Add to rec_fish group
-        new_user.groups.add(Group.objects.filter(name='Recreational Fisherman')[0])
+        #new_user.groups.add(Group.objects.filter(name='Recreational Fisherman')[0])
         
         output.append('Success') 
         return {'status':'success','output':output}                    

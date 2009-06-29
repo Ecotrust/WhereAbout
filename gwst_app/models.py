@@ -43,6 +43,7 @@ class Interview(Model):
     organization = CharField( max_length=100 )
     description = CharField( max_length=200 )
     code = CharField( max_length=20, unique=True )
+    active = BooleanField( default=False )
     class Meta:
         db_table = u'gwst_interview'
         
@@ -84,6 +85,7 @@ class InterviewGroupMembership(Model):
     date_completed = DateTimeField( blank=True, null=True )
     reviewed = BooleanField( default = False )
     date_reviewed = DateTimeField( blank=True, null=True )
+    percent_involvement = IntegerField( blank=True, null=True )
     
     class Meta:
         db_table = u'gwst_groupmemb'
@@ -202,9 +204,9 @@ class InterviewShape(Model):
     user = ForeignKey(User)
     int_group = ForeignKey(InterviewGroup)
     resource = ForeignKey(Resource)
-    geometry = PolygonField(srid=3310, blank=True, null=True)
-    geometry_clipped = PolygonField(srid=3310, blank=True, null=True)
-    geometry_edited = PolygonField(srid=3310, blank=True, null=True)
+    geometry = PolygonField(srid=4326, blank=True, null=True)
+    geometry_clipped = PolygonField(srid=4326, blank=True, null=True)
+    geometry_edited = PolygonField(srid=4326, blank=True, null=True)
     pennies = IntegerField( default=0 )
     boundary_n = CharField( max_length=100, blank=True, null=True ) 
     boundary_s = CharField( max_length=100, blank=True, null=True )
@@ -256,11 +258,20 @@ class InterviewShape(Model):
         attr = {}    
         if attributes:
             attr = self.client_object()
-            attr['folder'] = 'folder_'+str(self.resource.id)
+            attr['folder'] = 'folder_'+str(self.int_group.id)+'-'+str(self.resource.id)
         attr['fillColor'] = '#FFFFFF' 
         attr['strokeColor'] = "white"
         attr['fillOpacity'] = "0.4"
         #self.geometry.transform(srid)
         attr['original_geometry'] = self.geometry.wkt
         return '{"id": "mpa_%s", "type": "Feature", "geometry": %s, "properties": %s}' % (self.pk, self.geometry_clipped.geojson, geojson_encode(attr))
-
+        
+    def copy(self):
+        m = self
+        shape_id = self.id
+        m.id = None
+        m.creation_date = datetime.datetime.now()
+        m.last_modified = datetime.datetime.now()
+        m.num_times_saved = 1
+        m.save() #This save generates the new mpa_id
+        return m

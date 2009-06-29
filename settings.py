@@ -77,6 +77,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.databrowse',
+    'registration',
     'gwst_app',
     'gwst_surveymonkey'
 )

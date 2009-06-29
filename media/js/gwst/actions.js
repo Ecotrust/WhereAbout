@@ -851,14 +851,14 @@ gwst.actions.nonExt.openTreeTutorial = function(pk){
     gwst.ui.modal.show({width: 500, url: '/gwst/tree_tutorial'});
 };
 
-gwst.actions.nonExt.copyMpa = function(pk){
+/*gwst.actions.nonExt.copyMPA = function(e){
     gwst.ui.wait.show({
-        waitMsg: 'While we copy this Marine Protected Area'
+        waitMsg: 'While we copy this shape'
     });
     $.ajax({
         url: '/gwst/shape/copy/', 
         type: 'POST', 
-        data: {pk: pk}, 
+        data: {pk: e.data.mpa.pk}, 
         success: function(data){
             var mpa = gwst.data.mlpaFeatures.mpa_from_geojson(data);
             // var reader = new gwst.data.MLPAFeatureReader({root: 'mpa'}, gwst.data.MPA);
@@ -889,6 +889,68 @@ gwst.actions.nonExt.copyMpa = function(pk){
         },
         dataType: 'json'
     });
+};*/
+
+gwst.actions.nonExt.copyShape = function(e){
+    gwst.copyInProgress = true;
+    gwst.copySource = e.data.mpa.pk;
+    gwst.copySourceType = 'shape';
+    
+    alert( 'Shape selected. Right-click a group and select paste to finish.' ); 
+};
+
+gwst.actions.nonExt.copyAllShapes = function(e){
+    gwst.copyInProgress = true;
+    gwst.copySource = e.data.pk;
+    gwst.copySourceType = 'resource';
+    
+    alert( 'Shapes selected. Right-click another group and select paste to finish.' ); 
+};
+
+gwst.actions.nonExt.copyToTarget = function(e){
+    if ( gwst.copyType='resource' && gwst.copySource == e.data.pk ){
+        alert('You cannot copy shapes within a single group.');
+        return;
+    }
+    
+    gwst.ui.wait.show({
+        waitMsg: 'While we copy these shapes'
+    });
+    
+    $.ajax({
+        url: '/gwst/shapes/copy/', 
+        type: 'POST', 
+        data: {target: e.data.pk, source:gwst.copySource, source_type:gwst.copySourceType}, 
+        success: function(data){
+            var mpas = gwst.data.mlpaFeatures.mpas_from_geojson(data);
+            gwst.ui.wait.hide();
+            gwst.app.clientStore.add(mpas);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            if(XMLHttpRequest.status == 401){
+                gwst.ui.error.show({
+                    errorText: 'You must be logged in to perform this operation.'
+                });                        
+            }else if(XMLHttpRequest.status == 403){
+                gwst.ui.error.show({
+                    errorText: 'You do not have permission to copy this object.'
+                });
+            }else if(XMLHttpRequest.status == 404){
+                gwst.ui.error.show({
+                    errorText: 'The object you are trying to copy does not exist.'
+                });
+            }else{
+                gwst.ui.error.show({
+                    errorText: 'An unknown server error occured. Please try again later.'
+                });
+            }
+        },
+        dataType: 'json'
+    });
+    
+    gwst.copyInProgress=false;
+    gwst.copySource='none';
+    gwst.copySourceType = 'none';
 };
 
 /*gwst.actions.nonExt.copyArray = function(pk){
@@ -1021,3 +1083,4 @@ gwst.actions.openAttributesCSV = function(arrayId){
     window.open('/gwst/array/csv/'+arrayId);
     window.onbeforeunload = gwst.backWarn;
 }
+

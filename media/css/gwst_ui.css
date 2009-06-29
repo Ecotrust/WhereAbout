@@ -752,6 +752,7 @@ div.sharing span.group {
 
 
 .mm-context-delete { background: #fff url(/site-media/images/silk/icons/delete.png) no-repeat 5px 2px; }
+.mm-context-add { background: #fff url(/site-media/images/silk/icons/add.png) no-repeat 5px 2px; }
 .mm-context-copy { background: #fff url(/site-media/images/silk/icons/page_copy.png) no-repeat 5px 2px; }
 .mm-context-edit { background: #fff url(/site-media/images/silk/icons/table_edit.png) no-repeat 5px 2px; }
 .mm-context-view { background: #fff url(/site-media/images/silk/icons/magnifier.png) no-repeat 5px 2px; }
@@ -774,4 +775,3 @@ div.sharing span.group {
     padding-left:1em;
     margin-left:0.5em;
     background: url(../images/gwst-ui/spinner-round.gif) no-repeat left center;
-}

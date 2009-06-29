@@ -11,6 +11,7 @@
 
 {% block content %}
 <div id="content-main">
+Foo!!!
 {% if app_list %}
     {% for app in app_list %}
         <div class="module">
@@ -40,6 +41,19 @@
         </table>
         </div>
     {% endfor %}
+    
+    <div class="module">
+        <table>
+        <caption>Other Actions</caption>        
+            <tbody>
+              <tr>            
+                <th scope="row">Survey Monkey Import</th>               
+                <td><a class="addlink" href="/admin/surveymonkey/add">Import</a></td>                
+              </tr>                          
+            </tbody>
+        </table>
+    </div>   
+        
 {% else %}
     <p>{% trans "You don't have permission to edit anything." %}</p>
 {% endif %}

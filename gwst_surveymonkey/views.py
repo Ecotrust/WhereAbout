@@ -21,7 +21,7 @@ def add(request, success_url='/admin/', profile_callback=None):
             form.num_success = save_result['num_success']
             form.num_failed = save_result['num_failed']             
     else:
-        form = RecBulkAddForm()    
+        form = SMAddForm()    
     return render_to_response('add_form.html', {'form': form}, context_instance=RequestContext(request))
 
  

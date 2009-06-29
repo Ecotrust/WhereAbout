@@ -15,7 +15,24 @@ class SelectInterviewForm( forms.Form ):
     interview = NameModelChoiceField(label='Select the interview',queryset=None,required=True)
     
 class SelectInterviewGroupsForm( forms.Form ):
-    groups = NameModelMultipleChoiceField(label='Select the groups you belong to',queryset=None,required=True)
+    #groups = NameModelMultipleChoiceField(label='Select the groups you belong to',queryset=None,required=True)
+    def __init__(self, groups, *args, **kwargs):
+        forms.Form.__init__(self, *args, **kwargs)
+        for i, group in enumerate(groups):
+            dynamic_args = {}
+            
+            # group selection checkbox
+            dynamic_args['label'] = group.name
+            dynamic_args['required'] = False
+            self.fields['group_%d' % group.id] = forms.BooleanField( **dynamic_args )
+            self.fields['group_%d' % group.id].group = group
+            
+            # percent involvement field
+            dynamic_args['label'] = '% involvement in ' + group.name
+            dynamic_args['min_value']=1
+            dynamic_args['max_value']=100
+            self.fields['group_%d_pc' % group.id] = forms.IntegerField( **dynamic_args )
+            self.fields['group_%d_pc' % group.id].group = None
     
 # from http://code.djangoproject.com/wiki/CookBookNewFormsDynamicFields
 class AnswerForm(forms.Form):
@@ -54,6 +71,7 @@ class AnswerForm(forms.Form):
                     dynamic_args['initial']=answer[0].boolean_val
                 elif question.val_default != '':
                     dynamic_args['initial']=bool(question.val_default)
+                dynamic_args['required'] = False
                 self.fields['question_%d' % question.id] = forms.BooleanField( **dynamic_args )
                 
             elif question.answer_type == 'select': #choice list 
@@ -111,3 +129,4 @@ class InterviewShapeAttributeForm(forms.ModelForm):
     class Meta:
         model = InterviewShape
         exclude = ('user','int_group','geometry','geometry_clipped','geometry_edited','edit_notes','edit_status','creation_date','last_modified','num_times_saved')
+
