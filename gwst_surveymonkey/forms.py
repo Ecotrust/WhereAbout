@@ -115,15 +115,16 @@ class SMAddForm(forms.Form):
     def create_survey(self, new_person):      
         output = []
                
+        sm_id = new_person[0]           
+        first_name = new_person[9]            
+        last_name = new_person[10]
+        city = new_person[11]
+        state = new_person[12]
+        phone = new_person[13]            
         #Make the email address lowercase
         email = new_person[14].lower()            
         #Username is the email address
         username = email
-        #SurveyMonkey ID
-        sm_id = new_person[0]           
-        first_name = new_person[9]            
-        last_name = new_person[10]            
-
         kyk = new_person[15]
         dive = new_person[16]
         prvsl = new_person[17]                      
@@ -177,13 +178,48 @@ class SMAddForm(forms.Form):
             user_group_text=user_group_text
         )
 
+        import pdb
+        pdb.set_trace()
+
         #Get activated interview
         active_interview = Interview.objects.filter(active=True)[0]
         #Get active survey main question group
         main_group = InterviewGroup.objects.filter(interview=active_interview,code='main')
-        #Create main question group record
-                
-        #Answer main profile questions
+        
+        #Get questions
+        try:
+            city_q = InterviewQuestion.objects.get(int_group=main_group,code='city')
+            state_q = InterviewQuestion.objects.get(int_group=main_group,code='state')
+            phone_q = InterviewQuestion.objects.get(int_group=main_group,code='phone')
+        except DoesNotExist:
+            import pdb
+            pdb.set_trace()
+        except MultipleObjectsReturned:
+            import pdb
+            pdb.set_trace()
+        
+        #Set city
+        city_a = InterviewAnswer()
+        city_a.int_question = city_q
+        city_a.user = new_user
+        city_a.text_val = city
+        city_a.save()
+        
+        #Set state
+        state_a = InterviewAnswer()
+        state_a.int_question = state_q
+        state_a.user = new_user
+        state_a.text_val = state
+        state_a.save()
+        
+        #Set phone number
+        phone_a = InterviewAnswer()
+        phone_a.int_question = phone_q
+        phone_a.user = new_user
+        phone_a.text_val = phone
+        phone_a.save()        
+        
+        #Add user to appropriate interview groups
 
         #Create interview record
         #i = RecInterviewData(user=new_user, sm_id=sm_id)
