@@ -82,10 +82,7 @@ class SMAddForm(forms.Form):
         num_failed = 0        
         try:
             while 1:
-                try:
-                    import pdb
-                    pdb.set_trace()
-                    
+                try:                   
                     new_person = reader.next()
                     
                     #Skip header rows
@@ -141,10 +138,7 @@ class SMAddForm(forms.Form):
         elif prvsl != '':
             group_str += 'prvsl'            
         output.append(group_str)
-        
-        import pdb
-        pdb.set_trace()
-          
+                 
         from utilities.passwords import GenPasswd
         password = GenPasswd(chars=email)
         password = password.replace('.','')

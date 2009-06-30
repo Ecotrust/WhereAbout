@@ -51,9 +51,6 @@ class SMRegistrationManager(RegistrationManager):
                                        { 'site': current_site })
             # Email subject *must not* contain newlines
             subject = ''.join(subject.splitlines())
-
-            #import pdb
-            #pdb.set_trace()
             
             message = render_to_string('registration/activation_email.txt',
                                        { 'activation_key': registration_profile.activation_key,
