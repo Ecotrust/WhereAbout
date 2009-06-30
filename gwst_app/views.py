@@ -647,4 +647,5 @@ def editgeom_shape(request,id):
         result = edit_shape.json()
     except Exception, e:
         return HttpResponse(result + e.message, status=500)
-    return HttpResponse(result)   
+    return HttpResponse(result)
+

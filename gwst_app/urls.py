@@ -2,7 +2,6 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.views import *
 from views import *
 
-
 urlpatterns = patterns('',
     (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout_then_login', {'login_url': '/accounts/login/'}),
@@ -31,5 +30,6 @@ urlpatterns = patterns('',
     (r'^gwst/shape/editgeom/(\d+)$', editgeom_shape ),
     #(r'^gwst/shape/copy/(\d+)$', copy_shape ),
     (r'^gwst/shape/edit/(\d+)$', edit_shape ),
-    
+
+    (r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),    
 )

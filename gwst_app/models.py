@@ -278,4 +278,3 @@ class InterviewShape(Model):
         m.num_times_saved = 1
         m.save() #This save generates the new mpa_id
         return m
-

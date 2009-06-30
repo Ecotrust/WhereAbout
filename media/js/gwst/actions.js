@@ -1083,3 +1083,4 @@ gwst.actions.openAttributesCSV = function(arrayId){
     window.open('/gwst/array/csv/'+arrayId);
     window.onbeforeunload = gwst.backWarn;
 }
+
