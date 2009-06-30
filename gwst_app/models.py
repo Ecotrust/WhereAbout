@@ -119,6 +119,7 @@ class InterviewQuestion(Model):
     )
     int_group = ForeignKey(InterviewGroup, null=True, blank=True, help_text='set to ask question only of this group')
     answer_type = CharField( max_length=20, choices=AnswerTypeChoices )
+    code = CharField( max_length=10, help_text='unique name for referencing this question directly', blank=True, null=True)
     val_min = FloatField( help_text='minimum value for numeric answers', blank=True, null=True )
     val_max = FloatField( help_text='maximum value for numeric answers', blank=True, null=True )
     val_default = CharField( max_length=100, help_text='default value displayed when form appears', blank=True, null = True, default='' )
@@ -184,6 +185,8 @@ class InterviewAnswer(Model):
     def __unicode__(self):
         return unicode('%s: %s' % (self.user, self.int_question))
         
+    def save_answer(self):
+        pass
 
 class InterviewStatus(Model):
     interview = ForeignKey(Interview)
