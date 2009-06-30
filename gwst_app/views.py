@@ -117,7 +117,7 @@ def assign_groups(request):
             # save InterviewGroupMembership records
             for field_name in form.fields:
                 field = form.fields[field_name]
-                if field.group and form.cleaned_data['group_%d' % field.group.id]:
+                if field.group and form.cleaned_data['group_%d_pc' % field.group.id] > 0:
                     new_group = InterviewGroupMembership()
                     new_group.user = request.user
                     new_group.int_group = field.group

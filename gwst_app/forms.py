@@ -18,21 +18,29 @@ class SelectInterviewGroupsForm( forms.Form ):
     #groups = NameModelMultipleChoiceField(label='Select the groups you belong to',queryset=None,required=True)
     def __init__(self, groups, *args, **kwargs):
         forms.Form.__init__(self, *args, **kwargs)
+        self.groups = groups
         for i, group in enumerate(groups):
             dynamic_args = {}
             
-            # group selection checkbox
-            dynamic_args['label'] = group.name
-            dynamic_args['required'] = False
-            self.fields['group_%d' % group.id] = forms.BooleanField( **dynamic_args )
-            self.fields['group_%d' % group.id].group = group
-            
             # percent involvement field
             dynamic_args['label'] = '% involvement in ' + group.name
-            dynamic_args['min_value']=1
+            dynamic_args['required'] = False
+            dynamic_args['min_value']=0
             dynamic_args['max_value']=100
             self.fields['group_%d_pc' % group.id] = forms.IntegerField( **dynamic_args )
-            self.fields['group_%d_pc' % group.id].group = None
+            self.fields['group_%d_pc' % group.id].group = group
+         
+    def clean(self):
+        pct_sum = 0
+        for i, group in enumerate(self.groups):
+            pct_val = self.cleaned_data['group_%d_pc' % group.id]
+            if pct_val:
+                pct_sum = pct_sum + self.cleaned_data['group_%d_pc' % group.id]
+                
+        if pct_sum < 100 or pct_sum > 100:
+            raise forms.ValidationError( 'Percentages must sum to 100.' )
+            
+        return self.cleaned_data
     
 # from http://code.djangoproject.com/wiki/CookBookNewFormsDynamicFields
 class AnswerForm(forms.Form):
