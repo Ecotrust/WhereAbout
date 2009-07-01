@@ -166,27 +166,63 @@ gwst.widgets.FeaturesMenu = function(options){
     
         // handle folders first because they aren't actually in the store
         if(data['model'] == 'folder') { 
-            actions = [
-                {
-                    name: 'Add new shape',
-                    handler: function(e){
-                        $(self).trigger('folderDoubleClick', data['pk']);
+            if (data['pk'].toString().indexOf("-") > -1) // look for separator character indicating this is a specific resource folder
+            {
+                actions = [
+                    {
+                        name: 'Add new shape',
+                        handler: function(e){
+                            $(self).trigger('folderDoubleClick', data['pk']);
+                        },
+                        iconcls: 'mm-context-add'
                     },
-                    iconcls: 'mm-context-add'
-                },
-                {
-                    name: 'Copy all resource shapes',
-                    handler: gwst.actions.nonExt.copyAllShapes,                    
-                    iconcls: 'mm-context-copy'
+                    {
+                        name: 'Expand/collapse list',
+                        handler: function(e){ 
+                            self.collapseFolder(data['model'],data['pk']);
+                        },
+                        iconcls: 'mm-context-view'
+                    },
+                    {
+                        name: 'Show/hide all shapes',
+                        handler: function(e){
+                            self.toggleFeature(data['model'],data['pk']);
+                        },
+                        iconcls: 'mm-context-view'
+                    },
+                    {
+                        name: 'Copy all resource shapes',
+                        handler: gwst.actions.nonExt.copyAllShapes,                    
+                        iconcls: 'mm-context-copy'
+                    }
+                ];
+                
+                if (gwst.copyInProgress){
+                    actions.push({
+                        name: 'Paste copied shapes here',
+                        handler: gwst.actions.nonExt.copyToTarget,
+                        iconcls: 'mm-context-paste'
+                    });
                 }
-            ];
-            
-            if (gwst.copyInProgress){
-                actions.push({
-                    name: 'Paste copied shapes here',
-                    handler: gwst.actions.nonExt.copyToTarget,
-                    iconcls: 'mm-context-paste'
-                });
+            }
+            else
+            {
+                actions = [
+                    {
+                        name: 'Expand/collapse list',
+                        handler: function(e){ 
+                            self.collapseFolder(data['model'],data['pk']);
+                        },
+                        iconcls: 'mm-context-view'
+                    },
+                    {
+                        name: 'Show/hide all shapes',
+                        handler: function(e){ 
+                            self.toggleFeature(data['model'],data['pk']);
+                        },
+                        iconcls: 'mm-context-view'
+                    }
+                ];
             }
             
             gwst.ui.ContextMenu.show({
@@ -237,6 +273,18 @@ gwst.widgets.FeaturesMenu = function(options){
                 actions.push({
                     name: 'Edit Geometry',
                     handler: gwst.actions.nonExt.enterMPAGeometryEditMode,
+                    iconcls: 'mm-context-view'
+                });
+                actions.push({
+                    name: 'Zoom to Shape',
+                    handler: function(e){
+                        var input = self.tree.find('li.'+item.model+'_'+item.pk+' > input')
+                        var wasChecked = input.attr('checked');
+                        if(!wasChecked){
+                            self.toggleFeature(item.model,item.pk);
+                        }
+                        $(self).trigger('featureDoubleClick', [item]);
+                    },
                     iconcls: 'mm-context-view'
                 });
                 actions.push({
@@ -528,8 +576,12 @@ gwst.widgets.FeaturesMenu = function(options){
         this.tree.find('.gwst-text-right-spinner').remove();
     };
     
-    this.toggleFeature = function(feature){
-        this.tree.find('li.'+feature.model+'_'+feature.pk+' > input').click();
+    this.toggleFeature = function(model,pk){
+        this.tree.find('li.'+model+'_'+pk+' > input').click();
+    };
+    
+    this.collapseFolder = function(model,pk){
+        this.tree.find('li.'+model+'_'+pk+' > span').click();
     };
     
     this.showTools = function(){
