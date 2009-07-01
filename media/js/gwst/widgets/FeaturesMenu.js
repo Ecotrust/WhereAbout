@@ -108,6 +108,7 @@ gwst.widgets.FeaturesMenu = function(options){
         if(items['mpa'] && items['mpa'].length){
             for(var i=0; i<items['mpa'].length; i++){
                 self._replaceMpa(items['mpa'][i][0], items['mpa'][i][1]);
+                self.setFolderLabel(items['mpa'][i][0].folderID, items['mpa'][i][0].folderName);
             }
         }
     });
@@ -570,6 +571,10 @@ gwst.widgets.FeaturesMenu = function(options){
     
     this.toggleFolder = function(model,pk){
         this.tree.find('li.'+model+'_'+pk+' > span').click();
+    };
+    
+    this.setFolderLabel = function(folderID,label){
+        this.tree.find('li.'+folderID+' > a').html(label);
     };
     
     this.showTools = function(){

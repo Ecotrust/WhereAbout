@@ -59,6 +59,7 @@ class InterviewGroup(Model):
     resources = ManyToManyField(Resource,blank=True,null=True)
     required_group = BooleanField( default=False )
     user_draws_shapes = BooleanField( default=True )
+    shape_color = CharField( max_length=6, blank=True, default="FFFFFF" )
     
     class Meta:
         db_table = u'gwst_group'
@@ -261,10 +262,20 @@ class InterviewShape(Model):
     def geojson(self, srid=900913, attributes=False):
         #geo = self.geometry_clipped.simplify(20, preserve_topology=True)
         #geo.transform(srid)
-        attr = {}    
+        attr = {}
+        
+        # regen this shape's folder name to update the UI with current penny count
+        resource_shapes = InterviewShape.objects.filter(user=self.user,int_group=self.int_group,resource=self.resource)
+        resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
+        if resource_pennies == None:
+            resource_pennies = 0
+        folderName = self.resource.name+' group ('+str(resource_pennies)+' pennies)'
+            
         if attributes:
             attr = self.client_object()
             attr['folder'] = 'folder_'+str(self.int_group.id)+'-'+str(self.resource.id)
+            attr['folderID'] = 'folder_'+str(self.int_group.id)+'-'+str(self.resource.id)
+            attr['folderName'] = folderName
         attr['fillColor'] = '#FFFFFF' 
         attr['strokeColor'] = "white"
         attr['fillOpacity'] = "0.4"
