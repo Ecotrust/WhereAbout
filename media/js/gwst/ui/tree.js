@@ -113,7 +113,7 @@
                         }
                     }else{
                         var e = jQuery.Event("itemSelect");
-                        self.element.trigger(e, [null, parent]);
+                        self.element.trigger(e, [parent.metadata(), parent]);
                         if(!e.isDefaultPrevented()){
                             self.clearSelection();
                         }

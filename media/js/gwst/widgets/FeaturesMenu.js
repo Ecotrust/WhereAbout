@@ -123,7 +123,15 @@ gwst.widgets.FeaturesMenu = function(options){
     });
     $(this.tree).bind('itemSelect', function(event, meta, element){
         if(meta && meta.model){
-            _sm.setSelectedFeature(_store.get(meta.model, meta.pk), self);
+            if ( meta.model == 'folder' )
+            {
+                _sm.clearSelection(self);
+                self.toggleFolder(meta.model,meta.pk);
+            }
+            else
+            {
+                _sm.setSelectedFeature(_store.get(meta.model, meta.pk), self);
+            }
         }else{
             _sm.clearSelection(self);
         }
@@ -179,7 +187,7 @@ gwst.widgets.FeaturesMenu = function(options){
                     {
                         name: 'Expand/collapse list',
                         handler: function(e){ 
-                            self.collapseFolder(data['model'],data['pk']);
+                            self.toggleFolder(data['model'],data['pk']);
                         },
                         iconcls: 'mm-context-view'
                     },
@@ -211,7 +219,7 @@ gwst.widgets.FeaturesMenu = function(options){
                     {
                         name: 'Expand/collapse list',
                         handler: function(e){ 
-                            self.collapseFolder(data['model'],data['pk']);
+                            self.toggleFolder(data['model'],data['pk']);
                         },
                         iconcls: 'mm-context-view'
                     },
@@ -560,7 +568,7 @@ gwst.widgets.FeaturesMenu = function(options){
         this.tree.find('li.'+model+'_'+pk+' > input').click();
     };
     
-    this.collapseFolder = function(model,pk){
+    this.toggleFolder = function(model,pk){
         this.tree.find('li.'+model+'_'+pk+' > span').click();
     };
     
