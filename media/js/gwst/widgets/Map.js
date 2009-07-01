@@ -279,6 +279,11 @@ gwst.widgets.Map = Ext.extend(mapfish.widgets.MapComponent, {
             this.selectControl.select(mpa.feature);
             mpa.selectedOnMap = true;
         }
+        var bounds = mpa.feature.geometry.getBounds();
+        var center = bounds.getCenterLonLat();
+        if(!this.map.getExtent().containsBounds(bounds)){
+            this.map.setCenter(center);
+        }
     },
     
     deselectMPA: function(mpa){

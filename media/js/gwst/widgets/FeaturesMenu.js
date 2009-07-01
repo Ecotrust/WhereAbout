@@ -237,33 +237,13 @@ gwst.widgets.FeaturesMenu = function(options){
         var actions = [];
         var data = {};
         if(item.model == 'mpa'){
-            actions = [
-                /*{
-                    name: 'View Attributes',
-                    handler: function(e){
-                        gwst.actions.openMpaAttributes.execute(e.data, {});
-                    },
-                    iconcls: 'mm-context-view'
-                }*//*,
-                {
-                    name: 'Download KML',
-                    iconcls: 'mm-context-kml',
-                    handler: function(e){
-                        gwst.actions.openUrl('/gwst/kml/mpa/'+e.data.mpa.pk);
-                    }
-                }*/
+            
+            _sm.setSelectedFeature(_store.get(item.model, item.pk), self);
+            self.tree.tree('selectItem', '.'+item.model + '_' + item.pk, true);
+            
+            actions = [              
             ];
-            
-            /*if(_userManager.user){
-                actions.push({
-                    name: 'Copy',
-                    iconcls: 'mm-context-copy',
-                    handler: function(e) {
-                        gwst.actions.nonExt.copyMpa(e.data.mpa.pk);
-                    }
-                });
-            }*/
-            
+  
             if(_userManager.user && item.user == _userManager.user.pk){
                 actions.push({
                     name: 'Edit Attributes',
