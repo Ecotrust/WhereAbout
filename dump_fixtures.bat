@@ -1,1 +1,1 @@
-python manage.py dumpdata auth.user gwst_app > gwst_app\fixtures\initial_data.json
+python manage.py dumpdata --indent=4 auth.user gwst_app > gwst_app\fixtures\initial_data.json
