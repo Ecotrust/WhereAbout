@@ -10,7 +10,7 @@ class SMRegistrationManager(RegistrationManager):
     manual user registration.    
     """
     
-    def create_inactive_user(self, username, first_name, last_name, password, email,
+    def create_inactive_user(self, interview, username, first_name, last_name, password, email,
                              user_group_text, send_email=True, profile_callback=None):
         """
         Creates a new, inactive ``User``, generates a
@@ -45,21 +45,22 @@ class SMRegistrationManager(RegistrationManager):
         
         if send_email:
             from django.core.mail import SMTPConnection, EmailMessage
-            current_site = Site.objects.get_current()
+            current_site = Site.objects.get_current()        
             
-            subject = render_to_string('registration/activation_email_subject.txt',
+            subject = render_to_string('registration/sm_activation_email_subject.txt',
                                        { 'site': current_site })
             # Email subject *must not* contain newlines
             subject = ''.join(subject.splitlines())
             
-            message = render_to_string('registration/activation_email.txt',
+            message = render_to_string('registration/sm_activation_email.txt',
                                        { 'activation_key': registration_profile.activation_key,
                                          'expiration_days': settings.ACCOUNT_ACTIVATION_DAYS,
                                          'site': current_site,
                                          'first_name': first_name,
                                          'user_group_text': user_group_text,
                                          'username': username,
-                                         'password': password })
+                                         'password': password,
+                                         'interview': interview })
             
             connection = SMTPConnection()
             

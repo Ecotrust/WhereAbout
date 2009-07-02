@@ -7,20 +7,34 @@
 {% block content %}
 <h1>Generate User Survey Accounts From Survey Monkey Results</h1>
 <div id="content-main">
+    <br/>
 	<dl><dt>Allows you to register multiple recreational fisherman using a CSV file containing account information.</dt>
     <dt>When an account is created an activation email is sent to the user, so don't use this unless you mean it!</dt>	
     </dl>
 	<form enctype="multipart/form-data" method="post" action="" id="login-form">
+        <br/>
+        <div class="form-row">
+            <label>{{ form.interview.label }}:</label>
+	        {{ form.interview }}
+	        {% if form.interview.errors %}
+	            <span class="error">{{ form.interview.errors|join:", " }}</span>
+	        {% endif %}
+        </div>
+
 		<div class="form-row">
 		  <label for="id_userfile">CSV File:</label>
 		  {{ form.userfile }}
           {% if form.userfile.errors %}<span class="error">{{ form.userfile.errors|join:", " }}</span>{% endif %}
+		</div>        	    
+        	    
+	    <div class="form-row">
+		    <label>{{ form.num_to_register.label }}:</label>
+		    {{ form.num_to_register }}
+		    {% if form.num_to_register.errors %}
+		        <span class="error">{{ form.num_to_register.errors|join:", " }}</span>
+		    {% endif %}
 		</div>
-	    <label>{{ form.num_to_register.label }}:</label>
-	    {{ form.num_to_register }}
-	    {% if form.num_to_register.errors %}
-	        <span class="error">{{ form.num_to_register.errors|join:", " }}</span>
-	    {% endif %}	
+			
 		<div class="submit-row">
 		  <input type="submit" value="Add Users" />
 		</div>

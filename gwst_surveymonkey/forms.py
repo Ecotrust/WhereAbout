@@ -7,6 +7,7 @@ from django.conf import settings
 from django.forms.fields import email_re
 
 from gwst_app.models import *
+from gwst_app.forms import NameModelChoiceField
 from registration.models import RegistrationProfile
 from models import SMRegistrationProfile, SMRegistrationError
 
@@ -17,6 +18,7 @@ from django.core.mail import SMTPConnection, EmailMessage
 class SMAddForm(forms.Form):
     userfile = forms.FileField(required=True)
     num_to_register = forms.IntegerField(required=False, label="Maximum number of people to sign up", widget=forms.TextInput(attrs={'size':'3'}))
+    interview = NameModelChoiceField(label='Interview',queryset=None,required=True)
 
     def clean_userfile(self):
         if 'userfile' in self.cleaned_data:
@@ -59,6 +61,7 @@ class SMAddForm(forms.Form):
             return {'success':True}
 
     def save(self, profile_callback=None):
+        interview = self.cleaned_data['interview']
         file = self.cleaned_data['userfile']
         num_to_register = self.cleaned_data['num_to_register']
 
@@ -91,8 +94,10 @@ class SMAddForm(forms.Form):
                     #Stop if we've added the number we want.                   
                     elif num_to_register and num_success == num_to_register:
                         break
-                                        
-                    result = self.create_survey(new_person)            
+                                   
+                    import pdb
+                    pdb.set_trace()     
+                    result = self.create_survey(interview, new_person)            
                     
                     #Check status of create and update accordingly
                     if result.get('status') == 'success':
@@ -112,7 +117,7 @@ class SMAddForm(forms.Form):
         
         return {'output_list':output_list, 'num_success':num_success, 'num_failed':num_failed} 
         
-    def create_survey(self, new_person):      
+    def create_survey(self, interview, new_person):      
         output = []
                
         sm_id = new_person[0]           
@@ -170,6 +175,7 @@ class SMAddForm(forms.Form):
  
         #Create user                                   
         new_user = SMRegistrationProfile.objects.create_inactive_user(
+            interview=interview,
             username=username,
             first_name=first_name,
             last_name=last_name,                                                                    
@@ -178,10 +184,8 @@ class SMAddForm(forms.Form):
             user_group_text=user_group_text
         )
 
-        #Get activated interview
-        active_interview = Interview.objects.filter(active=True)[0]
         #Get active survey main question group
-        main_group = InterviewGroup.objects.filter(interview=active_interview,code='main')
+        main_group = InterviewGroup.objects.filter(interview=interview,code='main')
         
         #Get questions
         try:
@@ -228,21 +232,21 @@ class SMAddForm(forms.Form):
         
         #Add user to appropriate interview groups
         if prvsl:
-            prvsl_group = InterviewGroup.objects.get(interview=active_interview,code='prvsl')
+            prvsl_group = InterviewGroup.objects.get(interview=interview,code='prvsl')
             gm = InterviewGroupMembership()
             gm.user = new_user
             gm.int_group = prvsl_group
             gm.save()
 
         if kyk:
-            kyk_group = InterviewGroup.objects.get(interview=active_interview,code='kyk')
+            kyk_group = InterviewGroup.objects.get(interview=interview,code='kyk')
             gm = InterviewGroupMembership()
             gm.user = new_user
             gm.int_group = kyk_group
             gm.save()
             
         if dive:
-            dive_group = InterviewGroup.objects.get(interview=active_interview,code='div')
+            dive_group = InterviewGroup.objects.get(interview=interview,code='div')
             gm = InterviewGroupMembership()
             gm.user = new_user
             gm.int_group = dive_group
