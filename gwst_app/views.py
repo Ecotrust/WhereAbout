@@ -29,10 +29,10 @@ def handleSelectInterview(request,selected_interview):
         # create group records for any required groups
         required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
         for group in required_groups:
-            new_group = InterviewGroupMembership()
-            new_group.user = request.user
-            new_group.int_group = group
-            new_group.save()
+            membership = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=group)
+            membership.user = request.user
+            membership.int_group = group
+            membership.save()            
     
         # redirect to assign_groups
         return HttpResponseRedirect('/assign_groups/')
@@ -117,12 +117,14 @@ def assign_groups(request):
             # save InterviewGroupMembership records
             for field_name in form.fields:
                 field = form.fields[field_name]
+                import pdb
+                pdb.set_trace()
                 if field.group and form.cleaned_data['group_%d_pc' % field.group.id] > 0:
-                    new_group = InterviewGroupMembership()
-                    new_group.user = request.user
-                    new_group.int_group = field.group
-                    new_group.percent_involvement = form.cleaned_data['group_%d_pc' % field.group.id]
-                    new_group.save()
+                    membership = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=field.group)
+                    membership.user = request.user
+                    membership.int_group = field.group
+                    membership.percent_involvement = form.cleaned_data['group_%d_pc' % field.group.id]
+                    membership.save()
                 
             # redirect to interview_group_status
             return HttpResponseRedirect('/group_status/')
