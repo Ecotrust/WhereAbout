@@ -8,7 +8,7 @@ from django.forms.fields import email_re
 
 from gwst_app.models import *
 from registration.models import RegistrationProfile
-from models import SMRegistrationProfile
+from models import SMRegistrationProfile, SMRegistrationError
 
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
@@ -178,9 +178,6 @@ class SMAddForm(forms.Form):
             user_group_text=user_group_text
         )
 
-        import pdb
-        pdb.set_trace()
-
         #Get activated interview
         active_interview = Interview.objects.filter(active=True)[0]
         #Get active survey main question group
@@ -189,15 +186,25 @@ class SMAddForm(forms.Form):
         #Get questions
         try:
             city_q = InterviewQuestion.objects.get(int_group=main_group,code='city')
+        except InterviewQuestion.DoesNotExist:
+            raise SMRegistrationError('Missing main question with code \'city\' required by survey monkey importer.')
+        except InterviewQuestion.MultipleObjectsReturned:
+            raise SMRegistrationError('Duplication of main question with code \'city\' ')
+
+        try:        
             state_q = InterviewQuestion.objects.get(int_group=main_group,code='state')
+        except InterviewQuestion.DoesNotExist:
+            raise SMRegistrationError('Missing main question with code \'state\' required by survey monkey importer.')
+        except InterviewQuestion.MultipleObjectsReturned:
+            raise SMRegistrationError('Duplication of main question with code: \'state\'')
+
+        try:            
             phone_q = InterviewQuestion.objects.get(int_group=main_group,code='phone')
-        except DoesNotExist:
-            import pdb
-            pdb.set_trace()
-        except MultipleObjectsReturned:
-            import pdb
-            pdb.set_trace()
-        
+        except InterviewQuestion.DoesNotExist:
+            raise SMRegistrationError('Missing main question: \'Phone Number\' required by survey monkey importer.')
+        except InterviewQuestion.MultipleObjectsReturned:
+            raise SMRegistrationError('Duplication of main question with code: \'phone\'')
+
         #Set city
         city_a = InterviewAnswer()
         city_a.int_question = city_q
@@ -220,21 +227,26 @@ class SMAddForm(forms.Form):
         phone_a.save()        
         
         #Add user to appropriate interview groups
+        if prvsl:
+            prvsl_group = InterviewGroup.objects.get(interview=active_interview,code='prvsl')
+            gm = InterviewGroupMembership()
+            gm.user = new_user
+            gm.int_group = prvsl_group
+            gm.save()
 
-        #Create interview record
-        #i = RecInterviewData(user=new_user, sm_id=sm_id)
-        #i.save()
-        # 
-        #Add to rec user groups
-        #if prvsl:    
-        #    new_user.recoverallgrp_set.create(grp_type='prvsl', mid_name='Private', long_name='Private Vessel')
-        #if kyk:
-        #    new_user.recoverallgrp_set.create(grp_type='kyk', mid_name='Kayak', long_name='Kayak Angler')
-        #if dive:
-        #    new_user.recoverallgrp_set.create(grp_type='dive', mid_name='Dive', long_name='Dive Angler - spear or hand take')
-        
-        #Add to rec_fish group
-        #new_user.groups.add(Group.objects.filter(name='Recreational Fisherman')[0])
+        if kyk:
+            kyk_group = InterviewGroup.objects.get(interview=active_interview,code='kyk')
+            gm = InterviewGroupMembership()
+            gm.user = new_user
+            gm.int_group = kyk_group
+            gm.save()
+            
+        if dive:
+            dive_group = InterviewGroup.objects.get(interview=active_interview,code='div')
+            gm = InterviewGroupMembership()
+            gm.user = new_user
+            gm.int_group = dive_group
+            gm.save()            
         
         output.append('Success') 
         return {'status':'success','output':output}                    

@@ -73,3 +73,12 @@ class SMRegistrationManager(RegistrationManager):
     
 class SMRegistrationProfile(RegistrationProfile):
     objects = SMRegistrationManager()      
+    
+'''
+Thrown when importing and registration of a user from survey monkey fails.
+'''
+class SMRegistrationError(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)

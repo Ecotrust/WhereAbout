@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadReque
 from django.conf import settings
 
 from forms import SMAddForm
+from models import SMRegistrationError
     
 @login_required
 def add(request, success_url='/admin/', profile_callback=None):
@@ -15,8 +16,13 @@ def add(request, success_url='/admin/', profile_callback=None):
 
     if request.method == 'POST':
         form = SMAddForm(request.POST, request.FILES)
-        if form.is_valid():   
-            save_result = form.save()   
+        if form.is_valid():
+            try:   
+                save_result = form.save()
+            except SMRegistrationError, e:
+                import pdb
+                pdb.set_trace()
+                return HttpResponseBadRequest(e)
             form.upload_list = save_result['output_list']
             form.num_success = save_result['num_success']
             form.num_failed = save_result['num_failed']             
