@@ -95,8 +95,6 @@ class SMAddForm(forms.Form):
                     elif num_to_register and num_success == num_to_register:
                         break
                                    
-                    import pdb
-                    pdb.set_trace()     
                     result = self.create_survey(interview, new_person)            
                     
                     #Check status of create and update accordingly
