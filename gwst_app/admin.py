@@ -37,13 +37,17 @@ class InterviewGroupAdmin(admin.ModelAdmin):
         InterviewQuestionInline,
     ]
 
+class InterviewQuestionAdmin(admin.ModelAdmin):
+    list_display = ('int_group', 'answer_type', 'code','display_order')
+    ordering = ('int_group','display_order')
+
 class IntAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Interview,InterviewAdmin)
 admin.site.register(Region,IntAdmin)
 admin.site.register(Resource,IntAdmin)
-admin.site.register(InterviewQuestion,IntAdmin)
+admin.site.register(InterviewQuestion,InterviewQuestionAdmin)
 admin.site.register(InterviewGroup,InterviewGroupAdmin)
 admin.site.register(InterviewGroupMembership,IntAdmin)
 admin.site.register(InterviewAnswerOption,IntAdmin)
