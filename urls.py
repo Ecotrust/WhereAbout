@@ -9,9 +9,14 @@ admin.autodiscover()
 from django.contrib import databrowse
 
 urlpatterns = patterns('',
-    (r'^site-media/(?P<path>.*)$','django.views.static.serve',{'document_root': settings.MEDIA_ROOT}),
-
     (r'^', include('gwst_app.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^databrowse/(.*)', databrowse.site.root),
 )
+
+#Serve media through development server instead of web server (Apache)
+if settings.DEBUG is True:
+    urlpatterns += patterns('',
+        (r'^site_media/(?P<path>.*)$','django.views.static.serve',{'document_root': settings.MEDIA_ROOT, 'show_indexes': True})
+    )
+    
