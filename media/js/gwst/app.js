@@ -5,7 +5,7 @@ Ext.BLANK_IMAGE_URL = '/site-media/js/extjs/resources/images/default/s.gif';
 Ext.namespace('gwst');
 
 gwst.backWarn = function () {
-   return "Your gwst session will end if you continue.";
+   return "Your shape drawing session will end if you continue.";
 };
 
 // create application

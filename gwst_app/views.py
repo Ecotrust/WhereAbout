@@ -271,8 +271,10 @@ def draw_group_shapes(request, group_id):
         group = InterviewGroup.objects.get(pk=group_id)
         request.session['int_group'] = group
         
+        title = request.session['interview'].name + ' - ' + group.name + ' Group Shape Drawing'
+        
         # send template page for shape-drawing
-        return render_to_response( 'map.html', RequestContext(request, {'debug': request.REQUEST.get('debug', False), 'dynamic': request.REQUEST.get('dynamic', False), 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
+        return render_to_response( 'map.html', RequestContext(request, {'title':title, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
 
 
 
@@ -423,7 +425,7 @@ def user_features_client_object(user,interview):
             resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
             if resource_pennies == None:
                 resource_pennies = 0
-            mpas = create_folder(resource.name+' group ('+str(resource_pennies)+' pennies)', pk=str(int_group.id)+'-'+str(resource.id), toggle=True, doubleclick=True, context=True)
+            mpas = create_folder(resource.name+' group ('+str(resource_pennies)+' pennies)', pk=str(int_group.id)+'-'+str(resource.id), toggle=True, context=True)
             for mpa in resource_shapes:
                 add_child(mpas, mpa.client_object())
             add_child(group,mpas)

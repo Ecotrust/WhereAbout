@@ -22,7 +22,7 @@ gwst.widgets.MapToolbar = Ext.extend(Ext.Toolbar, {
         gwst.widgets.MapToolbar.superclass.onRender.apply(
             this, arguments);
         
-        var text = this.addText('Generalized Web Survey Tool');
+        var text = this.addText(document.title);
         text.restore = true;
         var fill = this.addFill();
         fill.restore = true;

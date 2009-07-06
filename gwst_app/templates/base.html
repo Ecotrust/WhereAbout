@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Language" content="en-us" />
-    <title>{% block title %}GWST{% endblock %}</title>
+    <title>{% block title %}{% if interview.name %}{{ interview.name }}{% else %}Web Survey Tool{% endif %}{% endblock %}</title>
     <meta name="description" content=" " />
     <meta name="keywords" content=" " />
     <meta name="robots" content="index, follow" /> 
@@ -24,7 +24,7 @@
   <div id="main">
   <div id="content">
     {% if interview.name %}
-    <h3>{{ interview.name }} Survey</h3>
+    <h3>{{ interview.name }}</h3>
     {% endif %}
     {% block content %}
     {% endblock %}

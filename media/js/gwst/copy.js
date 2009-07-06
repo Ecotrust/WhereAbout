@@ -34,7 +34,7 @@ gwst.copy = {
 };
 
 gwst.copy.confirmStudyRegionClippingTitle = 'Please confirm modifications to your geometry';
-gwst.copy.confirmStudyRegionClipping = '<h3>Geometry Clipping</h3><img src="/site-media/figures/clipping.gif" width="369" height="88" /><p>Your geometry has been clipped to match the study region boundaries. Portions not overlapping the study region, or overlapping land, have been removed.</p><br /><p>This operation occurs each time you create a geometry. We also keep a copy of the lines you draw, so you will always have the un-clipped version for editing.</p><p style="color:red;">[Known Bug] In some browsers you may not see a geometry at this stage. This is a known bug and we are working on a fix. Press continue, and your geometry will be saved and then rendered. Don\'t worry, you will be able to see your new geometry in a moment and it is easy to go back and change it by clicking "edit geometry" in the MPA popup.</p>';
+gwst.copy.confirmStudyRegionClipping = '<h3>Geometry Clipping</h3><img src="/site-media/figures/clipping.gif" width="369" height="88" /><p>Your geometry has been clipped to match the study region boundaries. Portions not overlapping the study region, or overlapping land, have been removed.</p><br /><p>This operation occurs each time you create a geometry. We also keep a copy of the lines you draw, so you will always have the un-clipped version for editing.</p>';
 
 gwst.copy.overlapsEstuaryTitle = 'Please confirm modifications to your geometry';
 gwst.copy.overlapsEstuaryText = '<h3>Your Geometry Overlaped an Estuary</h3><img src="/site-media/figures/estuary.gif" width="368" height="88" /><p>An MPA geometry can either be entirely estuary, or none. In cases like this where a geometry overlaps but is not entirely estuarine, the system creates two polygons. Whichever is larger is the one it assumes you would like to create.</p><br />';
@@ -62,5 +62,5 @@ gwst.copy.clippedGeometryErrorText = 'You have the option of either cancelling t
 
 
 
-gwst.copy.createNewGeometry = 'Draw an MPA geometry by clicking on the map.<br /> When you are ready to create the last point in your geometry, double click.';
+gwst.copy.createNewGeometry = 'Draw your shape by clicking on the map. Double-click to finish.';
 gwst.copy.editGeometry = 'Edit this geometry by dragging the handles on its vertices.  To delete a vertex, press the D-key <img class="dkey" src="/site-media/images/D.png" />. <br />When you are done, click the finished button.';
