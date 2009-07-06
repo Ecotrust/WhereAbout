@@ -20,34 +20,30 @@
   <body {% block body_attribs %}{% endblock %}>
   <div id="wrap">
   <div id="header">
-  </div>
-  <div id="main">
-  <div id="content">
-    {% if title %}
-    <h3>{{ title }}</h3>
+    <img alt="Logo" src="http://www.ecotrust.org/images/ecotrust_logo08.gif"/>
+    <div id='user-tools'>
+    {% if user.is_authenticated %}
+      Welcome <b>{{ user.first_name }}</b>
     {% endif %}
-    {% block content %}
-    {% endblock %}
-  </div>
-  </div>
-  <div id="footer"> 
-  {% if user.is_authenticated %}
-  Logged in as <b>{{ user.username }}</b>
-  {% if user.is_superuser %}
-      , viewing as <b>administrator</b>
-  {% endif %}
-  {% endif %}
-  <br />
+
      {% if user.is_authenticated %}
-       <a href="/accounts/logout/">Logout</a>
+       | <a href="/accounts/logout/">Logout</a>
      {% endif %}
      {% if user.is_staff %}
        | <a href="/admin/">Site Admin</a> |
        <a href="/modelviz/">Site Database Diagram</a> |
        <a href="/databrowse/">Databrowse</a>
-     {% endif %}
-     <br /><br />
+     {% endif %}    
+    </div>
   </div>
+  <div id="main">  
+	<div id="content">
+	  {% if interview.name %}
+	  <h1>{{ interview.name }}</h1>
+	  {% endif %}
+	  {% block content %}
+	  {% endblock %}
+	</div>
   </div>
 </body>
 </html>
