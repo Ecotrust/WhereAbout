@@ -96,7 +96,7 @@ jQuery.extend(gwst.data.mlpaFeatures.MPA.prototype, {
             error: function (XMLHttpRequest, textStatus, errorThrown){
                 mpa._loadingFeatures = false;
                 mpa._listeners = [];
-                gwst.ui.error.show({errorText: 'Could not load MPA geometry. Please try turning the MPA on/off again. If the error persists, please contact <a href="mailto:help@lists.gwst.org?subject=mpa_geometry_broken">email help</a>'});
+                gwst.ui.error.show({errorText: 'Could not load geometry. Please try turning the shape on/off again. If the error persists, please contact <a href="mailto:fish@ecotrust.org?subject=geometry_broken">email help</a>'});
             },
             success: function(data, textStatus){
                 mpa._loadingFeatures = false;
@@ -277,7 +277,7 @@ jQuery.extend(gwst.data.mlpaFeatures.Array.prototype, {
                 error: function (XMLHttpRequest, textStatus, errorThrown){
                     array._loadingFeatures = false;
                     array._listeners = [];
-                    gwst.ui.error.show({errorText: 'Could not load Array FeatureCollection. Please try turning the Array on/off again. If the error persists, please contact <a href="mailto:help@lists.gwst.org?subject=mpa_geometry_broken">email help</a>'});
+                    gwst.ui.error.show({errorText: 'Could not load shape collection. Please try turning the group on/off again. If the error persists, please contact <a href="mailto:fish@ecotrust.org?subject=geometry_broken">email help</a>'});
                 },
                 success: function(data, textStatus){
                     var parser = gwst.data.mlpaFeatures.parser;

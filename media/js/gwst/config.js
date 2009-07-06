@@ -1,7 +1,7 @@
 Ext.namespace('gwst');
 
 gwst.config = {
-    adminEmail: 'admin@gwst.org',
+    adminEmail: 'fish@ecotrust.org',
     identifyBboxRadius: 500,
     projection: new OpenLayers.Projection("EPSG:900913"),
     displayProjection: new OpenLayers.Projection("EPSG:4326"),
