@@ -81,11 +81,13 @@ def select_interview(request):
     if active_interviews.count() == 1:
         return handleSelectInterview( request, active_interviews[0] )
     
+    title = 'Select the interview you wish to complete.'
+    
     if request.method == 'GET':
         # show list of available interviews
         form = SelectInterviewForm()
         form.fields['interview'].queryset = active_interviews
-        return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))
+        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'value':'Continue'}))
         
     else:
         # handle the user's interview selection from a POST
@@ -97,17 +99,20 @@ def select_interview(request):
             return handleSelectInterview( request, selected_interview )
                 
         # validation errors
-        return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))        
+        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'value':'Continue'}))        
     
     
 # on first entrance to a new interview, user selects which groups they belong to  
 @login_required  
 def assign_groups(request):
+
+    title = request.session['interview'].name + ' - Group Membership Selection'
+    
     if request.method == 'GET':
         # let user select which groups they are in
         groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
         form = SelectInterviewGroupsForm( groups )
-        return render_to_response( 'base_form.html', RequestContext(request,{'interview':request.session['interview'], 'form': form, 'value':'Continue'}))
+        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'value':'Continue'}))
         
     else:
         groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
@@ -128,7 +133,7 @@ def assign_groups(request):
             return HttpResponseRedirect('/group_status/')
         
         # validation errors
-        return render_to_response( 'base_form.html', RequestContext(request,{'interview':request.session['interview'], 'form': form, 'value':'Continue'}))
+        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'value':'Continue'}))
     
     
 # show a list of user's groups and current status of each
@@ -141,6 +146,8 @@ def group_status(request):
         return HttpResponseRedirect('/select_interview/')
 
     # show list of interview groups with current status (including global interview questions)
+    
+    title = request.session['interview'].name + ' Status'
        
     qs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).order_by('-percent_involvement')
     
@@ -185,7 +192,7 @@ def group_status(request):
     finalized_groups = qs.filter(status='finalized')
     allow_finalize = qs.count() == finalized_groups.count()
     
-    return render_to_response( 'group_status.html', RequestContext(request,{'interview':request.session['interview'], 'object_list':qs, 'allow_finalize':allow_finalize}))
+    return render_to_response( 'group_status.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'object_list':qs, 'allow_finalize':allow_finalize}))
     
     
 @login_required    
@@ -193,11 +200,19 @@ def view_answers(request,group_id):
     # show questions for this group, with any existing user answers
     questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
     answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
-    return render_to_response( 'view_answers.html', RequestContext(request,{'questions': questions, 'answers':answers}))        
+    
+    group = InterviewGroup.objects.get(pk=group_id)
+    title = group.name + ' Answered Questions'
+    
+    return render_to_response( 'view_answers.html', RequestContext(request,{'title':title, 'questions': questions, 'answers':answers}))        
     
     
 @login_required    
 def answer_questions(request,group_id):
+
+    group = InterviewGroup.objects.get(pk=group_id)
+    title = group.name + ' Questions'
+
     if request.method == 'GET':
         
         # show questions for this group, with any existing user answers
@@ -261,20 +276,18 @@ def answer_questions(request,group_id):
             
             return HttpResponseRedirect('/group_status/')
 
-    return render_to_response( 'base_form.html', RequestContext(request,{'form': form, 'value':'Continue'}))     
+    return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'value':'Continue'}))     
     
     
 # start draw shapes for indicated group    
 @login_required
 def draw_group_shapes(request, group_id):
-    if request.method == 'GET':
-        group = InterviewGroup.objects.get(pk=group_id)
-        request.session['int_group'] = group
+    group = InterviewGroup.objects.get(pk=group_id)
+    request.session['int_group'] = group
         
-        title = request.session['interview'].name + ' - ' + group.name + ' Group Shape Drawing'
+    title = request.session['interview'].name + ' - ' + group.name + ' Group Shape Drawing'
         
-        # send template page for shape-drawing
-        return render_to_response( 'map.html', RequestContext(request, {'title':title, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
+    return render_to_response( 'map.html', RequestContext(request, {'title':title, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
 
 
 
@@ -340,7 +353,8 @@ def finalize_interview(request,id):
    
 @login_required
 def interview_complete(request):
-    return render_to_response( 'interview_complete.html', RequestContext(request,{'name':request.session['interview'].name}))
+    title = request.session['interview'].name + ' Completed'
+    return render_to_response( 'interview_complete.html', RequestContext(request,{'title':title, 'name':request.session['interview'].name}))
     
     
 # client-side usermanager support
