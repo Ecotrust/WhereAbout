@@ -64,6 +64,7 @@ class InterviewGroup(Model):
     
     class Meta:
         db_table = u'gwst_group'
+        unique_together = (("interview", "code"),("interview", "name"))
         
     def __unicode__(self):
         return unicode('%s-%s' % (self.interview, self.code))
@@ -94,6 +95,7 @@ class InterviewGroupMembership(Model):
     
     class Meta:
         db_table = u'gwst_groupmemb'
+        unique_together = (("int_group", "user"),)
         
     def __unicode__(self):
         return unicode('%s-%s' % (self.user, self.int_group))
@@ -183,6 +185,7 @@ class InterviewAnswer(Model):
     
     class Meta:
         db_table = u'gwst_useranswer'
+        unique_together = (("int_question", "user"),)
         
     def __unicode__(self):
         return unicode('%s: %s' % (self.user, self.int_question))
@@ -203,6 +206,7 @@ class InterviewStatus(Model):
     
     class Meta:
         db_table = u'gwst_userstatus'
+        unique_together = (("interview", "user"),)
         
     def __unicode__(self):
         return unicode('%s: %s' % (self.user, self.interview))
@@ -212,9 +216,9 @@ class InterviewShape(Model):
     user = ForeignKey(User)
     int_group = ForeignKey(InterviewGroup)
     resource = ForeignKey(Resource)
-    geometry = PolygonField(srid=4326, blank=True, null=True)
-    geometry_clipped = PolygonField(srid=4326, blank=True, null=True)
-    geometry_edited = PolygonField(srid=4326, blank=True, null=True)
+    geometry = PolygonField(srid=3310, blank=True, null=True)
+    geometry_clipped = PolygonField(srid=3310, blank=True, null=True)
+    geometry_edited = PolygonField(srid=3310, blank=True, null=True)
     pennies = IntegerField( default=0 )
     boundary_n = CharField( max_length=100, blank=True, null=True ) 
     boundary_s = CharField( max_length=100, blank=True, null=True )
@@ -261,8 +265,13 @@ class InterviewShape(Model):
         return self.geojson(attributes=True)
         
     def geojson(self, srid=900913, attributes=False):
-        #geo = self.geometry_clipped.simplify(20, preserve_topology=True)
-        #geo.transform(srid)
+        
+        try:
+            geo = self.geometry_clipped.simplify(20, preserve_topology=True)
+            geo.transform(srid) 
+        except Exception, E:
+            raise Exception('%s: geometry was: "%s" ' % (E, self.geometry_clipped.wkt)) 
+        
         attr = {}
         
         # regen this shape's folder name to update the UI with current penny count
@@ -280,9 +289,9 @@ class InterviewShape(Model):
         attr['fillColor'] = '#' + self.int_group.shape_color + self.resource.shape_color + '00'       
         attr['strokeColor'] = "white"
         attr['fillOpacity'] = "0.4"
-        #self.geometry.transform(srid)
+        self.geometry.transform(srid)
         attr['original_geometry'] = self.geometry.wkt
-        return '{"id": "mpa_%s", "type": "Feature", "geometry": %s, "properties": %s}' % (self.pk, self.geometry_clipped.geojson, geojson_encode(attr))
+        return '{"id": "mpa_%s", "type": "Feature", "geometry": %s, "properties": %s}' % (self.pk, geo.geojson, geojson_encode(attr))
         
     def copy(self):
         m = self

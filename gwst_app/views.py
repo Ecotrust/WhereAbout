@@ -29,10 +29,10 @@ def handleSelectInterview(request,selected_interview):
         # create group records for any required groups
         required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
         for group in required_groups:
-            membership = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=group)
+            membership, created = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=group)
             membership.user = request.user
             membership.int_group = group
-            membership.save()            
+            membership.save()
     
         # redirect to assign_groups
         return HttpResponseRedirect('/assign_groups/')
@@ -117,10 +117,8 @@ def assign_groups(request):
             # save InterviewGroupMembership records
             for field_name in form.fields:
                 field = form.fields[field_name]
-                import pdb
-                pdb.set_trace()
                 if field.group and form.cleaned_data['group_%d_pc' % field.group.id] > 0:
-                    membership = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=field.group)
+                    membership, created = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=field.group)
                     membership.user = request.user
                     membership.int_group = field.group
                     membership.percent_involvement = form.cleaned_data['group_%d_pc' % field.group.id]
@@ -475,16 +473,23 @@ def save_shape(request):
     try:
         new_shape = InterviewShape()
         new_shape.user = request.user
-        new_shape.geometry = request.REQUEST['geometry']
-        new_shape.geometry_clipped = request.REQUEST['geometry_clipped']
+        
+        geom = GEOSGeometry(request.REQUEST['geometry'], srid=900913)
+        geom.transform(3310)
+        new_shape.geometry = geom
+        
+        geom_clipped = GEOSGeometry(request.REQUEST['geometry_clipped'], srid=900913)
+        geom_clipped.transform(3310)
+        new_shape.geometry_clipped = geom_clipped
         
         int_group_id, resource_id = request.REQUEST['resource'].split('-')
         new_shape.int_group_id = int(int_group_id)
         new_shape.resource_id = int(resource_id)
-        
         new_shape.save() 
+        
         result = '{"status_code":"1",  "success":"true", "message":"mpa saved successfully"'
         result = new_shape.json()
+            
     except Exception, e:
         return HttpResponse(result + e.message, status=500)
     return HttpResponse(result)
@@ -642,8 +647,15 @@ def editgeom_shape(request,id):
     result = '{"status_code":"-1",  "success":"false",  "message":"error in editgeom_shape in views.py"}'
     try:
         edit_shape = InterviewShape.objects.get(pk=id)
-        edit_shape.geometry = request.REQUEST['geometry']
-        edit_shape.geometry_clipped = request.REQUEST['geometry_clipped'] 
+        
+        geom = GEOSGeometry(request.REQUEST['geometry'], srid=900913)
+        geom.transform(3310)
+        edit_shape.geometry = geom
+        
+        geom_clipped = GEOSGeometry(request.REQUEST['geometry_clipped'], srid=900913)
+        geom_clipped.transform(3310)
+        edit_shape.geometry_clipped = geom_clipped
+        
         edit_shape.save() 
         result = '{"status_code":"1",  "success":"true", "message":"mpa saved successfully"'
         result = edit_shape.json()
