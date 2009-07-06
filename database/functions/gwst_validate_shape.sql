@@ -49,7 +49,7 @@ $BODY$
       
   ELSE
     --User is trying to insert an invlaid geometry
-    RETURN '{"status_code":"3","message":"New Geometry is NOT valid"}';
+    RETURN '{"status_code":"3","message":"New Geometry is NOT valid - orig:' || shape_geometry_text || '  transformed: ' || astext(shape_geometry) || '"}';
   
   END IF;
 
