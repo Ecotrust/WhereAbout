@@ -272,7 +272,8 @@ gwst.widgets.FeaturesMenu = function(options){
                         if(!wasChecked){
                             self.toggleFeature(item.model,item.pk);
                         }
-                        $(self).trigger('featureDoubleClick', [item]);
+                        gwst.app.map.zoomToFeature(item);
+                        //$(self).trigger('featureDoubleClick', [item]);
                     },
                     iconcls: 'mm-context-view'
                 });

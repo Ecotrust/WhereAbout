@@ -248,7 +248,7 @@ class InterviewShape(Model):
         return {
             'pk': self.pk,
             'model': 'mpa',
-            'name': '%s shape (%d pennies)' % (self.resource.name, self.pennies),
+            'name': '%s area (%d pennies)' % (self.resource.name, self.pennies),
             'user': self.user_id,
             'date_created': self.creation_date.ctime(),
             'date_modified': self.last_modified.ctime(),

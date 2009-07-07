@@ -625,6 +625,10 @@ gwst.actions.nonExt.editMpaAttributes = function(e){
     $(this).unbind('click');
     //gwst.ui.modal.hide(false);
     var mpa = e.data.mpa;
+    gwst.editMpaAttributes(mpa);
+}
+
+gwst.editMpaAttributes = function(mpa){
     /*if(mpa.editable != true){
         alert('This is a read-only shape that cannot be edited or deleted.');
         return;

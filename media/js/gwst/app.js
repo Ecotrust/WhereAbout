@@ -168,11 +168,12 @@ gwst.app = function() {
             });
             
             $(gwst.app.FeaturesMenu).bind('featureDoubleClick', function(e, feature){
-               gwst.app.map.zoomToFeature(feature); 
+               //gwst.app.map.zoomToFeature(feature); 
+               gwst.editMpaAttributes(feature);
             });
             
             $(gwst.app.FeaturesMenu).bind('folderDoubleClick', function(e, pk){
-               gwst.actions.drawMPA.execute(pk, e); 
+               //gwst.actions.drawMPA.execute(pk, e); 
             });
             
             $(this.userManager).bind('change', function(e, user, oldUser){

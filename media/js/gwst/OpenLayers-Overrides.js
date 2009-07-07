@@ -74,3 +74,11 @@ OpenLayers.Control.MousePosition.prototype.formatOutput = function(lonLat) {
     var newHtml = this.formatCoords(lonLat.lat) + this.separator + this.formatCoords(lonLat.lon);
     return newHtml;
 };
+
+
+OpenLayers.Control.Navigation.prototype.defaultDblClick = function (evt) {
+    if (gwst.app.map.over)
+    {
+        gwst.editMpaAttributes(gwst.app.map.over.attributes.mpa);
+    }
+};

@@ -150,9 +150,10 @@ gwst.widgets.Map = Ext.extend(mapfish.widgets.MapComponent, {
         
         this.map.addControl(new OpenLayers.Control.MousePosition());
         //Wheel zoom and double click zoom
-        this.map.addControl(new OpenLayers.Control.MouseDefaults());
-        this.map.addControl(new OpenLayers.Control.ZoomBox());             
-        
+        navopt = { handleRightClicks: true };
+        this.map.addControl(new OpenLayers.Control.Navigation(navopt));
+        this.map.addControl(new OpenLayers.Control.ZoomBox());        
+
         //this.map.addControl(new OpenLayers.Control.Measure(null, {}));
         
         this.map.zoomToExtent(this.studyRegion.extent());
