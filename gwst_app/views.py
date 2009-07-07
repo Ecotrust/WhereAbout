@@ -176,11 +176,7 @@ def group_status(request):
                         else:
                             num_incomplete_resources = num_incomplete_resources + 1
                             
-                if num_incomplete_resources > 0:
-                    group_memb.user_status_msg = '%s/%s resource group(s) incomplete' % (num_incomplete_resources,num_incomplete_resources+num_complete_resources)
-                else:
-                    group_memb.user_status_msg = '%s resource group(s) complete' % (num_complete_resources,)
-                
+                group_memb.user_status_msg = '%s/%s resource group(s) complete' % (num_complete_resources,num_incomplete_resources+num_complete_resources)                
                 group_memb.num_complete_resources = num_complete_resources
                 group_memb.num_incomplete_resources = num_incomplete_resources
                 

@@ -2,6 +2,10 @@
 
 {% block content %}
 <br/>
+<div style='width:600px;'>
+{{ interview.group_status_text|safe }}
+</div>
+<br/>
 <ul>
 {% for object in object_list %}
   <li style='line-height:16px'>
@@ -25,7 +29,7 @@
   {% else %}
     <a href="/group_qs/{{object.int_group.id}}/answer/">Answer questions</a> 
     {% ifequal object.status "in-progress" %}|
-      {% if object.int_group.user_draws_shapes %}<a href="/draw_group_shapes/{{object.int_group.id}}/">Draw shapes</a>{% endif %}
+      {% if object.int_group.user_draws_shapes %}<a href="/draw_group_shapes/{{object.int_group.id}}/">Draw {{ object.int_group.name }} shapes</a>{% endif %}
         {% if object.int_group.user_draws_shapes %}
           {% ifnotequal object.num_complete_resources 0 %}{% ifequal object.num_incomplete_resources 0 %}
             | <a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a> 

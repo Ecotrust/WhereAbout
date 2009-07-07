@@ -18,24 +18,6 @@
     }
   }, 
   {
-    "pk": 2, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "test", 
-      "first_name": "test", 
-      "last_name": "tester", 
-      "is_active": true, 
-      "is_superuser": false, 
-      "is_staff": false, 
-      "last_login": "2009-06-24 11:34:55", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
-      "email": "t@t.org", 
-      "date_joined": "2009-06-02 11:50:33"
-    }
-  }, 
-  {
     "pk": 12, 
     "model": "auth.user", 
     "fields": {
@@ -54,6 +36,24 @@
     }
   }, 
   {
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "test", 
+      "first_name": "test", 
+      "last_name": "tester", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2009-07-07 13:10:19", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
+      "email": "t@t.org", 
+      "date_joined": "2009-06-02 11:50:33"
+    }
+  }, 
+  {
     "pk": 3, 
     "model": "auth.user", 
     "fields": {
@@ -63,7 +63,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-02 14:32:53", 
+      "last_login": "2009-07-07 13:20:58", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
@@ -123,8 +123,10 @@
       "code": "ORRrecfish", 
       "name": "ORCC rec fisherman", 
       "region": 2, 
+      "draw_shape_text": "", 
       "active": false, 
       "organization": "Ecotrust", 
+      "group_status_text": "", 
       "description": "Oregon central coast rec fishermen"
     }
   }, 
@@ -135,26 +137,11 @@
       "code": "NCrecfish", 
       "name": "MLPA North Coast Recreational Fishing Survey", 
       "region": 1, 
+      "draw_shape_text": "", 
       "active": true, 
       "organization": "Ecotrust", 
+      "group_status_text": "Please carefully read all instructions and complete the survey sections one at a time.  Each section will ask you a few questions.  Some sections will also ask you to draw shapes representing your fishing grounds.  Finalize each section once you are done.\r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems or are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email.\r\n", 
       "description": "rec fish"
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "divers", 
-      "required_group": false, 
-      "user_draws_shapes": true, 
-      "interview": 1, 
-      "resources": [
-        1, 
-        3
-      ], 
-      "description": "free divers"
     }
   }, 
   {
@@ -237,6 +224,23 @@
   }, 
   {
     "pk": 1, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "div", 
+      "name": "dive", 
+      "required_group": false, 
+      "user_draws_shapes": true, 
+      "interview": 1, 
+      "resources": [
+        1, 
+        3
+      ], 
+      "description": "free divers"
+    }
+  }, 
+  {
+    "pk": 1, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
       "status": "not yet started", 
@@ -286,6 +290,78 @@
       "user": 3, 
       "date_started": null, 
       "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": null, 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": null, 
+      "percent_involvement": 30, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": null, 
+      "percent_involvement": 30, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 1, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": null, 
+      "percent_involvement": 40, 
       "num_incomplete_resources": 0
     }
   }, 
@@ -443,6 +519,21 @@
       "num_logins": 1, 
       "last_login": "2009-06-30 14:16:47", 
       "user": 3, 
+      "interview": 1, 
+      "complete_date": null, 
+      "notes": null
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "gwst_app.interviewstatus", 
+    "fields": {
+      "completed": false, 
+      "first_login": "2009-07-07 13:06:25", 
+      "creation_date": "2009-07-07 09:49:13", 
+      "num_logins": 2, 
+      "last_login": "2009-07-07 13:10:19", 
+      "user": 2, 
       "interview": 1, 
       "complete_date": null, 
       "notes": null

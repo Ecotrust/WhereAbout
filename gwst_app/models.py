@@ -45,6 +45,8 @@ class Interview(Model):
     description = CharField( max_length=200 )
     code = CharField( max_length=20, unique=True )
     active = BooleanField( default=False )
+    group_status_text = TextField( blank=True, default='' )
+    draw_shape_text = TextField( blank=True, default='' )    
     class Meta:
         db_table = u'gwst_interview'
         
