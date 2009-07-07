@@ -20,20 +20,19 @@
   <body {% block body_attribs %}{% endblock %}>
   <div id="wrap">
   <div id="header">
-    <img alt="Logo" src="http://www.ecotrust.org/images/ecotrust_logo08.gif"/>
-    <div id='user-tools'>
+    <a href='/'><img alt="Logo" src="http://www.ecotrust.org/images/ecotrust_logo08.gif"/></a>
     {% if user.is_authenticated %}
-      Welcome <b>{{ user.first_name }}</b>
+    <div id='menu'>
+      Welcome <b>{{ user.first_name }}.</b>
+      <div id='user-tools'>      
+      {% if user.is_staff %}
+        <a href="/admin/">Site Admin</a> |
+        <a href="/modelviz/">Site Database Diagram</a> |
+        <a href="/databrowse/">Databrowse</a> |
+      {% endif %}    
+      <a href="/accounts/logout/">Logout</a>
+    </div>
     {% endif %}
-
-     {% if user.is_authenticated %}
-       | <a href="/accounts/logout/">Logout</a>
-     {% endif %}
-     {% if user.is_staff %}
-       | <a href="/admin/">Site Admin</a> |
-       <a href="/modelviz/">Site Database Diagram</a> |
-       <a href="/databrowse/">Databrowse</a>
-     {% endif %}    
     </div>
   </div>
   <div id="main">  
