@@ -36,24 +36,6 @@
     }
   }, 
   {
-    "pk": 2, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "test", 
-      "first_name": "test", 
-      "last_name": "tester", 
-      "is_active": true, 
-      "is_superuser": false, 
-      "is_staff": false, 
-      "last_login": "2009-07-07 13:10:19", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
-      "email": "t@t.org", 
-      "date_joined": "2009-06-02 11:50:33"
-    }
-  }, 
-  {
     "pk": 3, 
     "model": "auth.user", 
     "fields": {
@@ -69,6 +51,24 @@
       "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
       "email": "ta@t.org", 
       "date_joined": "2009-06-02 11:51:40"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "test", 
+      "first_name": "test", 
+      "last_name": "tester", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2009-07-07 14:44:30", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
+      "email": "t@t.org", 
+      "date_joined": "2009-06-02 11:50:33"
     }
   }, 
   {
@@ -137,7 +137,7 @@
       "code": "NCrecfish", 
       "name": "MLPA North Coast Recreational Fishing Survey", 
       "region": 1, 
-      "draw_shape_text": "", 
+      "draw_shape_text": "Please watch the demonstration videos or read the instructions carefully.  They will help you complete this section successfully.  \r\n<br/>\r\nStep 1. Learn how to use the map. (Watch Video) (Text Instructions)\r\n<br/>\r\nStep 2.  Draw Shapes. (Watch Video) (Text Instructions)\r\n<br/>\r\nStep 3.  Assign pennies. (Watch Video) (Text Instructions)\r\n<br/>\r\nYou are done with a user group when you have allocated 100 pennies for each fishery you drew shapes for.  If I drew shapes for Rockfish and Salmon in the kayak group I would need to allocate 100 pennies in each of those two groups.\r\n<br/>\r\nAdvanced features are available such as copying one or all shapes from one fishery to another.  This is a timesaver if you target multiple species in the same areas.  (Watch Video) (Text Instructions).\r\n<br/>\r\n", 
       "active": true, 
       "organization": "Ecotrust", 
       "group_status_text": "Please carefully read all instructions and complete the survey sections one at a time.  Each section will ask you a few questions.  Some sections will also ask you to draw shapes representing your fishing grounds.  Finalize each section once you are done.\r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems or are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email.\r\n", 
@@ -294,24 +294,6 @@
     }
   }, 
   {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 6, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": null, 
-      "percent_involvement": null, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
     "pk": 5, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
@@ -330,20 +312,20 @@
     }
   }, 
   {
-    "pk": 6, 
+    "pk": 4, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
-      "status": "not yet started", 
+      "status": "finalized", 
       "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 2, 
+      "date_completed": "2009-07-07 14:44:41", 
+      "int_group": 6, 
       "completed": false, 
       "num_complete_resources": 0, 
       "reviewed": false, 
       "date_reviewed": null, 
       "user": 2, 
-      "date_started": null, 
-      "percent_involvement": 30, 
+      "date_started": "2009-07-07 14:44:36", 
+      "percent_involvement": null, 
       "num_incomplete_resources": 0
     }
   }, 
@@ -351,7 +333,7 @@
     "pk": 7, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
-      "status": "not yet started", 
+      "status": "in-progress", 
       "user_status_msg": "no shapes drawn", 
       "date_completed": null, 
       "int_group": 1, 
@@ -360,8 +342,26 @@
       "reviewed": false, 
       "date_reviewed": null, 
       "user": 2, 
-      "date_started": null, 
+      "date_started": "2009-07-07 14:44:44", 
       "percent_involvement": 40, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "in-progress", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-07 15:32:03", 
+      "percent_involvement": 30, 
       "num_incomplete_resources": 0
     }
   }, 
@@ -480,22 +480,6 @@
   }, 
   {
     "pk": 1, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-06-02 11:17:42", 
-      "num_times_saved": 10, 
-      "int_question": 1, 
-      "creation_date": "2009-05-29 13:00:42", 
-      "option_val": 1, 
-      "boolean_val": null, 
-      "user": 1, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "Yes!"
-    }
-  }, 
-  {
-    "pk": 1, 
     "model": "gwst_app.interviewstatus", 
     "fields": {
       "completed": false, 
@@ -531,8 +515,8 @@
       "completed": false, 
       "first_login": "2009-07-07 13:06:25", 
       "creation_date": "2009-07-07 09:49:13", 
-      "num_logins": 2, 
-      "last_login": "2009-07-07 13:10:19", 
+      "num_logins": 3, 
+      "last_login": "2009-07-07 14:44:30", 
       "user": 2, 
       "interview": 1, 
       "complete_date": null, 
