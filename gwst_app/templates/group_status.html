@@ -1,25 +1,43 @@
 {% extends "base.html" %}
 
 {% block content %}
+<br/>
 <ul>
 {% for object in object_list %}
-<li>
-{{ object.int_group.name }} ({{object.status}}{% ifequal object.status "in-progress" %}{% if object.int_group.user_draws_shapes %}: {{object.user_status_msg}}{% endif %}{% endifequal %}): {% ifequal object.status "finalized" %}
-<a href="/group_qs/{{object.int_group.id}}/view/">View answers</a>
-{% else %}
-<a href="/group_qs/{{object.int_group.id}}/answer/">Answer questions</a> 
-{% ifequal object.status "in-progress" %}|
-{% if object.int_group.user_draws_shapes %}<a href="/draw_group_shapes/{{object.int_group.id}}/">Draw shapes</a>{% endif %}
-{% if object.int_group.user_draws_shapes %}
-{% ifnotequal object.num_complete_resources 0 %}{% ifequal object.num_incomplete_resources 0 %}
-| <a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a> 
-{% endifequal %}{% endifnotequal %}
-{% else %}
-<a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a>
-{% endif %}
-{% endifequal %}
-{% endifequal %}
-</li>
+  <li style='line-height:16px'>
+  <b>{{ object.int_group.name|capfirst }}</b><br/>  
+  Status: 
+  {% ifnotequal object.status "finalized" %}
+    <img src="/site-media/images/delete.png" alt="Incomplete"/>
+  {% else %}
+    <img src="/site-media/images/accept.png" alt="Complete"/>
+  {%endifnotequal%}
+  {{object.status|capfirst}}
+  {% ifequal object.status "in-progress" %}    
+    {% if object.int_group.user_draws_shapes %}
+      - {{object.user_status_msg}}
+    {% endif %}
+  {% endifequal %}
+  <br/>
+  
+  {% ifequal object.status "finalized" %}
+    <a href="/group_qs/{{object.int_group.id}}/view/">View answers</a>
+  {% else %}
+    <a href="/group_qs/{{object.int_group.id}}/answer/">Answer questions</a> 
+    {% ifequal object.status "in-progress" %}|
+      {% if object.int_group.user_draws_shapes %}<a href="/draw_group_shapes/{{object.int_group.id}}/">Draw shapes</a>{% endif %}
+        {% if object.int_group.user_draws_shapes %}
+          {% ifnotequal object.num_complete_resources 0 %}{% ifequal object.num_incomplete_resources 0 %}
+            | <a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a> 
+          {% endifequal %}
+        {% endifnotequal %}
+      {% else %}
+        <a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a>
+      {% endif %}
+    {% endifequal %}
+  {% endifequal %}
+  </li>
+  <br/>
 {% endfor %}
 </ul>
 
