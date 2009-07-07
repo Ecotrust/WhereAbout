@@ -34,7 +34,7 @@
     {% endifequal %} 
     {% ifequal object.status "in-progress" %}
       {% if object.int_group.user_draws_shapes %}         
-        <li><a href="/draw_group_shapes/{{object.int_group.id}}/">Draw {{ object.int_group.name }} shapes</a></li>
+        <li><a href="/draw_group_shapes/{{object.int_group.id}}/">Draw shapes</a></li>
       {% endif %}
       {% if object.int_group.user_draws_shapes %}
         {% ifnotequal object.num_complete_resources 0 %}
