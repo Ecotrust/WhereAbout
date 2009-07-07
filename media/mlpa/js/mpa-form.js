@@ -1,4 +1,4 @@
-mlpa = {mpaForm: {}}
+mlpa = {mpaForm: {}};
 
 mlpa.mpaForm = {
     selector: '#mpaFormTabs',
@@ -559,7 +559,7 @@ mlpa.mpaForm = {
         gwst.ui.modal.hide();
     },
     
-    transitioning: false,
+    transitioning: false
     
     /*exitPanel: function(target){
         target.css('overflow-y', 'visible');
