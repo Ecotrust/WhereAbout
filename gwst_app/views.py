@@ -470,7 +470,29 @@ def get_shape(request,id):
 def validate_shape(request):
     # validate indicated group, resource
     result = '{"status_code":"-1",  "success":"false",  "message":"error in validate_shape in views.py"}'
-    try:
+
+    try:    
+        # validate against this user's other shapes in this resource
+        new_geom = GEOSGeometry( request.REQUEST["geometry"], srid=900913 )
+        new_geom.transform( 3310 )
+        
+        if request.REQUEST.get("orig_shape_id"):
+            orig_shape = InterviewShape.objects.get(pk=request.REQUEST.get("orig_shape_id"))
+            int_group_id = orig_shape.int_group.id
+            resource_id = orig_shape.resource.id
+        else:
+            int_group_id, resource_id = request.REQUEST['resource'].split('-')
+        
+        other_shapes = InterviewShape.objects.filter(user=request.user,int_group__id=int_group_id,resource__id=resource_id)
+        
+        if request.REQUEST.get("orig_shape_id"):
+            other_shapes = other_shapes.exclude(pk=request.REQUEST["orig_shape_id"])
+
+        for i, shape in enumerate( other_shapes.all() ):
+            if new_geom.intersects( shape.geometry_clipped ):
+                result = '{"status_code":"6","message":"New geometry overlaps existing shapes"}'
+                return HttpResponse(result)
+
         m = InterviewShape(geometry=request.REQUEST["geometry"])
         result = m.validate()
     except Exception, e:

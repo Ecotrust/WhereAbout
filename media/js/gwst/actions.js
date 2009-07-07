@@ -199,8 +199,8 @@ gwst.actions.utils.askUserToDefineGeometry = function(config){
         };
         var clipFail = function(response, opts){
             gwst.ui.error.show({
-                errorText: 'An unknown Server Error has Occurred while trying to clip your MPA. If you were editing a geometry, that geometry will remain intact as it was before editing. If you were creating a new MPA, you will have to start over. We have been notified of this problem.',
-                logText: 'Error clipping MPA'
+                errorText: 'An unknown Server Error has Occurred while trying to clip your shape. If you were editing a geometry, that geometry will remain intact as it was before editing. If you were creating a new shape, you will have to start over. We have been notified of this problem.',
+                logText: 'Error clipping shape'
             });
             gwst.actions.utils.enableComponents();
         };
@@ -220,6 +220,8 @@ gwst.actions.utils.askUserToDefineGeometry = function(config){
                         gwst.actions.utils.restoreMapToolbar();
                         gwst.actions.async.clipGeometry({
                            geometry: new_geo,
+                           resource: config['resource'],
+                           orig_shape_id: config['orig_shape_id'],
                            success: clipSuccess,
                            error: clipError,
                            fail: clipFail
@@ -266,7 +268,9 @@ gwst.actions.utils.askUserToDefineGeometry = function(config){
                 remove: gwst.actions.utils.geometryCreatedCallback, 
                 clipSuccess: clipSuccess,
                 clipError: clipError,
-                clipFail: clipFail
+                clipFail: clipFail,
+                resource: config['resource'],
+                orig_shape_id: config['orig_shape_id']
             });
         }
     }
@@ -277,6 +281,8 @@ gwst.actions.utils.geometryCreatedCallback = function(geometry){
     gwst.app.map.removeListener('GeometryCreated', this.remove, this);
     gwst.actions.async.clipGeometry({
        geometry: geometry,
+       resource: this.resource,
+       orig_shape_id: this.orig_shape_id,
        success: this.clipSuccess,
        error: this.clipError,
        fail: this.clipFail
@@ -450,6 +456,7 @@ gwst.actions.drawMPA = new Ext.Action({
     iconCls: 'add-icon',
     handler: function(target, e){
         gwst.actions.utils.askUserToDefineGeometry({
+            resource: target,
             finish: function(geometry, clipped){ 
                 $.ajax({
                    data: {geometry:geometry, geometry_clipped:clipped, resource:target}, //form.serializeArray(),
@@ -661,6 +668,7 @@ gwst.actions.nonExt.enterMPAGeometryEditMode = function(e){
         gwst.app.map.removeMPAs([mpa]);
         gwst.actions.utils.askUserToDefineGeometry({
             geometry: mpa.feature.attributes.original_geometry,
+            orig_shape_id: mpa.pk,
             finish: function(geometry, clipped){
                 gwst.ui.wait.show({msg:'While we save your geometry changes'});
                 mpa.saveGeometryChanges(geometry, clipped, {
@@ -796,7 +804,11 @@ gwst.actions.async.clipGeometry = function(config){
             url: gwst.urls.validateGeometry,
             method: 'POST',
             disableCachingParam: true,
-            params: 'geometry='+config['geometry'].toString(),
+            params: { 
+                geometry : config['geometry'].toString(),
+                resource : config['resource'],
+                orig_shape_id : config['orig_shape_id']
+                },
             success: function(response, opts){
                 gwst.ui.wait.hide();
                 var text = response.responseText;
