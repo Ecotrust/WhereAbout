@@ -181,7 +181,7 @@ gwst.widgets.FeaturesMenu = function(options){
                     {
                         name: 'Add new shape',
                         handler: function(e){
-                            $(self).trigger('folderDoubleClick', data['pk']);
+                            gwst.actions.drawMPA.execute(data['pk'], e);
                         },
                         iconcls: 'mm-context-add'
                     },
@@ -273,7 +273,6 @@ gwst.widgets.FeaturesMenu = function(options){
                             self.toggleFeature(item.model,item.pk);
                         }
                         gwst.app.map.zoomToFeature(item);
-                        //$(self).trigger('featureDoubleClick', [item]);
                     },
                     iconcls: 'mm-context-view'
                 });
