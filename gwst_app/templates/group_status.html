@@ -9,13 +9,12 @@
 <ul>
 {% for object in object_list %}
   <li style='line-height:16px'>
-  <b>{{ object.int_group.name|capfirst }}</b><br/>  
-  Status: 
   {% ifnotequal object.status "finalized" %}
     <img src="/site-media/images/delete.png" alt="Incomplete"/>
   {% else %}
     <img src="/site-media/images/accept.png" alt="Complete"/>
   {%endifnotequal%}
+  <b>{{ object.int_group.name|capfirst }}</b>:   
   {{object.status|capfirst}}
   {% ifequal object.status "in-progress" %}    
     {% if object.int_group.user_draws_shapes %}
@@ -24,22 +23,31 @@
   {% endifequal %}
   <br/>
   
+  <ul>
   {% ifequal object.status "finalized" %}
-    <a href="/group_qs/{{object.int_group.id}}/view/">View answers</a>
+     <li><a href="/group_qs/{{object.int_group.id}}/view/">Review answers</a></li>
   {% else %}
-    <a href="/group_qs/{{object.int_group.id}}/answer/">Answer questions</a> 
-    {% ifequal object.status "in-progress" %}|
-      {% if object.int_group.user_draws_shapes %}<a href="/draw_group_shapes/{{object.int_group.id}}/">Draw {{ object.int_group.name }} shapes</a>{% endif %}
-        {% if object.int_group.user_draws_shapes %}
-          {% ifnotequal object.num_complete_resources 0 %}{% ifequal object.num_incomplete_resources 0 %}
-            | <a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a> 
+    {% ifequal object.status "in-progress" %}
+      <li><a href="/group_qs/{{object.int_group.id}}/answer/">Edit Answers</a></li>
+    {% else %}
+      <li><a href="/group_qs/{{object.int_group.id}}/answer/">Answer questions</a></li>
+    {% endifequal %} 
+    {% ifequal object.status "in-progress" %}
+      {% if object.int_group.user_draws_shapes %}         
+        <li><a href="/draw_group_shapes/{{object.int_group.id}}/">Draw {{ object.int_group.name }} shapes</a></li>
+      {% endif %}
+      {% if object.int_group.user_draws_shapes %}
+        {% ifnotequal object.num_complete_resources 0 %}
+          {% ifequal object.num_incomplete_resources 0 %}
+            <li><a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a></li> 
           {% endifequal %}
         {% endifnotequal %}
       {% else %}
-        <a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a>
+        <li><a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a></li>
       {% endif %}
     {% endifequal %}
   {% endifequal %}
+  </ul>
   </li>
   <br/>
 {% endfor %}
