@@ -13,7 +13,7 @@ gwst.widgets.DataLayersMenu = Ext.extend(gwst.widgets.DropdownMenu, {
         // be overriden here or new properties (e.g. items, tools, buttons) 
         // can be added, eg:
         Ext.apply(this, {
-            text: 'Data Layers'
+            text: 'Maps'
         });
  
         // Before parent code
@@ -224,7 +224,7 @@ gwst.widgets.DataLayersMenu = Ext.extend(gwst.widgets.DropdownMenu, {
         this.window.x = 0;
         this.window.y = 76;
         this.window.setHeight(150);
-        this.window.setTitle('Data Layers');          
+        this.window.setTitle('Maps');          
     }
 });
  

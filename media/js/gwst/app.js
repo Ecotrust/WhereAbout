@@ -76,12 +76,12 @@ gwst.app = function() {
             
             /*********** First Browser Checks *******************************/
             //Kill application if these browsers are found
-            if (jQuery.browser.msie && jQuery.browser.version.substr(0,1) == '8') {
+            /*if (jQuery.browser.msie && jQuery.browser.version.substr(0,1) == '8') {
                 alert('You will need to enable "Compatibility View" to use gwst with Microsoft Internet Explorer 8. Press the broken-page button next to the url field to enable Compatibility View. We are hoping to fix this problem shortly.');
                 // Ext.MessageBox.alert("Browser Check","Sorry gwst does not function correctly in Internet Explorer 6.  Supported browsers include Mozilla Firefox 2+, Apple Safari 3+, Opera 9.6+ and Internet Explorer 7+");
                 // this.hide_load();
                 return;
-            }
+            }*/
             
             if (jQuery.browser.msie && jQuery.browser.version.substr(0,1) == '6') {
                 Ext.MessageBox.alert("Browser Check","Sorry gwst does not function correctly in Internet Explorer 6.  Supported browsers include Mozilla Firefox 2+, Apple Safari 3+, Opera 9.6+ and Internet Explorer 7+");

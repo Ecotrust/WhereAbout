@@ -24,7 +24,7 @@ gwst.widgets.FeaturesMenu = function(options){
             html: '<div id="extTreeContainer" style="font-size:1.4em;"><ul id="extWindow"></ul></div>',
             autoScroll: true,
             closable: false,
-            minimizable: true,
+            minimizable: false,
             listeners: {
                 'minimize': function(w){
                     self.getExtButton().toggle(false);
@@ -35,7 +35,7 @@ gwst.widgets.FeaturesMenu = function(options){
                 gwst.actions.finishGroup
                 //gwst.actions.createArray
             ],
-            title: 'Areas of Resource Use'
+            title: 'My Shapes'
             /*tbar: [{
                 text: 'How to Use This',
                 handler: function(){
@@ -597,7 +597,7 @@ gwst.widgets.FeaturesMenu = function(options){
         }else{
             var self = this;
             this._button = new Ext.Button({
-                text: 'Areas of Resource Use',
+                text: 'My Shapes',
                 enableToggle: true,
                 toggleHandler: function(button, state){
                     if(state){

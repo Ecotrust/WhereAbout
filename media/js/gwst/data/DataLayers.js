@@ -43,7 +43,7 @@ gwst.data.GoogleTerrain = new OpenLayers.Layer.Google(
 );
 
 gwst.data.GoogleSat = new OpenLayers.Layer.Google(
-    "Satellite/Aerial Imagery" , 
+    "Satellite Imagery" , 
     {
         type: G_SATELLITE_MAP,
         'sphericalMercator': true,
@@ -55,7 +55,7 @@ gwst.data.GoogleSat = new OpenLayers.Layer.Google(
 
 gwst.data.DataLayers = [
     [
-        'Satellite/Aerial Imagery',
+        'Satellite Imagery',
         'Base',
          gwst.data.GoogleSat,
         '/site-media/js/openlayers/img/blank.gif',
@@ -97,10 +97,10 @@ gwst.data.DataLayers = [
         'NOAA Nautical Charts',
         'Scanned and georeferenced NOAA nautical charts at varying resolutions.'
   ],[
-        'Graticules',
+        'Lat/Long Lines',
         'Base',
         new OpenLayers.Layer.TMS(
-            "Graticules",
+            "Lat/Long Lines",
             ["http://marinemap.org/tiles/Graticules/"],
             {
                 layer_id: 4,
@@ -132,10 +132,10 @@ gwst.data.DataLayers = [
         'Graticules at 10, 5 and 1 minute',
         'No Metadata'
     ],[
-        'Isobaths',
+        'Depth Contours',
         'Base',
         new OpenLayers.Layer.TMS(
-            "Isobaths",
+            "Depth Contours",
             ["http://marinemap.org/tiles/Isobaths/"],
             {
                 layer_id: 25,
