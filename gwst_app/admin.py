@@ -15,7 +15,8 @@ databrowse.site.register(InterviewAnswerOption)
 databrowse.site.register(InterviewAnswer)
 databrowse.site.register(InterviewStatus)
 databrowse.site.register(InterviewShape)
-
+databrowse.site.register(FaqGroup)
+databrowse.site.register(Faq)
 
 class InterviewQuestionInline(admin.StackedInline):
     model = InterviewQuestion
@@ -41,6 +42,13 @@ class InterviewQuestionAdmin(admin.ModelAdmin):
     list_display = ('int_group', 'answer_type', 'code','display_order')
     ordering = ('int_group','display_order')
 
+class FaqAdmin(admin.ModelAdmin):
+    search_fields = ('question', 'answer')
+    list_display = ('question','importance','faq_group')   
+
+class FaqGroupAdmin(admin.ModelAdmin):
+    pass
+
 class IntAdmin(admin.ModelAdmin):
     pass
 
@@ -54,4 +62,7 @@ admin.site.register(InterviewAnswerOption,IntAdmin)
 admin.site.register(InterviewAnswer,IntAdmin)
 admin.site.register(InterviewStatus,IntAdmin)
 admin.site.register(InterviewShape,IntAdmin)
+admin.site.register(FaqGroup,FaqGroupAdmin)
+admin.site.register(Faq,FaqAdmin)
+
 

@@ -63,7 +63,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-07 13:20:58", 
+      "last_login": "2009-07-07 14:29:32", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
@@ -537,6 +537,43 @@
       "interview": 1, 
       "complete_date": null, 
       "notes": null
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.faqgroup", 
+    "fields": {
+      "faq_group_name": "Drawing Shapes"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The precision of your shapes is important; however, we understand that accuracy will vary between users.  Please just do the best you can with the time you have and provide us with any extra information on boundaries so that our team can make your shapes more accurate.", 
+      "importance": 1, 
+      "question": "How much precision should I use when drawing shapes?", 
+      "faq_group": 1
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The number of shapes you draw is your choice.  Most people draw anywhere from 2-10 shapes per resource.", 
+      "importance": 1, 
+      "question": "How many shapes should I draw?", 
+      "faq_group": 1
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The map takes the longest to load.  People without a broadband internet connection may need to wait up to a minute or two the first time they draw shapes.  If you wait and still nothing loads then try refreshing the page. If still nothing then verify you are using a supported browser (IE 6+, Firefox 1.0+, Safari 1.2+, Chrome 2+). If you have a supported browser then next verify you have 'javascript' enabled in your browser preferences. Seek the help of friends and family if you're unsure how to do any of these steps or email us at fish@ecotrust.org.  Another option is simply to try another computer. Computers more than 5 years old are more likely to have issues.", 
+      "importance": 1, 
+      "question": "Why is the map is not loading for me when I go to draw shapes?", 
+      "faq_group": 1
     }
   }
 ]
