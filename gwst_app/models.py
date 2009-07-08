@@ -134,6 +134,7 @@ class InterviewQuestion(Model):
     eng_tooltip = CharField( max_length=200, help_text='hover help text shown to user', blank=True, null=True )
     question_set = IntegerField( help_text='for grouping questions together on a page', blank=True, null=True )
     display_order = FloatField( help_text='tab order of this question on its page' )
+    required = BooleanField(default=False)
     
     class Meta:
         db_table = u'gwst_question'
