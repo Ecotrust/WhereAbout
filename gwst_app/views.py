@@ -165,18 +165,31 @@ def group_status(request):
                 # tally complete and incomplete resource groups
                 num_complete_resources = 0
                 num_incomplete_resources = 0
+                bZeroPennyShapes = False
                 
                 for resource in group_memb.int_group.resources.all():
                     res_shapes = InterviewShape.objects.filter(user=request.user,int_group=group_memb.int_group,resource=resource)
-                    res_count = res_shapes.count()
-                    if res_count > 0:
-                        res_pennies = res_shapes.aggregate(Sum('pennies'))['pennies__sum']
-                        if res_pennies == 100:
-                            num_complete_resources = num_complete_resources + 1
-                        else:
-                            num_incomplete_resources = num_incomplete_resources + 1
+                    
+                    zero_penny_shapes = res_shapes.filter(pennies=0)
+                        
+                    if zero_penny_shapes.count() > 0:
+                        num_incomplete_resources = num_incomplete_resources + 1
+                        bZeroPennyShapes = True
+                        
+                    else:
+                        res_count = res_shapes.count()
+                        if res_count > 0:
+                            res_pennies = res_shapes.aggregate(Sum('pennies'))['pennies__sum']
+                            if res_pennies == 100:
+                                num_complete_resources = num_complete_resources + 1
+                            else:
+                                num_incomplete_resources = num_incomplete_resources + 1
                             
-                group_memb.user_status_msg = '%s/%s resource group(s) complete' % (num_complete_resources,num_incomplete_resources+num_complete_resources)                
+                group_memb.user_status_msg = '%s/%s resource group(s) complete' % (num_complete_resources,num_incomplete_resources+num_complete_resources)
+                
+                if bZeroPennyShapes:
+                    group_memb.user_status_msg = group_memb.user_status_msg + ', shapes with 0 pennies present'
+                        
                 group_memb.num_complete_resources = num_complete_resources
                 group_memb.num_incomplete_resources = num_incomplete_resources
                 
