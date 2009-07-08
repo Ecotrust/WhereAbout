@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
 {% block content %}
    <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
    {{ form.as_p }}
    <input id="submit" type="submit" value="{{ value }}" />
-   {% if action %}<button type="button" class="gwst_cancel" id="cancel">cancel</button>{% endif %}
+   {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
    </form>
 {% endblock %}

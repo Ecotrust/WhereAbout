@@ -19,6 +19,7 @@
   
   <body {% block body_attribs %}{% endblock %}>
   <div id="wrap">
+  {% block header %}
   <div id="header">
     <a href='/'><img alt="Logo" src="http://www.ecotrust.org/images/ecotrust_logo08.gif"/></a>
     {% if user.is_authenticated %}
@@ -35,6 +36,7 @@
     {% endif %}
     </div>
   </div>
+  {% endblock %}
   <div id="main">  
 	<div id="content">
 	  {% if interview.name %}
