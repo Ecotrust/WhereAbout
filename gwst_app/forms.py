@@ -49,6 +49,12 @@ class AnswerForm(forms.Form):
         for i, question in enumerate(questions):
             dynamic_args = {}
             dynamic_args['label'] = question.eng_text
+
+            if question.required is True:
+                dynamic_args['required'] = True
+            else:
+                dynamic_args['required'] = False   
+                
             answer = answers.filter(int_question=question)
             
             # set up the appropriate widget
@@ -61,11 +67,7 @@ class AnswerForm(forms.Form):
                     dynamic_args['initial']=answer[0].integer_val
                 elif question.val_default != '':
                     dynamic_args['initial']=int(question.val_default)                    
-                # Check if user is requiring the field
-                if question.required is True:
-                    dynamic_args['required'] = True
-                else:
-                    dynamic_args['required'] = False                                        
+                                                     
                 self.fields['question_%d' % question.id] = forms.IntegerField( **dynamic_args )
                 
             elif question.answer_type == 'decimal': # decimal  
@@ -77,11 +79,7 @@ class AnswerForm(forms.Form):
                     dynamic_args['initial']=answer[0].decimal_val
                 elif question.val_default != '':
                     dynamic_args['initial']=float(question.val_default)
-                # Check if user is requiring the field
-                if question.required is True:
-                    dynamic_args['required'] = True
-                else:
-                    dynamic_args['required'] = False
+
                 self.fields['question_%d' % question.id] = forms.FloatField( **dynamic_args )
                 
             elif question.answer_type == 'boolean': # boolean  
@@ -100,11 +98,7 @@ class AnswerForm(forms.Form):
                     default_ans = question.options.filter(eng_text__istartswith=question.val_default)
                     if default_ans.count() == 1:
                         dynamic_args['initial']=default_ans[0].id
-                # Check if user is requiring the field
-                if question.required is True:
-                    dynamic_args['required'] = True
-                else:
-                    dynamic_args['required'] = False
+
                 self.fields['question_%d' % question.id] = forms.ModelChoiceField( **dynamic_args )
                 
             elif question.answer_type == 'other': #choice w/enter text for other
@@ -119,11 +113,7 @@ class AnswerForm(forms.Form):
                     default_ans = question.options.filter(eng_text__istartswith=question.val_default)
                     if default_ans.count() == 1:
                         dynamic_args['initial']=default_ans[0].id
-                # Check if user is requiring the field
-                if question.required is True:
-                    dynamic_args['required'] = True
-                else:
-                    dynamic_args['required'] = False
+
                 self.fields['question_%d' % question.id] = forms.ModelChoiceField( **dynamic_args )
                 self.fields['question_%d_other' % question.id] = forms.CharField( **other_dynamic_args )
             
@@ -133,11 +123,7 @@ class AnswerForm(forms.Form):
                     dynamic_args['initial']=answer[0].text_val
                 elif question.val_default != '':
                     dynamic_args['initial']=question.val_default
-                # Check if user is requiring the field
-                if question.required is True:
-                    dynamic_args['required'] = True
-                else:
-                    dynamic_args['required'] = False
+
                 self.fields['question_%d' % question.id] = forms.CharField( **dynamic_args )
             
             # now add any tooltip text
