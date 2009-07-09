@@ -93,7 +93,8 @@ class AnswerForm(forms.Form):
             elif question.answer_type == 'select': #choice list 
                 dynamic_args['queryset'] = question.options
                 if answer.count() == 1:
-                    dynamic_args['initial']=answer[0].option_val.id
+                    if answer[0].option_val:
+                        dynamic_args['initial']=answer[0].option_val.id
                 elif question.val_default != '':
                     default_ans = question.options.filter(eng_text__istartswith=question.val_default)
                     if default_ans.count() == 1:

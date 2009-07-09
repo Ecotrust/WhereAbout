@@ -106,6 +106,24 @@ def select_interview(request):
 @login_required  
 def assign_groups(request):
 
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
+ 
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+
+
     title = request.session['interview'].name + ' - Group Membership Selection'
     
     if request.method == 'GET':
@@ -140,11 +158,24 @@ def assign_groups(request):
 @login_required
 def group_status(request):
 
+    # make sure the user has a valid session in-progress
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
     except Exception, e:
         return HttpResponseRedirect('/select_interview/')
 
+ 
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+
+        
     # show list of interview groups with current status (including global interview questions)
     
     title = request.session['interview'].name + ' Status'
@@ -206,6 +237,25 @@ def group_status(request):
     
 @login_required    
 def view_answers(request,group_id):
+
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
+ 
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+
+        
     # show questions for this group, with any existing user answers
     questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
     answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
@@ -218,6 +268,24 @@ def view_answers(request,group_id):
     
 @login_required    
 def answer_questions(request,group_id):
+
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
+ 
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+        
 
     group = InterviewGroup.objects.get(pk=group_id)
     title = group.name + ' Questions'
@@ -260,7 +328,8 @@ def answer_questions(request,group_id):
                     answer.text_val = str(answer.boolean_val) # makes the db a little more human readable
                 elif field.question.answer_type == 'select':
                     answer.option_val = form.cleaned_data['question_%d' % field.question.id]
-                    answer.text_val = answer.option_val.eng_text # makes the db a little more human readable
+                    if answer.option_val:
+                        answer.text_val = answer.option_val.eng_text # makes the db a little more human readable
                 elif field.question.answer_type == 'other':
                     answer.option_val = form.cleaned_data['question_%d' % field.question.id]
                     answer.text_val = form.cleaned_data['question_%d_other' % field.question.id]
@@ -291,6 +360,25 @@ def answer_questions(request,group_id):
 # start draw shapes for indicated group    
 @login_required
 def draw_group_shapes(request, group_id):
+
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
+ 
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+        
+
     group = InterviewGroup.objects.get(pk=group_id)
     request.session['int_group'] = group
         
@@ -303,6 +391,25 @@ def draw_group_shapes(request, group_id):
 # user finalizes group
 @login_required
 def finalize_group(request,id):
+
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
+ 
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+        
+        
     if request.method == 'GET':
         # update InterviewGroupMembership record
         int_group = InterviewGroup.objects.get(pk=id)
@@ -346,6 +453,25 @@ def finalize_group(request,id):
 # user finalizes group
 @login_required
 def finalize_interview(request,id):
+
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
+ 
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+        
+        
     if request.method == 'GET':
 
         # make sure this interview is the current one for this user session
@@ -362,6 +488,12 @@ def finalize_interview(request,id):
    
 @login_required
 def interview_complete(request):
+
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
     title = request.session['interview'].name + ' Completed'
     return render_to_response( 'interview_complete.html', RequestContext(request,{'title':title, 'name':request.session['interview'].name}))
     
@@ -481,6 +613,25 @@ def get_shape(request,id):
 # AJAX post to validate a shape     
 @login_required
 def validate_shape(request):
+
+    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
+    
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponse(result, status=403)
+
+    # see if the interview has been marked complete
+    if status.completed:
+        return HttpResponse(result, status=403)
+
+
     # validate indicated group, resource
     result = '{"status_code":"-1",  "success":"false",  "message":"error in validate_shape in views.py"}'
 
@@ -516,6 +667,25 @@ def validate_shape(request):
 # AJAX post that user accepted clipped shape    
 @login_required
 def save_shape(request):
+
+    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
+    
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponse(result, status=403)
+
+    # see if the interview has been marked complete
+    if status.completed:
+        return HttpResponse(result, status=403)
+        
+
     result = '{"status_code":"-1",  "success":"false",  "message":"error in save_shape in views.py"}'
     try:
         new_shape = InterviewShape()
@@ -536,6 +706,12 @@ def save_shape(request):
         
         result = '{"status_code":"1",  "success":"true", "message":"mpa saved successfully"'
         result = new_shape.json()
+        
+        # check the status of the interview group membership for this shape and unfinalize it if necessary
+        group_memb = InterviewGroupMembership.objects.get(user=request.user,int_group=int_group_id)
+        if group_memb.status == 'finalized':
+            group_memb.status = 'in-progress'
+            group_memb.save()
             
     except Exception, e:
         return HttpResponse(result + e.message, status=500)
@@ -546,6 +722,25 @@ def save_shape(request):
 # AJAX delete handler
 @login_required
 def delete_shape(request,id):
+
+    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
+    
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponse(result, status=403)
+
+    # see if the interview has been marked complete
+    if status.completed:
+        return HttpResponse(result, status=403)
+        
+
     shape = InterviewShape.objects.filter(pk=id)
     if shape.count() == 1 and shape[0].user == request.user:
         msg = 'Shape %s deleted.' % (id, )
@@ -588,6 +783,24 @@ def copy_shape(request):
 # AJAX copy handler
 @login_required
 def copy_shapes(request):
+
+    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
+    
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponse(result, status=403)
+
+    # see if the interview has been marked complete
+    if status.completed:
+        return HttpResponse(result, status=403)
+        
 
     if request.REQUEST.get('source_type') == 'shape':
         return copy_shape(request)
@@ -632,6 +845,25 @@ def copy_shapes(request):
 # AJAX interview shape attribute form processing
 @login_required
 def edit_shape(request,id):
+
+    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
+    
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponse(result, status=403)
+
+    # see if the interview has been marked complete
+    if status.completed:
+        return HttpResponse(result, status=403)
+
+
     shape = InterviewShape.objects.filter(pk=id,user=request.user)
     if shape.count() == 1:
         action = "/gwst/shape/edit/"+str(shape[0].pk)
@@ -691,6 +923,26 @@ def edit_shape(request,id):
 # AJAX edit geometry handler 
 @login_required
 def editgeom_shape(request,id):
+
+    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
+    
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponse(result, status=403)
+
+    # see if the interview has been marked complete
+    if status.completed:
+        return HttpResponse(result, status=403)
+
+
+
     result = '{"status_code":"-1",  "success":"false",  "message":"error in editgeom_shape in views.py"}'
     try:
         edit_shape = InterviewShape.objects.get(pk=id)
