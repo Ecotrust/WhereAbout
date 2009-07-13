@@ -15,6 +15,7 @@ databrowse.site.register(InterviewAnswerOption)
 databrowse.site.register(InterviewAnswer)
 databrowse.site.register(InterviewStatus)
 databrowse.site.register(InterviewShape)
+databrowse.site.register(InterviewInstructions)
 databrowse.site.register(FaqGroup)
 databrowse.site.register(Faq)
 
@@ -39,8 +40,8 @@ class InterviewGroupAdmin(admin.ModelAdmin):
     ]
 
 class InterviewQuestionAdmin(admin.ModelAdmin):
-    list_display = ('int_group', 'answer_type', 'code','display_order')
-    ordering = ('int_group','display_order')
+    list_display = ('__unicode__', 'answer_type', 'question_set', 'display_order')
+    ordering = ('int_group','question_set','display_order')
 
 class FaqAdmin(admin.ModelAdmin):
     search_fields = ('question', 'answer')
@@ -62,6 +63,7 @@ admin.site.register(InterviewAnswerOption,IntAdmin)
 admin.site.register(InterviewAnswer,IntAdmin)
 admin.site.register(InterviewStatus,IntAdmin)
 admin.site.register(InterviewShape,IntAdmin)
+admin.site.register(InterviewInstructions,IntAdmin)
 admin.site.register(FaqGroup,FaqGroupAdmin)
 admin.site.register(Faq,FaqAdmin)
 

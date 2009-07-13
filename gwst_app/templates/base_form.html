@@ -4,14 +4,22 @@
 
 {% block content %}
 {% if instructions %}
-<p>{{ instructions }}</p>
+<p>{{ instructions.main }}</p>
 {% endif %}
    <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
    {{ form.non_field_errors }}
    
     {% for field in form %}
-        {% if field.field.new_question_set %}
-        <p><div class="question_set"></div></p>
+        {% if field.field.question_set %}
+        {% with field.field.question_set as index %}
+        <p><div class="question_set"></div>
+        {% for key, val in instructions.items %}
+        {% ifequal key index %}
+            {{ val }}
+        {% endifequal %}
+        {% endfor %}
+        </p>
+        {% endwith %}
         {% endif %}
         <p><div class="fieldWrapper">
             {{ field.errors }}

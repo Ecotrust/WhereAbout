@@ -137,8 +137,12 @@ class AnswerForm(forms.Form):
                 self.fields['question_%d' % question.id].widget.attrs.update({'title':question.eng_tooltip})
                 
             # mark this question if it is the first in a question set
-            if prev_question and question.question_set != prev_question.question_set:
-                self.fields['question_%d' % question.id].new_question_set = True
+            if not prev_question or question.question_set != prev_question.question_set:
+                if not question.question_set:
+                    set_val = '-'
+                else:
+                    set_val = str(question.question_set)
+                self.fields['question_%d' % question.id].question_set = set_val
                             
             self.fields['question_%d' % question.id].question = question
             self.fields['question_%d' % question.id].answer = answer

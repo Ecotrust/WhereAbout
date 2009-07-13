@@ -484,6 +484,11 @@ div.system-message p.system-message-title {
     padding: 5px 0 0 12px;
 }
 
+div.question_set {
+  border-top: 1px solid #cccccc;
+  padding: 4px 0px 4px 0px;
+}
+
 /* BREADCRUMBS */
 
 div.breadcrumbs {

@@ -123,7 +123,7 @@ class InterviewQuestion(Model):
         ( 'other', 'list of values w/"other" text' ),
         ( 'text', 'enter text' ),
     )
-    int_group = ForeignKey(InterviewGroup, null=True, blank=True, help_text='set to ask question only of this group')
+    int_group = ForeignKey(InterviewGroup)
     answer_type = CharField( max_length=20, choices=AnswerTypeChoices )
     code = CharField( max_length=10, help_text='unique name for referencing this question directly', blank=True, null=True)
     val_min = FloatField( help_text='minimum value for numeric answers', blank=True, null=True )
@@ -141,11 +141,21 @@ class InterviewQuestion(Model):
         ordering = ('int_group__interview','int_group','question_set','display_order')
         
     def __unicode__(self):
-        if self.int_group:
-            return unicode('%s: %s' % (self.int_group, self.eng_text[0:100]))
-        else:
-            return unicode('%s: %s' % (self.interview, self.eng_text[0:100]))
+        return unicode('%s-%s' % (self.int_group, self.code))
         
+        
+class InterviewInstructions(Model):
+    int_group = ForeignKey(InterviewGroup)
+    question_set = IntegerField( help_text='for instructions for a particular question set', blank=True, null=True )
+    eng_text = CharField( max_length=200 )
+    
+    class Meta:
+        db_table = u'gwst_instructions'
+        unique_together = (("int_group", "question_set"),)
+        
+    def __unicode__(self):
+        return unicode('%s-%s' % (self.int_group, self.question_set))
+    
         
 # localization tables, for future use
 class InterviewQuestionText(Model):

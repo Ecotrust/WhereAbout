@@ -125,7 +125,8 @@ def assign_groups(request):
 
 
     title = request.session['interview'].name + ' - Group Membership Selection'
-    instructions = 'Please indicate the percent of your total fishing time that you spend in the following groups. The total of these groups must add up to 100.'
+    instructions = {}
+    instructions['main'] = 'Please indicate the percent of your total fishing time that you spend in the following groups. The total of these groups must add up to 100.'
     
     if request.method == 'GET':
         # let user select which groups they are in
@@ -290,6 +291,15 @@ def answer_questions(request,group_id):
 
     group = InterviewGroup.objects.get(pk=group_id)
     title = group.name + ' Questions'
+    
+    instructions_qs = InterviewInstructions.objects.filter(int_group__pk=group_id).order_by('-question_set')
+    
+    instructions = {}
+    for instruct in instructions_qs:
+        if instruct.question_set == None:
+            instructions['main'] = instruct.eng_text
+        else:
+            instructions[str(instruct.question_set)] = instruct.eng_text
 
     if request.method == 'GET':
         
@@ -355,7 +365,7 @@ def answer_questions(request,group_id):
             
             return HttpResponseRedirect('/group_status/')
 
-    return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'value':'Continue'}))     
+    return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))     
     
     
 # start draw shapes for indicated group    
