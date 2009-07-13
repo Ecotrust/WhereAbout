@@ -262,7 +262,11 @@ def view_answers(request,group_id):
     questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
     answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
     
-    group = InterviewGroup.objects.get(pk=group_id)
+    try:
+        group = InterviewGroup.objects.get(pk=group_id)
+    except ObjectDoesNotExist:
+        return render_to_response( '404.html', RequestContext(request,{}))
+        
     title = group.name + ' Answered Questions'
     
     return render_to_response( 'view_answers.html', RequestContext(request,{'title':title, 'questions': questions, 'answers':answers}))        
@@ -289,7 +293,11 @@ def answer_questions(request,group_id):
         return HttpResponseRedirect('/interview_complete/')
         
 
-    group = InterviewGroup.objects.get(pk=group_id)
+    try:
+        group = InterviewGroup.objects.get(pk=group_id)
+    except ObjectDoesNotExist:
+        return render_to_response( '404.html', RequestContext(request,{}))
+        
     title = group.name + ' Questions'
     
     instructions_qs = InterviewInstructions.objects.filter(int_group__pk=group_id).order_by('-question_set')
@@ -357,10 +365,9 @@ def answer_questions(request,group_id):
                     updated_group.status = 'in-progress'
                     updated_group.save()
                 else: #404
-                    return render_to_response( 'test.html', RequestContext(request,{}))
+                    return render_to_response( '404.html', RequestContext(request,{}))
             
             # if not global questions, proceed to draw_group_shapes
-            group = InterviewGroup.objects.get(pk=group_id)
             request.session['int_group'] = group
             
             return HttpResponseRedirect('/group_status/')
@@ -389,8 +396,11 @@ def draw_group_shapes(request, group_id):
         # redirect to interview_complete
         return HttpResponseRedirect('/interview_complete/')
         
-
-    group = InterviewGroup.objects.get(pk=group_id)
+    try:
+        group = InterviewGroup.objects.get(pk=group_id)
+    except ObjectDoesNotExist:
+        return render_to_response( '404.html', RequestContext(request,{}))
+        
     request.session['int_group'] = group
         
     title = request.session['interview'].name + ' - ' + group.name + ' Group Shape Drawing'
@@ -423,7 +433,11 @@ def finalize_group(request,id):
         
     if request.method == 'GET':
         # update InterviewGroupMembership record
-        int_group = InterviewGroup.objects.get(pk=id)
+        try:
+            int_group = InterviewGroup.objects.get(pk=id)
+        except ObjectDoesNotExist:
+            return render_to_response( '404.html', RequestContext(request,{}))
+            
         group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group=int_group)
         
         if group_memb.count() == 1:
@@ -455,7 +469,7 @@ def finalize_group(request,id):
             update_memb.save()
             
         else: #404
-            return render_to_response( 'notfound.html', RequestContext(request,{}))
+            return render_to_response( '404.html', RequestContext(request,{}))
         
         # redirect to interview_group_status
         return HttpResponseRedirect('/group_status/')
@@ -928,7 +942,7 @@ def edit_shape(request,id):
             
     else:
         # forbidden
-        return render_to_response( 'test.html', RequestContext())
+        return HttpResponse(result, status=403)
 
  
 # AJAX edit geometry handler 
