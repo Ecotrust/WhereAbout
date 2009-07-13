@@ -776,7 +776,11 @@ def delete_shape(request,id):
     return HttpResponse(msg)  
 
     
+    
 def copy_shape(request):
+    
+    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
+    
     source_id = request.REQUEST.get('source')
         
     target = request.REQUEST.get('target')
@@ -785,7 +789,12 @@ def copy_shape(request):
     target_group = InterviewGroup.objects.get(pk=target_group_id)
     
     shape = InterviewShape.objects.filter(pk=source_id)
+    
     if shape.count() == 1 and shape[0].user == request.user:
+    
+        if target_group == shape[0].int_group and target_resource == shape[0].resource:
+            return HttpResponse(result, status=403)
+        
         copy = shape[0].copy()
         copy.int_group = target_group
         copy.resource = target_resource
@@ -803,8 +812,8 @@ def copy_shape(request):
     else:
         return HttpResponseForbidden(
             'You cannot copy shapes you do not have access to.')
-            
-        
+
+
 # AJAX copy handler
 @login_required
 def copy_shapes(request):
@@ -837,6 +846,9 @@ def copy_shapes(request):
     
     source = request.REQUEST.get('source')
     source_group_id, source_resource_id = source.split('-')
+    
+    if target_group_id == source_group_id and target_resource_id == source_resource_id:
+        return HttpResponse(result, status=403)
     
     copy_shapes = InterviewShape.objects.filter(user=request.user,resource=source_resource_id,int_group=source_group_id)
     

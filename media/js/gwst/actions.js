@@ -949,7 +949,7 @@ gwst.actions.nonExt.copyToTarget = function(e){
                 });                        
             }else if(XMLHttpRequest.status == 403){
                 gwst.ui.error.show({
-                    errorText: 'You do not have permission to copy this object.'
+                    errorText: 'You cannot copy a shape into its original resource group.'
                 });
             }else if(XMLHttpRequest.status == 404){
                 gwst.ui.error.show({

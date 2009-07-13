@@ -173,6 +173,9 @@ gwst.widgets.Map = Ext.extend(mapfish.widgets.MapComponent, {
                         self.selectionManager.setSelectedFeature(feature.attributes.mpa, self);
                         feature.attributes.mpa.selectedOnMap = true;
                     },
+                    'dblclick': function(feature){
+                        gwst.editMpaAttributes(feature.attributes.mpa);
+                    },
                     'clickout': function(feature){
                         if(self.over == null){
                             // self.deselectAllMPAs()

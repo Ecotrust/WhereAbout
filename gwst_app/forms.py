@@ -157,7 +157,7 @@ class InterviewShapeAttributeForm(forms.ModelForm):
         total_pennies = new_pennies + self.group_pennies
 
         if total_pennies > 100:
-            raise ValidationError('The total number of pennies across all shapes in this group cannot exceed 100.') 
+            raise ValidationError('The total number of pennies across all shapes in this group cannot exceed 100. (current: %s)' % (total_pennies,)) 
             
         return self.cleaned_data['pennies']
         
