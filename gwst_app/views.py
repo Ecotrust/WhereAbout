@@ -125,12 +125,13 @@ def assign_groups(request):
 
 
     title = request.session['interview'].name + ' - Group Membership Selection'
+    instructions = 'Please indicate the percent of your total fishing time that you spend in the following groups. The total of these groups must add up to 100.'
     
     if request.method == 'GET':
         # let user select which groups they are in
         groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
         form = SelectInterviewGroupsForm( groups )
-        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'value':'Continue'}))
+        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))
         
     else:
         groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
@@ -151,7 +152,7 @@ def assign_groups(request):
             return HttpResponseRedirect('/group_status/')
         
         # validation errors
-        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'value':'Continue'}))
+        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))
     
     
 # show a list of user's groups and current status of each

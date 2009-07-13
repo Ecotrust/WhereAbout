@@ -3,9 +3,24 @@
 {% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
 
 {% block content %}
+{% if instructions %}
+<p>{{ instructions }}</p>
+{% endif %}
    <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
-   {{ form.as_p }}
-   <input id="submit" type="submit" value="{{ value }}" />
+   {{ form.non_field_errors }}
+   
+    {% for field in form %}
+        {% if field.field.new_question_set %}
+        <p><div class="question_set"></div></p>
+        {% endif %}
+        <p><div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}: {{ field }}
+        </div></p>
+    {% endfor %}   
+   
+   <p><input id="submit" type="submit" value="{{ value }}" />
    {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+   </p>
    </form>
 {% endblock %}

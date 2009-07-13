@@ -32,10 +32,14 @@ class SelectInterviewGroupsForm( forms.Form ):
          
     def clean(self):
         pct_sum = 0
+        
         for i, group in enumerate(self.groups):
-            pct_val = self.cleaned_data['group_%d_pc' % group.id]
-            if pct_val:
-                pct_sum = pct_sum + self.cleaned_data['group_%d_pc' % group.id]
+            try:
+                pct_val = self.cleaned_data['group_%d_pc' % group.id]
+                if pct_val:
+                    pct_sum = pct_sum + self.cleaned_data['group_%d_pc' % group.id]
+            except Exception, e:
+                pass
                 
         if pct_sum < 100 or pct_sum > 100:
             raise forms.ValidationError( 'Percentages must sum to 100.' )
@@ -46,6 +50,7 @@ class SelectInterviewGroupsForm( forms.Form ):
 class AnswerForm(forms.Form):
     def __init__(self, questions, answers, *args, **kwargs):
         forms.Form.__init__(self, *args, **kwargs)
+        prev_question = None
         for i, question in enumerate(questions):
             dynamic_args = {}
             dynamic_args['label'] = question.eng_text
@@ -130,9 +135,15 @@ class AnswerForm(forms.Form):
             # now add any tooltip text
             if question.eng_tooltip:
                 self.fields['question_%d' % question.id].widget.attrs.update({'title':question.eng_tooltip})
+                
+            # mark this question if it is the first in a question set
+            if prev_question and question.question_set != prev_question.question_set:
+                self.fields['question_%d' % question.id].new_question_set = True
                             
             self.fields['question_%d' % question.id].question = question
             self.fields['question_%d' % question.id].answer = answer
+            
+            prev_question = question
 
 class InterviewShapeAttributeForm(forms.ModelForm):
     pennies = forms.IntegerField( min_value=1, max_value=100, required=True )
