@@ -475,7 +475,51 @@ def finalize_group(request,id):
         return HttpResponseRedirect('/group_status/')
         
         
-# user finalizes group
+# user unfinalizes group
+@login_required
+def unfinalize_group(request,id):
+
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
+ 
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+        
+        
+    if request.method == 'GET':
+        # update InterviewGroupMembership record
+        try:
+            int_group = InterviewGroup.objects.get(pk=id)
+        except ObjectDoesNotExist:
+            return render_to_response( '404.html', RequestContext(request,{}))
+            
+        group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group=int_group)
+        
+        if group_memb.count() == 1:
+        
+            update_memb = group_memb[0]
+            update_memb.status = 'in-progress'
+            update_memb.save()
+            
+        else: #404
+            return render_to_response( '404.html', RequestContext(request,{}))
+        
+        # redirect to interview_group_status
+        return HttpResponseRedirect('/group_status/')
+        
+        
+# user finalizes interview
 @login_required
 def finalize_interview(request,id):
 

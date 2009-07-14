@@ -26,6 +26,7 @@
   <ul>
   {% ifequal object.status "finalized" %}
      <li><a href="/group_qs/{{object.int_group.id}}/view/">Review answers</a></li>
+     <li><a href="/unfinalize_group/{{object.int_group.id}}/">Re-open this group</a></li>
   {% else %}
     {% ifequal object.status "in-progress" %}
       <li><a href="/group_qs/{{object.int_group.id}}/answer/">Edit Answers</a></li>

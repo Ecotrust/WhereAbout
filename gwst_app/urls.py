@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     (r'^draw_group_shapes/(\d+)/$', draw_group_shapes ),
     
     (r'^finalize_group/(\d+)/$', finalize_group ),
+    (r'^unfinalize_group/(\d+)/$', unfinalize_group ),
     (r'^finalize_interview/(\d+)/$', finalize_interview ),
     
     (r'^validate_shape/$', validate_shape ),
