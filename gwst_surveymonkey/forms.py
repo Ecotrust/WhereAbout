@@ -130,18 +130,24 @@ class SMAddForm(forms.Form):
         username = email
         kyk = new_person[15]
         dive = new_person[16]
-        prvsl = new_person[17]                      
-        
+        prvsl = new_person[17]
+        pref = new_person[21] #Users preference for online or in-person interview                            
+               
         output.append(first_name + ' ' + last_name)            
         output.append(email)
-        group_str = ''
+        
+        group_str = ''       
         if kyk != '':
             group_str += 'kayak, '
-        elif dive != '':
+        if dive != '':
             group_str += 'dive, '
-        elif prvsl != '':
+        if prvsl != '':
             group_str += 'prvsl'            
         output.append(group_str)
+
+        if pref == 'I am only interested in being interviewed in person':
+            output.append('Skipped: requested in-person interview')               
+            return {'status':'fail','output':output}
                  
         from utilities.passwords import GenPasswd
         password = GenPasswd(chars=email)
