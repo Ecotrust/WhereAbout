@@ -415,6 +415,9 @@ gwst.widgets.FeaturesMenu = function(options){
         }
         $(_store).bind('loaded', function(){
             $(self.tree).html(features.join(''));
+            var url_str = window.location.href;
+            var url_parts = url_str.split('/');
+            self.toggleFolder('folder',url_parts[url_parts.length-2]);
         });
         for(var i=0; i<hash['mpa'].length; i++){
             delete hash['mpa'][i]['children'];
