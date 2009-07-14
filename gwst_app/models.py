@@ -292,7 +292,10 @@ class InterviewShape(Model):
         resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
         if resource_pennies == None:
             resource_pennies = 0
-        folderName = self.resource.name+' group ('+str(100-resource_pennies)+' pennies left)'
+        if resource_pennies == 100:
+            folderName = self.resource.name+' group (complete)'
+        else:
+            folderName = self.resource.name+' group ('+str(100-resource_pennies)+' pennies left)'
             
         if attributes:
             attr = self.client_object()
