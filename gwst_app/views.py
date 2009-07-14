@@ -599,7 +599,8 @@ def user_features_client_object(user,interview):
     
     for int_group_memb in int_group_membs.all():
         int_group = int_group_memb.int_group
-        group = create_folder(int_group.name, pk=int_group.id, toggle=True, context=True)
+        group_folder_name = int_group.name + ' (' + int_group_memb.status + ')'
+        group = create_folder(group_folder_name, pk=int_group.id, toggle=True, context=True)
         for resource in int_group.resources.all():
             resource_shapes = InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource)
             resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
