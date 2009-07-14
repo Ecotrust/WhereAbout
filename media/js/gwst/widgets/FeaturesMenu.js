@@ -74,6 +74,7 @@ gwst.widgets.FeaturesMenu = function(options){
             for(var i=0; i<data['mpa'].length; i++){
                 var mpa = data['mpa'][i];
                 self._addMpa(mpa);
+                self.setFolderLabel(mpa.folderID, mpa.folderName);
             }
         }else{
             // nothing of interest added'
