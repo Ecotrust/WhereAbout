@@ -58,7 +58,7 @@ gwst.copy.clippedGeometryStatus[1] = 'System has chosen an MPA';
 gwst.copy.clippedGeometryStatus[2] = '<h3>Outside the Study Region</h3><img src="/site-media/figures/outsidestudyregion.gif" width="115" height="84" /><p>The geometry you defined was outside the study region. The study region for Southern California is limited to 3 miles offshore. If you are having trouble, you can turn on the study region layer in the Data Layers menu.</p>';
 gwst.copy.clippedGeometryStatus[3] = '<h3>Invalid Geometry</h3><img src="/site-media/figures/invalidgeo.gif" width="121" height="87" /><p>Please avoid drawing irregular shapes that intersect themselves like bowties.<br /> To delete a vertex from a geometry, click on it and press "d" on your keyboard.</p>';
 gwst.copy.clippedGeometryStatus[4] = 'System Error';
-gwst.copy.clippedGeometryStatus[6] = '<h3>Overlapping Shapes</h3><img src="/site-media/figures/invalidgeo.gif" width="121" height="87" /><p>Please do not draw a new shape on top of other shapes of the same resource.<br /> To delete a vertex from a geometry, click on it and press "d" on your keyboard.</p>';
+gwst.copy.clippedGeometryStatus[6] = '<h3>Overlapping Shapes</h3><img src="/site-media/figures/overlap.gif" width="122" height="88" /><p>Please do not draw a new shape on top of other shapes of the same resource.<br /> To delete a vertex from a geometry, click on it and press "d" on your keyboard.</p>';
 gwst.copy.clippedGeometryErrorText = 'You have the option of either cancelling this operation or going back to your geometry to fix this error.';
 
 

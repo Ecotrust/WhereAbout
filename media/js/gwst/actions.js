@@ -912,7 +912,7 @@ gwst.actions.nonExt.copyShape = function(e){
     gwst.copySource = e.data.mpa.pk;
     gwst.copySourceType = 'shape';
     
-    alert( 'Shape selected. Right-click a group and select paste to finish.' ); 
+    alert( 'Shape ready to copy. Right-click a group and select paste to finish.' ); 
 };
 
 gwst.actions.nonExt.copyAllShapes = function(e){
@@ -920,7 +920,7 @@ gwst.actions.nonExt.copyAllShapes = function(e){
     gwst.copySource = e.data.pk;
     gwst.copySourceType = 'resource';
     
-    alert( 'Shapes selected. Right-click another group and select paste to finish.' ); 
+    alert( 'Shapes ready to copy. Right-click another group and select paste to finish.' ); 
 };
 
 gwst.actions.nonExt.copyToTarget = function(e){

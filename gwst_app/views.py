@@ -650,7 +650,7 @@ def user_features_client_object(user,interview):
             resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
             if resource_pennies == None:
                 resource_pennies = 0
-            mpas = create_folder(resource.name+' group ('+str(resource_pennies)+' pennies)', pk=str(int_group.id)+'-'+str(resource.id), toggle=True, context=True)
+            mpas = create_folder(resource.name+' group ('+str(100-resource_pennies)+' pennies left)', pk=str(int_group.id)+'-'+str(resource.id), toggle=True, context=True)
             for mpa in resource_shapes:
                 add_child(mpas, mpa.client_object())
             add_child(group,mpas)

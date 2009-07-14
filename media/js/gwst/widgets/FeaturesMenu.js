@@ -182,6 +182,7 @@ gwst.widgets.FeaturesMenu = function(options){
                     {
                         name: 'Add new shape',
                         handler: function(e){
+                            self.tree.tree('checkItem', '.'+data['model'] + '_' + data['pk']);
                             gwst.actions.drawMPA.execute(data['pk'], e);
                         },
                         iconcls: 'mm-context-add'

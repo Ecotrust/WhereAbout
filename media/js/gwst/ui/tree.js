@@ -180,6 +180,20 @@
             });
         },
         
+        checkItem: function(item){
+            var wasHidden = false;
+            if(typeof item == 'string'){
+                item = this.element.find(item);
+            }else{
+                item = $(item);
+            }
+            var input = item.find('>input');
+            var wasChecked = input.attr('checked');
+            if(!wasChecked){
+                input.click();
+            }
+        },
+        
         selectItem: function(item, scrollTo){
             var wasHidden = false;
             if(typeof item == 'string'){
