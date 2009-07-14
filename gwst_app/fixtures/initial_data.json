@@ -45,7 +45,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-13 17:41:26", 
+      "last_login": "2009-07-14 13:36:24", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
@@ -63,7 +63,7 @@
       "is_active": true, 
       "is_superuser": false, 
       "is_staff": false, 
-      "last_login": "2009-07-13 17:45:14", 
+      "last_login": "2009-07-14 13:48:42", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
@@ -312,24 +312,6 @@
     }
   }, 
   {
-    "pk": 7, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 1, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-08 08:53:09", 
-      "percent_involvement": 30, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
     "pk": 6, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
@@ -351,7 +333,7 @@
     "pk": 4, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
-      "status": "finalized", 
+      "status": "not yet started", 
       "user_status_msg": "no shapes drawn", 
       "date_completed": "2009-07-13 17:45:30", 
       "int_group": 6, 
@@ -362,6 +344,24 @@
       "user": 2, 
       "date_started": "2009-07-13 17:45:27", 
       "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 1, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-14 14:01:19", 
+      "percent_involvement": 30, 
       "num_incomplete_resources": 0
     }
   }, 
@@ -447,6 +447,29 @@
   }, 
   {
     "pk": 1, 
+    "model": "gwst_app.questiongroupvalidator", 
+    "fields": {
+      "description": "Sum to 100", 
+      "param_4": "", 
+      "param_1": "100", 
+      "param_3": "", 
+      "param_2": "", 
+      "type": "sum"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.questiongroup", 
+    "fields": {
+      "code": "dive_perc", 
+      "eng_text": "What percentage of your dives are", 
+      "validators": [
+        1
+      ]
+    }
+  }, 
+  {
+    "pk": 1, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "code": "num_dives", 
@@ -454,7 +477,8 @@
       "int_group": 1, 
       "question_set": null, 
       "display_order": 1.0, 
-      "required": false, 
+      "required": true, 
+      "question_group": null, 
       "options": [], 
       "val_min": 1.0, 
       "val_default": "", 
@@ -472,7 +496,8 @@
       "int_group": 1, 
       "question_set": null, 
       "display_order": 2.0, 
-      "required": false, 
+      "required": true, 
+      "question_group": null, 
       "options": [
         6, 
         7, 
@@ -480,7 +505,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "other", 
+      "answer_type": "select", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -494,7 +519,8 @@
       "int_group": 1, 
       "question_set": null, 
       "display_order": 3.0, 
-      "required": false, 
+      "required": true, 
+      "question_group": null, 
       "options": [
         9, 
         10
@@ -507,6 +533,44 @@
     }
   }, 
   {
+    "pk": 33, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "code": "dive_shore", 
+      "eng_text": "What percentage of your dives are shore based?", 
+      "int_group": 1, 
+      "question_set": null, 
+      "display_order": 4.0, 
+      "required": true, 
+      "question_group": 1, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Percentage of dives from which you start out from the mainland", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "code": "dive_isle", 
+      "eng_text": "What percentage of your dives are island based?", 
+      "int_group": 1, 
+      "question_set": null, 
+      "display_order": 5.0, 
+      "required": true, 
+      "question_group": 1, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Percentage of dives from which you start out from an island", 
+      "val_max": 100.0
+    }
+  }, 
+  {
     "pk": 2, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -516,6 +580,7 @@
       "question_set": null, 
       "display_order": 1.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -534,6 +599,7 @@
       "question_set": null, 
       "display_order": 2.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -552,6 +618,7 @@
       "question_set": null, 
       "display_order": 3.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -570,6 +637,7 @@
       "question_set": null, 
       "display_order": 4.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -588,6 +656,7 @@
       "question_set": null, 
       "display_order": 5.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": 0.0, 
       "val_default": "", 
@@ -606,6 +675,7 @@
       "question_set": null, 
       "display_order": 6.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": 1.0, 
       "val_default": "", 
@@ -624,6 +694,7 @@
       "question_set": null, 
       "display_order": 1.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -642,6 +713,7 @@
       "question_set": null, 
       "display_order": 2.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -660,6 +732,7 @@
       "question_set": null, 
       "display_order": 3.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -678,6 +751,7 @@
       "question_set": null, 
       "display_order": 4.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -696,6 +770,7 @@
       "question_set": null, 
       "display_order": 5.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -714,6 +789,7 @@
       "question_set": null, 
       "display_order": 6.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -732,6 +808,7 @@
       "question_set": null, 
       "display_order": 7.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -750,6 +827,7 @@
       "question_set": null, 
       "display_order": 8.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -768,6 +846,7 @@
       "question_set": null, 
       "display_order": 9.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -786,6 +865,7 @@
       "question_set": null, 
       "display_order": 10.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -804,6 +884,7 @@
       "question_set": null, 
       "display_order": 11.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -822,6 +903,7 @@
       "question_set": null, 
       "display_order": 12.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": 1.0, 
       "val_default": "", 
@@ -840,6 +922,7 @@
       "question_set": null, 
       "display_order": 13.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": 1.0, 
       "val_default": "", 
@@ -858,6 +941,7 @@
       "question_set": null, 
       "display_order": 14.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -876,6 +960,7 @@
       "question_set": null, 
       "display_order": 1.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -894,6 +979,7 @@
       "question_set": null, 
       "display_order": 2.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "OR", 
@@ -912,6 +998,7 @@
       "question_set": null, 
       "display_order": 3.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -930,6 +1017,7 @@
       "question_set": null, 
       "display_order": 4.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": 10.0, 
       "val_default": "", 
@@ -948,6 +1036,7 @@
       "question_set": null, 
       "display_order": 5.0, 
       "required": false, 
+      "question_group": null, 
       "options": [
         4, 
         5
@@ -969,6 +1058,7 @@
       "question_set": null, 
       "display_order": 1.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -987,6 +1077,7 @@
       "question_set": null, 
       "display_order": 2.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -1005,6 +1096,7 @@
       "question_set": null, 
       "display_order": 3.0, 
       "required": false, 
+      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
@@ -1094,14 +1186,94 @@
     }
   }, 
   {
+    "pk": 6, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 13:53:14", 
+      "num_times_saved": 1, 
+      "int_question": 1, 
+      "creation_date": "2009-07-14 13:53:14", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "None"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 13:53:14", 
+      "num_times_saved": 1, 
+      "int_question": 31, 
+      "creation_date": "2009-07-14 13:53:14", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": null
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 13:53:14", 
+      "num_times_saved": 1, 
+      "int_question": 32, 
+      "creation_date": "2009-07-14 13:53:14", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": null
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 13:53:14", 
+      "num_times_saved": 1, 
+      "int_question": 33, 
+      "creation_date": "2009-07-14 13:53:14", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "None"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 13:53:14", 
+      "num_times_saved": 1, 
+      "int_question": 34, 
+      "creation_date": "2009-07-14 13:53:14", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "None"
+    }
+  }, 
+  {
     "pk": 1, 
     "model": "gwst_app.interviewstatus", 
     "fields": {
       "completed": false, 
       "first_login": "2009-07-13 17:45:14", 
       "creation_date": "2009-07-13 17:41:16", 
-      "num_logins": 1, 
-      "last_login": "2009-07-13 17:45:14", 
+      "num_logins": 2, 
+      "last_login": "2009-07-14 13:48:42", 
       "user": 2, 
       "interview": 1, 
       "complete_date": null, 
