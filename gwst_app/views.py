@@ -793,7 +793,13 @@ def copy_shape(request):
     if shape.count() == 1 and shape[0].user == request.user:
     
         if target_group == shape[0].int_group and target_resource == shape[0].resource:
-            return HttpResponse(result, status=403)
+            return HttpResponse(result, status=420)
+            
+        other_shapes = InterviewShape.objects.filter(user=request.user,int_group=target_group,resource=target_resource)
+        
+        for test_shape in other_shapes.all():
+            if shape[0].geometry_clipped.intersects( test_shape.geometry_clipped ):
+                return HttpResponse(result, status=421)
         
         copy = shape[0].copy()
         copy.int_group = target_group
@@ -835,7 +841,6 @@ def copy_shapes(request):
     if status.completed:
         return HttpResponse(result, status=403)
         
-
     if request.REQUEST.get('source_type') == 'shape':
         return copy_shape(request)
 
@@ -855,11 +860,20 @@ def copy_shapes(request):
     new_copies = []
     if copy_shapes.count() > 0:
     
+        # check for overlap issues before proceeding
+        other_shapes = InterviewShape.objects.filter(user=request.user,int_group=target_group,resource=target_resource)
+    
+        for shape in copy_shapes.all():
+            for test_shape in other_shapes.all():
+                if shape.geometry_clipped.intersects( test_shape.geometry_clipped ):
+                    return HttpResponse(result, status=421)
+    
         # if the target group already has any pennies assigned, don't bring a copied groups pennies
         resource_shapes = InterviewShape.objects.filter(user=request.user,int_group=target_group,resource=target_resource)
         resource_agg = resource_shapes.aggregate(Sum('pennies'))
-    
+          
         for shape in copy_shapes.all():
+        
             copy = shape.copy()
             copy.int_group = target_group
             copy.resource = target_resource

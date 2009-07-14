@@ -949,11 +949,19 @@ gwst.actions.nonExt.copyToTarget = function(e){
                 });                        
             }else if(XMLHttpRequest.status == 403){
                 gwst.ui.error.show({
-                    errorText: 'You cannot copy a shape into its original resource group.'
+                    errorText: 'You do not have permission to copy this object.'
                 });
             }else if(XMLHttpRequest.status == 404){
                 gwst.ui.error.show({
                     errorText: 'The object you are trying to copy does not exist.'
+                });
+            }else if(XMLHttpRequest.status == 420){
+                gwst.ui.error.show({
+                    errorText: 'You cannot copy a shape into its original resource group.'
+                });
+            }else if(XMLHttpRequest.status == 421){
+                gwst.ui.error.show({
+                    errorText: 'One or more shapes would overlap in the target resource group.'
                 });
             }else{
                 gwst.ui.error.show({
