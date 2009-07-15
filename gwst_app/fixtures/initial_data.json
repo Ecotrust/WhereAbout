@@ -45,7 +45,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-14 13:36:24", 
+      "last_login": "2009-07-14 16:27:32", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
@@ -63,7 +63,7 @@
       "is_active": true, 
       "is_superuser": false, 
       "is_staff": false, 
-      "last_login": "2009-07-14 13:48:42", 
+      "last_login": "2009-07-14 16:33:52", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
@@ -191,19 +191,20 @@
     }
   }, 
   {
-    "pk": 3, 
+    "pk": 1, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FF", 
-      "code": "prvsl", 
-      "name": "private vessel", 
+      "code": "div", 
+      "name": "dive", 
       "required_group": false, 
       "user_draws_shapes": true, 
       "interview": 1, 
       "resources": [
-        1
+        1, 
+        3
       ], 
-      "description": "private vessel anglers"
+      "description": "free divers"
     }
   }, 
   {
@@ -223,20 +224,19 @@
     }
   }, 
   {
-    "pk": 1, 
+    "pk": 3, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FF", 
-      "code": "div", 
-      "name": "dive", 
+      "code": "prvsl", 
+      "name": "private vessel", 
       "required_group": false, 
       "user_draws_shapes": true, 
       "interview": 1, 
       "resources": [
-        1, 
-        3
+        1
       ], 
-      "description": "free divers"
+      "description": "private vessel anglers"
     }
   }, 
   {
@@ -294,42 +294,6 @@
     }
   }, 
   {
-    "pk": 5, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 3, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": null, 
-      "percent_involvement": 30, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 2, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-07 15:32:03", 
-      "percent_involvement": 40, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
     "pk": 4, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
@@ -348,10 +312,28 @@
     }
   }, 
   {
+    "pk": 6, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "in-progress", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-14 17:22:18", 
+      "percent_involvement": 40, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
     "pk": 7, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
-      "status": "not yet started", 
+      "status": "in-progress", 
       "user_status_msg": "no shapes drawn", 
       "date_completed": null, 
       "int_group": 1, 
@@ -360,7 +342,25 @@
       "reviewed": false, 
       "date_reviewed": null, 
       "user": 2, 
-      "date_started": "2009-07-14 14:01:19", 
+      "date_started": "2009-07-14 16:51:48", 
+      "percent_involvement": 30, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "in-progress", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-14 17:24:18", 
       "percent_involvement": 30, 
       "num_incomplete_resources": 0
     }
@@ -443,6 +443,30 @@
     "fields": {
       "display_order": 2.0, 
       "eng_text": "Scuba Dive"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1.0, 
+      "eng_text": "Trailer"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 2.0, 
+      "eng_text": "Slip"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 3.0, 
+      "eng_text": "Dry Dock"
     }
   }, 
   {
@@ -579,7 +603,7 @@
       "int_group": 2, 
       "question_set": null, 
       "display_order": 1.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
@@ -655,7 +679,7 @@
       "int_group": 2, 
       "question_set": null, 
       "display_order": 5.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": 0.0, 
@@ -674,7 +698,7 @@
       "int_group": 2, 
       "question_set": null, 
       "display_order": 6.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": 1.0, 
@@ -689,11 +713,11 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "code": "boat_type", 
-      "eng_text": "Type of boat", 
+      "eng_text": "Type of boat (style/make/material)", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 1.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
@@ -708,11 +732,11 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "code": "dfg_num", 
-      "eng_text": "Department of Fish and Game Boat Number", 
+      "eng_text": "CDFG Boat Number", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 2.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
@@ -731,14 +755,14 @@
       "int_group": 3, 
       "question_set": null, 
       "display_order": 3.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
       "options": [], 
-      "val_min": null, 
+      "val_min": 0.0, 
       "val_default": "", 
-      "answer_type": "text", 
+      "answer_type": "integer", 
       "eng_tooltip": "", 
-      "val_max": null
+      "val_max": 100.0
     }
   }, 
   {
@@ -750,14 +774,14 @@
       "int_group": 3, 
       "question_set": null, 
       "display_order": 4.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
       "options": [], 
-      "val_min": null, 
+      "val_min": 0.0, 
       "val_default": "", 
-      "answer_type": "text", 
+      "answer_type": "integer", 
       "eng_tooltip": "", 
-      "val_max": null
+      "val_max": 100.0
     }
   }, 
   {
@@ -769,14 +793,14 @@
       "int_group": 3, 
       "question_set": null, 
       "display_order": 5.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
       "options": [], 
-      "val_min": null, 
+      "val_min": 6.0, 
       "val_default": "", 
       "answer_type": "integer", 
       "eng_tooltip": "", 
-      "val_max": null
+      "val_max": 200.0
     }
   }, 
   {
@@ -788,12 +812,16 @@
       "int_group": 3, 
       "question_set": null, 
       "display_order": 6.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
-      "options": [], 
+      "options": [
+        11, 
+        12, 
+        13
+      ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "text", 
+      "answer_type": "select", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -807,7 +835,7 @@
       "int_group": 3, 
       "question_set": null, 
       "display_order": 7.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
@@ -822,7 +850,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "code": "launch1", 
-      "eng_text": "Launch Port 1", 
+      "eng_text": "Launch Port 1 (In addition to home port)", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 8.0, 
@@ -902,7 +930,7 @@
       "int_group": 3, 
       "question_set": null, 
       "display_order": 12.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": 1.0, 
@@ -921,7 +949,7 @@
       "int_group": 3, 
       "question_set": null, 
       "display_order": 13.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": 1.0, 
@@ -940,14 +968,14 @@
       "int_group": 3, 
       "question_set": null, 
       "display_order": 14.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
       "options": [], 
-      "val_min": null, 
+      "val_min": 0.0, 
       "val_default": "", 
       "answer_type": "integer", 
       "eng_tooltip": "", 
-      "val_max": null
+      "val_max": 365.0
     }
   }, 
   {
@@ -1189,80 +1217,400 @@
     "pk": 6, 
     "model": "gwst_app.interviewanswer", 
     "fields": {
-      "last_modified": "2009-07-14 13:53:14", 
-      "num_times_saved": 1, 
+      "last_modified": "2009-07-14 17:22:46", 
+      "num_times_saved": 4, 
       "int_question": 1, 
       "creation_date": "2009-07-14 13:53:14", 
       "option_val": null, 
       "boolean_val": null, 
       "user": 2, 
       "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "None"
+      "integer_val": 11, 
+      "text_val": "11"
     }
   }, 
   {
     "pk": 7, 
     "model": "gwst_app.interviewanswer", 
     "fields": {
-      "last_modified": "2009-07-14 13:53:14", 
-      "num_times_saved": 1, 
+      "last_modified": "2009-07-14 17:22:46", 
+      "num_times_saved": 4, 
       "int_question": 31, 
       "creation_date": "2009-07-14 13:53:14", 
-      "option_val": null, 
+      "option_val": 6, 
       "boolean_val": null, 
       "user": 2, 
       "decimal_val": null, 
       "integer_val": null, 
-      "text_val": null
+      "text_val": "Swimming"
     }
   }, 
   {
     "pk": 8, 
     "model": "gwst_app.interviewanswer", 
     "fields": {
-      "last_modified": "2009-07-14 13:53:14", 
-      "num_times_saved": 1, 
+      "last_modified": "2009-07-14 17:22:46", 
+      "num_times_saved": 4, 
       "int_question": 32, 
       "creation_date": "2009-07-14 13:53:14", 
-      "option_val": null, 
+      "option_val": 9, 
       "boolean_val": null, 
       "user": 2, 
       "decimal_val": null, 
       "integer_val": null, 
-      "text_val": null
+      "text_val": "Free dive"
     }
   }, 
   {
     "pk": 9, 
     "model": "gwst_app.interviewanswer", 
     "fields": {
-      "last_modified": "2009-07-14 13:53:14", 
-      "num_times_saved": 1, 
+      "last_modified": "2009-07-14 17:22:46", 
+      "num_times_saved": 4, 
       "int_question": 33, 
       "creation_date": "2009-07-14 13:53:14", 
       "option_val": null, 
       "boolean_val": null, 
       "user": 2, 
       "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "None"
+      "integer_val": 61, 
+      "text_val": "61"
     }
   }, 
   {
     "pk": 10, 
     "model": "gwst_app.interviewanswer", 
     "fields": {
-      "last_modified": "2009-07-14 13:53:14", 
-      "num_times_saved": 1, 
+      "last_modified": "2009-07-14 17:22:46", 
+      "num_times_saved": 4, 
       "int_question": 34, 
       "creation_date": "2009-07-14 13:53:14", 
       "option_val": null, 
       "boolean_val": null, 
       "user": 2, 
       "decimal_val": null, 
+      "integer_val": 39, 
+      "text_val": "39"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:24:09", 
+      "num_times_saved": 3, 
+      "int_question": 2, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
       "integer_val": null, 
-      "text_val": "None"
+      "text_val": "ffff"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:24:09", 
+      "num_times_saved": 3, 
+      "int_question": 26, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": ""
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:24:10", 
+      "num_times_saved": 3, 
+      "int_question": 27, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": ""
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:24:10", 
+      "num_times_saved": 3, 
+      "int_question": 28, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": ""
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:24:10", 
+      "num_times_saved": 3, 
+      "int_question": 29, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 2, 
+      "text_val": "2"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:24:10", 
+      "num_times_saved": 3, 
+      "int_question": 30, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 23, 
+      "text_val": "23"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 12, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "few"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 13, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "klsfej"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 14, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 3, 
+      "text_val": "3"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 15, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 2, 
+      "text_val": "2"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 16, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 15, 
+      "text_val": "15"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 17, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": 11, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "Trailer"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 18, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "foobar"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 19, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": ""
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 20, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": ""
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 21, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": ""
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 22, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": ""
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 23, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 2, 
+      "text_val": "2"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 24, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 32, 
+      "text_val": "32"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-14 17:49:58", 
+      "num_times_saved": 3, 
+      "int_question": 25, 
+      "creation_date": "2009-07-14 17:22:11", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 45, 
+      "text_val": "45"
     }
   }, 
   {
@@ -1272,8 +1620,8 @@
       "completed": false, 
       "first_login": "2009-07-13 17:45:14", 
       "creation_date": "2009-07-13 17:41:16", 
-      "num_logins": 2, 
-      "last_login": "2009-07-14 13:48:42", 
+      "num_logins": 3, 
+      "last_login": "2009-07-14 16:33:52", 
       "user": 2, 
       "interview": 1, 
       "complete_date": null, 
