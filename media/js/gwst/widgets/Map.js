@@ -94,18 +94,36 @@ gwst.widgets.Map = Ext.extend(mapfish.widgets.MapComponent, {
                 strokeColor: '${strokeColor}',
                 strokeOpacity: 1,
                 strokeWidth: 1,
-                cursor: 'pointer'
+                cursor: 'pointer',
+                pointerEvents: "visiblePainted",
+                label : "${shape_label}",
+                fontColor: "black",
+                fontSize: "12px",
+                //fontFamily: "Courier New, monospace",
+                //fontWeight: "bold",
+                labelAlign: "cm"
             }),
             'select': new OpenLayers.Style({
-               strokeWidth: 3,
-               fillColor: '${fillColor}',
-               strokeColor: 'yellow',
-               strokeOpacity: 1,
-               fillOpacity: 0.4,
-               cursor: 'default'
+                strokeWidth: 3,
+                fillColor: '${fillColor}',
+                strokeColor: 'yellow',
+                strokeOpacity: 1,
+                fillOpacity: 0.4,
+                cursor: 'default',
+                pointerEvents: "visiblePainted",
+                label : "${shape_label}",
+                fontColor: "black",
+                fontSize: "12px",
+                //fontFamily: "Courier New, monospace",
+                //fontWeight: "bold",
+                labelAlign: "cm"
             }),
             'temporary': new OpenLayers.Style({
-                fillColor: 'red'
+                fillColor: 'orange',
+                fillOpacity: 0.4,
+                strokeWidth: 2,
+                strokeColor: 'orange',
+                strokeOpacity: 1
             })
         });
         
@@ -203,18 +221,21 @@ gwst.widgets.Map = Ext.extend(mapfish.widgets.MapComponent, {
         this.selectControl.activate();
         
         this.editVectorLayer = new OpenLayers.Layer.Vector('editFeature');
-        this.editSelectControl = new OpenLayers.Control.SelectFeature(
+        /*this.editSelectControl = new OpenLayers.Control.SelectFeature(
             this.editVectorLayer,
             {
                 clickout: false,
                 multiple: false,
                 toggle: false
             }
-        );
-        this.modifyControl = new OpenLayers.Control.ModifyFeature(this.editVectorLayer, {selectControl: this.editSelectControl});
+        );*/
+        this.modifyControl = new OpenLayers.Control.ModifyFeature(this.editVectorLayer, {
+                clickout: false,
+                toggle: false
+            });//, {selectControl: this.editSelectControl});
         this.map.addLayer(this.editVectorLayer);
         this.map.addControl(this.modifyControl);
-        this.map.addControl(this.editSelectControl);
+        //this.map.addControl(this.editSelectControl);
         this.map.extCmp = this;
         
         // this.selectionManager.addListener('change', this.onSelectionManagerChange, this);
@@ -482,7 +503,7 @@ gwst.widgets.Map = Ext.extend(mapfish.widgets.MapComponent, {
     addClippedGeometryPreview: function(wkt){
         this.clearClippedGeometryPreview();
         this.clippedGeometryPreview = this.wktParser.read(wkt);
-        this.clippedGeometryPreview.attributes = {fillColor: 'purple', strokeColor: 'orange'};
+        this.clippedGeometryPreview.attributes = {fillColor: 'purple', strokeColor: 'orange', shape_label:''};
         this.vectorLayer.addFeatures([this.clippedGeometryPreview]);
         // this.editVectorLayer.addFeatures([this.clippedGeometryPreview]);
         this.selectControl.select(this.clippedGeometryPreview);
@@ -513,21 +534,21 @@ gwst.widgets.Map = Ext.extend(mapfish.widgets.MapComponent, {
         feature.id = 'featureforedit';
         this.editVectorLayer.addFeatures([feature]);
 
-        this.editSelectControl.activate();
+        //this.editSelectControl.activate();
 
-        
         this.modifyControl.activate();
+        this.modifyControl.selectControl.select(feature);
         
-        this.editSelectControl.select(feature);
+        //this.editSelectControl.select(feature);
     },
     
     finishGeometryEditing: function(){
-        this.editSelectControl.unselectAll();
+        this.modifyControl.selectControl.unselectAll();
 
         // IF YOU DONT CALL THIS NEXT LiNE YOU WONT GET MPA CLICK SELECTIONS BACK!!!
         this.modifyControl.deactivate();
         
-        this.editSelectControl.deactivate();
+        //this.editSelectControl.deactivate();
         
         var feature = this.editVectorLayer.getFeatureById('featureforedit');
         var geo = feature.geometry;

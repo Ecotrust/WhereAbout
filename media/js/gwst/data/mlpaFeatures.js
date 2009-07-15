@@ -113,7 +113,7 @@ jQuery.extend(gwst.data.mlpaFeatures.MPA.prototype, {
         this.feature.attributes.mpa = this;
         if(this._listeners){
             while(this._listeners.length){
-                var callback = this._listeners.shift();
+                var callback = this._listeners.pop();
                 callback(this, this.feature);
             }        
         }

@@ -38,6 +38,12 @@ OpenLayers.Geometry.LinearRing.prototype.getArea = function() {
     return area;
 };
 
+OpenLayers.Geometry.LinearRing.prototype.getCentroid = function() {
+    var x = (this.bounds.left + this.bounds.right) * 0.5;
+    var y = (this.bounds.bottom + this.bounds.top) * 0.5;
+    return new OpenLayers.Geometry.Point(x, y);
+};
+
 
 OpenLayers.Control.Measure.prototype.displaySystemUnits = {
         geographic: ['dd'],

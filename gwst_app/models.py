@@ -341,6 +341,7 @@ class InterviewShape(Model):
         attr['fillColor'] = '#' + self.int_group.shape_color + self.resource.shape_color + '00'       
         attr['strokeColor'] = "white"
         attr['fillOpacity'] = "0.4"
+        attr['shape_label'] = str(self.pennies)+ ' p'
         self.geometry.transform(srid)
         attr['original_geometry'] = self.geometry.wkt
         return '{"id": "mpa_%s", "type": "Feature", "geometry": %s, "properties": %s}' % (self.pk, geo.geojson, geojson_encode(attr))
