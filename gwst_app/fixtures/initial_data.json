@@ -63,7 +63,7 @@
       "is_active": true, 
       "is_superuser": false, 
       "is_staff": false, 
-      "last_login": "2009-07-14 16:33:52", 
+      "last_login": "2009-07-15 12:13:09", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
@@ -438,24 +438,6 @@
     }
   }, 
   {
-    "pk": 5, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "in-progress", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 3, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-14 17:24:18", 
-      "percent_involvement": 30, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
     "pk": 6, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
@@ -487,6 +469,24 @@
       "date_reviewed": null, 
       "user": 2, 
       "date_started": "2009-07-14 16:51:48", 
+      "percent_involvement": 30, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-14 17:24:18", 
       "percent_involvement": 30, 
       "num_incomplete_resources": 0
     }
@@ -1266,8 +1266,8 @@
       "completed": false, 
       "first_login": "2009-07-13 17:45:14", 
       "creation_date": "2009-07-13 17:41:16", 
-      "num_logins": 3, 
-      "last_login": "2009-07-14 16:33:52", 
+      "num_logins": 4, 
+      "last_login": "2009-07-15 12:13:09", 
       "user": 2, 
       "interview": 1, 
       "complete_date": null, 
