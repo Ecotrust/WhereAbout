@@ -107,7 +107,7 @@ gwst.actions.utils.askUserToDefineGeometry = function(config){
     }else{
         gwst.actions.utils.disableComponents();        
         var clipSuccess = function(status_code, original, clipped){
-            gwst.app.map.addClippedGeometryPreview(clipped);
+            /*gwst.app.map.addClippedGeometryPreview(clipped);
             var title;
             var text;
             if(status_code == 0){
@@ -163,7 +163,9 @@ gwst.actions.utils.askUserToDefineGeometry = function(config){
                     }
                 }
             ]);
-            gwst.actions.utils.showGeometryChangeInfo(text);
+            gwst.actions.utils.showGeometryChangeInfo(text);*/
+            
+            config['finish'](original, clipped);
         };
         
         var clipError = function(status_code, original){
