@@ -2,7 +2,7 @@ from django import forms
 from models import *
 from django.forms.util import ValidationError
 from django.forms.util import ErrorList
-
+from fields import PhoneField
 
 class NameModelChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
@@ -136,6 +136,14 @@ class AnswerForm(forms.Form):
                     dynamic_args['initial']=question.val_default
 
                 self.fields['question_%d' % question.id] = forms.CharField( **dynamic_args )
+            
+            elif question.answer_type == 'phone':
+                if answer.count() == 1:
+                    ans = answer[0].text_val
+                    dynamic_args['initial']=ans
+                elif question.val_default != '':
+                    dynamic_args['initial']=question.val_default                 
+                self.fields['question_%d' % question.id] = PhoneField(**dynamic_args )                        
             
             # now add any tooltip text
             if question.eng_tooltip:

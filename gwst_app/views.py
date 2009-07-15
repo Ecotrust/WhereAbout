@@ -352,7 +352,7 @@ def answer_questions(request,group_id):
                 elif field.question.answer_type == 'other':
                     answer.option_val = form.cleaned_data['question_%d' % field.question.id]
                     answer.text_val = form.cleaned_data['question_%d_other' % field.question.id]
-                elif field.question.answer_type == 'text':
+                elif field.question.answer_type == 'text' or field.question.answer_type == 'phone':
                     answer.text_val = form.cleaned_data['question_%d' % field.question.id]
                 answer.save()
                 

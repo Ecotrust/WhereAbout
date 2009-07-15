@@ -158,6 +158,7 @@ class InterviewQuestion(Model):
         ( 'select', 'select from list of values' ),
         ( 'other', 'list of values w/"other" text' ),
         ( 'text', 'enter text' ),
+        ( 'phone', 'phone number' )
     )
     int_group = ForeignKey(InterviewGroup)
     answer_type = CharField( max_length=20, choices=AnswerTypeChoices )
@@ -179,7 +180,7 @@ class InterviewQuestion(Model):
         
     def __unicode__(self):
         return unicode('%s-%s' % (self.int_group, self.code))
-        
+    
 class InterviewInstructions(Model):
     int_group = ForeignKey(InterviewGroup)
     question_set = IntegerField( help_text='for instructions for a particular question set', blank=True, null=True )
