@@ -35,7 +35,7 @@ class InterviewAdmin(admin.ModelAdmin):
     ]
     
 class InterviewGroupAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'name')
+    list_display = ('__unicode__', 'name','code','description')
     list_filter = ('interview',)
     inlines = [
         InterviewQuestionInline,
@@ -49,6 +49,10 @@ class FaqAdmin(admin.ModelAdmin):
     search_fields = ('question', 'answer')
     list_display = ('question','importance','faq_group')   
 
+class ResourceAdmin(admin.ModelAdmin):
+    list_display = ('name','code','shape_color')
+    ordering = ('name','code')
+
 class FaqGroupAdmin(admin.ModelAdmin):
     pass
 
@@ -57,7 +61,7 @@ class IntAdmin(admin.ModelAdmin):
 
 admin.site.register(Interview,InterviewAdmin)
 admin.site.register(Region,IntAdmin)
-admin.site.register(Resource,IntAdmin)
+admin.site.register(Resource,ResourceAdmin)
 admin.site.register(InterviewQuestion,InterviewQuestionAdmin)
 admin.site.register(QuestionGroupValidator,IntAdmin)
 admin.site.register(QuestionGroup,IntAdmin)
