@@ -113,6 +113,42 @@ class InterviewAnswerOption(Model):
     def __unicode__(self):
         return unicode('%s' % (self.eng_text[0:100]))
         
+'''
+Represents group-level validation for questions.  For example, the sum
+of the answers must add up to 100.  The param fields are a simple way
+of being able to support a variable number of parameters for each
+validator.  This is not very robust.
+'''
+class QuestionGroupValidator(Model):
+    ValidatorTypeChoices = (
+        ( 'sum', 'Sum to target integer' ),
+    )
+    description = CharField( help_text='Description of the validator', max_length=100)
+    type = CharField( max_length=30, choices=ValidatorTypeChoices ) 
+    param_1 = CharField(help_text='', max_length=20)
+    param_2 = CharField(help_text='', max_length=20, blank=True, null=True)
+    param_3 = CharField(help_text='', max_length=20, blank=True, null=True)
+    param_4 = CharField(help_text='', max_length=20, blank=True, null=True)        
+    
+    def __unicode__(self):
+        return self.description
+    
+    class Meta:
+        db_table = u'gwst_qstn_grp_validator'
+
+'''
+Represents the collection of questions into a group 
+'''
+class QuestionGroup(Model):
+    validators = ManyToManyField(QuestionGroupValidator)
+    code = CharField( max_length=10, help_text='unique name for referencing this group of questions', blank=True, null=True)
+    eng_text = CharField(max_length=200)
+    
+    def __unicode__(self):
+        return self.code
+    
+    class Meta:
+        db_table = u'gwst_qstn_grp'  
       
 class InterviewQuestion(Model):
     AnswerTypeChoices = (
@@ -133,16 +169,16 @@ class InterviewQuestion(Model):
     eng_text = TextField( help_text='the question asked of the user' )
     eng_tooltip = CharField( max_length=200, help_text='hover help text shown to user', blank=True, null=True )
     question_set = IntegerField( help_text='for grouping questions together on a page', blank=True, null=True )
+    question_group = ForeignKey(QuestionGroup, help_text='assign question to a group', blank=True, null=True )
     display_order = FloatField( help_text='tab order of this question on its page' )
-    required = BooleanField(default=False)
-    
+    required = BooleanField( help_text='require that this field be filled out', default=False)
+        
     class Meta:
         db_table = u'gwst_question'
         ordering = ('int_group__interview','int_group','question_set','display_order')
         
     def __unicode__(self):
         return unicode('%s-%s' % (self.int_group, self.code))
-        
         
 class InterviewInstructions(Model):
     int_group = ForeignKey(InterviewGroup)

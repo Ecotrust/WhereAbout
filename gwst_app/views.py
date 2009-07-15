@@ -314,13 +314,13 @@ def answer_questions(request,group_id):
         # show questions for this group, with any existing user answers
         questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
         answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
-        form = AnswerForm(questions, answers)
+        form = AnswerForm(questions, answers, group_id)
         
     else:
         # form validation
         questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
         answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
-        form = AnswerForm(questions, answers, request.POST)
+        form = AnswerForm(questions, answers, group_id, request.POST)
         
 
         if form.is_valid():

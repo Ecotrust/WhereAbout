@@ -1,6 +1,8 @@
 from django import forms
 from models import *
 from django.forms.util import ValidationError
+from django.forms.util import ErrorList
+
 
 class NameModelChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
@@ -48,11 +50,14 @@ class SelectInterviewGroupsForm( forms.Form ):
     
 # from http://code.djangoproject.com/wiki/CookBookNewFormsDynamicFields
 class AnswerForm(forms.Form):
-    def __init__(self, questions, answers, *args, **kwargs):
-        forms.Form.__init__(self, *args, **kwargs)
+    def __init__(self, questions, answers, group_id, *args, **kwargs):
+        self.group_id = group_id
+        
+        forms.Form.__init__(self, *args, **kwargs)            
         prev_question = None
         for i, question in enumerate(questions):
             dynamic_args = {}
+            other_dynamic_args = {}
             dynamic_args['label'] = question.eng_text
 
             if question.required is True:
@@ -148,6 +153,47 @@ class AnswerForm(forms.Form):
             self.fields['question_%d' % question.id].answer = answer
             
             prev_question = question
+
+    def clean(self):
+        self.question_group_validation()            
+        return self.cleaned_data
+
+    def question_group_validation(self):
+        #Get all of the question groups
+        q_groups = QuestionGroup.objects.filter(interviewquestion__int_group=self.group_id)
+        for group in q_groups:
+            #Get questions in current group
+            qs = group.interviewquestion_set.all()            
+            #Get answers to these questions from the form
+            answers = {}           
+            for q in qs:
+                key = 'question_'+unicode(q.id)
+                
+                #If any individual fields in the group already have errors, 
+                #skip the group validation until they're fixed
+                if self._errors.has_key(key):
+                    return
+                
+                if self.cleaned_data.has_key(key):
+                    answer = self.cleaned_data.get(key)                    
+                    answers[key] = answer
+                else:
+                    continue
+
+            #If there are validators, make sure we found some values
+            vals = group.validators.all()
+
+            for val in vals:
+                if val.type == 'sum':
+                    self.validate_sum(int(val.param_1), answers)
+
+    def validate_sum(self, target, answers):
+        sum = 0
+        for key, value in answers.iteritems():
+            sum += int(value)
+        if sum != target:
+            msg = 'Values must add up to '+unicode(target)+', currently at '+unicode(sum)
+            self._errors[key] = ErrorList([msg])            
 
 class InterviewShapeAttributeForm(forms.ModelForm):
     pennies = forms.IntegerField( min_value=1, max_value=100, required=True )
