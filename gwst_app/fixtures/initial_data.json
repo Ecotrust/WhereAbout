@@ -108,12 +108,120 @@
     }
   }, 
   {
+    "pk": 4, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "dcrb", 
+      "name": "Dungeness Crab"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "phal", 
+      "name": "Pacific Halibut"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "chal", 
+      "name": "California Halibut"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "bait", 
+      "name": "Anchovy/Herring (bait fish)"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "shray", 
+      "name": "Sharks/Rays"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "atna", 
+      "name": "Albacore Tuna"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "hsqd", 
+      "name": "Humboldt Squid"
+    }
+  }, 
+  {
     "pk": 3, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FF", 
       "code": "rock", 
-      "name": "Rockfish"
+      "name": "Rockfish/Bottomfish"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "oflt", 
+      "name": "Other Flatfish (soles, turbots)"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "abl", 
+      "name": "Abalone"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "urch", 
+      "name": "Urchin"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "rscl", 
+      "name": "Rock Scallops"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "sndb", 
+      "name": "Sanddabs"
     }
   }, 
   {
@@ -191,20 +299,30 @@
     }
   }, 
   {
-    "pk": 1, 
+    "pk": 3, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FF", 
-      "code": "div", 
-      "name": "dive", 
+      "code": "prvsl", 
+      "name": "private vessel", 
       "required_group": false, 
       "user_draws_shapes": true, 
       "interview": 1, 
       "resources": [
         1, 
-        3
+        2, 
+        4, 
+        5, 
+        6, 
+        8, 
+        9, 
+        10, 
+        11, 
+        3, 
+        7, 
+        14
       ], 
-      "description": "free divers"
+      "description": "private vessel anglers"
     }
   }, 
   {
@@ -218,25 +336,33 @@
       "user_draws_shapes": true, 
       "interview": 1, 
       "resources": [
-        2
+        1, 
+        6, 
+        8, 
+        9, 
+        3, 
+        14
       ], 
       "description": "kayakers"
     }
   }, 
   {
-    "pk": 3, 
+    "pk": 1, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FF", 
-      "code": "prvsl", 
-      "name": "private vessel", 
+      "code": "div", 
+      "name": "dive", 
       "required_group": false, 
       "user_draws_shapes": true, 
       "interview": 1, 
       "resources": [
-        1
+        3, 
+        15, 
+        16, 
+        17
       ], 
-      "description": "private vessel anglers"
+      "description": "free divers"
     }
   }, 
   {
@@ -312,10 +438,28 @@
     }
   }, 
   {
-    "pk": 6, 
+    "pk": 5, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
       "status": "in-progress", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-14 17:24:18", 
+      "percent_involvement": 30, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
       "user_status_msg": "no shapes drawn", 
       "date_completed": null, 
       "int_group": 2, 
@@ -333,7 +477,7 @@
     "pk": 7, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
-      "status": "in-progress", 
+      "status": "not yet started", 
       "user_status_msg": "no shapes drawn", 
       "date_completed": null, 
       "int_group": 1, 
@@ -343,24 +487,6 @@
       "date_reviewed": null, 
       "user": 2, 
       "date_started": "2009-07-14 16:51:48", 
-      "percent_involvement": 30, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "in-progress", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 3, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-14 17:24:18", 
       "percent_involvement": 30, 
       "num_incomplete_resources": 0
     }
@@ -1131,486 +1257,6 @@
       "answer_type": "text", 
       "eng_tooltip": "", 
       "val_max": null
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-13 17:41:16", 
-      "num_times_saved": 1, 
-      "int_question": 3, 
-      "creation_date": "2009-07-13 17:41:16", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "r3ew"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-13 17:41:16", 
-      "num_times_saved": 1, 
-      "int_question": 4, 
-      "creation_date": "2009-07-13 17:41:16", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "OR"
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-13 17:41:16", 
-      "num_times_saved": 1, 
-      "int_question": 5, 
-      "creation_date": "2009-07-13 17:41:16", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "e343"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-13 17:41:16", 
-      "num_times_saved": 1, 
-      "int_question": 6, 
-      "creation_date": "2009-07-13 17:41:16", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": 44, 
-      "text_val": "44"
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-13 17:41:16", 
-      "num_times_saved": 1, 
-      "int_question": 7, 
-      "creation_date": "2009-07-13 17:41:16", 
-      "option_val": 4, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "Male"
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:22:46", 
-      "num_times_saved": 4, 
-      "int_question": 1, 
-      "creation_date": "2009-07-14 13:53:14", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": 11, 
-      "text_val": "11"
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:22:46", 
-      "num_times_saved": 4, 
-      "int_question": 31, 
-      "creation_date": "2009-07-14 13:53:14", 
-      "option_val": 6, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "Swimming"
-    }
-  }, 
-  {
-    "pk": 8, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:22:46", 
-      "num_times_saved": 4, 
-      "int_question": 32, 
-      "creation_date": "2009-07-14 13:53:14", 
-      "option_val": 9, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "Free dive"
-    }
-  }, 
-  {
-    "pk": 9, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:22:46", 
-      "num_times_saved": 4, 
-      "int_question": 33, 
-      "creation_date": "2009-07-14 13:53:14", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": 61, 
-      "text_val": "61"
-    }
-  }, 
-  {
-    "pk": 10, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:22:46", 
-      "num_times_saved": 4, 
-      "int_question": 34, 
-      "creation_date": "2009-07-14 13:53:14", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": 39, 
-      "text_val": "39"
-    }
-  }, 
-  {
-    "pk": 11, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:24:09", 
-      "num_times_saved": 3, 
-      "int_question": 2, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "ffff"
-    }
-  }, 
-  {
-    "pk": 12, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:24:09", 
-      "num_times_saved": 3, 
-      "int_question": 26, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": ""
-    }
-  }, 
-  {
-    "pk": 13, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:24:10", 
-      "num_times_saved": 3, 
-      "int_question": 27, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": ""
-    }
-  }, 
-  {
-    "pk": 14, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:24:10", 
-      "num_times_saved": 3, 
-      "int_question": 28, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": ""
-    }
-  }, 
-  {
-    "pk": 15, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:24:10", 
-      "num_times_saved": 3, 
-      "int_question": 29, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": 2, 
-      "text_val": "2"
-    }
-  }, 
-  {
-    "pk": 16, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:24:10", 
-      "num_times_saved": 3, 
-      "int_question": 30, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": 23, 
-      "text_val": "23"
-    }
-  }, 
-  {
-    "pk": 17, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 12, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "few"
-    }
-  }, 
-  {
-    "pk": 18, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 13, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "klsfej"
-    }
-  }, 
-  {
-    "pk": 19, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 14, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": 3, 
-      "text_val": "3"
-    }
-  }, 
-  {
-    "pk": 20, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 15, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": 2, 
-      "text_val": "2"
-    }
-  }, 
-  {
-    "pk": 21, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 16, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": 15, 
-      "text_val": "15"
-    }
-  }, 
-  {
-    "pk": 22, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 17, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": 11, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "Trailer"
-    }
-  }, 
-  {
-    "pk": 23, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 18, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "foobar"
-    }
-  }, 
-  {
-    "pk": 24, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 19, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": ""
-    }
-  }, 
-  {
-    "pk": 25, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 20, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": ""
-    }
-  }, 
-  {
-    "pk": 26, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 21, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": ""
-    }
-  }, 
-  {
-    "pk": 27, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 22, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": ""
-    }
-  }, 
-  {
-    "pk": 28, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 23, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": 2, 
-      "text_val": "2"
-    }
-  }, 
-  {
-    "pk": 29, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 24, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": 32, 
-      "text_val": "32"
-    }
-  }, 
-  {
-    "pk": 30, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "last_modified": "2009-07-14 17:49:58", 
-      "num_times_saved": 3, 
-      "int_question": 25, 
-      "creation_date": "2009-07-14 17:22:11", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 2, 
-      "decimal_val": null, 
-      "integer_val": 45, 
-      "text_val": "45"
     }
   }, 
   {
