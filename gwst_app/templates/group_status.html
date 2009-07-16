@@ -52,10 +52,19 @@
   </li>
   <br/>
 {% endfor %}
+
+<li style='line-height:16px'>
+<img src="/site-media/images/delete.png" alt="Incomplete"/>
+<b> Interview status: in-progress</b>
+{% if allow_finalize %}
+<ul><li>
+<a href="/finalize_interview/{{interview.id}}/">Finalize this interview</a></h4></li>
+</li></ul>
+{% endif %}
+</li>
+
 </ul>
 
-{% if allow_finalize %}
-<a href="/finalize_interview/{{interview.id}}/">Finalize this interview</a>
-{% endif %}
+
 
 {% endblock %}

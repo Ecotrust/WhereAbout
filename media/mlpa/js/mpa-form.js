@@ -34,7 +34,7 @@ mlpa.mpaForm = {
                 },
                 errorCallback: function(){
                     gwst.ui.error.show({
-                        errorText: 'Problem loading MPA attributes form. Please try again in a few minutes and contact an administrator if the problem persists.'
+                        errorText: 'Problem loading shape attributes form. Please try again in a few minutes and contact an administrator if the problem persists.'
                     })
                 }
             });
@@ -74,7 +74,7 @@ mlpa.mpaForm = {
                     if(typeof i.options['error'] == 'function'){
                         i.options['error'](request);
                     }else{
-                        gwst.ui.error.show({errorText:'There was a problem saving this shape', debugText: request.responseText, logText:'Problem saving MPA Attributes'});
+                        gwst.ui.error.show({errorText:'There was a problem saving this shape', debugText: request.responseText, logText:'Problem saving shape attributes'});
                     }
                }
            },

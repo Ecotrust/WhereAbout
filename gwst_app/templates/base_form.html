@@ -4,7 +4,7 @@
 
 {% block content %}
 {% if instructions %}
-<p>{{ instructions.main }}</p>
+<p>{{ instructions.main|safe }}</p>
 {% endif %}
    <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
    {{ form.non_field_errors }}
@@ -15,7 +15,7 @@
         <p><div class="question_set"></div>
         {% for key, val in instructions.items %}
         {% ifequal key index %}
-            {{ val }}
+            {{ val|safe }}
         {% endifequal %}
         {% endfor %}
         </p>
