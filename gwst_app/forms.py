@@ -205,6 +205,10 @@ class AnswerForm(forms.Form):
 
 class InterviewShapeAttributeForm(forms.ModelForm):
     pennies = forms.IntegerField( min_value=1, max_value=100, required=True )
+    boundary_n = forms.CharField( max_length=100, label='Northern boundary' ) 
+    boundary_s = forms.CharField( max_length=100, label='Southern boundary' )
+    boundary_e = forms.CharField( max_length=100, label='Eastern boundary' )
+    boundary_w = forms.CharField( max_length=100, label='Western boundary' )
     
     def clean_pennies(self):
         new_pennies = self.cleaned_data['pennies']

@@ -962,20 +962,15 @@ def edit_shape(request,id):
     if status.completed:
         return HttpResponse(result, status=403)
 
+    instructions = {}
+    instructions['main'] = 'Enter the number of pennies for this shape, and any boundary descriptions that could help to make the shape more accurate.'
 
     shape = InterviewShape.objects.filter(pk=id,user=request.user)
     if shape.count() == 1:
         action = "/gwst/shape/edit/"+str(shape[0].pk)
         if request.method == 'GET':
             form = InterviewShapeAttributeForm( instance=shape[0] )
-            #form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=shape[0].int_group)
-            t = loader.get_template('base_form.html')
-            opts = {
-                'form': form,
-                'action': action,
-                'value': 'Save'
-            }
-            return HttpResponse(t.render(RequestContext(request, opts)))
+            return render_to_response( 'base_form.html', RequestContext(request, {'form': form, 'action': action, 'value': 'Save', 'instructions':instructions}))
             
         else:
             form = InterviewShapeAttributeForm( request.POST )
@@ -1006,13 +1001,7 @@ def edit_shape(request,id):
                 return HttpResponse(edit_shape.json(), mimetype='application/json')
                 
             else:
-                t = loader.get_template('base_form.html')
-                opts = {
-                    'form': form,
-                    'action': action,
-                    'value': 'Save'
-                }
-                return HttpResponseBadRequest(t.render(RequestContext(request, opts )))
+                return render_to_response( 'base_form.html', RequestContext(request, {'form': form, 'action': action, 'value': 'Save', 'instructions':instructions}))
             
     else:
         # forbidden
