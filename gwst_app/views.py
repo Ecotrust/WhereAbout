@@ -1062,13 +1062,19 @@ def editgeom_shape(request,id):
         return HttpResponse(result + e.message, status=500)
     return HttpResponse(result)
 
-
+    
+@login_required
 def draw_help_text(request):
     return render_to_response( 'draw_help_text.html', RequestContext(request,{})) 
     
-def draw_help_video(request):
-    return render_to_response( 'draw_help_text.html', RequestContext(request,{}))
-
+    
+@login_required
+def draw_splash(request):
+    interview = request.session.get('interview')
+    if interview:
+        return render_to_response( 'content_template.html', RequestContext(request,{'content':interview.draw_shape_text})) 
+    else:
+        return HttpResponseRedirect('/select_interview/')
 def faq(request):
     faq_groups = FaqGroup.objects.all()
     faqs_by_group = []

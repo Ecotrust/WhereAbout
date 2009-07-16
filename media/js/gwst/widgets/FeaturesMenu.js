@@ -420,6 +420,7 @@ gwst.widgets.FeaturesMenu = function(options){
             var url_str = window.location.href;
             var url_parts = url_str.split('/');
             self.toggleFolder('folder',url_parts[url_parts.length-2]);
+            gwst.actions.help.execute();
         });
         for(var i=0; i<hash['mpa'].length; i++){
             delete hash['mpa'][i]['children'];

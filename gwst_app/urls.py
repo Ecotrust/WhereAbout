@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     (r'^accounts/', include('registration.urls')),
     
     (r'^draw_help/text/$', draw_help_text ),
-    (r'^draw_help/video/$', draw_help_video ),
+    (r'^draw_splash/$', draw_splash ),
 
     (r'^$', select_interview ),
     (r'^select_interview/$', select_interview ),

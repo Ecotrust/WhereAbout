@@ -327,33 +327,34 @@ gwst.actions.help = new Ext.Action({
                 width: 600,
                 y: 100,
                 items: [
-                    gwst.app.helpScreenText = new gwst.widgets.URLViewer({
+                    /*gwst.app.helpScreenText = new gwst.widgets.URLViewer({
                                 url: '/draw_help/text/',
                                 title: 'Draw Mode Help'
-                            })
+                            })*/
                             
-                    /* new Ext.TabPanel({
+                    new Ext.TabPanel({
                         deferredRender: false,
                         labelWidth: 75,
                         height: 465,
                         activeTab: 0,
                         border: false,
                         items: [
+                            gwst.app.splashScreenText = new gwst.widgets.URLViewer({
+                                url: '/draw_splash/',
+                                title: 'Welcome'
+                            }),
                             gwst.app.helpScreenText = new gwst.widgets.URLViewer({
                                 url: '/draw_help/text/',
-                                title: 'Text Help'
-                            }),
-                            gwst.app.helpScreenVideo = new gwst.widgets.URLViewer({
-                                url: '/draw_help/video/',
-                                title: 'Video Help'
+                                title: 'Instructions'
                             })
                         ]
-                    }) */
+                    })
 
                 ]
             });
         }
         gwst.app.helpWindow.show();
+        gwst.app.helpWindow.toFront();
     },
     tooltip: 'Show Help Window'
 });
