@@ -172,11 +172,11 @@ gwst.actions.utils.askUserToDefineGeometry = function(config){
             gwst.actions.utils.changeMapToolbarMode([
                 {
                     xtype: 'tbtext',
-                    text: 'The geometry you defined cannot be accepted'
+                    text: 'The shape you defined cannot be accepted'
                 },
                 {xtype: 'tbfill'},
                 {
-                    text: 'Go Back and Modify Geometry',
+                    text: 'Go Back and Modify Shape',
                     geometry: original,
                     config: config,
                     handler: function(){
@@ -663,7 +663,7 @@ gwst.actions.nonExt.enterMPAGeometryEditMode = function(e){
     var mpa = e.data.mpa;
     
     if(mpa.user != gwst.app.userManager.user.pk){
-        alert('You cannot edit the geometry of an MPA that does not belong to you.');
+        alert('You cannot edit a shape that does not belong to you.');
         return;
     }
     // gwst.actions.nonExt.removeMPAFromInterface(mpa);
@@ -673,7 +673,7 @@ gwst.actions.nonExt.enterMPAGeometryEditMode = function(e){
             geometry: mpa.feature.attributes.original_geometry,
             orig_shape_id: mpa.pk,
             finish: function(geometry, clipped){
-                gwst.ui.wait.show({msg:'While we save your geometry changes'});
+                gwst.ui.wait.show({msg:'While we save your shape changes'});
                 mpa.saveGeometryChanges(geometry, clipped, {
                     success: function(mpa){
                         gwst.ui.wait.hide();
@@ -682,7 +682,7 @@ gwst.actions.nonExt.enterMPAGeometryEditMode = function(e){
                         gwst.app.selectionManager.setSelectedFeature(mpa);
                     },
                     error: function(request, textStatus, errorThrown){
-                        gwst.ui.error.show({errorText: 'Problem saving your geometry', debugText: request.responseText, logText: 'Problem saving geometry changes.'});
+                        gwst.ui.error.show({errorText: 'Problem saving your shape', debugText: request.responseText, logText: 'Problem saving shape changes.'});
                         gwst.actions.utils.enableComponents();
                     }
                 });

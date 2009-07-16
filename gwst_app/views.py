@@ -927,8 +927,7 @@ def copy_shapes(request):
             copy.int_group = target_group
             copy.resource = target_resource
             
-            if resource_agg['pennies__sum'] > 0:
-                copy.pennies = 0;
+            copy.pennies = 0
             
             copy.save()
             new_copies.append( copy.json() )

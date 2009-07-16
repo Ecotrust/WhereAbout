@@ -2,7 +2,7 @@ Ext.namespace('gwst', 'gwst.urls');
 
 gwst.copy = {
 
-    statusWindowStyle: '<style> h3, p, img { margin-top:10px; margin-bottom:10px; margin-right:10px; margin-left:10px; }</style>',
+    statusWindowStyle: '<style> #statusWin { margin-top:10px; margin-bottom:10px; margin-right:10px; margin-left:10px;} </style>',
     
     /** MPA Creation and Attribute Editing Form **/
     // General Tab
@@ -31,15 +31,15 @@ gwst.copy = {
     // END MPA Creation and Attribute Editing Form
     
     // Geometry Confirmation Dialog Box Text
-    geometryConfirmTitle: 'Confirm your geometry',
-    geometryConfirmText: 'The server has validated and clipped your geometry according to [these rules]. Do you want to continue with this geometry?'
+    geometryConfirmTitle: 'Confirm your shape',
+    geometryConfirmText: 'The server has validated and clipped your shape according to [these rules]. Do you want to continue with this shape?'
 };
 
-gwst.copy.confirmStudyRegionClippingTitle = 'Please confirm modifications to your geometry';
-gwst.copy.confirmStudyRegionClipping = '<h3>Geometry Clipping</h3><img src="/site-media/figures/clipping.gif" width="369" height="88" /><p>Your geometry has been clipped to match the study region boundaries. Portions not overlapping the study region, or overlapping land, have been removed.</p><br /><p>This operation occurs each time you create a geometry. We also keep a copy of the lines you draw, so you will always have the un-clipped version for editing.</p>';
+gwst.copy.confirmStudyRegionClippingTitle = 'Please confirm modifications to your shape';
+gwst.copy.confirmStudyRegionClipping = '<h3>Shape Clipping</h3><img src="/site-media/figures/clipping.gif" width="369" height="88" /><p>Your shape has been clipped to match the study region boundaries. Portions not overlapping the study region, or overlapping land, have been removed.</p><br /><p>This operation occurs each time you create a shape. We also keep a copy of the lines you draw, so you will always have the un-clipped version for editing.</p>';
 
-gwst.copy.overlapsEstuaryTitle = 'Please confirm modifications to your geometry';
-gwst.copy.overlapsEstuaryText = '<h3>Your Geometry Overlaped an Estuary</h3><img src="/site-media/figures/estuary.gif" width="368" height="88" /><p>An MPA geometry can either be entirely estuary, or none. In cases like this where a geometry overlaps but is not entirely estuarine, the system creates two polygons. Whichever is larger is the one it assumes you would like to create.</p><br />';
+gwst.copy.overlapsEstuaryTitle = 'Please confirm modifications to your shape';
+gwst.copy.overlapsEstuaryText = '<h3>Your Shape Overlaped an Estuary</h3><img src="/site-media/figures/estuary.gif" width="368" height="88" /><p>An MPA geometry can either be entirely estuary, or none. In cases like this where a geometry overlaps but is not entirely estuarine, the system creates two polygons. Whichever is larger is the one it assumes you would like to create.</p><br />';
 gwst.copy.overlapsEstuary = [];
 gwst.copy.overlapsEstuaryEndText = "<p>If this is not the outcome you wanted, try to refine your selection to better fit the habitat you are trying to capture. Turning on the Estuary layer from the Data Layers menu can help you in this process.</p>";
 
@@ -49,21 +49,21 @@ gwst.copy.overlapsEstuary[1] = gwst.copy.overlapsEstuaryText + '<p>In this case,
 gwst.copy.overlapsEstuary[5] = gwst.copy.overlapsEstuaryText + '<p>In this case, the system chose the <b>Estuary Part</b></p><br />' + gwst.copy.overlapsEstuaryEndText;
 
 gwst.copy.errors = {
-    mpaValidationService: 'There was an error trying to validate this geometry.'
+    mpaValidationService: 'There was an error trying to validate this shape.'
 };
 
 
 gwst.copy.clippedGeometryStatus = [];
 
-gwst.copy.clippedGeometryStatus[0] = 'Successful geometry creation';
+gwst.copy.clippedGeometryStatus[0] = 'Successful shape creation';
 gwst.copy.clippedGeometryStatus[1] = 'System has chosen an MPA';
-gwst.copy.clippedGeometryStatus[2] = '<h3>Outside the Study Region</h3><img src="/site-media/figures/outsidestudyregion.gif" width="115" height="84" /><p>The geometry you defined was outside the study region. The study region for Southern California is limited to 3 miles offshore. If you are having trouble, you can turn on the study region layer in the Data Layers menu.</p>';
-gwst.copy.clippedGeometryStatus[3] = gwst.copy.statusWindowStyle + '<h3>Error: Invalid Geometry</h3><img src="/site-media/figures/invalidgeo.gif" width="121" height="87" /><p>Please avoid drawing irregular shapes that intersect themselves like bowties.</p>';
+gwst.copy.clippedGeometryStatus[2] = '<h3>Outside the Study Region</h3><img src="/site-media/figures/outsidestudyregion.gif" width="115" height="84" /><p>The shape you defined was outside the study region. The study region for Southern California is limited to 3 miles offshore. If you are having trouble, you can turn on the study region layer in the Data Layers menu.</p>';
+gwst.copy.clippedGeometryStatus[3] = gwst.copy.statusWindowStyle + '<div id="statusWin"><h3>Error: Invalid Shape</h3><img src="/site-media/figures/invalidgeo.gif" width="121" height="87" /><p>Please avoid drawing irregular shapes that intersect themselves like bowties.</p></div>';
 gwst.copy.clippedGeometryStatus[4] = 'System Error';
-gwst.copy.clippedGeometryStatus[6] = gwst.copy.statusWindowStyle + '<h3>Error: Overlapping Shapes</h3><img src="/site-media/figures/overlap.gif" width="122" height="88" /><p>Please do not draw a new shape on top of other shapes of the same resource.</p>';
-gwst.copy.clippedGeometryErrorText = 'You have the option of either cancelling this operation or going back to your geometry to fix this error.';
+gwst.copy.clippedGeometryStatus[6] = gwst.copy.statusWindowStyle + '<div id="statusWin"><h3>Error: Overlapping Shapes</h3><img src="/site-media/figures/overlap.gif" width="122" height="88" /><p>Please do not draw a new shape on top of other shapes of the same resource.</p></div>';
+gwst.copy.clippedGeometryErrorText = 'You have the option of either cancelling this operation or going back to your shape to fix this error.';
 
 
 
 gwst.copy.createNewGeometry = 'Draw your shape by clicking on the map. Double-click to finish.';
-gwst.copy.editGeometry = 'Edit this geometry by dragging the handles on its vertices.  To remove a point from your shape, move the mouse over it and press the D-key <img class="dkey" src="/site-media/images/D.png" />. <br />When you are done, click the finished button.';
+gwst.copy.editGeometry = 'Edit this shape by dragging the handles on its vertices. To remove a point from your shape, move the mouse over it and press the D-key <img class="dkey" src="/site-media/images/D.png" />. <br />When you are done, click the finished button.';
