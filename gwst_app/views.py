@@ -126,7 +126,7 @@ def assign_groups(request):
 
     title = request.session['interview'].name + ' - Group Membership Selection'
     instructions = {}
-    instructions['main'] = 'Please indicate the percent of your total fishing time that you spend in the following groups. The total of these groups must add up to 100.'
+    instructions['main'] = '<p>What percentage of time do you spend fishing in each of these user groups? You will only be asked questions and allowed to draw shapes for groups you assign a value here.</p><p><i>[Note: these should add up to 100%. For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling and 40% for dive angling.]</i></p>'
     
     if request.method == 'GET':
         # let user select which groups they are in
@@ -970,6 +970,16 @@ def edit_shape(request,id):
         action = "/gwst/shape/edit/"+str(shape[0].pk)
         if request.method == 'GET':
             form = InterviewShapeAttributeForm( instance=shape[0] )
+            
+            #t = loader.get_template('base_form.html')
+            #opts = {
+            #    'form': form,
+            #    'action': action,
+            #    'value': 'Save',
+            #    'instructions': instructions
+            #}
+            #return HttpResponseBadRequest(t.render(RequestContext(request, opts )))
+                
             return render_to_response( 'base_form.html', RequestContext(request, {'form': form, 'action': action, 'value': 'Save', 'instructions':instructions}))
             
         else:
@@ -1001,7 +1011,16 @@ def edit_shape(request,id):
                 return HttpResponse(edit_shape.json(), mimetype='application/json')
                 
             else:
-                return render_to_response( 'base_form.html', RequestContext(request, {'form': form, 'action': action, 'value': 'Save', 'instructions':instructions}))
+                t = loader.get_template('base_form.html')
+                opts = {
+                    'form': form,
+                    'action': action,
+                    'value': 'Save',
+                    'instructions': instructions
+                }
+                return HttpResponseBadRequest(t.render(RequestContext(request, opts )))
+            
+                #return render_to_response( 'base_form.html', RequestContext(request, {'form': form, 'action': action, 'value': 'Save', 'instructions':instructions}))
             
     else:
         # forbidden
