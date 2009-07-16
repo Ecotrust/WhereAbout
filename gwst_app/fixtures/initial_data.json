@@ -117,7 +117,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-16 16:13:00", 
+      "last_login": "2009-07-16 16:35:00", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
@@ -1227,6 +1227,42 @@
       "answer_type": "text", 
       "eng_tooltip": "", 
       "val_max": null
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.interviewinstructions", 
+    "fields": {
+      "question_set": null, 
+      "eng_text": "Please answer these questions in relation to dive/spear angling only. The information you provide will be kept confidential.", 
+      "int_group": 1
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.interviewinstructions", 
+    "fields": {
+      "question_set": null, 
+      "eng_text": "Please answer these questions in relation to kayak angling only. The information you provide will be kept confidential.", 
+      "int_group": 2
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "gwst_app.interviewinstructions", 
+    "fields": {
+      "question_set": null, 
+      "eng_text": "Please answer these questions in relation to private vessel angling only. The information you provide will be kept confidential.", 
+      "int_group": 3
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.interviewinstructions", 
+    "fields": {
+      "question_set": null, 
+      "eng_text": "Please answer these general questions. The information you provide will be kept confidential.", 
+      "int_group": 6
     }
   }, 
   {
