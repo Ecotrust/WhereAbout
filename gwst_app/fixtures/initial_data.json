@@ -36,24 +36,6 @@
     }
   }, 
   {
-    "pk": 3, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "testadmin", 
-      "first_name": "testadmin", 
-      "last_name": "ta", 
-      "is_active": true, 
-      "is_superuser": true, 
-      "is_staff": true, 
-      "last_login": "2009-07-14 16:27:32", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
-      "email": "ta@t.org", 
-      "date_joined": "2009-06-02 11:51:40"
-    }
-  }, 
-  {
     "pk": 2, 
     "model": "auth.user", 
     "fields": {
@@ -63,12 +45,84 @@
       "is_active": true, 
       "is_superuser": false, 
       "is_staff": false, 
-      "last_login": "2009-07-15 18:36:36", 
+      "last_login": "2009-07-15 22:25:35", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
       "email": "t@t.org", 
       "date_joined": "2009-06-02 11:50:33"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "testadmin", 
+      "first_name": "testadmin", 
+      "last_name": "ta", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2009-07-15 22:26:14", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
+      "email": "ta@t.org", 
+      "date_joined": "2009-06-02 11:51:40"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "charles", 
+      "first_name": "Charles", 
+      "last_name": "Steinback", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2009-07-16 12:36:14", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$9100e$35ef63fdf06e0644dfbef7fe17c25b81d69494b8", 
+      "email": "charles@ecotrust.org", 
+      "date_joined": "2009-07-16 12:34:20"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "jbonkoski", 
+      "first_name": "Jon", 
+      "last_name": "Bonkoski", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2009-07-16 12:40:36", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$3b6ab$e9957ce4b6834200e678702207f7b80b6ddd3554", 
+      "email": "jbonkoski@ecotrust.org", 
+      "date_joined": "2009-07-16 12:40:36"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "skruse", 
+      "first_name": "Sarah", 
+      "last_name": "Kruse", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2009-07-16 12:42:00", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$02d3c$578ad36cde14518a9a779c42e9fa6157bd0bba37", 
+      "email": "skruse@ecotrust.org", 
+      "date_joined": "2009-07-16 12:42:00"
     }
   }, 
   {
@@ -434,24 +488,6 @@
     }
   }, 
   {
-    "pk": 5, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "in-progress", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 3, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-15 17:25:15", 
-      "percent_involvement": 30, 
-      "num_incomplete_resources": 1
-    }
-  }, 
-  {
     "pk": 7, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
@@ -470,6 +506,60 @@
     }
   }, 
   {
+    "pk": 8, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 13, 
+      "date_started": null, 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-15 22:57:32", 
+      "percent_involvement": 40, 
+      "num_incomplete_resources": 1
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-15 17:25:15", 
+      "percent_involvement": 30, 
+      "num_incomplete_resources": 1
+    }
+  }, 
+  {
     "pk": 4, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
@@ -482,27 +572,9 @@
       "reviewed": false, 
       "date_reviewed": null, 
       "user": 2, 
-      "date_started": "2009-07-15 16:12:56", 
+      "date_started": "2009-07-15 22:57:21", 
       "percent_involvement": null, 
       "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "0/1 resource group(s) complete, shapes with 0 pennies present", 
-      "date_completed": null, 
-      "int_group": 2, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-15 12:14:43", 
-      "percent_involvement": 40, 
-      "num_incomplete_resources": 1
     }
   }, 
   {
@@ -1289,9 +1361,24 @@
       "completed": false, 
       "first_login": "2009-07-13 17:45:14", 
       "creation_date": "2009-07-13 17:41:16", 
-      "num_logins": 13, 
-      "last_login": "2009-07-15 18:36:37", 
+      "num_logins": 16, 
+      "last_login": "2009-07-16 12:35:52", 
       "user": 2, 
+      "interview": 1, 
+      "complete_date": null, 
+      "notes": null
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.interviewstatus", 
+    "fields": {
+      "completed": false, 
+      "first_login": "2009-07-16 12:36:08", 
+      "creation_date": "2009-07-16 12:33:57", 
+      "num_logins": 1, 
+      "last_login": "2009-07-16 12:36:08", 
+      "user": 13, 
       "interview": 1, 
       "complete_date": null, 
       "notes": null
