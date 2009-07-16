@@ -102,6 +102,22 @@ class InterviewGroupMembership(Model):
     def __unicode__(self):
         return unicode('%s-%s' % (self.user, self.int_group))
        
+'''
+Captures which resources a user is associated with as a member 
+of a given group.  Takes advantage of the fact that resources 
+are tied to interview groups and so are users.  Allows you to
+narrow down which resources users care about in relation to
+a given user group before asking them to draw shapes.
+'''
+class GroupMemberResource(Model):
+    group_membership = ForeignKey(InterviewGroupMembership)    
+    resource = ForeignKey(Resource)
+    
+    class Meta:
+        db_table = u'gwst_groupmemb_res'
+        
+    def __unicode__(self):
+        return unicode('%s - %s' % (self.group_membership, self.resource))
        
 class InterviewAnswerOption(Model):
     eng_text = CharField( max_length=200 )
