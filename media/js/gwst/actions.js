@@ -324,7 +324,7 @@ gwst.actions.help = new Ext.Action({
                 id: 'windowSplash',
                 closeAction: 'hide',
                 //modal: true,
-                width: 600,
+                width: 800,
                 y: 100,
                 items: [
                     /*gwst.app.helpScreenText = new gwst.widgets.URLViewer({
@@ -335,13 +335,13 @@ gwst.actions.help = new Ext.Action({
                     new Ext.TabPanel({
                         deferredRender: false,
                         labelWidth: 75,
-                        height: 465,
+                        height: 565,
                         activeTab: 0,
                         border: false,
                         items: [
                             gwst.app.splashScreenText = new gwst.widgets.URLViewer({
                                 url: '/draw_splash/',
-                                title: 'Welcome'
+                                title: 'Overview'
                             }),
                             gwst.app.helpScreenText = new gwst.widgets.URLViewer({
                                 url: '/draw_help/text/',

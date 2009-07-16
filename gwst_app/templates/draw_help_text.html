@@ -1,37 +1,56 @@
 <style>
-	a {
+	#help_panel a {
 		text-decoration:none;
 	}
-	a:hover div{
+	#help_panel a:hover div{
 		background-color:#C5D5E4;
 	}
-    p {
+    #help_panel ul {
+        list-style-position:inside;
+        margin-top:10px;
+        margin-bottom:15px;
+    }
+	#help_panel li {
+		margin-top:5px;
+        margin-bottom:5px;
+        list-style-type: circle;
+        font-size: 13px;
+	}
+    #help_panel p {
         margin-top:5px;
         margin-bottom:10px;
+    } 
+    #help_panel {
+        font-size: 13px;
     }
-	#help li {
-		margin-bottom:15px;
-	}
 </style>
 
-<ul id="help">
-<li><h4>Drawing your shapes</h4>
-<p>Right click on a resource group in the "My Shapes" window, then select "Add new shape" from its menu to draw a new shape for that resource group.</p>
-<p>In draw mode, left-click to define points for your shape. Double-click to place the last point and finish the new shape.</p></li>
+<div id="help_panel">
 
-<li><h4>Assigning pennies to your shapes</h4>
-<p>Once you have drawn one or more shapes, double-click them (either on the map or in the "My Shapes" window) to open their attribute form.</p>
-<p>Enter a penny value between 1 and 100 for the shape, as well as any notes you wish to send us about more specific boundaries for your shape, then click the "Save" button.</p></li>
+<ul><h4>Using the map</h4>
+<li>You can move the background map by clicking-and-dragging it, or by clicking any of the blue directional arrows in the upper right.</li>
+<li>Zoom in and out using your mouse wheel, or by clicking the blue plus and minus buttons in the upper right, or by clicking on the segmented vertical line in the upper right.</li></ul>
 
-<li><h4>Using the map</h4>
-<p>You can move the map by clicking-and-dragging it, or by clicking the blue arrows in the upper right.</p>
-<p>Zoom using your mouse wheel, or the blue plus and minus buttons in the upper right, or clicking on the segmented vertical line in the upper right.</p></li>
+<ul><h4>Displaying nautical charts, depth contours, satellite imagery, lat/lon lines</h4>
+<li>In the "Maps" window, click the checkbox to the left of any map name to display it.</li>
+<li>If you display multiple maps and want them ordered differently on the screen, you can click and drag a map name to a different position in the "Maps" window to rearrange it.</li></ul>
 
-<li><h4>Displaying nautical charts, depth contours, satellite imagery, lat/lon lines</h4>
-<p>Click the checkbox to the left of any map name in the "Maps" window to display it.</p>
-<p>If you display multiple maps and want them ordered differently on the screen, you can click and drag a map name to a different position in the "Maps" window to rearrange it.</p></li>
+<ul><h4>Drawing your shapes</h4>
+<li>Right click on a fishery in the "My Shapes" window to display its menu.</li>
+<li>Select "Add new shape" from the menu to draw a new shape for that fishery.</li>
+<li>In draw mode, repeatedly left-click to define points for your shape. Double-click to place the last point and finish the shape.</li></ul>
 
-<li><p>Please do not hesitate to email <a href="mailto:fish@ecotrust.org">fish@ecotrust.org</a> if you need more help.</p></li></ul>
+<ul><h4>Assigning pennies to your shapes</h4>
+<li>Once you have drawn a shape, double-click it (either on the map or in the "My Shapes" window) to open its attribute form.</li>
+<li>Enter a penny value between 1 and 100 for the shape, as well as any notes you wish to send us about more specific boundaries for your shape, then click the "Save" button.</li></ul>
+
+<ul><h4>Copying shapes</h4>
+<li>In the "My Shapes" window, right-click on a fishery name or individual shape name to open its menu.</li>
+<li>Select "Copy". A dialog box will appear indicating the shape(s) have been copied.</li>
+<li>Right-click on the target fishery where you'd like the shapes pasted, and select "Paste copied shapes here" from its menu. Your shape(s) should now be present in the target fishery.</li>
+</ul>
+
+<p>Please do not hesitate to email <a href="mailto:fish@ecotrust.org">fish@ecotrust.org</a> if you need more help.</p>
 
 </div>
 

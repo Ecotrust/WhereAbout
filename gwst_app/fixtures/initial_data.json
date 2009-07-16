@@ -54,24 +54,6 @@
     }
   }, 
   {
-    "pk": 3, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "testadmin", 
-      "first_name": "testadmin", 
-      "last_name": "ta", 
-      "is_active": true, 
-      "is_superuser": true, 
-      "is_staff": true, 
-      "last_login": "2009-07-15 22:26:14", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
-      "email": "ta@t.org", 
-      "date_joined": "2009-06-02 11:51:40"
-    }
-  }, 
-  {
     "pk": 13, 
     "model": "auth.user", 
     "fields": {
@@ -79,8 +61,8 @@
       "first_name": "Charles", 
       "last_name": "Steinback", 
       "is_active": true, 
-      "is_superuser": true, 
-      "is_staff": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
       "last_login": "2009-07-16 12:36:14", 
       "groups": [], 
       "user_permissions": [], 
@@ -123,6 +105,24 @@
       "password": "sha1$02d3c$578ad36cde14518a9a779c42e9fa6157bd0bba37", 
       "email": "skruse@ecotrust.org", 
       "date_joined": "2009-07-16 12:42:00"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "testadmin", 
+      "first_name": "testadmin", 
+      "last_name": "ta", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2009-07-16 16:13:00", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
+      "email": "ta@t.org", 
+      "date_joined": "2009-06-02 11:51:40"
     }
   }, 
   {
@@ -299,7 +299,7 @@
       "code": "NCrecfish", 
       "name": "MLPA North Coast Recreational Fishing Survey", 
       "region": 1, 
-      "draw_shape_text": "Please watch the demonstration videos or read the instructions carefully.  They will help you complete this section successfully.  \r\n<br/>\r\nStep 1. Learn how to use the map. (Watch Video) (Text Instructions)\r\n<br/>\r\nStep 2.  Draw Shapes. (Watch Video) (Text Instructions)\r\n<br/>\r\nStep 3.  Assign pennies. (Watch Video) (Text Instructions)\r\n<br/>\r\nYou are done with a user group when you have allocated 100 pennies for each fishery you drew shapes for.  If I drew shapes for Rockfish and Salmon in the kayak group I would need to allocate 100 pennies in each of those two groups.\r\n<br/>\r\nAdvanced features are available such as copying one or all shapes from one fishery to another.  This is a timesaver if you target multiple species in the same areas.  (Watch Video) (Text Instructions).\r\n<br/>\r\n", 
+      "draw_shape_text": "<div id=\"help_panel\">\r\n<p>Please take a few moments to familiarize yourself with the tool before you start drawing shapes.</p>\r\n\r\n<p>Brief instructions and demonstration videos can be found by clicking on the \"Instructions\" tab at the top of this window. Advanced features are available such as copying one or all shapes from one fishery to another (a time-saver if you target multiple species in the same areas).</p>\r\n\r\n<p>As you begin drawing your shapes, please remember that <b>for each fishery</b> or species you target, you will be given an imaginary bag of <b>100 pennies</b>. As you draw shapes on the map you will place some number of pennies on that shape. The more pennies you place on a shape, the more value or importance you are placing on that shape. Keep doing this until you have drawn all your shapes and have used up all 100 pennies for that fishery.</p>\r\n\r\n<p>Before you start each fishery, it helps to form a mental picture of the important fishing areas you have for that fishery and how many pennies you will assign to each of those areas. We encourage you to distribute the shapes as you see fit. That could mean a single area worth 100 pennies or 100 areas worth 1 penny each. It is your choice as to how you allocate your pennies.</p>\r\n\r\n<p>To see this information again after closing this window, click the Help button in the upper right.</p>\r\n\r\n<p>Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.</p></div>", 
       "active": true, 
       "organization": "Ecotrust", 
       "group_status_text": "Please carefully read all instructions and complete the survey.  Some sections will ask you to answer questions, others will ask you to draw shapes representing your fishing grounds.  Finalize each section once you are done.\r\n<br/><br/>\r\nThe survey process might seem complex at times, but understand that the wide range of fishing interests on the North Coast is not easy to capture and we want to provide the highest quality information possible. \r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email and we will find a way to get your information included into this process.\r\n", 
@@ -543,6 +543,22 @@
     "fields": {
       "display_order": 4.0, 
       "eng_text": "Paddleboard"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1.0, 
+      "eng_text": "Motor"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 2.0, 
+      "eng_text": "Non-motorized"
     }
   }, 
   {
@@ -790,16 +806,19 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "code": "boat_type", 
-      "eng_text": "Type of boat (style/make/material)", 
+      "eng_text": "Type of boat", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 1.0, 
       "required": true, 
       "question_group": null, 
-      "options": [], 
+      "options": [
+        15, 
+        16
+      ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "text", 
+      "answer_type": "select", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1022,7 +1041,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "code": "avg_ppl", 
-      "eng_text": "Average number of individuals with you on a boat per trip", 
+      "eng_text": "Average number of individuals with you on a boat per trip (not including self)", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 13.0, 
