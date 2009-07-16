@@ -325,36 +325,36 @@ gwst.actions.help = new Ext.Action({
                 closeAction: 'hide',
                 //modal: true,
                 width: 600,
+                y: 100,
                 items: [
-                    new Ext.TabPanel({
+                    gwst.app.helpScreenText = new gwst.widgets.URLViewer({
+                                url: '/draw_help/text/',
+                                title: 'Draw Mode Help'
+                            })
+                            
+                    /* new Ext.TabPanel({
                         deferredRender: false,
                         labelWidth: 75,
                         height: 465,
                         activeTab: 0,
                         border: false,
                         items: [
-                            gwst.app.splashScreen = new gwst.widgets.URLViewer({
-                                url: gwst.urls.splash,
-                                title: 'News'
+                            gwst.app.helpScreenText = new gwst.widgets.URLViewer({
+                                url: '/draw_help/text/',
+                                title: 'Text Help'
                             }),
-                            gwst.app.tutorialScreen = new gwst.widgets.URLViewer({
-                                url: gwst.urls.tutorials,
-                                title: 'Screencasts'
-                            }),
-                            gwst.app.faq = new gwst.widgets.URLViewer({
-                                url: gwst.urls.faq,
-                                title: 'FAQ',
-                                autoScroll: true
+                            gwst.app.helpScreenVideo = new gwst.widgets.URLViewer({
+                                url: '/draw_help/video/',
+                                title: 'Video Help'
                             })
                         ]
-                    })
+                    }) */
 
                 ]
             });
         }
         gwst.app.helpWindow.show();
     },
-    iconCls: 'blist',
     tooltip: 'Show Help Window'
 });
 

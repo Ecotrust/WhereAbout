@@ -651,9 +651,9 @@ def user_features_client_object(user,interview):
             if resource_pennies == None:
                 resource_pennies = 0
             if resource_pennies == 100:
-                folderName = resource.name+' group (complete)'
+                folderName = resource.name+' (complete)'
             else:
-                folderName = resource.name+' group ('+str(100-resource_pennies)+' pennies left)'
+                folderName = resource.name+' ('+str(100-resource_pennies)+' pennies left)'
             mpas = create_folder(folderName, pk=str(int_group.id)+'-'+str(resource.id), toggle=True, context=True)
             for mpa in resource_shapes:
                 add_child(mpas, mpa.client_object())
@@ -1062,3 +1062,9 @@ def editgeom_shape(request,id):
         return HttpResponse(result + e.message, status=500)
     return HttpResponse(result)
 
+
+def draw_help_text(request):
+    return render_to_response( 'draw_help_text.html', RequestContext(request,{})) 
+    
+def draw_help_video(request):
+    return render_to_response( 'draw_help_text.html', RequestContext(request,{})) 

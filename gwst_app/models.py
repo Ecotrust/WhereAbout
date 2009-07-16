@@ -330,9 +330,9 @@ class InterviewShape(Model):
         if resource_pennies == None:
             resource_pennies = 0
         if resource_pennies == 100:
-            folderName = self.resource.name+' group (complete)'
+            folderName = self.resource.name+' (complete)'
         else:
-            folderName = self.resource.name+' group ('+str(100-resource_pennies)+' pennies left)'
+            folderName = self.resource.name+' ('+str(100-resource_pennies)+' pennies left)'
             
         if attributes:
             attr = self.client_object()

@@ -17,7 +17,7 @@ gwst.widgets.DropdownWindow = Ext.extend(Ext.Window, {
         animate: true,
         hideCollapseTool: true
     },
-    width: 300,
+    width: 350,
     constrain: true,
     height: 400,
     listeners: {

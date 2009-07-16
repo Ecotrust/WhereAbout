@@ -6,6 +6,9 @@ urlpatterns = patterns('',
     (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout_then_login', {'login_url': '/accounts/login/'}),
     (r'^accounts/', include('registration.urls')),
+    
+    (r'^draw_help/text/$', draw_help_text ),
+    (r'^draw_help/video/$', draw_help_video ),
 
     (r'^$', select_interview ),
     (r'^select_interview/$', select_interview ),
@@ -32,5 +35,6 @@ urlpatterns = patterns('',
     #(r'^gwst/shape/copy/(\d+)$', copy_shape ),
     (r'^gwst/shape/edit/(\d+)$', edit_shape ),
 
-    (r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),    
+    (r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
+
 )
