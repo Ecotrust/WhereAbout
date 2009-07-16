@@ -1,1 +1,1 @@
-Registration for MLPA North Coast Recreational Fishing Interview
+Registration for the {{ interview.name }}

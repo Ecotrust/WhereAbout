@@ -48,7 +48,9 @@ class SMRegistrationManager(RegistrationManager):
             current_site = Site.objects.get_current()        
             
             subject = render_to_string('registration/sm_activation_email_subject.txt',
-                                       { 'site': current_site })
+                                       { 'site': current_site,
+                                         'interview': interview })
+
             # Email subject *must not* contain newlines
             subject = ''.join(subject.splitlines())
             
