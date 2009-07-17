@@ -90,24 +90,6 @@
     }
   }, 
   {
-    "pk": 2, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "test", 
-      "first_name": "test", 
-      "last_name": "tester", 
-      "is_active": true, 
-      "is_superuser": false, 
-      "is_staff": false, 
-      "last_login": "2009-07-17 08:01:22", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
-      "email": "t@t.org", 
-      "date_joined": "2009-06-02 11:50:33"
-    }
-  }, 
-  {
     "pk": 3, 
     "model": "auth.user", 
     "fields": {
@@ -117,12 +99,66 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-17 08:03:06", 
+      "last_login": "2009-07-17 13:58:11", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
       "email": "ta@t.org", 
       "date_joined": "2009-06-02 11:51:40"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "test", 
+      "first_name": "test", 
+      "last_name": "tester", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2009-07-17 15:54:46", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
+      "email": "t@t.org", 
+      "date_joined": "2009-06-02 11:50:33"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "lweiss", 
+      "first_name": "Leanne", 
+      "last_name": "Weiss", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2009-07-17 16:18:03", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$84376$4f203e4080b5f4be35651842a5a471de68fcbde5", 
+      "email": "lweiss@ecotrust.org", 
+      "date_joined": "2009-07-17 16:18:03"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "shetrick", 
+      "first_name": "Sonya", 
+      "last_name": "Hetrick", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2009-07-17 16:19:17", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$e6d5b$2296faa9a119332723aa743eec49ec99c83afeee", 
+      "email": "shetrick@ecotrust.org", 
+      "date_joined": "2009-07-17 16:19:17"
     }
   }, 
   {
@@ -279,6 +315,24 @@
     }
   }, 
   {
+    "pk": 18, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "rckpr", 
+      "name": "Rockfish (Pre-RCA)"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "rckpo", 
+      "name": "Rockfish (Post-RCA)"
+    }
+  }, 
+  {
     "pk": 2, 
     "model": "gwst_app.interview", 
     "fields": {
@@ -299,10 +353,10 @@
       "code": "NCrecfish", 
       "name": "MLPA North Coast Recreational Fishing Survey", 
       "region": 1, 
-      "draw_shape_text": "<div id=\"help_panel\">\r\n<p>Please take a few moments to familiarize yourself with the tool before you start drawing shapes.</p>\r\n\r\n<p>Brief instructions and demonstration videos can be found by clicking on the \"Instructions\" tab at the top of this window. Advanced features are available such as copying one or all shapes from one fishery to another (a time-saver if you target multiple species in the same areas).</p>\r\n\r\n<p>As you begin drawing your shapes, please remember that <b>for each fishery</b> or species you target, you will be given an imaginary bag of <b>100 pennies</b>. As you draw shapes on the map you will place some number of pennies on that shape. The more pennies you place on a shape, the more value or importance you are placing on that shape. Keep doing this until you have drawn all your shapes and have used up all 100 pennies for that fishery.</p>\r\n\r\n<p>Before you start each fishery, it helps to form a mental picture of the important fishing areas you have for that fishery and how many pennies you will assign to each of those areas. We encourage you to distribute the shapes as you see fit. That could mean a single area worth 100 pennies or 100 areas worth 1 penny each. It is your choice as to how you allocate your pennies.</p>\r\n\r\n<p>To see this information again after closing this window, click the Help button in the upper right.</p>\r\n\r\n<p>Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.</p></div>", 
+      "draw_shape_text": "<div id=\"help_panel\">\r\n\r\n<b> Getting Started </b>\r\n\r\n<p>Please take a few moments to familiarize yourself with the tool before you start drawing shapes.  Brief instructions and demonstration videos can be found by clicking on the \"Instructions\" tab at the top of this window.  These are <u>highly recommended</u> as they will not only help you get started, but show you features that can make this process go much faster.</p>\r\n\r\n<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species</b> group you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw shapes on the map representing your fishing grounds and then place some number of pennies on those shapes. The more pennies you place on a shape, the more value or importance you are placing on it. Keep doing this until you have drawn all your shapes and used all your pennies.</p>\r\n\r\n<p>How many shapes you draw and how specific you are is up to you.  Most people draw between 3 and 8 shapes per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To see this information again after closing this window, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.</p></div>", 
       "active": true, 
       "organization": "Ecotrust", 
-      "group_status_text": "Please carefully read all instructions and complete the survey.  Some sections will ask you to answer questions, others will ask you to draw shapes representing your fishing grounds.  Finalize each section once you are done.\r\n<br/><br/>\r\nThe survey process might seem complex at times, but understand that the wide range of fishing interests on the North Coast is not easy to capture and we want to provide the highest quality information possible. \r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email and we will find a way to get your information included into this process.\r\n", 
+      "group_status_text": "Please carefully read all instructions and complete the survey.  You will be asked to answer questions and draw your fishing grounds.  The drawing portion of the survey can be technically challenging for some.  Please understand this is a necessary part of the survey and provides the best representation of your fishing interests.\r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email and we will find a way to get your information included into this process.\r\n", 
       "description": "rec fish"
     }
   }, 
@@ -459,6 +513,24 @@
     }
   }, 
   {
+    "pk": 4, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "0/2 resource group(s) complete, shapes with 0 pennies present", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-17 12:06:16", 
+      "percent_involvement": 30, 
+      "num_incomplete_resources": 2
+    }
+  }, 
+  {
     "pk": 3, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
@@ -472,24 +544,6 @@
       "date_reviewed": null, 
       "user": 2, 
       "date_started": null, 
-      "percent_involvement": 30, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 2, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-17 08:01:47", 
       "percent_involvement": 30, 
       "num_incomplete_resources": 0
     }
@@ -1391,8 +1445,8 @@
       "completed": false, 
       "first_login": "2009-07-17 08:01:22", 
       "creation_date": "2009-07-17 08:01:16", 
-      "num_logins": 1, 
-      "last_login": "2009-07-17 08:01:22", 
+      "num_logins": 7, 
+      "last_login": "2009-07-17 15:54:46", 
       "user": 2, 
       "interview": 1, 
       "complete_date": null, 
