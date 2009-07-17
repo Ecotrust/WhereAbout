@@ -477,7 +477,7 @@ gwst.actions.drawMPA = new Ext.Action({
                    error: function(request, textStatus, errorThrown){
                        
                        // Ext.Msg.alert('error saving MPA');
-                        gwst.ui.error.show({errorText: 'There was a problem saving your new MPA. This error will show up in our logs, but if the problem persists please follow up with an administrator.', debugText: request.responseText, logText: 'Error saving new MPA'});
+                        gwst.ui.error.show({errorText: 'There was a problem saving your new MPA. This error will show up in our logs, but if the problem persists please follow up with an administrator.', debugText: request.responseText, logText: 'Error saving new shape'});
                         gwst.actions.utils.enableComponents();
                    },
                    type: 'POST',
@@ -499,7 +499,7 @@ gwst.actions.drawMPA = new Ext.Action({
                     },
                     error: function(response){
                         // Ext.Msg.alert('error saving MPA');
-                        gwst.ui.error.show({errorText: 'There was a problem saving your new MPA. This error will show up in our logs, but if the problem persists please follow up with an administrator.', logText: 'Error saving new MPA'});
+                        gwst.ui.error.show({errorText: 'There was a problem saving your new shape. This error will show up in our logs, but if the problem persists please follow up with an administrator.', logText: 'Error saving new shape'});
                         gwst.actions.utils.enableComponents();
                     }
                 });*/
@@ -620,7 +620,7 @@ gwst.actions.openMpaAttributes = new Ext.Action({
         if(target['saved']){
             url = url + "?saved=True";
         }
-        gwst.ui.modal.show({width: 500, url: url, waitMsg: 'while we retrieve information for this MPA.', afterRender: function(){
+        gwst.ui.modal.show({width: 500, url: url, waitMsg: 'while we retrieve information for this shape.', afterRender: function(){
             $('li.editmpa a').bindButton(function(e){gwst.actions.nonExt.editMpaAttributes(e);}, {mpa: target.mpa});
             $('li.deletempa a').bindButton(gwst.actions.nonExt.deleteMPA, {mpa: target.mpa});
         }});
