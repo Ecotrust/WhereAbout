@@ -1,17 +1,17 @@
 {{ first_name }}, 
 
-You've been registered for the {{ interview.name }}
+You have been registered for the {{ interview.name }}
 
-You are signed up for the following user groups:
+You signed up for the following user groups:
 
 {{ user_group_text }}
-To activate your account, click the link below or copy and paste it into your web browser's address bar:
+To activate your account, please click the link below or copy and paste it into your web browser's address bar:
 http://{{site.domain}}/accounts/activate/{{activation_key}}/
 
 Username: {{ username }}
 Password: {{ password }}
 
-Please complete the interview by XXXXXX.  If you have questions or need help see the contact information at the end of the email.  It's important that you finish the entire interview.  We cannot use partially completed interviews.  If you don't complete the entire interview in one session, you can pick up where you left off later.
+The survey will likely take you at least 20 minutes to complete.  You can leave and come back to it as much as you'd like until you're done, but it's important that you finish the whole thing or we can't use your information at all.  Please try to complete it as soon as possible.  You have at least until Oct. 1 to finish.  We will email a reminder to you at a later date if you still haven't completed it.  If you have questions or need help, be sure to login and read the instructions or go to the website at the end of this email for background information.  If you need additional help see the contact information at the end of this email.  If you find yourself not able to complete the online interview, contact us and we will work out another way to get your information. 
 
 By activating this account you agree to participate under the following conditions:
 The Marine Life Protection Act (MLPA) is a state law directing the California Department of Fish and Game (CDFG) to design and manage an improved network of marine protected areas off California’s coast. To implement this law, a public-private partnership has been formed between the California Resources Agency, CDFG, and Resources Legacy Fund Foundation—the MLPA Initiative. As part of this effort, Ecotrust has been retained to collect, compile and analyze information pertaining to recreational fisheries along the northern California coast. The project is designed to provide spatially explicit information to the MLPA Initiative and the information collected in this project will improve upon what is currently available regarding recreational fisheries. 
@@ -25,4 +25,4 @@ This kind of spatially explicit information on recreational fisheries will ensur
 
 During the summer and early fall 2009, Ecotrust personnel will be contacting recreational fishermen along the northern California coast to be interviewed. The format will be on-line, with follow-up meetings by user group in which the information collected will be validated by fishermen. Due to the sensitive nature of the information, only Ecotrust staff (operating under a strict confidentiality protocol) will handle the raw data generated during the interviews. All information collected in the interviews is anonymous and confidential on the individual level. All analyses and results will be presented only in aggregate form. The information will be used to create a comprehensive profile of the recreational fishing use patterns and values along California’s north coast, and may also be written up in a peer-reviewed journal. If appropriate, there may be the opportunity for release of aggregated study results for uses other than the MLPA process, but in line with the purposes of this research; however, your individual results will never be included in any release of aggregated results without your explicit consent. 
 
-Your willingness to participate is not only appreciated, but indeed vital to the success of this project.  If you have any questions or concerns, contact Jon Bonkoski at jbonkoski@ecotrust.org 503.467.0804 or Sarah Kruse at skruse@ecotrust.org 503.467.0785. The project website is www.ecotrust.org/mlpa
+Your willingness to participate is not only appreciated, but indeed vital to the success of this project.  If you have any questions or concerns, contact Jon Bonkoski at jbonkoski@ecotrust.org 503.467.0804 or Leanne Weiss at lweiss@ecotrust.org 503.467.0809. The project website is www.ecotrust.org/mlpa
