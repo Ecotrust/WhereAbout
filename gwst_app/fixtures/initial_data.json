@@ -36,24 +36,6 @@
     }
   }, 
   {
-    "pk": 2, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "test", 
-      "first_name": "test", 
-      "last_name": "tester", 
-      "is_active": true, 
-      "is_superuser": false, 
-      "is_staff": false, 
-      "last_login": "2009-07-15 22:25:35", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
-      "email": "t@t.org", 
-      "date_joined": "2009-06-02 11:50:33"
-    }
-  }, 
-  {
     "pk": 13, 
     "model": "auth.user", 
     "fields": {
@@ -108,6 +90,24 @@
     }
   }, 
   {
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "test", 
+      "first_name": "test", 
+      "last_name": "tester", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2009-07-17 08:01:22", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
+      "email": "t@t.org", 
+      "date_joined": "2009-06-02 11:50:33"
+    }
+  }, 
+  {
     "pk": 3, 
     "model": "auth.user", 
     "fields": {
@@ -117,7 +117,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-16 16:35:00", 
+      "last_login": "2009-07-17 08:03:06", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
@@ -307,27 +307,6 @@
     }
   }, 
   {
-    "pk": 2, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "kyk", 
-      "name": "Kayak", 
-      "required_group": false, 
-      "user_draws_shapes": true, 
-      "interview": 1, 
-      "resources": [
-        1, 
-        6, 
-        8, 
-        9, 
-        3, 
-        14
-      ], 
-      "description": "kayakers"
-    }
-  }, 
-  {
     "pk": 3, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -335,6 +314,7 @@
       "code": "prvsl", 
       "name": "Private Vessel", 
       "required_group": false, 
+      "preselect": true, 
       "user_draws_shapes": true, 
       "interview": 1, 
       "resources": [
@@ -362,6 +342,7 @@
       "code": "div", 
       "name": "Dive/Spear", 
       "required_group": false, 
+      "preselect": true, 
       "user_draws_shapes": true, 
       "interview": 1, 
       "resources": [
@@ -381,6 +362,7 @@
       "code": "div", 
       "name": "Dive/Spear", 
       "required_group": false, 
+      "preselect": true, 
       "user_draws_shapes": true, 
       "interview": 2, 
       "resources": [
@@ -397,6 +379,7 @@
       "code": "pri", 
       "name": "Sport Boat", 
       "required_group": false, 
+      "preselect": true, 
       "user_draws_shapes": true, 
       "interview": 2, 
       "resources": [
@@ -413,6 +396,7 @@
       "code": "main", 
       "name": "Main Questions", 
       "required_group": true, 
+      "preselect": true, 
       "user_draws_shapes": false, 
       "interview": 1, 
       "resources": [], 
@@ -427,10 +411,145 @@
       "code": "main", 
       "name": "Main Questions", 
       "required_group": true, 
+      "preselect": true, 
       "user_draws_shapes": false, 
       "interview": 2, 
       "resources": [], 
       "description": "General Questions"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "kyk", 
+      "name": "Kayak", 
+      "required_group": false, 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 1, 
+      "resources": [
+        1, 
+        6, 
+        8, 
+        9, 
+        3, 
+        14
+      ], 
+      "description": "kayakers"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": null, 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": null, 
+      "percent_involvement": 30, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-17 08:01:47", 
+      "percent_involvement": 30, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 1, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-17 08:06:06", 
+      "percent_involvement": 40, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.groupmemberresource", 
+    "fields": {
+      "resource": 1, 
+      "group_membership": 4
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.groupmemberresource", 
+    "fields": {
+      "resource": 6, 
+      "group_membership": 4
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "gwst_app.groupmemberresource", 
+    "fields": {
+      "resource": 8, 
+      "group_membership": 4
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.groupmemberresource", 
+    "fields": {
+      "resource": 3, 
+      "group_membership": 2
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.groupmemberresource", 
+    "fields": {
+      "resource": 16, 
+      "group_membership": 2
     }
   }, 
   {
@@ -1263,6 +1382,21 @@
       "question_set": null, 
       "eng_text": "Please answer these general questions. The information you provide will be kept confidential.", 
       "int_group": 6
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.interviewstatus", 
+    "fields": {
+      "completed": false, 
+      "first_login": "2009-07-17 08:01:22", 
+      "creation_date": "2009-07-17 08:01:16", 
+      "num_logins": 1, 
+      "last_login": "2009-07-17 08:01:22", 
+      "user": 2, 
+      "interview": 1, 
+      "complete_date": null, 
+      "notes": null
     }
   }, 
   {

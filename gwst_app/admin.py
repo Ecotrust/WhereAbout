@@ -20,6 +20,7 @@ databrowse.site.register(InterviewShape)
 databrowse.site.register(InterviewInstructions)
 databrowse.site.register(FaqGroup)
 databrowse.site.register(Faq)
+databrowse.site.register(GroupMemberResource)
 
 class InterviewQuestionInline(admin.StackedInline):
     model = InterviewQuestion
@@ -67,6 +68,7 @@ admin.site.register(QuestionGroupValidator,IntAdmin)
 admin.site.register(QuestionGroup,IntAdmin)
 admin.site.register(InterviewGroup,InterviewGroupAdmin)
 admin.site.register(InterviewGroupMembership,IntAdmin)
+admin.site.register(GroupMemberResource,IntAdmin)
 admin.site.register(InterviewAnswerOption,IntAdmin)
 admin.site.register(InterviewAnswer,IntAdmin)
 admin.site.register(InterviewStatus,IntAdmin)

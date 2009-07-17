@@ -222,3 +222,24 @@ class InterviewShapeAttributeForm(forms.ModelForm):
     class Meta:
         model = InterviewShape
         exclude = ('user','int_group','resource','geometry','geometry_clipped','geometry_edited','edit_notes','edit_status','creation_date','last_modified','num_times_saved')
+
+
+class GroupMemberResourceForm(forms.Form):
+    def __init__(self, resources, *args, **kwargs):
+        forms.Form.__init__(self, *args, **kwargs) 
+        choices = [(resource.id, resource.name) for resource in resources]
+        
+        self.fields['resources'] = forms.MultipleChoiceField(choices=choices, widget=forms.CheckboxSelectMultiple())
+
+    def save(self, group_memb, profile_callback=None):
+        resource_ids = self.cleaned_data['resources']
+        try:
+            resources = [Resource.objects.get(pk=r_id) for r_id in resource_ids]
+        except Exception, e:
+            return {'status':'fail','error':'Unknown resource submitted'}         
+        for r in resources:
+            gmr = GroupMemberResource()
+            gmr.resource = r
+            gmr.group_membership = group_memb
+            gmr.save()
+        return True

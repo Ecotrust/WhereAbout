@@ -291,7 +291,6 @@ def answer_questions(request,group_id):
     if status.completed:
         # redirect to interview_complete
         return HttpResponseRedirect('/interview_complete/')
-        
 
     try:
         group = InterviewGroup.objects.get(pk=group_id)
@@ -355,8 +354,7 @@ def answer_questions(request,group_id):
                 elif field.question.answer_type == 'text' or field.question.answer_type == 'phone':
                     answer.text_val = form.cleaned_data['question_%d' % field.question.id]
                 answer.save()
-                
-                # update the InterviewGroupMembership to show in-progress status
+
                 group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=group_id)
                 if group_memb.count()==1:
                     updated_group = group_memb[0]
@@ -374,7 +372,44 @@ def answer_questions(request,group_id):
 
     return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))     
     
-    
+@login_required
+def select_group_resources(request, group_id):
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+ 
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+
+    try:
+        group = InterviewGroup.objects.get(pk=group_id)
+        group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=group_id)        
+    except ObjectDoesNotExist:
+        return render_to_response( '404.html', RequestContext(request,{}))
+
+    #Get all resources for current group
+    resources = group.resources.all()
+
+    if request.method == 'GET':        
+        form = GroupMemberResourceForm(resources)                        
+    else:        
+        form = GroupMemberResourceForm(resources, request.POST)
+        if form.is_valid():
+            form.save(group_memb)
+            #Store the selected resources
+            return HttpResponseRedirect('/draw_group_shapes/'+str(group_id))
+
+    return render_to_response( 'select_group_resources.html', RequestContext(request,{'group':group, 'form': form, 'value':'Continue'}))     
+
 # start draw shapes for indicated group    
 @login_required
 def draw_group_shapes(request, group_id):
@@ -395,17 +430,26 @@ def draw_group_shapes(request, group_id):
     if status.completed:
         # redirect to interview_complete
         return HttpResponseRedirect('/interview_complete/')
+
+    group = InterviewGroup.objects.get(pk=group_id)
+    group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=group_id)
+    if group_memb.int_group.user_draws_shapes:
+        #Have user select resources if they are required to and haven't yet
+        if group.preselect:
+            resources = GroupMemberResource.objects.filter(group_membership=group_memb)
+            if len(resources) == 0:
+                return HttpResponseRedirect('/select_group_resources/'+str(group_id))
         
-    try:
-        group = InterviewGroup.objects.get(pk=group_id)
-    except ObjectDoesNotExist:
-        return render_to_response( '404.html', RequestContext(request,{}))
-        
-    request.session['int_group'] = group
-        
-    title = request.session['interview'].name + ' - ' + group.name + ' Group Shape Drawing'
-        
-    return render_to_response( 'map.html', RequestContext(request, {'title':title, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
+        try:
+            group = InterviewGroup.objects.get(pk=group_id)
+        except ObjectDoesNotExist:
+            return render_to_response( '404.html', RequestContext(request,{}))
+            
+        request.session['int_group'] = group
+            
+        title = request.session['interview'].name + ' - ' + group.name + ' Group Shape Drawing'
+            
+        return render_to_response( 'map.html', RequestContext(request, {'title':title, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
 
 
 
@@ -645,7 +689,10 @@ def user_features_client_object(user,interview):
         int_group = int_group_memb.int_group
         group_folder_name = int_group.name + ' (' + int_group_memb.status + ')'
         group = create_folder(group_folder_name, pk=int_group.id, toggle=True, context=True)
-        for resource in int_group.resources.all():
+        
+        memb_resources = GroupMemberResource.objects.filter(group_membership=int_group_memb)
+        resources = [mr.resource for mr in memb_resources]
+        for resource in resources:
             resource_shapes = InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource)
             resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
             if resource_pennies == None:
