@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block content %}
+<h1>{{ group.name }} Group Resource Selection</h1>
+<p style='width: 600px'>Please select the resources you harvest <u><b>for the {{group.name}} group only</b></u>. If any resources are missing
+from the list, please notify us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a>.</p>
+   <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+   {{ form.non_field_errors }}
+   
+    {% for field in form %}
+        {% if field.field.question_set %}
+        {% with field.field.question_set as index %}
+        <p><div class="question_set"></div>
+        {% for key, val in instructions.items %}
+        {% ifequal key index %}
+            {{ val }}
+        {% endifequal %}
+        {% endfor %}
+        </p>
+        {% endwith %}
+        {% endif %}
+        <p><div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}: {{ field }}
+        </div></p>
+    {% endfor %}   
+   
+   <p><input id="submit" type="submit" value="{{ value }}" />
+   {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+   </p>
+   </form>
+{% endblock %}
