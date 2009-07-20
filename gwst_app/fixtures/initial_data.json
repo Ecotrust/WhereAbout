@@ -180,146 +180,6 @@
     }
   }, 
   {
-    "pk": 1, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "sal", 
-      "name": "Salmon"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "tun", 
-      "name": "Tuna"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "dcrb", 
-      "name": "Dungeness Crab"
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "phal", 
-      "name": "Pacific Halibut"
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "chal", 
-      "name": "California Halibut"
-    }
-  }, 
-  {
-    "pk": 8, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "bait", 
-      "name": "Anchovy/Herring (bait fish)"
-    }
-  }, 
-  {
-    "pk": 9, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "shray", 
-      "name": "Sharks/Rays"
-    }
-  }, 
-  {
-    "pk": 10, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "atna", 
-      "name": "Albacore Tuna"
-    }
-  }, 
-  {
-    "pk": 11, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "hsqd", 
-      "name": "Humboldt Squid"
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "oflt", 
-      "name": "Other Flatfish (soles, turbots)"
-    }
-  }, 
-  {
-    "pk": 15, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "abl", 
-      "name": "Abalone"
-    }
-  }, 
-  {
-    "pk": 16, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "urch", 
-      "name": "Urchin"
-    }
-  }, 
-  {
-    "pk": 17, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "rscl", 
-      "name": "Rock Scallops"
-    }
-  }, 
-  {
-    "pk": 14, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF", 
-      "select_description": null, 
-      "code": "sndb", 
-      "name": "Sanddabs"
-    }
-  }, 
-  {
     "pk": 18, 
     "model": "gwst_app.resource", 
     "fields": {
@@ -347,6 +207,146 @@
       "select_description": "Select this group only if you fished rockfish before closure areas (RCA\u2019s) were created.  It represents what your rockfish grounds would be if closures never existed, which is probably similar to a combination of your Pre & Post-RCA fishing grounds. See the drawing instructions for more information.", 
       "code": "rock", 
       "name": "Rockfish C - (Cumulative)"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "sal", 
+      "name": "Salmon"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "tun", 
+      "name": "Tuna"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "dcrb", 
+      "name": "Dungeness Crab"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "phal", 
+      "name": "Pacific Halibut"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "chal", 
+      "name": "California Halibut"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "bait", 
+      "name": "Anchovy/Herring (bait fish)"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "shray", 
+      "name": "Sharks/Rays"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "atna", 
+      "name": "Albacore Tuna"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "hsqd", 
+      "name": "Humboldt Squid"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "oflt", 
+      "name": "Other Flatfish (soles, turbots)"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "abl", 
+      "name": "Abalone"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "urch", 
+      "name": "Urchin"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "rscl", 
+      "name": "Rock Scallops"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF", 
+      "select_description": "", 
+      "code": "sndb", 
+      "name": "Sanddabs"
     }
   }, 
   {
