@@ -19,6 +19,7 @@ class Region(Model):
 class Resource(Model):
     name = CharField( max_length=100, unique=True )
     code = CharField( max_length=10, unique=True )
+    select_description = CharField( max_length=300, default = '', blank=True) #Holds information on why you would/should select this resource
     shape_color = CharField( max_length=2, default = 'FF', blank=True )
     
     class Meta:

@@ -6,7 +6,7 @@
 <h1>{{ group.name }} Group Resource Selection</h1>
 <p style='width: 600px'>Please select the resources you harvest <u><b>for the {{group.name}} group only</b></u>. If any resources are missing
 from the list, please notify us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a>.</p>
-   <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+   <form style='width: 600px' class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
    {{ form.non_field_errors }}
    
     {% for field in form %}

@@ -397,7 +397,7 @@ def select_group_resources(request, group_id):
         return render_to_response( '404.html', RequestContext(request,{}))
 
     #Get all resources for current group
-    resources = group.resources.all()
+    resources = group.resources.all().order_by('name')
 
     if request.method == 'GET':        
         form = GroupMemberResourceForm(resources)                        
