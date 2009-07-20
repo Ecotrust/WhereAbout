@@ -90,42 +90,6 @@
     }
   }, 
   {
-    "pk": 3, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "testadmin", 
-      "first_name": "testadmin", 
-      "last_name": "ta", 
-      "is_active": true, 
-      "is_superuser": true, 
-      "is_staff": true, 
-      "last_login": "2009-07-17 13:58:11", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
-      "email": "ta@t.org", 
-      "date_joined": "2009-06-02 11:51:40"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "test", 
-      "first_name": "test", 
-      "last_name": "tester", 
-      "is_active": true, 
-      "is_superuser": false, 
-      "is_staff": false, 
-      "last_login": "2009-07-17 15:54:46", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
-      "email": "t@t.org", 
-      "date_joined": "2009-06-02 11:50:33"
-    }
-  }, 
-  {
     "pk": 18, 
     "model": "auth.user", 
     "fields": {
@@ -159,6 +123,42 @@
       "password": "sha1$e6d5b$2296faa9a119332723aa743eec49ec99c83afeee", 
       "email": "shetrick@ecotrust.org", 
       "date_joined": "2009-07-17 16:19:17"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "test", 
+      "first_name": "test", 
+      "last_name": "tester", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2009-07-19 22:18:52", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
+      "email": "t@t.org", 
+      "date_joined": "2009-06-02 11:50:33"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "testadmin", 
+      "first_name": "testadmin", 
+      "last_name": "ta", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2009-07-20 11:00:37", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
+      "email": "ta@t.org", 
+      "date_joined": "2009-06-02 11:51:40"
     }
   }, 
   {
@@ -495,20 +495,20 @@
     }
   }, 
   {
-    "pk": 1, 
+    "pk": 2, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 6, 
+      "status": "finalized", 
+      "user_status_msg": "2/2 resource group(s) complete", 
+      "date_completed": "2009-07-19 22:28:29", 
+      "int_group": 1, 
       "completed": false, 
-      "num_complete_resources": 0, 
+      "num_complete_resources": 2, 
       "reviewed": false, 
       "date_reviewed": null, 
       "user": 2, 
-      "date_started": null, 
-      "percent_involvement": null, 
+      "date_started": "2009-07-19 22:20:04", 
+      "percent_involvement": 40, 
       "num_incomplete_resources": 0
     }
   }, 
@@ -516,8 +516,8 @@
     "pk": 4, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "0/2 resource group(s) complete, shapes with 0 pennies present", 
+      "status": "in-progress", 
+      "user_status_msg": "no shapes drawn", 
       "date_completed": null, 
       "int_group": 2, 
       "completed": false, 
@@ -525,7 +525,7 @@
       "reviewed": false, 
       "date_reviewed": null, 
       "user": 2, 
-      "date_started": "2009-07-17 12:06:16", 
+      "date_started": "2009-07-19 22:28:47", 
       "percent_involvement": 30, 
       "num_incomplete_resources": 2
     }
@@ -549,20 +549,20 @@
     }
   }, 
   {
-    "pk": 2, 
+    "pk": 1, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
-      "status": "not yet started", 
+      "status": "finalized", 
       "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 1, 
+      "date_completed": "2009-07-19 22:19:32", 
+      "int_group": 6, 
       "completed": false, 
       "num_complete_resources": 0, 
       "reviewed": false, 
       "date_reviewed": null, 
       "user": 2, 
-      "date_started": "2009-07-17 08:06:06", 
-      "percent_involvement": 40, 
+      "date_started": "2009-07-19 22:19:27", 
+      "percent_involvement": null, 
       "num_incomplete_resources": 0
     }
   }, 
@@ -1439,18 +1439,384 @@
     }
   }, 
   {
+    "pk": 24, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 3, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "Fort Bragg"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 4, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "CA"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 5, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "123-123-3444"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 6, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 29, 
+      "text_val": "29"
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 7, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": 4, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "Male"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 1, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 4, 
+      "text_val": "4"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 31, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": 8, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "Private Boat"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 32, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": 9, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "Free dive"
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 33, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 80, 
+      "text_val": "80"
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 34, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 20, 
+      "text_val": "20"
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 2, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": "Moore Landing"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 26, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": ""
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 27, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": ""
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 28, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": null, 
+      "text_val": ""
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 29, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 20, 
+      "text_val": "20"
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "gwst_app.interviewanswer", 
+    "fields": {
+      "last_modified": "2009-07-17 15:50:26", 
+      "num_times_saved": 1, 
+      "int_question": 30, 
+      "creation_date": "2009-07-17 15:50:26", 
+      "option_val": null, 
+      "boolean_val": null, 
+      "user": 2, 
+      "decimal_val": null, 
+      "integer_val": 50, 
+      "text_val": "50"
+    }
+  }, 
+  {
     "pk": 1, 
     "model": "gwst_app.interviewstatus", 
     "fields": {
       "completed": false, 
       "first_login": "2009-07-17 08:01:22", 
       "creation_date": "2009-07-17 08:01:16", 
-      "num_logins": 7, 
-      "last_login": "2009-07-17 15:54:46", 
+      "num_logins": 8, 
+      "last_login": "2009-07-19 22:18:53", 
       "user": 2, 
       "interview": 1, 
       "complete_date": null, 
       "notes": null
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "gwst_app.interviewshape", 
+    "fields": {
+      "edit_notes": null, 
+      "boundary_s": "", 
+      "resource": 3, 
+      "boundary_w": "", 
+      "int_group": 1, 
+      "geometry": "POLYGON ((-345915.4879061896353960 217291.4983808280085213, -348738.3356987739680335 219257.3696498319332022, -348683.2797331332694739 221216.3712045532302000, -346654.4972500822041184 221977.9804819166020025, -344483.0851388197042979 219894.8603085979120806, -344798.4475984877790324 218005.2140957480878569, -345915.4879061896353960 217291.4983808280085213))", 
+      "pennies": 25, 
+      "edit_status": "unedited", 
+      "creation_date": "2009-07-17 15:50:26", 
+      "geometry_clipped": "POLYGON ((-345915.4879061896353960 217291.4983808280085213, -348738.3356987739680335 219257.3696498319332022, -348683.2797331332694739 221216.3712045532302000, -346654.4972500822041184 221977.9804819166020025, -344483.0851388197042979 219894.8603085979120806, -344798.4475984877790324 218005.2140957480878569, -345915.4879061896353960 217291.4983808280085213))", 
+      "num_times_saved": 2, 
+      "last_modified": "2009-07-19 22:26:40", 
+      "boundary_e": "", 
+      "user": 2, 
+      "boundary_n": "", 
+      "geometry_edited": null
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "gwst_app.interviewshape", 
+    "fields": {
+      "edit_notes": null, 
+      "boundary_s": "", 
+      "resource": 3, 
+      "boundary_w": "", 
+      "int_group": 1, 
+      "geometry": "POLYGON ((-348710.4910617182031274 217177.1234679896733724, -348042.0735857640393078 218378.2849793763598427, -346026.2127807400538586 217105.8743938720435835, -344516.0697059460217133 217912.6653814055607654, -344388.5575185164925642 218752.7132491884985939, -342217.6782304184744135 217924.9782411867054179, -344966.6729066796833649 215435.1160986046306789, -348710.4910617182031274 217177.1234679896733724))", 
+      "pennies": 25, 
+      "edit_status": "unedited", 
+      "creation_date": "2009-07-17 15:50:26", 
+      "geometry_clipped": "POLYGON ((-348710.4910617184941657 217177.1234679826011416, -348042.0735857379622757 218378.2849793770583346, -346026.2127807749202475 217105.8743938720435835, -344516.0697059679077938 217912.6653814020392019, -344388.5575185382622294 218752.7132491871016100, -342217.6782304184744135 217924.9782411867054179, -344966.6729066796833649 215435.1160986046306789, -348710.4910617184941657 217177.1234679826011416))", 
+      "num_times_saved": 2, 
+      "last_modified": "2009-07-19 22:26:50", 
+      "boundary_e": "", 
+      "user": 2, 
+      "boundary_n": "", 
+      "geometry_edited": null
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "gwst_app.interviewshape", 
+    "fields": {
+      "edit_notes": null, 
+      "boundary_s": "", 
+      "resource": 3, 
+      "boundary_w": "20 Fathoms", 
+      "int_group": 1, 
+      "geometry": "POLYGON ((-337929.4875068296678364 220760.1208810120588169, -341570.0359661797410809 218658.8983710910542868, -340030.3946448983624578 216866.4646944738924503, -339570.0173069594311528 215939.2541728943469934, -338025.8069578740978613 215640.3290559376473539, -335855.4449991325964220 217687.7911122799268924, -337929.4875068296678364 220760.1208810120588169))", 
+      "pennies": 40, 
+      "edit_status": "unedited", 
+      "creation_date": "2009-07-17 15:50:26", 
+      "geometry_clipped": "POLYGON ((-340030.3946448983624578 216866.4646944738924503, -341570.0359661797410809 218658.8983710910542868, -338339.1705488562001847 220523.6633143941289745, -337943.8750000346335582 219520.5625000015716068, -337331.4062500127474777 218625.0624999982828740, -336700.2812499782303348 217908.2499999959254637, -336025.2040544105111621 217527.6449104067869484, -338025.8069578740978613 215640.3290559376473539, -339570.0173069596639834 215939.2541728887008503, -340030.3946448983624578 216866.4646944738924503))", 
+      "num_times_saved": 2, 
+      "last_modified": "2009-07-19 22:27:08", 
+      "boundary_e": "", 
+      "user": 2, 
+      "boundary_n": "", 
+      "geometry_edited": null
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "gwst_app.interviewshape", 
+    "fields": {
+      "edit_notes": null, 
+      "boundary_s": "", 
+      "resource": 3, 
+      "boundary_w": "", 
+      "int_group": 1, 
+      "geometry": "POLYGON ((-336432.9220275800907984 211560.2968822029361036, -334219.3217573104193434 213929.8538372857437935, -331804.9648064827197231 211193.5978903909563087, -334837.4900712436647154 208211.3227317190321628, -336432.9220275800907984 211560.2968822029361036))", 
+      "pennies": 10, 
+      "edit_status": "unedited", 
+      "creation_date": "2009-07-17 15:50:26", 
+      "geometry_clipped": "POLYGON ((-332458.7362640029750764 210550.6596764961141162, -334837.4900712436647154 208211.3227317190321628, -336432.9220275800907984 211560.2968822029361036, -334462.3006318953121081 213669.7561629663396161, -334161.1875000278232619 212473.0624999967112672, -333726.5000000002910383 211597.4687499961582944, -333494.3750000332365744 211477.6249999977881089, -333095.9375000122236088 210956.4843750014842954, -332634.5312500103027560 210742.4062499983119778, -332458.7362640029750764 210550.6596764961141162))", 
+      "num_times_saved": 2, 
+      "last_modified": "2009-07-19 22:27:16", 
+      "boundary_e": "", 
+      "user": 2, 
+      "boundary_n": "", 
+      "geometry_edited": null
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "gwst_app.interviewshape", 
+    "fields": {
+      "edit_notes": null, 
+      "boundary_s": "", 
+      "resource": 16, 
+      "boundary_w": "", 
+      "int_group": 1, 
+      "geometry": "POLYGON ((-348710.4910617182031274 217177.1234679896733724, -348042.0735857640393078 218378.2849793763598427, -346026.2127807400538586 217105.8743938720435835, -344516.0697059460217133 217912.6653814055607654, -344388.5575185164925642 218752.7132491884985939, -342217.6782304184744135 217924.9782411867054179, -344966.6729066796833649 215435.1160986046306789, -348710.4910617182031274 217177.1234679896733724))", 
+      "pennies": 100, 
+      "edit_status": "unedited", 
+      "creation_date": "2009-07-19 22:26:10", 
+      "geometry_clipped": "POLYGON ((-348710.4910617184941657 217177.1234679826011416, -348042.0735857379622757 218378.2849793770583346, -346026.2127807749202475 217105.8743938720435835, -344516.0697059679077938 217912.6653814020392019, -344388.5575185382622294 218752.7132491871016100, -342217.6782304184744135 217924.9782411867054179, -344966.6729066796833649 215435.1160986046306789, -348710.4910617184941657 217177.1234679826011416))", 
+      "num_times_saved": 2, 
+      "last_modified": "2009-07-19 22:27:47", 
+      "boundary_e": "", 
+      "user": 2, 
+      "boundary_n": "", 
+      "geometry_edited": null
     }
   }, 
   {
