@@ -222,7 +222,7 @@ gwst.widgets.DataLayersMenu = Ext.extend(gwst.widgets.DropdownMenu, {
         
         this.window.add(this.grid);
         this.window.x = 0;
-        this.window.y = 76;
+        this.window.y = 25;
         this.window.setHeight(150);
         this.window.setTitle('Maps');          
     }

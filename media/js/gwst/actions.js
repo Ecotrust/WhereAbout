@@ -326,6 +326,7 @@ gwst.actions.help = new Ext.Action({
                 //modal: true,
                 width: 800,
                 y: 100,
+                autoScroll: true,
                 items: [
                     /*gwst.app.helpScreenText = new gwst.widgets.URLViewer({
                                 url: '/draw_help/text/',
@@ -335,7 +336,7 @@ gwst.actions.help = new Ext.Action({
                     new Ext.TabPanel({
                         deferredRender: false,
                         labelWidth: 75,
-                        height: 565,
+                        height: 465,
                         activeTab: 0,
                         border: false,
                         items: [
@@ -445,7 +446,7 @@ gwst.actions.userPrefsDropdown = new Ext.Action({
 });
 
 gwst.actions.finishGroup = new Ext.Action({
-    text: 'Return to Interview Menu',
+    text: 'Click Here When Finished With This Group',
     iconCls: 'yes-icon',
     handler: function(target, e){
         window.onbeforeunload = null;

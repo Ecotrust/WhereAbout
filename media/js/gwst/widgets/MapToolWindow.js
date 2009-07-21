@@ -20,8 +20,8 @@ gwst.widgets.MapToolWindow = Ext.extend(Ext.Window, {
         }); 
         
         Ext.apply(this, {
-            x: 0,
-            y: 30,
+            x: 350,
+            y: 25,
             layout:'fit',
             html:'some stuff goes here',
             tbar: toolbar

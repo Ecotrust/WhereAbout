@@ -127,8 +127,8 @@ gwst.widgets.ControlToolbar = Ext.extend(mapfish.widgets.toolbar.Toolbar, {
                 resizable: false,
                 closable: true,
                 closeAction: 'hide',
-                x: 139,
-                y: 30,
+                x: 465,
+                y: 25,
                 bbar: [ button_english, button_metric, button_nautical ]
             });
             this.measure_win.addListener("hide", this.cleanupMeasureWin, this);
