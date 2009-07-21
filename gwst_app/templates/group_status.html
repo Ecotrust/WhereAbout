@@ -29,12 +29,19 @@
      <li><a href="/unfinalize_group/{{object.int_group.id}}/">Re-open this group</a></li>
   {% else %}
     {% ifequal object.status "in-progress" %}
-      <li><a href="/group_qs/{{object.int_group.id}}/answer/">Edit Answers</a></li>
+      <li><a href="/group_qs/{{object.int_group.id}}/answer/">Edit answers</a></li>
     {% else %}
       <li><a href="/group_qs/{{object.int_group.id}}/answer/">Answer questions</a></li>
     {% endifequal %} 
     {% ifequal object.status "in-progress" %}
-      {% if object.int_group.user_draws_shapes %}         
+      {% if object.int_group.user_draws_shapes %}
+        {% ifnotequal object.num_incomplete_resources 0 %}
+        <li><a href="/review_resource_questions/{{object.int_group.id}}/">Edit species-specific answers</a></li>
+        {% else %}
+            {% ifnotequal object.num_complete_resources 0 %}
+        <li><a href="/review_resource_questions/{{object.int_group.id}}/">Edit species-specific answers</a></li>
+            {% endifnotequal %}
+        {% endifnotequal %}
         <li><a href="/draw_group_shapes/{{object.int_group.id}}/">Draw shapes</a></li>
       {% endif %}
       {% if object.int_group.user_draws_shapes %}

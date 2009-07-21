@@ -377,13 +377,14 @@ def select_group_resources(request, group_id):
         if form.is_valid():
             form.save(group_memb)
             #Store the selected resources
-            return HttpResponseRedirect('/answer_resource_questions/'+str(group_id))
+            
+            return HttpResponseRedirect('/answer_resource_questions/'+str(group_id)+'/')
 
     return render_to_response( 'select_group_resources.html', RequestContext(request,{'group':group, 'form': form, 'value':'Continue'}))     
 
     
 @login_required
-def answer_resource_questions(request, group_id):
+def answer_resource_questions(request, group_id, next_url=None):
 
     # make sure the user has a valid session in-progress
     try:
@@ -425,7 +426,10 @@ def answer_resource_questions(request, group_id):
     questions = InterviewQuestion.objects.filter(int_group__pk=group_id,all_resources=True).order_by('question_set', 'display_order')
     
     if questions.count() == 0:
-            return HttpResponseRedirect('/draw_group_shapes/'+str(group_id))
+        if next_url:
+            return HttpResponseRedirect(next_url)
+        else:
+            return HttpResponseRedirect('/draw_group_shapes/'+str(group_id)+'/')
             
     answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
     
@@ -451,7 +455,10 @@ def answer_resource_questions(request, group_id):
             for name, form in forms.items():
                 form.save(request.user)
                 
-            return HttpResponseRedirect('/draw_group_shapes/'+str(group_id))
+            if next_url:
+                return HttpResponseRedirect(next_url)
+            else:
+                return HttpResponseRedirect('/draw_group_shapes/'+str(group_id)+'/')
         
     return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions}))   
 
@@ -484,7 +491,7 @@ def draw_group_shapes(request, group_id):
         if group.preselect:
             resources = GroupMemberResource.objects.filter(group_membership=group_memb)
             if len(resources) == 0:
-                return HttpResponseRedirect('/select_group_resources/'+str(group_id))
+                return HttpResponseRedirect('/select_group_resources/'+str(group_id)+'/')
         
         try:
             group = InterviewGroup.objects.get(pk=group_id)

@@ -73,7 +73,7 @@ class AnswerForm(forms.Form):
             else:
                 dynamic_args['required'] = False   
                 
-            answer = answers.filter(int_question=question)
+            answer = answers.filter(int_question=question,resource__pk=resource_id)
             
             # set up the appropriate widget
             if question.answer_type == 'integer': # integer
@@ -248,6 +248,8 @@ class AnswerForm(forms.Form):
             elif field.question.answer_type == 'text' or field.question.answer_type == 'phone':
                 answer.text_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
             answer.save()
+            
+            #print "saved answer (res: %d, q: %d, user: %d)" % (answer.resource_id, answer.int_question.id, answer.user.id)
         
 
 class InterviewShapeAttributeForm(forms.ModelForm):
