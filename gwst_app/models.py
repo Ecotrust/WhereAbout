@@ -37,7 +37,10 @@ class Interview(Model):
     code = CharField( max_length=20, unique=True )
     active = BooleanField( default=False )
     group_status_text = TextField( blank=True, default='' )
-    draw_shape_text = TextField( blank=True, default='' )    
+    draw_shape_text = TextField( blank=True, default='' ) 
+    resource_name = CharField( max_length=20, default='species' )
+    resource_name_plural = CharField( max_length=20, default='species' )
+    resource_action = CharField( max_length=20, default='target' )
     class Meta:
         db_table = u'gwst_interview'
         

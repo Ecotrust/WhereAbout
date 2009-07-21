@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
+{% block title %}{{ group.name }} Group {{interview.resource_name|capfirst}} Selection{% endblock %}
+
 {% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
 
 {% block content %}
-<h1>{{ group.name }} Group Resource Selection</h1>
-<p style='width: 600px'>Please select the resources you harvest <u><b>for the {{group.name}} group only</b></u>. If any resources are missing
+<h1>{{ group.name }} Group {{interview.resource_name|capfirst}} Selection</h1>
+<p style='width: 600px'>Please select the {{interview.resource_name_plural}} you {{interview.resource_action}} <u><b>for the {{group.name}} group only</b></u>. If any {{interview.resource_name_plural}} are missing
 from the list, please notify us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a>.</p>
    <form style='width: 600px' class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
    {{ form.non_field_errors }}

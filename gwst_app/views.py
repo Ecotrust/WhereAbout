@@ -380,7 +380,7 @@ def select_group_resources(request, group_id):
             
             return HttpResponseRedirect('/answer_resource_questions/'+str(group_id)+'/')
 
-    return render_to_response( 'select_group_resources.html', RequestContext(request,{'group':group, 'form': form, 'value':'Continue'}))     
+    return render_to_response( 'select_group_resources.html', RequestContext(request,{'group':group, 'form': form, 'value':'Continue','interview':request.session['interview']}))     
 
     
 @login_required

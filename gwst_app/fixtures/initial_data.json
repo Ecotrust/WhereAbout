@@ -183,7 +183,7 @@
     "pk": 18, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "00", 
       "select_description": "Select this group only if you fished rockfish before closure areas (RCA\u2019s) were created.  It represents your pre-RCA fishing grounds.", 
       "code": "rckpr", 
       "name": "Rockfish A - (Pre-RCA)"
@@ -193,7 +193,7 @@
     "pk": 19, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "10", 
       "select_description": "Select this group if you fish rockfish.  It represents your fishing grounds Post-RCA or after closure areas where created", 
       "code": "rckpo", 
       "name": "Rockfish B - (Post-RCA)"
@@ -203,7 +203,7 @@
     "pk": 3, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "20", 
       "select_description": "Select this group only if you fished rockfish before closure areas (RCA\u2019s) were created.  It represents what your rockfish grounds would be if closures never existed, which is probably similar to a combination of your Pre & Post-RCA fishing grounds. See the drawing instructions for more information.", 
       "code": "rock", 
       "name": "Rockfish C - (Cumulative)"
@@ -213,7 +213,7 @@
     "pk": 1, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "30", 
       "select_description": "", 
       "code": "sal", 
       "name": "Salmon"
@@ -223,7 +223,7 @@
     "pk": 2, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "40", 
       "select_description": "", 
       "code": "tun", 
       "name": "Tuna"
@@ -233,7 +233,7 @@
     "pk": 4, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "50", 
       "select_description": "", 
       "code": "dcrb", 
       "name": "Dungeness Crab"
@@ -243,7 +243,7 @@
     "pk": 5, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "60", 
       "select_description": "", 
       "code": "phal", 
       "name": "Pacific Halibut"
@@ -253,7 +253,7 @@
     "pk": 6, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "70", 
       "select_description": "", 
       "code": "chal", 
       "name": "California Halibut"
@@ -263,7 +263,7 @@
     "pk": 8, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "80", 
       "select_description": "", 
       "code": "bait", 
       "name": "Anchovy/Herring (bait fish)"
@@ -273,7 +273,7 @@
     "pk": 9, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "90", 
       "select_description": "", 
       "code": "shray", 
       "name": "Sharks/Rays"
@@ -283,7 +283,7 @@
     "pk": 10, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "A0", 
       "select_description": "", 
       "code": "atna", 
       "name": "Albacore Tuna"
@@ -293,7 +293,7 @@
     "pk": 11, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "B0", 
       "select_description": "", 
       "code": "hsqd", 
       "name": "Humboldt Squid"
@@ -303,7 +303,7 @@
     "pk": 7, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "C0", 
       "select_description": "", 
       "code": "oflt", 
       "name": "Other Flatfish (soles, turbots)"
@@ -313,7 +313,7 @@
     "pk": 15, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "D0", 
       "select_description": "", 
       "code": "abl", 
       "name": "Abalone"
@@ -323,7 +323,7 @@
     "pk": 16, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "E0", 
       "select_description": "", 
       "code": "urch", 
       "name": "Urchin"
@@ -333,7 +333,7 @@
     "pk": 17, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "F0", 
       "select_description": "", 
       "code": "rscl", 
       "name": "Rock Scallops"
@@ -469,7 +469,7 @@
     "fields": {
       "shape_color": "FF", 
       "code": "kyk", 
-      "name": "Kayak", 
+      "name": "Kayak Angling", 
       "required_group": false, 
       "preselect": true, 
       "user_draws_shapes": true, 
@@ -493,7 +493,7 @@
     "fields": {
       "shape_color": "FF", 
       "code": "prvsl", 
-      "name": "Private Vessel", 
+      "name": "Private Vessel Angling", 
       "required_group": false, 
       "preselect": true, 
       "user_draws_shapes": true, 
@@ -515,190 +515,6 @@
         14
       ], 
       "description": "private vessel anglers"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "in-progress", 
-      "user_status_msg": "0/1 resource group(s) complete, shapes with 0 pennies present", 
-      "date_completed": null, 
-      "int_group": 2, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-19 22:28:47", 
-      "percent_involvement": 30, 
-      "num_incomplete_resources": 1
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 3, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-20 11:42:22", 
-      "percent_involvement": 30, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "2/2 resource group(s) complete", 
-      "date_completed": "2009-07-19 22:28:29", 
-      "int_group": 1, 
-      "completed": false, 
-      "num_complete_resources": 2, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-19 22:20:04", 
-      "percent_involvement": 40, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": "2009-07-19 22:19:32", 
-      "int_group": 6, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-19 22:19:27", 
-      "percent_involvement": null, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 6, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 1, 
-      "date_started": null, 
-      "percent_involvement": null, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 1, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 1, 
-      "date_started": null, 
-      "percent_involvement": 50, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 2, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 1, 
-      "date_started": null, 
-      "percent_involvement": 20, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 8, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 3, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 1, 
-      "date_started": null, 
-      "percent_involvement": 30, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 1, 
-      "group_membership": 4
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 6, 
-      "group_membership": 4
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 8, 
-      "group_membership": 4
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 3, 
-      "group_membership": 2
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 16, 
-      "group_membership": 2
     }
   }, 
   {
@@ -1624,168 +1440,6 @@
       "question_set": null, 
       "eng_text": "Please answer these general questions. The information you provide will be kept confidential.", 
       "int_group": 6
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "gwst_app.interviewstatus", 
-    "fields": {
-      "completed": false, 
-      "first_login": "2009-07-17 08:01:22", 
-      "creation_date": "2009-07-17 08:01:16", 
-      "num_logins": 10, 
-      "last_login": "2009-07-20 15:40:57", 
-      "user": 2, 
-      "interview": 1, 
-      "complete_date": null, 
-      "notes": null
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.interviewstatus", 
-    "fields": {
-      "completed": false, 
-      "first_login": "2009-07-20 17:06:59", 
-      "creation_date": "2009-07-20 17:06:45", 
-      "num_logins": 1, 
-      "last_login": "2009-07-20 17:06:59", 
-      "user": 1, 
-      "interview": 1, 
-      "complete_date": null, 
-      "notes": null
-    }
-  }, 
-  {
-    "pk": 14, 
-    "model": "gwst_app.interviewshape", 
-    "fields": {
-      "edit_notes": null, 
-      "boundary_s": "", 
-      "resource": 3, 
-      "boundary_w": "", 
-      "int_group": 1, 
-      "geometry": "POLYGON ((-345915.4879061896400000 217291.4983808280100000, -348738.3356987739700000 219257.3696498319300000, -348683.2797331332700000 221216.3712045532300000, -346654.4972500822000000 221977.9804819166000000, -344483.0851388197000000 219894.8603085979100000, -344798.4475984877800000 218005.2140957480900000, -345915.4879061896400000 217291.4983808280100000))", 
-      "pennies": 25, 
-      "edit_status": "unedited", 
-      "creation_date": "2009-07-17 15:50:26", 
-      "geometry_clipped": "POLYGON ((-345915.4879061896400000 217291.4983808280100000, -348738.3356987739700000 219257.3696498319300000, -348683.2797331332700000 221216.3712045532300000, -346654.4972500822000000 221977.9804819166000000, -344483.0851388197000000 219894.8603085979100000, -344798.4475984877800000 218005.2140957480900000, -345915.4879061896400000 217291.4983808280100000))", 
-      "num_times_saved": 2, 
-      "last_modified": "2009-07-19 22:26:40", 
-      "boundary_e": "", 
-      "user": 2, 
-      "boundary_n": "", 
-      "geometry_edited": null
-    }
-  }, 
-  {
-    "pk": 17, 
-    "model": "gwst_app.interviewshape", 
-    "fields": {
-      "edit_notes": null, 
-      "boundary_s": "", 
-      "resource": 3, 
-      "boundary_w": "", 
-      "int_group": 1, 
-      "geometry": "POLYGON ((-348710.4910617182000000 217177.1234679896700000, -348042.0735857640400000 218378.2849793763600000, -346026.2127807400500000 217105.8743938720400000, -344516.0697059460200000 217912.6653814055600000, -344388.5575185164900000 218752.7132491885000000, -342217.6782304184700000 217924.9782411867100000, -344966.6729066796800000 215435.1160986046300000, -348710.4910617182000000 217177.1234679896700000))", 
-      "pennies": 25, 
-      "edit_status": "unedited", 
-      "creation_date": "2009-07-17 15:50:26", 
-      "geometry_clipped": "POLYGON ((-348710.4910617184900000 217177.1234679826000000, -348042.0735857379600000 218378.2849793770600000, -346026.2127807749200000 217105.8743938720400000, -344516.0697059679100000 217912.6653814020400000, -344388.5575185382600000 218752.7132491871000000, -342217.6782304184700000 217924.9782411867100000, -344966.6729066796800000 215435.1160986046300000, -348710.4910617184900000 217177.1234679826000000))", 
-      "num_times_saved": 2, 
-      "last_modified": "2009-07-19 22:26:50", 
-      "boundary_e": "", 
-      "user": 2, 
-      "boundary_n": "", 
-      "geometry_edited": null
-    }
-  }, 
-  {
-    "pk": 15, 
-    "model": "gwst_app.interviewshape", 
-    "fields": {
-      "edit_notes": null, 
-      "boundary_s": "", 
-      "resource": 3, 
-      "boundary_w": "20 Fathoms", 
-      "int_group": 1, 
-      "geometry": "POLYGON ((-337929.4875068296700000 220760.1208810120600000, -341570.0359661797400000 218658.8983710910500000, -340030.3946448983600000 216866.4646944738900000, -339570.0173069594300000 215939.2541728943500000, -338025.8069578741000000 215640.3290559376500000, -335855.4449991326000000 217687.7911122799300000, -337929.4875068296700000 220760.1208810120600000))", 
-      "pennies": 40, 
-      "edit_status": "unedited", 
-      "creation_date": "2009-07-17 15:50:26", 
-      "geometry_clipped": "POLYGON ((-340030.3946448983600000 216866.4646944738900000, -341570.0359661797400000 218658.8983710910500000, -338339.1705488562000000 220523.6633143941300000, -337943.8750000346300000 219520.5625000015700000, -337331.4062500127500000 218625.0624999982800000, -336700.2812499782300000 217908.2499999959300000, -336025.2040544105100000 217527.6449104067900000, -338025.8069578741000000 215640.3290559376500000, -339570.0173069596600000 215939.2541728887000000, -340030.3946448983600000 216866.4646944738900000))", 
-      "num_times_saved": 2, 
-      "last_modified": "2009-07-19 22:27:08", 
-      "boundary_e": "", 
-      "user": 2, 
-      "boundary_n": "", 
-      "geometry_edited": null
-    }
-  }, 
-  {
-    "pk": 16, 
-    "model": "gwst_app.interviewshape", 
-    "fields": {
-      "edit_notes": null, 
-      "boundary_s": "", 
-      "resource": 3, 
-      "boundary_w": "", 
-      "int_group": 1, 
-      "geometry": "POLYGON ((-336432.9220275800900000 211560.2968822029400000, -334219.3217573104200000 213929.8538372857400000, -331804.9648064827200000 211193.5978903909600000, -334837.4900712436600000 208211.3227317190300000, -336432.9220275800900000 211560.2968822029400000))", 
-      "pennies": 10, 
-      "edit_status": "unedited", 
-      "creation_date": "2009-07-17 15:50:26", 
-      "geometry_clipped": "POLYGON ((-332458.7362640029800000 210550.6596764961100000, -334837.4900712436600000 208211.3227317190300000, -336432.9220275800900000 211560.2968822029400000, -334462.3006318953100000 213669.7561629663400000, -334161.1875000278200000 212473.0624999967100000, -333726.5000000002900000 211597.4687499961600000, -333494.3750000332400000 211477.6249999977900000, -333095.9375000122200000 210956.4843750014800000, -332634.5312500103000000 210742.4062499983100000, -332458.7362640029800000 210550.6596764961100000))", 
-      "num_times_saved": 2, 
-      "last_modified": "2009-07-19 22:27:16", 
-      "boundary_e": "", 
-      "user": 2, 
-      "boundary_n": "", 
-      "geometry_edited": null
-    }
-  }, 
-  {
-    "pk": 19, 
-    "model": "gwst_app.interviewshape", 
-    "fields": {
-      "edit_notes": null, 
-      "boundary_s": "", 
-      "resource": 16, 
-      "boundary_w": "", 
-      "int_group": 1, 
-      "geometry": "POLYGON ((-348710.4910617182000000 217177.1234679896700000, -348042.0735857640400000 218378.2849793763600000, -346026.2127807400500000 217105.8743938720400000, -344516.0697059460200000 217912.6653814055600000, -344388.5575185164900000 218752.7132491885000000, -342217.6782304184700000 217924.9782411867100000, -344966.6729066796800000 215435.1160986046300000, -348710.4910617182000000 217177.1234679896700000))", 
-      "pennies": 100, 
-      "edit_status": "unedited", 
-      "creation_date": "2009-07-19 22:26:10", 
-      "geometry_clipped": "POLYGON ((-348710.4910617184900000 217177.1234679826000000, -348042.0735857379600000 218378.2849793770600000, -346026.2127807749200000 217105.8743938720400000, -344516.0697059679100000 217912.6653814020400000, -344388.5575185382600000 218752.7132491871000000, -342217.6782304184700000 217924.9782411867100000, -344966.6729066796800000 215435.1160986046300000, -348710.4910617184900000 217177.1234679826000000))", 
-      "num_times_saved": 2, 
-      "last_modified": "2009-07-19 22:27:47", 
-      "boundary_e": "", 
-      "user": 2, 
-      "boundary_n": "", 
-      "geometry_edited": null
-    }
-  }, 
-  {
-    "pk": 20, 
-    "model": "gwst_app.interviewshape", 
-    "fields": {
-      "edit_notes": null, 
-      "boundary_s": null, 
-      "resource": 1, 
-      "boundary_w": null, 
-      "int_group": 2, 
-      "geometry": "POLYGON ((-419875.8473298424500000 362408.0614929884900000, -297575.8547996149900000 349541.6549298873900000, -324889.5844525913700000 245001.9119779621800000, -453688.2063941176200000 270807.6540388485300000, -419875.8473298424500000 362408.0614929884900000))", 
-      "pennies": 0, 
-      "edit_status": "unedited", 
-      "creation_date": "2009-07-20 11:18:59", 
-      "geometry_clipped": "POLYGON ((-453688.2063941179700000 270807.6540388414900000, -419875.8473298424500000 362408.0614929884900000, -347959.6934431649900000 354842.2190491932000000, -348197.9062499633900000 354509.5312499942400000, -348950.4687500280000000 354832.7500000001200000, -349512.8125000104800000 354300.2187499954000000, -349441.4999999947600000 353820.3749999994200000, -349771.3437500138000000 353221.7187500040200000, -349471.0937500128100000 352752.1562500025000000, -349369.6562499730500000 352197.6875000011100000, -349663.7499999745600000 350177.8749999982500000, -349075.0624999631500000 348933.2812499974400000, -349262.4687499839900000 348569.4687499949900000, -349315.4999999897600000 348033.5937499963900000, -349169.7812499807300000 347608.0937499967400000, -349442.9687499636200000 346884.8437499959300000, -349425.6562500322500000 346474.3124999970300000, -348882.8750000054700000 346299.6562500005800000, -348715.9062500136200000 345976.6250000053600000, -348770.3749999644400000 345466.2499999941200000, -349084.4375000123400000 345071.4999999980200000, -348966.1875000285200000 344720.9375000009300000, -347815.6250000215400000 345177.4375000005800000, -347183.2812499988400000 344696.8437499997100000, -345899.0000000280000000 342110.1875000014000000, -345704.6562499968600000 341153.3125000001700000, -346278.3437499872500000 337978.1874999934800000, -346879.1875000049500000 335561.9375000037300000, -347101.5000000152500000 334665.0937499987200000, -347911.5312499952300000 332241.8125000009900000, -348049.1249999917900000 331270.9062500025600000, -348068.2500000047100000 331142.4687499990700000, -348975.1249999868500000 328003.7499999975600000, -350064.2500000288700000 326127.1875000063400000, -352199.3437500004100000 321385.2499999930200000, -353744.6875000188000000 318584.3124999970300000, -355028.2500000128100000 316257.2812499957500000, -357108.1875000231700000 313168.5312500005200000, -356968.1562499971500000 312895.2187499988900000, -356513.7500000166500000 312656.6249999968000000, -356921.5624999780000000 311525.5625000008700000, -357203.0000000319000000 311868.8124999960400000, -358410.7187499934200000 309808.7187499972600000, -358610.9687500339900000 309531.0937500027900000, -360546.6562500153100000 306844.6249999982000000, -363298.7812500164700000 302303.7499999987800000, -365426.9374999732200000 298357.4687499997700000, -365386.4062499631000000 298197.4687499962700000, -364956.7187499966200000 298749.0000000019800000, -364421.4062500296900000 299436.5000000007000000, -364415.4687500065200000 298785.8437499979600000, -364668.3749999696200000 298737.5625000008100000, -364445.6250000097200000 298477.7187500027400000, -364887.0312500121700000 297896.1562499987800000, -365414.5624999729900000 297764.5937499932500000, -366179.6874999851600000 296664.0624999991300000, -367091.8124999890600000 294235.9374999948200000, -367824.9374999866700000 292984.3749999959800000, -369649.9687499699100000 288691.0937499969700000, -370499.9687500383000000 286692.7812500014000000, -371330.4374999882400000 285335.2187500027900000, -371414.1562500376000000 284925.2187499978500000, -371127.1875000058800000 284200.8125000052400000, -371874.5937499638500000 281525.6874999958100000, -373521.3437500289300000 277896.1562499925500000, -372969.8437499873100000 275176.3437499933600000, -372322.7812500317200000 273782.0624999987800000, -371511.3437500346900000 273258.5000000012800000, -370770.3750000043100000 272020.7187500046000000, -370278.6562499641400000 268942.4999999954000000, -370278.5312500119300000 268804.6562499981400000, -370274.5312499886500000 267088.1249999958700000, -369287.8125000099000000 264895.5625000004100000, -369293.8125000280600000 263294.4062499948800000, -369960.0625000250300000 261664.5937499995900000, -370778.2187500246200000 258884.7968749990700000, -370794.4062500341100000 258096.2343750025600000, -370644.5937499894100000 257569.3593750016300000, -369558.1874999806200000 255991.2968749959500000, -368304.5624999700200000 255233.2031249948800000, -367058.4095717684800000 253450.7432436353100000, -453688.2063941179700000 270807.6540388414900000))", 
-      "num_times_saved": 1, 
-      "last_modified": "2009-07-20 11:18:59", 
-      "boundary_e": null, 
-      "user": 2, 
-      "boundary_n": null, 
-      "geometry_edited": null
     }
   }, 
   {
