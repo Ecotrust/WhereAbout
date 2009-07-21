@@ -20,7 +20,7 @@ class Resource(Model):
     name = CharField( max_length=100, unique=True )
     code = CharField( max_length=10, unique=True )
     select_description = CharField( max_length=300, default = '', blank=True) #Holds information on why you would/should select this resource
-    shape_color = CharField( max_length=2, default = 'FF', blank=True )
+    shape_color = CharField( max_length=6, default = 'FFFF00', blank=True )
     
     class Meta:
         db_table = u'gwst_resource'
@@ -56,7 +56,7 @@ class InterviewGroup(Model):
     resources = ManyToManyField(Resource,blank=True,null=True)
     required_group = BooleanField( default=False )
     user_draws_shapes = BooleanField( default=True )
-    shape_color = CharField( max_length=2, blank=True, default="FF" )
+    shape_color = CharField( max_length=6, blank=True, default="FFFFFF" )
     preselect = BooleanField( default=True ) #Allow user to select which resources they use before drawing?    
     
     class Meta:
@@ -352,7 +352,7 @@ class InterviewShape(Model):
             attr['folder'] = 'folder_'+str(self.int_group.id)+'-'+str(self.resource.id)
             attr['folderID'] = 'folder_'+str(self.int_group.id)+'-'+str(self.resource.id)
             attr['folderName'] = folderName
-        attr['fillColor'] = '#' + self.int_group.shape_color + self.resource.shape_color + '00'       
+        attr['fillColor'] = '#' + self.resource.shape_color # alternatively self.int_group.shape_color
         attr['strokeColor'] = "white"
         attr['fillOpacity'] = "0.4"
         attr['shape_label'] = str(self.pennies)+ ' p'

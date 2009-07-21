@@ -183,7 +183,7 @@
     "pk": 18, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "00", 
+      "shape_color": "FFFFFF", 
       "select_description": "Select this group only if you fished rockfish before closure areas (RCA\u2019s) were created.  It represents your pre-RCA fishing grounds.", 
       "code": "rckpr", 
       "name": "Rockfish A - (Pre-RCA)"
@@ -193,7 +193,7 @@
     "pk": 19, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "10", 
+      "shape_color": "FFFF00", 
       "select_description": "Select this group if you fish rockfish.  It represents your fishing grounds Post-RCA or after closure areas where created", 
       "code": "rckpo", 
       "name": "Rockfish B - (Post-RCA)"
@@ -203,7 +203,7 @@
     "pk": 3, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "20", 
+      "shape_color": "FF00FF", 
       "select_description": "Select this group only if you fished rockfish before closure areas (RCA\u2019s) were created.  It represents what your rockfish grounds would be if closures never existed, which is probably similar to a combination of your Pre & Post-RCA fishing grounds. See the drawing instructions for more information.", 
       "code": "rock", 
       "name": "Rockfish C - (Cumulative)"
@@ -213,7 +213,7 @@
     "pk": 1, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "30", 
+      "shape_color": "00FFFF", 
       "select_description": "", 
       "code": "sal", 
       "name": "Salmon"
@@ -223,7 +223,7 @@
     "pk": 2, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "40", 
+      "shape_color": "FF0000", 
       "select_description": "", 
       "code": "tun", 
       "name": "Tuna"
@@ -233,7 +233,7 @@
     "pk": 4, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "50", 
+      "shape_color": "00FF00", 
       "select_description": "", 
       "code": "dcrb", 
       "name": "Dungeness Crab"
@@ -243,7 +243,7 @@
     "pk": 5, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "60", 
+      "shape_color": "0000FF", 
       "select_description": "", 
       "code": "phal", 
       "name": "Pacific Halibut"
@@ -253,7 +253,7 @@
     "pk": 6, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "70", 
+      "shape_color": "888888", 
       "select_description": "", 
       "code": "chal", 
       "name": "California Halibut"
@@ -263,7 +263,7 @@
     "pk": 8, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "80", 
+      "shape_color": "880088", 
       "select_description": "", 
       "code": "bait", 
       "name": "Anchovy/Herring (bait fish)"
@@ -273,7 +273,7 @@
     "pk": 9, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "90", 
+      "shape_color": "888800", 
       "select_description": "", 
       "code": "shray", 
       "name": "Sharks/Rays"
@@ -283,7 +283,7 @@
     "pk": 10, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "A0", 
+      "shape_color": "008888", 
       "select_description": "", 
       "code": "atna", 
       "name": "Albacore Tuna"
@@ -293,7 +293,7 @@
     "pk": 11, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "B0", 
+      "shape_color": "FF8888", 
       "select_description": "", 
       "code": "hsqd", 
       "name": "Humboldt Squid"
@@ -303,7 +303,7 @@
     "pk": 7, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "C0", 
+      "shape_color": "8888FF", 
       "select_description": "", 
       "code": "oflt", 
       "name": "Other Flatfish (soles, turbots)"
@@ -313,7 +313,7 @@
     "pk": 15, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "D0", 
+      "shape_color": "88FF88", 
       "select_description": "", 
       "code": "abl", 
       "name": "Abalone"
@@ -323,7 +323,7 @@
     "pk": 16, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "E0", 
+      "shape_color": "FFFF88", 
       "select_description": "", 
       "code": "urch", 
       "name": "Urchin"
@@ -333,7 +333,7 @@
     "pk": 17, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "F0", 
+      "shape_color": "FF88FF", 
       "select_description": "", 
       "code": "rscl", 
       "name": "Rock Scallops"
@@ -343,7 +343,7 @@
     "pk": 14, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FF", 
+      "shape_color": "88FFFF", 
       "select_description": "", 
       "code": "sndb", 
       "name": "Sanddabs"
