@@ -50,8 +50,16 @@ class SelectInterviewGroupsForm( forms.Form ):
     
 # from http://code.djangoproject.com/wiki/CookBookNewFormsDynamicFields
 class AnswerForm(forms.Form):
-    def __init__(self, questions, answers, group_id, *args, **kwargs):
+    def __init__(self, questions, answers, group_id, resource_id, *args, **kwargs):
         self.group_id = group_id
+        self.resource_id = resource_id
+        self.questions = questions
+        self.answers = answers
+        if resource_id:
+            resource_postfix = '_'+str(resource_id)
+        else:
+            resource_postfix = ''
+        self.resource_postfix = resource_postfix
         
         forms.Form.__init__(self, *args, **kwargs)            
         prev_question = None
@@ -78,7 +86,7 @@ class AnswerForm(forms.Form):
                 elif question.val_default != '':
                     dynamic_args['initial']=int(question.val_default)                    
                                                      
-                self.fields['question_%d' % question.id] = forms.IntegerField( **dynamic_args )
+                self.fields['question_' + str(question.id) + resource_postfix] = forms.IntegerField( **dynamic_args )
                 
             elif question.answer_type == 'decimal': # decimal  
                 if question.val_min != None:
@@ -90,7 +98,7 @@ class AnswerForm(forms.Form):
                 elif question.val_default != '':
                     dynamic_args['initial']=float(question.val_default)
 
-                self.fields['question_%d' % question.id] = forms.FloatField( **dynamic_args )
+                self.fields['question_' + str(question.id) + resource_postfix] = forms.FloatField( **dynamic_args )
                 
             elif question.answer_type == 'boolean': # boolean  
                 if answer.count() == 1:
@@ -98,7 +106,7 @@ class AnswerForm(forms.Form):
                 elif question.val_default != '':
                     dynamic_args['initial']=bool(question.val_default)
                 dynamic_args['required'] = False
-                self.fields['question_%d' % question.id] = forms.BooleanField( **dynamic_args )
+                self.fields['question_' + str(question.id) + resource_postfix] = forms.BooleanField( **dynamic_args )
                 
             elif question.answer_type == 'select': #choice list 
                 dynamic_args['queryset'] = question.options
@@ -110,7 +118,7 @@ class AnswerForm(forms.Form):
                     if default_ans.count() == 1:
                         dynamic_args['initial']=default_ans[0].id
 
-                self.fields['question_%d' % question.id] = forms.ModelChoiceField( **dynamic_args )
+                self.fields['question_' + str(question.id) + resource_postfix] = forms.ModelChoiceField( **dynamic_args )
                 
             elif question.answer_type == 'other': #choice w/enter text for other
                 dynamic_args['queryset'] = question.options
@@ -125,8 +133,8 @@ class AnswerForm(forms.Form):
                     if default_ans.count() == 1:
                         dynamic_args['initial']=default_ans[0].id
 
-                self.fields['question_%d' % question.id] = forms.ModelChoiceField( **dynamic_args )
-                self.fields['question_%d_other' % question.id] = forms.CharField( **other_dynamic_args )
+                self.fields['question_' + str(question.id) + resource_postfix] = forms.ModelChoiceField( **dynamic_args )
+                self.fields['question_' + str(question.id) + resource_postfix + '_other'] = forms.CharField( **other_dynamic_args )
             
             elif question.answer_type == 'text': #text
                 dynamic_args['max_length'] = 300
@@ -135,7 +143,7 @@ class AnswerForm(forms.Form):
                 elif question.val_default != '':
                     dynamic_args['initial']=question.val_default
 
-                self.fields['question_%d' % question.id] = forms.CharField( **dynamic_args )
+                self.fields['question_' + str(question.id) + resource_postfix] = forms.CharField( **dynamic_args )
             
             elif question.answer_type == 'phone':
                 if answer.count() == 1:
@@ -143,11 +151,11 @@ class AnswerForm(forms.Form):
                     dynamic_args['initial']=ans
                 elif question.val_default != '':
                     dynamic_args['initial']=question.val_default                 
-                self.fields['question_%d' % question.id] = PhoneField(**dynamic_args )                        
+                self.fields['question_' + str(question.id) + resource_postfix] = PhoneField(**dynamic_args )                        
             
             # now add any tooltip text
             if question.eng_tooltip:
-                self.fields['question_%d' % question.id].widget.attrs.update({'title':question.eng_tooltip})
+                self.fields['question_' + str(question.id) + resource_postfix].widget.attrs.update({'title':question.eng_tooltip})
                 
             # mark this question if it is the first in a question set
             if not prev_question or question.question_set != prev_question.question_set:
@@ -155,15 +163,18 @@ class AnswerForm(forms.Form):
                     set_val = '-'
                 else:
                     set_val = str(question.question_set)
-                self.fields['question_%d' % question.id].question_set = set_val
+                self.fields['question_' + str(question.id) + resource_postfix].question_set = set_val
                             
-            self.fields['question_%d' % question.id].question = question
-            self.fields['question_%d' % question.id].answer = answer
+            self.fields['question_' + str(question.id) + resource_postfix].question = question
+            self.fields['question_' + str(question.id) + resource_postfix].answer = answer
             
             prev_question = question
 
     def clean(self):
-        self.question_group_validation()            
+        for question in self.questions:
+            if question.question_group:
+                self.question_group_validation() 
+                break         
         return self.cleaned_data
 
     def question_group_validation(self):
@@ -201,7 +212,43 @@ class AnswerForm(forms.Form):
             sum += int(value)
         if sum != target:
             msg = 'Values must add up to '+unicode(target)+', currently at '+unicode(sum)
-            self._errors[key] = ErrorList([msg])            
+            self._errors[key] = ErrorList([msg])     
+
+    def save(self, user):
+        for field_name in self.fields:
+            field = self.fields[field_name]
+            if field.answer.count() == 1:
+                answer = field.answer[0]
+                answer.last_modified = datetime.datetime.today()
+                answer.num_times_saved = answer.num_times_saved + 1
+            else:
+                answer = InterviewAnswer()
+                answer.int_question = field.question
+                answer.user = user
+                
+            if self.resource_id:
+                answer.resource_id = self.resource_id
+                
+            if field.question.answer_type == 'integer':
+                answer.integer_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
+                answer.text_val = str(answer.integer_val) # makes the db a little more human readable
+            elif field.question.answer_type == 'decimal':
+                answer.decimal_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
+                answer.text_val = str(answer.decimal_val) # makes the db a little more human readable
+            elif field.question.answer_type == 'boolean':
+                answer.boolean_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
+                answer.text_val = str(answer.boolean_val) # makes the db a little more human readable
+            elif field.question.answer_type == 'select':
+                answer.option_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
+                if answer.option_val:
+                    answer.text_val = answer.option_val.eng_text # makes the db a little more human readable
+            elif field.question.answer_type == 'other':
+                answer.option_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
+                answer.text_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix + '_other']
+            elif field.question.answer_type == 'text' or field.question.answer_type == 'phone':
+                answer.text_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
+            answer.save()
+        
 
 class InterviewShapeAttributeForm(forms.ModelForm):
     pennies = forms.IntegerField( min_value=1, max_value=100, required=True )

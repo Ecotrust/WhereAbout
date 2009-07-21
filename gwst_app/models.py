@@ -181,6 +181,7 @@ class InterviewQuestion(Model):
     question_group = ForeignKey(QuestionGroup, help_text='assign question to a group', blank=True, null=True )
     display_order = FloatField( help_text='tab order of this question on its page' )
     required = BooleanField( help_text='require that this field be filled out', default=False)
+    all_resources = BooleanField( help_text='is this a question to be asked once for each resource?', default=False)
         
     class Meta:
         db_table = u'gwst_question'
@@ -232,6 +233,7 @@ class InterviewAnswerOptionText(Model):
 class InterviewAnswer(Model):
     int_question = ForeignKey(InterviewQuestion)
     user = ForeignKey(User)
+    resource = ForeignKey(Resource, null=True, blank=True) # only used if question.all_resources is set
     option_val = ForeignKey(InterviewAnswerOption, null=True, blank=True)
     text_val = TextField(null=True, blank=True)
     integer_val = IntegerField(null=True, blank=True)
@@ -243,7 +245,7 @@ class InterviewAnswer(Model):
     
     class Meta:
         db_table = u'gwst_useranswer'
-        unique_together = (("int_question", "user"),)
+        unique_together = (("int_question", "user", "resource"),)
         
     def __unicode__(self):
         return unicode('%s: %s' % (self.user, self.int_question))

@@ -259,7 +259,7 @@ def view_answers(request,group_id):
 
         
     # show questions for this group, with any existing user answers
-    questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
+    questions = InterviewQuestion.objects.filter(int_group__pk=group_id,all_resources=False).order_by('question_set', 'display_order')
     answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
     
     try:
@@ -308,69 +308,39 @@ def answer_questions(request,group_id):
         else:
             instructions[str(instruct.question_set)] = instruct.eng_text
 
+    resource_id = None
+    
+    questions = InterviewQuestion.objects.filter(int_group__pk=group_id,all_resources=False).order_by('question_set', 'display_order')
+    answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
+            
     if request.method == 'GET':
-        
         # show questions for this group, with any existing user answers
-        questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
-        answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
-        form = AnswerForm(questions, answers, group_id)
+        form = AnswerForm(questions, answers, group_id, resource_id)
         
     else:
         # form validation
-        questions = InterviewQuestion.objects.filter(int_group__pk=group_id).order_by('question_set', 'display_order')
-        answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
-        form = AnswerForm(questions, answers, group_id, request.POST)
+        form = AnswerForm(questions, answers, group_id, resource_id, request.POST )
         
-
         if form.is_valid():
+        
+            # update the group membership status, if necessary
+            group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=group_id)
+            if group_memb.count()==1:
+                updated_group = group_memb[0]
+                if updated_group.status == 'not yet started':
+                    updated_group.date_started = datetime.datetime.now()
+                updated_group.status = 'in-progress'
+                updated_group.save()
+            else: #404
+                return render_to_response( '404.html', RequestContext(request,{}))
+        
             # create or update InterviewAnswer records
-            for field_name in form.fields:
-                field = form.fields[field_name]
-                if field.answer.count() == 1:
-                    answer = field.answer[0]
-                    answer.last_modified = datetime.datetime.today()
-                    answer.num_times_saved = answer.num_times_saved + 1
-                else:
-                    answer = InterviewAnswer()
-                    answer.int_question = field.question
-                    answer.user = request.user
-                    
-                if field.question.answer_type == 'integer':
-                    answer.integer_val = form.cleaned_data['question_%d' % field.question.id]
-                    answer.text_val = str(answer.integer_val) # makes the db a little more human readable
-                elif field.question.answer_type == 'decimal':
-                    answer.decimal_val = form.cleaned_data['question_%d' % field.question.id]
-                    answer.text_val = str(answer.decimal_val) # makes the db a little more human readable
-                elif field.question.answer_type == 'boolean':
-                    answer.boolean_val = form.cleaned_data['question_%d' % field.question.id]
-                    answer.text_val = str(answer.boolean_val) # makes the db a little more human readable
-                elif field.question.answer_type == 'select':
-                    answer.option_val = form.cleaned_data['question_%d' % field.question.id]
-                    if answer.option_val:
-                        answer.text_val = answer.option_val.eng_text # makes the db a little more human readable
-                elif field.question.answer_type == 'other':
-                    answer.option_val = form.cleaned_data['question_%d' % field.question.id]
-                    answer.text_val = form.cleaned_data['question_%d_other' % field.question.id]
-                elif field.question.answer_type == 'text' or field.question.answer_type == 'phone':
-                    answer.text_val = form.cleaned_data['question_%d' % field.question.id]
-                answer.save()
-
-                group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=group_id)
-                if group_memb.count()==1:
-                    updated_group = group_memb[0]
-                    if updated_group.status == 'not yet started':
-                        updated_group.date_started = datetime.datetime.now()
-                    updated_group.status = 'in-progress'
-                    updated_group.save()
-                else: #404
-                    return render_to_response( '404.html', RequestContext(request,{}))
-            
-            # if not global questions, proceed to draw_group_shapes
-            request.session['int_group'] = group
+            form.save(request.user)
             
             return HttpResponseRedirect('/group_status/')
 
     return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))     
+    
     
 @login_required
 def select_group_resources(request, group_id):
@@ -392,7 +362,8 @@ def select_group_resources(request, group_id):
 
     try:
         group = InterviewGroup.objects.get(pk=group_id)
-        group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=group_id)        
+        group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=group_id)
+            
     except ObjectDoesNotExist:
         return render_to_response( '404.html', RequestContext(request,{}))
 
@@ -406,10 +377,85 @@ def select_group_resources(request, group_id):
         if form.is_valid():
             form.save(group_memb)
             #Store the selected resources
-            return HttpResponseRedirect('/draw_group_shapes/'+str(group_id))
+            return HttpResponseRedirect('/answer_resource_questions/'+str(group_id))
 
     return render_to_response( 'select_group_resources.html', RequestContext(request,{'group':group, 'form': form, 'value':'Continue'}))     
 
+    
+@login_required
+def answer_resource_questions(request, group_id):
+
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+        
+    try:
+        group = InterviewGroup.objects.get(pk=group_id)
+        group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=group_id )
+        sel_resources = GroupMemberResource.objects.filter(group_membership=group_memb)
+        
+    except ObjectDoesNotExist:
+        return render_to_response( '404.html', RequestContext(request,{}))
+        
+        
+    # error checks done, get on with it
+    title = group.name + ' Resource Questions'
+    
+    instructions_qs = InterviewInstructions.objects.filter(int_group__pk=group_id).order_by('-question_set')
+    
+    instructions = {}
+    for instruct in instructions_qs:
+        if instruct.question_set == None:
+            instructions['main'] = instruct.eng_text
+        else:
+            instructions[str(instruct.question_set)] = instruct.eng_text
+        
+    questions = InterviewQuestion.objects.filter(int_group__pk=group_id,all_resources=True).order_by('question_set', 'display_order')
+    
+    if questions.count() == 0:
+            return HttpResponseRedirect('/draw_group_shapes/'+str(group_id))
+            
+    answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
+    
+    forms = {}
+        
+    if request.method == 'GET':
+        
+        # show questions for this group, with any existing user answers
+        for sel_resource in sel_resources:
+            form = AnswerForm( questions, answers, group_id, sel_resource.resource.id )
+            forms[sel_resource.resource.name]=form
+        
+    else:
+        # form validation
+        forms_valid = True
+        for sel_resource in sel_resources:
+            form = AnswerForm(questions, answers, group_id, sel_resource.resource.id, request.POST)
+            if not form.is_valid():
+                forms_valid = False
+            forms[sel_resource.resource.name]=form
+        
+        if forms_valid:
+            for name, form in forms.items():
+                form.save(request.user)
+                
+            return HttpResponseRedirect('/draw_group_shapes/'+str(group_id))
+        
+    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions}))   
+
+    
 # start draw shapes for indicated group    
 @login_required
 def draw_group_shapes(request, group_id):
@@ -444,8 +490,6 @@ def draw_group_shapes(request, group_id):
             group = InterviewGroup.objects.get(pk=group_id)
         except ObjectDoesNotExist:
             return render_to_response( '404.html', RequestContext(request,{}))
-            
-        request.session['int_group'] = group
             
         title = request.session['interview'].name + ' - ' + group.name + ' Group Shape Drawing'
             
@@ -1018,16 +1062,14 @@ def edit_shape(request,id):
         if request.method == 'GET':
             form = InterviewShapeAttributeForm( instance=shape[0] )
             
-            #t = loader.get_template('base_form.html')
-            #opts = {
-            #    'form': form,
-            #    'action': action,
-            #    'value': 'Save',
-            #    'instructions': instructions
-            #}
-            #return HttpResponseBadRequest(t.render(RequestContext(request, opts )))
-                
-            return render_to_response( 'base_form.html', RequestContext(request, {'form': form, 'action': action, 'value': 'Save', 'instructions':instructions}))
+            t = loader.get_template('base_form.html')
+            opts = {
+                'form': form,
+                'action': action,
+                'value': 'Save',
+                'instructions': instructions
+            }
+            return HttpResponse(t.render(RequestContext(request, opts )))
             
         else:
             form = InterviewShapeAttributeForm( request.POST )
@@ -1066,8 +1108,6 @@ def edit_shape(request,id):
                     'instructions': instructions
                 }
                 return HttpResponseBadRequest(t.render(RequestContext(request, opts )))
-            
-                #return render_to_response( 'base_form.html', RequestContext(request, {'form': form, 'action': action, 'value': 'Save', 'instructions':instructions}))
             
     else:
         # forbidden

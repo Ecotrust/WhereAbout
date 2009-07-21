@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block content %}
+{% if instructions %}
+<p>{{ instructions.main|safe }}</p>
+{% endif %}
+   <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+   {% for name, form in forms.items %}
+   {{ form.non_field_errors }}
+   
+    {% for field in form %}
+        {% if field.field.question_set %}
+        {% with field.field.question_set as index %}
+        <p><div class="question_set"></div>
+        <h3>{{ name }}</h3>
+        {% for key, val in instructions.items %}
+        {% ifequal key index %}
+            {{ val|safe }}
+        {% endifequal %}
+        {% endfor %}
+        </p>
+        {% endwith %}
+        {% endif %}
+        <p><div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}: {{ field }}
+        </div></p>
+    {% endfor %}   
+    
+   {% endfor %}
+   
+   <p><input id="submit" type="submit" value="{{ value }}" />
+   {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+   </p>
+   </form>
+{% endblock %}
