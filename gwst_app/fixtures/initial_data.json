@@ -108,6 +108,24 @@
     }
   }, 
   {
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "ken", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2009-07-20 17:06:56", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$a4475$a288560222f949e68985d76550dce47203e01ed7", 
+      "email": "k@e.org", 
+      "date_joined": "2009-05-21 10:51:22"
+    }
+  }, 
+  {
     "pk": 3, 
     "model": "auth.user", 
     "fields": {
@@ -117,7 +135,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-20 11:00:37", 
+      "last_login": "2009-07-21 16:01:56", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
@@ -135,30 +153,12 @@
       "is_active": true, 
       "is_superuser": false, 
       "is_staff": false, 
-      "last_login": "2009-07-20 15:40:57", 
+      "last_login": "2009-07-21 16:18:50", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
       "email": "t@t.org", 
       "date_joined": "2009-06-02 11:50:33"
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "ken", 
-      "first_name": "", 
-      "last_name": "", 
-      "is_active": true, 
-      "is_superuser": true, 
-      "is_staff": true, 
-      "last_login": "2009-07-20 17:06:56", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$a4475$a288560222f949e68985d76550dce47203e01ed7", 
-      "email": "k@e.org", 
-      "date_joined": "2009-05-21 10:51:22"
     }
   }, 
   {
@@ -356,7 +356,10 @@
       "code": "ORRrecfish", 
       "name": "ORCC rec fisherman", 
       "region": 2, 
+      "resource_name_plural": "species", 
       "draw_shape_text": "", 
+      "resource_action": "target", 
+      "resource_name": "species", 
       "active": false, 
       "organization": "Ecotrust", 
       "group_status_text": "", 
@@ -370,7 +373,10 @@
       "code": "NCrecfish", 
       "name": "MLPA North Coast Recreational Fishing Survey", 
       "region": 1, 
+      "resource_name_plural": "species", 
       "draw_shape_text": "<div id=\"help_panel\">\r\n\r\n<b> Getting Started </b>\r\n\r\n<p>Please take a few moments to familiarize yourself with the tool before you start drawing shapes.  Brief instructions and demonstration videos can be found by clicking on the \"Instructions\" tab at the top of this window.  These are <u>highly recommended</u> as they will not only help you get started, but show you features that can make this process go much faster.</p>\r\n\r\n<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species</b> group you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw shapes on the map representing your fishing grounds and then place some number of pennies on those shapes. The more pennies you place on a shape, the more value or importance you are placing on it. Keep doing this until you have drawn all your shapes and used all your pennies.</p>\r\n\r\n<p>How many shapes you draw and how specific you are is up to you.  Most people draw between 3 and 8 shapes per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To see this information again after closing this window, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.</p></div>", 
+      "resource_action": "target", 
+      "resource_name": "species", 
       "active": true, 
       "organization": "Ecotrust", 
       "group_status_text": "Please carefully read all instructions and complete the survey.  You will be asked to answer questions and draw your fishing grounds.  The drawing portion of the survey can be technically challenging for some.  Please understand this is a necessary part of the survey and provides the best representation of your fishing interests.\r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email and we will find a way to get your information included into this process.\r\n", 
@@ -442,28 +448,6 @@
     }
   }, 
   {
-    "pk": 1, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "Dive/Spear", 
-      "required_group": false, 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 1, 
-      "resources": [
-        18, 
-        19, 
-        3, 
-        15, 
-        16, 
-        17
-      ], 
-      "description": "Diving and spear/hand take"
-    }
-  }, 
-  {
     "pk": 2, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -515,6 +499,100 @@
         14
       ], 
       "description": "private vessel anglers"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "div", 
+      "name": "Dive/Spear", 
+      "required_group": false, 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 1, 
+      "resources": [
+        18, 
+        19, 
+        3, 
+        15, 
+        16, 
+        17
+      ], 
+      "description": "Diving and spear/hand take"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": null, 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": null, 
+      "percent_involvement": 50, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": null, 
+      "percent_involvement": 40, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 1, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-21 16:20:24", 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
     }
   }, 
   {
@@ -673,8 +751,8 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": true, 
-      "code": "dives_spec", 
-      "eng_text": "Average number of dives per trip for this species", 
+      "code": "diveyrsp", 
+      "eng_text": "Average number of days per year diving for this species", 
       "int_group": 1, 
       "question_set": null, 
       "display_order": 1.0, 
@@ -693,7 +771,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "num_dives", 
+      "code": "diveprtr", 
       "eng_text": "Average number of dives per trip", 
       "int_group": 1, 
       "question_set": null, 
@@ -709,28 +787,23 @@
     }
   }, 
   {
-    "pk": 31, 
+    "pk": 38, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "access", 
-      "eng_text": "Primary access method to dive locations", 
+      "code": "divedyyr", 
+      "eng_text": "Average number of days diving per year", 
       "int_group": 1, 
       "question_set": null, 
       "display_order": 2.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
-      "options": [
-        6, 
-        7, 
-        8, 
-        14
-      ], 
-      "val_min": null, 
+      "options": [], 
+      "val_min": 0.0, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "integer", 
       "eng_tooltip": "", 
-      "val_max": null
+      "val_max": 1000.0
     }
   }, 
   {
@@ -797,22 +870,27 @@
     }
   }, 
   {
-    "pk": 2, 
+    "pk": 31, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "launch1", 
-      "eng_text": "Launch port/site 1", 
-      "int_group": 2, 
+      "code": "access", 
+      "eng_text": "Primary access method to dive locations", 
+      "int_group": 1, 
       "question_set": null, 
-      "display_order": 1.0, 
+      "display_order": 6.0, 
       "required": true, 
       "question_group": null, 
-      "options": [], 
+      "options": [
+        6, 
+        7, 
+        8, 
+        14
+      ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
       "val_max": null
     }
   }, 
@@ -833,6 +911,26 @@
       "val_default": "", 
       "answer_type": "decimal", 
       "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "launch1", 
+      "eng_text": "Launch port/site 1", 
+      "int_group": 2, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Ports and sites you launch your kayak from", 
       "val_max": null
     }
   }, 
@@ -1440,6 +1538,21 @@
       "question_set": null, 
       "eng_text": "Please answer these general questions. The information you provide will be kept confidential.", 
       "int_group": 6
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.interviewstatus", 
+    "fields": {
+      "completed": false, 
+      "first_login": "2009-07-21 16:18:51", 
+      "creation_date": "2009-07-21 16:01:45", 
+      "num_logins": 1, 
+      "last_login": "2009-07-21 16:18:51", 
+      "user": 2, 
+      "interview": 1, 
+      "complete_date": null, 
+      "notes": null
     }
   }, 
   {
