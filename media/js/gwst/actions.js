@@ -506,6 +506,7 @@ gwst.actions.drawMPA = new Ext.Action({
                 });*/
             },
             cancel: function(){
+                gwst.app.map.purgeListeners(); //removeListener('GeometryCreated', gwst.actions.utils.geometryCreatedCallback );
                 gwst.actions.utils.enableComponents();
             }
         });
