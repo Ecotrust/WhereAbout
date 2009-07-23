@@ -135,7 +135,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-21 16:01:56", 
+      "last_login": "2009-07-22 17:37:07", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
@@ -153,7 +153,7 @@
       "is_active": true, 
       "is_superuser": false, 
       "is_staff": false, 
-      "last_login": "2009-07-21 16:18:50", 
+      "last_login": "2009-07-22 17:38:01", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
@@ -177,26 +177,6 @@
       "code": "NCCA", 
       "name": "California North Coast", 
       "bounds": null
-    }
-  }, 
-  {
-    "pk": 18, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFFFF", 
-      "select_description": "Select this group only if you fished rockfish before closure areas (RCA\u2019s) were created.  It represents your pre-RCA fishing grounds.", 
-      "code": "rckpr", 
-      "name": "Rockfish A - (Pre-RCA)"
-    }
-  }, 
-  {
-    "pk": 19, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "Select this group if you fish rockfish.  It represents your fishing grounds Post-RCA or after closure areas where created", 
-      "code": "rckpo", 
-      "name": "Rockfish B - (Post-RCA)"
     }
   }, 
   {
@@ -350,6 +330,26 @@
     }
   }, 
   {
+    "pk": 19, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "Select this group if you fish rockfish now or post-closure.  It represents your fishing grounds Post-RCA or after closure areas where created.  Read the frequently asked questions (FAQ) page on the top right to learn more.", 
+      "code": "rckpo", 
+      "name": "Rockfish B - (Post-RCA)"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "select_description": "Select this group only if you fished rockfish before closure areas (RCA\u2019s) were created.  It represents your pre-RCA fishing grounds.  Read the frequently asked question (FAQ) page on the top right for more information.", 
+      "code": "rckpr", 
+      "name": "Rockfish A - (Pre-RCA)"
+    }
+  }, 
+  {
     "pk": 2, 
     "model": "gwst_app.interview", 
     "fields": {
@@ -459,14 +459,14 @@
       "user_draws_shapes": true, 
       "interview": 1, 
       "resources": [
-        18, 
-        19, 
         3, 
         1, 
         6, 
         8, 
         9, 
-        14
+        14, 
+        19, 
+        18
       ], 
       "description": "kayakers"
     }
@@ -483,8 +483,6 @@
       "user_draws_shapes": true, 
       "interview": 1, 
       "resources": [
-        18, 
-        19, 
         3, 
         1, 
         2, 
@@ -496,7 +494,9 @@
         10, 
         11, 
         7, 
-        14
+        14, 
+        19, 
+        18
       ], 
       "description": "private vessel anglers"
     }
@@ -513,14 +513,140 @@
       "user_draws_shapes": true, 
       "interview": 1, 
       "resources": [
-        18, 
-        19, 
         3, 
         15, 
         16, 
-        17
+        17, 
+        19, 
+        18
       ], 
       "description": "Diving and spear/hand take"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 1, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-21 16:20:24", 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 3, 
+      "date_started": null, 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 3, 
+      "date_started": null, 
+      "percent_involvement": 20, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 3, 
+      "date_started": null, 
+      "percent_involvement": 60, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "in-progress", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 1, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 3, 
+      "date_started": "2009-07-22 16:49:37", 
+      "percent_involvement": 20, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "0/1 resource group(s) complete, shapes with 0 pennies present", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-21 18:06:32", 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 1
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": null, 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
     }
   }, 
   {
@@ -542,57 +668,19 @@
     }
   }, 
   {
+    "pk": 1, 
+    "model": "gwst_app.groupmemberresource", 
+    "fields": {
+      "resource": 8, 
+      "group_membership": 3
+    }
+  }, 
+  {
     "pk": 2, 
-    "model": "gwst_app.interviewgroupmembership", 
+    "model": "gwst_app.groupmemberresource", 
     "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 3, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": null, 
-      "percent_involvement": 50, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 2, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": null, 
-      "percent_involvement": 40, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 1, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-21 16:20:24", 
-      "percent_involvement": null, 
-      "num_incomplete_resources": 0
+      "resource": 6, 
+      "group_membership": 3
     }
   }, 
   {
@@ -747,26 +835,6 @@
     }
   }, 
   {
-    "pk": 35, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "diveyrsp", 
-      "eng_text": "Average number of days per year diving for this species", 
-      "int_group": 1, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 1, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -784,6 +852,26 @@
       "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "diveyrsp", 
+      "eng_text": "Average number of days per year diving for this species", 
+      "int_group": 1, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": null
     }
   }, 
   {
@@ -895,26 +983,6 @@
     }
   }, 
   {
-    "pk": 36, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "days_spec", 
-      "eng_text": "Average number of days per year fishing for this species", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 2, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -931,6 +999,26 @@
       "val_default": "", 
       "answer_type": "text", 
       "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "days_spec", 
+      "eng_text": "Average number of days per year fishing for this species", 
+      "int_group": 2, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
       "val_max": null
     }
   }, 
@@ -1541,14 +1629,29 @@
     }
   }, 
   {
-    "pk": 1, 
+    "pk": 2, 
     "model": "gwst_app.interviewstatus", 
     "fields": {
       "completed": false, 
-      "first_login": "2009-07-21 16:18:51", 
-      "creation_date": "2009-07-21 16:01:45", 
-      "num_logins": 1, 
-      "last_login": "2009-07-21 16:18:51", 
+      "first_login": "2009-07-22 16:49:18", 
+      "creation_date": "2009-07-22 15:23:59", 
+      "num_logins": 2, 
+      "last_login": "2009-07-22 16:50:25", 
+      "user": 3, 
+      "interview": 1, 
+      "complete_date": null, 
+      "notes": null
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "gwst_app.interviewstatus", 
+    "fields": {
+      "completed": false, 
+      "first_login": "2009-07-22 17:37:56", 
+      "creation_date": "2009-07-22 17:33:02", 
+      "num_logins": 2, 
+      "last_login": "2009-07-22 17:38:02", 
       "user": 2, 
       "interview": 1, 
       "complete_date": null, 
@@ -1560,6 +1663,20 @@
     "model": "gwst_app.faqgroup", 
     "fields": {
       "faq_group_name": "Drawing Shapes"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.faqgroup", 
+    "fields": {
+      "faq_group_name": "Rockfish"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "gwst_app.faqgroup", 
+    "fields": {
+      "faq_group_name": "General"
     }
   }, 
   {
@@ -1590,6 +1707,46 @@
       "importance": 1, 
       "question": "Why is the map is not loading for me when I go to draw shapes?", 
       "faq_group": 1
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "If you didn't fish rockfish before the closure areas where created then you should only select Rockfish B (Post-RCA).  If you fished rockfish before the closure areas where created then select all 3 groups.", 
+      "importance": 2, 
+      "question": "Which rockfish groups should I select?", 
+      "faq_group": 2
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "Rockfish are one of the few species that are closed to fisherman in specific areas, also known as Rockfish Conservation Areas or RCAs.  There is great interest in knowing how those closures have affected each person including where they fish and how the importance of each area has changed.  The existing RCAs won't be included as marine protected areas in the MLPA process.  We're collecting additional information so that rockfish fisherman can be best represented.\r\n\r\nWhere did you fish before and where do you fish now?  That's what the Pre-RCA and Post-RCA groups will provide.  In addition we have a cumulative group.  This is meant to capture where you would fish if the closures weren't in place at all and you know what you know now about where rockfish are at.  Many people sought new areas after the closures that they never fished before.  If the closure areas were lifted they might give up some of these new areas because the old was better or they might not go back to their old because the new spots are better.  That's what the cumulative group will attempt to capture.  It will provide a picture that the Pre and Post groups cannot in terms of importance of your fishing grounds.  That importance is represented by the pennies we ask you to place on each of your fishing grounds you draw.  You will learn more about them when you start drawing if you haven't already.  \r\n\r\nIf you still don't understand this, we apologize.  Please call or email us at the information in your registration email.", 
+      "importance": 1, 
+      "question": "Why are there 3 different rockfish groups (pre, post and cumulative) instead of just 1 and what do they mean?", 
+      "faq_group": 2
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The Marine Life Protection Act is law and will be implemented.  There are stakeholders involved representing your fishing interests and they need the best information they can get.  If you provide no information or false information then that can only increase the chances of your actual fishing grounds being targeted for protection because they are essentially invisible to this process.\r\n\r\nThe information you provide will be kept condidential by us at the individual level.  Any visualizations we produce (maps) will not disclose individual fishing spots as much as possible.  A review process is in place to ensure this.\r\n\r\nYes, other stakeholders will have access to this information as well, but having all interests represented will ensure that the information is not used improperly.  If you have any doubt you should consider becoming involved in the process as well.  Public participation is encouraged.", 
+      "importance": 1, 
+      "question": "Why should I show you my fishing spots?", 
+      "faq_group": 3
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The surveys are based on a 100 penny system.  If we combined your Pre and Post fishing grounds we wouldn't know how to redistribute the pennies to add up to 100.  The reality is if there were no closures anymore your fishing grounds would shift.  You would refocus your efforts on the best rockfish grounds both inside and outside the existing rockfish closures.  This could look very different from the other two groups.", 
+      "importance": 4, 
+      "question": "Why not just combine the Pre and Post groups to create a cumulative picture?", 
+      "faq_group": 2
     }
   }
 ]
