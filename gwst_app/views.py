@@ -347,8 +347,8 @@ def select_group_resources(request, group_id):
     # make sure the user has a valid session in-progress
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
-        
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+        interview = request.session['interview']
+        status_object_qs = InterviewStatus.objects.filter(interview=interview, user=request.user)
 
         status = status_object_qs[0]
         
@@ -371,9 +371,9 @@ def select_group_resources(request, group_id):
     resources = group.resources.all().order_by('name')
 
     if request.method == 'GET':        
-        form = GroupMemberResourceForm(resources)                        
+        form = GroupMemberResourceForm(interview, resources)                        
     else:        
-        form = GroupMemberResourceForm(resources, request.POST)
+        form = GroupMemberResourceForm(interview, resources, request.POST)
         if form.is_valid():
             form.save(group_memb)
             #Store the selected resources
