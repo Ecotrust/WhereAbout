@@ -125,14 +125,15 @@ def assign_groups(request):
 
 
     title = request.session['interview'].name + ' - Group Membership Selection'
-    instructions = {}
-    instructions['main'] = '<p>What percentage of time do you spend fishing in each of these user groups? You will only be asked questions and allowed to draw shapes for groups you assign a value here.</p><p><i>[Note: these should add up to 100%. For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling and 40% for dive angling.]</i></p>'
-    
+    interview = request.session['interview']
+    instructions={}
+    instructions['main'] = interview.assign_groups_text
+
     if request.method == 'GET':
         # let user select which groups they are in
-        groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
+        groups = InterviewGroup.objects.filter(interview=interview,required_group=False)
         form = SelectInterviewGroupsForm( groups )
-        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))
+        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'instructions':instructions, 'value':'Continue'}))
         
     else:
         groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)

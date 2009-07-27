@@ -135,7 +135,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-26 16:19:38", 
+      "last_login": "2009-07-26 16:54:36", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
@@ -153,7 +153,7 @@
       "is_active": true, 
       "is_superuser": false, 
       "is_staff": false, 
-      "last_login": "2009-07-26 16:20:06", 
+      "last_login": "2009-07-26 17:04:54", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
@@ -362,6 +362,7 @@
       "resource_name": "species", 
       "active": false, 
       "organization": "Ecotrust", 
+      "assign_groups_text": "", 
       "group_status_text": "", 
       "description": "Oregon central coast rec fishermen"
     }
@@ -379,6 +380,7 @@
       "resource_name": "species", 
       "active": true, 
       "organization": "Ecotrust", 
+      "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  Also these values must add up to 100%.  For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling, 40% for dive angling and nothing for private vessel angling.]</i></p>", 
       "group_status_text": "Please carefully read all instructions and complete the survey.  You will be asked to answer questions and draw your fishing grounds.  The drawing portion of the survey can be technically challenging for some.  Please understand this is a necessary part of the survey and provides the best representation of your fishing interests.\r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email and we will find a way to get your information included into this process.\r\n", 
       "description": "rec fish"
     }
@@ -842,26 +844,6 @@
     }
   }, 
   {
-    "pk": 35, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "diveyrsp", 
-      "eng_text": "Average number of days per year diving for this species", 
-      "int_group": 1, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 1, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -879,6 +861,26 @@
       "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "diveyrsp", 
+      "eng_text": "Average number of days per year diving for this species", 
+      "int_group": 1, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": null
     }
   }, 
   {
@@ -990,26 +992,6 @@
     }
   }, 
   {
-    "pk": 36, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "days_spec", 
-      "eng_text": "Average number of days per year fishing for this species", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 2, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -1026,6 +1008,26 @@
       "val_default": "", 
       "answer_type": "text", 
       "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "days_spec", 
+      "eng_text": "Average number of days per year fishing for this species", 
+      "int_group": 2, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
       "val_max": null
     }
   }, 
@@ -1645,21 +1647,6 @@
       "num_logins": 2, 
       "last_login": "2009-07-22 16:50:25", 
       "user": 3, 
-      "interview": 1, 
-      "complete_date": null, 
-      "notes": null
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewstatus", 
-    "fields": {
-      "completed": false, 
-      "first_login": "2009-07-26 16:20:06", 
-      "creation_date": "2009-07-26 16:13:45", 
-      "num_logins": 1, 
-      "last_login": "2009-07-26 16:20:06", 
-      "user": 2, 
       "interview": 1, 
       "complete_date": null, 
       "notes": null

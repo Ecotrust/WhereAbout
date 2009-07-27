@@ -4,7 +4,7 @@
 
 {% block content %}
 {% if instructions %}
-<p>{{ instructions.main|safe }}</p>
+<div style='width:600px'>{{ instructions.main|safe }}</div>
 {% endif %}
    <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
    {{ form.non_field_errors }}
