@@ -218,11 +218,12 @@ def group_status(request):
                                 num_complete_resources = num_complete_resources + 1
                             else:
                                 num_incomplete_resources = num_incomplete_resources + 1
-                            
-                group_memb.user_status_msg = '%s/%s resource group(s) complete' % (num_complete_resources,num_incomplete_resources+num_complete_resources)
                 
+                num_resources = num_incomplete_resources+num_complete_resources
+                group_memb.user_status_msg = '%s/%s resource group(s) complete' % (num_complete_resources,num_resources)
+
                 if bZeroPennyShapes:
-                    group_memb.user_status_msg = group_memb.user_status_msg + ', shapes with 0 pennies present'
+                    group_memb.user_status_msg = group_memb.user_status_msg + ', You have shapes with 0 pennies, please allocate or remove them to move on'
                         
                 group_memb.num_complete_resources = num_complete_resources
                 group_memb.num_incomplete_resources = num_incomplete_resources
