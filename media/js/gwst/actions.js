@@ -341,11 +341,11 @@ gwst.actions.help = new Ext.Action({
                         items: [
                             gwst.app.splashScreenText = new gwst.widgets.URLViewer({
                                 url: '/draw_splash/',
-                                title: 'Overview',
+                                title: 'Overview'
                             }),
                             gwst.app.helpScreenText = new gwst.widgets.URLViewer({
                                 url: '/draw_help/text/',
-                                title: 'Instructions',
+                                title: 'Instructions'
                             })
                         ]
                     })
