@@ -23,7 +23,7 @@ gwst.widgets.URLViewer = Ext.extend(Ext.Panel, {
 
         Ext.apply(this, {
             frame: true,
-            bodyStyle: 'padding:10px'
+            bodyStyle: 'padding:10px;overflow:auto'
         });
 
         gwst.widgets.URLViewer.superclass.initComponent.apply(this, arguments);
