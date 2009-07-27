@@ -9,6 +9,7 @@ gwst.widgets.URLViewer = Ext.extend(Ext.Panel, {
     load: function(url) {
         Ext.Ajax.request({
             url: this.url,
+	    disableCachingParam: true,
             scope:this,
             success: function(response) {
                 this.body.update(response.responseText);

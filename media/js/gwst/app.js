@@ -64,6 +64,7 @@ gwst.app = function() {
         },
         
         init: function(){
+	    $.ajaxSetup({ cache: false });
             
             this.userManager = new gwst.ui.UserManager();
             
