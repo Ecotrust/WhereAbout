@@ -1,23 +1,5 @@
 [
   {
-    "pk": 12, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "twelch", 
-      "first_name": "", 
-      "last_name": "", 
-      "is_active": true, 
-      "is_superuser": false, 
-      "is_staff": false, 
-      "last_login": "2009-07-01 13:21:23", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$27391$54af43a321920966da0cc5d5931fe311bfcf09ec", 
-      "email": "", 
-      "date_joined": "2009-07-01 13:21:23"
-    }
-  }, 
-  {
     "pk": 13, 
     "model": "auth.user", 
     "fields": {
@@ -126,6 +108,24 @@
     }
   }, 
   {
+    "pk": 12, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "twelch", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2009-07-26 23:22:37", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$27391$54af43a321920966da0cc5d5931fe311bfcf09ec", 
+      "email": "", 
+      "date_joined": "2009-07-01 13:21:23"
+    }
+  }, 
+  {
     "pk": 3, 
     "model": "auth.user", 
     "fields": {
@@ -135,7 +135,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-26 16:54:36", 
+      "last_login": "2009-07-27 09:56:18", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
@@ -153,7 +153,7 @@
       "is_active": true, 
       "is_superuser": false, 
       "is_staff": false, 
-      "last_login": "2009-07-26 17:04:54", 
+      "last_login": "2009-07-27 10:25:17", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
@@ -217,16 +217,6 @@
       "select_description": "", 
       "code": "phal", 
       "name": "Pacific Halibut"
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "888888", 
-      "select_description": "", 
-      "code": "chal", 
-      "name": "California Halibut"
     }
   }, 
   {
@@ -320,10 +310,30 @@
     }
   }, 
   {
+    "pk": 6, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "666666", 
+      "select_description": "", 
+      "code": "chal", 
+      "name": "California Halibut"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF0033", 
+      "select_description": "Represents your pre-RCA fishing grounds.  See instructions above.", 
+      "code": "rckpr", 
+      "name": "Rockfish A - (Pre-RCA)"
+    }
+  }, 
+  {
     "pk": 19, 
     "model": "gwst_app.resource", 
     "fields": {
-      "shape_color": "FFFF00", 
+      "shape_color": "FFCC00", 
       "select_description": "Represents your Post-RCA fishing grounds.  See instructions above.", 
       "code": "rckpo", 
       "name": "Rockfish B - (Post-RCA)"
@@ -334,19 +344,9 @@
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FF00FF", 
-      "select_description": "Represents what your rockfish grounds would be if closures never existed.  See instructions above.", 
+      "select_description": "Represents what your rockfish grounds would be if closure areas were removed.  See instructions above.", 
       "code": "rock", 
       "name": "Rockfish C - (Cumulative)"
-    }
-  }, 
-  {
-    "pk": 18, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFFFF", 
-      "select_description": "Represents your pre-RCA fishing grounds.  See instructions above.", 
-      "code": "rckpr", 
-      "name": "Rockfish A - (Pre-RCA)"
     }
   }, 
   {
@@ -470,16 +470,16 @@
         2, 
         4, 
         5, 
-        6, 
         8, 
         9, 
         10, 
         11, 
         7, 
         14, 
+        6, 
+        18, 
         19, 
-        3, 
-        18
+        3
       ], 
       "description": "private vessel anglers"
     }
@@ -498,13 +498,13 @@
       "interview": 1, 
       "resources": [
         1, 
-        6, 
         8, 
         9, 
         14, 
+        6, 
+        18, 
         19, 
-        3, 
-        18
+        3
       ], 
       "description": "kayakers"
     }
@@ -525,141 +525,15 @@
         15, 
         16, 
         17, 
+        18, 
         19, 
-        3, 
-        18
+        3
       ], 
       "description": "Diving and spear/hand take"
     }
   }, 
   {
-    "pk": 5, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 6, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 3, 
-      "date_started": null, 
-      "percent_involvement": null, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 3, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 3, 
-      "date_started": null, 
-      "percent_involvement": 20, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 8, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 2, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 3, 
-      "date_started": null, 
-      "percent_involvement": 60, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "in-progress", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 1, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 3, 
-      "date_started": "2009-07-22 16:49:37", 
-      "percent_involvement": 20, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "0/1 resource group(s) complete, shapes with 0 pennies present", 
-      "date_completed": null, 
-      "int_group": 2, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-21 18:06:32", 
-      "percent_involvement": null, 
-      "num_incomplete_resources": 1
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 3, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": null, 
-      "percent_involvement": null, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 1, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 2, 
-      "date_started": "2009-07-26 12:39:03", 
-      "percent_involvement": null, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 1, 
+    "pk": 17, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
       "status": "not yet started", 
@@ -674,22 +548,6 @@
       "date_started": null, 
       "percent_involvement": null, 
       "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 8, 
-      "group_membership": 3
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 6, 
-      "group_membership": 3
     }
   }, 
   {
@@ -1635,21 +1493,6 @@
       "question_set": null, 
       "eng_text": "Please answer these general questions. The information you provide will be kept confidential.", 
       "int_group": 6
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.interviewstatus", 
-    "fields": {
-      "completed": false, 
-      "first_login": "2009-07-22 16:49:18", 
-      "creation_date": "2009-07-22 15:23:59", 
-      "num_logins": 2, 
-      "last_login": "2009-07-22 16:50:25", 
-      "user": 3, 
-      "interview": 1, 
-      "complete_date": null, 
-      "notes": null
     }
   }, 
   {
