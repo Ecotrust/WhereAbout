@@ -42,7 +42,13 @@
         <li><a href="/review_resource_questions/{{object.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
             {% endifnotequal %}
         {% endifnotequal %}
-        <li><a href="/draw_group_shapes/{{object.int_group.id}}/">Draw shapes</a></li>
+        <li><a href="/draw_group_shapes/{{object.int_group.id}}/">
+          {% ifequal num_shapes 0 %}
+            Draw shapes
+	  {% else %}
+	    Continue drawing/editing shapes
+	{% endifequal %}
+	</a></li>
       {% endif %}
       {% if object.int_group.user_draws_shapes %}
         {% ifnotequal object.num_complete_resources 0 %}

@@ -235,7 +235,7 @@ def group_status(request):
     finalized_groups = qs.filter(status='finalized')
     allow_finalize = qs.count() == finalized_groups.count()
     
-    return render_to_response( 'group_status.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'object_list':qs, 'allow_finalize':allow_finalize}))
+    return render_to_response( 'group_status.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'object_list':qs, 'allow_finalize':allow_finalize, 'num_shapes':num_shapes}))
     
     
 @login_required    
