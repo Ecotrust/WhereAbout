@@ -1186,3 +1186,10 @@ def faq(request):
         faq_query = Faq.objects.filter(faq_group__faq_group_name=group.faq_group_name).order_by('importance')
         faqs_by_group.append({'group_obj':group,'group_faqs':faq_query})
     return render_to_response('faq.html', {'faqs_by_group':faqs_by_group}, context_instance=RequestContext(request)) 
+
+def video(request, name):
+    import string
+    video = {'player':'/site-media/video_player/player.swf'}
+    video['file'] = '/site-media/videos/'+str(name)+'.flv'
+    video['title'] = string.capwords(name.replace('_',' '))
+    return render_to_response('demo_video.html', {'video':video}, context_instance=RequestContext(request)) 

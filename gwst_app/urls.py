@@ -37,7 +37,8 @@ urlpatterns = patterns('',
     (r'^gwst/shape/editgeom/(\d+)$', editgeom_shape ),
     #(r'^gwst/shape/copy/(\d+)$', copy_shape ),
     (r'^gwst/shape/edit/(\d+)$', edit_shape ),
+    (r'^video/(\w+)$', video ),
 
     (r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
-    (r'^faq', faq),
+    (r'^faq', faq)
 )
