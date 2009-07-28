@@ -126,24 +126,6 @@
     }
   }, 
   {
-    "pk": 3, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "testadmin", 
-      "first_name": "testadmin", 
-      "last_name": "ta", 
-      "is_active": true, 
-      "is_superuser": true, 
-      "is_staff": true, 
-      "last_login": "2009-07-27 09:56:18", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
-      "email": "ta@t.org", 
-      "date_joined": "2009-06-02 11:51:40"
-    }
-  }, 
-  {
     "pk": 2, 
     "model": "auth.user", 
     "fields": {
@@ -153,12 +135,30 @@
       "is_active": true, 
       "is_superuser": false, 
       "is_staff": false, 
-      "last_login": "2009-07-27 10:25:17", 
+      "last_login": "2009-07-27 19:34:16", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$6ed65$0060004f9cf22802e107939f5adc4365956e08ee", 
       "email": "t@t.org", 
       "date_joined": "2009-06-02 11:50:33"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "testadmin", 
+      "first_name": "testadmin", 
+      "last_name": "ta", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2009-07-28 10:06:26", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$6c215$989ff2bd2d3f6625d73b0dc628245cb4d047b001", 
+      "email": "ta@t.org", 
+      "date_joined": "2009-06-02 11:51:40"
     }
   }, 
   {
@@ -187,16 +187,6 @@
       "select_description": "", 
       "code": "sal", 
       "name": "Salmon"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF0000", 
-      "select_description": "", 
-      "code": "tun", 
-      "name": "Tuna"
     }
   }, 
   {
@@ -454,37 +444,6 @@
     }
   }, 
   {
-    "pk": 3, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "prvsl", 
-      "name": "Private Vessel Angling", 
-      "required_group": false, 
-      "select_resource_text": "* <b>Rockfish fisherman</b>.  Select all of the rockfish groups that apply to you.  If you fished rockfish (including lingcod and other bottomfish) before rockfish closure areas (RCAs) where put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these 3 different groups and why it's important we break things up like this, please visit our <a href='/faq'>Frequently Asked Questions</a>.", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 1, 
-      "resources": [
-        1, 
-        2, 
-        4, 
-        5, 
-        8, 
-        9, 
-        10, 
-        11, 
-        7, 
-        14, 
-        6, 
-        18, 
-        19, 
-        3
-      ], 
-      "description": "private vessel anglers"
-    }
-  }, 
-  {
     "pk": 2, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -533,6 +492,36 @@
     }
   }, 
   {
+    "pk": 3, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "prvsl", 
+      "name": "Private Vessel Angling", 
+      "required_group": false, 
+      "select_resource_text": "* <b>Rockfish fisherman</b>.  Select all of the rockfish groups that apply to you.  If you fished rockfish (including lingcod and other bottomfish) before rockfish closure areas (RCAs) where put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these 3 different groups and why it's important we break things up like this, please visit our <a href='/faq'>Frequently Asked Questions</a>.", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 1, 
+      "resources": [
+        1, 
+        4, 
+        5, 
+        8, 
+        9, 
+        10, 
+        11, 
+        7, 
+        14, 
+        6, 
+        18, 
+        19, 
+        3
+      ], 
+      "description": "private vessel anglers"
+    }
+  }, 
+  {
     "pk": 17, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
@@ -540,6 +529,60 @@
       "user_status_msg": "no shapes drawn", 
       "date_completed": null, 
       "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": null, 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": null, 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 2, 
+      "date_started": "2009-07-27 19:34:31", 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 1, 
       "completed": false, 
       "num_complete_resources": 0, 
       "reviewed": false, 
@@ -1517,16 +1560,6 @@
     }
   }, 
   {
-    "pk": 1, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "The precision of your shapes is important; however, we understand that accuracy will vary between users.  Please just do the best you can with the time you have and provide us with any extra information on boundaries so that our team can make your shapes more accurate.", 
-      "importance": 1, 
-      "question": "How much precision should I use when drawing shapes?", 
-      "faq_group": 1
-    }
-  }, 
-  {
     "pk": 2, 
     "model": "gwst_app.faq", 
     "fields": {
@@ -1584,6 +1617,36 @@
       "importance": 2, 
       "question": "Why are there 3 different rockfish groups instead of just 1 and what do they mean?", 
       "faq_group": 2
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The precision of your shapes is important; however, we understand that accuracy will vary between users.  Please just do the best you can with the time you have and provide us with any extra information on boundaries so that our team can make your shapes more accurate.\r\n\r\nWe also understand that you might be reluctant to share your favorite little fishing hole, while at the same time you don't want to lose it.  Just make sure your fishing hole is at least captured in one of your shapes and you put a sufficient value on it.\r\n\r\nIn most cases you should not be drawing a single shape that covers hundreds of square miles.  Tuna and other migratory species are a bit of an exception.  Split these large shapes up into multiple areas if possible and weight them separately with pennies.", 
+      "importance": 1, 
+      "question": "How much precision should I use when drawing shapes?", 
+      "faq_group": 1
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "We understand that water temperature and other factors affect migratory patterns of species like tuna.  This will make the general area you fish larger when looking at things all together like this but often there are still specific places you fish.  Maybe certain sections of water always tend to be warmer and you tend to do better there.  Maybe you don't fish tuna unless they're within 20 miles of shore or maybe you do multi-days out 60 miles.  Maybe you don't fish tuna any further north or south than a given point.  That's the information we want to capture.", 
+      "importance": 5, 
+      "question": "I don't fish in the same places for migratory fish like tuna.  How do I deal with that when drawing shapes?", 
+      "faq_group": 1
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "Some parts of the shape drawing are done with a right click on a two-button mouse.  Many apple computers only have one button.  The way around this is to hold the Ctrl-key on the keyboard and then click the single mouse button.  That is the same thing as using the 'right' mouse button on a two-button mouse.  Anywhere you hear to use the 'right' mouse button in the videos or instructions, just replace that with a Ctrl-click on your Apple.", 
+      "importance": 6, 
+      "question": "How do I do the shape drawing using an Apple computer with a single click mouse?", 
+      "faq_group": 1
     }
   }
 ]
