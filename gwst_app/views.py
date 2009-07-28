@@ -1189,7 +1189,9 @@ def faq(request):
 
 def video(request, name):
     import string
-    video = {'player':'/site-media/video_player/player.swf'}
-    video['file'] = '/site-media/videos/'+str(name)+'.flv'
-    video['title'] = string.capwords(name.replace('_',' '))
+    video = {
+        'player':settings.MEDIA_URL+'video_player/player.swf',
+        'file':settings.MEDIA_URL+'videos/'+str(name)+'.flv',
+        'title':string.capwords(name.replace('_',' '))
+    }
     return render_to_response('demo_video.html', {'video':video}, context_instance=RequestContext(request)) 
