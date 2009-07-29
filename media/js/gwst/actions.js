@@ -802,7 +802,7 @@ gwst.actions.async = {};
 
 
 gwst.actions.async.clipGeometry = function(config){
-    gwst.ui.wait.show({msg: 'while we validate your geometry'});
+    gwst.ui.wait.show({msg: 'while we validate your shape'});
     if(config['geometry'] && config['error'] && config['fail'] && config['success']){
         Ext.Ajax.request({
             url: gwst.urls.validateGeometry,
@@ -916,7 +916,7 @@ gwst.actions.nonExt.copyShape = function(e){
     gwst.copySource = e.data.mpa.pk;
     gwst.copySourceType = 'shape';
     
-    alert( 'Shape ready to copy. Right-click a group and select paste to finish.' ); 
+    alert( 'Shape copied. Right-click a group and select paste to finish.' ); 
 };
 
 gwst.actions.nonExt.copyAllShapes = function(e){
@@ -924,7 +924,7 @@ gwst.actions.nonExt.copyAllShapes = function(e){
     gwst.copySource = e.data.pk;
     gwst.copySourceType = 'resource';
     
-    alert( 'Shapes ready to copy. Right-click another group and select paste to finish.' ); 
+    alert( 'Shapes copied. Right-click another group and select paste to finish.' ); 
 };
 
 gwst.actions.nonExt.copyToTarget = function(e){

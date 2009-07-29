@@ -278,7 +278,7 @@ a.closePopup {
 
 #loading{
     position:absolute;
-    left:40%;
+    left:25%;
     top:40%;
     padding:2px;
     z-index:20001;
@@ -615,3 +615,34 @@ span.array_pk {
 /*#mpagrid .x-grid3-cell-inner, #mpagrid .x-grid3-hd-inner {
     overflow:visible;
 }*/
+
+
+
+/************************* Splash screen help windows ********************************/
+
+#help_panel a:link, a:visited {
+    text-decoration:none;
+    color: #5b80b2;
+}
+#help_panel a:hover {
+    text-decoration:none;
+    color: #036;
+}
+#help_panel ul {
+    list-style-position:inside;
+    margin-top:10px;
+    margin-bottom:15px;
+}
+#help_panel li {
+    margin-top:5px;
+    margin-bottom:5px;
+    list-style-type: circle;
+    font-size: 13px;
+}
+#help_panel p {
+    margin-top:5px;
+    margin-bottom:10px;
+}
+#help_panel {
+    font-size: 13px;
+}
