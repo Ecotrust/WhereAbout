@@ -191,7 +191,8 @@ class SMAddForm(forms.Form):
             last_name=last_name,                                                                    
             password=password,
             email=email,
-            user_group_text=user_group_text
+            user_group_text=user_group_text,
+            send_email=True
         )
 
         #Get active survey main question group
