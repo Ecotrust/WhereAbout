@@ -117,7 +117,10 @@ class SMAddForm(forms.Form):
         
     def create_survey(self, interview, new_person):      
         output = []
-               
+        
+        import pdb
+        pdb.set_trace()
+       
         sm_id = new_person[0]           
         first_name = new_person[9]            
         last_name = new_person[10]
@@ -131,7 +134,14 @@ class SMAddForm(forms.Form):
         kyk = new_person[15]
         dive = new_person[16]
         prvsl = new_person[17]
-        pref = new_person[21] #Users preference for online or in-person interview                            
+        #Users preference for online or in-person interview                            
+        pref_1_yes = new_person[21] 
+        pref_2_yes = new_person[22] 
+        pref_3_yes = new_person[23] 
+        pref_4_no = new_person[24] 
+
+        import pdb
+        pdb.set_trace()
                
         output.append(first_name + ' ' + last_name)            
         output.append(email)
@@ -145,7 +155,7 @@ class SMAddForm(forms.Form):
             group_str += 'prvsl'            
         output.append(group_str)
 
-        if pref == 'I am only interested in being interviewed in person':
+        if pref_1_yes == '' and pref_2_yes == '' and pref_3_yes == '' and pref == 'I am only interested in being interviewed in person':
             output.append('Skipped: requested in-person interview')               
             return {'status':'fail','output':output}
                  
