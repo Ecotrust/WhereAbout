@@ -25,30 +25,30 @@
   
   <ul>
   {% ifequal object.status "finalized" %}
-     <li><a href="/group_qs/{{object.int_group.id}}/view/">Review answers</a></li>
-     <li><a href="/unfinalize_group/{{object.int_group.id}}/">Re-open this group</a></li>
+     <li>Done. <a href="/group_qs/{{object.int_group.id}}/view/">Review answers</a></li>
+     <li>Done. <a href="/unfinalize_group/{{object.int_group.id}}/">Re-open this group</a></li>
   {% else %}
     {% ifequal object.status "in-progress" %}
-      <li><a href="/group_qs/{{object.int_group.id}}/answer/">Edit answers</a></li>
+      <li>Done. <a href="/group_qs/{{object.int_group.id}}/answer/">Edit answers</a></li>
     {% else %}
       <li><a href="/group_qs/{{object.int_group.id}}/answer/">Answer questions</a></li>
     {% endifequal %} 
     {% ifequal object.status "in-progress" %}
       {% if object.int_group.user_draws_shapes %}
         {% ifnotequal object.num_incomplete_resources 0 %}
-        <li><a href="/review_resource_questions/{{object.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
+        <li>Done. <a href="/review_resource_questions/{{object.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
         {% else %}
             {% ifnotequal object.num_complete_resources 0 %}
-        <li><a href="/review_resource_questions/{{object.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
+        <li>Done. <a href="/review_resource_questions/{{object.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
             {% endifnotequal %}
         {% endifnotequal %}
-        <li><a href="/draw_group_shapes/{{object.int_group.id}}/">
+        <li>
           {% ifequal num_shapes 0 %}
-            Draw shapes
+            <a href="/draw_group_shapes/{{object.int_group.id}}/">Draw shapes</a>
 	  {% else %}
-	    Continue drawing/editing shapes
+	    <a href="/draw_group_shapes/{{object.int_group.id}}/">Continue drawing/editing shapes</a>
 	{% endifequal %}
-	</a></li>
+	</li>
       {% endif %}
       {% if object.int_group.user_draws_shapes %}
         {% ifnotequal object.num_complete_resources 0 %}
