@@ -151,9 +151,6 @@ class SMAddForm(forms.Form):
             group_str += 'prvsl'            
         output.append(group_str)
 
-        import pdb
-        pdb.set_trace()
-
         if pref_1_yes == '' and pref_2_yes == '' and pref_3_yes == '' and pref_4_no != '':
             output.append('Skipped: requested in-person interview only')               
             return {'status':'fail','output':output}
