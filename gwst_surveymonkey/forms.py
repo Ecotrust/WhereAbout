@@ -17,7 +17,7 @@ from django.core.mail import SMTPConnection, EmailMessage
 
 class SMAddForm(forms.Form):
     userfile = forms.FileField(required=True)
-    num_to_register = forms.IntegerField(required=False, label="Maximum number of people to sign up", widget=forms.TextInput(attrs={'size':'3'}))
+    num_to_register = forms.IntegerField(required=False, initial=50, label="Maximum number of people to sign up", widget=forms.TextInput(attrs={'size':'3'}))
     interview = NameModelChoiceField(label='Interview',queryset=None,required=True)
 
     def clean_userfile(self):
@@ -64,6 +64,8 @@ class SMAddForm(forms.Form):
         interview = self.cleaned_data['interview']
         file = self.cleaned_data['userfile']
         num_to_register = self.cleaned_data['num_to_register']
+        if not num_to_register or num_to_register == '':
+            num_to_register = 50
 
         #Save the uploaded file to a temp directory and open using
         #a handy CSV reader (parset)
@@ -118,9 +120,6 @@ class SMAddForm(forms.Form):
     def create_survey(self, interview, new_person):      
         output = []
         
-        import pdb
-        pdb.set_trace()
-       
         sm_id = new_person[0]           
         first_name = new_person[9]            
         last_name = new_person[10]
@@ -140,9 +139,6 @@ class SMAddForm(forms.Form):
         pref_3_yes = new_person[23] 
         pref_4_no = new_person[24] 
 
-        import pdb
-        pdb.set_trace()
-               
         output.append(first_name + ' ' + last_name)            
         output.append(email)
         
@@ -155,21 +151,24 @@ class SMAddForm(forms.Form):
             group_str += 'prvsl'            
         output.append(group_str)
 
-        if pref_1_yes == '' and pref_2_yes == '' and pref_3_yes == '' and pref == 'I am only interested in being interviewed in person':
-            output.append('Skipped: requested in-person interview')               
+        import pdb
+        pdb.set_trace()
+
+        if pref_1_yes == '' and pref_2_yes == '' and pref_3_yes == '' and pref_4_no != '':
+            output.append('Skipped: requested in-person interview only')               
             return {'status':'fail','output':output}
-                 
-        from utilities.passwords import GenPasswd
-        password = GenPasswd(chars=email)
-        password = password.replace('.','')
-        password = password.replace('@','')
 
         result = self.validate_email(email)            
         
         if not result.get('success'):
             output.append('Failed: '+result.get('error'))
             return {'status':'fail','output':output}   
-        
+                 
+        from utilities.passwords import GenPasswd
+        password = GenPasswd(chars=email)
+        password = password.replace('.','')
+        password = password.replace('@','')
+       
         result = self.validate_username(username)
         if not result.get('success'):
             output.append('Failed: '+result.get('error'))               
