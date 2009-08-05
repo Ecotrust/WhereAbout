@@ -25,7 +25,7 @@ class SelectInterviewGroupsForm( forms.Form ):
             dynamic_args = {}
             
             # percent involvement field
-            dynamic_args['label'] = '% involvement in ' + group.name
+            dynamic_args['label'] = group.name+' (%)'
             dynamic_args['required'] = False
             dynamic_args['min_value']=0
             dynamic_args['max_value']=100
@@ -44,7 +44,7 @@ class SelectInterviewGroupsForm( forms.Form ):
                 pass
                 
         if pct_sum < 100 or pct_sum > 100:
-            raise forms.ValidationError( 'Percentages must sum to 100.' )
+            raise forms.ValidationError( 'Percentages must add up to 100.' )
             
         return self.cleaned_data
     
