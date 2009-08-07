@@ -12,7 +12,7 @@
 <form method="post" action="?next={{ next|default:"/" }}">
 <dl>
 <dt><label for="id_username">Username:</label>{% if form.username.errors %} <span class="error">{{ form.username.errors|join:", " }}</span>{% endif %}</dt>
-<dd><!--{{ form.username }}--><input id="id_username" type="text" name="username" value="mendocinocoasttackle@comcast.n" maxlength="100" /></dd>
+<dd><!--{{ form.username }}--><input id="id_username" type="text" name="username" value="" maxlength="100" /></dd>
 <dt><label for="id_password">Password:</label>{% if form.password.errors %} <span class="error">{{ form.password.errors|join:", " }}</span>{% endif %}</dt>
 <dd>{{ form.password }}</dd>
 <dt><input type="submit" value="Log in" /></dt>
