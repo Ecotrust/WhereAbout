@@ -13,6 +13,9 @@ http://{{site.domain}}/accounts/activate/{{activation_key}}/
 Username: {{ username }}
 Password: {{ password }}
 
+You only need to activate your account once.  To return to your survey again go to the surveys home page at:
+http://{{site.domain}}/
+
 You have until at least Oct. 1st 2009 to finish this web survey.  It will likely take you at least 30 minutes to complete including watching the demonstration videos provided.  You can leave and come back to the survey as many times as you'd like until you're done, but it's important that you finish the whole thing or we can't use your information at all.  If you need additional help please first refer to all instructions, videos and frequently asked questions provided.  If you still find yourself not able to complete this survey online, please contact us using the info at the end of this email and we will find another way to get your information.
 
 By activating this account you agree to participate under the following conditions:
