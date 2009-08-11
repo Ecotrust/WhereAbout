@@ -20,7 +20,7 @@ gwst.widgets.FeaturesMenu = function(options){
             x: 0,
             y: 175,
             width: 350,
-            height: 420,
+            height: 270,
             html: '<div id="extTreeContainer" style="font-size:1.4em;"><ul id="extWindow"></ul></div>',
             autoScroll: true,
             closable: false,

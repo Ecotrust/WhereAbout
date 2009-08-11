@@ -325,7 +325,6 @@ gwst.actions.help = new Ext.Action({
                 closeAction: 'hide',
                 //modal: true,
                 width: 800,
-                y: 100,
                 items: [
                     /*gwst.app.helpScreenText = new gwst.widgets.URLViewer({
                                 url: '/draw_help/text/',
@@ -335,7 +334,7 @@ gwst.actions.help = new Ext.Action({
                     new Ext.TabPanel({
                         deferredRender: false,
                         labelWidth: 75,
-                        height: 465,
+                        height: 420,
                         activeTab: 0,
                         border: false,
                         items: [

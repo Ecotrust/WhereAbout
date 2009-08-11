@@ -66,4 +66,4 @@ gwst.copy.clippedGeometryErrorText = 'You have the option of either cancelling t
 
 
 gwst.copy.createNewGeometry = 'Draw your shape by clicking on the map. Double-click to finish.';
-gwst.copy.editGeometry = 'Edit this shape by dragging the handles on its vertices. To remove a point from your shape, move the mouse over it and press the D-key <img class="dkey" src="/site-media/images/D.png" />. <br />When you are done, click the finished button.';
+gwst.copy.editGeometry = 'Edit this shape by dragging the handles on its vertices. To remove a point from your shape, move<br /> the mouse over it and press the D-key on your keyboard. When you are done, click the finished button.';
