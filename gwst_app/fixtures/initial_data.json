@@ -54,24 +54,6 @@
     }
   }, 
   {
-    "pk": 12, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "twelch", 
-      "first_name": "", 
-      "last_name": "", 
-      "is_active": true, 
-      "is_superuser": true, 
-      "is_staff": true, 
-      "last_login": "2009-09-15 09:21:37", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$27391$54af43a321920966da0cc5d5931fe311bfcf09ec", 
-      "email": "", 
-      "date_joined": "2009-07-01 13:21:23"
-    }
-  }, 
-  {
     "pk": 13, 
     "model": "auth.user", 
     "fields": {
@@ -123,6 +105,24 @@
       "password": "sha1$a4475$a288560222f949e68985d76550dce47203e01ed7", 
       "email": "k@e.org", 
       "date_joined": "2009-05-21 10:51:22"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "twelch", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2009-09-15 13:26:56", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$27391$54af43a321920966da0cc5d5931fe311bfcf09ec", 
+      "email": "", 
+      "date_joined": "2009-07-01 13:21:23"
     }
   }, 
   {
@@ -367,13 +367,13 @@
       "name": "MLPA North Coast Recreational Fishing Survey", 
       "region": 1, 
       "resource_name_plural": "species", 
-      "draw_shape_text": "<div id=\"help_panel\">\r\n\r\n<b> Getting Started </b>\r\n\r\n<p>Please take a few moments to familiarize yourself with the tool before you start drawing shapes.  Brief instructions and demonstration videos can be found by clicking on the \"Instructions\" tab at the top of this window.  The videos are <u>highly recommended</u> as they will not only help you get started, but show you features that can make this process go much faster.</p>\r\n\r\n<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species</b> group you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw shapes on the map representing your fishing grounds and then place some number of pennies on those shapes. The more pennies you place on a shape, the more value or importance you are placing on it. Keep doing this until you have drawn all your shapes and used all your pennies.</p>\r\n\r\n<p>How many shapes you draw and how specific you are is up to you.  Most people draw between 3 and 8 shapes per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To see this information again after closing this window, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.</p></div>", 
+      "draw_shape_text": "<div id=\"help_panel\">\r\n\r\n<b> Getting Started </b>\r\n\r\n<p>Please take the time to learn about the tool before you start drawing shapes.  Instructions and demonstration videos can be found by clicking on the \"Instructions\" tab at the top of this window.  The videos are <u>highly recommended</u> as they will not only help you get started, but show you features that can make this process go much faster.</p>\r\n\r\n<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species</b> group you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw shapes on the map representing your fishing grounds and then place some number of pennies on those shapes. The more pennies you place on a shape, the more value or importance you are placing on it. Keep doing this until you have drawn all your shapes and used all your pennies.</p>\r\n\r\n<p>How many shapes you draw and how specific you are is up to you.  Most people draw between 3 and 8 shapes per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To see this information again after closing this window, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.</p></div>", 
       "resource_action": "target", 
       "resource_name": "species", 
       "active": true, 
       "organization": "Ecotrust", 
       "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  Also these values must add up to 100%.  For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling, 40% for dive angling and nothing for private vessel angling.]</i></p>", 
-      "group_status_text": "Please carefully read all instructions and complete the survey.  You will be asked to answer questions and draw your fishing grounds.  The drawing portion of the survey can be technically challenging for some.  Please understand this is a necessary part of the survey and provides the best representation of your fishing interests.\r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email and we will find a way to get your information included into this process.\r\n", 
+      "group_status_text": "Please carefully read all instructions and complete the survey.  You will be asked to answer questions and draw your fishing grounds.  The drawing portion of the survey can be technically challenging for some and you may get discouraged at the amount of time it will take you.  This is a necessary part of the survey and provides the best representation of your fishing interests so please be persistent and seek help from others if needed.  The time you'll spend on this survey is probably small compared to the time you spend fishing.  This is an opportunity for your voice to be included.\r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email and we will find a way to get your information included into this process.", 
       "description": "rec fish"
     }
   }, 
@@ -526,6 +526,78 @@
     }
   }, 
   {
+    "pk": 75, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 1, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 12, 
+      "date_started": null, 
+      "percent_involvement": 20, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 77, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 12, 
+      "date_started": null, 
+      "percent_involvement": 40, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "finalized", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": "2009-09-15 10:34:35", 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 12, 
+      "date_started": "2009-09-15 10:34:33", 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 76, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "in-progress", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 12, 
+      "date_started": "2009-09-15 10:34:40", 
+      "percent_involvement": 40, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
     "pk": 36, 
     "model": "gwst_app.interviewgroupmembership", 
     "fields": {
@@ -576,24 +648,6 @@
       "user": 22, 
       "date_started": null, 
       "percent_involvement": 20, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 41, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 6, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 12, 
-      "date_started": null, 
-      "percent_involvement": null, 
       "num_incomplete_resources": 0
     }
   }, 
@@ -1792,6 +1846,21 @@
       "question_set": null, 
       "eng_text": "Please answer these general questions. The information you provide will be kept confidential.", 
       "int_group": 6
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "gwst_app.interviewstatus", 
+    "fields": {
+      "completed": false, 
+      "first_login": "2009-09-15 10:34:16", 
+      "creation_date": "2009-09-15 10:34:10", 
+      "num_logins": 1, 
+      "last_login": "2009-09-15 10:34:16", 
+      "user": 12, 
+      "interview": 1, 
+      "complete_date": null, 
+      "notes": null
     }
   }, 
   {
