@@ -1,5 +1,5 @@
 #!/bin/bash
-DB="gwst"
+DB="mlpa-nc-rec-fish-survey"
 
 createdb -T gis_template $DB
 python manage.py syncdb --noinput

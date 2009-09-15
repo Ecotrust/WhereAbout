@@ -1,2 +1,2 @@
 #!/bin/bash
-dropdb gwst
+dropdb mlpa-nc-rec-fish-survey
