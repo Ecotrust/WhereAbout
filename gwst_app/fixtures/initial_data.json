@@ -1,23 +1,5 @@
 [
   {
-    "pk": 13, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "charles", 
-      "first_name": "Charles", 
-      "last_name": "Steinback", 
-      "is_active": true, 
-      "is_superuser": false, 
-      "is_staff": false, 
-      "last_login": "2009-07-16 12:36:14", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$9100e$35ef63fdf06e0644dfbef7fe17c25b81d69494b8", 
-      "email": "charles@ecotrust.org", 
-      "date_joined": "2009-07-16 12:34:20"
-    }
-  }, 
-  {
     "pk": 15, 
     "model": "auth.user", 
     "fields": {
@@ -36,75 +18,39 @@
     }
   }, 
   {
-    "pk": 18, 
+    "pk": 22, 
     "model": "auth.user", 
     "fields": {
-      "username": "lweiss", 
-      "first_name": "Leanne", 
-      "last_name": "Weiss", 
-      "is_active": true, 
-      "is_superuser": false, 
-      "is_staff": false, 
-      "last_login": "2009-07-17 16:18:03", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$84376$4f203e4080b5f4be35651842a5a471de68fcbde5", 
-      "email": "lweiss@ecotrust.org", 
-      "date_joined": "2009-07-17 16:18:03"
-    }
-  }, 
-  {
-    "pk": 19, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "shetrick", 
-      "first_name": "Sonya", 
-      "last_name": "Hetrick", 
-      "is_active": true, 
-      "is_superuser": false, 
-      "is_staff": false, 
-      "last_login": "2009-07-17 16:19:17", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$e6d5b$2296faa9a119332723aa743eec49ec99c83afeee", 
-      "email": "shetrick@ecotrust.org", 
-      "date_joined": "2009-07-17 16:19:17"
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "ken", 
+      "username": "testadmin", 
       "first_name": "", 
       "last_name": "", 
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-20 17:06:56", 
+      "last_login": "2009-08-18 11:32:28", 
       "groups": [], 
       "user_permissions": [], 
-      "password": "sha1$a4475$a288560222f949e68985d76550dce47203e01ed7", 
-      "email": "k@e.org", 
-      "date_joined": "2009-05-21 10:51:22"
+      "password": "sha1$c2f6e$2081e09135a3439583b21845c399b4e4de516e44", 
+      "email": "", 
+      "date_joined": "2009-07-29 12:11:01"
     }
   }, 
   {
-    "pk": 14, 
+    "pk": 37, 
     "model": "auth.user", 
     "fields": {
-      "username": "jbonkoski", 
-      "first_name": "Jon", 
-      "last_name": "Bonkoski", 
+      "username": "sample", 
+      "first_name": "Sample User", 
+      "last_name": "", 
       "is_active": true, 
-      "is_superuser": true, 
-      "is_staff": true, 
-      "last_login": "2009-07-29 12:10:17", 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2009-08-18 11:35:53", 
       "groups": [], 
       "user_permissions": [], 
-      "password": "sha1$3b6ab$e9957ce4b6834200e678702207f7b80b6ddd3554", 
-      "email": "jbonkoski@ecotrust.org", 
-      "date_joined": "2009-07-16 12:40:36"
+      "password": "sha1$a38fb$b4c9ff86cfa046e55d14755f7c3032a3789ba0c1", 
+      "email": "", 
+      "date_joined": "2009-08-18 11:35:21"
     }
   }, 
   {
@@ -117,7 +63,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-26 23:22:37", 
+      "last_login": "2009-09-15 09:21:37", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$27391$54af43a321920966da0cc5d5931fe311bfcf09ec", 
@@ -126,39 +72,75 @@
     }
   }, 
   {
-    "pk": 21, 
+    "pk": 13, 
     "model": "auth.user", 
     "fields": {
-      "username": "test", 
-      "first_name": "", 
-      "last_name": "", 
+      "username": "charles", 
+      "first_name": "Charles", 
+      "last_name": "Steinback", 
       "is_active": true, 
       "is_superuser": false, 
       "is_staff": false, 
-      "last_login": "2009-07-29 12:10:47", 
+      "last_login": "2009-08-05 11:10:31", 
       "groups": [], 
       "user_permissions": [], 
-      "password": "sha1$c71f4$db614d8e2aeec67c5023c14ededa22cc65c8c7e2", 
-      "email": "", 
-      "date_joined": "2009-07-29 12:10:47"
+      "password": "sha1$9100e$35ef63fdf06e0644dfbef7fe17c25b81d69494b8", 
+      "email": "charles@ecotrust.org", 
+      "date_joined": "2009-07-16 12:34:20"
     }
   }, 
   {
-    "pk": 22, 
+    "pk": 14, 
     "model": "auth.user", 
     "fields": {
-      "username": "testadmin", 
+      "username": "jbonkoski", 
+      "first_name": "Jon", 
+      "last_name": "Bonkoski", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2009-08-11 14:15:32", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$3b6ab$e9957ce4b6834200e678702207f7b80b6ddd3554", 
+      "email": "jbonkoski@ecotrust.org", 
+      "date_joined": "2009-07-16 12:40:36"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "ken", 
       "first_name": "", 
       "last_name": "", 
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-07-31 11:29:10", 
+      "last_login": "2009-08-11 16:49:34", 
       "groups": [], 
       "user_permissions": [], 
-      "password": "sha1$c2f6e$2081e09135a3439583b21845c399b4e4de516e44", 
+      "password": "sha1$a4475$a288560222f949e68985d76550dce47203e01ed7", 
+      "email": "k@e.org", 
+      "date_joined": "2009-05-21 10:51:22"
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "test", 
+      "first_name": "Sample User", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2009-08-22 16:07:10", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$a4299$63b5445c58cce66ee9186f36beba914914c94c5e", 
       "email": "", 
-      "date_joined": "2009-07-29 12:11:01"
+      "date_joined": "2009-08-22 16:05:59"
     }
   }, 
   {
@@ -207,16 +189,6 @@
       "select_description": "", 
       "code": "phal", 
       "name": "Pacific Halibut"
-    }
-  }, 
-  {
-    "pk": 8, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "880088", 
-      "select_description": "", 
-      "code": "bait", 
-      "name": "Anchovy/Herring (bait fish)"
     }
   }, 
   {
@@ -340,6 +312,36 @@
     }
   }, 
   {
+    "pk": 20, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "clm", 
+      "name": "Clams"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FF6600", 
+      "select_description": "", 
+      "code": "pch", 
+      "name": "Perch"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "880088", 
+      "select_description": "", 
+      "code": "bait", 
+      "name": "Anchovy/Herring/Smelt (bait fish)"
+    }
+  }, 
+  {
     "pk": 2, 
     "model": "gwst_app.interview", 
     "fields": {
@@ -365,7 +367,7 @@
       "name": "MLPA North Coast Recreational Fishing Survey", 
       "region": 1, 
       "resource_name_plural": "species", 
-      "draw_shape_text": "<div id=\"help_panel\">\r\n\r\n<b> Getting Started </b>\r\n\r\n<p>Please take a few moments to familiarize yourself with the tool before you start drawing shapes.  Brief instructions and demonstration videos can be found by clicking on the \"Instructions\" tab at the top of this window.  These are <u>highly recommended</u> as they will not only help you get started, but show you features that can make this process go much faster.</p>\r\n\r\n<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species</b> group you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw shapes on the map representing your fishing grounds and then place some number of pennies on those shapes. The more pennies you place on a shape, the more value or importance you are placing on it. Keep doing this until you have drawn all your shapes and used all your pennies.</p>\r\n\r\n<p>How many shapes you draw and how specific you are is up to you.  Most people draw between 3 and 8 shapes per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To see this information again after closing this window, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.</p></div>", 
+      "draw_shape_text": "<div id=\"help_panel\">\r\n\r\n<b> Getting Started </b>\r\n\r\n<p>Please take a few moments to familiarize yourself with the tool before you start drawing shapes.  Brief instructions and demonstration videos can be found by clicking on the \"Instructions\" tab at the top of this window.  The videos are <u>highly recommended</u> as they will not only help you get started, but show you features that can make this process go much faster.</p>\r\n\r\n<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species</b> group you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw shapes on the map representing your fishing grounds and then place some number of pennies on those shapes. The more pennies you place on a shape, the more value or importance you are placing on it. Keep doing this until you have drawn all your shapes and used all your pennies.</p>\r\n\r\n<p>How many shapes you draw and how specific you are is up to you.  Most people draw between 3 and 8 shapes per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To see this information again after closing this window, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.</p></div>", 
       "resource_action": "target", 
       "resource_name": "species", 
       "active": true, 
@@ -444,6 +446,31 @@
     }
   }, 
   {
+    "pk": 2, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "kyk", 
+      "name": "Kayak Angling", 
+      "required_group": false, 
+      "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) where put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these 3 different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 1, 
+      "resources": [
+        1, 
+        9, 
+        14, 
+        6, 
+        18, 
+        19, 
+        3, 
+        8
+      ], 
+      "description": "kayakers"
+    }
+  }, 
+  {
     "pk": 3, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -451,7 +478,7 @@
       "code": "prvsl", 
       "name": "Private Vessel Angling", 
       "required_group": false, 
-      "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) where put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these 3 different groups and why it's important we break things up like this, please visit our <a href='/faq'>Frequently Asked Questions</a>.", 
+      "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) where put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these 3 different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
       "preselect": true, 
       "user_draws_shapes": true, 
       "interview": 1, 
@@ -459,7 +486,6 @@
         1, 
         4, 
         5, 
-        8, 
         9, 
         10, 
         11, 
@@ -468,34 +494,12 @@
         6, 
         18, 
         19, 
-        3
+        3, 
+        20, 
+        21, 
+        8
       ], 
       "description": "private vessel anglers"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "kyk", 
-      "name": "Kayak Angling", 
-      "required_group": false, 
-      "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) where put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these 3 different groups and why it's important we break things up like this, please visit our <a href='/faq'>Frequently Asked Questions</a>.", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 1, 
-      "resources": [
-        1, 
-        8, 
-        9, 
-        14, 
-        6, 
-        18, 
-        19, 
-        3
-      ], 
-      "description": "kayakers"
     }
   }, 
   {
@@ -506,7 +510,7 @@
       "code": "div", 
       "name": "Dive/Spear", 
       "required_group": false, 
-      "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) where put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these 3 different groups and why it's important we break things up like this, please visit our <a href='/faq'>Frequently Asked Questions</a>.", 
+      "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) where put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these 3 different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
       "preselect": true, 
       "user_draws_shapes": true, 
       "interview": 1, 
@@ -519,6 +523,330 @@
         3
       ], 
       "description": "Diving and spear/hand take"
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 22, 
+      "date_started": null, 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 1, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 22, 
+      "date_started": null, 
+      "percent_involvement": 40, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 22, 
+      "date_started": null, 
+      "percent_involvement": 20, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 12, 
+      "date_started": null, 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 13, 
+      "date_started": null, 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 1, 
+      "date_started": null, 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 1, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 14, 
+      "date_started": null, 
+      "percent_involvement": 10, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 14, 
+      "date_started": null, 
+      "percent_involvement": 10, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "finalized", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": "2009-08-11 14:16:27", 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 14, 
+      "date_started": "2009-08-11 14:16:20", 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "in-progress", 
+      "user_status_msg": "0/1 resource group(s) complete, You have shapes with 0 pennies, please allocate or remove them to move on", 
+      "date_completed": null, 
+      "int_group": 1, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 1, 
+      "date_started": "2009-08-11 14:57:53", 
+      "percent_involvement": 50, 
+      "num_incomplete_resources": 1
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "in-progress", 
+      "user_status_msg": "1/1 resource group(s) complete", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 1, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 14, 
+      "date_started": "2009-08-11 14:16:57", 
+      "percent_involvement": 80, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "in-progress", 
+      "user_status_msg": "0/2 resource group(s) complete, You have shapes with 0 pennies, please allocate or remove them to move on", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 22, 
+      "date_started": "2009-08-03 15:57:47", 
+      "percent_involvement": 40, 
+      "num_incomplete_resources": 2
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 2, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 1, 
+      "date_started": null, 
+      "percent_involvement": 20, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 54, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "not yet started", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 1, 
+      "date_started": null, 
+      "percent_involvement": 30, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 56, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "finalized", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": "2009-08-18 11:36:46", 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 37, 
+      "date_started": "2009-08-18 11:36:44", 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 57, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "in-progress", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": null, 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 37, 
+      "date_started": "2009-08-18 11:39:08", 
+      "percent_involvement": 100, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 72, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "finalized", 
+      "user_status_msg": "no shapes drawn", 
+      "date_completed": "2009-08-22 16:19:42", 
+      "int_group": 6, 
+      "completed": false, 
+      "num_complete_resources": 0, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 45, 
+      "date_started": "2009-08-22 16:19:03", 
+      "percent_involvement": null, 
+      "num_incomplete_resources": 0
+    }
+  }, 
+  {
+    "pk": 73, 
+    "model": "gwst_app.interviewgroupmembership", 
+    "fields": {
+      "status": "finalized", 
+      "user_status_msg": "1/1 resource group(s) complete", 
+      "date_completed": "2009-08-22 16:24:29", 
+      "int_group": 3, 
+      "completed": false, 
+      "num_complete_resources": 1, 
+      "reviewed": false, 
+      "date_reviewed": null, 
+      "user": 45, 
+      "date_started": "2009-08-22 16:19:37", 
+      "percent_involvement": 100, 
+      "num_incomplete_resources": 0
     }
   }, 
   {
@@ -673,26 +1001,6 @@
     }
   }, 
   {
-    "pk": 1, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "diveprtr", 
-      "eng_text": "Average number of dives per trip", 
-      "int_group": 1, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 1.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
     "pk": 35, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -710,6 +1018,26 @@
       "answer_type": "decimal", 
       "eng_tooltip": "", 
       "val_max": null
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "diveprtr", 
+      "eng_text": "Average number of dives per trip", 
+      "int_group": 1, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 1.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
     }
   }, 
   {
@@ -738,7 +1066,7 @@
     "fields": {
       "all_resources": false, 
       "code": "dive_meth", 
-      "eng_text": "Primary dive method", 
+      "eng_text": "Primary dive method (we understand most do more than one type.  Answer which you do the most)", 
       "int_group": 1, 
       "question_set": null, 
       "display_order": 3.0, 
@@ -780,8 +1108,8 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "dive_isle", 
-      "eng_text": "What percentage of your dives are island based?", 
+      "code": "dive_boat", 
+      "eng_text": "What percentage of your dives are from a boat?", 
       "int_group": 1, 
       "question_set": null, 
       "display_order": 5.0, 
@@ -791,7 +1119,7 @@
       "val_min": 0.0, 
       "val_default": "0", 
       "answer_type": "integer", 
-      "eng_tooltip": "Percentage of dives from which you start out from an island", 
+      "eng_tooltip": "Percentage of dives from which you start out from a boat", 
       "val_max": 100.0
     }
   }, 
@@ -821,26 +1149,6 @@
     }
   }, 
   {
-    "pk": 2, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "launch1", 
-      "eng_text": "Launch port/site 1", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Ports and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 36, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -857,6 +1165,26 @@
       "val_default": "", 
       "answer_type": "decimal", 
       "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "launch1", 
+      "eng_text": "Launch port/site 1", 
+      "int_group": 2, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Ports and sites you launch your kayak from", 
       "val_max": null
     }
   }, 
@@ -961,29 +1289,6 @@
     }
   }, 
   {
-    "pk": 12, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "boat_type", 
-      "eng_text": "Type of boat", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [
-        15, 
-        16
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 37, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -1004,12 +1309,35 @@
     }
   }, 
   {
+    "pk": 12, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "boat_type", 
+      "eng_text": "Type of boat (your primary boat)", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [
+        15, 
+        16
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 13, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "dfg_num", 
-      "eng_text": "CDFG Boat Number", 
+      "code": "reg_num", 
+      "eng_text": "Boat registration number (your primary boat)", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 2.0, 
@@ -1069,7 +1397,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_length", 
-      "eng_text": "Vessel length (in feet)", 
+      "eng_text": "Vessel length in feet (your primary boat)", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 5.0, 
@@ -1089,7 +1417,7 @@
     "fields": {
       "all_resources": false, 
       "code": "storage", 
-      "eng_text": "Storage location", 
+      "eng_text": "Storage location (your primary boat)", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 6.0, 
@@ -1113,7 +1441,7 @@
     "fields": {
       "all_resources": false, 
       "code": "homeport", 
-      "eng_text": "Home port (dock/moorage)", 
+      "eng_text": "Primary port/ramp (dock/moorage/launch)", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 7.0, 
@@ -1133,7 +1461,7 @@
     "fields": {
       "all_resources": false, 
       "code": "launch1", 
-      "eng_text": "Launch Port 1 (In addition to home port)", 
+      "eng_text": "Other Launch 1 (In addition to your primary)", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 8.0, 
@@ -1153,7 +1481,7 @@
     "fields": {
       "all_resources": false, 
       "code": "launch2", 
-      "eng_text": "Launch Port 2", 
+      "eng_text": "Other Launch 2", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 9.0, 
@@ -1173,7 +1501,7 @@
     "fields": {
       "all_resources": false, 
       "code": "launch3", 
-      "eng_text": "Launch Port 3", 
+      "eng_text": "Other Launch 3", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 10.0, 
@@ -1193,7 +1521,7 @@
     "fields": {
       "all_resources": false, 
       "code": "launch4", 
-      "eng_text": "Launch Port 4", 
+      "eng_text": "Other Launch 4", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 11.0, 
@@ -1598,11 +1926,29 @@
     }
   }, 
   {
+    "pk": 12, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "On windows,  right-click 'My Computer' or just right-click your desktop and select \"Properties\", then click the \"Settings\" tab. Use the \"Screen resolution\" slider to increase your resolution to at least 1024 x 768, then click the \"Apply\" button. ", 
+      "importance": 2, 
+      "question": "How do I increase my screen resolution?", 
+      "faq_group": 3
+    }
+  }, 
+  {
     "pk": 1, 
     "model": "sites.site", 
     "fields": {
-      "domain": "mlpa-nc-rec-fish-survey.ecotrust.org", 
-      "name": "mlpa-nc-rec-fish-survey.ecotrust.org"
+      "domain": "mlpa-nc-rec-survey-dev.ecotrust.org", 
+      "name": "mlpa-nc-rec-survey-dev.ecotrust.org"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "mlpa-nc-rec-survey.ecotrust.org", 
+      "name": "mlpa-nc-rec-survey.ecotrust.org"
     }
   }
 ]
