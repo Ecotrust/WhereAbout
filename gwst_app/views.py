@@ -733,7 +733,7 @@ def create_superfolder(name, icon=None, id=None, description=None):
     return obj
         
 def user_features_client_object(user,interview):
-    folder = create_superfolder('Right click on a '+interview.resource_name_plural+' to start', icon=settings.MEDIA_URL+'images/silk/icons/status_online.png', id="userFeatures")
+    folder = create_superfolder('<b>Right click on a '+interview.resource_name_plural+' to start drawing</b>', icon=settings.MEDIA_URL+'images/silk/icons/status_online.png', id="userFeatures")
     
     int_groups = InterviewGroup.objects.filter(interview=interview,user_draws_shapes=True)
     int_group_membs = InterviewGroupMembership.objects.filter(user=user, int_group__in=int_groups).exclude(status='not yet started').order_by('-percent_involvement')

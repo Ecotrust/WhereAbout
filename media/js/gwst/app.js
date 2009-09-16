@@ -65,7 +65,10 @@ gwst.app = function() {
         
         init: function(){
 	    $.ajaxSetup({ cache: false });
-            
+	        //Preload startup spinner image
+            var loadImage = new Image(); 
+            loadImage.src = "/site-media/images/large-loading.gif";            
+
             this.userManager = new gwst.ui.UserManager();
             
             $('#jLoading').ajaxStart(function(){
@@ -73,6 +76,7 @@ gwst.app = function() {
             });
             $('#jLoading').ajaxStop(function(){
                 $(this).hide();
+                gwst.app.hide_load();
             });
             
             /*********** First Browser Checks *******************************/
@@ -332,7 +336,7 @@ gwst.app = function() {
             //    Ext.MessageBox.alert("Browser Check","You may experience problems using the Opera web browser.  Supported browsers include Mozilla Firefox 2+, Apple Safari 3+ and Internet Explorer 7+");                
             //} 
             
-            this.hide_load();
+            //this.hide_load();
             
             // Hotkeys
             var app = this;
@@ -363,7 +367,7 @@ gwst.app = function() {
         hide_load: function(){
             //turn off loading mask
             Ext.get('loading-mask').fadeOut({remove: true});
-            Ext.get('loading').fadeOut({remove: true});            
+            Ext.get('loading').fadeOut({remove: true});                        
         }
     };
 }(); // end of app

@@ -323,6 +323,7 @@ gwst.actions.help = new Ext.Action({
             gwst.app.helpWindow = new Ext.Window({
                 id: 'windowSplash',
                 closeAction: 'hide',
+                modal: true,
                 //modal: true,
                 width: 800,
                 items: [
@@ -331,7 +332,7 @@ gwst.actions.help = new Ext.Action({
                                 title: 'Draw Mode Help'
                             })*/
                             
-                    new Ext.TabPanel({
+                    gwst.app.splashTabs = new Ext.TabPanel({
                         deferredRender: false,
                         labelWidth: 75,
                         height: 420,
@@ -341,10 +342,10 @@ gwst.actions.help = new Ext.Action({
                             gwst.app.splashScreenText = new gwst.widgets.URLViewer({
                                 url: '/draw_splash/',
                                 title: 'Overview'
-                            }),
+                            }),                                                        
                             gwst.app.helpScreenText = new gwst.widgets.URLViewer({
                                 url: '/draw_help/text/',
-                                title: 'Instructions'
+                                title: 'Instructions/Videos'
                             })
                         ]
                     })
@@ -444,7 +445,7 @@ gwst.actions.userPrefsDropdown = new Ext.Action({
 });
 
 gwst.actions.finishGroup = new Ext.Action({
-    text: 'Click Here When Finished With This Group',
+    text: 'Stop Drawing and Return To Main Menu',
     iconCls: 'yes-icon',
     handler: function(target, e){
         window.onbeforeunload = null;

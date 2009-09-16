@@ -60,7 +60,7 @@
                 // alert('collapsible click');
                 var list = $(this).parent().find('>ul');
                 if(list.find('li').length == 0){
-                    list.html('<p class="no-items">No items.</p>');
+                    list.html('<p class="no-items">No items. You need to add them.</p>');
                 }else{
                     list.find('p.no-items').remove();
                 }
