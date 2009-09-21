@@ -7,7 +7,7 @@ from registration_custom.forms import RegistrationFormFull
 from views import *
 
 urlpatterns = patterns('',                      
-    (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
+    (r'^accounts/login/$', login, {'template_name': 'login.html'}),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout_then_login', {'login_url': '/accounts/login/'}),
 
     #Custom registration with extra profile fields

@@ -1,2 +1,2 @@
 #!/bin/bash
-dropdb spatial-survey-demo
+dropdb mlpa-nc-rec-survey

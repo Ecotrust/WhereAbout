@@ -10,6 +10,11 @@ from forms import *
 from gwst_app.utils.geojson_encode import *
 from django.db.models import Sum
 
+#Pass extra settings around whether user can self-register
+def login(request, template_name='registration/login.html'):
+    request.user.SELF_REGISTRATION = settings.SELF_REGISTRATION
+    from django.contrib.auth.views import login as default_login
+    return default_login(request, template_name)
 
 def handleSelectInterview(request,selected_interview):
 
