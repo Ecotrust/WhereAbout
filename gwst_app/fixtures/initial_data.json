@@ -135,7 +135,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-09-21 03:05:25", 
+      "last_login": "2009-09-21 03:15:34", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$27391$54af43a321920966da0cc5d5931fe311bfcf09ec", 
@@ -1627,6 +1627,14 @@
     "fields": {
       "domain": "mlpa-nc-rec-survey.ecotrust.org", 
       "name": "mlpa-nc-rec-survey.ecotrust.org"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "spatial-survey-demo.ecotrust.org", 
+      "name": "spatial-survey-demo.ecotrust.org"
     }
   }
 ]
