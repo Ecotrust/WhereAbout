@@ -83,6 +83,9 @@ INSTALLED_APPS = (
     'gwst_surveymonkey'
 )
 
+SELF_REGISTRATION=False
+SELF_SURVEY_RESET=False
+
 try:
     from local_settings import *
 except ImportError, exp:

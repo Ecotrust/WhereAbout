@@ -661,11 +661,21 @@ def interview_complete(request):
         return HttpResponseRedirect('/select_interview/')
 
     title = request.session['interview'].name + ' Completed'
-    return render_to_response( 'interview_complete.html', RequestContext(request,{'title':title, 'name':request.session['interview'].name}))
-    
+    return render_to_response( 'interview_complete.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'SELF_SURVEY_RESET':settings.SELF_SURVEY_RESET}))
+
+@login_required
+def reset_interview(request, id):
+    answers = InterviewAnswer.objects.filter(user=request.user, int_question__int_group__interview__id=id)
+    answers.delete()
+    shapes = InterviewShape.objects.filter(user=request.user, int_group__interview__id=id)
+    shapes.delete()
+    group_membs = InterviewGroupMembership.objects.filter(user=request.user, int_group__interview__id=id)
+    group_membs.delete()
+    survey_status = InterviewStatus.objects.filter(user=request.user, interview__id=id)
+    survey_status.delete()
+    return HttpResponseRedirect('/')        
     
 # client-side usermanager support
-
 def user_client_object(user):
     return {
         'model': 'user',
