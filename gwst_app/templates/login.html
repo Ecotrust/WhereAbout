@@ -15,7 +15,7 @@
 <dd><!--{{ form.username }}--><input id="id_username" type="text" name="username" value="" maxlength="100" /></dd>
 <dt><label for="id_password">Password:</label>{% if form.password.errors %} <span class="error">{{ form.password.errors|join:", " }}</span>{% endif %}</dt>
 <dd>{{ form.password }}</dd>
-<dt><input type="submit" value="Log in" /></dt>
+<dt><input type="submit" value="Log in" /> &nbsp;&nbsp;&nbsp;<a href='/accounts/register'>Create a new account</a></dt>
 </dl>
 </form>
 <br/>

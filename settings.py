@@ -78,7 +78,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.databrowse',
     'django.contrib.humanize',
-    'registration',
+    'registration_custom',
     'gwst_app',
     'gwst_surveymonkey'
 )

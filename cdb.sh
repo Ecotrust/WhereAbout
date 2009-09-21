@@ -1,5 +1,5 @@
 #!/bin/bash
-DB="mlpa-nc-rec-fish-survey"
+DB="spatial-survey-demo"
 
 createdb -T gis_template $DB
 python manage.py syncdb --noinput
