@@ -37,8 +37,6 @@ class OdfwRegistrationManager(RegistrationManager):
         """
         new_user = User.objects.create_user(username, email, password)
         new_user.is_active = False
-        import pdb
-        pdb.set_trace()
         new_user.save()
         
         registration_profile = self.create_profile(new_user)
@@ -54,8 +52,6 @@ class OdfwRegistrationManager(RegistrationManager):
                                        { 'site': current_site })
             # Email subject *must not* contain newlines
             subject = ''.join(subject.splitlines())
-            import pdb
-            pdb.set_trace()
             message = render_to_string('registration/activation_email.txt',
                                        { 'username': username,
                                          'password': password,
