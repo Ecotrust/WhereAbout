@@ -4,7 +4,7 @@
 
 <p>Thank you for completing the interview: {{interview.name}}</p>
 
-{{ interview.interview_complete_text }}
+{{ interview.interview_complete_text|safe }}
 
 {% if SELF_SURVEY_RESET %}
 <a href='/reset_interview/{{interview.id}}'>Restart Survey</a>
