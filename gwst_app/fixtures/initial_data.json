@@ -1,23 +1,5 @@
 [
   {
-    "pk": 15, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "skruse", 
-      "first_name": "Sarah", 
-      "last_name": "Kruse", 
-      "is_active": true, 
-      "is_superuser": true, 
-      "is_staff": true, 
-      "last_login": "2009-07-16 12:42:00", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$02d3c$578ad36cde14518a9a779c42e9fa6157bd0bba37", 
-      "email": "skruse@ecotrust.org", 
-      "date_joined": "2009-07-16 12:42:00"
-    }
-  }, 
-  {
     "pk": 22, 
     "model": "auth.user", 
     "fields": {
@@ -33,78 +15,6 @@
       "password": "sha1$c2f6e$2081e09135a3439583b21845c399b4e4de516e44", 
       "email": "", 
       "date_joined": "2009-07-29 12:11:01"
-    }
-  }, 
-  {
-    "pk": 37, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "sample", 
-      "first_name": "Sample User", 
-      "last_name": "", 
-      "is_active": true, 
-      "is_superuser": false, 
-      "is_staff": false, 
-      "last_login": "2009-08-18 11:35:53", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$a38fb$b4c9ff86cfa046e55d14755f7c3032a3789ba0c1", 
-      "email": "", 
-      "date_joined": "2009-08-18 11:35:21"
-    }
-  }, 
-  {
-    "pk": 13, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "charles", 
-      "first_name": "Charles", 
-      "last_name": "Steinback", 
-      "is_active": true, 
-      "is_superuser": false, 
-      "is_staff": false, 
-      "last_login": "2009-08-05 11:10:31", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$9100e$35ef63fdf06e0644dfbef7fe17c25b81d69494b8", 
-      "email": "charles@ecotrust.org", 
-      "date_joined": "2009-07-16 12:34:20"
-    }
-  }, 
-  {
-    "pk": 14, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "jbonkoski", 
-      "first_name": "Jon", 
-      "last_name": "Bonkoski", 
-      "is_active": true, 
-      "is_superuser": true, 
-      "is_staff": true, 
-      "last_login": "2009-08-11 14:15:32", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$3b6ab$e9957ce4b6834200e678702207f7b80b6ddd3554", 
-      "email": "jbonkoski@ecotrust.org", 
-      "date_joined": "2009-07-16 12:40:36"
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "auth.user", 
-    "fields": {
-      "username": "ken", 
-      "first_name": "", 
-      "last_name": "", 
-      "is_active": true, 
-      "is_superuser": true, 
-      "is_staff": true, 
-      "last_login": "2009-08-11 16:49:34", 
-      "groups": [], 
-      "user_permissions": [], 
-      "password": "sha1$a4475$a288560222f949e68985d76550dce47203e01ed7", 
-      "email": "k@e.org", 
-      "date_joined": "2009-05-21 10:51:22"
     }
   }, 
   {
@@ -135,7 +45,7 @@
       "is_active": true, 
       "is_superuser": true, 
       "is_staff": true, 
-      "last_login": "2009-09-22 16:47:08", 
+      "last_login": "2009-09-25 14:21:24", 
       "groups": [], 
       "user_permissions": [], 
       "password": "sha1$27391$54af43a321920966da0cc5d5931fe311bfcf09ec", 
@@ -374,8 +284,8 @@
       "active": true, 
       "organization": "Ecotrust", 
       "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  Also these values must add up to 100%.  For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling, 40% for dive angling and nothing for private vessel angling.]</i></p>", 
-      "group_status_text": "Please carefully read all instructions and complete the survey.  You will be asked to answer questions and draw your fishing grounds.  The drawing portion of the survey can be technically challenging for some and you may get discouraged at the amount of time it will take you.  This is a necessary part of the survey and provides the best representation of your fishing interests so please be persistent and seek help from others if needed.  This is an opportunity for your voice to be heard.\r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email and we will find a way to get your information included into this process.", 
-      "interview_complete_text": "<p>The fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.</p>\r\n\r\n<p>When the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated and subsequent iterations of the analysis will be completed. The maps will then be used in evaluating MPA proposals.  For each MPA proposal, stakeholders will be able to see the potential impacts that MPA would have on a given fishery and/or user group.  This is a valuable tool in finding the best areas for protection while trying to minimize the impact on fisheries.</p>\r\n\r\n<p>Your willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a></p>", 
+      "group_status_text": "Please carefully read all instructions and complete each survey section.  You will be asked to answer questions and draw your fishing grounds.  The drawing portion can be technically challenging and you may get discouraged at the amount of time it will take you.  We apologize for this.  Please understand that it provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. The time you spend will be worth the effort.\r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nIf you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email.  We are listening to your feedback.\r\n\r\n<h3>Instructions</h3>\r\nComplete each section one at a time.  When you finish a section you will see the option to 'Finalize this group'.  When you finalize it successfully you will see its red icon turn green.  In order to completely finish the survey, all of the sections must be green.  Before finishing the survey you can reopen any of the sections and make changes.", 
+      "interview_complete_text": "<p>The fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.</p>\r\n\r\n<p>When the initial round of analysis is complete we will conduct reviews by region. This will provide an opportunity for groups to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated and subsequent iterations of the analysis will be completed. The maps will then be used in evaluating MPA proposals.  For each MPA proposal, stakeholders will be able to see the potential impacts that MPA would have on a given fishery and/or user group.  This is a valuable tool in finding the best areas for protection while trying to minimize the impact on fisheries.</p>\r\n\r\n<p>Your willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a></p>", 
       "description": "rec fish"
     }
   }, 
@@ -525,86 +435,6 @@
         3
       ], 
       "description": "Diving and spear/hand take"
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 6, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 12, 
-      "date_started": null, 
-      "percent_involvement": null, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 1, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 12, 
-      "date_started": null, 
-      "percent_involvement": 20, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "not yet started", 
-      "user_status_msg": "no shapes drawn", 
-      "date_completed": null, 
-      "int_group": 3, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 12, 
-      "date_started": null, 
-      "percent_involvement": 40, 
-      "num_incomplete_resources": 0
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroupmembership", 
-    "fields": {
-      "status": "in-progress", 
-      "user_status_msg": "0/1 resource group(s) complete, You have shapes with 0 pennies, please allocate or remove them to move on", 
-      "date_completed": null, 
-      "int_group": 2, 
-      "completed": false, 
-      "num_complete_resources": 0, 
-      "reviewed": false, 
-      "date_reviewed": null, 
-      "user": 12, 
-      "date_started": "2009-09-22 16:47:56", 
-      "percent_involvement": 40, 
-      "num_incomplete_resources": 1
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 3, 
-      "group_membership": 4
     }
   }, 
   {
@@ -1550,162 +1380,6 @@
       "question_set": null, 
       "eng_text": "Please answer these general questions. The information you provide will be kept confidential.", 
       "int_group": 6
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "resource": null, 
-      "last_modified": "2009-09-21 03:15:22", 
-      "num_times_saved": 1, 
-      "int_question": 2, 
-      "creation_date": "2009-09-21 03:15:22", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 12, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": "asdf"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "resource": null, 
-      "last_modified": "2009-09-21 03:15:22", 
-      "num_times_saved": 1, 
-      "int_question": 26, 
-      "creation_date": "2009-09-21 03:15:22", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 12, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": ""
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "resource": null, 
-      "last_modified": "2009-09-21 03:15:22", 
-      "num_times_saved": 1, 
-      "int_question": 27, 
-      "creation_date": "2009-09-21 03:15:22", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 12, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": ""
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "resource": null, 
-      "last_modified": "2009-09-21 03:15:22", 
-      "num_times_saved": 1, 
-      "int_question": 28, 
-      "creation_date": "2009-09-21 03:15:22", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 12, 
-      "decimal_val": null, 
-      "integer_val": null, 
-      "text_val": ""
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "resource": null, 
-      "last_modified": "2009-09-21 03:15:22", 
-      "num_times_saved": 1, 
-      "int_question": 29, 
-      "creation_date": "2009-09-21 03:15:22", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 12, 
-      "decimal_val": null, 
-      "integer_val": 2, 
-      "text_val": "2"
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "resource": null, 
-      "last_modified": "2009-09-21 03:15:22", 
-      "num_times_saved": 1, 
-      "int_question": 30, 
-      "creation_date": "2009-09-21 03:15:22", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 12, 
-      "decimal_val": null, 
-      "integer_val": 2, 
-      "text_val": "2"
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "gwst_app.interviewanswer", 
-    "fields": {
-      "resource": 3, 
-      "last_modified": "2009-09-21 03:15:22", 
-      "num_times_saved": 1, 
-      "int_question": 36, 
-      "creation_date": "2009-09-21 03:15:22", 
-      "option_val": null, 
-      "boolean_val": null, 
-      "user": 12, 
-      "decimal_val": 4.0, 
-      "integer_val": null, 
-      "text_val": "4.0"
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "gwst_app.interviewstatus", 
-    "fields": {
-      "completed": false, 
-      "first_login": "2009-09-22 16:47:14", 
-      "creation_date": "2009-09-21 03:15:22", 
-      "num_logins": 2, 
-      "last_login": "2009-09-23 15:09:42", 
-      "user": 12, 
-      "interview": 1, 
-      "complete_date": null, 
-      "notes": null
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "gwst_app.interviewshape", 
-    "fields": {
-      "edit_notes": null, 
-      "boundary_s": null, 
-      "resource": 3, 
-      "boundary_w": null, 
-      "int_group": 2, 
-      "geometry": "POLYGON ((-411965.4043871121830307 282517.4327805115608498, -560721.7878100975649431 265431.0844499084050767, -565227.9634524289285764 146172.6822295465681236, -482015.7024351329891942 57881.3035799459612463, -392592.8831729782395996 181417.9264733660384081, -411965.4043871121830307 282517.4327805115608498))", 
-      "pennies": 0, 
-      "edit_status": "unedited", 
-      "creation_date": "2009-09-21 03:15:23", 
-      "geometry_clipped": "POLYGON ((-411965.4043871121830307 282517.4327805115608498, -560721.7878100975649431 265431.0844499084050767, -565227.9634524289285764 146172.6822295465681236, -482015.7024351329891942 57881.3035799459612463, -392592.8831729782395996 181417.9264733660384081, -411965.4043871121830307 282517.4327805115608498))", 
-      "num_times_saved": 1, 
-      "last_modified": "2009-09-21 03:15:23", 
-      "boundary_e": null, 
-      "user": 12, 
-      "boundary_n": null, 
-      "geometry_edited": null
     }
   }, 
   {
