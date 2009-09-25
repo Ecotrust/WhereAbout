@@ -18,6 +18,7 @@ from django.core.mail import SMTPConnection, EmailMessage
 class SMAddForm(forms.Form):
     userfile = forms.FileField(required=True)
     num_to_register = forms.IntegerField(required=False, initial=50, label="Maximum number of people to sign up", widget=forms.TextInput(attrs={'size':'3'}))
+    send_email = forms.BooleanField(label='Send registration email?', required=False, widget=forms.CheckboxInput(attrs={'checked':True}))
     interview = NameModelChoiceField(label='Interview',queryset=None,required=True)
 
     def clean_userfile(self):
@@ -64,6 +65,8 @@ class SMAddForm(forms.Form):
         interview = self.cleaned_data['interview']
         file = self.cleaned_data['userfile']
         num_to_register = self.cleaned_data['num_to_register']
+        send_email = self.cleaned_data['send_email']
+        
         if not num_to_register or num_to_register == '':
             num_to_register = 50
 
@@ -97,7 +100,7 @@ class SMAddForm(forms.Form):
                     elif num_to_register and num_success == num_to_register:
                         break
                                    
-                    result = self.create_survey(interview, new_person)            
+                    result = self.create_survey(interview, new_person, send_email)            
                     
                     #Check status of create and update accordingly
                     if result.get('status') == 'success':
@@ -117,7 +120,7 @@ class SMAddForm(forms.Form):
         
         return {'output_list':output_list, 'num_success':num_success, 'num_failed':num_failed} 
         
-    def create_survey(self, interview, new_person):      
+    def create_survey(self, interview, new_person, send_email):      
         output = []
         
         sm_id = new_person[0]           
@@ -192,7 +195,7 @@ class SMAddForm(forms.Form):
             password=password,
             email=email,
             user_group_text=user_group_text,
-            send_email=True
+            send_email=send_email
         )
 
         #Get active survey main question group
