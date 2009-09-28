@@ -1,2 +1,2 @@
 #!/bin/bash
-python manage.py dumpdata --indent=2 auth.User gwst_app.InterviewGroupMembership gwst_app.InterviewAnswer gwst_app.InterviewStatus gwst_app.InterviewShape > gwst_app/fixtures/user_surveys.json
+python manage.py dumpdata --indent=2 auth.User gwst_app.InterviewGroupMembership gwst_app.GroupMemberResource gwst_app.InterviewAnswer gwst_app.InterviewStatus gwst_app.InterviewShape > gwst_app/fixtures/user_surveys.json
