@@ -42,6 +42,14 @@
                 <span class="error">{{ form.send_email.errors|join:", " }}</span>
             {% endif %}
         </div>
+
+        <div class="form-row">
+            <label>{{ form.bcc_email.label }}:</label>
+            {{ form.bcc_email }}
+            {% if form.bcc_email.errors %}
+                <span class="error">{{ form.bcc_email.errors|join:", " }}</span>
+            {% endif %}
+        </div>
 			
 		<div class="submit-row">
 		  <input type="submit" value="Add Users" />

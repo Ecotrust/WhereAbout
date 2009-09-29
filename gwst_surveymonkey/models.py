@@ -11,13 +11,14 @@ class SMRegistrationManager(RegistrationManager):
     """
     
     def create_inactive_user(self, interview, username, first_name, last_name, password, email,
-                             user_group_text, send_email=True, profile_callback=None):
+                             user_group_text, send_email=True, bcc_email=True, profile_callback=None):
         """
         Creates a new, inactive ``User``, generates a
         ``RegistrationProfile`` and emails its activation key to the
         ``User``. Returns the new ``User``.
         
         To disable the email, call with ``send_email=False``.
+        To disable the bcc email, call with ``bcc_email=False``.
         
         To enable creation of a custom user profile along with the
         ``User`` (e.g., the model specified in the
@@ -66,12 +67,17 @@ class SMRegistrationManager(RegistrationManager):
             
             connection = SMTPConnection()
             
+            #Check if we should include a bcc address
+            bcc_email_address = ''
+            if bcc_email:
+                bcc_email_address = settings.BCC_EMAIL
+            
             EmailMessage(subject, 
                          message, 
                          settings.DEFAULT_FROM_EMAIL, 
                          [new_user.email],
                          connection=connection,
-                         bcc=[settings.BCC_EMAIL]).send()                                     
+                         bcc=[bcc_email_address]).send()                                     
         return new_user  
     
 class SMRegistrationProfile(RegistrationProfile):
