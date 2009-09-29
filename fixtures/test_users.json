@@ -1,0 +1,38 @@
+[
+  {
+    "pk": 50, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "test", 
+      "first_name": "Test", 
+      "last_name": "User", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2009-09-29 12:53:52", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$9f3ab$14ce9d662d38631327d6dcf9a9fae08bc4330762", 
+      "email": "", 
+      "date_joined": "2009-09-29 12:53:52"
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "testadmin", 
+      "first_name": "Test Admin", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2009-09-29 12:55:03", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$b12e8$d9a4b30074902e53c383fe1619c478ab0a996fc6", 
+      "email": "", 
+      "date_joined": "2009-09-29 12:54:11"
+    }
+  }
+]
