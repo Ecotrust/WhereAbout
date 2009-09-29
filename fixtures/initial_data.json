@@ -254,8 +254,8 @@
       "active": true, 
       "organization": "Ecotrust", 
       "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  Also these values must add up to 100%.  For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling, 40% for dive angling and nothing for private vessel angling.]</i></p>", 
-      "group_status_text": "Please carefully read all instructions and complete each survey section.  You will be asked to answer questions and draw your fishing grounds.  The drawing portion can be technically challenging and you may get discouraged at the amount of time it will take you.  We apologize for this.  Please understand that it provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. The time you spend will be worth the effort.\r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nIf you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email.  We are listening to your feedback.\r\n\r\n<h3>Instructions</h3>\r\nComplete each section one at a time.  When you finish a section you will see the option to 'Finalize this group'.  When you finalize it successfully you will see its red icon turn green.  In order to completely finish the survey, all of the sections must be green.  Before finishing the survey you can reopen any of the sections and make changes.", 
-      "interview_complete_text": "<p>The fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.</p>\r\n\r\n<p>When the initial round of analysis is complete we will conduct reviews by region. This will provide an opportunity for groups to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated and subsequent iterations of the analysis will be completed. The maps will then be used in evaluating MPA proposals.  For each MPA proposal, stakeholders will be able to see the potential impacts that MPA would have on a given fishery and/or user group.  This is a valuable tool in finding the best areas for protection while trying to minimize the impact on fisheries.</p>\r\n\r\n<p>Your willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a></p>", 
+      "group_status_text": "Please carefully read all instructions and complete the survey.  You will be asked to answer questions and draw your fishing grounds.  The drawing portion of the survey can be technically challenging for some and you may get discouraged at the amount of time it will take you.  This is a necessary part of the survey and provides the best representation of your fishing interests so please be persistent and seek help from others if needed.  This is an opportunity for your voice to be heard.\r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to reveal your fishing grounds to us, please <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email and we will find a way to get your information included into this process.", 
+      "interview_complete_text": "<p>The fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.</p>\r\n\r\n<p>When the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated and subsequent iterations of the analysis will be completed. The maps will then be used in evaluating MPA proposals.  For each MPA proposal, stakeholders will be able to see the potential impacts that MPA would have on a given fishery and/or user group.  This is a valuable tool in finding the best areas for protection while trying to minimize the impact on fisheries.</p>\r\n\r\n<p>Your willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a></p>", 
       "description": "rec fish"
     }
   }, 
@@ -405,46 +405,6 @@
         3
       ], 
       "description": "Diving and spear/hand take"
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 6, 
-      "group_membership": 14
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 18, 
-      "group_membership": 14
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 10, 
-      "group_membership": 13
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 19, 
-      "group_membership": 15
-    }
-  }, 
-  {
-    "pk": 10, 
-    "model": "gwst_app.groupmemberresource", 
-    "fields": {
-      "resource": 10, 
-      "group_membership": 34
     }
   }, 
   {
@@ -599,26 +559,6 @@
     }
   }, 
   {
-    "pk": 35, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "diveyrsp", 
-      "eng_text": "Average number of days per year diving for this species", 
-      "int_group": 1, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 1, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -636,6 +576,26 @@
       "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "diveyrsp", 
+      "eng_text": "Average number of days per year diving for this species", 
+      "int_group": 1, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": null
     }
   }, 
   {
@@ -747,26 +707,6 @@
     }
   }, 
   {
-    "pk": 36, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "days_spec", 
-      "eng_text": "Average number of days per year fishing for this species", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 2, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -783,6 +723,26 @@
       "val_default": "", 
       "answer_type": "text", 
       "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "days_spec", 
+      "eng_text": "Average number of days per year fishing for this species", 
+      "int_group": 2, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
       "val_max": null
     }
   }, 
