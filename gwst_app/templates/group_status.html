@@ -6,6 +6,13 @@
 {{ interview.group_status_text|safe }}
 </div>
 <br/>
+
+{% if user.is_staff %}
+<a href='/reset_interview/{{interview.id}}'>Restart Survey</a>
+<br/>
+<br/>
+{% endif %}
+
 <ul>
 {% for object in object_list %}
   <li style='line-height:16px'>
