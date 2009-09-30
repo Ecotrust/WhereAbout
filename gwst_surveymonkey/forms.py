@@ -18,8 +18,8 @@ from django.core.mail import SMTPConnection, EmailMessage
 class SMAddForm(forms.Form):
     userfile = forms.FileField(required=True)
     num_to_register = forms.IntegerField(required=False, initial=50, label="Maximum number of people to sign up", widget=forms.TextInput(attrs={'size':'3'}))
-    send_email = forms.BooleanField(label='Send registration email?', required=False, widget=forms.CheckboxInput(attrs={'checked':True}))
-    bcc_email = forms.BooleanField(label='Send bcc email?', required=False, widget=forms.CheckboxInput(attrs={'checked':True}))    
+    send_email = forms.BooleanField(label='Send registration email?', required=False)
+    bcc_email = forms.BooleanField(label='Send bcc email?', required=False)    
     interview = NameModelChoiceField(label='Interview',queryset=None,required=True)
 
     def clean_userfile(self):
@@ -138,11 +138,16 @@ class SMAddForm(forms.Form):
         kyk = new_person[15]
         dive = new_person[16]
         prvsl = new_person[17]
-        #Users preference for online or in-person interview                            
-        pref_1_yes = new_person[21] 
-        pref_2_yes = new_person[22] 
-        pref_3_yes = new_person[23] 
-        pref_4_no = new_person[24] 
+        #Users preference for online or in-person interview
+        pref_1_yes = pref_2_yes = pref_3_yes = pref_4_no = ''                          
+        if len(new_person) >= 22:
+            pref_1_yes = new_person[21] 
+        if len(new_person) >= 23:
+            pref_2_yes = new_person[22] 
+        if len(new_person) >= 24:
+            pref_3_yes = new_person[23]
+        if len(new_person) >= 25:
+            pref_4_no = new_person[24] 
 
         output.append(first_name + ' ' + last_name)            
         output.append(email)
