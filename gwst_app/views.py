@@ -238,7 +238,7 @@ def group_status(request):
             
     
     # if user has finalized each of their registered groups, let them finalize their interview
-    finalized_groups = qs.filter(status='finalized')
+    finalized_groups = InterviewGroupMembership.objects.filter(Q(status='finalized') | Q(status='skipped')).filter(user=request.user, int_group__in=int_groups)
     allow_finalize = qs.count() == finalized_groups.count()
     
     return render_to_response( 'group_status.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'object_list':qs, 'allow_finalize':allow_finalize, 'num_shapes':num_shapes}))
@@ -604,8 +604,7 @@ def unfinalize_group(request,id):
         try:
             int_group = InterviewGroup.objects.get(pk=id)
         except ObjectDoesNotExist:
-            return render_to_response( '404.html', RequestContext(request,{}))
-            
+            return render_to_response( '404.html', RequestContext(request,{}))            
         group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group=int_group)
         
         if group_memb.count() == 1:
@@ -620,6 +619,17 @@ def unfinalize_group(request,id):
         # redirect to interview_group_status
         return HttpResponseRedirect('/group_status/')
         
+@login_required
+def skip_group(request, id):
+    try:
+        int_group = InterviewGroup.objects.get(pk=id)
+    except ObjectDoesNotExist:
+        return render_to_response( '404.html', RequestContext(request,{}))            
+    group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group=int_group)
+    group_memb.opt_out = True
+    group_memb.status = 'skipped'
+    group_memb.save()
+    return HttpResponseRedirect('/group_status/')
         
 # user finalizes interview
 @login_required
@@ -751,7 +761,7 @@ def user_features_client_object(user,interview):
     folder = create_superfolder('<b>Right click on a '+interview.resource_name_plural+' to start drawing</b>', icon=settings.MEDIA_URL+'images/silk/icons/status_online.png', id="userFeatures")
     
     int_groups = InterviewGroup.objects.filter(interview=interview,user_draws_shapes=True)
-    int_group_membs = InterviewGroupMembership.objects.filter(user=user, int_group__in=int_groups).exclude(status='not yet started').order_by('-percent_involvement')
+    int_group_membs = InterviewGroupMembership.objects.filter(user=user, int_group__in=int_groups).exclude(status='not yet started').exclude(status='skipped').order_by('-percent_involvement')
     
     for int_group_memb in int_group_membs.all():
         int_group = int_group_memb.int_group

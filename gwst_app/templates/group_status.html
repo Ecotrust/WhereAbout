@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<script language="javascript">
+function verify(link) {
+    var agree=confirm("Are you sure you want to skip this group?  You won't be able to undo this action.");
+    if (agree) {
+        location.href=link;
+    }
+}
+</script>
+
 <br/>
 <div style='width:600px;'>
 {{ interview.group_status_text|safe }}
@@ -16,11 +26,18 @@
 <ul>
 {% for object in object_list %}
   <li style='line-height:16px'>
+  {% ifequal object.status "finalized" %}
+    <img src="/site-media/images/accept.png" alt="Finalized"/>
+  {% endifequal %}    
+  {% ifequal object.status "skipped" %}
+    <img src="/site-media/images/accept.png" alt="Skipped"/>
+  {% endifequal %}    
   {% ifnotequal object.status "finalized" %}
-    <img src="/site-media/images/delete.png" alt="Incomplete"/>
-  {% else %}
-    <img src="/site-media/images/accept.png" alt="Complete"/>
-  {%endifnotequal%}
+    {% ifnotequal object.status "skipped" %}
+        <img src="/site-media/images/delete.png" alt="Incomplete"/>
+    {% endifnotequal %}
+  {% endifnotequal %}
+  
   <b>{{ object.int_group.name|capfirst }}</b>:   
   {{object.status|capfirst}}
   {% ifequal object.status "in-progress" %}    
@@ -29,47 +46,57 @@
     {% endif %}
   {% endifequal %}
   <br/>
-  
-  <ul>
-  {% ifequal object.status "finalized" %}
-     <li>Done. <a href="/group_qs/{{object.int_group.id}}/view/">Review answers</a></li>
-     <li>Done. <a href="/unfinalize_group/{{object.int_group.id}}/">Re-open this group</a></li>
-  {% else %}
-    {% ifequal object.status "in-progress" %}
-      <li>Done. <a href="/group_qs/{{object.int_group.id}}/answer/">Edit answers</a></li>
-    {% else %}
-      <li><a href="/group_qs/{{object.int_group.id}}/answer/">Answer questions</a></li>
-    {% endifequal %} 
-    {% ifequal object.status "in-progress" %}
-      {% if object.int_group.user_draws_shapes %}
-        {% ifnotequal object.num_incomplete_resources 0 %}
-        <li>Done. <a href="/review_resource_questions/{{object.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
-        {% else %}
-            {% ifnotequal object.num_complete_resources 0 %}
-        <li>Done. <a href="/review_resource_questions/{{object.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
-            {% endifnotequal %}
-        {% endifnotequal %}
-        <li>
-          {% ifequal num_shapes 0 %}
-            <a href="/draw_group_shapes/{{object.int_group.id}}/">Draw shapes</a>
+
+  {% ifnotequal object.status "skipped" %}  
+	  <ul>
+	  {% ifequal object.status "finalized" %}
+	     <li>Done. <a href="/group_qs/{{object.int_group.id}}/view/">Review answers</a></li>
+	     <li>Done. <a href="/unfinalize_group/{{object.int_group.id}}/">Re-open this group</a></li>
 	  {% else %}
-	    <a href="/draw_group_shapes/{{object.int_group.id}}/">Continue drawing/editing shapes</a>
-	{% endifequal %}
-	</li>
-      {% endif %}
-      {% if object.int_group.user_draws_shapes %}
-        {% ifnotequal object.num_complete_resources 0 %}
-          {% ifequal object.num_incomplete_resources 0 %}
-            <li><a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a></li> 
-          {% endifequal %}
-        {% endifnotequal %}
-      {% else %}
-        <li><a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a></li>
-      {% endif %}
-    {% endifequal %}
-  {% endifequal %}
-  </ul>
-  </li>
+	    {% ifequal object.status "in-progress" %}
+	      <li>Done. <a href="/group_qs/{{object.int_group.id}}/answer/">Edit answers</a></li>
+	    {% else %}
+	      <li><a href="/group_qs/{{object.int_group.id}}/answer/">Answer questions</a></li>
+	    {% endifequal %} 
+	    {% ifequal object.status "in-progress" %}
+	      {% if object.int_group.user_draws_shapes %}
+	        {% ifnotequal object.num_incomplete_resources 0 %}
+	        <li>Done. <a href="/review_resource_questions/{{object.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
+	        {% else %}
+	            {% ifnotequal object.num_complete_resources 0 %}
+	        <li>Done. <a href="/review_resource_questions/{{object.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
+	            {% endifnotequal %}
+	        {% endifnotequal %}
+	        <li>
+	          {% ifequal num_shapes 0 %}
+	            <a href="/draw_group_shapes/{{object.int_group.id}}/">Draw shapes</a>
+		  {% else %}
+		    <a href="/draw_group_shapes/{{object.int_group.id}}/">Continue drawing/editing shapes</a>
+		{% endifequal %}
+		</li>
+	      {% endif %}
+	      {% if object.int_group.user_draws_shapes %}
+	        {% ifnotequal object.num_complete_resources 0 %}
+	          {% ifequal object.num_incomplete_resources 0 %}
+	            <li><a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a></li> 
+	          {% endifequal %}
+	        {% endifnotequal %}
+	      {% else %}
+	        <li><a href="/finalize_group/{{object.int_group.id}}/">Finalize this group</a></li>       
+	      {% endif %}
+	    {% endifequal %}
+	  {% endifequal %}
+	  
+	  {% ifnotequal forloop.counter 1 %}
+	  {% ifnotequal forloop.counter 2 %}
+	  {% ifnotequal object.status "skipped" %}
+	    <li><a href='#' onclick="verify('/skip_group/{{object.int_group.id}}/')">Skip this group</a></li>
+	  {% endifnotequal %}
+	  {% endifnotequal %}
+	  {% endifnotequal %}
+	  
+	  </ul>
+  {% endifnotequal %}
   <br/>
 {% endfor %}
 
