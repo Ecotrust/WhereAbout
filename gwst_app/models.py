@@ -92,7 +92,7 @@ class InterviewGroupMembership(Model):
     reviewed = BooleanField( default = False )
     date_reviewed = DateTimeField( blank=True, null=True )
     percent_involvement = IntegerField( blank=True, null=True )
-    opt_out = BooleanField( default = False )
+    opt_out = BooleanField( default=False )
     
     class Meta:
         db_table = u'gwst_groupmemb'
