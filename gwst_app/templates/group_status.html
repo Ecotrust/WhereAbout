@@ -90,7 +90,9 @@ function verify(link) {
 	  {% ifnotequal forloop.counter 1 %}
 	  {% ifnotequal forloop.counter 2 %}
 	  {% ifnotequal object.status "skipped" %}
+	  {% ifnotequal object.status "finalized" %}
 	    <li><a href='#' onclick="verify('/skip_group/{{object.int_group.id}}/')">Skip this group</a></li>
+	  {% endifnotequal %}
 	  {% endifnotequal %}
 	  {% endifnotequal %}
 	  {% endifnotequal %}
