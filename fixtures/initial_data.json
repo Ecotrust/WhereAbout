@@ -254,7 +254,7 @@
       "active": true, 
       "organization": "Ecotrust", 
       "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  Also these values must add up to 100%.  For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling, 40% for dive angling and nothing for private vessel angling.]</i></p>", 
-      "group_status_text": "Please carefully read all instructions and complete each survey section. You will be asked to answer questions and draw your fishing grounds. The drawing portion can be technically challenging and you may get discouraged by the amount of time it will take you. We apologize for this. Please understand that your input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend will be worth the effort. \r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to share your information and fishing grounds to us, please  <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email. We are listening to your feedback. \r\n<h2>Instructions</h2>\r\n\r\n<p>\r\nComplete each section below one at a time.  A red circle indicates an unfinished section.  Once you have completed the necessary steps within a section you will be able to finalize it.  Once a group is finalized it will change to the color green.  Once all groups are green you will be able to finalize your survey.\r\n</p>", 
+      "group_status_text": "Please carefully read all instructions and complete each survey section. You will be asked to answer questions and draw your fishing grounds. The drawing portion can be technically challenging and you may get discouraged by the amount of time it will take you. We apologize for this. Please understand that your input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend will be worth the effort. \r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to share your information and fishing grounds to us, please  <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email. We are listening to your feedback. \r\n<h2>Instructions</h2>\r\n\r\n<p>\r\nComplete each section below one at a time.  A red circle indicates an unfinished section.  Once you have completed the necessary steps within a section you will be able to finalize it.  Once a group is finalized it will change to the color green.  Once all groups are green you will be able to finalize your survey.  You must complete at least the first user group including drawing your fishing grounds.  You may skip the others and move on.\r\n</p>", 
       "interview_complete_text": "<p>The fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.</p>\r\n\r\n<p>When the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated and subsequent iterations of the analysis will be completed. The maps will then be used in evaluating MPA proposals.  For each MPA proposal, stakeholders will be able to see the potential impacts that MPA would have on a given fishery and/or user group.  This is a valuable tool in finding the best areas for protection while trying to minimize the impact on fisheries.</p>\r\n\r\n<p>Your willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a></p>", 
       "description": "rec fish"
     }
@@ -335,6 +335,24 @@
     }
   }, 
   {
+    "pk": 4, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "div", 
+      "name": "Dive/Spear Angling", 
+      "required_group": false, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "resources": [
+        1
+      ], 
+      "description": "Diving and spear/hand take"
+    }
+  }, 
+  {
     "pk": 1, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -353,24 +371,6 @@
         18, 
         19, 
         3
-      ], 
-      "description": "Diving and spear/hand take"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "Dive/Spear Angling", 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "resources": [
-        1
       ], 
       "description": "Diving and spear/hand take"
     }
@@ -732,7 +732,7 @@
     "fields": {
       "all_resources": false, 
       "code": "pr_lnch", 
-      "eng_text": "Primary launch site", 
+      "eng_text": "Primary launch port/site", 
       "int_group": 2, 
       "question_set": null, 
       "display_order": 1.0, 
@@ -756,7 +756,7 @@
       "int_group": 2, 
       "question_set": null, 
       "display_order": 2.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
