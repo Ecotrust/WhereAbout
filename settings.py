@@ -67,7 +67,8 @@ ROOT_URLCONF = 'urls'
 
 import os
 TEMPLATE_DIRS = (
-    os.path.dirname(__file__)+'/gwst_surveymonkey/templates/'
+    os.path.dirname(__file__)+'/gwst_surveymonkey/templates/',
+    '/usr/local/django-trunk/django/contrib/gis/templates/'
 )
 
 INSTALLED_APPS = (

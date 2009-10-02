@@ -1,5 +1,5 @@
 from django.contrib.gis import admin
-from django.contrib.gis.admin.options import OSMGeoAdmin
+from django.contrib.gis.admin.options import GeoModelAdmin
 from gwst_app.models import *
 from django.contrib import databrowse
 from django.contrib.auth.models import User, Group
@@ -72,7 +72,7 @@ admin.site.register(GroupMemberResource,IntAdmin)
 admin.site.register(InterviewAnswerOption,IntAdmin)
 admin.site.register(InterviewAnswer,IntAdmin)
 admin.site.register(InterviewStatus,IntAdmin)
-admin.site.register(InterviewShape,IntAdmin)
+admin.site.register(InterviewShape,GeoModelAdmin)
 admin.site.register(InterviewInstructions,IntAdmin)
 admin.site.register(FaqGroup,FaqGroupAdmin)
 admin.site.register(Faq,FaqAdmin)
