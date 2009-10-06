@@ -222,6 +222,16 @@
     }
   }, 
   {
+    "pk": 22, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "lob", 
+      "name": "Lobster"
+    }
+  }, 
+  {
     "pk": 2, 
     "model": "gwst_app.interview", 
     "fields": {
@@ -370,7 +380,8 @@
         17, 
         18, 
         19, 
-        3
+        3, 
+        22
       ], 
       "description": "Diving and spear/hand take"
     }
@@ -402,7 +413,8 @@
         3, 
         20, 
         21, 
-        8
+        8, 
+        22
       ], 
       "description": "private vessel anglers"
     }
@@ -559,26 +571,6 @@
     }
   }, 
   {
-    "pk": 1, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "diveprtr", 
-      "eng_text": "Average number of dives per trip", 
-      "int_group": 1, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 1.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
     "pk": 35, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -596,6 +588,26 @@
       "answer_type": "decimal", 
       "eng_tooltip": "", 
       "val_max": null
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "diveprtr", 
+      "eng_text": "Average number of dives per trip", 
+      "int_group": 1, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 1.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
     }
   }, 
   {
@@ -707,26 +719,6 @@
     }
   }, 
   {
-    "pk": 36, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "days_spec", 
-      "eng_text": "Average number of days per year fishing for this species", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 39, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -742,6 +734,26 @@
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "days_spec", 
+      "eng_text": "Average number of days per year fishing for this species", 
+      "int_group": 2, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "decimal", 
       "eng_tooltip": "", 
       "val_max": null
     }
