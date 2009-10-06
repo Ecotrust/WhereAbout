@@ -79,7 +79,6 @@ class InterviewGroupMembership(Model):
         ( 'review', 'review' ),
         ( 'review completed', 'review completed' )
     )
-
     user = ForeignKey(User)
     int_group = ForeignKey(InterviewGroup)
     status = CharField( max_length=30, choices = InterviewGroupStatusChoices, default='not yet started' )
@@ -117,6 +116,9 @@ class GroupMemberResource(Model):
         
     def __unicode__(self):
         return unicode('%s - %s' % (self.group_membership, self.resource))
+
+    def user(self):
+        return unicode('%s' % self.group_membership.user)
        
 class InterviewAnswerOption(Model):
     eng_text = CharField( max_length=200 )
@@ -258,7 +260,13 @@ class InterviewAnswer(Model):
         return unicode('%s: %s' % (self.user, self.int_question))
         
     def save_answer(self):
-        pass
+        pass\
+        
+    def code(self):
+        return unicode('%s' % self.int_question.code)
+    
+    def interview_group(self):
+        return unicode('%s' % self.int_question.int_group.name)
 
 class InterviewStatus(Model):
     interview = ForeignKey(Interview)
@@ -302,6 +310,9 @@ class InterviewShape(Model):
         
     def __unicode__(self):
         return unicode('%s: %s %s' % (self.user, self.resource.code, self.int_group))
+
+    def int_group_name(self):
+        return unicode('%s' % self.int_group.name)
         
     def validate(self):
         from django.db import connection

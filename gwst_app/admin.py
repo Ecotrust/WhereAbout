@@ -46,6 +46,13 @@ class InterviewQuestionAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'answer_type', 'question_set', 'display_order')
     ordering = ('int_group','question_set','display_order')
 
+class InterviewAnswerAdmin(admin.ModelAdmin):
+    list_display = ('user', 'code', 'interview_group')
+    search_fields = ('user__username','int_question__code')    
+
+class InterviewShapeAdmin(GeoModelAdmin):
+    list_display = ('user', 'int_group_name', 'resource','pennies')
+
 class FaqAdmin(admin.ModelAdmin):
     search_fields = ('question', 'answer')
     list_display = ('question','importance','faq_group')   
@@ -60,6 +67,11 @@ class FaqGroupAdmin(admin.ModelAdmin):
 class InterviewStatusAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'completed', 'complete_date', 'first_login', 'last_login', 'num_logins')
 
+class GroupMemberResourceAdmin(admin.ModelAdmin):
+    list_display = ('user', 'group_membership', 'resource')
+    list_filter = ('resource',)
+    search_fields = ('group_membership__user__username','resource__name',)
+
 class IntAdmin(admin.ModelAdmin):
     pass
 
@@ -71,11 +83,11 @@ admin.site.register(QuestionGroupValidator,IntAdmin)
 admin.site.register(QuestionGroup,IntAdmin)
 admin.site.register(InterviewGroup,InterviewGroupAdmin)
 admin.site.register(InterviewGroupMembership,IntAdmin)
-admin.site.register(GroupMemberResource,IntAdmin)
+admin.site.register(GroupMemberResource,GroupMemberResourceAdmin)
 admin.site.register(InterviewAnswerOption,IntAdmin)
-admin.site.register(InterviewAnswer,IntAdmin)
+admin.site.register(InterviewAnswer,InterviewAnswerAdmin)
 admin.site.register(InterviewStatus,InterviewStatusAdmin)
-admin.site.register(InterviewShape,GeoModelAdmin)
+admin.site.register(InterviewShape,InterviewShapeAdmin)
 admin.site.register(InterviewInstructions,IntAdmin)
 admin.site.register(FaqGroup,FaqGroupAdmin)
 admin.site.register(Faq,FaqAdmin)
