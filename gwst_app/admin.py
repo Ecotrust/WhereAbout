@@ -57,6 +57,9 @@ class ResourceAdmin(admin.ModelAdmin):
 class FaqGroupAdmin(admin.ModelAdmin):
     pass
 
+class InterviewStatusAdmin(admin.ModelAdmin):
+    list_display = ('__unicode__', 'completed', 'complete_date', 'first_login', 'last_login', 'num_logins')
+
 class IntAdmin(admin.ModelAdmin):
     pass
 
@@ -71,7 +74,7 @@ admin.site.register(InterviewGroupMembership,IntAdmin)
 admin.site.register(GroupMemberResource,IntAdmin)
 admin.site.register(InterviewAnswerOption,IntAdmin)
 admin.site.register(InterviewAnswer,IntAdmin)
-admin.site.register(InterviewStatus,IntAdmin)
+admin.site.register(InterviewStatus,InterviewStatusAdmin)
 admin.site.register(InterviewShape,GeoModelAdmin)
 admin.site.register(InterviewInstructions,IntAdmin)
 admin.site.register(FaqGroup,FaqGroupAdmin)
