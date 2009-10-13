@@ -292,6 +292,10 @@ class GroupMemberResourceForm(forms.Form):
         except Exception, e:
             return {'status':'fail','error':'Unknown resource submitted'}         
         for r in resources:
+            #Check if resource has already been added to group membership
+            cur_resource = GroupMemberResource.objects.filter(group_membership=group_memb, resource=r)
+            if len(cur_resource) > 0:
+                continue
             gmr = GroupMemberResource()
             gmr.resource = r
             gmr.group_membership = group_memb
