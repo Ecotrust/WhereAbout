@@ -1,1 +1,1 @@
-dropdb -U postgres spatial-survey-demo
+dropdb -U postgres gwst
