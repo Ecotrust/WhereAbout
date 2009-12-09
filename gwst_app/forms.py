@@ -290,14 +290,17 @@ class GroupMemberResourceForm(forms.Form):
         try:
             resources = [Resource.objects.get(pk=r_id) for r_id in resource_ids]
         except Exception, e:
-            return {'status':'fail','error':'Unknown resource submitted'}         
+            return {'status':'fail','error':'Unknown resource submitted'}
+        for res_membership in GroupMemberResource.objects.filter(group_membership=group_memb):
+            if str(res_membership.resource.id) not in resource_ids:
+                res_membership.delete()
         for r in resources:
             #Check if resource has already been added to group membership
             cur_resource = GroupMemberResource.objects.filter(group_membership=group_memb, resource=r)
-            if len(cur_resource) > 0:
-                continue
-            gmr = GroupMemberResource()
-            gmr.resource = r
-            gmr.group_membership = group_memb
-            gmr.save()
-        return True
+            if len(cur_resource) > 0:              
+                continue                          
+            gmr = GroupMemberResource()       
+            gmr.resource = r                 
+            gmr.group_membership = group_memb  
+            gmr.save()                         
+        return True                              

@@ -2,6 +2,7 @@ from django.contrib.gis.db.models import *
 from django.contrib.auth.models import User
 import datetime
 from gwst_app.utils.geojson_encode import *
+from gwst_app.managers import *
 
 # ultimately the Region table needs to move to MM core
 class Region(Model):
@@ -75,6 +76,8 @@ class InterviewGroupMembership(Model):
     InterviewGroupStatusChoices = (
         ( 'not yet started', 'not yet started' ),
         ( 'in-progress', 'in-progress' ),
+        ( 'selecting resources', 'selecting resources' ),
+        #( 'drawing', 'drawing' ),
         ( 'finalized', 'finalized' ),
         ( 'review', 'review' ),
         ( 'review completed', 'review completed' )
@@ -92,7 +95,9 @@ class InterviewGroupMembership(Model):
     date_reviewed = DateTimeField( blank=True, null=True )
     percent_involvement = IntegerField( blank=True, null=True )
     opt_out = BooleanField( default=False )
+    objects = InterviewGroupMembershipManager()
     
+ 
     class Meta:
         db_table = u'gwst_groupmemb'
         unique_together = (("int_group", "user"),)
@@ -278,6 +283,7 @@ class InterviewStatus(Model):
     num_logins = IntegerField(default=0)
     complete_date = DateTimeField(null=True)
     notes = TextField(null=True)
+    overview_completed = BooleanField(default=False)
     
     class Meta:
         db_table = u'gwst_userstatus'

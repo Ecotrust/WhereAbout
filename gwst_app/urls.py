@@ -33,10 +33,14 @@ urlpatterns = patterns('',
     (r'^review_resource_questions/(\d+)/$', answer_resource_questions, {'next_url': '/group_status/'} ),
     (r'^select_group_resources/(\d+)/$', select_group_resources ),
     (r'^draw_group_shapes/(\d+)/$', draw_group_shapes ),
+    (r'^draw_overview/(\d+)/$', draw_overview ),
+    (r'^penny_overview/(\d+)/$', penny_overview ),
+    
     
     (r'^finalize_group/(\d+)/$', finalize_group ),
     (r'^unfinalize_group/(\d+)/$', unfinalize_group ),
     (r'^skip_group/(\d+)/$', skip_group ),
+    #(r'^unskip_group/(\d+)/$', unskip_group ),
     (r'^finalize_interview/(\d+)/$', finalize_interview ),
     (r'^reset_interview/(\d+)/$', reset_interview ),
     

@@ -9,6 +9,7 @@ from models import *
 from forms import *
 from gwst_app.utils.geojson_encode import *
 from django.db.models import Sum
+import pdb
 
 #Pass extra settings around whether user can self-register
 def login(request, template_name='registration/login.html'):
@@ -188,13 +189,22 @@ def group_status(request):
     
     title = request.session['interview'].name + ' Status'
        
-    qs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).order_by('-percent_involvement')
+    qs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).order_by('-percent_involvement','id')
     num_shapes = None
     # update the user status message for each in-progress group
-    for group_memb in qs.all():
     
+    current_group = InterviewGroupMembership.objects.get_current_group(request.user, request.session['interview'])    
+    result = []
+    
+    for group_memb in qs.all(): 
+        if current_group and (group_memb.int_group == current_group.int_group):
+            result.append({'current':True, 'group_memb':group_memb})
+        else:
+            result.append({'current':False, 'group_memb':group_memb})
+            
+        #if current group has drawing and is 'in-progress'
         if group_memb.status == 'in-progress' and group_memb.int_group.user_draws_shapes:
-        
+            #'num shapes' is how many have been drawn
             num_shapes = InterviewShape.objects.filter(user=request.user,int_group=group_memb.int_group).count()
             
             if num_shapes == 0:
@@ -205,25 +215,33 @@ def group_status(request):
                 num_complete_resources = 0
                 num_incomplete_resources = 0
                 bZeroPennyShapes = False
-                
-                for resource in group_memb.int_group.resources.all():
-                    res_shapes = InterviewShape.objects.filter(user=request.user,int_group=group_memb.int_group,resource=resource)
-                    
+                # iterate through all resources currently checked
+                for resource in GroupMemberResource.objects.filter(group_membership=group_memb.id):
+                    #find shapes for each
+                    res_shapes = InterviewShape.objects.filter(user=request.user,int_group=group_memb.int_group,resource=resource.resource)
                     zero_penny_shapes = res_shapes.filter(pennies=0)
                         
+                    #find any shapes with no pennies and count resource as incomplete
                     if zero_penny_shapes.count() > 0:
                         num_incomplete_resources = num_incomplete_resources + 1
                         bZeroPennyShapes = True
-                        
                     else:
+                        # all shapes have pennies
                         res_count = res_shapes.count()
                         if res_count > 0:
+                            # existing shapes found for selected resource
                             res_pennies = res_shapes.aggregate(Sum('pennies'))['pennies__sum']
                             if res_pennies == 100:
+                                # 100/100 pennies alotted, count 1 resource complete
                                 num_complete_resources = num_complete_resources + 1
                             else:
+                                # <100 pennies alotted, resource incomplete
                                 num_incomplete_resources = num_incomplete_resources + 1
+                        else:
+                            # No shapes drawn for selected resource
+                            num_incomplete_resources = num_incomplete_resources + 1
                 
+                # calculate completion of total resources selected
                 num_resources = num_incomplete_resources+num_complete_resources
                 group_memb.user_status_msg = '%s/%s resource group(s) complete' % (num_complete_resources,num_resources)
 
@@ -233,16 +251,13 @@ def group_status(request):
                 group_memb.num_complete_resources = num_complete_resources
                 group_memb.num_incomplete_resources = num_incomplete_resources
                 
-            group_memb.save()
-                        
-            
-    
+        group_memb.save() 
+
     # if user has finalized each of their registered groups, let them finalize their interview
     finalized_groups = InterviewGroupMembership.objects.filter(Q(status='finalized') | Q(status='skipped')).filter(user=request.user, int_group__in=int_groups)
     allow_finalize = qs.count() == finalized_groups.count()
-    
-    return render_to_response( 'group_status.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'object_list':qs, 'allow_finalize':allow_finalize, 'num_shapes':num_shapes}))
-    
+
+    return render_to_response( 'group_status.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'result':result, 'allow_finalize':allow_finalize, 'num_shapes':num_shapes}))
     
 @login_required    
 def view_answers(request,group_id):
@@ -329,14 +344,16 @@ def answer_questions(request,group_id):
         form = AnswerForm(questions, answers, group_id, resource_id, request.POST )
         
         if form.is_valid():
-        
             # update the group membership status, if necessary
             group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=group_id)
             if group_memb.count()==1:
                 updated_group = group_memb[0]
                 if updated_group.status == 'not yet started':
                     updated_group.date_started = datetime.datetime.now()
-                updated_group.status = 'in-progress'
+                    if updated_group.int_group.user_draws_shapes:
+                        updated_group.status = 'selecting resources'
+                    else:
+                        updated_group.status = 'in-progress'
                 updated_group.save()
             else: #404
                 return render_to_response( '404.html', RequestContext(request,{}))
@@ -378,15 +395,20 @@ def select_group_resources(request, group_id):
     resources = group.resources.all().order_by('name')
 
     if request.method == 'GET':        
-        form = GroupMemberResourceForm(interview, resources)                        
-    else:        
+        resource_list = []
+        for resource in GroupMemberResource.objects.filter(group_membership=group_memb):
+            resource_list.append(resource.resource_id);
+        if resource_list == []:
+            form = GroupMemberResourceForm(interview, resources) 
+        else:
+            form = GroupMemberResourceForm(interview, resources, {'resources':resource_list})
+    else:       
+    
         form = GroupMemberResourceForm(interview, resources, request.POST)
         if form.is_valid():
             form.save(group_memb)
-            #Store the selected resources
-            
+            #Store the selected resources          
             return HttpResponseRedirect('/answer_resource_questions/'+str(group_id)+'/')
-
     return render_to_response( 'select_group_resources.html', RequestContext(request,{'group':group, 'form': form, 'value':'Continue','interview':request.session['interview']}))     
 
     
@@ -459,13 +481,22 @@ def answer_resource_questions(request, group_id, next_url=None):
             forms[sel_resource.resource.name]=form
         
         if forms_valid:
+            group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=group_id)
+            if group_memb.count()==1:
+                updated_group = group_memb[0]
+                if updated_group.status == 'selecting resources':
+                    updated_group.date_started = datetime.datetime.now()
+                    updated_group.status = 'in-progress'
+                updated_group.save()
+            else: #404
+                return render_to_response( '404.html', RequestContext(request,{}))
             for name, form in forms.items():
                 form.save(request.user)
                 
             if next_url:
                 return HttpResponseRedirect(next_url)
             else:
-                return HttpResponseRedirect('/draw_group_shapes/'+str(group_id)+'/')
+                return HttpResponseRedirect('/group_status/')
         
     return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions}))   
 
@@ -490,6 +521,12 @@ def draw_group_shapes(request, group_id):
     if status.completed:
         # redirect to interview_complete
         return HttpResponseRedirect('/interview_complete/')
+        
+    # see if the drawing overview has been shown
+    
+    if not status.overview_completed:
+        # redirect to overview
+        return HttpResponseRedirect('/draw_overview/'+str(group_id)+'/')
 
     group = InterviewGroup.objects.get(pk=group_id)
     group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=group_id)
@@ -509,7 +546,25 @@ def draw_group_shapes(request, group_id):
             
         return render_to_response( 'map.html', RequestContext(request, {'title':title, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
 
+# start draw shapes quick tutorial   
+@login_required
+def draw_overview(request, group_id):
 
+    if request.method == 'POST':
+        return HttpResponseRedirect('/penny_overview/'+str(group_id)+'/')
+    return render_to_response( 'draw_overview.html', RequestContext(request)) 
+
+# start drop penny quick tutorial 
+@login_required
+def penny_overview(request, group_id):
+
+    if request.method == 'POST':
+        #update status to reflect that this overview has been seen
+        interview = InterviewStatus.objects.get(user=request.user, interview=request.session['interview'])
+        interview.overview_completed = True
+        interview.save()
+        return HttpResponseRedirect('/draw_group_shapes/'+str(group_id)+'/')
+    return render_to_response( 'penny_overview.html', RequestContext(request))   
 
 # user finalizes group
 @login_required
@@ -619,6 +674,49 @@ def unfinalize_group(request,id):
         # redirect to interview_group_status
         return HttpResponseRedirect('/group_status/')
         
+'''        
+# user unskips group
+@login_required
+def unskip_group(request,id):
+
+    # make sure the user has a valid session
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
+ 
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+        
+        
+    if request.method == 'GET':
+        # update InterviewGroupMembership record
+        try:
+            int_group = InterviewGroup.objects.get(pk=id)
+        except ObjectDoesNotExist:
+            return render_to_response( '404.html', RequestContext(request,{}))            
+        group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group=int_group)
+        
+        if group_memb.count() == 1:
+        
+            update_memb = group_memb[0]
+            update_memb.status = 'not yet started'
+            update_memb.save()
+            
+        else: #404
+            return render_to_response( '404.html', RequestContext(request,{}))
+        
+        # redirect to interview_group_status
+        return HttpResponseRedirect('/group_status/')
+'''        
 @login_required
 def skip_group(request, id):
     try:
@@ -1220,3 +1318,5 @@ def video(request, name):
         'title':string.capwords(name.replace('_',' '))
     }
     return render_to_response('demo_video.html', {'video':video}, context_instance=RequestContext(request)) 
+    
+

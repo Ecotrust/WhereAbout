@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Dropping Pennies Overview</h2>
+
+<p>Additional help can be found in our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href="mailto:fish@ecotrust.org">fish@ecotrust.org</a> if you need more help.</p>
+
+   <form style='width: 600px' class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+   <p><input id="submit" type="submit" value="Continue" />
+   </form>
+
+{% endblock %}
