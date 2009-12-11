@@ -500,7 +500,10 @@ def answer_resource_questions(request, group_id, next_url=None):
         
     return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions}))   
 
-    
+
+def draw_shapes(request, group_id):
+	pass
+	
 # start draw shapes for indicated group    
 @login_required
 def draw_group_shapes(request, group_id):
@@ -1319,4 +1322,6 @@ def video(request, name):
     }
     return render_to_response('demo_video.html', {'video':video}, context_instance=RequestContext(request)) 
     
-
+def sample(request, name):
+	if name == 'select-res-grp':
+		return render_to_response('samples/select_res_grp.html', context_instance=RequestContext(request)) 

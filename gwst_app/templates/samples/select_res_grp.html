@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Panel</title>
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}js/extjs/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}ext-ux/multiselect/MultiSelect.css"/>
+
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/extjs/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/extjs/ext-all-debug.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}ext-ux/multiselect/MultiSelect.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}ext-ux/multiselect/DDView.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/gwst/widgets/WestPanel.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/gwst/widgets/SelectResGrpPanel.js"></script>
+<script type="text/javascript">
+Ext.onReady(function() {
+	res_group_name = 'Species';
+	var p = new gwst.widgets.SelectResGrpPanel({
+        renderTo: 'panel-basic',    		
+		res_group_name: res_group_name
+    });
+});
+</script>
+</head>
+
+<body>
+<div id="panel-basic" class="container"/>
+</body>
+</html>

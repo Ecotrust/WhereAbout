@@ -33,6 +33,7 @@ urlpatterns = patterns('',
     (r'^review_resource_questions/(\d+)/$', answer_resource_questions, {'next_url': '/group_status/'} ),
     (r'^select_group_resources/(\d+)/$', select_group_resources ),
     (r'^draw_group_shapes/(\d+)/$', draw_group_shapes ),
+	(r'^draw_shapes/(\d+)/$', draw_shapes ),
     (r'^draw_overview/(\d+)/$', draw_overview ),
     (r'^penny_overview/(\d+)/$', penny_overview ),
     
@@ -40,7 +41,6 @@ urlpatterns = patterns('',
     (r'^finalize_group/(\d+)/$', finalize_group ),
     (r'^unfinalize_group/(\d+)/$', unfinalize_group ),
     (r'^skip_group/(\d+)/$', skip_group ),
-    #(r'^unskip_group/(\d+)/$', unskip_group ),
     (r'^finalize_interview/(\d+)/$', finalize_interview ),
     (r'^reset_interview/(\d+)/$', reset_interview ),
     
@@ -52,10 +52,11 @@ urlpatterns = patterns('',
     (r'^gwst/shape/delete/(\d+)$', delete_shape ),
     (r'^gwst/shapes/copy/$', copy_shapes ),
     (r'^gwst/shape/editgeom/(\d+)$', editgeom_shape ),
-    #(r'^gwst/shape/copy/(\d+)$', copy_shape ),
     (r'^gwst/shape/edit/(\d+)$', edit_shape ),
     (r'^video/(\w+)$', video ),
 
     (r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
-    (r'^faq', faq)
+    (r'^faq', faq),
+	
+	(r'^samples/(\S+)/$', sample)
 )

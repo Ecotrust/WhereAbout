@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/> 
+	<title>{{ title }}</title>
+	<link rel="stylesheet" href="{{MEDIA_URL}}js/extjs/resources/css/ext-all.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.99&amp;key={{GMAPS_API_KEY}}" type="text/javascript"></script>
+    <script src="{{MEDIA_URL}}js/OpenLayers-2.8/OpenLayers.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/proj4js/lib/proj4js-combined.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script src="{{MEDIA_URL}}js/ext-all.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/Mapfish/MapComponent.js" type="text/javascript" charset="utf-8"></script>
+	<script src="{{MEDIA_URL}}js/gwst/config.js" type="text/javascript" charset="utf-8"></script>  
+
+	<script type="text/javascript" charset="utf-8">
+        // Hack to support IE. See http://trac.openlayers.org/wiki/FrequentlyAskedQuestions#WhywontmyvectorlayerworkinIEbeforemypageisdoneloading
+	    document.namespaces;
+        Ext.onReady(gwst.app.init, gwst.app);
+	</script>	  
+</head>
+<body>
+    {% include "gwst-ui.html" %}
+    <noscript>We're sorry, {{ title }} was unable to load.  In 
+    order to run this application you must have 
+    Javascript enabled. If your web browser doesn't support 
+    Javascript you will need to install one that does.  Choices 
+    include Internet Explorer 7+, Firefox 2+, Safari 2+.</noscript>
+    <div id="loading-mask" style=""></div>
+    <div id="loading">
+      <div class="loading-indicator">
+        <img src="{{MEDIA_URL}}images/large-loading.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:top;"/>
+        {{ title }}<br />
+        <span id="loading-msg">Loading ...</span>
+      </div>  
+    </div>
+	<div width="100" height="100" id="map"></div>
+	<div tabindex="-1" id="ReportsViewer" class="inactive gwst-typography">
+	    <div class="header"><h2><img tabindexbindex="-1" src="{{MEDIA_URL}}images/silk/icons/chart_bar.png" />Reports</h2><ul id="selection-breadcrumbs"></ul></div>
+	    <div tabindex="-1" id="reports_content" width="100%" height="320">
+	        <p class="flashWarning">
+	            Reporting functionality requires Flash version 9.0.124 or higher. 
+	            Please go to the <a tabindex="-1" href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> 
+	            and download the latest version. After installation, be sure to reload the page.
+	        </p>
+	    </div>
+	</div>
+	<div id="jLoading">Loading...</div>
+</body>
+</html>
