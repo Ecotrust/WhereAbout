@@ -1323,5 +1323,4 @@ def video(request, name):
     return render_to_response('demo_video.html', {'video':video}, context_instance=RequestContext(request)) 
     
 def sample(request, name):
-	if name == 'select-res-grp':
-		return render_to_response('samples/select_res_grp.html', context_instance=RequestContext(request)) 
+		return render_to_response('samples/'+name+'.html', context_instance=RequestContext(request)) 
