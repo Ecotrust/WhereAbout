@@ -6,15 +6,12 @@ gwst.widgets.WestPanel = Ext.extend(Ext.Panel, {
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
-        // Constructor, config object already applied to 'this' so properties can 
-        // be overriden here: Ext.apply(this, {}); or new properties 
-		//(e.g. items, tools, buttons) added
+		// Constructor, config object already applied to 'this' so properties can 
+    	// be created and added/overridden here: Ext.apply(this, {});
          
-        // Call parent (required)
-        gwst.widgets.WestPanel.superclass.initComponent.apply(
-          this, arguments);                     
+        gwst.widgets.WestPanel.superclass.initComponent.call(this);  
     }
 });
  
 // register xtype to allow for lazy initialization
-Ext.reg('gwst-widgets-west-panel', gwst.widgets.WestPanel);
+Ext.reg('gwst-west-panel', gwst.widgets.WestPanel);

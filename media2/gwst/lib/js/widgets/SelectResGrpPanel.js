@@ -2,11 +2,16 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'select-res-grp-panel',
+    
+    /* ``Ext.ux.Multiselect``
+     * For species selection
+     */
+    res_grp_select: null,
+    
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
         // Constructor, config object already applied to 'this' so properties can 
-        // be overriden here: Ext.apply(this, {}); or new properties 
-		//(e.g. items, tools, buttons) added
+        // be created and added/overridden here: Ext.apply(this, {});
 		
 		Ext.apply(this, {
 			title: '1. Select '+this.res_group_name,			
@@ -18,7 +23,7 @@ gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
 			]
 		});
 
-		this.res_grp_select = new Ext.ux.Multiselect ({
+		this.res_grp_select = {
 			style: 'margin:10px;margin-left:20px',
 			xtype: 'multiselect',
 			fieldLabel: 'Multiselect<br />(Required)',
@@ -37,7 +42,7 @@ gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
 					['6', 'Six'], ['7', 'Seven'], ['8', 'Eight'], ['9', 'Nine']]
 			}),
 			ddReorder: false
-		});
+		};
 		
         // Call parent (required)
         gwst.widgets.SelectResGrpPanel.superclass.initComponent.apply(
@@ -54,4 +59,4 @@ gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
 });
  
 // register xtype to allow for lazy initialization
-Ext.reg('select-res-grp', gwst.widgets.SelectResGrpPanel);
+Ext.reg('gwst-select-res-grp-panel', gwst.widgets.SelectResGrpPanel);
