@@ -71,9 +71,9 @@ function verify(link) {
                         <li>Done. <a href="/review_resource_questions/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
                         <li>
                         {% ifequal num_shapes 0 %}
-                            <a href="/draw_group_shapes/{{r.group_memb.int_group.id}}/">Draw shapes</a>
+                            <a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Draw shapes</a>
                         {% else %}                           
-                            <a href="/draw_group_shapes/{{r.group_memb.int_group.id}}/">Continue drawing/editing shapes</a>
+                            <a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Continue drawing/editing shapes</a>
                         {% endifequal %}
                         </li>
                         {% ifnotequal r.group_memb.num_complete_resources 0 %}

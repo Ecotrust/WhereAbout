@@ -458,7 +458,7 @@ def answer_resource_questions(request, group_id, next_url=None):
         if next_url:
             return HttpResponseRedirect(next_url)
         else:
-            return HttpResponseRedirect('/draw_group_shapes/'+str(group_id)+'/')
+            return HttpResponseRedirect('/draw_group_resources/'+str(group_id)+'/')
             
     answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
     
@@ -500,14 +500,8 @@ def answer_resource_questions(request, group_id, next_url=None):
         
     return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions}))   
 
-
-def draw_shapes(request, group_id):
-	pass
-	
-# start draw shapes for indicated group    
 @login_required
-def draw_group_shapes(request, group_id):
-
+def draw_group_resources(request, group_id):
     # make sure the user has a valid session in-progress
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
@@ -547,8 +541,8 @@ def draw_group_shapes(request, group_id):
             
         title = request.session['interview'].name + ' - ' + group.name + ' Group Shape Drawing'
             
-        return render_to_response( 'map.html', RequestContext(request, {'title':title, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
-
+        return render_to_response( 'draw_group_resources.html', RequestContext(request, {'title':title, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
+	
 # start draw shapes quick tutorial   
 @login_required
 def draw_overview(request, group_id):
@@ -566,7 +560,7 @@ def penny_overview(request, group_id):
         interview = InterviewStatus.objects.get(user=request.user, interview=request.session['interview'])
         interview.overview_completed = True
         interview.save()
-        return HttpResponseRedirect('/draw_group_shapes/'+str(group_id)+'/')
+        return HttpResponseRedirect('/draw_group_resources/'+str(group_id)+'/')
     return render_to_response( 'penny_overview.html', RequestContext(request))   
 
 # user finalizes group

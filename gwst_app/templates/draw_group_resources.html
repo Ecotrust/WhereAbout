@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/> 
+	<title>Resource Group Drawing</title>
+	
+	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}third-party/extjs2/resources/css/ext-all.css" charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}third-party/ext-ux/multiselect/MultiSelect.css" charset="utf-8"/>
+
+	<script type="text/javascript" src="{{MEDIA_URL}}third-party/extjs2/adapter/ext/ext-base.js" charset="utf-8"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}third-party/extjs2/ext-all-debug.js" charset="utf-8"></script>
+	<!--<script type="text/javascript" src="{{MEDIA_URL}}third-party/extjs2/ext-all-debug.js" charset="utf-8"></script>-->
+
+	<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=XXXX'></script>
+	<script src="{{MEDIA_URL}}third-party/OpenLayers-2.8/OpenLayers.js" charset="utf-8"></script>
+	<script src="{{MEDIA_URL}}third-party/GeoExt-0.6/widgets/MapPanel.js" charset="utf-8"></script>
+	<script src="{{MEDIA_URL}}third-party/GeoExt-0.6/data/LayerRecord.js" charset="utf-8"></script>
+	<script src="{{MEDIA_URL}}third-party/GeoExt-0.6/data/LayerReader.js" charset="utf-8"></script>
+	<script src="{{MEDIA_URL}}third-party/GeoExt-0.6/data/LayerStore.js" charset="utf-8"></script>
+
+	<script type="text/javascript" src="{{MEDIA_URL}}third-party/ext-ux/multiselect/MultiSelect.js" charset="utf-8"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}third-party/ext-ux/multiselect/DDView.js" charset="utf-8"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}js/ResDrawApp.js" charset="utf-8"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/ResDrawMapPanel.js" charset="utf-8"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/WestPanel.js" charset="utf-8"></script>
+	<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SelectResGrpPanel.js" charset="utf-8"></script>	
+
+	
+	<link rel="stylesheet" href="{{MEDIA_URL}}js/extjs/resources/css/ext-all.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.99&amp;key={{GMAPS_API_KEY}}" type="text/javascript"></script>
+    <script src="{{MEDIA_URL}}js/OpenLayers-2.8/OpenLayers.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/proj4js/lib/proj4js-combined.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script src="{{MEDIA_URL}}js/ext-all.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{MEDIA_URL}}js/Mapfish/MapComponent.js" type="text/javascript" charset="utf-8"></script>
+	<script src="{{MEDIA_URL}}js/gwst/config.js" type="text/javascript" charset="utf-8"></script>  
+
+	<script type="text/javascript" charset="utf-8">
+        // Hack to support IE. See http://trac.openlayers.org/wiki/FrequentlyAskedQuestions#WhywontmyvectorlayerworkinIEbeforemypageisdoneloading
+	    document.namespaces;
+        Ext.onReady(function() {
+			app = new gwst.ResDrawApp();
+			app.init();
+		});
+	</script>	  
+</head>
+<body>
+    <noscript>We're sorry, in order to run this application you must have Javascript enabled.
+	Search the internet to learn how to enable this feature for your browser.
+	If your web browser doesn't support Javascript you will need to install one that does.
+	</noscript>
+</body>
+</html>

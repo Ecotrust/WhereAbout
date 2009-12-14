@@ -19,6 +19,7 @@
 
 <script type="text/javascript" src="{{MEDIA_URL}}third-party/ext-ux/multiselect/MultiSelect.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}third-party/ext-ux/multiselect/DDView.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/ResDrawApp.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/ResDrawMapPanel.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/WestPanel.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SelectResGrpPanel.js"></script>
@@ -39,6 +40,7 @@
  */
 
 Ext.onReady(function() {
+	app = new gwst.ResDrawApp();
     new Ext.Viewport({
         layout: "border",
         items: [{
