@@ -30,10 +30,9 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 	
 	    var map = new OpenLayers.Map(options);
 		var nav = new OpenLayers.Control.Navigation();		
-		map.addControl(new OpenLayers.Control.PanZoom());
+		map.addControl(new gwst.controls.gwstPanZoom());
 		map.addControl(nav);
-		
-		
+				
 		Ext.apply(this, {
 		    map: map,
 		    layers: [layer],
@@ -42,7 +41,12 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     
         // Call parent (required)
 		gwst.widgets.ResDrawMapPanel.superclass.initComponent.call(this);
-    }   
+    },
+    
+    onRender: function(){
+        // Call parent (required)
+        gwst.widgets.ResDrawMapPanel.superclass.onRender.apply(this, arguments);        
+    }
 });
  
 // register xtype to allow for lazy initialization

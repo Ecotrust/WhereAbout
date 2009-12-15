@@ -9,4 +9,5 @@ then
   exit $E_BADARGS
 fi
 
+export PYTHONPATH=$PYTHONPATH:/usr/local/django-trunk/:/usr/local/django-apps/:.
 python manage.py loaddata fixtures/$1

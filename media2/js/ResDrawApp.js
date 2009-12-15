@@ -25,6 +25,20 @@ gwst.ResDrawApp = Ext.extend(Ext.util.Observable, {
 				split: true
 			}]
 		});	
+		
+		/*this.statusPanel = new Ext.Window({
+            // title: 'About Geometry Changes',
+            html: '',
+            width: 250,
+            autoHeight: true,
+            resizable: false,
+            collapsible: false,
+            draggable: false,
+            closable: false
+        });
+		this.statusPanel.alignTo(Ext.get('mappanel'), "tr-tr", new int[]{0,0});
+        this.statusPanel.show();	
+        */	
     }
 });
 	
