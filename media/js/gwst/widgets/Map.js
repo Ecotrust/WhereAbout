@@ -142,8 +142,9 @@ gwst.widgets.Map = Ext.extend(mapfish.widgets.MapComponent, {
         //Panzoom
         this.panzoom = new OpenLayers.Control.PanZoomBar();
         var x = (Ext.Element(this.contentEl).getWidth() / 2) - 30;
-        this.panzoom.position = new OpenLayers.Pixel(x, 15);
-        this.map.addControl(this.panzoom);       
+		var panzoom = new OpenLayers.Control.PanZoomBar();
+        panzoom.position = new OpenLayers.Pixel(x, 15);
+        this.map.addControl(panzoom);       
         
         this.map.events.register("zoomend", this, this.toggleBase);
         

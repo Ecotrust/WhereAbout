@@ -10,6 +10,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 	    var extent = new OpenLayers.Bounds(-5, 35, 15, 55);
 	
         var options = {
+			controls: [],
             projection: new OpenLayers.Projection("EPSG:900913"),
             units: "m",
             numZoomLevels: 18,
@@ -28,11 +29,15 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         );	
 	
 	    var map = new OpenLayers.Map(options);
+		var nav = new OpenLayers.Control.Navigation();		
+		map.addControl(new OpenLayers.Control.PanZoom());
+		map.addControl(nav);
+		
 		
 		Ext.apply(this, {
 		    map: map,
 		    layers: [layer],
-		    extent: extent,
+		    extent: extent
 		});    
     
         // Call parent (required)
