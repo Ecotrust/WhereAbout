@@ -21,3 +21,7 @@ p.top_instruct {
 .west-panel .x-panel-header {
 	font-size: 17px;
 }
+
+.west-panel .x-panel-body {
+    overflow:auto;
+}
