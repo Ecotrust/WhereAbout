@@ -7,6 +7,9 @@ gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
      * For species selection
      */
     res_grp_select: null,
+    user_group: 'unknown',
+    res_group_name: 'unknown',
+    contact_address: 'unknown',
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -56,7 +59,7 @@ gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
         // After parent code
 		var html_text = '<p class="top_instruct">\
 			<b>Instructions:</b> Select 1 of the '+ this.res_group_name +' \
-			you harvest as a <i>'+ user_group +'</i> from the list below \
+			you harvest as a <i>'+ this.user_group +'</i> from the list below \
 			and then click the \'Continue\' button.\
 			</p><br />\
 			<p>\
