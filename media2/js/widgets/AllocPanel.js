@@ -2,6 +2,7 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'alloc-panel',
+	resource: 'unknown',
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){

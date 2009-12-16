@@ -4,7 +4,7 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'navigate-panel',
-	
+	resource: 'unknown',
 	
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){

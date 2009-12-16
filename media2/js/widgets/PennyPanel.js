@@ -2,6 +2,10 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'penny-panel',
+	resource: 'unknown',
+	cur_num: 'unknown',
+	total_num: 'unknown',
+	pennies_remaining: 'unknown',
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){

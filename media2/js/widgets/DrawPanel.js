@@ -2,6 +2,8 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'draw-panel',
+	resource: 'unknown',
+	group: 'unknown',
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
