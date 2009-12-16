@@ -29,9 +29,9 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         );	
 	
 	    var map = new OpenLayers.Map(options);
-		var nav = new OpenLayers.Control.Navigation();		
+		map.addControl(new OpenLayers.Control.Navigation());		
 		map.addControl(new gwst.controls.gwstPanZoom());
-		map.addControl(nav);
+		map.addControl(new OpenLayers.Control.MousePosition());
 				
 		Ext.apply(this, {
 		    map: map,

@@ -365,7 +365,19 @@ def answer_questions(request,group_id):
 
     return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))     
     
-    
+
+@login_required
+def get_group_resources(request, group_id):
+    try:
+        group = InterviewGroup.objects.get(pk=group_id)
+        group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=group_id )
+        import pdb
+        pdb.set_trace()
+        sel_resources = Resource.objects.filter(groupmemberresource)    #(GroupMemberResource.objects.filter(group_membership=group_memb)
+        return HttpResponse(geojson_encode(sel_resources), mimetype='text/javascript')
+    except ObjectDoesNotExist:
+        return render_to_response( '404.html', RequestContext(request,{}))		
+	
 @login_required
 def select_group_resources(request, group_id):
     # make sure the user has a valid session in-progress

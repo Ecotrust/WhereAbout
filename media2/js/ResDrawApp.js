@@ -24,7 +24,10 @@ gwst.ResDrawApp = Ext.extend(Ext.util.Observable, {
 				res_group_name: 'Species',
 				split: true
 			}]
-		});	
+		});
+		
+		this.draw_manager = new gwst.ResDrawManager();
+		this.draw_manager.init();
 		
 		/*this.statusPanel = new Ext.Window({
             // title: 'About Geometry Changes',
@@ -39,6 +42,6 @@ gwst.ResDrawApp = Ext.extend(Ext.util.Observable, {
 		this.statusPanel.alignTo(Ext.get('mappanel'), "tr-tr", new int[]{0,0});
         this.statusPanel.show();	
         */	
-    }
+    }	
 });
 	
