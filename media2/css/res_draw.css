@@ -4,3 +4,20 @@
 	right: 60px;
 	top: 150px;
 }
+
+body {
+	font-size: 0.9em;
+	font-family: verdana,arial,sans-serif;
+}
+
+p {
+	font-size: 0.9em;
+}
+
+p.top_instruct {
+	font-size: 1.0em;
+}
+
+.west-panel .x-panel-header {
+	font-size: 17px;
+}

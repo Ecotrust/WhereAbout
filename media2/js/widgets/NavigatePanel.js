@@ -29,15 +29,15 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     onRender: function(){
         // Call parent (required)
         gwst.widgets.NavigatePanel.superclass.onRender.apply(this, arguments); 
-		var html_text = '<p>\
+		var html_text = '<p class="top_instruct">\
 			<b>Instructions:</b> Navigate the map to your primary <i>'+ this.resource +'</i> grounds.</p><br />\
 			\
-			<b> How?</b>\n \
+			<b> How?</b> \
 			\
 			<p> \
 			a. First, turn on any maps you want from the \'Maps\' section on the top right. \
 			Nautical charts are sufficient for most.  Click the checkbox \
-			<img src="/site-media/third-party/extjs2/resources/images/default"> \
+			( <input type="checkbox"> ) \
 			to turn them on or off.\
 			</p><br />\
 			\

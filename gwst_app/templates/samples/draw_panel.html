@@ -2,21 +2,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>Navigate_Panel</title>
+<title>Draw_Panel</title>
 <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}third-party/extjs2/resources/css/ext-all.css" />
 <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/res_draw.css"/>
 <script type="text/javascript" src="{{MEDIA_URL}}third-party/extjs2/adapter/ext/ext-base.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}third-party/extjs2/ext-all-debug.js"></script>
 
 <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/WestPanel.js"></script>
-<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/NavigatePanel.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/DrawPanel.js"></script>
 <script type="text/javascript">
 Ext.onReady(function() {
-	resource = 'species';
-
-	var p = new gwst.widgets.NavigatePanel({
+	var resource = 'species';
+	var group = 'as a diver';
+	var p = new gwst.widgets.DrawPanel({
         renderTo: 'panel-basic',    		
-		resource: resource
+		resource: resource,
+		group: group
     });
 });
 </script>

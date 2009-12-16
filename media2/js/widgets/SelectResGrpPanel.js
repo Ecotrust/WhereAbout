@@ -14,7 +14,7 @@ gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
         // be created and added/overridden here: Ext.apply(this, {});
 		
 		Ext.apply(this, {
-			title: '1. Select '+this.res_group_name,			
+			title: '1. Select a '+this.res_group_name,			
 			bbar: [
 				{xtype:'tbfill'},
 				{text: '<< Go Back'},
@@ -54,6 +54,27 @@ gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
         // Call parent (required)
         gwst.widgets.SelectResGrpPanel.superclass.onRender.apply(this, arguments); 
         // After parent code
+		var html_text = '<p class="top_instruct">\
+			<b>Instructions:</b> Select 1 of the '+ this.res_group_name +' \
+			you harvest as a <i>'+ user_group +'</i> from the list below \
+			and then click the \'Continue\' button.\
+			</p><br />\
+			<p>\
+			<b>Note:</b> Next, you are going to draw your fishing grounds for that '+ this.res_group_name +'. \
+			You will have a chance to do this for all of the '+ this.res_group_name +' below, \
+			but you don\'t have to do all of them.\
+			</p><br />\
+			<p> \
+			If you think an important '+ this.res_group_name +' is missing from the list, \
+			notify us at '+ this.contact_address +'.\
+			</p><br />'
+		;
+		var inner_panel = {
+			html: html_text,
+			style: 'margin: 10px',
+			border: false
+		};
+		this.add(inner_panel);
 		this.add(this.res_grp_select);
 	}
 });

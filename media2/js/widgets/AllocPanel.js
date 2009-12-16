@@ -1,0 +1,52 @@
+Ext.namespace('gwst', 'gwst.widgets');
+
+gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
+    id: 'alloc-panel',
+    
+    // Constructor Defaults, can be overridden by user's config object
+    initComponent: function(){
+        // Constructor, config object already applied to 'this' so properties can 
+        // be created and added/overridden here: Ext.apply(this, {});
+
+		Ext.apply(this, {
+			title: '4. Allocate Pennies',
+			bbar: [
+				{xtype:'tbfill'},
+				{text: '<< Go Back'},
+				{xtype:'tbseparator'},
+				{text: 'Continue >>'}
+			]
+		});
+		
+        // Call parent (required)
+        gwst.widgets.AllocPanel.superclass.initComponent.apply(
+          this, arguments);                     
+    },
+	
+    onRender: function(){
+        // Call parent (required)
+        gwst.widgets.AllocPanel.superclass.onRender.apply(this, arguments); 
+        var html_text = '<p><b>Overview</b><br /> \
+			<p>\
+			Now imagine you have a bag of <b>100 pennies</b>.  You\'re going to \
+			distribute those pennies over the <i>'+ this.resource +'</i> fishing grounds \
+			you just drew.  The more pennies you place on a fishing ground, the more \
+			value or importance it has to you.  This information will provide a much \
+			more accurate picture of your most important fishing grounds.\
+			</p><br />\
+			<p> \
+			Click continue to move to the next step.\
+			</p><br />\
+			<br />\
+			<img src="/site-media/images/tux.png" style="width: 50px; height: 50px"><br />';
+		var inner_panel = {
+			html: html_text,
+			style: 'margin: 10px',
+			border: false
+		};
+		this.add(inner_panel);
+	}
+});
+ 
+// register xtype to allow for lazy initialization
+Ext.reg('alloc-panel', gwst.widgets.AllocPanel);
