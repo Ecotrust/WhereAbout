@@ -25,3 +25,8 @@ p.top_instruct {
 .west-panel .x-panel-body {
     overflow:auto;
 }
+
+.begin-draw {
+	background-image:url(/site-media/images/pencil_go.png) 
+	!important;
+}

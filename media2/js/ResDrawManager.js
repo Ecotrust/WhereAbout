@@ -19,6 +19,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     init: function(){   
         this.fetchUser();
         this.fetchResources();
+        this.startSplash();
     },
 
     /* Fetch user object from server */
@@ -63,7 +64,35 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 
     /* Load the initial splash screen for the user */
     startSplash: function() {
-    
+        var splash = new Ext.Window({
+            title: 'Introduction',
+        	layout:'fit',
+        	modal: true,
+            width:350,
+            height:150,
+            closeAction:'hide',
+            plain: true,
+            bodyStyle: 'padding: 10px',
+            html: "\
+            	<p>The drawing portion is now going to begin for XXXX user group.  You will have instructions every step of the way \
+            	on the left hand side of the screen.  You will also be able to come back and finish later \
+            	if you need more time. \
+            	",
+            bbar: [
+               {xtype:'tbfill', width:20},
+               {
+            	   text: 'Begin', 
+            	   handler: function(){alert('foo');},
+            	   iconCls: 'begin-draw',
+            	   iconAlign: 'top'
+               }
+           ]
+        });
+    	
+    	splash.on('show',function(){
+    	    splash.center();
+    	});
+    	splash.show();
     },    
 
     /* Load the resource group selection panel */
