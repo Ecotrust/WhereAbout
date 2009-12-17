@@ -9,6 +9,7 @@ Ext.namespace('gwst');
 
 gwst.settings = {
     survey_group_id: null,
+    survey_group_name: null,
     adminEmail: 'fish@ecotrust.org',
     identifyBboxRadius: 500,
     displayProjection: new OpenLayers.Projection("EPSG:900913"),

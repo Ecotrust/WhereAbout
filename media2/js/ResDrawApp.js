@@ -9,18 +9,7 @@ gwst.ResDrawApp = Ext.extend(Ext.util.Observable, {
 		gwst.ResDrawApp.superclass.constructor.call(this);
     },
 
-    init: function(){           
-		new Ext.Viewport({
-			layout: "border",
-			items: [{
-				region: "center",
-				id: "mappanel",
-				border: false,
-				xtype: "gwst-res-draw-map-panel",
-				split: true
-			}]
-		});
-		
+    init: function(){           		
 		this.draw_manager = new gwst.ResDrawManager();
 		this.draw_manager.init();
 		
