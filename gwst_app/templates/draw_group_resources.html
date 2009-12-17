@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/> 
-	<title>Resource Group Drawing</title>
+	<title>{{title}}</title>
 	
 	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}third-party/extjs2/resources/css/ext-all.css" charset="utf-8"/>
 	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}third-party/ext-ux/multiselect/MultiSelect.css" charset="utf-8"/>
@@ -36,7 +36,9 @@
         // Hack to support IE. See http://trac.openlayers.org/wiki/FrequentlyAskedQuestions#WhywontmyvectorlayerworkinIEbeforemypageisdoneloading
 	    document.namespaces;
         Ext.onReady(function() {
-			app = new gwst.ResDrawApp();
+            gwst.settings.survey_group_id = {{group_id}};
+            gwst.settings.survey_group_name = '{{group_name}}';
+			app = new gwst.ResDrawApp();            
 			app.init();
 		});
 	</script>	  

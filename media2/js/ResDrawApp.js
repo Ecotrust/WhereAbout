@@ -9,7 +9,7 @@ gwst.ResDrawApp = Ext.extend(Ext.util.Observable, {
 		gwst.ResDrawApp.superclass.constructor.call(this);
     },
 
-    init: function(){   
+    init: function(){           
 		new Ext.Viewport({
 			layout: "border",
 			items: [{
@@ -17,11 +17,6 @@ gwst.ResDrawApp = Ext.extend(Ext.util.Observable, {
 				id: "mappanel",
 				border: false,
 				xtype: "gwst-res-draw-map-panel",
-				split: true
-			}, {
-				xtype: 'gwst-select-res-grp-panel',
-				region: "west",
-				res_group_name: 'Species',
 				split: true
 			}]
 		});

@@ -366,14 +366,14 @@ def answer_questions(request,group_id):
     return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))     
     
 
+#Given an interview group, returns the resources the user has selected
 @login_required
-def get_group_resources(request, group_id):
+def group_resources(request, group_id):
     try:
         group = InterviewGroup.objects.get(pk=group_id)
         group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=group_id )
-        import pdb
-        pdb.set_trace()
-        sel_resources = Resource.objects.filter(groupmemberresource)    #(GroupMemberResource.objects.filter(group_membership=group_memb)
+        #Query select resources for the given group
+        sel_resources = Resource.objects.filter(groupmemberresource__group_membership=group_memb)
         return HttpResponse(geojson_encode(sel_resources), mimetype='text/javascript')
     except ObjectDoesNotExist:
         return render_to_response( '404.html', RequestContext(request,{}))		
@@ -553,7 +553,7 @@ def draw_group_resources(request, group_id):
             
         title = request.session['interview'].name + ' - ' + group.name + ' Group Shape Drawing'
             
-        return render_to_response( 'draw_group_resources.html', RequestContext(request, {'title':title, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
+        return render_to_response( 'draw_group_resources.html', RequestContext(request, {'title':title, 'group_id':group_id,  'group_name':group.name, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
 	
 # start draw shapes quick tutorial   
 @login_required
