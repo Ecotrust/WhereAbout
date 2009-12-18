@@ -12,7 +12,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         gwst.ResDrawManager.superclass.constructor.call(this);
         this.addEvents('user-loaded');
         this.addEvents('resources-loaded');
-        this.addEvents('res-shapes-loaded');
+        this.addEvents('res-shapes-loaded');        
     },
 
     /* Initialize draw manager, fetching survey data from server */
@@ -25,16 +25,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
  
     /* Render the initial viewport with a border layout and the map in the center panel */
     startViewport: function() {
-		this.viewport = new Ext.Viewport({
-			layout: "border",
-			items: [{
-				region: "center",
-				id: "mappanel",
-				border: false,
-				xtype: "gwst-res-draw-map-panel",
-				split: true
-			}]
-		});    	
+		this.viewport = new gwst.widgets.MainViewport();
+        //Viewport displays automatically
     },
     
     /* Fetch user object from server */
@@ -110,26 +102,28 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	this.splash_win.show();
     },    
 
+    /* Get this drawing portion going already! */
     finishSplash: function() {
     	this.splash_win.hide();
-    	this.startResGrpSelect();
+    	this.startResSelect();
     },
     
     /* Load the resource group selection panel */
-    startResGrpSelect: function() {
-        this.speciesSelPanel = new gwst.widgets.SelectResGrpPanel({
-            xtype: 'gwst-select-res-grp-panel',
-            region: "west",
-            res_group_name: 'Species',
-            split: true
-        });
-        this.viewport.add(this.speciesSelPanel);
-        this.viewport.doLayout();
+    startResSelect: function() {
+        if (!this.resSelPanel) {
+            this.resSelPanel = new gwst.widgets.SelResPanel({
+                xtype: 'gwst-sel-res-panel',
+                res_group_name: 'Species'
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.resSelPanel.on('res-sel-cont', this.contResSelect.createDelegate(this));
+        }
+        this.viewport.setWestPanel(this.resSelPanel);
     },
     
-    /* Process the resource group selection */
-    finishResGrpSelect: function() {
-    
+    /* Process the resource group selection and move on */
+    contResSelect: function(obj, species_rec) {
+        console.log(species_rec);
     },
     
     startDrawInstruct: function() {

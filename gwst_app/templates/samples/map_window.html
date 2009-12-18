@@ -22,7 +22,7 @@
 <script type="text/javascript" src="{{MEDIA_URL}}js/ResDrawApp.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/ResDrawMapPanel.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/WestPanel.js"></script>
-<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SelectResGrpPanel.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SelResPanel.js"></script>
 
 <script type="text/javascript">
 /**
@@ -50,7 +50,7 @@ Ext.onReady(function() {
             xtype: "gwst-res-draw-map-panel",
             split: true
         }, {
-        	xtype: 'gwst-select-res-grp-panel',
+        	xtype: 'gwst-sel-res-panel',
             region: "west",
             res_group_name: 'Species',
             split: true

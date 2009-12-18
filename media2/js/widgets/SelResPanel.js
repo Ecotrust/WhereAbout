@@ -1,6 +1,6 @@
 Ext.namespace('gwst', 'gwst.widgets');
 
-gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
+gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'select-res-grp-panel',
     
     /* ``Ext.ux.Multiselect``
@@ -15,6 +15,8 @@ gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
     initComponent: function(){
         // Constructor, config object already applied to 'this' so properties can 
         // be created and added/overridden here: Ext.apply(this, {});
+
+        this.addEvents('res-grp-select-continue');
 		
 		Ext.apply(this, {
 			title: '1. Select a '+this.res_group_name,			
@@ -22,7 +24,10 @@ gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
 				{xtype:'tbfill'},
 				{text: '<< Go Back'},
 				{xtype:'tbseparator'},
-				{text: 'Continue >>'}
+				{
+                    text: 'Continue >>',
+                    handler: this.continueBtnClicked.createDelegate(this)
+                }
 			]
 		});
 
@@ -31,7 +36,7 @@ gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
 			xtype: 'multiselect',
 			fieldLabel: 'Multiselect<br />(Required)',
 			name: 'multiselect',
-			width: 250,
+			width: 200,
 			height: 250,
 			valueField:"id",
 			displayField:"name",
@@ -48,14 +53,14 @@ gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
 		};
 		
         // Call parent (required)
-        gwst.widgets.SelectResGrpPanel.superclass.initComponent.apply(
+        gwst.widgets.SelResPanel.superclass.initComponent.apply(
           this, arguments);                     
     },
 	
     onRender: function(){
         // Before parent code 
         // Call parent (required)
-        gwst.widgets.SelectResGrpPanel.superclass.onRender.apply(this, arguments); 
+        gwst.widgets.SelResPanel.superclass.onRender.apply(this, arguments); 
         // After parent code
 		var html_text = '<p class="top_instruct">\
 			<b>Instructions:</b> Select 1 of the '+ this.res_group_name +' \
@@ -79,8 +84,13 @@ gwst.widgets.SelectResGrpPanel = Ext.extend(gwst.widgets.WestPanel, {
 		};
 		this.add(inner_panel);
 		this.add(this.res_grp_select);
-	}
+	},
+    
+    continueBtnClicked: function() {
+        var species_rec = {name:'Salmon',id:4};  //This should come from the species store.
+        this.fireEvent('res-grp-select-continue',this,species_rec);
+    }
 });
  
 // register xtype to allow for lazy initialization
-Ext.reg('gwst-select-res-grp-panel', gwst.widgets.SelectResGrpPanel);
+Ext.reg('gwst-sel-res-panel', gwst.widgets.SelResPanel);

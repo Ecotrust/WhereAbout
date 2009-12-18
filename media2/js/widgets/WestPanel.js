@@ -2,7 +2,6 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.WestPanel = Ext.extend(Ext.Panel, {
     id: 'west-panel',
-	width: '300px',
 	cls: 'west-panel',
     
     // Constructor Defaults, can be overridden by user's config object
