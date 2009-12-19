@@ -16,7 +16,8 @@ gwst.widgets.MainViewport = Ext.extend(Ext.Viewport, {
 				id: "mappanel",
 				border: false,
 				xtype: "gwst-res-draw-map-panel",
-				split: true
+				split: true,
+				listeners: this.mapPanelListeners
 			},{
                 region: 'west',
                 width: 300,

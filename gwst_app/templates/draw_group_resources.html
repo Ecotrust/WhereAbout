@@ -37,6 +37,8 @@
 	<script type="text/javascript" charset="utf-8">
         // Hack to support IE. See http://trac.openlayers.org/wiki/FrequentlyAskedQuestions#WhywontmyvectorlayerworkinIEbeforemypageisdoneloading
 	    document.namespaces;
+		// reference local blank image
+		Ext.BLANK_IMAGE_URL = '/site-media/third-party/extjs2/resources/images/default/s.gif';	    
         Ext.onReady(function() {
             gwst.settings.survey_group_id = {{group_id}};
             gwst.settings.survey_group_name = '{{group_name}}';

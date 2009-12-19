@@ -19,7 +19,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                                              20037508, 20037508.34)
         };
 
-        var layer = new OpenLayers.Layer.Google(
+        var baseLayer = new OpenLayers.Layer.Google(
             "Google Satellite",
             {type: G_SATELLITE_MAP, sphericalMercator: true}
         );
@@ -27,20 +27,80 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         extent.transform(
             new OpenLayers.Projection("EPSG:4326"), options.projection
         );	
-	
-	    var map = new OpenLayers.Map(options);
+
+        var styleMap = new OpenLayers.StyleMap({
+            'default': new OpenLayers.Style({
+                fillColor: '${fillColor}',
+                fillOpacity: 0.4,
+                strokeColor: '${strokeColor}',
+                strokeOpacity: 1,
+                strokeWidth: 1,
+                cursor: 'pointer',
+                pointerEvents: "visiblePainted",
+                label : "${shape_label}",
+                fontColor: "black",
+                fontSize: "12px",
+                //fontFamily: "Courier New, monospace",
+                //fontWeight: "bold",
+                labelAlign: "cm"
+            }),
+            'select': new OpenLayers.Style({
+                strokeWidth: 3,
+                fillColor: '${fillColor}',
+                strokeColor: 'yellow',
+                strokeOpacity: 1,
+                fillOpacity: 0.4,
+                cursor: 'default',
+                pointerEvents: "visiblePainted",
+                label : "${shape_label}",
+                fontColor: "black",
+                fontSize: "12px",
+                //fontFamily: "Courier New, monospace",
+                //fontWeight: "bold",
+                labelAlign: "cm"
+            }),
+            'temporary': new OpenLayers.Style({
+                fillColor: 'orange',
+                fillOpacity: 0.4,
+                strokeWidth: 2,
+                strokeColor: 'orange',
+                strokeOpacity: 1
+            })
+        });
+        
+        this.vectorLayer = new OpenLayers.Layer.Vector('mlpaFeatures',{
+            styleMap: styleMap
+        });                
+        
+	    map = new OpenLayers.Map(options);
 		map.addControl(new OpenLayers.Control.Navigation());		
 		map.addControl(new gwst.controls.gwstPanZoom());
 		map.addControl(new OpenLayers.Control.MousePosition());
+        this.drawResControl = new OpenLayers.Control.DrawFeature(
+            this.vectorLayer, 
+            OpenLayers.Handler.Polygon, {
+                featureAdded: this.resDrawn.createDelegate(this),
+            }
+        );
+       	map.addControl(this.drawResControl);		
 				
 		Ext.apply(this, {
 		    map: map,
-		    layers: [layer],
+		    layers: [baseLayer, this.vectorLayer],
 		    extent: extent
 		});    
     
         // Call parent (required)
 		gwst.widgets.ResDrawMapPanel.superclass.initComponent.call(this);
+    },
+
+    enableResDraw: function() {
+    	this.drawResControl.activate();
+    	//Show cancel/redo toolbar
+    },
+    
+    resDrawn: function(feature, opts) {
+    	console.log('Feature drawn');
     },
     
     onRender: function(){

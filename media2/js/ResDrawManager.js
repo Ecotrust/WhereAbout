@@ -5,18 +5,19 @@ gwst.ResDrawManager- manages resource drawing process including user information
 shapes and pennies.  Extends Ext.Observable providing event handling
 */
 gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
-    //The current user object
-    user:null,
-    curResource: null,
+    user:null,    		//The current user object
+    curResource: null,  //Current resource user has selected
+    viewport: null,  	//Reference to viewport container
+    mapPanel: null,  	//Reference to map panel
 
     constructor: function(){
         gwst.ResDrawManager.superclass.constructor.call(this);
         this.addEvents('user-loaded');
         this.addEvents('resources-loaded');
-        this.addEvents('res-shapes-loaded');        
+        this.addEvents('res-shapes-loaded');
     },
 
-    /* Initialize draw manager, fetching survey data from server */
+    /* Initialize interface and fetch initial data from server */
     init: function(){   
     	this.startViewport();
         this.fetchUser();
@@ -24,10 +25,18 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.startSplash();
     },
  
-    /* Render the initial viewport with a border layout and the map in the center panel */
+    /* Render viewport with main widgets in border layout */
     startViewport: function() {
-		this.viewport = new gwst.widgets.MainViewport();
-        //Viewport displays automatically
+		this.viewport = new gwst.widgets.MainViewport({			
+			mapPanelListeners: {'render': this.mapPanelCreated.createDelegate(this)}  //Give the viewport listeners to pass on to the map panel
+		});
+        //Viewport will render automatically to document body
+    },
+    
+    /* Now that map panel exists we can hook into it */
+    mapPanelCreated: function() {
+    	this.mapPanel = Ext.getCmp('mappanel');
+    	//Register resource shape completed handler
     },
     
     /* Fetch user object from server */
@@ -122,7 +131,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.viewport.setWestPanel(this.resSelPanel);
     },
     
-    /* Process the resource group selection and move on */
+    /* Process the resource selection and continue on */
     contResSelect: function(obj, resource_rec) {
         this.curResource = resource_rec;
         this.startDraw();
@@ -145,7 +154,12 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             //When panel fires event saying it's all done, we want to process it and move on 
             this.drawPanel.on('draw-cont', this.contDraw.createDelegate(this));
         }
-        this.viewport.setWestPanel(this.drawPanel);    
+        this.viewport.setWestPanel(this.drawPanel);
+        
+        //Start resource Draw
+        this.mapPanel.enableResDraw();
+        
+        //Add draw toolbar (cancel and redraw button) at top left of map panel
     },
        
     contDraw: function() {
