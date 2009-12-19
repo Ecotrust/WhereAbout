@@ -893,8 +893,9 @@ def user_features_client_object(user,interview):
         add_child(folder,group)
     return folder
     
+####OLD
 @login_required
-def get_user_shapes(request):
+def old_get_user_shapes(request):
     data = {}
     u = request.user
     interview = request.session['interview']
@@ -908,6 +909,10 @@ def get_user_shapes(request):
     }
     data['features'] = ( user_features_client_object(u,interview), )
     return HttpResponse(geojson_encode(data), mimetype='application/json')
+
+def get_user_shapes(request):
+    resource_shapes = InterviewShape.objects.filter(user=request.user)
+    return HttpResponse(geojson_encode(resource_shapes), mimetype='application/json')
     
     
 @login_required

@@ -2,7 +2,7 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'draw-panel',
-	resource: 'unknown',
+	resource_name: 'unknown',
 	group: 'unknown',
     
     // Constructor Defaults, can be overridden by user's config object
@@ -10,13 +10,18 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         // Constructor, config object already applied to 'this' so properties can 
         // be created and added/overridden here: Ext.apply(this, {});
 
+        this.addEvents('draw-cont');        
+        
 		Ext.apply(this, {
 			title: '3. Draw',
 			bbar: [
 				{xtype:'tbfill'},
 				{text: '<< Go Back'},
 				{xtype:'tbseparator'},
-				{text: 'Continue >>'}
+				{
+                    text: 'Continue >>',
+                    handler: this.continueBtnClicked.createDelegate(this)
+                }
 			]
 		});
 		
@@ -29,7 +34,7 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         // Call parent (required)
         gwst.widgets.DrawPanel.superclass.onRender.apply(this, arguments); 
         var html_text = '<p><b>Instructions:</b> \
-			Draw your <i>'+ this.resource +'</i> fishing ground on the map one at a time.  \
+			Draw your <i>'+ this.resource_name +'</i> fishing ground on the map one at a time.  \
 			<i>Draw only the areas you fish '+ this.group +'!</i></p><br />\
 			\
 			<p><b> How?</b></p> \
@@ -46,7 +51,7 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
 			d. Double-click the last point to complete your boundary\
 			</p><br />\
 			<p> \
-			e. Inf you make a mistake, click \'Cancel\' in the upper right and start over.\
+			e. If you make a mistake, click \'Cancel\' in the upper right and start over.\
 			</p><br />\
 			<p> <a href=http://www.google.com>Watch Demonstration Video</a></p><br />\
 			<p><b>Example:</b></p><br />\
@@ -58,8 +63,13 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		};
 		this.add(inner_panel);
-	}
+	},
+    
+    continueBtnClicked: function() {
+        alert('Foo!');
+        this.fireEvent('draw-cont',this);
+    }    
 });
  
 // register xtype to allow for lazy initialization
-Ext.reg('draw-panel', gwst.widgets.DrawPanel);
+Ext.reg('gwst-draw-panel', gwst.widgets.DrawPanel);

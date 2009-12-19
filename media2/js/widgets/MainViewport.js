@@ -21,7 +21,7 @@ gwst.widgets.MainViewport = Ext.extend(Ext.Viewport, {
                 region: 'west',
                 width: 300,
                 id: 'west-panel-container',
-                collapsed: true,
+                collapsed: false,
                 layout: 'fit'
             }]        
 		});
@@ -31,19 +31,18 @@ gwst.widgets.MainViewport = Ext.extend(Ext.Viewport, {
     },
 
     onRender: function(){
-        gwst.widgets.MainViewport.superclass.onRender.apply(this, arguments);               
+        gwst.widgets.MainViewport.superclass.onRender.apply(this, arguments);                       
 	},
     
     setWestPanel: function(panel) {        
         var westPanelContainer = Ext.getCmp('west-panel-container');
-        westPanelContainer.collapse();
         //Remove west panel if there already is one
         if (this.curWestPanel) {
             westPanelContainer.remove(this.curWestPanel);
         }
         westPanelContainer.add(panel);
+        this.curWestPanel = panel;
         westPanelContainer.doLayout();
-        westPanelContainer.expand();
     }
 });
  

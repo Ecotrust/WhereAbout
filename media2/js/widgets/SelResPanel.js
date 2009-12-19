@@ -16,7 +16,7 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
         // Constructor, config object already applied to 'this' so properties can 
         // be created and added/overridden here: Ext.apply(this, {});
 
-        this.addEvents('res-grp-select-continue');
+        this.addEvents('res-sel-cont');
 		
 		Ext.apply(this, {
 			title: '1. Select a '+this.res_group_name,			
@@ -88,7 +88,7 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     continueBtnClicked: function() {
         var species_rec = {name:'Salmon',id:4};  //This should come from the species store.
-        this.fireEvent('res-grp-select-continue',this,species_rec);
+        this.fireEvent('res-sel-cont',this,species_rec);
     }
 });
  

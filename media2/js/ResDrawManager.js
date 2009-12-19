@@ -7,6 +7,7 @@ shapes and pennies.  Extends Ext.Observable providing event handling
 gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     //The current user object
     user:null,
+    curResource: null,
 
     constructor: function(){
         gwst.ResDrawManager.superclass.constructor.call(this);
@@ -122,35 +123,40 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     /* Process the resource group selection and move on */
-    contResSelect: function(obj, species_rec) {
-        console.log(species_rec);
+    contResSelect: function(obj, resource_rec) {
+        this.curResource = resource_rec;
+        this.startDraw();
     },
     
-    startDrawInstruct: function() {
+    backResSelect: function(){},
     
-    },
+    startDrawInstruct: function() {},
     
-    finishDrawInstruct: function() {
+    finishDrawInstruct: function() {},
     
-    },
     
+    /* Load the draw panel and prepare map for drawing */
     startDraw: function() {
-    
+        if (!this.drawPanel) {
+            this.drawPanel = new gwst.widgets.DrawPanel({
+                xtype: 'gwst-draw-panel',
+                resource: this.curResource.name
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.drawPanel.on('draw-cont', this.contDraw.createDelegate(this));
+        }
+        this.viewport.setWestPanel(this.drawPanel);    
+    },
+       
+    contDraw: function() {
+        console.error('Need to implement Allocation');
     },
     
-    finishDraw: function() {
+    backDraw: function() {},
     
-    },
+    startPennyAlloc: function() {},
     
-    startPennyAlloc: function() {
+    finishPennyAlloc: function() {},
     
-    },
-    
-    finishPennyAlloc: function() {
-    
-    },
-    
-    finishDrawingProcess: function() {
-    
-    }
+    finishDrawingProcess: function() {}
 });
