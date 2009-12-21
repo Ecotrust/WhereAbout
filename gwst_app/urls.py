@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     (r'^accounts/', include('registration.urls')),
     
     (r'^draw_help/text/$', draw_help_text ),
-    (r'^draw_splash/$', draw_splash ),
+#    (r'^draw_splash/$', draw_splash ),
 
     (r'^$', select_interview ),
     (r'^select_interview/$', select_interview ),
@@ -38,23 +38,17 @@ urlpatterns = patterns('',
 	
     (r'^draw_overview/(\d+)/$', draw_overview ),
     (r'^penny_overview/(\d+)/$', penny_overview ),
-    
-    
+        
     (r'^finalize_group/(\d+)/$', finalize_group ),
     (r'^unfinalize_group/(\d+)/$', unfinalize_group ),
     (r'^skip_group/(\d+)/$', skip_group ),
     (r'^finalize_interview/(\d+)/$', finalize_interview ),
     (r'^reset_interview/(\d+)/$', reset_interview ),
     
+    (r'^region/$', region ),
     (r'^validate_shape/$', validate_shape ),
     (r'^save_shape/$', save_shape ),
     (r'^user/$', GetUser ),
-    (r'^shapes/$', get_user_shapes ),
-    (r'^geojson/shape/(\d+)$', get_shape ),
-    (r'^gwst/shape/delete/(\d+)$', delete_shape ),
-    (r'^gwst/shapes/copy/$', copy_shapes ),
-    (r'^gwst/shape/editgeom/(\d+)$', editgeom_shape ),
-    (r'^gwst/shape/edit/(\d+)$', edit_shape ),
     (r'^video/(\w+)$', video ),
 
     (r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   

@@ -26,14 +26,14 @@ gwst.widgets.MainViewport = Ext.extend(Ext.Viewport, {
                 layout: 'fit'
             }]        
 		});
-		
+
         // Call parent (required)
         gwst.widgets.MainViewport.superclass.initComponent.apply(this, arguments);                     
     },
 
     onRender: function(){
         gwst.widgets.MainViewport.superclass.onRender.apply(this, arguments);                       
-	},
+	},    
     
     setWestPanel: function(panel) {        
         var westPanelContainer = Ext.getCmp('west-panel-container');

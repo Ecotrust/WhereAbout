@@ -18,7 +18,6 @@ def login(request, template_name='registration/login.html'):
     return default_login(request, template_name)
 
 def handleSelectInterview(request,selected_interview):
-
     request.session['interview'] = selected_interview
     status_object_qs = InterviewStatus.objects.filter(interview=selected_interview, user=request.user)
             
@@ -292,8 +291,7 @@ def view_answers(request,group_id):
     title = group.name + ' Answered Questions'
     
     return render_to_response( 'view_answers.html', RequestContext(request,{'title':title, 'questions': questions, 'answers':answers}))        
-    
-    
+        
 @login_required    
 def answer_questions(request,group_id):
 
@@ -682,50 +680,7 @@ def unfinalize_group(request,id):
         
         # redirect to interview_group_status
         return HttpResponseRedirect('/group_status/')
-        
-'''        
-# user unskips group
-@login_required
-def unskip_group(request,id):
-
-    # make sure the user has a valid session
-    try:
-        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
-        
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
-
-        status = status_object_qs[0]
-        
-    except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
-
- 
-    # see if the interview has been marked complete
-    if status.completed:
-        # redirect to interview_complete
-        return HttpResponseRedirect('/interview_complete/')
-        
-        
-    if request.method == 'GET':
-        # update InterviewGroupMembership record
-        try:
-            int_group = InterviewGroup.objects.get(pk=id)
-        except ObjectDoesNotExist:
-            return render_to_response( '404.html', RequestContext(request,{}))            
-        group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group=int_group)
-        
-        if group_memb.count() == 1:
-        
-            update_memb = group_memb[0]
-            update_memb.status = 'not yet started'
-            update_memb.save()
-            
-        else: #404
-            return render_to_response( '404.html', RequestContext(request,{}))
-        
-        # redirect to interview_group_status
-        return HttpResponseRedirect('/group_status/')
-'''        
+     
 @login_required
 def skip_group(request, id):
     try:
@@ -797,17 +752,6 @@ def reset_interview(request, id):
     survey_status.delete()
     return HttpResponseRedirect('/')        
     
-# client-side usermanager support
-def user_client_object(user):
-    return {
-        'model': 'user',
-        'pk': user.pk,
-        'name': user.first_name + ' ' + user.last_name,
-        'username': user.username,
-        'email': user.email,
-        'is_staff': user.is_staff,
-    }
-
 @login_required
 def GetUser(request):
     if request.user.is_authenticated():
@@ -815,116 +759,34 @@ def GetUser(request):
         retUser = {}
         retUser["name"] = user.first_name + " " + user.last_name
         retUser["email"] = user.email
-        retUser["studyRegion"] = {}
-        retUser["studyRegion"]["name"] = "California South Coast"
-        retUser["studyRegion"]["bounds"] = "-13477376.825366,3752140.84394,-12930699.199147,4134937.481539"
-        retUser["pk"] = user.pk
         retUser["username"] = user.username
-        retUser['is_staff'] = user.is_staff
-        retUser['user'] = user_client_object(user)
-    
+        retUser['is_staff'] = user.is_staff    
         return HttpResponse(geojson_encode(retUser), mimetype='text/javascript')
     else:
-        return HttpResponseBadRequest('user is not authenticated')
-        
-        
-def add_child(client_object, child):
-    if not 'display_properties' in client_object:
-        client_object['display_properties'] = {'children': []}
-    elif not 'children' in client_object['display_properties']:
-        client_object['display_properties']['children'] = []
-    client_object['display_properties']['children'].append(child)
-    
-        
-def create_folder(name, open=False, visibility=True, collapsible=True, toggle=True, hideByDefault=False, pk=None, description=None, context=False, model="folder", doubleclick=False):
-    return {
-        'model': model, 
-        'name': name,
-        'display_properties': {
-            'open': open, 
-            'visibility': visibility,
-            'children': [],
-            'collapsible': True,
-            'toggle': toggle,
-            'hideByDefault': hideByDefault,
-            'description': description,
-            'context': context,
-            'doubleclick': doubleclick
-        },
-        'pk': pk
-    }
+        return HttpResponseBadRequest('user is not authenticated')        
 
-def create_superfolder(name, icon=None, id=None, description=None):
-    obj = create_folder(name, open=True, visibility=True, collapsible=False, description=description)
-    obj['display_properties']['collapsible'] = False
-    if icon:
-        obj['display_properties']['icon'] = icon
-    obj['display_properties']['toggle'] = False
-    obj['pk'] = id
-    obj['display_properties']['classname'] = 'marinemap-tree-category'
-    return obj
-        
-def user_features_client_object(user,interview):
-    folder = create_superfolder('<b>Right click on a '+interview.resource_name_plural+' to start drawing</b>', icon=settings.MEDIA_URL+'images/silk/icons/status_online.png', id="userFeatures")
-    
-    int_groups = InterviewGroup.objects.filter(interview=interview,user_draws_shapes=True)
-    int_group_membs = InterviewGroupMembership.objects.filter(user=user, int_group__in=int_groups).exclude(status='not yet started').exclude(status='skipped').order_by('-percent_involvement')
-    
-    for int_group_memb in int_group_membs.all():
-        int_group = int_group_memb.int_group
-        group_folder_name = int_group.name + ' (' + int_group_memb.status + ')'
-        group = create_folder(group_folder_name, pk=int_group.id, toggle=True, context=True)
-        
-        memb_resources = GroupMemberResource.objects.filter(group_membership=int_group_memb)
-        resources = [mr.resource for mr in memb_resources]
-        for resource in resources:
-            resource_shapes = InterviewShape.objects.filter(user=user,int_group=int_group,resource=resource)
-            resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
-            if resource_pennies == None:
-                resource_pennies = 0
-            if resource_pennies == 100:
-                folderName = resource.name+' (complete)'
-            else:
-                folderName = resource.name+' ('+str(100-resource_pennies)+' pennies left)'
-            mpas = create_folder(folderName, pk=str(int_group.id)+'-'+str(resource.id), toggle=True, context=True)
-            for mpa in resource_shapes:
-                add_child(mpas, mpa.client_object())
-            add_child(group,mpas)
-        add_child(folder,group)
-    return folder
-    
-####OLD
-@login_required
-def old_get_user_shapes(request):
-    data = {}
-    u = request.user
-    interview = request.session['interview']
-    data['user'] = ( user_client_object(u), )
-    data['me'] = {
-        'model': 'user',
-        'pk': u.pk,
-        'name': u.first_name + ' ' + u.last_name,
-        'username': u.username,
-        'email': u.email,
+def region(request):
+    cur_region = request.session['interview'].region
+    result = {
+        'name': cur_region.name,
+        'w_bound': cur_region.w_bound,
+        's_bound': cur_region.s_bound,
+        'e_bound': cur_region.e_bound,
+        'n_bound': cur_region.n_bound
     }
-    data['features'] = ( user_features_client_object(u,interview), )
-    return HttpResponse(geojson_encode(data), mimetype='application/json')
+    return HttpResponse(geojson_encode(result), mimetype='application/json')
 
 def get_user_shapes(request):
     resource_shapes = InterviewShape.objects.filter(user=request.user)
-    return HttpResponse(geojson_encode(resource_shapes), mimetype='application/json')
-    
+    return HttpResponse(geojson_encode(resource_shapes), mimetype='application/json')    
     
 @login_required
 def get_shape(request,id):
     shape = InterviewShape.objects.filter(pk=id)
     return HttpResponse(shape[0].geojson(), mimetype='application/json')
-    
-    
-# AJAX post to validate a shape     
+             
 @login_required
 def validate_shape(request):
-
     result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
     
     # make sure the user has a valid session in-progress
@@ -1027,294 +889,11 @@ def save_shape(request):
     except Exception, e:
         return HttpResponse(result + e.message, status=500)
     return HttpResponse(result)
-
-    
-    
-# AJAX delete handler
-@login_required
-def delete_shape(request,id):
-
-    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
-    
-    # make sure the user has a valid session in-progress
-    try:
-        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
-        
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
-
-        status = status_object_qs[0]
-        
-    except Exception, e:
-        return HttpResponse(result, status=403)
-
-    # see if the interview has been marked complete
-    if status.completed:
-        return HttpResponse(result, status=403)
-        
-
-    shape = InterviewShape.objects.filter(pk=id)
-    if shape.count() == 1 and shape[0].user == request.user:
-        msg = 'Shape %s deleted.' % (id, )
-        shape[0].delete()
-    else:
-        msg = 'Not authorized.'
-        
-    return HttpResponse(msg)  
-
-    
-    
-def copy_shape(request):
-    
-    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
-    
-    source_id = request.REQUEST.get('source')
-        
-    target = request.REQUEST.get('target')
-    target_group_id, target_resource_id = target.split('-')
-    target_resource = Resource.objects.get(pk=target_resource_id)
-    target_group = InterviewGroup.objects.get(pk=target_group_id)
-    
-    shape = InterviewShape.objects.filter(pk=source_id)
-    
-    if shape.count() == 1 and shape[0].user == request.user:
-    
-        if target_group == shape[0].int_group and target_resource == shape[0].resource:
-            return HttpResponse(result, status=420)
-            
-        other_shapes = InterviewShape.objects.filter(user=request.user,int_group=target_group,resource=target_resource)
-        
-        for test_shape in other_shapes.all():
-            if shape[0].geometry_clipped.intersects( test_shape.geometry_clipped ):
-                return HttpResponse(result, status=421)
-        
-        copy = shape[0].copy()
-        copy.int_group = target_group
-        copy.resource = target_resource
-        
-        # do not copy pennies on single-shape copies
-        copy.pennies = 0;
-                
-        copy.save()
-        
-        new_copy = []
-        new_copy.append( copy.json() )
-        
-        response = '{"type": "FeatureCollection", "features": [%s]}' % ( ','.join(new_copy), )
-        return HttpResponse(response, mimetype='application/json')
-    else:
-        return HttpResponseForbidden(
-            'You cannot copy shapes you do not have access to.')
-
-
-# AJAX copy handler
-@login_required
-def copy_shapes(request):
-
-    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
-    
-    # make sure the user has a valid session in-progress
-    try:
-        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
-        
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
-
-        status = status_object_qs[0]
-        
-    except Exception, e:
-        return HttpResponse(result, status=403)
-
-    # see if the interview has been marked complete
-    if status.completed:
-        return HttpResponse(result, status=403)
-        
-    if request.REQUEST.get('source_type') == 'shape':
-        return copy_shape(request)
-
-    target = request.REQUEST.get('target')
-    target_group_id, target_resource_id  = target.split('-')
-    target_resource = Resource.objects.get(pk=target_resource_id)
-    target_group = InterviewGroup.objects.get(pk=target_group_id)
-    
-    source = request.REQUEST.get('source')
-    source_group_id, source_resource_id = source.split('-')
-    
-    if target_group_id == source_group_id and target_resource_id == source_resource_id:
-        return HttpResponse(result, status=403)
-    
-    copy_shapes = InterviewShape.objects.filter(user=request.user,resource=source_resource_id,int_group=source_group_id)
-    
-    new_copies = []
-    if copy_shapes.count() > 0:
-    
-        # check for overlap issues before proceeding
-        other_shapes = InterviewShape.objects.filter(user=request.user,int_group=target_group,resource=target_resource)
-    
-        for shape in copy_shapes.all():
-            for test_shape in other_shapes.all():
-                if shape.geometry_clipped.intersects( test_shape.geometry_clipped ):
-                    return HttpResponse(result, status=421)
-    
-        # if the target group already has any pennies assigned, don't bring a copied groups pennies
-        resource_shapes = InterviewShape.objects.filter(user=request.user,int_group=target_group,resource=target_resource)
-        resource_agg = resource_shapes.aggregate(Sum('pennies'))
-          
-        for shape in copy_shapes.all():
-        
-            copy = shape.copy()
-            copy.int_group = target_group
-            copy.resource = target_resource
-            
-            copy.pennies = 0
-            
-            copy.save()
-            new_copies.append( copy.json() )
-        
-        response = '{"type": "FeatureCollection", "features": [%s]}' % ( ','.join(new_copies), )
-        
-        return HttpResponse(response, mimetype='application/json')
-    else:
-        return HttpResponseForbidden(
-            'You cannot copy shapes you do not have access to.')
-   
-    
-    
-# AJAX interview shape attribute form processing
-@login_required
-def edit_shape(request,id):
-
-    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
-    
-    # make sure the user has a valid session in-progress
-    try:
-        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
-        
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
-
-        status = status_object_qs[0]
-        
-    except Exception, e:
-        return HttpResponse(result, status=403)
-
-    # see if the interview has been marked complete
-    if status.completed:
-        return HttpResponse(result, status=403)
-
-    instructions = {}
-    instructions['main'] = 'Enter the number of pennies for this shape, and any boundary descriptions that could help to make the shape more accurate.'
-
-    shape = InterviewShape.objects.filter(pk=id,user=request.user)
-    if shape.count() == 1:
-        action = "/gwst/shape/edit/"+str(shape[0].pk)
-        if request.method == 'GET':
-            form = InterviewShapeAttributeForm( instance=shape[0] )
-            
-            t = loader.get_template('base_form.html')
-            opts = {
-                'form': form,
-                'action': action,
-                'value': 'Save',
-                'instructions': instructions
-            }
-            return HttpResponse(t.render(RequestContext(request, opts )))
-            
-        else:
-            form = InterviewShapeAttributeForm( request.POST )
-            
-            # calculate how many pennies are already assigned in this group and attach it to form before validation
-            group_pennies = InterviewShape.objects.filter(user=request.user,int_group=shape[0].int_group,resource=shape[0].resource).aggregate(Sum('pennies'))
-            form.group_pennies = group_pennies['pennies__sum'] - shape[0].pennies
-            
-            #form.fields['resource'].queryset = Resource.objects.filter(interviewgroup=shape[0].int_group)
-            if form.is_valid(): 
-                edit_shape = shape[0]
-                edit_shape.pennies = form.cleaned_data['pennies']
-                edit_shape.boundary_n = form.cleaned_data['boundary_n']
-                edit_shape.boundary_s = form.cleaned_data['boundary_s']
-                edit_shape.boundary_e = form.cleaned_data['boundary_e']
-                edit_shape.boundary_w = form.cleaned_data['boundary_w']
-                #edit_shape.resource = form.cleaned_data['resource']
-                edit_shape.last_modified = datetime.datetime.now()
-                edit_shape.num_times_saved = edit_shape.num_times_saved + 1
-                edit_shape.save()
-                
-                # check the status of the interview group membership for this shape and unfinalize it if necessary
-                group_memb = InterviewGroupMembership.objects.get(user=request.user,int_group=edit_shape.int_group)
-                if group_memb.status == 'finalized':
-                    group_memb.status = 'in-progress'
-                    group_memb.save()
-                
-                return HttpResponse(edit_shape.json(), mimetype='application/json')
-                
-            else:
-                t = loader.get_template('base_form.html')
-                opts = {
-                    'form': form,
-                    'action': action,
-                    'value': 'Save',
-                    'instructions': instructions
-                }
-                return HttpResponseBadRequest(t.render(RequestContext(request, opts )))
-            
-    else:
-        # forbidden
-        return HttpResponse(result, status=403)
-
- 
-# AJAX edit geometry handler 
-@login_required
-def editgeom_shape(request,id):
-
-    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
-    
-    # make sure the user has a valid session in-progress
-    try:
-        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
-        
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
-
-        status = status_object_qs[0]
-        
-    except Exception, e:
-        return HttpResponse(result, status=403)
-
-    # see if the interview has been marked complete
-    if status.completed:
-        return HttpResponse(result, status=403)
-
-
-
-    result = '{"status_code":"-1",  "success":"false",  "message":"error in editgeom_shape in views.py"}'
-    try:
-        edit_shape = InterviewShape.objects.get(pk=id)
-        
-        geom = GEOSGeometry(request.REQUEST['geometry'], srid=900913)
-        geom.transform(3310)
-        edit_shape.geometry = geom
-        
-        geom_clipped = GEOSGeometry(request.REQUEST['geometry_clipped'], srid=900913)
-        geom_clipped.transform(3310)
-        edit_shape.geometry_clipped = geom_clipped
-        
-        edit_shape.save() 
-        result = '{"status_code":"1",  "success":"true", "message":"mpa saved successfully"'
-        result = edit_shape.json()
-    except Exception, e:
-        return HttpResponse(result + e.message, status=500)
-    return HttpResponse(result)
-
-    
+  
 @login_required
 def draw_help_text(request):
     return render_to_response( 'draw_help_text.html', RequestContext(request,{})) 
-    
-    
-@login_required
-def draw_splash(request):
-    interview = request.session.get('interview')
-    if interview:
-        return render_to_response( 'content_template.html', RequestContext(request,{'content':interview.draw_shape_text})) 
-    else:
-        return HttpResponseRedirect('/select_interview/')
+     
 def faq(request):
     faq_groups = FaqGroup.objects.all()
     faqs_by_group = []

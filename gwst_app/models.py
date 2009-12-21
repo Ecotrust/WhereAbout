@@ -7,7 +7,10 @@ from gwst_app.managers import *
 # ultimately the Region table needs to move to MM core
 class Region(Model):
     name = CharField( max_length=100, unique=True )
-    bounds = MultiPolygonField(srid=3310, null=True, blank=True)
+    n_bound = FloatField()
+    s_bound = FloatField()
+    e_bound = FloatField()
+    w_bound = FloatField()
     code = CharField( max_length=10, unique=True )
     
     class Meta:

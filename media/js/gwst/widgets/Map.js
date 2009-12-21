@@ -331,82 +331,8 @@ gwst.widgets.Map = Ext.extend(mapfish.widgets.MapComponent, {
         	this.map.setBaseLayer(gwst.data.GoogleTerrain);
         }
     },
-    
-    // onSelectionManagerChange: function(mngr, selection, oldSelection){
-    //     if(selection && selection instanceof gwst.data.MPA){
-    //         this.selectControl.unselectAll();
-    //         var loaded = this.loadedMPA[selection.get('pk')];
-    //         if(loaded == null && selection instanceof gwst.data.MPA){
-    //             this.addMLPAFeatures([selection]);
-    //             loaded = this.loadedMPA[selection.get('pk')];
-    //         }
-    //         this.selectControl.select(loaded[1]);
-    //         if(!this.changeFromClick){
-    //             var bounds = loaded[1].geometry.getBounds();
-    //             var center = bounds.getCenterLonLat();
-    //             if(this.map.getExtent().containsBounds(bounds)){
-    //                 this.map.panTo(center);
-    //             }else{
-    //                 this.map.setCenter(center);
-    //             }
-    //         }
-    //         this.showMPAPopup(loaded[1]);
-    //     }else{
-    //         this.selectControl.unselectAll();
-    //         if(selection && selection instanceof gwst.data.Array){
-    //             var mpas = gwst.actions.nonExt.addArrayMpasToMap(selection);
-    //             this.selectControl.multiple = true;
-    //             for(var i = 0; i <= mpas.length; i++){
-    //                 var mpa = mpas[i];
-    //                 if(mpa){
-    //                     var loaded = this.loadedMPA[mpa.get('pk')];
-    //                     this.selectControl.select(loaded[1]);
-    //                 }
-    //             }
-    //             this.selectControl.multiple = false;                
-    //         }
-    //     }
-    // },
 
     showMPAPopup: function(mpa){
-        // var user = mpa.get_user();
-        // //
-        // if(!user){
-        //     throw('mpa.get_user not working!'+ mpa.client_id);
-        // }
-        /*if(mpa.model != 'mpa'){
-            throw('oh crap not an mpa', mpa);
-        }
-        html = this.balloonTemplate({mpa: mpa});
-        ll = mpa.feature.geometry.getBounds().getCenterLonLat();
-        var callback = function(feature){this.map.extCmp.selectControl.unselectAll();};
-        this.popup = new OpenLayers.Popup.Anchored("mpaPopup",ll,null,html, null, false);
-        this.popup.panMapIfOutOfView = false;
-        this.popup.autoSize = true;
-        this.popup.padding = 0;
-        if(!mpa.feature.onScreen(true)){
-            this.map.setCenter(mpa.feature.geometry.getBounds().getCenterLonLat());
-        }
-        this.map.addPopup(this.popup, true);
-
-        var full = new Ext.Button(gwst.actions.openMpaAttributes);
-        full.mpa = mpa;
-        var geoedit = new Ext.Button(gwst.actions.enterMPAGeometryEditMode);
-        geoedit.mpa = mpa;
-        // var addToArray = new Ext.Button(gwst.actions.addMpaToArray);
-        // addToArray.mpa = mpa;
-        items = [full];
-        if(this.userManager.user && mpa.user == this.userManager.user.pk){
-            items.push(geoedit);
-        }
-        items.push({xtype: 'tbtext', text: '<a onmouseover="window.onbeforeunload = null;" onmouseout="window.onbeforeunload = gwst.backWarn;" class="gwst-button kml" href="/gwst/kml/mpa/'+mpa.pk+'">kml</a>'});
-        
-        var bbar = new Ext.Toolbar({
-            id: 'popupTbar',
-            items: items,
-            renderTo: 'mpaPopup'
-        });
-        bbar.show();*/
     },
     
     hideMPAPopup: function(feature){

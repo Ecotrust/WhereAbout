@@ -19,7 +19,9 @@ gwst.settings = {
 
 gwst.settings.urls = {
     user: '/user/',
-	group_resources: '/group_resources/'
+	group_resources: '/group_resources/',
+	validate_shape: '/validate_shape/',
+	region: '/region/'
 };
 
 /*

@@ -27,18 +27,24 @@
     "pk": 2, 
     "model": "gwst_app.region", 
     "fields": {
+      "s_bound": 5170000.0, 
       "code": "ORCC", 
       "name": "Oregon Central Coast", 
-      "bounds": null
+      "n_bound": 5850000.0, 
+      "w_bound": -14500000.0, 
+      "e_bound": -13500000.0
     }
   }, 
   {
     "pk": 1, 
     "model": "gwst_app.region", 
     "fields": {
+      "s_bound": 4510000.0, 
       "code": "NCCA", 
       "name": "California North Coast", 
-      "bounds": null
+      "n_bound": 5230000.0, 
+      "w_bound": -14400000.0, 
+      "e_bound": -13300000.0
     }
   }, 
   {
@@ -252,7 +258,7 @@
       "draw_shape_text": "", 
       "resource_action": "target", 
       "resource_name": "species", 
-      "active": false, 
+      "active": true, 
       "organization": "Ecotrust", 
       "assign_groups_text": "", 
       "group_status_text": "", 
@@ -271,7 +277,7 @@
       "draw_shape_text": "<div id=\"help_panel\">\r\n\r\n<b> Getting Started </b>\r\n\r\n<p>Take the time to learn how to use this drawing tool before you dive in.  The instructions and videos provided will quickly show you through the entire process</p>\r\n\r\n<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species group</b> you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw shapes on the map representing your fishing grounds and then place some number of pennies on those shapes. The more pennies you place on a shape, the more value or importance you are placing on it. Keep doing this until you have drawn all your shapes and used all your pennies.  This process may seem complicated but it will allow the potential impact of MPA's on each fishery and each region to be measured much more accurately.</p>\r\n\r\n<p>How many shapes you draw and how specific you are is up to you.  Most people draw between three and eight shapes per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To get this window back after closing it, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.\r\n</p>\r\n<br/>\r\n<button type='button' onclick='gwst.app.splashTabs.activate(gwst.app.helpScreenText)'>Go To Instructions/Videos</button>&nbsp;&nbsp;&nbsp;&nbsp;<i><b>Highly Recommended</b></i>\r\n<br/> \r\n<button type='button' onclick='gwst.app.helpWindow.hide()'>Get Started</button>\r\n</div>", 
       "resource_action": "target", 
       "resource_name": "species", 
-      "active": true, 
+      "active": false, 
       "organization": "Ecotrust", 
       "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  Also these values must add up to 100%.  For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling, 40% for dive angling and nothing for private vessel angling.]</i></p>", 
       "group_status_text": "Please carefully read all instructions and complete each survey section. You will be asked to answer questions and draw your fishing grounds. The drawing portion can be technically challenging and you may get discouraged by the amount of time it will take you. We apologize for this. Please understand that your input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend will be worth the effort. \r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to share your information and fishing grounds to us, please  <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email. We are listening to your feedback. \r\n<h2>Instructions</h2>\r\n\r\n<p>\r\nComplete each section below one at a time.  A red circle indicates an unfinished section.  Once you have completed the necessary steps within a section you will be able to finalize it.  Once a group is finalized it will change to the color green.  Once all groups are green you will be able to finalize your survey.  You must complete at least the first user group including drawing your fishing grounds.  You may skip the others and move on.\r\n</p>", 
@@ -582,26 +588,6 @@
     }
   }, 
   {
-    "pk": 35, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "diveyrsp", 
-      "eng_text": "Average number of days per year diving for this species", 
-      "int_group": 1, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 1, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -619,6 +605,26 @@
       "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "diveyrsp", 
+      "eng_text": "Average number of days per year diving for this species", 
+      "int_group": 1, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": null
     }
   }, 
   {
@@ -730,26 +736,6 @@
     }
   }, 
   {
-    "pk": 39, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "pr_lnch", 
-      "eng_text": "Primary launch port/site", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 36, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -765,6 +751,26 @@
       "val_min": null, 
       "val_default": "", 
       "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "pr_lnch", 
+      "eng_text": "Primary launch port/site", 
+      "int_group": 2, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
       "eng_tooltip": "", 
       "val_max": null
     }

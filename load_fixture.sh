@@ -10,4 +10,4 @@ then
 fi
 
 export PYTHONPATH=$PYTHONPATH:/usr/local/django-trunk/:/usr/local/django-apps/:.
-python manage.py loaddata fixtures/$1
+python manage.py loaddata $1

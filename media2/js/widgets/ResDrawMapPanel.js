@@ -2,6 +2,8 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     
+	mapRegion: null,	//Current region map is focused on
+	
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
     	// Constructor, config object already applied to 'this' so properties can 
@@ -30,9 +32,9 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 
         var styleMap = new OpenLayers.StyleMap({
             'default': new OpenLayers.Style({
-                fillColor: '${fillColor}',
+                fillColor: 'orange',
                 fillOpacity: 0.4,
-                strokeColor: '${strokeColor}',
+                strokeColor: 'orange',
                 strokeOpacity: 1,
                 strokeWidth: 1,
                 cursor: 'pointer',
@@ -46,7 +48,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             }),
             'select': new OpenLayers.Style({
                 strokeWidth: 3,
-                fillColor: '${fillColor}',
+                fillColor: 'orange',
                 strokeColor: 'yellow',
                 strokeOpacity: 1,
                 fillOpacity: 0.4,
@@ -94,18 +96,32 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		gwst.widgets.ResDrawMapPanel.superclass.initComponent.call(this);
     },
 
+    zoomToMapRegion: function(region) {
+    	this.mapRegion = region;
+    	this.mapRegion.bounds = new OpenLayers.Bounds(region.w_bound,region.s_bound,region.e_bound,region.n_bound);
+    	this.map.zoomToExtent(this.mapRegion.bounds);
+    },
+    
     enableResDraw: function() {
     	this.drawResControl.activate();
     	//Show cancel/redo toolbar
     },
     
     resDrawn: function(feature, opts) {
-    	console.log('Feature drawn');
+    	this.fireEvent('res-shape-drawn', feature.geometry);
     },
     
     onRender: function(){
         // Call parent (required)
         gwst.widgets.ResDrawMapPanel.superclass.onRender.apply(this, arguments);        
+    },
+    
+    cancelResShape: function() {
+    	
+    },
+    
+    redoResShape: function() {
+    	
     }
 });
  
