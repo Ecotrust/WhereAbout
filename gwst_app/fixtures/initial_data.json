@@ -188,16 +188,6 @@
     }
   }, 
   {
-    "pk": 3, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF00FF", 
-      "select_description": "Represents what your rockfish grounds would be if closure areas were removed.  See instructions above.", 
-      "code": "rock", 
-      "name": "Rockfish C - (Cumulative)"
-    }
-  }, 
-  {
     "pk": 20, 
     "model": "gwst_app.resource", 
     "fields": {
@@ -248,22 +238,33 @@
     }
   }, 
   {
-    "pk": 2, 
-    "model": "gwst_app.interview", 
+    "pk": 3, 
+    "model": "gwst_app.resource", 
     "fields": {
-      "code": "ORRrecfish", 
-      "name": "ORCC rec fisherman", 
-      "region": 2, 
-      "resource_name_plural": "species", 
-      "draw_shape_text": "", 
-      "resource_action": "target", 
-      "resource_name": "species", 
-      "active": true, 
-      "organization": "Ecotrust", 
-      "assign_groups_text": "", 
-      "group_status_text": "", 
-      "interview_complete_text": "", 
-      "description": "Oregon central coast rec fishermen"
+      "shape_color": "FF00FF", 
+      "select_description": "Represents what your rockfish grounds would be if closure areas were removed.  See instructions above.", 
+      "code": "rockc", 
+      "name": "Rockfish C - (Cumulative)"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "rock", 
+      "name": "Rockfish"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "shpr", 
+      "name": "Shrimp/Prawn"
     }
   }, 
   {
@@ -283,6 +284,25 @@
       "group_status_text": "Please carefully read all instructions and complete each survey section. You will be asked to answer questions and draw your fishing grounds. The drawing portion can be technically challenging and you may get discouraged by the amount of time it will take you. We apologize for this. Please understand that your input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend will be worth the effort. \r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to share your information and fishing grounds to us, please  <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email. We are listening to your feedback. \r\n<h2>Instructions</h2>\r\n\r\n<p>\r\nComplete each section below one at a time.  A red circle indicates an unfinished section.  Once you have completed the necessary steps within a section you will be able to finalize it.  Once a group is finalized it will change to the color green.  Once all groups are green you will be able to finalize your survey.  You must complete at least the first user group including drawing your fishing grounds.  You may skip the others and move on.\r\n</p>", 
       "interview_complete_text": "<p>The fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.</p>\r\n\r\n<p>When the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated and subsequent iterations of the analysis will be completed. The maps will then be used in evaluating MPA proposals.  For each MPA proposal, stakeholders will be able to see the potential impacts that MPA would have on a given fishery and/or user group.  This is a valuable tool in finding the best areas for protection while trying to minimize the impact on fisheries.</p>\r\n\r\n<p>Your willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a></p>", 
       "description": "rec fish"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.interview", 
+    "fields": {
+      "code": "ORRrecfish", 
+      "name": "ORCC rec fisherman", 
+      "region": 2, 
+      "resource_name_plural": "species", 
+      "draw_shape_text": "\r\n<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species group</b> you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw shapes on the map representing your fishing grounds and then place some number of pennies on those shapes. The more pennies you place on a shape, the more value or importance you are placing on it. Keep doing this until you have drawn all your shapes and used all your pennies.  This process may seem complicated but it will allow the potential impact of MPA's on each fishery and each region to be measured much more accurately.</p>\r\n\r\n<p>How many shapes you draw and how specific you are is up to you.  Most people draw between three and eight shapes per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To get this window back after closing it, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.\r\n</p>\r\n<br/>\r\n<button type='button' onclick='gwst.app.splashTabs.activate(gwst.app.helpScreenText)'>Go To Instructions/Videos</button>&nbsp;&nbsp;&nbsp;&nbsp;<i><b>Highly Recommended</b></i>\r\n<br/> \r\n<button type='button' onclick='gwst.app.helpWindow.hide()'>Get Started</button>\r\n</div>", 
+      "resource_action": "target", 
+      "resource_name": "species", 
+      "active": true, 
+      "organization": "Ecotrust", 
+      "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  Also these values must add up to 100%.  For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling, 40% for dive angling and nothing for private vessel angling.]</i></p>", 
+      "group_status_text": "Please carefully read all instructions and complete each survey section. You will be asked to answer questions and draw your fishing grounds. The drawing portion can be technically challenging and you may get discouraged by the amount of time it will take you. We apologize for this. Please understand that your input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend will be worth the effort. \r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to share your information and fishing grounds to us, please  <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email. We are listening to your feedback. \r\n<h2>Instructions</h2>\r\n\r\n<p>\r\nComplete each section below one at a time.  A red circle indicates an unfinished section.  Once you have completed the necessary steps within a section you will be able to finalize it.  Once a group is finalized it will change to the color green.  Once all groups are green you will be able to finalize your survey.  You must complete at least the first user group including drawing your fishing grounds.  You may skip the others and move on.\r\n</p>", 
+      "interview_complete_text": "<p>The fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.</p>\r\n\r\n<p>When the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated and subsequent iterations of the analysis will be completed. The maps will then be used in evaluating MPA proposals.  For each MPA proposal, stakeholders will be able to see the potential impacts that MPA would have on a given fishery and/or user group.  This is a valuable tool in finding the best areas for protection while trying to minimize the impact on fisheries.</p>\r\n\r\n<p>Your willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a></p>", 
+      "description": "Oregon central coast rec fishermen"
     }
   }, 
   {
@@ -336,28 +356,10 @@
         6, 
         18, 
         19, 
-        3, 
-        8
+        8, 
+        3
       ], 
       "description": "kayakers"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "Dive/Spear Angling", 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "resources": [
-        1
-      ], 
-      "description": "Diving and spear/hand take"
     }
   }, 
   {
@@ -384,31 +386,13 @@
         6, 
         18, 
         19, 
-        3, 
         20, 
         21, 
         8, 
-        23
+        23, 
+        3
       ], 
       "description": "private vessel anglers"
-    }
-  }, 
-  {
-    "pk": 8, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FFFFFF", 
-      "code": "kyk", 
-      "name": "Kayak Fishing", 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "resources": [
-        1
-      ], 
-      "description": "Kayak Fishermen"
     }
   }, 
   {
@@ -430,8 +414,8 @@
         17, 
         18, 
         19, 
-        3, 
-        23
+        23, 
+        3
       ], 
       "description": "Diving and spear/hand take"
     }
@@ -449,9 +433,57 @@
       "user_draws_shapes": true, 
       "interview": 2, 
       "resources": [
-        3
+        1, 
+        4, 
+        5, 
+        7, 
+        24, 
+        25
       ], 
       "description": "Private Vessel"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "code": "kyk", 
+      "name": "Kayak Fishing", 
+      "required_group": false, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "resources": [
+        1, 
+        4, 
+        5, 
+        7, 
+        24, 
+        25
+      ], 
+      "description": "Kayak Fishermen"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "div", 
+      "name": "Dive/Spear Angling", 
+      "required_group": false, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "resources": [
+        4, 
+        15, 
+        24
+      ], 
+      "description": "Diving and spear/hand take"
     }
   }, 
   {
@@ -1372,7 +1404,7 @@
     "fields": {
       "all_resources": false, 
       "code": "divedyyr", 
-      "eng_text": "How many days 'on average' do you dive per year?:", 
+      "eng_text": "How many days 'on average' do you dive per year?", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 1.0, 
@@ -1387,12 +1419,32 @@
     }
   }, 
   {
+    "pk": 131, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "diveyrsp", 
+      "eng_text": "How many days 'on average' do you spend diving for this species?", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
+    }
+  }, 
+  {
     "pk": 115, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
       "code": "years_exp", 
-      "eng_text": "How many years of experience do you have diving?:", 
+      "eng_text": "How many years of experience do you have diving?", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 2.0, 
@@ -1412,7 +1464,7 @@
     "fields": {
       "all_resources": false, 
       "code": "access", 
-      "eng_text": "What is your primary access method to your diving locations?:", 
+      "eng_text": "What is your primary access method to your diving locations?", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 3.0, 
@@ -1437,7 +1489,7 @@
     "fields": {
       "all_resources": false, 
       "code": "dive_boat", 
-      "eng_text": "What percentage of your dives are from a boat?:", 
+      "eng_text": "What percentage of your dives are from a vessel (such as a boat, kayak, or paddleboard)?", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 4.0, 
@@ -1477,7 +1529,7 @@
     "fields": {
       "all_resources": false, 
       "code": "dive_mthd", 
-      "eng_text": "What is your primary dive method? (We understand most do more than one type.  Answer which you do the most):", 
+      "eng_text": "What is your primary dive method? (We understand most do more than one type.  Answer which you do the most)", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 6.0, 
@@ -1485,8 +1537,7 @@
       "question_group": null, 
       "options": [
         9, 
-        10, 
-        20
+        10
       ], 
       "val_min": null, 
       "val_default": "", 
@@ -1517,6 +1568,26 @@
       "answer_type": "select", 
       "eng_tooltip": "", 
       "val_max": null
+    }
+  }, 
+  {
+    "pk": 132, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "days_spec", 
+      "eng_text": "How many days 'on average' do you spend diving for this species from a sport boat?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
     }
   }, 
   {
@@ -1565,7 +1636,7 @@
     "fields": {
       "all_resources": false, 
       "code": "yrs_own", 
-      "eng_text": "How many years (if any) have you owned a sport boat?", 
+      "eng_text": "For how many years (if any) have you owned a sport boat?", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 4.0, 
@@ -1892,7 +1963,7 @@
     "fields": {
       "all_resources": false, 
       "code": "pr_launch", 
-      "eng_text": "Primary Kayak Launching Port/Site:", 
+      "eng_text": "Primary Kayak Launching Port/Site", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 1.0, 
@@ -1907,12 +1978,32 @@
     }
   }, 
   {
+    "pk": 133, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "", 
+      "eng_text": "How many days 'on average' do you spend diving for this species from a kayak?", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
+    }
+  }, 
+  {
     "pk": 109, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
       "code": "launch1", 
-      "eng_text": "Other Kayak Launching Port/Site 1:", 
+      "eng_text": "Other Kayak Launching Port/Site 1", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 2.0, 
@@ -1932,7 +2023,7 @@
     "fields": {
       "all_resources": false, 
       "code": "launch2", 
-      "eng_text": "Other Kayak Launching Port/Site 2:", 
+      "eng_text": "Other Kayak Launching Port/Site 2", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 3.0, 
@@ -1952,7 +2043,7 @@
     "fields": {
       "all_resources": false, 
       "code": "launch3", 
-      "eng_text": "Other Kayak Launching Port/Site 3:", 
+      "eng_text": "Other Kayak Launching Port/Site 3", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 4.0, 
@@ -1992,7 +2083,7 @@
     "fields": {
       "all_resources": false, 
       "code": "days_fish", 
-      "eng_text": "How many days 'on average' do you spend each year fishing from a kayak?:", 
+      "eng_text": "How many days 'on average' do you spend each year fishing from a kayak?", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 6.0, 
