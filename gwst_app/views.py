@@ -468,7 +468,7 @@ def answer_resource_questions(request, group_id, next_url=None):
         if next_url:
             return HttpResponseRedirect(next_url)
         else:
-            return HttpResponseRedirect('/draw_group_resources/'+str(group_id)+'/')
+            return HttpResponseRedirect('/group_status/')
             
     answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
     
