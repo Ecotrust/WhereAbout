@@ -234,8 +234,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	//Show wait message
         this.clipGeometry({
             geometry: shape_geometry,
-            resource: this.curResource,
-            success: this.clipSuccess,
+            resource: gwst.settings.survey_group_id+'-'+this.curResource.id,
+            success: this.clipReview,
             error: this.clipError,
             fail: this.clipFail
          });
@@ -314,41 +314,90 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	        method: 'POST',
 	        disableCachingParam: true,
 	        params: { 
-	            geometry : config['geometry'].toString(),
-	            resource : config['resource'],
-	            orig_shape_id : config['orig_shape_id']
-	            },
+	            geometry : config.geometry.toString(),
+	            resource : config.resource,
+	            orig_shape_id : config.orig_shape_id
+	        },
 	        success: function(response, opts){
 	            //Hide wait message
-	            var text = response.responseText;
-	            var json = eval('(' + text + ')');
-	            var status_code = parseFloat(json['status_code']);
-	            if(status_code == 1 || status_code == 0 || status_code == 5){
-	                var geometry = json['original_geom'];
-	                var clipped_geometry = json['clipped_mpa_geom'];
-	                config['success'](status_code, geometry, clipped_geometry);
-	            }else if(status_code != 4){
-	                config['error'](status_code, config['geometry']);
-	            }else{
-	                config['fail'](response, opts);
+	            var clip_obj = Ext.decode(response.responseText);
+	            var status_code = parseFloat(clip_obj.status_code);
+	            if (status_code == 1 || status_code == 0 || status_code == 5) {
+	                config.success(status_code, clip_obj.original_geom, clip_obj.clipped_mpa_geom);
+	            } else if (status_code != 4){
+	                config.error(status_code, config.geometry);
+	            } else {
+	                config.fail(response, opts);
 	            }
 	        },
 	        failure: function(response, opts){
 	            //Hide wait message
-	            config['fail'](response, opts);
+	            config.fail.(response, opts);
 	        }
 	    });
     },
     
-    clipSuccess: function(result) {
-    	
+    clipReview: function(result) {
+    	//Show the shape on the map and ask user if they are happy with it.
+    	alert('Time to review your shape!');
     },    
     
     clipError: function(result) {
-    	
+        gwst.actions.utils.changeMapToolbarMode([
+             {
+                 xtype: 'tbtext',
+                 text: 'The shape you defined cannot be accepted'
+             },
+             {xtype: 'tbfill'},
+             {
+                 text: 'Go Back and Modify Shape',
+                 geometry: original,
+                 config: config,
+                 handler: function(){
+                     gwst.actions.utils.restoreMapToolbar();
+                     gwst.actions.utils.clearGeometryChangeInfo();
+                     this.config['geometry'] = this.geometry;
+                     gwst.actions.utils.askUserToDefineGeometry(this.config);
+                 }
+             },
+             {
+                 text: 'Cancel',
+                 iconCls: 'remove-icon',
+                 handler: function(){
+                     gwst.actions.utils.restoreMapToolbar();
+                     gwst.actions.utils.clearGeometryChangeInfo();
+                     gwst.actions.utils.enableComponents();
+                     config['cancel']();
+                 }
+             }
+        ]);
+        gwst.actions.utils.showGeometryChangeInfo(gwst.copy.clippedGeometryStatus[status_code]);    	
     },
     
     clipFail: function(result) {
-    	
+        gwst.ui.error.show({
+            errorText: 'An unknown Server Error has Occurred while trying to clip your shape. If you were editing a geometry, that geometry will remain intact as it was before editing. If you were creating a new shape, you will have to start over. We have been notified of this problem.',
+            logText: 'Error clipping shape'
+        });
+        gwst.actions.utils.enableComponents();    	
+    },
+    
+    clipAccept: function(geometry, clipped) {
+        $.ajax({
+            data: {geometry:geometry, geometry_clipped:clipped, resource:target}, //form.serializeArray(),
+            dataType: 'json',
+            success: function(data, textStatus){
+                mpa = gwst.data.mlpaFeatures.mpa_from_geojson(data);                       
+                gwst.actions.utils.enableComponents();
+                gwst.app.clientStore.add(mpa);
+                gwst.app.selectionManager.setSelectedFeature(mpa);
+            },
+            error: function(request, textStatus, errorThrown){                       
+                 gwst.ui.error.show({errorText: 'There was a problem saving your new MPA. This error will show up in our logs, but if the problem persists please follow up with an administrator.', debugText: request.responseText, logText: 'Error saving new shape'});
+                 gwst.actions.utils.enableComponents();
+            },
+            type: 'POST',
+            url: '/save_shape/'
+         });                	
     }
 });

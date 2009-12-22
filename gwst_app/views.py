@@ -787,31 +787,23 @@ def get_shape(request,id):
              
 @login_required
 def validate_shape(request):
-    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
-    
+    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'    
     # make sure the user has a valid session in-progress
     try:
-        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
-        
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])        
         status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
-
-        status = status_object_qs[0]
-        
+        status = status_object_qs[0]        
     except Exception, e:
         return HttpResponse(result, status=403)
-
-    # see if the interview has been marked complete
+    
     if status.completed:
         return HttpResponse(result, status=403)
 
-
-    # validate indicated group, resource
     result = '{"status_code":"-1",  "success":"false",  "message":"error in validate_shape in views.py"}'
-
     try:    
         # validate against this user's other shapes in this resource
-        new_geom = GEOSGeometry( request.REQUEST["geometry"], srid=900913 )
-        new_geom.transform( 3310 )
+        new_geom = GEOSGeometry( request.REQUEST["geometry"], srid=settings.CLIENT_SRID )
+        new_geom.transform( settings.SERVER_SRID )
         
         if request.REQUEST.get("orig_shape_id"):
             orig_shape = InterviewShape.objects.get(pk=request.REQUEST.get("orig_shape_id"))
@@ -840,36 +832,30 @@ def validate_shape(request):
 # AJAX post that user accepted clipped shape    
 @login_required
 def save_shape(request):
-
-    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'
-    
+    result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'    
     # make sure the user has a valid session in-progress
     try:
-        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
-        
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])        
         status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
-
-        status = status_object_qs[0]
-        
+        status = status_object_qs[0]        
     except Exception, e:
         return HttpResponse(result, status=403)
 
     # see if the interview has been marked complete
     if status.completed:
-        return HttpResponse(result, status=403)
-        
+        return HttpResponse(result, status=403)        
 
     result = '{"status_code":"-1",  "success":"false",  "message":"error in save_shape in views.py"}'
     try:
         new_shape = InterviewShape()
         new_shape.user = request.user
         
-        geom = GEOSGeometry(request.REQUEST['geometry'], srid=900913)
-        geom.transform(3310)
+        geom = GEOSGeometry(request.REQUEST['geometry'], srid=settings.CLIENT_SRID)
+        geom.transform(settings.SERVER_SRID)
         new_shape.geometry = geom
         
-        geom_clipped = GEOSGeometry(request.REQUEST['geometry_clipped'], srid=900913)
-        geom_clipped.transform(3310)
+        geom_clipped = GEOSGeometry(request.REQUEST['geometry_clipped'], srid=settings.CLIENT_SRID)
+        geom_clipped.transform(settings.SERVER_SRID)
         new_shape.geometry_clipped = geom_clipped
         
         int_group_id, resource_id = request.REQUEST['resource'].split('-')

@@ -87,6 +87,9 @@ INSTALLED_APPS = (
 SELF_REGISTRATION=False
 SELF_SURVEY_RESET=False
 
+CLIENT_SRID = 900913    #Google projection
+SERVER_SRID = 900913   #Google projection
+
 try:
     from local_settings import *
 except ImportError, exp:
