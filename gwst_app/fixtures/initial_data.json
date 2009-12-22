@@ -286,24 +286,6 @@
     }
   }, 
   {
-    "pk": 5, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "pri", 
-      "name": "Sport Boat", 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "resources": [
-        3
-      ], 
-      "description": "Private Vessel"
-    }
-  }, 
-  {
     "pk": 6, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -379,31 +361,6 @@
     }
   }, 
   {
-    "pk": 1, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "Dive/Spear Angling", 
-      "required_group": false, 
-      "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) were put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these three different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 1, 
-      "resources": [
-        4, 
-        15, 
-        16, 
-        17, 
-        18, 
-        19, 
-        3, 
-        23
-      ], 
-      "description": "Diving and spear/hand take"
-    }
-  }, 
-  {
     "pk": 3, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -434,6 +391,67 @@
         23
       ], 
       "description": "private vessel anglers"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "code": "kyk", 
+      "name": "Kayak Fishing", 
+      "required_group": false, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "resources": [
+        1
+      ], 
+      "description": "Kayak Fishermen"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "div", 
+      "name": "Dive/Spear Angling", 
+      "required_group": false, 
+      "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) were put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these three different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 1, 
+      "resources": [
+        4, 
+        15, 
+        16, 
+        17, 
+        18, 
+        19, 
+        3, 
+        23
+      ], 
+      "description": "Diving and spear/hand take"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "pri", 
+      "name": "Sport Boat", 
+      "required_group": false, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "resources": [
+        3
+      ], 
+      "description": "Private Vessel"
     }
   }, 
   {
@@ -565,6 +583,38 @@
     }
   }, 
   {
+    "pk": 17, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 16.0, 
+      "eng_text": "Aluminum"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 17.0, 
+      "eng_text": "Fiberglass"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 18.0, 
+      "eng_text": "Inflatable"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 19.0, 
+      "eng_text": "Other"
+    }
+  }, 
+  {
     "pk": 1, 
     "model": "gwst_app.questiongroupvalidator", 
     "fields": {
@@ -581,6 +631,17 @@
     "model": "gwst_app.questiongroup", 
     "fields": {
       "code": "dive_perc", 
+      "eng_text": "What percentage of your dives are", 
+      "validators": [
+        1
+      ]
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.questiongroup", 
+    "fields": {
+      "code": "boatVshore", 
       "eng_text": "What percentage of your dives are", 
       "validators": [
         1
@@ -665,7 +726,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "other", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -736,26 +797,6 @@
     }
   }, 
   {
-    "pk": 36, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "days_spec", 
-      "eng_text": "Average number of days per year fishing for this species", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 39, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -771,6 +812,26 @@
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "days_spec", 
+      "eng_text": "Average number of days per year fishing for this species", 
+      "int_group": 2, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "decimal", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1306,21 +1367,154 @@
     }
   }, 
   {
+    "pk": 114, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "divedyyr", 
+      "eng_text": "How many days 'on average' do you dive per year?:", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
+    }
+  }, 
+  {
+    "pk": 115, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "years_exp", 
+      "eng_text": "How many years of experience do you have diving?:", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 2.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 116, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "access", 
+      "eng_text": "What is your primary access method to your diving locations?:", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 3.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [
+        6, 
+        7, 
+        8, 
+        14
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 117, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "dive_boat", 
+      "eng_text": "What percentage of your dives are from a boat?:", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 4.0, 
+      "required": true, 
+      "question_group": 2, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 118, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "dive_shore", 
+      "eng_text": "What percentage of your dives are shore based?", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 5.0, 
+      "required": true, 
+      "question_group": 2, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 119, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "dive_mthd", 
+      "eng_text": "What is your primary dive method? (We understand most do more than one type.  Answer which you do the most):", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 6.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [
+        9, 
+        10, 
+        20
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 8, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
       "code": "boat_type", 
-      "eng_text": "Type of boat", 
+      "eng_text": "What type of boat do you fish from?", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 1.0, 
-      "required": false, 
+      "required": true, 
       "question_group": null, 
-      "options": [], 
+      "options": [
+        17, 
+        18, 
+        19
+      ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "text", 
+      "answer_type": "select", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1331,7 +1525,7 @@
     "fields": {
       "all_resources": false, 
       "code": "boat_num", 
-      "eng_text": "Department of Fish and Game boat number", 
+      "eng_text": " What is the Department of Fish and Game boat number?", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 2.0, 
@@ -1351,10 +1545,114 @@
     "fields": {
       "all_resources": false, 
       "code": "yrs_op", 
-      "eng_text": "Years operating a sport boat", 
+      "eng_text": "For how many years (if any) have you operated a sport boat?", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 3.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 120, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "yrs_own", 
+      "eng_text": "How many years (if any) have you owned a sport boat?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 4.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 121, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_length", 
+      "eng_text": "How long (in feet) is the primary vessel/boat?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 5.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 6.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 200.0
+    }
+  }, 
+  {
+    "pk": 122, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "storage", 
+      "eng_text": "How is the boat normally stored?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 6.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [
+        11, 
+        12, 
+        13
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 123, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "homeport", 
+      "eng_text": "Where is your primary port/ramp (dock/moorage/launch) located? ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 7.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 124, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "launch1", 
+      "eng_text": "Other launch site (In addition to your primary) ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 8.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
@@ -1363,6 +1661,349 @@
       "answer_type": "text", 
       "eng_tooltip": "", 
       "val_max": null
+    }
+  }, 
+  {
+    "pk": 125, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "launch2", 
+      "eng_text": "Other launch site 2 ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 9.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 126, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "launch3", 
+      "eng_text": "Other launch site 3 ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 10.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 127, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "launch4", 
+      "eng_text": "Other launch site 4 ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 11.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 128, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "years_exp", 
+      "eng_text": "How many years experience do you have fishing from a private vessel? ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 12.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 129, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "avg_ppl", 
+      "eng_text": "On average, how many other individuals are on the boat per trip (not including yourself)? ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 13.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 130, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "avg_days", 
+      "eng_text": "On average, how many days do you spend fishing from a private vessel each year? ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 14.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
+    }
+  }, 
+  {
+    "pk": 103, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "city", 
+      "eng_text": "City/Town", 
+      "int_group": 7, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "#", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 104, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "state", 
+      "eng_text": "State", 
+      "int_group": 7, 
+      "question_set": null, 
+      "display_order": 2.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "OR", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 105, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "phone", 
+      "eng_text": "Phone Number", 
+      "int_group": 7, 
+      "question_set": null, 
+      "display_order": 3.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "phone", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 106, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "age", 
+      "eng_text": "Age", 
+      "int_group": 7, 
+      "question_set": null, 
+      "display_order": 4.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 10.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 120.0
+    }
+  }, 
+  {
+    "pk": 107, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "gender", 
+      "eng_text": "Gender", 
+      "int_group": 7, 
+      "question_set": null, 
+      "display_order": 5.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [
+        4, 
+        5
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 108, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "pr_launch", 
+      "eng_text": "Primary Kayak Launching Port/Site:", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Primary port and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 109, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "launch1", 
+      "eng_text": "Other Kayak Launching Port/Site 1:", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 2.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 110, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "launch2", 
+      "eng_text": "Other Kayak Launching Port/Site 2:", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 3.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 111, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "launch3", 
+      "eng_text": "Other Kayak Launching Port/Site 3:", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 4.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 112, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "years_exp", 
+      "eng_text": "How many years experience do you have fishing from a kayak?", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 5.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 113, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "days_fish", 
+      "eng_text": "How many days 'on average' do you spend each year fishing from a kayak?:", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 6.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
     }
   }, 
   {
