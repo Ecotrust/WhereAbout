@@ -176,7 +176,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 res_group_name: 'Species'
             });
             //When panel fires event saying it's all done, we want to process it and move on 
-            this.resSelPanel.on('res-sel-cont', this.finResSelStep.createDelegate(this));
+            this.resSelPanel.on('res-sel-cont', this.finResSelStep, this);
         }
         this.viewport.setWestPanel(this.resSelPanel);    	
     },

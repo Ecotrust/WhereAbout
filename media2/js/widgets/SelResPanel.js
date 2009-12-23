@@ -31,26 +31,16 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
 			]
 		});
 
-		this.res_grp_select = {
-			style: 'margin:10px;margin-left:20px',
-			xtype: 'multiselect',
-			fieldLabel: 'Multiselect<br />(Required)',
-			name: 'multiselect',
-			width: 200,
-			height: 250,
-			valueField:"id",
-			displayField:"name",
-			allowBlank:false,
-			//Should reference a global species store
-			store: new Ext.data.SimpleStore({
-				fields: ['id','name'],
-				idIndex:0,
-				data: [['123','One Hundred Twenty Three'],
-					['1', 'One'], ['2', 'Two'], ['3', 'Three'], ['4', 'Four'], ['5', 'Five'],
-					['6', 'Six'], ['7', 'Seven'], ['8', 'Eight'], ['9', 'Nine']]
-			}),
-			ddReorder: false
-		};
+		var species_store = new Ext.data.SimpleStore({
+			fields: ['id','name'],
+			idIndex:0,
+			data: [['123','Halibut'],  
+				['1', 'Rockfish'], ['2', 'Salmon'], ['3', 'Tuna'], ['4', 'Dungeness Crab'], ['5', 'Rock Crab']]
+		});
+		
+		this.res_grp_select = new gwst.widgets.SpeciesSelect({
+			store: species_store
+		});
 		
         // Call parent (required)
         gwst.widgets.SelResPanel.superclass.initComponent.apply(
@@ -87,8 +77,13 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
 	},
     
     continueBtnClicked: function() {
-        var species_rec = {name:'Salmon',id:4};  //This should come from the species store.
-        this.fireEvent('res-sel-cont',this,species_rec);
+		var species_rec = this.res_grp_select.getValue();
+		if (species_rec == '') {
+			alert('You must select a species before continuing.');
+		} else {
+			this.res_grp_select.reset();
+			this.fireEvent('res-sel-cont',this,species_rec);
+		}
     }
 });
  

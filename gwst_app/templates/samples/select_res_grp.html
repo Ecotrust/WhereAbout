@@ -13,13 +13,16 @@
 <script type="text/javascript" src="{{MEDIA_URL}}third-party/ext-ux/multiselect/MultiSelect.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}third-party/ext-ux/multiselect/DDView.js"></script>
 <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/WestPanel.js"></script>
-<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SelectResGrpPanel.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SpeciesSelect.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SelResPanel.js"></script>
 <script type="text/javascript">
 Ext.onReady(function() {
 	var res_group_name = 'Species';
 	var user_group = 'diver';
 	var contact_address = 'fish@ecotrust.org';
-	var p = new gwst.widgets.SelectResGrpPanel({
+	
+		
+	var p = new gwst.widgets.SelResPanel({
         renderTo: 'panel-basic',    		
 		res_group_name: res_group_name,
 		user_group: user_group,
