@@ -19,7 +19,10 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 			title: '4. Allocate Pennies',
 			bbar: [
 				{xtype:'tbfill'},
-				{text: '<< Go Back'},
+				{
+                    text: '<< Go Back',
+                    handler: this.backBtnClicked.createDelegate(this)
+                },
 				{xtype:'tbseparator'},
 				{
                     text: 'Continue >>',

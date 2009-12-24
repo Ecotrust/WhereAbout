@@ -125,7 +125,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Cleanup allocation help step
      */
     finAllocStep: function() {
-        this.startPennyAllocStep();
+        this.startPennyStep();
     },
     
     /*
@@ -140,22 +140,22 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /*
      * Setup UI for penny allocation step
      */
-    startPennyAllocStep: function() {
+    startPennyStep: function() {
         this.loadPennyPanel();
     },
     
     /*
      * Process penny allocation step
      */
-    finPennyAllocStep: function() {
-        alert('Foo!');
+    finPennyStep: function() {
+        this.startResSelStep();
     },
     
     /*
      * Go back from penny allocation to resource drawing
      */
-    backPennyAllocStep: function() {
-        this.loadAllocPanel();
+    backPennyStep: function() {
+        this.startAllocStep();
     },
     
     /*
