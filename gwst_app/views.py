@@ -739,27 +739,22 @@ def reset_interview(request, id):
     survey_status = InterviewStatus.objects.filter(user=request.user, interview__id=id)
     survey_status.delete()
     return HttpResponseRedirect('/')        
-    
-@login_required
-def GetUser(request):
-    if request.user.is_authenticated():
-        user = request.user
-        retUser = {}
-        retUser["name"] = user.first_name + " " + user.last_name
-        retUser["email"] = user.email
-        retUser["username"] = user.username
-        retUser['is_staff'] = user.is_staff    
-        return HttpResponse(geojson_encode(retUser), mimetype='text/javascript')
-    else:
-        return HttpResponseBadRequest('user is not authenticated')        
 
 @login_required
-def group_draw_settings(request, id) :
+def draw_settings(request, id) :
     interview = request.session['interview']
     int_group = InterviewGroup.objects.get(pk=id)
     group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=id )
     resources = Resource.objects.filter(groupmemberresource__group_membership=group_memb).values('id','name')    
     result = {}
+    
+    #User settings
+    result['user'] = {
+        'name': request.user.first_name+" "+request.user.last_name,
+        'email': request.user.email,
+        'username': request.user.username,
+        'is_staff': request.user.is_staff
+    } 
     
     #Interview settings
     result['interview'] = {

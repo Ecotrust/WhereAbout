@@ -1,35 +1,26 @@
 Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
-    
-	mapRegion: null,	//Current region map is focused on
+    //Default properties can defined here and overriden by config object passed to contructor
 	
-    // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
-    	// Constructor, config object already applied to 'this' so properties can 
-		// be created and added/overridden here: Ext.apply(this, {});
-		
-	    var extent = new OpenLayers.Bounds(-5, 35, 15, 55);
-	
-        var options = {
+    	//Constructor config object already applied by now.  Properties can be added/overridden using Ext.apply	
+
+		//Map region
+		var region = gwst.settings.region;	    
+	    var map_extent = new OpenLayers.Bounds(region.w_bound,region.s_bound,region.e_bound,region.n_bound)
+	    
+	    //Map base options
+        var map_options = {
 			controls: [],
             projection: new OpenLayers.Projection("EPSG:900913"),
             units: "m",
             numZoomLevels: 18,
             maxResolution: 156543.0339,
-            maxExtent: new OpenLayers.Bounds(-20037508, -20037508,
-                                             20037508, 20037508.34)
-        };
+            maxExtent: map_extent,
+        };        
 
-        var baseLayer = new OpenLayers.Layer.Google(
-            "Google Satellite",
-            {type: G_SATELLITE_MAP, sphericalMercator: true}
-        );
-
-        extent.transform(
-            new OpenLayers.Projection("EPSG:4326"), options.projection
-        );	
-
+        //Map vector style
         var styleMap = new OpenLayers.StyleMap({
             'default': new OpenLayers.Style({
                 fillColor: 'orange',
@@ -68,13 +59,24 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                 strokeColor: 'orange',
                 strokeOpacity: 1
             })
-        });
-        
+        });	    
+	    
+	    //Map base layers
+        var baseLayer = new OpenLayers.Layer.Google(
+            "Google Satellite",
+            {
+            	type: G_HYBRID_MAP, 
+            	sphericalMercator: true,
+            	minZoomLevel: 6, 
+            	maxZoomLevel: 13
+            }
+        );             
         this.vectorLayer = new OpenLayers.Layer.Vector('mlpaFeatures',{
             styleMap: styleMap
         });                
         
-	    map = new OpenLayers.Map(options);
+        //Create the map and dump everything in
+	    map = new OpenLayers.Map(map_options);
 		map.addControl(new OpenLayers.Control.Navigation());		
 		map.addControl(new gwst.controls.gwstPanZoom());
 		map.addControl(new OpenLayers.Control.MousePosition());
@@ -84,14 +86,13 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                 featureAdded: this.resDrawn.createDelegate(this)
             }
         );
-       	map.addControl(this.drawResControl);		
-				
+       	map.addControl(this.drawResControl);		       	       	
 		Ext.apply(this, {
 		    map: map,
 		    layers: [baseLayer, this.vectorLayer],
-		    extent: extent
-		});    
-    
+		    extent: map_extent
+		});    		
+		
         // Call parent (required)
 		gwst.widgets.ResDrawMapPanel.superclass.initComponent.call(this);
     },

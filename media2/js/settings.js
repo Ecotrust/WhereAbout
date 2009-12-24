@@ -14,9 +14,15 @@ gwst.settings = {
     equalAreaProjection: new OpenLayers.Projection("EPSG:3310"),
 
     //Loaded from server at runtime
-    interview: null, 	//interview level settings
+    user: null,			//user settings
+    interview: null, 	//interview settings
+    group: null, 		//group settings
+    region: null,		//region settings
+
+    //Should be removed, provided by group object
     survey_group_id: null,
     survey_group_name: null,
+    
     resourceStore: null     //Ext data store of available resources
 };
 
@@ -25,7 +31,7 @@ gwst.settings.urls = {
 	group_resources: '/group_resources/',
 	validate_shape: '/validate_shape/',
 	region: '/region/',
-    group_draw_settings: '/group_draw_settings/'    //URL to fetch runtime settings
+    group_draw_settings: '/draw_settings/'    //URL to fetch runtime settings
 };
 
 /*

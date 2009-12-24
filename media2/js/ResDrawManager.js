@@ -16,8 +16,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 
     constructor: function(){
         gwst.ResDrawManager.superclass.constructor.call(this);
-        this.addEvents('user-loaded');
-        this.addEvents('resources-loaded');
+        this.addEvents('settings-loaded');
         this.addEvents('res-shapes-loaded');
         this.mapPanelListeners = {
         		'render': this.mapPanelCreated.createDelegate(this),
@@ -25,14 +24,19 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         };
     },
 
-    /* Get this thing started */
-    init: function(){   
-    	this.loadViewport();
-        this.fetchUser();
-        this.fetchGroupDrawSettings();
-        this.startSplashStep();
+    /* Fetch server side settings and initialize the interface
+     * once loaded
+     */
+    startInit: function(){
+    	this.on('settings-loaded', this.finInit, this);    	
+        this.fetchSettings();
+        this.startSplashStep();        
     },               
 
+    finInit: function() {
+    	this.loadViewport();    	
+    },
+    
     /******************** Top-level survey step handlers *******************/
     
     startSplashStep: function() {
@@ -338,84 +342,30 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
          });
     },
         
-    
     /******************** Server Operations ********************/
-    
-    /* Fetch user object from server */
-    fetchUser: function() {
-        Ext.Ajax.request({
-           url: gwst.settings.urls.user,
-           disableCachingParam: true,
-           scope: this,
-           success: this.intUser,
-           failure: function(response, opts) {
-              console.log('User request failed: ' + response.status);
-           }
-        });		
-    },
-    
-    /* Process user fetched from server */
-    initUser: function(response, opts) {
-        var user_obj = Ext.decode(response.responseText);
-        if (user_obj) {
-            this.fireEvent('res-groups-loaded', user_obj);
-        }
-    },
 
     /* Fetch interview info for current user group including resources,
      * region and common terms
      */
-    fetchGroupDrawSettings: function() {
+    fetchSettings: function() {
         Ext.Ajax.request({
            url: gwst.settings.urls.group_draw_settings+gwst.settings.survey_group_id+'/json',
            disableCachingParam: true,
            scope: this,
-           success: this.initGroupDrawSettings,
+           success: this.initSettings,
            failure: function(response, opts) {
-              console.log('Res group request failed: ' + response.status);
+              console.error('Res group request failed: ' + response.status);
            }
         });		
     },
     
-    initGroupDrawSettings: function(response, opts) {
-        var config = Ext.decode(response.responseText);        
-        //Load interview
-        if (config.interview) {
-        	gwst.settings.interview = config.interview;
-        } else {
-        	console.error('Interview settings not provided by server');
-        }
-        
-        //Load user group
-        if (config.group) {
-        	gwst.settings.group = config.group;
-            //Load resources
-            var res_fields = [
-                {name: 'id', type: 'float'},
-                {name: 'name'}
-            ]
-            var Resource = Ext.data.Record.create(res_fields);
-            var reader = new Ext.data.JsonReader(
-                {id: 'id'}, 
-                Resource
-            );
-            console.log(reader.readRecords(config.group.sel_resources));
-            gwst.settings.resourceStore = new Ext.data.Store({
-                reader:  reader
-            });                           
-            gwst.settings.resourceStore.loadData(config.group.sel_resources);
-            console.log(gwst.settings.resourceStore.getTotalCount());                    	
-        } else {
-            console.error('Group settings not provided by server');
-        }
-        
-        //Load region
-        if (config.region) {
-        	gwst.settings.region = config.region;
-            this.mapPanel.zoomToMapRegion(config.region);
-        } else {
-            console.error('Region settings not provided by server');
-        }       
+    initSettings: function(response, opts) {
+        var settings_obj = Ext.decode(response.responseText);        
+        //Update local settings
+        Ext.apply(gwst.settings, settings_obj);
+
+        this.loadResourceStore(gwst.settings.group.sel_resources);        
+        this.fireEvent('settings-loaded');      
     },
     
     clipGeometry: function(config) {
@@ -509,5 +459,24 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             type: 'POST',
             url: '/save_shape/'
          });                	
+    },
+    
+    /******************** Utility Methods ********************/
+    
+    loadResourceStore: function(resources) {
+        //Initialize resource store
+        var Resource = Ext.data.Record.create([
+	       {name: 'id', type: 'float'},
+	       {name: 'name'}
+	   ]);
+        var reader = new Ext.data.JsonReader(
+            {id: 'id'}, 
+            Resource
+        );
+        gwst.settings.resourceStore = new Ext.data.Store({
+            reader:  reader
+        });                           
+        gwst.settings.resourceStore.loadData(resources);
     }
+    
 });

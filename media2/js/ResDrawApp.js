@@ -11,7 +11,7 @@ gwst.ResDrawApp = Ext.extend(Ext.util.Observable, {
 
     init: function(){           		
 		this.draw_manager = new gwst.ResDrawManager();
-		this.draw_manager.init();		        	        
+		this.draw_manager.startInit();		        	        
     }	
 });
 	
