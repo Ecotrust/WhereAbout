@@ -29,8 +29,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     init: function(){   
     	this.loadViewport();
         this.fetchUser();
-        this.fetchResources();
-        this.fetchRegion();
+        this.fetchGroupDrawSettings();
         this.startSplashStep();
     },               
 
@@ -360,49 +359,48 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.fireEvent('res-groups-loaded', user_obj);
         }
     },
-    
-    /* Fetch resources from the server */
-    fetchResources: function() {
+
+    /* Fetch interview info for current user group including resources,
+     * region and common terms
+     */
+    fetchGroupDrawSettings: function() {
         Ext.Ajax.request({
-           url: gwst.settings.urls.group_resources+gwst.settings.survey_group_id,
+           url: gwst.settings.urls.group_draw_settings+gwst.settings.survey_group_id+'/json',
            disableCachingParam: true,
            scope: this,
-           success: this.initResources,
+           success: this.initGroupDrawSettings,
            failure: function(response, opts) {
               console.log('Res group request failed: ' + response.status);
            }
         });		
     },
     
-    /* Process resources fetched from server */
-    initResources: function(response, opts) {
-        var resources_obj = Ext.decode(response.responseText);
-        if (resources_obj) {
-            this.fireEvent('resources-loaded', resources_obj);
-            //Load resource data store
+    initGroupDrawSettings: function(response, opts) {
+        var config = Ext.decode(response.responseText);        
+        if (config.region) {            
+            this.mapPanel.zoomToMapRegion(config.region);
+        } else {
+            console.error('Region not provided by server');
+        }
+        if (config.resources) {
+            var res_fields = [
+                {name: 'id', type: 'float'},
+                {name: 'name'}
+            ]
+            var Resource = Ext.data.Record.create(res_fields);
+            var reader = new Ext.data.JsonReader(
+                {id: 'id'}, 
+                Resource
+            );
+            console.log(reader.readRecords(config.resources));
+            gwst.settings.resourceStore = new Ext.data.Store({
+                reader:  reader
+            });                           
+            gwst.settings.resourceStore.loadData(config.resources);
+            console.log(gwst.settings.resourceStore.getTotalCount());
+            
         }
     },
-
-    /* Fetch resources from the server */
-    fetchRegion: function() {
-        Ext.Ajax.request({
-           url: gwst.settings.urls.region,
-           disableCachingParam: true,
-           scope: this,
-           success: this.initRegion,
-           failure: function(response, opts) {
-              console.log('Study region request failed: ' + response.status);
-           }
-        });		
-    },
-    
-    /* Process resources fetched from server */
-    initRegion: function(response, opts) {
-        var region_obj = Ext.decode(response.responseText);
-        if (region_obj) {
-            this.mapPanel.zoomToMapRegion(region_obj);
-        }
-    },    
     
     clipGeometry: function(config) {
     	Ext.Ajax.request({
@@ -428,7 +426,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	        },
 	        failure: function(response, opts){
 	            //Hide wait message
-	            config.fail.(response, opts);
+	            config.fail(response, opts);
 	        }
 	    });
     },

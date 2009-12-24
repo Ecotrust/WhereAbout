@@ -32,7 +32,6 @@ urlpatterns = patterns('',
     (r'^answer_resource_questions/(\d+)/$', answer_resource_questions ),
     (r'^review_resource_questions/(\d+)/$', answer_resource_questions, {'next_url': '/group_status/'} ),
 
-    (r'^group_resources/(\d+)/$', group_resources ),	
     (r'^select_group_resources/(\d+)/$', select_group_resources ),
 	(r'^draw_group_resources/(\d+)/$', draw_group_resources ),
 	
@@ -45,7 +44,7 @@ urlpatterns = patterns('',
     (r'^finalize_interview/(\d+)/$', finalize_interview ),
     (r'^reset_interview/(\d+)/$', reset_interview ),
     
-    (r'^region/$', region ),
+    (r'^group_draw_settings/(\d+)/json/$', group_draw_settings),
     (r'^validate_shape/$', validate_shape ),
     (r'^save_shape/$', save_shape ),
     (r'^user/$', GetUser ),

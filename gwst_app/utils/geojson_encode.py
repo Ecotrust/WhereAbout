@@ -57,4 +57,4 @@ def geojson_encode(data):
     
     ret = _any(data)
     
-    return json.dumps(ret, cls=DateTimeAwareJSONEncoder)
+    return json.dumps(ret, cls=DateTimeAwareJSONEncoder, indent=4)

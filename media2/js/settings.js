@@ -8,20 +8,23 @@ Ext.namespace('gwst');
 */
 
 gwst.settings = {
-    survey_group_id: null,
-    survey_group_name: null,
     adminEmail: 'fish@ecotrust.org',
-    identifyBboxRadius: 500,
     displayProjection: new OpenLayers.Projection("EPSG:900913"),
     unusedProjection: new OpenLayers.Projection("EPSG:4326"),
-    equalAreaProjection: new OpenLayers.Projection("EPSG:3310")
+    equalAreaProjection: new OpenLayers.Projection("EPSG:3310"),
+
+    //Loaded from server at runtime
+    survey_group_id: null,
+    survey_group_name: null,
+    resourceStore: null     //Ext data store of available resources
 };
 
 gwst.settings.urls = {
     user: '/user/',
 	group_resources: '/group_resources/',
 	validate_shape: '/validate_shape/',
-	region: '/region/'
+	region: '/region/',
+    group_draw_settings: '/group_draw_settings/'    //URL to fetch runtime settings
 };
 
 /*

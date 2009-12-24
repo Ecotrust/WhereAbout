@@ -1,1 +1,1 @@
-dropdb -U postgres gwst
+dropdb -U postgres gwst-or-rec

@@ -364,18 +364,6 @@ def answer_questions(request,group_id):
     return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))     
     
 
-#Given an interview group, returns the resources the user has selected
-@login_required
-def group_resources(request, group_id):
-    try:
-        group = InterviewGroup.objects.get(pk=group_id)
-        group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=group_id )
-        #Query select resources for the given group
-        sel_resources = Resource.objects.filter(groupmemberresource__group_membership=group_memb)
-        return HttpResponse(geojson_encode(sel_resources), mimetype='text/javascript')
-    except ObjectDoesNotExist:
-        return render_to_response( '404.html', RequestContext(request,{}))		
-	
 @login_required
 def select_group_resources(request, group_id):
     # make sure the user has a valid session in-progress
@@ -765,17 +753,19 @@ def GetUser(request):
     else:
         return HttpResponseBadRequest('user is not authenticated')        
 
-def region(request):
-    cur_region = request.session['interview'].region
-    result = {
-        'name': cur_region.name,
-        'w_bound': cur_region.w_bound,
-        's_bound': cur_region.s_bound,
-        'e_bound': cur_region.e_bound,
-        'n_bound': cur_region.n_bound
-    }
-    return HttpResponse(geojson_encode(result), mimetype='application/json')
-
+@login_required
+def group_draw_settings(request, id) :
+    int_group = InterviewGroup.objects.get(pk=id)
+    result = {}
+    result['region'] = request.session['interview'].region
+    
+    group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=id )
+    resources = Resource.objects.filter(groupmemberresource__group_membership=group_memb).values('id','name')
+    result['resources'] = resources
+    
+    #Change to json mimetype
+    return HttpResponse(geojson_encode(result), mimetype='text/plain')
+        
 def get_user_shapes(request):
     resource_shapes = InterviewShape.objects.filter(user=request.user)
     return HttpResponse(geojson_encode(resource_shapes), mimetype='application/json')    

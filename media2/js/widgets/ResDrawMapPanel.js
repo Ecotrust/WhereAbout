@@ -81,7 +81,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         this.drawResControl = new OpenLayers.Control.DrawFeature(
             this.vectorLayer, 
             OpenLayers.Handler.Polygon, {
-                featureAdded: this.resDrawn.createDelegate(this),
+                featureAdded: this.resDrawn.createDelegate(this)
             }
         );
        	map.addControl(this.drawResControl);		
