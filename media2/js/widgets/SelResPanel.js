@@ -39,16 +39,9 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
             autoDestroy: false,
 			bbar: bToolbar
 		});
-
-		var species_store = new Ext.data.SimpleStore({
-			fields: ['id','name'],
-			idIndex:0,
-			data: [['123','Halibut'],  
-				['1', 'Rockfish'], ['2', 'Salmon'], ['3', 'Tuna'], ['4', 'Dungeness Crab'], ['5', 'Rock Crab']]
-		});
-		
+        
 		this.res_grp_select = new gwst.widgets.SpeciesSelect({
-			store: species_store
+			store: gwst.settings.resourceStore
 		});
 		
         // Call parent (required)
