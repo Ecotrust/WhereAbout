@@ -107,6 +107,10 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     	//Show cancel/redo toolbar
     },
     
+    disableResDraw: function() {
+        this.drawResControl.deactivate();
+    },
+    
     resDrawn: function(feature, opts) {
     	this.fireEvent('res-shape-drawn', feature.geometry);
     },

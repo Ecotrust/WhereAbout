@@ -103,6 +103,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     finDrawStep: function() {
         //this.mapPanel.disableResDraw();  //Turn off drawing?
         this.drawToolWin.hide();
+        this.mapPanel.disableResDraw();
         this.startAllocStep();
     },
     
@@ -111,6 +112,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     backDrawStep: function() {
         this.drawToolWin.hide();
+        this.mapPanel.disableResDraw();
         this.loadNavPanel();    
     },
     
