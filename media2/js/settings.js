@@ -14,6 +14,7 @@ gwst.settings = {
     equalAreaProjection: new OpenLayers.Projection("EPSG:3310"),
 
     //Loaded from server at runtime
+    interview: null, 	//interview level settings
     survey_group_id: null,
     survey_group_name: null,
     resourceStore: null     //Ext data store of available resources

@@ -377,12 +377,17 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     initGroupDrawSettings: function(response, opts) {
         var config = Ext.decode(response.responseText);        
-        if (config.region) {            
-            this.mapPanel.zoomToMapRegion(config.region);
+        //Load interview
+        if (config.interview) {
+        	gwst.settings.interview = config.interview;
         } else {
-            console.error('Region not provided by server');
+        	console.error('Interview settings not provided by server');
         }
-        if (config.resources) {
+        
+        //Load user group
+        if (config.group) {
+        	gwst.settings.group = config.group;
+            //Load resources
             var res_fields = [
                 {name: 'id', type: 'float'},
                 {name: 'name'}
@@ -392,14 +397,23 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 {id: 'id'}, 
                 Resource
             );
-            console.log(reader.readRecords(config.resources));
+            console.log(reader.readRecords(config.group.sel_resources));
             gwst.settings.resourceStore = new Ext.data.Store({
                 reader:  reader
             });                           
-            gwst.settings.resourceStore.loadData(config.resources);
-            console.log(gwst.settings.resourceStore.getTotalCount());
-            
+            gwst.settings.resourceStore.loadData(config.group.sel_resources);
+            console.log(gwst.settings.resourceStore.getTotalCount());                    	
+        } else {
+            console.error('Group settings not provided by server');
         }
+        
+        //Load region
+        if (config.region) {
+        	gwst.settings.region = config.region;
+            this.mapPanel.zoomToMapRegion(config.region);
+        } else {
+            console.error('Region settings not provided by server');
+        }       
     },
     
     clipGeometry: function(config) {

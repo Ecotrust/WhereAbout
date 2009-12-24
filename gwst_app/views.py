@@ -755,15 +755,31 @@ def GetUser(request):
 
 @login_required
 def group_draw_settings(request, id) :
+    interview = request.session['interview']
     int_group = InterviewGroup.objects.get(pk=id)
-    result = {}
-    result['region'] = request.session['interview'].region
-    
     group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=id )
-    resources = Resource.objects.filter(groupmemberresource__group_membership=group_memb).values('id','name')
-    result['resources'] = resources
+    resources = Resource.objects.filter(groupmemberresource__group_membership=group_memb).values('id','name')    
+    result = {}
     
-    #Change to json mimetype
+    #Interview settings
+    result['interview'] = {
+		'resource_name': interview.resource_name,
+	    'resource_name_plural': interview.resource_name_plural,
+    	'resource_action': interview.resource_action,
+        'shape_name': interview.shape_name
+    }
+    
+    #Group settings
+    result['group'] = {
+        'name': int_group.name,
+        'description': int_group.description,
+        'sel_resources': resources
+    }
+    
+    #Region settings
+    result['region'] = interview.region
+    
+    #Change to json mimetype!!!!!!!!
     return HttpResponse(geojson_encode(result), mimetype='text/plain')
         
 def get_user_shapes(request):
