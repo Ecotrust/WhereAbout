@@ -1,7 +1,5 @@
 Ext.namespace('gwst', 'gwst.widgets');
 
-
-
 gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'navigate-panel',
 	resource: 'unknown',
@@ -10,13 +8,23 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     initComponent: function(){
         // Constructor, config object already applied to 'this' so properties can 
         // be created and added/overridden here: Ext.apply(this, {});
+		
+		this.addEvents('nav-cont');
+        this.addEvents('nav-back');
+		
 		Ext.apply(this, {
 			title: '2. Navigate The Map',
 			bbar: [
 				{xtype:'tbfill'},
-				{text: '<< Go Back'},
+				{
+                    text: '<< Go Back',
+                    handler: this.backBtnClicked.createDelegate(this)
+                },
 				{xtype:'tbseparator'},
-				{text: 'Continue >>'}
+				{
+					text: 'Continue >>',
+                    handler: this.continueBtnClicked.createDelegate(this)
+				}
 			]
 		});
 		
@@ -65,8 +73,16 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		};
 		this.add(inner_panel);
-	}
+	},
+    
+    backBtnClicked: function() {
+        this.fireEvent('nav-back',this);
+    },
+    
+	continueBtnClicked: function() {
+		this.fireEvent('nav-cont',this,this.resource);
+    }
 });
  
 // register xtype to allow for lazy initialization
-Ext.reg('navigate-panel', gwst.widgets.NavigatePanel);
+Ext.reg('gwst-navigate-panel', gwst.widgets.NavigatePanel);

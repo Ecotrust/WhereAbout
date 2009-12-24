@@ -17,18 +17,27 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
         // be created and added/overridden here: Ext.apply(this, {});
 
         this.addEvents('res-sel-cont');
+        this.addEvents('res-sel-back');
 		
-		Ext.apply(this, {
-			title: '1. Select a '+this.res_group_name,			
-			bbar: [
+        var bToolbar = new Ext.Toolbar({
+            items: [
 				{xtype:'tbfill'},
-				{text: '<< Go Back'},
+				{
+                    text: '<< Go Back',
+                    handler: this.backBtnClicked.createDelegate(this)
+                },
 				{xtype:'tbseparator'},
 				{
                     text: 'Continue >>',
                     handler: this.continueBtnClicked.createDelegate(this)
                 }
 			]
+        });
+        
+		Ext.apply(this, {
+			title: '1. Select a '+this.res_group_name,
+            autoDestroy: false,
+			bbar: bToolbar
 		});
 
 		var species_store = new Ext.data.SimpleStore({
@@ -75,6 +84,10 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
 		this.add(inner_panel);
 		this.add(this.res_grp_select);
 	},
+    
+    backBtnClicked: function() {
+        this.fireEvent('res-sel-back',this);
+    },
     
     continueBtnClicked: function() {
 		var species_rec = this.res_grp_select.getValue();

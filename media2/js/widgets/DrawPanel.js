@@ -11,12 +11,16 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         // be created and added/overridden here: Ext.apply(this, {});
 
         this.addEvents('draw-cont');        
+        this.addEvents('draw-back');        
         
 		Ext.apply(this, {
 			title: '3. Draw',
 			bbar: [
 				{xtype:'tbfill'},
-				{text: '<< Go Back'},
+				{
+                    text: '<< Go Back',
+                    handler: this.backBtnClicked.createDelegate(this)
+                },
 				{xtype:'tbseparator'},
 				{
                     text: 'Continue >>',
@@ -65,8 +69,11 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
 		this.add(inner_panel);
 	},
     
+    backBtnClicked: function() {
+        this.fireEvent('draw-back',this);
+    },
+    
     continueBtnClicked: function() {
-        alert('Foo!');
         this.fireEvent('draw-cont',this);
     }    
 });

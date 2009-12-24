@@ -54,57 +54,110 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     /* 
-     * Process resource selection and go to drawing instructions 
+     * Process resource selection and go to Navigation instructions 
      */
     finResSelStep: function(obj, resource_rec) {
         this.curResource = resource_rec;
-        this.startDrawStep();
+        this.startNavStep();
     },
     
     /*
      * Go back from resource selection to splash
      */
-    backResSelStep: function(){},
+    backResSelStep: function(){
+         this.loadSplash();
+    },
     
-    startDrawInstructStep: function() {},    
-    finDrawInstructStep: function() {},
-    backDrawInstructStep: function() {},    
+	/*
+	 * setup the navigation step
+	 */
+    startNavStep: function() {
+        this.loadNavPanel();
+	},    
+	
+	/*
+	 * Finish navigation and go to Draw Step
+	 */
+    finNavStep: function() {
+        this.startDrawStep();
+	},
+	
+	/*
+	 * Go back from the navigation step to resource selection
+	 */
+    backNavStep: function() {
+        this.loadResSelPanel();
+	},    
     
     /* 
      * Setup UI for resource drawing step 
      */
     startDrawStep: function() {
-    	this.loadDrawPanel();        
+        this.loadDrawPanel();        
         this.mapPanel.enableResDraw(); //Turn on drawing
-		this.loadDrawToolWin();
+        this.loadDrawToolWin();
     },
        
     /*
      * Process and finish draw step
      */
     finDrawStep: function() {
-        console.error('Need to implement Allocation');
+        //this.mapPanel.disableResDraw();  //Turn off drawing?
+        this.drawToolWin.hide();
+        this.startAllocStep();
     },
     
     /*
      * Go back from draw step to resource selection
      */
-    backDrawStep: function() {},
+    backDrawStep: function() {
+        this.drawToolWin.hide();
+        this.loadNavPanel();    
+    },
+    
+    /*
+     * show basic instructions for penny use
+     */
+    startAllocStep: function() {
+        this.loadAllocPanel();
+    },
+    
+    /*
+     * Cleanup allocation help step
+     */
+    finAllocStep: function() {
+        this.startPennyAllocStep();
+    },
+    
+    /*
+     * Go back from allocation to resource drawing
+     */
+    backAllocStep: function() {
+        this.loadDrawPanel();        
+        this.mapPanel.enableResDraw(); //Turn on drawing
+        this.loadDrawToolWin();
+    },
     
     /*
      * Setup UI for penny allocation step
      */
-    startPennyAllocStep: function() {},
+    startPennyAllocStep: function() {
+        this.loadPennyPanel();
+    },
     
     /*
      * Process penny allocation step
      */
-    finPennyAllocStep: function() {},
+    finPennyAllocStep: function() {
+        alert('Foo!');
+    },
     
     /*
      * Go back from penny allocation to resource drawing
      */
-    backPennyAllocStep: function() {},
+    backPennyAllocStep: function() {
+        this.loadAllocPanel();
+    },
     
     /*
      * Process completion of drawing phase
@@ -177,8 +230,21 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.resSelPanel.on('res-sel-cont', this.finResSelStep, this);
+            this.resSelPanel.on('res-sel-back', this.backResSelStep, this);
         }
         this.viewport.setWestPanel(this.resSelPanel);    	
+    },
+	
+    loadNavPanel: function() {
+        if (!this.navPanel) {
+            this.navPanel = new gwst.widgets.NavigatePanel({
+                xtype: 'gwst-navigate-panel',
+                resource: this.curResource
+            });
+            this.navPanel.on('nav-cont', this.finNavStep, this);
+            this.navPanel.on('nav-back', this.backNavStep, this);
+        }
+        this.viewport.setWestPanel(this.navPanel);    	
     },
     
     /* Load the draw west panel */
@@ -186,10 +252,11 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.drawPanel) {
             this.drawPanel = new gwst.widgets.DrawPanel({
                 xtype: 'gwst-draw-panel',
-                resource: this.curResource.name
+                resource: this.curResource
             });
             //When panel fires event saying it's all done, we want to process it and move on 
-            this.drawPanel.on('draw-cont', this.finDrawStep.createDelegate(this));
+            this.drawPanel.on('draw-cont', this.finDrawStep, this);
+            this.drawPanel.on('draw-back', this.backDrawStep, this);            
         }
         this.viewport.setWestPanel(this.drawPanel);    	
     },
@@ -204,6 +271,35 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 		this.drawToolWin.show();		
 		this.drawToolWin.alignTo(document.body, "tl-tl", this.drawToolWinOffset);    	
     },
+    
+     /* Load the alloc west panel */
+    loadAllocPanel: function() {
+    	if (!this.allocPanel) {
+            this.allocPanel = new gwst.widgets.AllocPanel({
+                xtype: 'gwst-alloc-panel',
+                resource: this.curResource
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.allocPanel.on('alloc-cont', this.finAllocStep, this);
+            this.allocPanel.on('alloc-back', this.backAllocStep, this);
+        }
+        this.viewport.setWestPanel(this.allocPanel);    	
+    },
+    
+    /* Load the penny allocation west panel */
+    loadPennyPanel: function() {
+    	if (!this.pennyPanel) {
+            this.pennyPanel = new gwst.widgets.PennyPanel({
+                xtype: 'gwst-penny-panel',
+                resource: this.curResource
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.pennyPanel.on('penny-cont', this.finPennyStep, this);
+            this.pennyPanel.on('penny-back', this.backPennyStep, this);
+        }
+        this.viewport.setWestPanel(this.pennyPanel);    	
+    },
+    
     
     /******************** Event Handlers ********************/
 

@@ -9,13 +9,22 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
         // Constructor, config object already applied to 'this' so properties can 
         // be created and added/overridden here: Ext.apply(this, {});
 
+        this.addEvents('alloc-cont');
+        this.addEvents('alloc-back');
+        
 		Ext.apply(this, {
 			title: '4. Allocate Pennies',
 			bbar: [
 				{xtype:'tbfill'},
-				{text: '<< Go Back'},
+				{
+                    text: '<< Go Back',
+                    handler: this.backBtnClicked.createDelegate(this)
+                },
 				{xtype:'tbseparator'},
-				{text: 'Continue >>'}
+				{
+                    text: 'Continue >>',
+                    handler: this.continueBtnClicked.createDelegate(this)
+                }
 			]
 		});
 		
@@ -46,8 +55,16 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		};
 		this.add(inner_panel);
-	}
+	},
+    
+    backBtnClicked: function() {
+        this.fireEvent('alloc-back',this);
+    },
+    
+    continueBtnClicked: function() {
+        this.fireEvent('alloc-cont',this);
+    }
 });
  
 // register xtype to allow for lazy initialization
-Ext.reg('alloc-panel', gwst.widgets.AllocPanel);
+Ext.reg('gwst-alloc-panel', gwst.widgets.AllocPanel);

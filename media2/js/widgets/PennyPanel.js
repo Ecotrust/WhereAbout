@@ -12,13 +12,19 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         // Constructor, config object already applied to 'this' so properties can 
         // be created and added/overridden here: Ext.apply(this, {});
 
+        this.addEvents('penny-cont');
+        this.addEvents('penny-back');
+        
 		Ext.apply(this, {
 			title: '4. Allocate Pennies',
 			bbar: [
 				{xtype:'tbfill'},
 				{text: '<< Go Back'},
 				{xtype:'tbseparator'},
-				{text: 'Continue >>'}
+				{
+                    text: 'Continue >>',
+                    handler: this.continueBtnClicked.createDelegate(this)
+                }
 			]
 		});
 		
@@ -101,8 +107,16 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 		this.add(inner_panel);
 		this.add(nav_panel);
 		this.add(shape_grid);
-	}
+	},
+    
+    backBtnClicked: function() {
+        this.fireEvent('penny-back',this);
+    },
+    
+    continueBtnClicked: function() {
+        this.fireEvent('penny-cont',this);
+    }
 });
  
 // register xtype to allow for lazy initialization
-Ext.reg('penny-panel', gwst.widgets.PennyPanel);
+Ext.reg('gwst-penny-panel', gwst.widgets.PennyPanel);

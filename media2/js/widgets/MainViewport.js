@@ -23,7 +23,7 @@ gwst.widgets.MainViewport = Ext.extend(Ext.Viewport, {
                 width: 300,
                 id: 'west-panel-container',
                 collapsed: false,
-                layout: 'fit'
+                layout: 'anchor'
             }]        
 		});
 
@@ -37,13 +37,21 @@ gwst.widgets.MainViewport = Ext.extend(Ext.Viewport, {
     
     setWestPanel: function(panel) {        
         var westPanelContainer = Ext.getCmp('west-panel-container');
-        //Remove west panel if there already is one
+        // Remove west panel if there already is one
         if (this.curWestPanel) {
-            westPanelContainer.remove(this.curWestPanel);
+           //westPanelContainer.remove(this.curWestPanel);
+           this.curWestPanel.hide();
         }
-        westPanelContainer.add(panel);
+        
+        if (!panel.loaded) {
+            westPanelContainer.add(panel);     
+            panel.loaded = true;
+        }    
+        
         this.curWestPanel = panel;
+        this.curWestPanel.show();
         westPanelContainer.doLayout();
+        
     }
 });
  
