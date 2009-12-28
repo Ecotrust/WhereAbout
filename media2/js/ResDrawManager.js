@@ -59,8 +59,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /* 
      * Process resource selection and go to Navigation instructions 
      */
-    finResSelStep: function(obj, resource_rec) {
-        this.curResource = resource_rec;
+    finResSelStep: function(obj, resource_id) {
+        this.curResource = gwst.settings.resourceStore.getById(resource_id);
         this.startNavStep();
     },
     
@@ -231,7 +231,12 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.resSelPanel) {
             this.resSelPanel = new gwst.widgets.SelResPanel({
                 xtype: 'gwst-sel-res-panel',
-                res_group_name: 'Species'
+                res_group_name: gwst.settings.interview.resource_name,
+                plural_res_group_name: gwst.settings.interview.resource_name_plural,
+                user_group: gwst.settings.group.member_title,
+                action: gwst.settings.interview.resource_action,
+                shape_name: gwst.settings.interview.shape_name,
+                contact_address: gwst.settings.adminEmail
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.resSelPanel.on('res-sel-cont', this.finResSelStep, this);
@@ -244,7 +249,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         if (!this.navPanel) {
             this.navPanel = new gwst.widgets.NavigatePanel({
                 xtype: 'gwst-navigate-panel',
-                resource: this.curResource
+                resource: this.curResource.data.name,
+                shape_name: gwst.settings.interview.shape_name
             });
             this.navPanel.on('nav-cont', this.finNavStep, this);
             this.navPanel.on('nav-back', this.backNavStep, this);
@@ -257,7 +263,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.drawPanel) {
             this.drawPanel = new gwst.widgets.DrawPanel({
                 xtype: 'gwst-draw-panel',
-                resource: this.curResource
+                resource: this.curResource.data.name,
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.drawPanel.on('draw-cont', this.finDrawStep, this);
@@ -282,7 +291,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.allocPanel) {
             this.allocPanel = new gwst.widgets.AllocPanel({
                 xtype: 'gwst-alloc-panel',
-                resource: this.curResource
+                resource: this.curResource.data.name,
+                shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.allocPanel.on('alloc-cont', this.finAllocStep, this);
@@ -296,7 +306,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.pennyPanel) {
             this.pennyPanel = new gwst.widgets.PennyPanel({
                 xtype: 'gwst-penny-panel',
-                resource: this.curResource
+                resource: this.curResource.data.name,
+                shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.pennyPanel.on('penny-cont', this.finPennyStep, this);

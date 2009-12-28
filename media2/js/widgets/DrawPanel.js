@@ -2,8 +2,10 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'draw-panel',
-	resource_name: 'unknown',
-	group: 'unknown',
+	resource: 'unknown',
+	user_group: 'unknown',
+    shape_name: 'unknown',
+    action: 'unknown',
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -38,15 +40,15 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         // Call parent (required)
         gwst.widgets.DrawPanel.superclass.onRender.apply(this, arguments); 
         var html_text = '<p><b>Instructions:</b> \
-			Draw your <i>'+ this.resource_name +'</i> fishing ground on the map one at a time.  \
-			<i>Draw only the areas you fish '+ this.group +'!</i></p><br />\
+			Draw your <i>'+ this.resource +'</i> '+ this.shape_name +'s on the map one at a time.  \
+			<i>Draw only the areas you '+ this.action +' as a '+ this.user_group +'!</i></p><br />\
 			\
 			<p><b> How?</b></p> \
 			<p> \
 			a. Click once on the map to start a new boundary.  This creates the first point.\
 			</p><br />\
 			<p> \
-			b. Move your mouse along your fishing ground boundary and click again creating a second point.\
+			b. Move your mouse along your '+ this.shape_name +' boundary and click again creating a second point.\
 			</p><br />\
 			<p> \
 			c. Continue clicking and tracing out your boundary one point at a time.  Just be as accurate as you can.\

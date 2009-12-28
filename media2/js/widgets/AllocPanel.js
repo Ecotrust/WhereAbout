@@ -3,6 +3,7 @@ Ext.namespace('gwst', 'gwst.widgets');
 gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'alloc-panel',
 	resource: 'unknown',
+    shape_name: 'unknown',
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -39,10 +40,10 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
         var html_text = '<p><b>Overview</b><br /> \
 			<p>\
 			Now imagine you have a bag of <b>100 pennies</b>.  You\'re going to \
-			distribute those pennies over the <i>'+ this.resource +'</i> fishing grounds \
-			you just drew.  The more pennies you place on a fishing ground, the more \
+			distribute those pennies over the <i>'+ this.resource +'</i> '+ this.shape_name +'s \
+			you just drew.  The more pennies you place on a '+ this.shape_name +', the more \
 			value or importance it has to you.  This information will provide a much \
-			more accurate picture of your most important fishing grounds.\
+			more accurate picture of your most important '+ this.shape_name +'s.\
 			</p><br />\
 			<p> \
 			Click continue to move to the next step.\

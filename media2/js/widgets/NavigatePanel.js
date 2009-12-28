@@ -3,6 +3,7 @@ Ext.namespace('gwst', 'gwst.widgets');
 gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'navigate-panel',
 	resource: 'unknown',
+    shape_name: 'unknown',
 	
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -38,7 +39,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
         // Call parent (required)
         gwst.widgets.NavigatePanel.superclass.onRender.apply(this, arguments); 
 		var html_text = '<p class="top_instruct">\
-			<b>Instructions:</b> Navigate the map to your primary <i>'+ this.resource +'</i> grounds.</p><br />\
+			<b>Instructions:</b> Navigate the map to your primary <i>'+ this.resource +'</i> '+ this.shape_name +'.</p><br />\
 			\
 			<b> How?</b> \
 			\
@@ -50,7 +51,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
 			</p><br />\
 			\
 			<p> \
-			b. Navigate the map to your first fishing area.  You can zoom in with the \
+			b. Navigate the map to your first '+ this.shape_name +'.  You can zoom in with the \
 			<img style="width: 15px; height: 15px;" src="/site-media/third-party/OpenLayers-2.8/img/zoom-plus-mini.png"/> \
 			button, zoom out with the \
 			<img style="width: 15px; height: 15px;" src="/site-media/third-party/OpenLayers-2.8/img/zoom-minus-mini.png"/> \

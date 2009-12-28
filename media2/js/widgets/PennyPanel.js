@@ -6,6 +6,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 	cur_num: 'unknown',
 	total_num: 'unknown',
 	pennies_remaining: 'unknown',
+    shape_name: 'unknown',
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -42,13 +43,13 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         var html_text = '<p>\
 			<b>Instructions</b><br />\
 			<p>\
-			a. Your first <i>'+ this.resource +'</i> fishing ground is now loaded. \
+			a. Your first <i>'+ this.resource +'</i> '+ this.shape_name +' is now loaded. \
 			Enter a penny value for it below in the white box. \
-			Then click the right arrow (>>) to move to your next fishing ground. \
+			Then click the right arrow (>>) to move to your next '+ this.shape_name +'. \
 			</p><br />\
 			<p> \
-			b. Keep entering penny values.  Every fishing ground must have at least 1 penny\
-			and you must yest all 100 pennies.\
+			b. Keep entering penny values.  Every '+ this.shape_name +' must have at least 1 penny\
+			and you must use all 100 pennies.\
 			</p><br />\
 			<p>\
 			c. Click the \'Continue\' button when you are done.\
@@ -56,7 +57,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 			<p> <a href=http://www.google.com>View Demonstration</a></p>\
 			<br />';
 		var nav_text = '<p>\
-			<b>Current Fishing Ground: #'+ this.cur_num +' of '+ this.total_num +'</b>\
+			<b>Current '+ this.shape_name +': #'+ this.cur_num +' of '+ this.total_num +'</b>\
 			</p>\
 			<input type="button" name="prev_shape" value="<<" /> \
 			Pennies (<font color="red">'+ this.pennies_remaining +' left</font>):\

@@ -65,7 +65,8 @@ class InterviewGroup(Model):
     required_group = BooleanField( default=False )
     user_draws_shapes = BooleanField( default=True )
     shape_color = CharField( max_length=6, blank=True, default="FFFFFF" )
-    preselect = BooleanField( default=True ) #Allow user to select which resources they use before drawing?    
+    preselect = BooleanField( default=True ) #Allow user to select which resources they use before drawing? 
+    member_title = CharField( max_length=50 )
     
     class Meta:
         db_table = u'gwst_group'

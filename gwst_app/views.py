@@ -768,7 +768,8 @@ def draw_settings(request, id) :
     result['group'] = {
         'name': int_group.name,
         'description': int_group.description,
-        'sel_resources': resources
+        'sel_resources': resources,
+        'member_title': int_group.member_title
     }
     
     #Region settings

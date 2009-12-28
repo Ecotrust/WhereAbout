@@ -9,7 +9,10 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     res_grp_select: null,
     user_group: 'unknown',
     res_group_name: 'unknown',
+    plural_res_group_name: 'unknown',
     contact_address: 'unknown',
+    action: 'unknown',
+    shape_name: 'unknown',
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -56,12 +59,12 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
         // After parent code
 		var html_text = '<p class="top_instruct">\
 			<b>Instructions:</b> Select 1 of the '+ this.res_group_name +' \
-			you harvest as a <i>'+ this.user_group +'</i> from the list below \
+			you '+ this.action +' as a <i>'+ this.user_group +'</i> from the list below \
 			and then click the \'Continue\' button.\
 			</p><br />\
 			<p>\
-			<b>Note:</b> Next, you are going to draw your fishing grounds for that '+ this.res_group_name +'. \
-			You will have a chance to do this for all of the '+ this.res_group_name +' below, \
+			<b>Note:</b> Next, you are going to draw your '+ this.shape_name +'s for that '+ this.res_group_name +'. \
+			You will have a chance to do this for all of the '+ this.plural_res_group_name +' below, \
 			but you don\'t have to do all of them.\
 			</p><br />\
 			<p> \
@@ -83,12 +86,12 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     continueBtnClicked: function() {
-		var species_rec = this.res_grp_select.getValue();
-		if (species_rec == '') {
+		var species_id = this.res_grp_select.getValue();
+		if (species_id == '') {
 			alert('You must select a species before continuing.');
 		} else {
 			this.res_grp_select.reset();
-			this.fireEvent('res-sel-cont',this,species_rec);
+			this.fireEvent('res-sel-cont',this,species_id);
 		}
     }
 });
