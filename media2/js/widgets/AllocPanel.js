@@ -34,9 +34,12 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
           this, arguments);                     
     },
 	
-    onRender: function(){
-        // Call parent (required)
-        gwst.widgets.AllocPanel.superclass.onRender.apply(this, arguments); 
+    updateText: function(text_config) {
+        Ext.apply(this, text_config);
+        this.inner_panel.getEl().update(this.getText());
+    },
+    
+    getText: function() {
         var html_text = '<p><b>Overview</b><br /> \
 			<p>\
 			Now imagine you have a bag of <b>100 pennies</b>.  You\'re going to \
@@ -50,12 +53,20 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
 			</p><br />\
 			<br />\
 			<img src="/site-media/images/tux.png" style="width: 50px; height: 50px"><br />';
-		var inner_panel = {
-			html: html_text,
+        return html_text;
+    },
+            
+    onRender: function(){
+		this.inner_panel = new Ext.Panel({
+			html: this.getText(),
+            id: 'alloc_inner_panel',
 			style: 'margin: 10px',
 			border: false
-		};
-		this.add(inner_panel);
+		});
+		this.add(this.inner_panel);
+        
+        // Call parent (required)
+        gwst.widgets.AllocPanel.superclass.onRender.apply(this, arguments);     
 	},
     
     backBtnClicked: function() {

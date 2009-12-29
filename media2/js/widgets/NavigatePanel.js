@@ -28,17 +28,18 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
 				}
 			]
 		});
-		
-				
         // Call parent (required)
         gwst.widgets.NavigatePanel.superclass.initComponent.apply(
           this, arguments);                     
     },
-	
-    onRender: function(){
-        // Call parent (required)
-        gwst.widgets.NavigatePanel.superclass.onRender.apply(this, arguments); 
-		var html_text = '<p class="top_instruct">\
+    
+    updateText: function(text_config) {
+        Ext.apply(this, text_config);
+        this.inner_panel.getEl().update(this.getText());
+    },
+    
+    getText: function() {
+        var html_text = '<p class="top_instruct">\
 			<b>Instructions:</b> Navigate the map to your primary <i>'+ this.resource +'</i> '+ this.shape_name +'.</p><br />\
 			\
 			<b> How?</b> \
@@ -67,13 +68,20 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
 			</p><br />\
 			\
 			<p> <a href=http://www.google.com>Watch Demonstration</a></p>';
-
-		var inner_panel = {
-			html: html_text,
+        return html_text;
+    },
+	
+    onRender: function(){
+		this.inner_panel = new Ext.Panel({
+			html: this.getText(),
+            id: 'nav_inner_panel',
 			style: 'margin: 10px',
 			border: false
-		};
-		this.add(inner_panel);
+		});
+		this.add(this.inner_panel);
+        
+        // Call parent (required)
+        gwst.widgets.NavigatePanel.superclass.onRender.apply(this, arguments); 
 	},
     
     backBtnClicked: function() {

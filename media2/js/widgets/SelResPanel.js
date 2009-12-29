@@ -52,12 +52,13 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
           this, arguments);                     
     },
 	
-    onRender: function(){
-        // Before parent code 
-        // Call parent (required)
-        gwst.widgets.SelResPanel.superclass.onRender.apply(this, arguments); 
-        // After parent code
-		var html_text = '<p class="top_instruct">\
+    updateText: function(text_config) {
+        Ext.apply(this, text_config);
+        this.inner_panel.getEl().update(this.getText());
+    },
+    
+    getText: function() {
+        var html_text = '<p class="top_instruct">\
 			<b>Instructions:</b> Select 1 of the '+ this.res_group_name +' \
 			you '+ this.action +' as a <i>'+ this.user_group +'</i> from the list below \
 			and then click the \'Continue\' button.\
@@ -72,13 +73,20 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
 			notify us at '+ this.contact_address +'.\
 			</p><br />'
 		;
-		var inner_panel = {
-			html: html_text,
+        return html_text;
+    },
+    onRender: function(){
+		this.inner_panel = new Ext.Panel({
+			html: this.getText(),
+            id: 'sel_res_inner_panel',
 			style: 'margin: 10px',
 			border: false
-		};
-		this.add(inner_panel);
+		});
+		this.add(this.inner_panel);
 		this.add(this.res_grp_select);
+        
+        // Call parent (required)
+        gwst.widgets.SelResPanel.superclass.onRender.apply(this, arguments); 
 	},
     
     backBtnClicked: function() {

@@ -241,6 +241,15 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             //When panel fires event saying it's all done, we want to process it and move on 
             this.resSelPanel.on('res-sel-cont', this.finResSelStep, this);
             this.resSelPanel.on('res-sel-back', this.backResSelStep, this);
+        } else {
+            this.resSelPanel.updateText({
+                res_group_name: gwst.settings.interview.resource_name,
+                plural_res_group_name: gwst.settings.interview.resource_name_plural,
+                user_group: gwst.settings.group.member_title,
+                action: gwst.settings.interview.resource_action,
+                shape_name: gwst.settings.interview.shape_name,
+                contact_address: gwst.settings.adminEmail
+            });
         }
         this.viewport.setWestPanel(this.resSelPanel);    	
     },
@@ -249,11 +258,16 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         if (!this.navPanel) {
             this.navPanel = new gwst.widgets.NavigatePanel({
                 xtype: 'gwst-navigate-panel',
-                resource: this.curResource.data.name,
+                resource: this.curResource.get('name'),
                 shape_name: gwst.settings.interview.shape_name
             });
             this.navPanel.on('nav-cont', this.finNavStep, this);
             this.navPanel.on('nav-back', this.backNavStep, this);
+        } else {
+            this.navPanel.updateText({
+                resource: this.curResource.get('name'),
+                shape_name: gwst.settings.interview.shape_name
+            });
         }
         this.viewport.setWestPanel(this.navPanel);    	
     },
@@ -263,7 +277,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.drawPanel) {
             this.drawPanel = new gwst.widgets.DrawPanel({
                 xtype: 'gwst-draw-panel',
-                resource: this.curResource.data.name,
+                resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
                 shape_name: gwst.settings.interview.shape_name
@@ -271,6 +285,13 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             //When panel fires event saying it's all done, we want to process it and move on 
             this.drawPanel.on('draw-cont', this.finDrawStep, this);
             this.drawPanel.on('draw-back', this.backDrawStep, this);            
+        } else {
+            this.drawPanel.updateText({
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
         }
         this.viewport.setWestPanel(this.drawPanel);    	
     },
@@ -291,12 +312,17 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.allocPanel) {
             this.allocPanel = new gwst.widgets.AllocPanel({
                 xtype: 'gwst-alloc-panel',
-                resource: this.curResource.data.name,
+                resource: this.curResource.get('name'),
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.allocPanel.on('alloc-cont', this.finAllocStep, this);
             this.allocPanel.on('alloc-back', this.backAllocStep, this);
+        } else {
+            this.allocPanel.updateText({
+                resource: this.curResource.get('name'),
+                shape_name: gwst.settings.interview.shape_name
+            });
         }
         this.viewport.setWestPanel(this.allocPanel);    	
     },
@@ -306,12 +332,17 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.pennyPanel) {
             this.pennyPanel = new gwst.widgets.PennyPanel({
                 xtype: 'gwst-penny-panel',
-                resource: this.curResource.data.name,
+                resource: this.curResource.get('name'),
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.pennyPanel.on('penny-cont', this.finPennyStep, this);
             this.pennyPanel.on('penny-back', this.backPennyStep, this);
+        } else {
+            this.pennyPanel.updateText({
+                resource: this.curResource.get('name'),
+                shape_name: gwst.settings.interview.shape_name
+            });
         }
         this.viewport.setWestPanel(this.pennyPanel);    	
     },

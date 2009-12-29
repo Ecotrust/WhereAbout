@@ -36,10 +36,14 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         gwst.widgets.PennyPanel.superclass.initComponent.apply(
           this, arguments);                     
     },
+    
+    updateText: function(text_config) {
+        Ext.apply(this, text_config);
+        this.inner_panel.getEl().update(this.getHtmlText());
+        this.nav_panel.getEl().update(this.getNavText());
+    },
 	
-    onRender: function(){
-        // Call parent (required)
-        gwst.widgets.PennyPanel.superclass.onRender.apply(this, arguments); 
+    getHtmlText: function() {
         var html_text = '<p>\
 			<b>Instructions</b><br />\
 			<p>\
@@ -56,6 +60,10 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 			</p><br />\
 			<p> <a href=http://www.google.com>View Demonstration</a></p>\
 			<br />';
+        return html_text;
+    },
+    
+    getNavText: function() {
 		var nav_text = '<p>\
 			<b>Current '+ this.shape_name +': #'+ this.cur_num +' of '+ this.total_num +'</b>\
 			</p>\
@@ -65,20 +73,26 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 			<input type="button" name="next_shape" value=">>" /> \
 			<br /><br />\
 			<b>Status</b>';
-		var shape_text = '\
-			\
-			';//gwst_usershape: Shape# = select rownum(*) from gwst_usershape where user_id, int_group_id, AND resource_id
+        return nav_text;
+    },
+		// var shape_text = '\
+			// \
+			// ';//gwst_usershape: Shape# = select rownum(*) from gwst_usershape where user_id, int_group_id, AND resource_id
 				//Pennies = select pennies from gwst_usershape where user_id, int_group_id, AND resource_id
-		var inner_panel = {
-			html: html_text,
+                
+    onRender: function(){
+		this.inner_panel = new Ext.Panel({
+			html: this.getHtmlText(),
+            id: 'penny_inner_panel',
 			style: 'margin: 10px',
 			border: false
-		};
-		var nav_panel = {
-			html: nav_text,
+		});
+		this.nav_panel = new Ext.Panel({
+			html: this.getNavText(),
+            id: 'penny_nav_panel',
 			border: false,
 			style: 'margin: 10px'
-		};
+		});
 		var shape_data = [
 			[1, 25],
 			[2, 10],
@@ -108,9 +122,11 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 			style: 'margin-left: 10px; margin-bottom: 10px',
 			border: false
 		});
-		this.add(inner_panel);
-		this.add(nav_panel);
+		this.add(this.inner_panel);
+		this.add(this.nav_panel);
 		this.add(shape_grid);
+        // Call parent (required)
+        gwst.widgets.PennyPanel.superclass.onRender.apply(this, arguments); 
 	},
     
     backBtnClicked: function() {
