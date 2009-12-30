@@ -5,7 +5,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 	
     initComponent: function(){
     	//Constructor config object already applied by now.  Properties can be added/overridden using Ext.apply	
-
+	
 		//Map region
 		var region = gwst.settings.region;	    
 	    var map_extent = new OpenLayers.Bounds(region.w_bound,region.s_bound,region.e_bound,region.n_bound)
@@ -74,9 +74,16 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         this.vectorLayer = new OpenLayers.Layer.Vector('mlpaFeatures',{
             styleMap: styleMap
         });                
+
+		//Add div to body for OL map.  Doesn't seem necessary as Ext will create one for it and it will 
+		//render the map fine.  However, drawing vectors on a Google base map didn't work in Safari until
+		//the name of a legit pre-generated div element was passed to the OL constructor
+		Ext.DomHelper.append(document.body, [{
+			id: 'ol-map',
+		}]);        
         
         //Create the map and dump everything in
-	    map = new OpenLayers.Map(map_options);
+	    map = new OpenLayers.Map('ol-map', map_options);
 		map.addControl(new OpenLayers.Control.Navigation());		
 		map.addControl(new gwst.controls.gwstPanZoom());
 		map.addControl(new OpenLayers.Control.MousePosition());
