@@ -30,11 +30,13 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     startInit: function(){
     	this.on('settings-loaded', this.finInit, this);    	
         this.fetchSettings();
-        this.startSplashStep();        
+        this.loadWait('While the drawing tool loads');
     },               
 
     finInit: function() {
-    	this.loadViewport();    	
+        this.hideWait();
+        this.loadViewport();
+        this.startSplashStep();            	
     },
     
     /******************** Top-level survey step handlers *******************/
@@ -178,46 +180,35 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 		});
     },    
 
+    loadWait: function(msg) {
+        if (!this.wait_win) {
+            this.wait_win = new gwst.widgets.WaitWindow();            
+            this.wait_win.on(
+                'show',
+                (function(){this.wait_win.center();}).createDelegate(this)
+            );            
+        }
+        this.wait_win.showMsg(msg);
+    },
+    
+    hideWait: function() {
+        this.wait_win.hide();
+    },
+    
     /* Load the initial splash screen for the user */
     loadSplash: function() {
-    	//MOVE INTO ITS OWN CLASS
-        this.splash_win = new Ext.Window({
-            title: 'Introduction',
-        	layout:'fit',
-        	modal: true,
-            width:350,
-            height:130,
-            closeAction:'hide',
-            plain: true,
-            bodyStyle: 'padding: 10px',
-            html: "\
-            	<p>The drawing portion will now begin for the <u><i>"+gwst.settings.survey_group_name+"</i></u> user group.  You will have instructions every step of the way \
-            	on the left hand side of the screen.  You will also be able to come back and finish later \
-            	if you need more time. \
-            	",
-            bbar: [
-               {xtype:'tbfill', width:20},
-               {
-            	   text: 'Begin', 
-            	   handler: this.finSplashStep.createDelegate(this),
-            	   iconCls: 'begin-draw',
-            	   iconAlign: 'top'
-               }
-           ]
-        });
-    	
-    	this.splash_win.on('show',(
-    		function(){this.splash_win.center();}).createDelegate(this)
-    	);
-    	this.splash_win.show();
+        this.splash_win = new gwst.widgets.SplashWindow();    	
+    	this.splash_win.on('show', (function(){this.splash_win.center();}), this);
+        this.splash_win.on('splash-finished', this.finSplashStep, this);
+    	this.splash_win.show();        
     },     
 
     loadMapLayerWin: function() {    	
 		this.layerWin = new Ext.Window({
 	        html: 'Satellite Imagery<br/>Nautical Charts<br/>Lat/Lon Grid',
 	        title: 'Extra Maps',
-	        width: 180,
-	        height: 80,
+	        width: 350,
+	        height: 130,
 	        resizable: false,
 	        collapsible: false,
 	        draggable: false,
@@ -377,10 +368,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	//Show wait message
         this.clipGeometry({
             geometry: shape_geometry,
-            resource: gwst.settings.survey_group_id+'-'+this.curResource.id,
-            success: this.clipReview,
-            error: this.clipError,
-            fail: this.clipFail
+            resource: gwst.settings.survey_group_id+'-'+this.curResource.id
          });
     },
         
@@ -411,6 +399,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     clipGeometry: function(config) {
+        this.loadWait('Validating your ' + gwst.settings.interview.shape_name);
     	Ext.Ajax.request({
 	        url: gwst.settings.urls.validate_shape,
 	        method: 'POST',
@@ -420,28 +409,25 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	            resource : config.resource,
 	            orig_shape_id : config.orig_shape_id
 	        },
-	        success: function(response, opts){
-	            //Hide wait message
-	            var clip_obj = Ext.decode(response.responseText);
-	            var status_code = parseFloat(clip_obj.status_code);
-	            if (status_code == 1 || status_code == 0 || status_code == 5) {
-	                config.success(status_code, clip_obj.original_geom, clip_obj.clipped_mpa_geom);
-	            } else if (status_code != 4){
-	                config.error(status_code, config.geometry);
-	            } else {
-	                config.fail(response, opts);
-	            }
-	        },
-	        failure: function(response, opts){
-	            //Hide wait message
-	            config.fail(response, opts);
-	        }
+	        success: this.clipReview,
+	        failure: this.clipFail,
+            scope: this
 	    });
     },
     
     clipReview: function(result) {
     	//Show the shape on the map and ask user if they are happy with it.
-    	alert('Time to review your shape!');
+        this.hideWait();
+    	alert('Load the clipped ship and success panel already!');
+        var clip_obj = Ext.decode(response.responseText);
+        var status_code = parseFloat(clip_obj.status_code);
+        if (status_code == 1 || status_code == 0 || status_code == 5) {
+            config.success(status_code, clip_obj.original_geom, clip_obj.clipped_mpa_geom);
+        } else if (status_code != 4){
+            config.error(status_code, config.geometry);
+        } else {
+            config.fail(response, opts);
+        }        
     },    
     
     clipError: function(result) {

@@ -796,7 +796,8 @@ def validate_shape(request):
         status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
         status = status_object_qs[0]        
     except Exception, e:
-        return HttpResponse(result, status=403)
+        raise
+        #return HttpResponse(result, status=403)
     
     if status.completed:
         return HttpResponse(result, status=403)
@@ -827,7 +828,8 @@ def validate_shape(request):
         m = InterviewShape(geometry=request.REQUEST["geometry"])
         result = m.validate()
     except Exception, e:
-        return HttpResponse(result + e.message, status=500)
+        #return HttpResponse(result + e.message, status=500)
+        raise
     return HttpResponse(result)
  
     
