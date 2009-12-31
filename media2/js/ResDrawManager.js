@@ -51,6 +51,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	this.startResSelStep();
     },
     
+    /******************** Resource Selection Panel *******************/
+    
     /*
      *  Setup resource selection step 
      */
@@ -73,6 +75,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
          this.loadSplash();
     },
     
+    /******************** Navigation Panel *******************/
+    
 	/*
 	 * setup the navigation step
 	 */
@@ -94,6 +98,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.loadResSelPanel();
 	},    
     
+    /******************** Draw Panel *******************/
+    
     /* 
      * Setup UI for resource drawing step 
      */
@@ -107,10 +113,22 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process and finish draw step
      */
     finDrawStep: function() {
-        //this.mapPanel.disableResDraw();  //Turn off drawing?
         this.drawToolWin.hide();
         this.mapPanel.disableResDraw();
-        this.startAllocStep();
+        this.validateShape();
+    },
+    
+    /*
+     * Validate new shape
+     */
+    validateShape: function() {
+        var valid_shape = true;
+        //TODO: link up with actual validation and set 'valid_shape' accordingly
+        if (valid_shape) {
+            this.startSatisfiedShapeStep();
+        } else {
+            this.startInvalidShapeStep();
+        }
     },
     
     /*
@@ -121,6 +139,90 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.mapPanel.disableResDraw();
         this.loadNavPanel();    
     },
+    
+    /******************** Invalid Shape Panel *******************/
+    
+    /* 
+     * Setup UI for invalid shape error display step 
+     */
+    startInvalidShapeStep: function() {
+        this.loadInvalidShapePanel();        
+        this.mapPanel.disableResDraw(); //Turn off drawing
+        this.drawToolWin.hide();
+    },
+       
+    /*
+     * Process and finish Invalid Shape step
+     */
+    finInvalidShapeStep: function() {
+        this.startAnotherShapeStep();
+    },
+    
+    /******************** Satisfied with shape question Panel *******************/
+    
+    /* 
+     * Setup UI for satisfied with shape step 
+     */
+    startSatisfiedShapeStep: function() {
+        this.loadSatisfiedShapePanel();        
+        this.mapPanel.disableResDraw(); //Turn off drawing
+        this.drawToolWin.hide();
+    },
+       
+    /*
+     * Process and finish satisfied with shape step
+     */
+    finSatisfiedShapeStep: function() {
+        this.startAnotherShapeStep();
+    },
+    
+    /*
+     * Delete unsatisfactory shape and move on
+     */
+    notSatisfiedShapeStep: function() {
+        //TODO: this.deleteShape();
+        this.startAnotherShapeStep();
+    },
+    
+    /******************** draw another shape or drop penny question Panel *******************/
+    
+    /* 
+     * Setup UI for draw another shape or drop penny step 
+     */
+    startAnotherShapeStep: function() {
+        this.loadAnotherShapePanel();        
+    },
+       
+    /*
+     * Check if any valid shapes exist
+     */
+    penniesStepSelected: function() {
+        var shapes_exist = true;
+        //TODO: logic to find valid shapes and set boolean here
+        if (shapes_exist) {
+            this.moveToDropPenniesStep();
+        } else {
+            this.startFinishStep();
+        }
+    },
+    
+    /*
+     * Move on to drop pennies
+     */
+    moveToDropPenniesStep: function() {
+        this.startAllocStep();
+    },
+    
+    /*
+     * Move on to draw another shape
+     */
+    moveToDrawShapeStep: function() {
+        this.loadDrawPanel();        
+        this.mapPanel.enableResDraw(); //Turn on drawing
+        this.loadDrawToolWin();
+    },
+    
+    /******************** Penny Allocation Instruction Panel *******************/
     
     /*
      * show basic instructions for penny use
@@ -145,6 +247,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.loadDrawToolWin();
     },
     
+    /******************** Actual Penny Allocation Panel *******************/
+    
     /*
      * Setup UI for penny allocation step
      */
@@ -156,7 +260,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process penny allocation step
      */
     finPennyStep: function() {
-        this.startResSelStep();
+        this.startFinishStep();
     },
     
     /*
@@ -166,10 +270,35 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.startAllocStep();
     },
     
+    /******************** Check if finished Panel *******************/
+    
+    /*
+     * Load option panel to finish/finish later/select new resource 
+     */
+    startFinishStep: function() {
+        this.loadFinishPanel();
+    },
+    
+    /*
+     * Process finish/finish later/delect new resource step
+     */
+    finFinishStep: function() {
+        this.finDrawingPhase();
+    },
+    
+    /*
+     * Go back from penny allocation to resource drawing
+     */
+    selNewResStep: function() {
+        this.startResSelStep();
+    },
     /*
      * Process completion of drawing phase
      */
-    finDrawingPhase: function() {},
+    finDrawingPhase: function() {
+        alert('TODO: get back to group status!');
+        this.startResSelStep();
+    },
         
     /******************** UI widget handlers ********************/
 
@@ -298,6 +427,77 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 		this.drawToolWin.alignTo(document.body, "tl-tl", this.drawToolWinOffset);    	
     },
     
+    /* Load the Invalid Shape west panel */
+    loadInvalidShapePanel: function() {
+    	if (!this.invalidShapePanel) {
+            this.invalidShapePanel = new gwst.widgets.InvalidShapePanel({
+                xtype: 'gwst-invalid-shape-panel',
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.invalidShapePanel.on('okay-btn', this.finInvalidShapeStep, this);
+        } else {
+            this.invalidShapePanel.updateText({
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+        }
+        this.viewport.setWestPanel(this.invalidShapePanel);    	
+    },
+    
+    /* Load the satified with shape west panel */
+    loadSatisfiedShapePanel: function() {
+    	if (!this.satisfiedShapePanel) {
+            this.satisfiedShapePanel = new gwst.widgets.SatisfiedShapePanel({
+                xtype: 'gwst-satisfied-panel',
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.satisfiedShapePanel.on('satisfied-yes', this.finSatisfiedShapeStep, this);
+            this.satisfiedShapePanel.on('satisfied-no', this.notSatisfiedShapeStep, this);            
+        } else {
+            this.satisfiedShapePanel.updateText({
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+        }
+        this.viewport.setWestPanel(this.satisfiedShapePanel);    	
+    },
+    
+    /* Load the draw another shape or drop pennies question west panel */
+    loadAnotherShapePanel: function() {
+    	if (!this.drawOrDropPanel) {
+            this.drawOrDropPanel = new gwst.widgets.DrawOrDropPanel({
+                xtype: 'gwst-draw-or-drop-panel',
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.drawOrDropPanel.on('drop-pennies', this.penniesStepSelected, this);
+            this.drawOrDropPanel.on('draw-another', this.moveToDrawShapeStep, this);            
+        } else {
+            this.drawOrDropPanel.updateText({
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+        }
+        this.viewport.setWestPanel(this.drawOrDropPanel);    	
+    },
+    
      /* Load the alloc west panel */
     loadAllocPanel: function() {
     	if (!this.allocPanel) {
@@ -338,6 +538,29 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.viewport.setWestPanel(this.pennyPanel);    	
     },
     
+    /* Load the finish/finish later/select another resource west panel */
+    loadFinishPanel: function() {
+    	if (!this.finishPanel) {
+            this.finishPanel = new gwst.widgets.FinishPanel({
+                xtype: 'gwst-finish-panel',
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.finishPanel.on('finish-map', this.finFinishStep, this);
+            this.finishPanel.on('select-another', this.selNewResStep, this);            
+        } else {
+            this.finishPanel.updateText({
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+        }
+        this.viewport.setWestPanel(this.finishPanel);    	
+    },
     
     /******************** Event Handlers ********************/
 
