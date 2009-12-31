@@ -1,3 +1,5 @@
+//Anything that's not 
+
 Ext.namespace('gwst');
 
 /*
@@ -51,7 +53,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	this.startResSelStep();
     },
     
-    /******************** Resource Selection Panel *******************/
+    /******************** Resource Selection Step *******************/
     
     /*
      *  Setup resource selection step 
@@ -75,7 +77,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
          this.loadSplash();
     },
     
-    /******************** Navigation Panel *******************/
+    /******************** Navigation Step *******************/
     
 	/*
 	 * setup the navigation step
@@ -98,7 +100,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.loadResSelPanel();
 	},    
     
-    /******************** Draw Panel *******************/
+    /******************** Draw Step *******************/
     
     /* 
      * Setup UI for resource drawing step 
@@ -115,21 +117,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     finDrawStep: function() {
         this.drawToolWin.hide();
         this.mapPanel.disableResDraw();
-        this.validateShape();
-    },
-    
-    /*
-     * Validate new shape
-     */
-    validateShape: function() {
-        var valid_shape = true;
-        //TODO: link up with actual validation and set 'valid_shape' accordingly
-        if (valid_shape) {
-            this.startSatisfiedShapeStep();
-        } else {
-            this.startInvalidShapeStep();
-        }
-    },
+    },    
     
     /*
      * Go back from draw step to resource selection
@@ -140,7 +128,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.loadNavPanel();    
     },
     
-    /******************** Invalid Shape Panel *******************/
+    /******************** Invalid Shape Step *******************/
     
     /* 
      * Setup UI for invalid shape error display step 
@@ -158,7 +146,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.startAnotherShapeStep();
     },
     
-    /******************** Satisfied with shape question Panel *******************/
+    /******************** Satisfied with shape step *******************/
     
     /* 
      * Setup UI for satisfied with shape step 
@@ -178,13 +166,16 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     /*
      * Delete unsatisfactory shape and move on
+     * 
+     * TODO: Consider making both the deleteShape and startAnotherShape get called when shape discard event happens.
+     * These would go down in event handler section.  This function may not be needed.
      */
     notSatisfiedShapeStep: function() {
         //TODO: this.deleteShape();
         this.startAnotherShapeStep();
     },
     
-    /******************** draw another shape or drop penny question Panel *******************/
+    /******************** draw another shape / drop penny steps *******************/
     
     /* 
      * Setup UI for draw another shape or drop penny step 
@@ -195,6 +186,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
        
     /*
      * Check if any valid shapes exist
+     * 
+     * TODO: Should they be able to get here (click to allocate) without any shapes?
+     * Maybe a check should be done just before this panel gets loaded
      */
     penniesStepSelected: function() {
         var shapes_exist = true;
@@ -208,6 +202,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     /*
      * Move on to drop pennies
+     * 
+     * TODO: Can we just call startAllocStep directly? Is this needed?
      */
     moveToDropPenniesStep: function() {
         this.startAllocStep();
@@ -215,6 +211,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     /*
      * Move on to draw another shape
+     * 
+     * TODO: Isn't this just startDrawStep?  Consider removing
      */
     moveToDrawShapeStep: function() {
         this.loadDrawPanel();        
@@ -222,7 +220,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.loadDrawToolWin();
     },
     
-    /******************** Penny Allocation Instruction Panel *******************/
+    /******************** Penny Allocation Instruction Step *******************/
+    
+    /* TODO: Consider calling these PennyInstrStep to match the PennyStep following
     
     /*
      * show basic instructions for penny use
@@ -247,7 +247,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.loadDrawToolWin();
     },
     
-    /******************** Actual Penny Allocation Panel *******************/
+    /******************** Penny Allocation Step *******************/
     
     /*
      * Setup UI for penny allocation step
@@ -270,7 +270,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.startAllocStep();
     },
     
-    /******************** Check if finished Panel *******************/
+    /******************** Finish Step *******************/
     
     /*
      * Load option panel to finish/finish later/select new resource 
@@ -288,6 +288,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     /*
      * Go back from penny allocation to resource drawing
+     * 
+     * Can we just call startResSelStep directly or will more logic need to go here?
      */
     selNewResStep: function() {
         this.startResSelStep();
@@ -302,13 +304,14 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         
     /******************** UI widget handlers ********************/
 
-    /* Render viewport to document body (now) with main widgets in border layout. */
+    /* Render viewport with main widgets to document body (right now) */
     loadViewport: function() {
 		this.viewport = new gwst.widgets.MainViewport({			
 			mapPanelListeners: this.mapPanelListeners  //Give the viewport some listeners to pass on to the map panel
 		});
     },    
 
+    /* Load wait message window.  Tells the user an action is in progress.  Don't forget to hide it again. */
     loadWait: function(msg) {
         if (!this.wait_win) {
             this.wait_win = new gwst.widgets.WaitWindow();            
@@ -320,6 +323,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.wait_win.showMsg(msg);
     },
     
+    /* Hide the wait window */
     hideWait: function() {
         this.wait_win.hide();
     },
@@ -332,12 +336,13 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	this.splash_win.show();        
     },     
 
+    /* Load the map layer toggle window */
     loadMapLayerWin: function() {    	
 		this.layerWin = new Ext.Window({
 	        html: 'Satellite Imagery<br/>Nautical Charts<br/>Lat/Lon Grid',
 	        title: 'Extra Maps',
-	        width: 350,
-	        height: 130,
+	        width: 200,
+	        height: 90,
 	        resizable: false,
 	        collapsible: false,
 	        draggable: false,
@@ -450,7 +455,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.viewport.setWestPanel(this.invalidShapePanel);    	
     },
     
-    /* Load the satified with shape west panel */
+    /* Load the satisfied with shape west panel */
     loadSatisfiedShapePanel: function() {
     	if (!this.satisfiedShapePanel) {
             this.satisfiedShapePanel = new gwst.widgets.SatisfiedShapePanel({
@@ -589,12 +594,12 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     resShapeDrawn: function(shape_geometry) {
     	//Remove drawn listener?
     	//Show wait message
-        this.clipGeometry({
+        this.validateShape({
             geometry: shape_geometry,
             resource: gwst.settings.survey_group_id+'-'+this.curResource.id
          });
-    },
-        
+    },        
+    
     /******************** Server Operations ********************/
 
     /* Fetch interview info for current user group including resources,
@@ -602,17 +607,18 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     fetchSettings: function() {
         Ext.Ajax.request({
-           url: gwst.settings.urls.group_draw_settings+gwst.settings.survey_group_id+'/json',
-           disableCachingParam: true,
-           scope: this,
-           success: this.initSettings,
-           failure: function(response, opts) {
-              console.error('Res group request failed: ' + response.status);
-           }
+        	url: gwst.settings.urls.group_draw_settings+gwst.settings.survey_group_id+'/json',
+           	disableCachingParam: true,
+           	scope: this,
+           	success: this.finFetchSettings,
+           	failure: function(response, opts) {
+        		//Change to error window
+              	alert('Res group request failed: ' + response.status);
+           	}
         });		
     },
     
-    initSettings: function(response, opts) {
+    finFetchSettings: function(response, opts) {
         var settings_obj = Ext.decode(response.responseText);        
         //Update local settings
         Ext.apply(gwst.settings, settings_obj);
@@ -621,7 +627,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.fireEvent('settings-loaded');      
     },
     
-    clipGeometry: function(config) {
+    validateShape: function(config) {
         this.loadWait('Validating your ' + gwst.settings.interview.shape_name);
     	Ext.Ajax.request({
 	        url: gwst.settings.urls.validate_shape,
@@ -632,85 +638,45 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	            resource : config.resource,
 	            orig_shape_id : config.orig_shape_id
 	        },
-	        success: this.clipReview,
-	        failure: this.clipFail,
+	        success: this.finValidateShape,
+           	failure: function(response, opts) {
+        		//Change to error window
+              	alert('An unknown error has occurred while trying to validate your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
+           	},
             scope: this
 	    });
     },
-    
-    clipReview: function(result) {
+
+    /* Processes the result of validateShape */
+    finValidateShape: function(response, opts) {
     	//Show the shape on the map and ask user if they are happy with it.
         this.hideWait();
-    	alert('Load the clipped ship and success panel already!');
         var clip_obj = Ext.decode(response.responseText);
         var status_code = parseFloat(clip_obj.status_code);
+
         if (status_code == 1 || status_code == 0 || status_code == 5) {
-            config.success(status_code, clip_obj.original_geom, clip_obj.clipped_mpa_geom);
+            this.startSatisfiedShapeStep();
         } else if (status_code != 4){
-            config.error(status_code, config.geometry);
+        	this.startInvalidShapeStep();	
         } else {
-            config.fail(response, opts);
+        //    config.fail(response, opts);
         }        
-    },    
+    },       
     
-    clipError: function(result) {
-        gwst.actions.utils.changeMapToolbarMode([
-             {
-                 xtype: 'tbtext',
-                 text: 'The shape you defined cannot be accepted'
-             },
-             {xtype: 'tbfill'},
-             {
-                 text: 'Go Back and Modify Shape',
-                 geometry: original,
-                 config: config,
-                 handler: function(){
-                     gwst.actions.utils.restoreMapToolbar();
-                     gwst.actions.utils.clearGeometryChangeInfo();
-                     this.config['geometry'] = this.geometry;
-                     gwst.actions.utils.askUserToDefineGeometry(this.config);
-                 }
-             },
-             {
-                 text: 'Cancel',
-                 iconCls: 'remove-icon',
-                 handler: function(){
-                     gwst.actions.utils.restoreMapToolbar();
-                     gwst.actions.utils.clearGeometryChangeInfo();
-                     gwst.actions.utils.enableComponents();
-                     config['cancel']();
-                 }
-             }
-        ]);
-        gwst.actions.utils.showGeometryChangeInfo(gwst.copy.clippedGeometryStatus[status_code]);    	
-    },
-    
-    clipFail: function(result) {
-        gwst.ui.error.show({
-            errorText: 'An unknown Server Error has Occurred while trying to clip your shape. If you were editing a geometry, that geometry will remain intact as it was before editing. If you were creating a new shape, you will have to start over. We have been notified of this problem.',
-            logText: 'Error clipping shape'
-        });
-        gwst.actions.utils.enableComponents();    	
-    },
-    
-    clipAccept: function(geometry, clipped) {
+    saveShape: function(geometry, clipped) {
         $.ajax({
             data: {geometry:geometry, geometry_clipped:clipped, resource:target}, //form.serializeArray(),
             dataType: 'json',
             success: function(data, textStatus){
-                mpa = gwst.data.mlpaFeatures.mpa_from_geojson(data);                       
-                gwst.actions.utils.enableComponents();
-                gwst.app.clientStore.add(mpa);
-                gwst.app.selectionManager.setSelectedFeature(mpa);
+                //Add the shape to the shape store
             },
             error: function(request, textStatus, errorThrown){                       
                  gwst.ui.error.show({errorText: 'There was a problem saving your new MPA. This error will show up in our logs, but if the problem persists please follow up with an administrator.', debugText: request.responseText, logText: 'Error saving new shape'});
-                 gwst.actions.utils.enableComponents();
             },
             type: 'POST',
             url: '/save_shape/'
          });                	
-    },
+    },     
     
     /******************** Utility Methods ********************/
     

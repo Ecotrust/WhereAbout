@@ -22,11 +22,6 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
 				{
                     text: '<< Go Back',
                     handler: this.backBtnClicked.createDelegate(this)
-                },
-				{xtype:'tbseparator'},
-				{
-                    text: 'Continue >>',
-                    handler: this.continueBtnClicked.createDelegate(this)
                 }
 			]
 		});
@@ -83,11 +78,7 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     backBtnClicked: function() {
         this.fireEvent('draw-back',this);
-    },
-    
-    continueBtnClicked: function() {
-        this.fireEvent('draw-cont',this);
-    }    
+    }
 });
  
 // register xtype to allow for lazy initialization

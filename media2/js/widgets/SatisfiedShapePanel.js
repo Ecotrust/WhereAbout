@@ -43,15 +43,12 @@ gwst.widgets.SatisfiedShapePanel = Ext.extend(gwst.widgets.WestPanel, {
 			<b>Are you satisfied with this shape?</b></p><br />\
 			\
 			<p> \
-            By saying you are satisfied, the shape will stay where it is on the map.\
+            Click \'Yes\' to save your shape.\
             </p><br />\
             <p>\
-			If not satisfied, the shape will be discarded.\
+			Clicking \'No\' will discard the shape and let you draw it again if you wish\
 			</p><br />\
-			\
-			<p> \
-			You will be able to add more shapes or move on to other steps later.\
-			</p>';
+			';
         return html_text;
     },
 	
