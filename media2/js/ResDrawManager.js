@@ -160,19 +160,13 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /*
      * Process and finish satisfied with shape step
      */
-    finSatisfiedShapeStep: function() {
-        this.startAnotherShapeStep();
-    },
-    
-    /*
-     * Delete unsatisfactory shape and move on
-     * 
-     * TODO: Consider making both the deleteShape and startAnotherShape get called when shape discard event happens.
-     * These would go down in event handler section.  This function may not be needed.
-     */
-    notSatisfiedShapeStep: function() {
-        //TODO: this.deleteShape();
-        this.startAnotherShapeStep();
+    finSatisfiedShapeStep: function(result) {
+    	if (result.satisfied) {
+    		this.startAnotherShapeStep();
+    	} else {
+    		this.mapPanel.removeLastShape();
+    		this.startAnotherShapeStep();
+    	}
     },
     
     /******************** draw another shape / drop penny steps *******************/
@@ -466,8 +460,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
-            this.satisfiedShapePanel.on('satisfied-yes', this.finSatisfiedShapeStep, this);
-            this.satisfiedShapePanel.on('satisfied-no', this.notSatisfiedShapeStep, this);            
+            this.satisfiedShapePanel.on('satisfied', this.finSatisfiedShapeStep, this);            
         } else {
             this.satisfiedShapePanel.updateText({
                 resource: this.curResource.get('name'),

@@ -112,7 +112,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     
     enableResDraw: function() {
     	this.drawResControl.activate();
-    	//Show cancel/redo toolbar
     },
     
     disableResDraw: function() {
@@ -120,14 +119,14 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     },
     
     resDrawn: function(feature, opts) {
+    	this.curShape = feature;
     	this.fireEvent('res-shape-drawn', feature.geometry);
     },
     
-    onRender: function(){
-        // Call parent (required)
-        gwst.widgets.ResDrawMapPanel.superclass.onRender.apply(this, arguments);        
+    removeLastShape: function() {
+    	this.vectorLayer.removeFeatures([this.curShape]);
     },
-    
+
     cancelResShape: function() {
     	
     },

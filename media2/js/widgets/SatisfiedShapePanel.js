@@ -66,11 +66,11 @@ gwst.widgets.SatisfiedShapePanel = Ext.extend(gwst.widgets.WestPanel, {
 	},
     
     yesClicked: function() {
-        this.fireEvent('satisfied-yes',this);
+        this.fireEvent('satisfied',{satisfied:true});
     },
     
 	noClicked: function() {
-		this.fireEvent('satisfied-no',this);
+		this.fireEvent('satisfied',{satisfied:false});
     }
 });
  
