@@ -10,8 +10,8 @@ gwst.widgets.SatisfiedShapePanel = Ext.extend(gwst.widgets.WestPanel, {
         // Constructor, config object already applied to 'this' so properties can 
         // be created and added/overridden here: Ext.apply(this, {});
 		
-		this.addEvents('satisfied-yes');
-        this.addEvents('satisfied-no');
+		this.addEvents('satisfied');
+        // this.addEvents('satisfied-no');
 		
 		Ext.apply(this, {
 			title: '3. Draw',

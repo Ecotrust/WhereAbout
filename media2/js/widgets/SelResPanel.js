@@ -96,7 +96,7 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     continueBtnClicked: function() {
 		var species_id = this.res_grp_select.getValue();
 		if (species_id == '') {
-			alert('You must select a species before continuing.');
+            gwst.error.load('You must select a species before continuing.');
 		} else {
 			this.res_grp_select.reset();
 			this.fireEvent('res-sel-cont',this,species_id);

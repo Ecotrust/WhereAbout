@@ -38,7 +38,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     finInit: function() {
         this.hideWait();
         this.loadViewport();
-        this.startSplashStep();            	
+        this.startSplashStep();  
+        this.createError();
     },
     
     /******************** Top-level survey step handlers *******************/
@@ -161,12 +162,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process and finish satisfied with shape step
      */
     finSatisfiedShapeStep: function(result) {
-    	if (result.satisfied) {
-    		this.startAnotherShapeStep();
-    	} else {
+    	if (!result.satisfied) {
     		this.mapPanel.removeLastShape();
-    		this.startAnotherShapeStep();
     	}
+        this.startAnotherShapeStep();
     },
     
     /******************** draw another shape / drop penny steps *******************/
@@ -284,6 +283,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from penny allocation to resource drawing
      * 
      * Can we just call startResSelStep directly or will more logic need to go here?
+     *
+     * Depends if we want to remove resources from the store here or not.  I wanted to keep my options open.
      */
     selNewResStep: function() {
         this.startResSelStep();
@@ -292,7 +293,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process completion of drawing phase
      */
     finDrawingPhase: function() {
-        alert('TODO: get back to group status!');
+        // alert('TODO: get back to group status!');
+        gwst.error.load('TODO: get back to group status!');
         this.startResSelStep();
     },
         
@@ -320,6 +322,17 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /* Hide the wait window */
     hideWait: function() {
         this.wait_win.hide();
+    },
+    
+    /* Load error message window. */
+    createError: function(msg) {
+        if (!gwst.error) {
+            gwst.error = new gwst.widgets.ErrorWindow();            
+            gwst.error.on(
+                'show',
+                (function(){gwst.error.center();}).createDelegate(this)
+            );            
+        }
     },
     
     /* Load the initial splash screen for the user */
