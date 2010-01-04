@@ -5,6 +5,11 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 	
     initComponent: function(){
     	//Constructor config object already applied by now.  Properties can be added/overridden using Ext.apply	
+		
+    	//res-shape-drawn event fired after user draws a new shape on the map.
+    	//Arguments: the OL feature drawn on the map
+		this.addEvents('res-shape-started');
+		this.addEvents('res-shape-complete');
 	
 		//Map region
 		var region = gwst.settings.region;	    
@@ -30,11 +35,9 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                 strokeWidth: 1,
                 cursor: 'pointer',
                 pointerEvents: "visiblePainted",
-                label : "${shape_label}",
+                label : "${pennies}",
                 fontColor: "black",
                 fontSize: "12px",
-                //fontFamily: "Courier New, monospace",
-                //fontWeight: "bold",
                 labelAlign: "cm"
             }),
             'select': new OpenLayers.Style({
@@ -45,11 +48,9 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                 fillOpacity: 0.4,
                 cursor: 'default',
                 pointerEvents: "visiblePainted",
-                label : "${shape_label}",
+                label : "${pennies}",
                 fontColor: "black",
                 fontSize: "12px",
-                //fontFamily: "Courier New, monospace",
-                //fontWeight: "bold",
                 labelAlign: "cm"
             }),
             'temporary': new OpenLayers.Style({
@@ -68,16 +69,23 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             	type: G_HYBRID_MAP, 
             	sphericalMercator: true,
             	minZoomLevel: 6, 
-            	maxZoomLevel: 13
+            	maxZoomLevel: 14
             }
         );             
-        this.vectorLayer = new OpenLayers.Layer.Vector('mlpaFeatures',{
+        this.vecLayer = new OpenLayers.Layer.Vector('mlpaFeatures',{
             styleMap: styleMap
-        });                
+        });              
+        
+        this.vecLayer.events.on({
+            "sketchstarted": this.resShapeStarted,
+            "sketchcomplete": this.resShapeComplete,
+            scope: this
+        });        
 
-		//Add div to body for OL map.  Doesn't seem necessary as Ext will create one for it and it will 
-		//render the map fine.  However, drawing vectors on a Google base map didn't work in Safari until
-		//the name of a legit pre-generated div element was passed to the OL constructor
+		//Required: Create div element for OL map before constructing it.  OL really wants you to tell
+        //it what it's div is in the constructor.  If you let Ext create it's own div element at render time
+        //OL won't know where it is.  This is fine usually except the Google base map doesn't work properly in
+        //Safari in this case, it won't let you draw vectors.
 		Ext.DomHelper.append(document.body, [{
 			id: 'ol-map',
 		}]);        
@@ -87,16 +95,19 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		map.addControl(new OpenLayers.Control.Navigation());		
 		map.addControl(new gwst.controls.gwstPanZoom());
 		map.addControl(new OpenLayers.Control.MousePosition());
-        this.drawResControl = new OpenLayers.Control.DrawFeature(
-            this.vectorLayer, 
-            OpenLayers.Handler.Polygon, {
-                featureAdded: this.resDrawn.createDelegate(this)
-            }
+        
+		this.drawResControl = new OpenLayers.Control.DrawFeature(
+            this.vecLayer, 
+            OpenLayers.Handler.Polygon
         );
-       	map.addControl(this.drawResControl);		       	       	
+       	map.addControl(this.drawResControl);
+        this.selectControl = new OpenLayers.Control.SelectFeature(this.vecLayer);        
+        map.addControl(this.selectControl);
+        this.selectControl.activate();
+        
 		Ext.apply(this, {
 		    map: map,
-		    layers: [baseLayer, this.vectorLayer],
+		    layers: [baseLayer, this.vecLayer],
 		    extent: map_extent
 		});    		
 		
@@ -110,6 +121,10 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     	this.map.zoomToExtent(this.mapRegion.bounds);
     },
     
+    getShapeLayer: function() {
+    	return this.vecLayer;
+    },
+    
     enableResDraw: function() {
     	this.drawResControl.activate();
     },
@@ -118,13 +133,17 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         this.drawResControl.deactivate();
     },
     
-    resDrawn: function(feature, opts) {
-    	this.curShape = feature;
-    	this.fireEvent('res-shape-drawn', feature.geometry);
+    resShapeStarted: function(evt) {
+    	this.fireEvent('res-shape-started');
+    },
+    
+    resShapeComplete: function(evt) {
+    	this.fireEvent('res-shape-complete', evt.feature);
+    	return false;
     },
     
     removeLastShape: function() {
-    	this.vectorLayer.removeFeatures([this.curShape]);
+    	this.vecLayer.removeFeatures([this.curShape]);
     },
 
     cancelResShape: function() {
@@ -133,6 +152,14 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     
     redoResShape: function() {
     	
+    },
+    
+    addShape: function(vec) {
+    	//Initialize the feature so that the label is accurate
+    	Ext.apply(vec.attributes,{'pennies':0});
+    	this.vecLayer.addFeatures([vec]);
+    	this.selectControl.select(vec);
+    	this.curShape = vec;
     }
 });
  

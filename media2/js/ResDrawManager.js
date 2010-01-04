@@ -24,6 +24,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         		'render': this.mapPanelCreated.createDelegate(this),
         		'resize': this.mapResized.createDelegate(this)
         };
+        this.wktParser = new OpenLayers.Format.WKT();
     },
 
     /* Fetch server side settings and initialize the interface
@@ -108,8 +109,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     startDrawStep: function() {
         this.loadDrawPanel();        
-        this.mapPanel.enableResDraw(); //Turn on drawing
-        this.loadDrawToolWin();
+        this.mapPanel.enableResDraw(); //Turn on drawing        
     },
        
     /*
@@ -124,7 +124,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from draw step to resource selection
      */
     backDrawStep: function() {
-        this.drawToolWin.hide();
+        if (this.drawToolWin) {
+        	this.drawToolWin.hide();
+        }
         this.mapPanel.disableResDraw();
         this.loadNavPanel();    
     },
@@ -152,9 +154,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /* 
      * Setup UI for satisfied with shape step 
      */
-    startSatisfiedShapeStep: function() {
+    startSatisfiedShapeStep: function(shape_obj) {
+    	this.addShape(shape_obj.geom);
+        this.mapPanel.disableResDraw(); //Turn off drawing    	
         this.loadSatisfiedShapePanel();        
-        this.mapPanel.disableResDraw(); //Turn off drawing
         this.drawToolWin.hide();
     },
        
@@ -196,48 +199,40 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /*
      * Move on to drop pennies
      * 
-     * TODO: Can we just call startAllocStep directly? Is this needed?
+     * TODO: Can we just call startPennyInstrStep directly? Is this needed?
      */
     moveToDropPenniesStep: function() {
-        this.startAllocStep();
+        this.startPennyInstrStep();
     },
     
     /*
      * Move on to draw another shape
-     * 
-     * TODO: Isn't this just startDrawStep?  Consider removing
      */
     moveToDrawShapeStep: function() {
-        this.loadDrawPanel();        
-        this.mapPanel.enableResDraw(); //Turn on drawing
-        this.loadDrawToolWin();
+        this.startDrawStep();
     },
     
     /******************** Penny Allocation Instruction Step *******************/
-    
-    /* TODO: Consider calling these PennyInstrStep to match the PennyStep following
-    
+
     /*
      * show basic instructions for penny use
      */
-    startAllocStep: function() {
+    startPennyInstrStep: function() {
         this.loadAllocPanel();
     },
     
     /*
      * Cleanup allocation help step
      */
-    finAllocStep: function() {
+    finPennyInstrStep: function() {
         this.startPennyStep();
     },
     
     /*
      * Go back from allocation to resource drawing
      */
-    backAllocStep: function() {
-        this.loadDrawPanel();        
-        this.mapPanel.enableResDraw(); //Turn on drawing
-        this.loadDrawToolWin();
+    backPennyInstrStep: function() {
+        this.startDrawStep();
     },
     
     /******************** Penny Allocation Step *******************/
@@ -260,7 +255,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from penny allocation to resource drawing
      */
     backPennyStep: function() {
-        this.startAllocStep();
+        this.startPennyInstrStep();
     },
     
     /******************** Finish Step *******************/
@@ -281,10 +276,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     /*
      * Go back from penny allocation to resource drawing
-     * 
-     * Can we just call startResSelStep directly or will more logic need to go here?
-     *
-     * Depends if we want to remove resources from the store here or not.  I wanted to keep my options open.
      */
     selNewResStep: function() {
         this.startResSelStep();
@@ -293,7 +284,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process completion of drawing phase
      */
     finDrawingPhase: function() {
-        // alert('TODO: get back to group status!');
         gwst.error.load('TODO: get back to group status!');
         this.startResSelStep();
     },
@@ -324,7 +314,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.wait_win.hide();
     },
     
-    /* Load error message window. */
+    /* Create global error message window. */
     createError: function(msg) {
         if (!gwst.error) {
             gwst.error = new gwst.widgets.ErrorWindow();            
@@ -337,9 +327,11 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     /* Load the initial splash screen for the user */
     loadSplash: function() {
-        this.splash_win = new gwst.widgets.SplashWindow();    	
-    	this.splash_win.on('show', (function(){this.splash_win.center();}), this);
-        this.splash_win.on('splash-finished', this.finSplashStep, this);
+    	if (!this.splash_win) {
+    		this.splash_win = new gwst.widgets.SplashWindow();    	
+    		this.splash_win.on('show', (function(){this.splash_win.center();}), this);
+    		this.splash_win.on('splash-finished', this.finSplashStep, this);
+    	}
     	this.splash_win.show();        
     },     
 
@@ -518,8 +510,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
-            this.allocPanel.on('alloc-cont', this.finAllocStep, this);
-            this.allocPanel.on('alloc-back', this.backAllocStep, this);
+            this.allocPanel.on('alloc-cont', this.finPennyInstrStep, this);
+            this.allocPanel.on('alloc-back', this.backPennyInstrStep, this);
         } else {
             this.allocPanel.updateText({
                 resource: this.curResource.get('name'),
@@ -581,7 +573,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     mapPanelCreated: function() {
     	this.mapPanel = Ext.getCmp('mappanel');
-    	this.mapPanel.on('res-shape-drawn', this.resShapeDrawn, this)
+    	//
+    	this.loadShapeStore(this.mapPanel.getShapeLayer());    	
+    	this.mapPanel.on('res-shape-started', this.resShapeStarted, this)
+    	this.mapPanel.on('res-shape-complete', this.resShapeComplete, this)    	
     	this.loadMapLayerWin();
     },
 
@@ -592,16 +587,22 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (this.layerWin) {
     		this.layerWin.alignTo(document.body, "tr-tr", this.layerWinOffset);
     	}
-    },
+    },    
+    
+    /*
+     * Handler for user starting a shape
+     */
+    resShapeStarted: function() {
+    	this.loadDrawToolWin();
+    },       
     
     /*
      * Handler for user completing a shape
      */
-    resShapeDrawn: function(shape_geometry) {
-    	//Remove drawn listener?
-    	//Show wait message
+    resShapeComplete: function(feature) {
+    	//Validate the feature
         this.validateShape({
-            geometry: shape_geometry,
+            geometry: feature.geometry,
             resource: gwst.settings.survey_group_id+'-'+this.curResource.id
          });
     },        
@@ -636,7 +637,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     validateShape: function(config) {
         this.loadWait('Validating your ' + gwst.settings.interview.shape_name);
     	Ext.Ajax.request({
-	        url: gwst.settings.urls.validate_shape,
+	        url: gwst.settings.urls.shape_validate,
 	        method: 'POST',
 	        disableCachingParam: true,
 	        params: { 
@@ -647,7 +648,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	        success: this.finValidateShape,
            	failure: function(response, opts) {
         		//Change to error window
-              	alert('An unknown error has occurred while trying to validate your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
+              	this.hideWait();
+              	gwst.error.load('An unknown error has occurred while trying to validate your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
            	},
             scope: this
 	    });
@@ -655,17 +657,15 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 
     /* Processes the result of validateShape */
     finValidateShape: function(response, opts) {
-    	//Show the shape on the map and ask user if they are happy with it.
         this.hideWait();
         var clip_obj = Ext.decode(response.responseText);
         var status_code = parseFloat(clip_obj.status_code);
-
-        if (status_code == 1 || status_code == 0 || status_code == 5) {
-            this.startSatisfiedShapeStep();
+        if (status_code == 1 || status_code == 0 || status_code == 5) {        	
+            this.startSatisfiedShapeStep(clip_obj);
         } else if (status_code != 4){
         	this.startInvalidShapeStep();	
         } else {
-        //    config.fail(response, opts);
+        	gwst.error.load('An unknown error has occurred while trying to validate your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
         }        
     },       
     
@@ -677,7 +677,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 //Add the shape to the shape store
             },
             error: function(request, textStatus, errorThrown){                       
-                 gwst.ui.error.show({errorText: 'There was a problem saving your new MPA. This error will show up in our logs, but if the problem persists please follow up with an administrator.', debugText: request.responseText, logText: 'Error saving new shape'});
+                 gwst.error.load('There was a problem saving your '+gwst.settings.interview.shape_name);
             },
             type: 'POST',
             url: '/save_shape/'
@@ -688,18 +688,43 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     loadResourceStore: function(resources) {
         //Initialize resource store
-        var Resource = Ext.data.Record.create([
+        this.ResourceRec = Ext.data.Record.create([
 	       {name: 'id', type: 'float'},
 	       {name: 'name'}
 	   ]);
         var reader = new Ext.data.JsonReader(
             {id: 'id'}, 
-            Resource
+            this.ResourceRec
         );
         gwst.settings.resourceStore = new Ext.data.Store({
             reader:  reader
         });                           
         gwst.settings.resourceStore.loadData(resources);
+    },
+    
+    loadShapeStore: function(shapeLayer) {
+	    gwst.settings.shapeStore = new GeoExt.data.FeatureStore({
+	        layer: shapeLayer,
+	        fields: [
+	            {name: 'pennies', type: 'float', default: 0},
+	            {name: 'boundary_n', type: 'string', default: ''},
+	            {name: 'boundary_s', type: 'string', default: ''},
+	            {name: 'boundary_e', type: 'string', default: ''},
+	            {name: 'boundary_w', type: 'string', default: ''}
+	        ],
+	        proxy: new GeoExt.data.ProtocolProxy({
+	            protocol: new OpenLayers.Protocol.HTTP({
+	                url: "/shapes",
+	                format: new OpenLayers.Format.GeoJSON()
+	            })
+	        }),
+	        autoLoad: true
+	    });
+    },
+    
+    addShape: function(wkt) {
+    	var vec = this.wktParser.read(wkt);
+    	this.mapPanel.addShape(vec);
     }
     
 });

@@ -4,12 +4,11 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext, loader
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest
-from django.conf import settings
 from models import *
 from forms import *
 from gwst_app.utils.geojson_encode import *
 from django.db.models import Sum
-import pdb
+from shortcuts import render_to_geojson
 
 #Pass extra settings around whether user can self-register
 def login(request, template_name='registration/login.html'):
@@ -746,44 +745,51 @@ def draw_settings(request, id) :
     int_group = InterviewGroup.objects.get(pk=id)
     group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=id )
     resources = Resource.objects.filter(groupmemberresource__group_membership=group_memb).values('id','name')    
-    result = {}
-    
+    result = {}    
     #User settings
     result['user'] = {
         'name': request.user.first_name+" "+request.user.last_name,
         'email': request.user.email,
         'username': request.user.username,
         'is_staff': request.user.is_staff
-    } 
-    
+    }     
     #Interview settings
     result['interview'] = {
 		'resource_name': interview.resource_name,
 	    'resource_name_plural': interview.resource_name_plural,
     	'resource_action': interview.resource_action,
         'shape_name': interview.shape_name
-    }
-    
+    }    
     #Group settings
     result['group'] = {
         'name': int_group.name,
         'description': int_group.description,
         'sel_resources': resources,
         'member_title': int_group.member_title
-    }
-    
+    }    
     #Region settings
     result['region'] = interview.region
     
-    #Change to json mimetype!!!!!!!!
-    return HttpResponse(geojson_encode(result), mimetype='text/plain')
+    return HttpResponse(geojson_encode(result), mimetype='application/json')
         
 def get_user_shapes(request):
     resource_shapes = InterviewShape.objects.filter(user=request.user)
     return HttpResponse(geojson_encode(resource_shapes), mimetype='application/json')    
+
+def shapes(request):
+    #int_group = InterviewGroup.objects.get(pk=id)
+    shape_qs = InterviewShape.objects.filter(user=request.user)
+    return render_to_geojson(
+        shape_qs,
+        geom_attribute='geometry',
+        excluded_fields=['creation_date'],
+        mimetype = 'text/plain',
+        proj_transform=settings.CLIENT_SRID,
+        pretty_print=True
+    )         
     
 @login_required
-def get_shape(request,id):
+def shape(request,id):
     shape = InterviewShape.objects.filter(pk=id)
     return HttpResponse(shape[0].geojson(), mimetype='application/json')
              
@@ -791,9 +797,9 @@ def get_shape(request,id):
 def validate_shape(request):
     result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'    
     # make sure the user has a valid session in-progress
-    try:
-        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])        
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+    interview = request.session['interview']
+    try:                        
+        status_object_qs = InterviewStatus.objects.filter(interview=interview, user=request.user)
         status = status_object_qs[0]        
     except Exception, e:
         raise
@@ -805,15 +811,15 @@ def validate_shape(request):
     result = '{"status_code":"-1",  "success":"false",  "message":"error in validate_shape in views.py"}'
     try:    
         # validate against this user's other shapes in this resource
-        new_geom = GEOSGeometry( request.REQUEST["geometry"], srid=settings.CLIENT_SRID )
-        new_geom.transform( settings.SERVER_SRID )
+        new_shape = GEOSGeometry( request.REQUEST["geometry"], srid=settings.CLIENT_SRID )
+        new_shape.transform( settings.SERVER_SRID )
         
         if request.REQUEST.get("orig_shape_id"):
             orig_shape = InterviewShape.objects.get(pk=request.REQUEST.get("orig_shape_id"))
             int_group_id = orig_shape.int_group.id
             resource_id = orig_shape.resource.id
         else:
-            int_group_id, resource_id = request.REQUEST['resource'].split('-')
+            int_group_id, resource_id = request.REQUEST['resource'].split('-')        
         
         other_shapes = InterviewShape.objects.filter(user=request.user,int_group__id=int_group_id,resource__id=resource_id)
         
@@ -821,19 +827,51 @@ def validate_shape(request):
             other_shapes = other_shapes.exclude(pk=request.REQUEST["orig_shape_id"])
 
         for i, shape in enumerate( other_shapes.all() ):
-            if new_geom.intersects( shape.geometry_clipped ):
-                result = '{"status_code":"6","message":"New geometry overlaps existing shapes"}'
-                return HttpResponse(result)
-
-        m = InterviewShape(geometry=request.REQUEST["geometry"])
-        result = m.validate()
-    except Exception, e:
-        #return HttpResponse(result + e.message, status=500)
-        raise
-    return HttpResponse(result)
- 
+            if new_shape.intersects( shape.geometry ):
+                return gen_validate_response(6, 'New geometry overlaps existing shapes', None)
     
-# AJAX post that user accepted clipped shape    
+        #Verify the new shape is valid
+        if not new_shape.valid:
+            return gen_validate_response(3, 'Shape is not valid', new_shape)
+        
+        #Clip the shape to the region
+        clipped_shape = new_shape.difference( interview.clip_region.the_geom )          
+
+        #if no area, then no overlap, just return it
+        if clipped_shape.area == 0:
+            return gen_validate_response(0, 'Shape not clipped', clipped_shape)
+         
+        #if there was overlap        
+        if clipped_shape.num_geom > 1:
+            largest_area = 0.0
+            for g in clipped_shape: # find the largest polygon in the multi polygon 
+                if g.area > largest_area:
+                    largest_geom = g
+                    largest_area = g.area
+            clipped_shape = largest_geom
+        return gen_validate_response(0, 'Shape clipped to shoreline', clipped_shape)            
+        
+    except Exception, e:
+        return HttpResponse(result + e.message, status=500)
+ 
+def gen_validate_response(code, message, geom):
+    if geom:
+        geom.transform( settings.CLIENT_SRID )
+    result = {
+        'status_code':code,
+        'message':message,
+        'geom':geom
+    }
+    return HttpResponse(geojson_encode(result))
+    
+#    from django.db import connection
+#    cursor = connection.cursor()
+#    query_str = "SELECT gwst_validate_shape('%s')" % (poly)
+#    cursor.execute(query_str)
+#    row = cursor.fetchone()
+#    return row    
+
+#Save a user-drawn shape.  Shape should already have been validated    
 @login_required
 def save_shape(request):
     result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'    

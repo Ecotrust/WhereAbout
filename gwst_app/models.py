@@ -1,5 +1,6 @@
 from django.contrib.gis.db.models import *
 from django.contrib.auth.models import User
+from django.conf import settings
 import datetime
 from gwst_app.utils.geojson_encode import *
 from gwst_app.managers import *
@@ -19,6 +20,17 @@ class Region(Model):
     def __unicode__(self):
         return unicode('%s: %s' % (self.code, self.name))
 
+#Region to clip user-drawn shapes to.
+class ClipRegion(Model):
+    id = models.IntegerField(primary_key=True)    
+    name = models.TextField()
+    the_geom = MultiPolygonField() # This field type is a guess.
+    objects = GeoManager()
+    class Meta:
+        db_table = u'gwst_region_clip'
+        
+    def __unicode__(self):
+        return unicode('%s' % (self.name))                    
         
 class Resource(Model):
     name = CharField( max_length=100, unique=True )
@@ -35,6 +47,7 @@ class Resource(Model):
         
 class Interview(Model):
     region = ForeignKey(Region)
+    clip_region = ForeignKey(ClipRegion)
     name = CharField( max_length=100, unique=True )
     organization = CharField( max_length=100 )
     description = CharField( max_length=200 )
@@ -66,7 +79,7 @@ class InterviewGroup(Model):
     user_draws_shapes = BooleanField( default=True )
     shape_color = CharField( max_length=6, blank=True, default="FFFFFF" )
     preselect = BooleanField( default=True ) #Allow user to select which resources they use before drawing? 
-    member_title = CharField( max_length=50 )
+    member_title = CharField( max_length=50, default='' )
     
     class Meta:
         db_table = u'gwst_group'
@@ -297,104 +310,74 @@ class InterviewStatus(Model):
     def __unicode__(self):
         return unicode('%s: %s' % (self.user, self.interview))
 
-        
+
 class InterviewShape(Model):
     user = ForeignKey(User)
     int_group = ForeignKey(InterviewGroup)
     resource = ForeignKey(Resource)
-    geometry = PolygonField(srid=3310, blank=True, null=True)
-    geometry_clipped = PolygonField(srid=3310, blank=True, null=True)
-    geometry_edited = PolygonField(srid=3310, blank=True, null=True)
+    geometry = PolygonField(srid=settings.SERVER_SRID, blank=True, null=True)
     pennies = IntegerField( default=0 )
     boundary_n = CharField( max_length=100, blank=True, null=True ) 
     boundary_s = CharField( max_length=100, blank=True, null=True )
     boundary_e = CharField( max_length=100, blank=True, null=True )
     boundary_w = CharField( max_length=100, blank=True, null=True )
-    edit_notes = TextField( blank=True, null=True )
-    edit_status = CharField( max_length=100, default='unedited' )
     creation_date = DateTimeField(default=datetime.datetime.today())
-    last_modified = DateTimeField(default=datetime.datetime.today())
-    num_times_saved = IntegerField(default=1)
+    objects = GeoManager()
     
     class Meta:
         db_table = u'gwst_usershape'
-        
+
     def __unicode__(self):
         return unicode('%s: %s %s' % (self.user, self.resource.code, self.int_group))
 
     def int_group_name(self):
-        return unicode('%s' % self.int_group.name)
+        return unicode('%s' % self.int_group.name)        
         
-    def validate(self):
-        from django.db import connection
-        cursor = connection.cursor()
-        query_str = "SELECT gwst_validate_shape('%s')" % (self.geometry)
-        cursor.execute(query_str)
-        row = cursor.fetchone()
-        return row
-        
-    def client_object(self):
-        return {
-            'pk': self.pk,
-            'model': 'mpa',
-            'name': '%s area (%d pennies)' % (self.resource.name, self.pennies),
-            'user': self.user_id,
-            'date_created': self.creation_date.ctime(),
-            'date_modified': self.last_modified.ctime(),
-            'display_properties': {
-                'toggle': True,
-                'context': True,
-                'select': True,
-                'doubleclick': True,
-                'collapsible': False,
-            }
-        }
-        
-    def json(self):
-        return self.geojson(attributes=True)
-        
-    def geojson(self, srid=900913, attributes=False):
-        
-        try:
-            geo = self.geometry_clipped.simplify(20, preserve_topology=True)
-            geo.transform(srid) 
-        except Exception, E:
-            raise Exception('%s: geometry was: "%s" ' % (E, self.geometry_clipped.wkt)) 
-        
-        attr = {}
-        
-        # regen this shape's folder name to update the UI with current penny count
-        resource_shapes = InterviewShape.objects.filter(user=self.user,int_group=self.int_group,resource=self.resource)
-        resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
-        if resource_pennies == None:
-            resource_pennies = 0
-        if resource_pennies == 100:
-            folderName = self.resource.name+' (complete)'
-        else:
-            folderName = self.resource.name+' ('+str(100-resource_pennies)+' pennies left)'
-            
-        if attributes:
-            attr = self.client_object()
-            attr['folder'] = 'folder_'+str(self.int_group.id)+'-'+str(self.resource.id)
-            attr['folderID'] = 'folder_'+str(self.int_group.id)+'-'+str(self.resource.id)
-            attr['folderName'] = folderName
-        attr['fillColor'] = '#' + self.resource.shape_color # alternatively self.int_group.shape_color
-        attr['strokeColor'] = "white"
-        attr['fillOpacity'] = "0.4"
-        attr['shape_label'] = str(self.pennies)+ ' p'
-        self.geometry.transform(srid)
-        attr['original_geometry'] = self.geometry.wkt
-        return '{"id": "mpa_%s", "type": "Feature", "geometry": %s, "properties": %s}' % (self.pk, geo.geojson, geojson_encode(attr))
-        
-    def copy(self):
-        m = self
-        shape_id = self.id
-        m.id = None
-        m.creation_date = datetime.datetime.now()
-        m.last_modified = datetime.datetime.now()
-        m.num_times_saved = 1
-        m.save() #This save generates the new mpa_id
-        return m
+    #def json(self):
+    #    return self.geojson(attributes=True)
+    #
+    #def geojson(self, srid=settings.CLIENT_SRID, attributes=False):
+    #    
+    #        try:
+    #            geo = self.geometry_clipped.simplify(20, preserve_topology=True)
+    #            geo.transform(srid) 
+    #        except Exception, E:
+    #            raise Exception('%s: geometry was: "%s" ' % (E, self.geometry_clipped.wkt)) 
+    #        
+    #        attr = {}
+    #        
+    #        # regen this shape's folder name to update the UI with current penny count
+    #        resource_shapes = InterviewShape.objects.filter(user=self.user,int_group=self.int_group,resource=self.resource)
+    #        resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
+    #        if resource_pennies == None:
+    #            resource_pennies = 0
+    #        if resource_pennies == 100:
+    #            folderName = self.resource.name+' (complete)'
+    #        else:
+    #            folderName = self.resource.name+' ('+str(100-resource_pennies)+' pennies left)'
+    #            
+    #        if attributes:
+    #            attr = self.client_object()
+    #            attr['folder'] = 'folder_'+str(self.int_group.id)+'-'+str(self.resource.id)
+    #            attr['folderID'] = 'folder_'+str(self.int_group.id)+'-'+str(self.resource.id)
+    #            attr['folderName'] = folderName
+    #        attr['fillColor'] = '#' + self.resource.shape_color # alternatively self.int_group.shape_color
+    #        attr['strokeColor'] = "white"
+    #        attr['fillOpacity'] = "0.4"
+    #        attr['shape_label'] = str(self.pennies)+ ' p'
+    #        self.geometry.transform(srid)
+    #        attr['original_geometry'] = self.geometry.wkt
+    #        return '{"id": "mpa_%s", "type": "Feature", "geometry": %s, "properties": %s}' % (self.pk, geo.geojson, geojson_encode(attr))
+    #
+    #    def copy(self):
+    #        m = self
+    #        shape_id = self.id
+    #        m.id = None
+    #        m.creation_date = datetime.datetime.now()
+    #        m.last_modified = datetime.datetime.now()
+    #        m.num_times_saved = 1
+    #        m.save() #This save generates the new mpa_id
+    #        return m
 
 class FaqGroup(models.Model):
     class Meta:

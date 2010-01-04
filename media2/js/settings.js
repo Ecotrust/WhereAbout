@@ -23,13 +23,15 @@ gwst.settings = {
     survey_group_id: null,
     survey_group_name: null,
     
-    resourceStore: null     //Ext data store of available resources
+    resourceStore: null,	//Ext JsonStore of available resources
+    shapeStore: null		//GeoExt FeatureStore of user-drawn shapes
 };
 
 gwst.settings.urls = {
     user: '/user/',
 	group_resources: '/group_resources/',
-	validate_shape: '/validate_shape/',
+	shape: '/shape/',
+	shape_validate: '/shape/validate/',
 	region: '/region/',
     group_draw_settings: '/draw_settings/'    //URL to fetch runtime settings
 };

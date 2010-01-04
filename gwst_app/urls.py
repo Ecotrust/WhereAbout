@@ -19,7 +19,6 @@ urlpatterns = patterns('',
     (r'^accounts/', include('registration.urls')),
     
     (r'^draw_help/text/$', draw_help_text ),
-#    (r'^draw_splash/$', draw_splash ),
 
     (r'^$', select_interview ),
     (r'^select_interview/$', select_interview ),
@@ -45,9 +44,10 @@ urlpatterns = patterns('',
     (r'^reset_interview/(\d+)/$', reset_interview ),
     
     (r'^draw_settings/(\d+)/json/$', draw_settings),
-    (r'^validate_shape/$', validate_shape ),
-    (r'^save_shape/$', save_shape ),
-    (r'^video/(\w+)$', video ),
+    (r'^shapes/$', shapes),
+    (r'^shape/$', shape),    
+    (r'^shape/validate/$', validate_shape),
+    (r'^video/(\w+)$', video),
 
     (r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
     (r'^faq', faq),
