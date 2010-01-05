@@ -9,7 +9,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_ENGINE = 'django.contrib.gis.db.backends.postgis'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 DATABASE_NAME = 'gwst'             # Or path to database file if using sqlite3.
 DATABASE_USER = 'gwst'             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
@@ -79,6 +79,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.databrowse',
     'django.contrib.humanize',
+    'django.contrib.gis',
     'registration_custom',
     'gwst_app',
     'gwst_surveymonkey'

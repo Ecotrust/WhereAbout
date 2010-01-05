@@ -4,7 +4,7 @@ import sys
 
 from django import forms
 from django.conf import settings
-from django.forms.fields import email_re
+from django.core.validators import email_re
 
 from gwst_app.models import *
 from gwst_app.forms import NameModelChoiceField

@@ -767,8 +767,14 @@ def draw_settings(request, id) :
         'member_title': int_group.member_title
     }    
     #Region settings
-    result['region'] = interview.region
-    
+    result['region'] = {
+        'name': interview.region.name,
+        'n_bound': interview.region.n_bound,
+        's_bound': interview.region.s_bound,
+        'e_bound': interview.region.e_bound,
+        'w_bound': interview.region.w_bound,
+        'code': interview.region.code
+    }
     return HttpResponse(geojson_encode(result), mimetype='application/json')
         
 def get_user_shapes(request):
