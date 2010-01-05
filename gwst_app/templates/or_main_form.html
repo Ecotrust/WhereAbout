@@ -6,29 +6,52 @@
 {% if instructions %}
 <div style='width:600px'>{{ instructions.main|safe }}</div>
 {% endif %}
-   <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
-   {{ form.non_field_errors }}
-   
-    {% for field in form %}
-        {% if field.field.question_set %}
-            {% with field.field.question_set as index %}
-                <p><div class="question_set"></div>
-                {% for key, val in instructions.items %}
-                    {% ifequal key index %}
-                        {{ val|safe }}
-                    {% endifequal %}
-                {% endfor %}
-                </p>
-            {% endwith %}
+    <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+    {{ form.non_field_errors }}
+    
+    {# This can be more dynamic using template language and the "question_set" attribute.  All you need to do is have one loop through all, then three smaller loops engaging when the desired question_set begins, and only acting on the space determined by the counter of the parent loop (either use parentloop.counter or use "with" to store the value). #}
+    
+    {% for question in form %}
+        {% if forloop.counter < 8 %}
+            <p><div class="fieldWrapper">
+                {{ question.errors }}
+                {{ question.label_tag }}: {{ question }}
+            </div></p>
         {% endif %}
-        <p><div class="fieldWrapper">
-            {{ field.errors }}
-            {{ field.label_tag }}: {{ field }}
-        </div></p>
+        {% ifequal forloop.counter 8 %}   
+        <br>
+        <p>
+            Please estimate the percentage of your total 2008 (NOT 2009) expenditures used in each<br> 
+            of the following categories - note that the sum should equal 100%.  If you did not spend <br>
+            money or make purchases in a category, please leave it as "0".
+        <p>
+        <table border="1">
+        <tr>
+            <th><b>Trip Related</b></th>
+        </tr>
+        {% endifequal %}
+        {% ifequal forloop.counter 18 %}   
+        <tr></tr>
+        <tr>
+            <th><b>Equipment & Annual Related</b></th>
+        </tr>
+        {% endifequal %}
+        {% if forloop.counter > 7 %}
+            {% if question.errors %}
+                </table>
+                    {{ question.errors }}
+                <table border="1">
+            {% endif %}
+            <tr>
+                <td>{{ question.label_tag }}</td>
+                <td>{{ question }}</td>
+            </tr>
+        {% endif %}
+
     {% endfor %}   
-   
-   <p><input id="submit" type="submit" value="{{ value }}" />
-   {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
-   </p>
-   </form>
+    </table>
+    <p><input id="submit" type="submit" value="{{ value }}" />
+    {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+    </p>
+    </form>
 {% endblock %}
