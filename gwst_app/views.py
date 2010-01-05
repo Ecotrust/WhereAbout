@@ -359,8 +359,7 @@ def answer_questions(request,group_id):
             form.save(request.user)
             
             return HttpResponseRedirect('/group_status/')
-
-    return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))     
+    return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))     
     
 
 @login_required
@@ -809,6 +808,7 @@ def validate_shape(request):
         return HttpResponse(result, status=403)
 
     result = '{"status_code":"-1",  "success":"false",  "message":"error in validate_shape in views.py"}'
+
     try:    
         # validate against this user's other shapes in this resource
         new_shape = GEOSGeometry( request.REQUEST["geometry"], srid=settings.CLIENT_SRID )

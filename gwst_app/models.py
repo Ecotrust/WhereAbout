@@ -80,7 +80,8 @@ class InterviewGroup(Model):
     shape_color = CharField( max_length=6, blank=True, default="FFFFFF" )
     preselect = BooleanField( default=True ) #Allow user to select which resources they use before drawing? 
     member_title = CharField( max_length=50, default='' )
-    
+    page_template = CharField( max_length=60, default="base_form.html" )
+
     class Meta:
         db_table = u'gwst_group'
         unique_together = (("interview", "code"),("interview", "name"))
