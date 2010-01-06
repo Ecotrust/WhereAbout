@@ -82,6 +82,7 @@ def render_to_geojson(query_set, geom_field=None, geom_attribute=None, extra_att
     Currently computes a bbox and adds a crs member as a sr.org link
     
     '''
+    excluded_fields.append('_state')
     collection = {}
     if hasattr(query_set,'_meta'): # its a model instance
         fields = query_set._meta.fields
