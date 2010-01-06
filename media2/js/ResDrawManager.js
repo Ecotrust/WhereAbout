@@ -168,8 +168,25 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!result.satisfied) {
     		this.mapPanel.removeLastShape();
     	}
-        this.startAnotherShapeStep();
+        this.startAttribStep();
     },
+    
+    /******************** Shape Attribute Step *******************/
+    
+    /* 
+     * Setup UI for Shape Attribute step 
+     */
+    startAttribStep: function() {
+        this.loadAttribPanel();        
+    },
+       
+    /*
+     * Process and finish Shape Attribute step
+     */
+    finAttribStep: function() {
+        this.startAnotherShapeStep();
+    },    
+    
     
     /******************** draw another shape / drop penny steps *******************/
     
@@ -476,6 +493,24 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.satisfiedShapePanel);    	
     },
+    
+    /* Load the shape attribute west panel */
+    loadAttribPanel: function() {
+    	if (!this.shapeAttribPanel) {
+            this.shapeAttribPanel = new gwst.widgets.ShapeAttribPanel({
+                xtype: 'gwst-shape-attrib-panel',
+                shape_name: gwst.settings.interview.shape_name
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.shapeAttribPanel.on('shape-attrib-cont', this.finAttribStep, this);            
+        } else {
+            this.shapeAttribPanel.updateText({
+                shape_name: gwst.settings.interview.shape_name
+            });
+        }
+        this.viewport.setWestPanel(this.shapeAttribPanel);    	
+    },
+    
     
     /* Load the draw another shape or drop pennies question west panel */
     loadAnotherShapePanel: function() {
