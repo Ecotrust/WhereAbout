@@ -107,8 +107,13 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Setup UI for resource drawing step 
      */
     startDrawStep: function() {
-        this.loadDrawPanel();        
-        this.mapPanel.enableResDraw(); //Turn on drawing        
+        var shape = false;
+        if (!shape) {    
+            this.loadDrawPanel();        
+            this.mapPanel.enableResDraw(); //Turn on drawing
+        } else {
+            this.startShapeGridStep();
+        }
     },
        
     /*
@@ -128,6 +133,35 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.mapPanel.disableResDraw();
         this.loadNavPanel();    
+    },
+    
+    /******************** Draw Step with Grid*******************/
+    
+    /* 
+     * Setup UI for resource grid drawing step 
+     */
+    startShapeGridStep: function() {
+        this.loadShapeGridPanel();        
+        this.mapPanel.enableResDraw(); //Turn on drawing        
+    },
+       
+    /*
+     * Process and finish draw step
+     */
+    finShapeGridStep: function() {
+        this.drawToolWin.hide();
+        this.mapPanel.disableResDraw();
+    },    
+    
+    /*
+     * Go back from draw step to resource selection
+     */
+    backShapeGridStep: function() {
+        if (this.drawToolWin) {
+        	this.drawToolWin.hide();
+        }
+        this.mapPanel.disableResDraw();
+        this.startDrawPanel();    
     },
     
     /******************** Invalid Shape Step *******************/
@@ -166,8 +200,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     finSatisfiedShapeStep: function(result) {
     	if (!result.satisfied) {
     		this.mapPanel.removeLastShape();
-    	}
-        this.startAttribStep();
+            this.startAnotherShapeStep();
+    	} else {
+            this.startAttribStep();
+        }
     },
     
     /******************** Shape Attribute Step *******************/
@@ -225,7 +261,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Move on to draw another shape
      */
     moveToDrawShapeStep: function() {
-        this.startDrawStep();
+        this.startShapeGridStep();
     },
     
     /******************** Penny Allocation Instruction Step *******************/
@@ -248,7 +284,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from allocation to resource drawing
      */
     backPennyInstrStep: function() {
-        this.startDrawStep();
+        this.startShapeGridStep();
     },
     
     /******************** Penny Allocation Step *******************/
@@ -441,6 +477,30 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             });
         }
         this.viewport.setWestPanel(this.drawPanel);    	
+    },
+    
+    /* Load the grid draw west panel */
+    loadShapeGridPanel: function() {
+    	if (!this.shapeGridPanel) {
+            this.shapeGridPanel = new gwst.widgets.ShapeGridPanel({
+                xtype: 'gwst-shape-grid-panel',
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.shapeGridPanel.on('shape-grid-cont', this.finShapeGridStep, this);
+            this.shapeGridPanel.on('shape-grid-back', this.backShapeGridStep, this);            
+        } else {
+            this.shapeGridPanel.updateText({
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+        }
+        this.viewport.setWestPanel(this.shapeGridPanel);    	
     },
     
     /* Create draw tool window and connect events to the map panel */
