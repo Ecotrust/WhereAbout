@@ -51,7 +51,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     /* Finish splash and start resource selection */
     finSplashStep: function() {
-    	this.splash_win.hide();
     	this.startResSelStep();
     },
     
@@ -343,14 +342,21 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     /* Load the initial splash screen for the user */
-    loadSplash: function() {
-    	if (!this.splash_win) {
-    		this.splash_win = new gwst.widgets.SplashWindow();    	
-    		this.splash_win.on('show', (function(){this.splash_win.center();}), this);
-    		this.splash_win.on('splash-finished', this.finSplashStep, this);
-    	}
-    	this.splash_win.show();        
-    },     
+    loadSplash: function() {  
+    	if (!this.splashPanel) {
+            this.splashPanel = new gwst.widgets.SplashPanel({
+                xtype: 'gwst-splash-panel',
+                user_group: gwst.settings.group.member_title
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.splashPanel.on('splash-cont', this.finSplashStep, this);
+        } else {
+            this.splashPanel.updateText({
+                user_group: gwst.settings.group.member_title,
+            });
+        }
+        this.viewport.setWestPanel(this.splashPanel); 
+    },
 
     /* Load the map layer toggle window */
     loadMapLayerWin: function() {    	
@@ -608,7 +614,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     mapPanelCreated: function() {
     	this.mapPanel = Ext.getCmp('mappanel');
-    	//
     	this.loadShapeStore(this.mapPanel.getShapeLayer());    	
     	this.mapPanel.on('res-shape-started', this.resShapeStarted, this)
     	this.mapPanel.on('res-shape-complete', this.resShapeComplete, this)    	

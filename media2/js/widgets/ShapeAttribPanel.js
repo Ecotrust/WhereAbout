@@ -27,7 +27,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
 	
     updateText: function(text_config) {
         Ext.apply(this, text_config);
-        this.inner_panel.getEl().update(this.getText());
+        this.inner_text_panel.getEl().update(this.getText());
     },
     
     getText: function() {
