@@ -161,7 +161,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         	this.drawToolWin.hide();
         }
         this.mapPanel.disableResDraw();
-        this.startDrawPanel();    
+        this.startDrawStep();    
     },
     
     /******************** Invalid Shape Step *******************/
@@ -307,7 +307,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from penny allocation to resource drawing
      */
     backPennyStep: function() {
-        this.startPennyInstrStep();
+        this.startShapeGridStep();
     },
     
     /******************** Finish Step *******************/

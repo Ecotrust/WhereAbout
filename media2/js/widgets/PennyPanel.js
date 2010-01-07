@@ -21,7 +21,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 			bbar: [
 				{xtype:'tbfill'},
 				{
-                    text: '<< Go Back',
+                    text: '<< Back to Draw',
                     handler: this.backBtnClicked.createDelegate(this)
                 },
 				{xtype:'tbseparator'},
