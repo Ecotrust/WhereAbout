@@ -14,21 +14,59 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
 
         this.addEvents('draw-cont');        
         this.addEvents('draw-back');        
+        this.addEvents('draw-grid');
         
-		Ext.apply(this, {
-			title: '3. Draw',
-			bbar: [
-				{xtype:'tbfill'},
-				{
+        Ext.apply(this, {
+            title: '3. Draw',
+            bbar: [
+                {xtype:'tbfill'},
+                {
                     text: '<< Go Back',
                     handler: this.backBtnClicked.createDelegate(this)
                 }
-			]
-		});
-		
+            ]
+        });
+        // this.updateBbar(this.getBottomToolbar());
         // Call parent (required)
         gwst.widgets.DrawPanel.superclass.initComponent.apply(
           this, arguments);                     
+    },
+    
+    updateBbar: function() {
+        var bBar = this.getBottomToolbar().bbar;
+        if (gwst.settings.shapeStore.getCount() <= 0 ) {
+            Ext.apply(bBar, {
+                bbar: [
+                    {xtype:'tbfill'},
+                    {
+                        text: '<< Go Back',
+                        handler: this.backBtnClicked.createDelegate(this)
+                    }
+                ]
+            });
+        } else {
+            Ext.apply(bBar, {
+                bbar: [
+                    {xtype:'tbfill'},
+                    {
+                        text: '<< Go Back',
+                        handler: this.backBtnClicked.createDelegate(this)
+                    },
+                    {xtype:'tbseparator'},
+                    {
+                        text: 'Grid view',
+                        handler: this.gridBtnClicked.createDelegate(this)
+                    },
+                    {xtype:'tbseparator'},
+                    {
+                        text: 'Continue >>',
+                        handler: this.continueBtnClicked.createDelegate(this)
+                    }
+                ]
+            });
+        };
+        // this.getEl().update(this.getBottomToolbar());
+        // this.render();
     },
     
     updateText: function(text_config) {
@@ -75,6 +113,14 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         // Call parent (required)
         gwst.widgets.DrawPanel.superclass.onRender.apply(this, arguments); 
 	},
+    
+    continueBtnClicked: function() {
+        this.fireEvent('draw-cont',this);
+    },
+    
+    gridBtnClicked: function() {
+        this.fireEvent('draw-grid',this);
+    },
     
     backBtnClicked: function() {
         this.fireEvent('draw-back',this);

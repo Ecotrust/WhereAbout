@@ -91,7 +91,11 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	 * Finish navigation and go to Draw Step
 	 */
     finNavStep: function() {
-        this.startDrawStep();
+        if (gwst.settings.shapeStore.getCount() <= 0) {    
+            this.startDrawStep();        
+        } else {
+            this.startShapeGridStep();
+        }
 	},
 	
 	/*
@@ -106,14 +110,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /* 
      * Setup UI for resource drawing step 
      */
-    startDrawStep: function() {
-        var shape = false;
-        if (!shape) {    
-            this.loadDrawPanel();        
-            this.mapPanel.enableResDraw(); //Turn on drawing
-        } else {
-            this.startShapeGridStep();
-        }
+    startDrawStep: function() {  
+        this.loadDrawPanel();        
+        this.mapPanel.enableResDraw(); //Turn on drawing
     },
        
     /*
@@ -141,8 +140,12 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Setup UI for resource grid drawing step 
      */
     startShapeGridStep: function() {
-        this.loadShapeGridPanel();        
-        this.mapPanel.enableResDraw(); //Turn on drawing        
+        if (gwst.settings.shapeStore.getCount() > 0) {
+            this.loadShapeGridPanel();        
+            this.mapPanel.enableResDraw(); //Turn on drawing   
+        } else {
+            this.startDrawStep();
+        }
     },
        
     /*
@@ -151,6 +154,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     finShapeGridStep: function() {
         this.drawToolWin.hide();
         this.mapPanel.disableResDraw();
+        this.startAnotherShapeStep();
     },    
     
     /*
@@ -160,8 +164,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
-        this.mapPanel.disableResDraw();
-        this.startDrawStep();    
+        this.mapPanel.disableResDraw();  
+        this.startNavStep();         
     },
     
     /******************** Invalid Shape Step *******************/
@@ -239,9 +243,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Maybe a check should be done just before this panel gets loaded
      */
     penniesStepSelected: function() {
-        var shapes_exist = true;
-        //TODO: logic to find valid shapes and set boolean here
-        if (shapes_exist) {
+        if (gwst.settings.shapeStore.getCount() > 0) {
             this.moveToDropPenniesStep();
         } else {
             this.startFinishStep();
@@ -468,7 +470,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             //When panel fires event saying it's all done, we want to process it and move on 
             this.drawPanel.on('draw-cont', this.finDrawStep, this);
             this.drawPanel.on('draw-back', this.backDrawStep, this);            
+            this.drawPanel.on('draw-grid', this.loadShapeGridPanel, this);
         } else {
+            this.drawPanel.updateBbar();
             this.drawPanel.updateText({
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
@@ -491,7 +495,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.shapeGridPanel.on('shape-grid-cont', this.finShapeGridStep, this);
-            this.shapeGridPanel.on('shape-grid-back', this.backShapeGridStep, this);            
+            this.shapeGridPanel.on('shape-grid-back', this.backShapeGridStep, this);
+            this.shapeGridPanel.on('shape-grid-instructions', this.loadDrawPanel, this);
         } else {
             this.shapeGridPanel.updateText({
                 resource: this.curResource.get('name'),

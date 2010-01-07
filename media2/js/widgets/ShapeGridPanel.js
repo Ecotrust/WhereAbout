@@ -14,6 +14,7 @@ gwst.widgets.ShapeGridPanel = Ext.extend(gwst.widgets.WestPanel, {
 
         this.addEvents('shape-grid-cont');        
         this.addEvents('shape-grid-back');        
+        this.addEvents('shape-grid-instructions');
         
 		Ext.apply(this, {
 			title: '3. Draw',
@@ -22,6 +23,11 @@ gwst.widgets.ShapeGridPanel = Ext.extend(gwst.widgets.WestPanel, {
 				{
                     text: '<< Go Back',
                     handler: this.backBtnClicked.createDelegate(this)
+                },
+				{xtype:'tbseparator'},
+                {
+                    text: 'Instructions',
+                    handler: this.instructionBtnClicked.createDelegate(this)
                 },
 				{xtype:'tbseparator'},
 				{
@@ -116,7 +122,7 @@ gwst.widgets.ShapeGridPanel = Ext.extend(gwst.widgets.WestPanel, {
             height: 350,
             width: 244,
             title: 'Shapes',
-            margin: 30,
+            style: 'margin: 25px',
             stateful: true,
             stateId: 'grid'
         });
@@ -130,6 +136,10 @@ gwst.widgets.ShapeGridPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     continueBtnClicked: function() {
         this.fireEvent('shape-grid-cont',this);
+    },
+    
+    instructionBtnClicked: function() {
+        this.fireEvent('shape-grid-instructions',this);
     },
     
     backBtnClicked: function() {
