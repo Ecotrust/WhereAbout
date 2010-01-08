@@ -487,13 +487,13 @@
     "fields": {
       "shape_color": "FFFFFF", 
       "code": "kyk", 
-      "name": "Kayak Fishing", 
+      "name": "Kayak or Non-Motorized Vessel Fishing", 
       "required_group": false, 
       "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": true, 
       "interview": 2, 
-      "member_title": "kayak fisherman", 
+      "member_title": "kayak or non-motorized vessel fisherman", 
       "page_template": "base_form.html", 
       "resources": [
         1, 
@@ -503,7 +503,7 @@
         24, 
         25
       ], 
-      "description": "Kayak Fishermen"
+      "description": "Kayak or Non-Motorized Vessel Fishermen"
     }
   }, 
   {
@@ -2480,7 +2480,7 @@
     "fields": {
       "all_resources": true, 
       "code": "days_spec", 
-      "eng_text": "How many days 'on average' do you spend diving for this species from a kayak?", 
+      "eng_text": "How many days 'on average' do you spend diving for this species from a kayak or non-motorized vessel?", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 1.0, 
@@ -2500,7 +2500,7 @@
     "fields": {
       "all_resources": false, 
       "code": "pr_launch", 
-      "eng_text": "Primary Kayak Launching Port/Site", 
+      "eng_text": "Primary kayak or non-motorized vessel launching port/site", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 1.0, 
@@ -2520,7 +2520,7 @@
     "fields": {
       "all_resources": false, 
       "code": "launch1", 
-      "eng_text": "Other Kayak Launching Port/Site 1", 
+      "eng_text": "Other kayak or non-motorized launching port/site 1", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 2.0, 
@@ -2540,7 +2540,7 @@
     "fields": {
       "all_resources": false, 
       "code": "launch2", 
-      "eng_text": "Other Kayak Launching Port/Site 2", 
+      "eng_text": "Other kayak or non-motorized launching port/site 2", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 3.0, 
@@ -2560,7 +2560,7 @@
     "fields": {
       "all_resources": false, 
       "code": "launch3", 
-      "eng_text": "Other Kayak Launching Port/Site 3", 
+      "eng_text": "Other kayak or non-motorized launching port/site 3", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 4.0, 
@@ -2580,7 +2580,7 @@
     "fields": {
       "all_resources": false, 
       "code": "years_exp", 
-      "eng_text": "How many years experience do you have fishing from a kayak?", 
+      "eng_text": "How many years experience do you have fishing from a kayak or non-motorized vessel?", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 5.0, 
@@ -2600,7 +2600,7 @@
     "fields": {
       "all_resources": false, 
       "code": "days_fish", 
-      "eng_text": "How many days 'on average' do you spend each year fishing from a kayak?", 
+      "eng_text": "How many days 'on average' do you spend each year fishing from a kayak or non-motorized vessel?", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 6.0, 
