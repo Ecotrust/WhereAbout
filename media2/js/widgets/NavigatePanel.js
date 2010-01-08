@@ -16,7 +16,10 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
 		Ext.apply(this, {
 			title: '2. Navigate The Map',
 			bbar: [
-				{xtype:'tbfill'},
+                {
+                    text: 'Phase 2 of 5'
+                },
+                {xtype:'tbfill'},
 				{
                     text: '<< Go Back',
                     handler: this.backBtnClicked.createDelegate(this)

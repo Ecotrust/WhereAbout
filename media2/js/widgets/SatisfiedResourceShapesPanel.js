@@ -18,6 +18,9 @@ gwst.widgets.SatisfiedResourceShapesPanel = Ext.extend(gwst.widgets.WestPanel, {
 		Ext.apply(this, {
 			title: '3. Draw',
 			bbar: [
+                {
+                    text: 'Phase 3 of 5'
+                },
 				{xtype:'tbfill'},
 				{
                     text: 'No',

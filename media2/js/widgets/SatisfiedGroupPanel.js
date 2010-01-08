@@ -19,6 +19,9 @@ gwst.widgets.SatisfiedGroupPanel = Ext.extend(gwst.widgets.WestPanel, {
 		Ext.apply(this, {
 			title: '5. Finish',
 			bbar: [
+                {
+                    text: 'Phase 5 of 5'
+                },
 				{xtype:'tbfill'},
 				{
                     text: 'No',

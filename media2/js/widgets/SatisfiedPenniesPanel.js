@@ -18,6 +18,9 @@ gwst.widgets.SatisfiedPenniesPanel = Ext.extend(gwst.widgets.WestPanel, {
 		Ext.apply(this, {
 			title: '4. Allocate Pennies',
 			bbar: [
+                {
+                    text: 'Phase 4 of 5'
+                },
 				{xtype:'tbfill'},
 				{
                     text: 'No',

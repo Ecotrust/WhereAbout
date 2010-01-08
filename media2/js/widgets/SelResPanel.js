@@ -24,7 +24,10 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
 		
         var bToolbar = new Ext.Toolbar({
             items: [
-				{xtype:'tbfill'},
+                {
+                    text: 'Phase 1 of 5'
+                },
+                {xtype:'tbfill'},
 				{
                     text: '<< Go Back',
                     handler: this.backBtnClicked.createDelegate(this)

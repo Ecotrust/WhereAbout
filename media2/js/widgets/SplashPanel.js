@@ -3,6 +3,8 @@ Ext.namespace('gwst', 'gwst.widgets');
 gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'splash-panel',
 	user_group: 'unknown',
+    shape_name: 'unknown',
+    res_group_name: 'unknown',
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -12,7 +14,10 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
 		Ext.apply(this, {
 			title: 'Introduction',
 			bbar: [
-				{xtype:'tbfill'},
+                {
+                    text: 'Phase 0 of 5'
+                },
+                {xtype:'tbfill'},
 				{
                     text: 'Begin >>',
                     handler: this.beginBtnClicked.createDelegate(this)
@@ -35,7 +40,15 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
 			The drawing portion will now begin for the '+ this.user_group +' user group.<br><br>\
             You will have instructions every step of the way on the left hand side of the screen (like this).<br><br>\
             You will also be able to come back and finish later if you need more time.\
-			<br />';
+			<br /><br />\
+            The map portion of this survey comes in 5 phases:<br /><br />\
+            <ul>\
+                <li>1. Select '+ this.res_group_name +'</li>\
+                <li>2. Navigating the Map</li>\
+                <li>3. Drawing '+ this.shape_name +'s</li>\
+                <li>4. Allocating Pennies</li>\
+                <li>5. Finishing with the '+ this.res_group_name +'</li>\
+            </ul><br />';
         return html_text;
     },
 

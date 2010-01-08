@@ -448,13 +448,17 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.splashPanel) {
             this.splashPanel = new gwst.widgets.SplashPanel({
                 xtype: 'gwst-splash-panel',
-                user_group: gwst.settings.group.member_title
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name,
+                res_group_name: gwst.settings.interview.resource_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.splashPanel.on('splash-cont', this.finSplashStep, this);
         } else {
             this.splashPanel.updateText({
-                user_group: gwst.settings.group.member_title
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name,
+                res_group_name: gwst.settings.interview.resource_name
             });
         }
         this.viewport.setWestPanel(this.splashPanel); 
@@ -527,6 +531,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.drawPanel = new gwst.widgets.DrawPanel({
                 xtype: 'gwst-draw-panel',
                 resource: this.curResource.get('name'),
+                resource_id: this.curResource.get('id'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
                 shape_name: gwst.settings.interview.shape_name
@@ -928,13 +933,13 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     loadResourceStore: function(resources) {
         //Initialize resource store
-        this.ResourceRec = Ext.data.Record.create([
+        this.ResourceRecord = Ext.data.Record.create([
 	       {name: 'id', type: 'float'},
 	       {name: 'name'}
 	   ]);
         var reader = new Ext.data.JsonReader(
             {id: 'id'}, 
-            this.ResourceRec
+            this.ResourceRecord
         );
         gwst.settings.resourceStore = new Ext.data.Store({
             reader:  reader
