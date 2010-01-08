@@ -42,12 +42,17 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
     getText: function() {
         var html_text = '<p><b>Overview</b><br /> \
 			<p>\
-			Now imagine you have a bag of <b>100 pennies</b>.  You\'re going to \
+			Now imagine you have a bag of <b>100 pennies</b>. You\'re going to \
 			distribute those pennies over the <i>'+ this.resource +'</i> '+ this.shape_name +'s \
 			you just drew.  The more pennies you place on a '+ this.shape_name +', the more \
 			value or importance it has to you.  This information will provide a much \
 			more accurate picture of your most important '+ this.shape_name +'s.\
 			</p><br />\
+			<p> \
+            Please take a moment to examine each shape and to mentally map out \
+            how many pennies you value each '+ this.shape_name +'.\
+            This will make it easier when you actually begin assigning the pennies.\
+            </p><br />\
 			<p> \
 			Click continue to move to the next step.\
 			</p><br />\
