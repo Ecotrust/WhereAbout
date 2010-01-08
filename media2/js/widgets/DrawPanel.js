@@ -95,6 +95,10 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
 			<p> \
 			e. If you make a mistake, click \'Cancel\' in the upper right and start over.\
 			</p><br />\
+            <p>\
+            f. You will be able to draw multiple shapes, so be as specific as possible with each.\
+            Just focus on this shape for now.\
+            </p><br />\
 			<p> <a href=http://www.google.com>Watch Demonstration Video</a></p><br />\
 			<p><b>Example:</b></p><br />\
 			<img src="/site-media/images/tux.png" style="width: 50px; height: 50px"><br />\
