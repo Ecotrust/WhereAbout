@@ -22,15 +22,15 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             units: "m",
             numZoomLevels: 18,
             maxResolution: 156543.0339,
-            maxExtent: map_extent,
+            maxExtent: map_extent
         };        
 
         //Map vector style
         var styleMap = new OpenLayers.StyleMap({
             'default': new OpenLayers.Style({
-                fillColor: 'orange',
+                fillColor: '#ff8c00',
                 fillOpacity: 0.4,
-                strokeColor: 'orange',
+                strokeColor: '#ff8c00',
                 strokeOpacity: 1,
                 strokeWidth: 1,
                 cursor: 'pointer',
@@ -42,7 +42,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             }),
             'select': new OpenLayers.Style({
                 strokeWidth: 3,
-                fillColor: 'orange',
+                fillColor: '#ff8c00',
                 strokeColor: 'yellow',
                 strokeOpacity: 1,
                 fillOpacity: 0.4,
@@ -54,10 +54,10 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                 labelAlign: "cm"
             }),
             'temporary': new OpenLayers.Style({
-                fillColor: 'orange',
+                fillColor: '#ff8c00',
                 fillOpacity: 0.4,
                 strokeWidth: 2,
-                strokeColor: 'orange',
+                strokeColor: '#ff8c00',
                 strokeOpacity: 1
             })
         });	    
@@ -87,7 +87,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         //OL won't know where it is.  This is fine usually except the Google base map doesn't work properly in
         //Safari in this case, it won't let you draw vectors.
 		Ext.DomHelper.append(document.body, [{
-			id: 'ol-map',
+			id: 'ol-map'
 		}]);        
         
         //Create the map and dump everything in

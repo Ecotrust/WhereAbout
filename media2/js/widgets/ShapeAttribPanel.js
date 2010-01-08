@@ -58,13 +58,13 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             defaultType: 'textfield',
             items: [{
                 fieldLabel: 'North Boundary',
-                name: 'n_bound',
+                name: 'n_bound'
             },{
                 fieldLabel: 'East Boundary',
-                name: 'e_bound',
+                name: 'e_bound'
             },{
                 fieldLabel: 'South Boundary',
-                name: 's_bound',
+                name: 's_bound'
             },{
                 fieldLabel: 'West Boundary',
                 name: 'w_bound'

@@ -176,7 +176,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     startInvalidShapeStep: function() {
         this.loadInvalidShapePanel();        
         this.mapPanel.disableResDraw(); //Turn off drawing
-        this.drawToolWin.hide();
+        if (this.drawToolWin) {
+        	this.drawToolWin.hide();
+        }
     },
        
     /*
@@ -195,7 +197,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	this.addShape(shape_obj.geom);
         this.mapPanel.disableResDraw(); //Turn off drawing    	
         this.loadSatisfiedShapePanel();        
-        this.drawToolWin.hide();
+        if (this.drawToolWin) {
+        	this.drawToolWin.hide();
+        }
     },
        
     /*
@@ -256,7 +260,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * TODO: Can we just call startPennyInstrStep directly? Is this needed?
      */
     moveToDropPenniesStep: function() {
-        this.startPennyInstrStep();
+        this.startSatisfiedResourceShapesStep();
     },
     
     /*
@@ -264,6 +268,26 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     moveToDrawShapeStep: function() {
         this.startShapeGridStep();
+    },
+    
+    /******************** Satisfied with resource shapes step *******************/
+    
+    /* 
+     * Setup UI for satisfied with resource shapes step 
+     */
+    startSatisfiedResourceShapesStep: function() {
+        this.loadSatisfiedResourceShapesPanel();        
+    },
+       
+    /*
+     * Process and finish satisfied with shape step
+     */
+    finSatisfiedResourceShapesStep: function(result) {
+    	if (!result.satisfied) {
+            this.startShapeGridStep();
+    	} else {
+            this.startPennyInstrStep();
+        }
     },
     
     /******************** Penny Allocation Instruction Step *******************/
@@ -302,7 +326,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process penny allocation step
      */
     finPennyStep: function() {
-        this.startFinishStep();
+        this.startSatisfiedPenniesStep();
     },
     
     /*
@@ -310,6 +334,26 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     backPennyStep: function() {
         this.startShapeGridStep();
+    },
+    
+    /******************** Satisfied with pennies step *******************/
+    
+    /* 
+     * Setup UI for satisfied with pennies step 
+     */
+    startSatisfiedPenniesStep: function() {
+        this.loadSatisfiedPenniesPanel();        
+    },
+       
+    /*
+     * Process and finish satisfied with shape step
+     */
+    finSatisfiedPenniesStep: function(result) {
+    	if (!result.satisfied) {
+            this.startPennyStep();
+    	} else {
+            this.startFinishStep();
+        }
     },
     
     /******************** Finish Step *******************/
@@ -325,7 +369,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process finish/finish later/delect new resource step
      */
     finFinishStep: function() {
-        this.finDrawingPhase();
+        this.startSatisfiedGroupStep();
     },
     
     /*
@@ -340,6 +384,26 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     finDrawingPhase: function() {
         gwst.error.load('TODO: get back to group status!');
         this.startResSelStep();
+    },
+    
+    /******************** Satisfied with group step *******************/
+    
+    /* 
+     * Setup UI for satisfied with group step 
+     */
+    startSatisfiedGroupStep: function() {
+        this.loadSatisfiedGroupPanel();        
+    },
+       
+    /*
+     * Process and finish satisfied with shape step
+     */
+    finSatisfiedGroupStep: function(result) {
+    	if (!result.satisfied) {
+            this.startResSelStep();
+    	} else {
+            this.finDrawingPhase();
+        }
     },
         
     /******************** UI widget handlers ********************/
@@ -390,7 +454,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.splashPanel.on('splash-cont', this.finSplashStep, this);
         } else {
             this.splashPanel.updateText({
-                user_group: gwst.settings.group.member_title,
+                user_group: gwst.settings.group.member_title
             });
         }
         this.viewport.setWestPanel(this.splashPanel); 
@@ -606,6 +670,29 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.drawOrDropPanel);    	
     },
+
+    /* Load the satisfied with resource shapes west panel */
+    loadSatisfiedResourceShapesPanel: function() {
+    	if (!this.satResPanel) {
+            this.satResPanel = new gwst.widgets.SatisfiedResourceShapesPanel({
+                xtype: 'gwst-satisfied-resource-shapes-panel',
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.satResPanel.on('satisfied', this.finSatisfiedResourceShapesStep, this);   
+        } else {
+            this.satResPanel.updateText({
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+        }
+        this.viewport.setWestPanel(this.satResPanel);    	
+    },
     
      /* Load the alloc west panel */
     loadAllocPanel: function() {
@@ -647,6 +734,29 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.viewport.setWestPanel(this.pennyPanel);    	
     },
     
+    /* Load the satisfied with pennies west panel */
+    loadSatisfiedPenniesPanel: function() {
+    	if (!this.satPenniesPanel) {
+            this.satPenniesPanel = new gwst.widgets.SatisfiedPenniesPanel({
+                xtype: 'gwst-satisfied-pennies-panel',
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.satPenniesPanel.on('satisfied', this.finSatisfiedPenniesStep, this);   
+        } else {
+            this.satPenniesPanel.updateText({
+                resource: this.curResource.get('name'),
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+        }
+        this.viewport.setWestPanel(this.satPenniesPanel);    	
+    },
+    
     /* Load the finish/finish later/select another resource west panel */
     loadFinishPanel: function() {
     	if (!this.finishPanel) {
@@ -669,6 +779,31 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             });
         }
         this.viewport.setWestPanel(this.finishPanel);    	
+    },
+    
+    /* Load the satisfied with group west panel */
+    loadSatisfiedGroupPanel: function() {
+    	if (!this.satGroupPanel) {
+            this.satGroupPanel = new gwst.widgets.SatisfiedGroupPanel({
+                xtype: 'gwst-satisfied-group-panel',
+                resource_name: gwst.settings.interview.resource_name,
+                resource_name_plural: gwst.settings.interview.resource_name_plural,
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.satGroupPanel.on('satisfied', this.finSatisfiedGroupStep, this);   
+        } else {
+            this.satGroupPanel.updateText({
+                resource_name: gwst.settings.interview.resource_name,
+                resource_name_plural: gwst.settings.interview.resource_name_plural,
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+        }
+        this.viewport.setWestPanel(this.satGroupPanel);    	
     },
     
     /******************** Event Handlers ********************/
@@ -811,11 +946,27 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	    gwst.settings.shapeStore = new GeoExt.data.FeatureStore({
 	        layer: shapeLayer,
 	        fields: [
-	            {name: 'pennies', type: 'float', default: 0},
-	            {name: 'boundary_n', type: 'string', default: ''},
-	            {name: 'boundary_s', type: 'string', default: ''},
-	            {name: 'boundary_e', type: 'string', default: ''},
-	            {name: 'boundary_w', type: 'string', default: ''}
+                {
+                    name:'pennies',
+                    type:'float',
+                    'default': 0
+                },{
+                    name: 'boundary_n',
+                    type: 'string',
+                    'default': ''
+                },{
+                    name: 'boundary_s',
+                    type: 'string',
+                    'default': ''
+                },{
+                    name: 'boundary_e',
+                    type: 'string',
+                    'default': ''
+                },{
+                    name: 'boundary_w',
+                    type: 'string',
+                    'default': ''
+                }
 	        ],
 	        proxy: new GeoExt.data.ProtocolProxy({
 	            protocol: new OpenLayers.Protocol.HTTP({
