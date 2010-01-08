@@ -127,6 +127,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     
     enableResDraw: function() {
     	this.drawResControl.activate();
+        this.selectControl.unselectAll();
     },
     
     disableResDraw: function() {
