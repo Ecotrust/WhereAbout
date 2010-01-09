@@ -119,7 +119,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process and finish draw step
      */
     finDrawStep: function() {
-        this.drawToolWin.hide();
+        if (this.drawToolWin) {
+        	this.drawToolWin.hide();
+        }
         this.mapPanel.disableResDraw();
     },    
     
@@ -152,7 +154,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process and finish draw step
      */
     finShapeGridStep: function() {
-        this.drawToolWin.hide();
+        if (this.drawToolWin) {
+        	this.drawToolWin.hide();
+        }
         this.mapPanel.disableResDraw();
         this.startAnotherShapeStep();
     },    
