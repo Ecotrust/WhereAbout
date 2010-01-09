@@ -31,16 +31,21 @@ p.error_text {
 }
 
 .begin-draw {
-	background-image:url(/site-media/images/pencil_go.png) 
-	!important;
+	background-image:url(/site-media/images/pencil_go.png) !important;
 }
 
 .cancel-draw {
-	background-image:url(/site-media/images/cancel.png) 
-	!important;
+	background-image:url(/site-media/images/cancel.png) !important;
 }
 
 .redo-draw {
-	background-image:url(/site-media/images/arrow_redo.png) 
-	!important;
+	background-image:url(/site-media/images/arrow_redo.png) !important;
+}
+
+.shape-delete {
+	background-image:url(/site-media/images/cross.png) ! important;
+}
+
+.shape-zoom {
+	background-image:url(/site-media/images/zoom.png) ! important;
 }

@@ -57,31 +57,6 @@ gwst.widgets.ShapeGridPanel = Ext.extend(gwst.widgets.WestPanel, {
         return html_text;
     },
     
-    getData: function() {
-        // sample static data for the store
-        var shape_array = [1,2,3];
-        var data = [
-            [shape_array[0],12,'<input type="button" name="del_shape'+ shape_array[0] +'" value="delete" />','<input type="button" name="zoom'+ shape_array[0] +'" value="Zoom" />'],
-            [shape_array[1],24,'<input type="button" name="del_shape'+ shape_array[1] +'" value="delete" />','<input type="button" name="zoom'+ shape_array[1] +'" value="Zoom" />'],
-            [shape_array[2],58,'<input type="button" name="del_shape'+ shape_array[2] +'" value="delete" />','<input type="button" name="zoom'+ shape_array[2] +'" value="Zoom" />']
-        ];
-        return data;
-    },
-    
-    getStore: function() {
-        var store = new Ext.data.SimpleStore({
-            fields: [
-                {name: 'shape'},
-                {name: 'pennies'},
-                {name: 'delete'},
-                {name: 'zoom'}
-            ]
-        });
-        store.loadData(this.getData());
-        return store;
-    
-    },
-    
     onRender: function(){
 		this.inner_panel = new Ext.Panel({
 			html: this.getText(),
@@ -90,53 +65,60 @@ gwst.widgets.ShapeGridPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		});
 		this.add(this.inner_panel);
-        
+
+		//Grid button actions
+	 	this.grid_actions = new Ext.ux.grid.RowActions({
+			 header:'',
+			 autoWidth: false,
+			 width: 140,
+			 keepSelection:true,
+			 actions:[{
+				iconCls:'shape-delete',
+				text: 'Remove'
+			},{
+				iconCls:'shape-zoom',
+				text: 'Zoom To'
+			}]
+		});
+
+		//Grid button event handlers
+		this.grid_actions.on({
+			action:function(grid, record, action, row, col) {
+				alert('row:'+row+' col:'+col+' action:'+action);
+			}
+		});
+				
         this.inner_grid_panel = new Ext.grid.GridPanel ({
-            store: this.getStore(),
-            columns: [
-                {
-                    id:'shape',
-                    header:'Shape',
-                    width: 60,
-                    sortable: true,
-                    dataIndex:'shape'
-                },
-                {
-                    header:'Pennies',
-                    width: 60,
-                    sortable: false,
-                    dataIndex: 'pennies'
-                },
-                {
-                    header:'Delete?',
-                    width: 60,
-                    sortable: false,
-                    dataIndex: 'delete'
-                },
-                {
-                    header:'Zoom in',
-                    width: 60,
-                    sortable: false,
-                    dataIndex: 'zoom'
-                }
+            store: gwst.settings.shapeStore,
+            columns: [{
+                id:'id',
+                header:'Shape #',
+                width: 60,
+                sortable: true,
+                dataIndex:'id'
+            },{
+                header:'Pennies',
+                width: 60,
+                sortable: false,
+                dataIndex: 'pennies'
+            }, this.grid_actions
             ],
+            plugins: this.grid_actions,
             stripeRows: true,
-            // autoExpandColumn: 'shape',
-            height: 350,
-            width: 244,
+            height: 250,
+            width: 265,
             title: 'Shapes',
-            style: 'margin: 25px',
+            style: 'margin: 15px',
             stateful: true,
             stateId: 'grid'
         });
-        //grid.render('shape-grid');
-        this.add(this.inner_grid_panel);
         
+        this.add(this.inner_grid_panel);        
         
         // Call parent (required)
         gwst.widgets.ShapeGridPanel.superclass.onRender.apply(this, arguments); 
-	},
-    
+	},     
+	
     continueBtnClicked: function() {
         this.fireEvent('shape-grid-cont',this);
     },

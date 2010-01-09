@@ -954,29 +954,39 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     loadShapeStore: function(shapeLayer) {
 	    gwst.settings.shapeStore = new GeoExt.data.FeatureStore({
 	        layer: shapeLayer,
-	        fields: [
-                {
-                    name:'pennies',
-                    type:'float',
-                    'default': 0
-                },{
-                    name: 'boundary_n',
-                    type: 'string',
-                    'default': ''
-                },{
-                    name: 'boundary_s',
-                    type: 'string',
-                    'default': ''
-                },{
-                    name: 'boundary_e',
-                    type: 'string',
-                    'default': ''
-                },{
-                    name: 'boundary_w',
-                    type: 'string',
-                    'default': ''
-                }
-	        ],
+	        fields: [{
+        		name:'id',
+        		type:'float',
+        		'default': null
+	        },{
+                name:'pennies',
+                type:'float',
+                'default': 0
+            },{
+                name: 'boundary_n',
+                type: 'string',
+                'default': ''
+            },{
+                name: 'boundary_s',
+                type: 'string',
+                'default': ''
+            },{
+                name: 'boundary_e',
+                type: 'string',
+                'default': ''
+            },{
+                name: 'boundary_w',
+                type: 'string',
+                'default': ''
+            },{
+                name: 'delete-qtip',
+                type: 'string',
+                'default': 'Delete'
+            },{
+                name: 'zoom-qtip',
+                type: 'string',
+                'default': 'Zoom'
+            }],
 	        proxy: new GeoExt.data.ProtocolProxy({
 	            protocol: new OpenLayers.Protocol.HTTP({
 	                url: "/shapes",
