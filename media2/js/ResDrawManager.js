@@ -94,7 +94,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         if (gwst.settings.shapeStore.getCount() <= 0) {    
             this.startDrawStep();        
         } else {
-            this.startShapeGridStep();
+            this.startDraw2Step();
         }
 	},
 	
@@ -139,11 +139,11 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /******************** Draw Step with Grid*******************/
     
     /* 
-     * Setup UI for resource grid drawing step 
+     * Setup UI for shape grid drawing step 
      */
-    startShapeGridStep: function() {
+    startDraw2Step: function() {
         if (gwst.settings.shapeStore.getCount() > 0) {
-            this.loadShapeGridPanel();        
+            this.loadDraw2Panel();        
             this.mapPanel.enableResDraw(); //Turn on drawing   
         } else {
             this.startDrawStep();
@@ -153,7 +153,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /*
      * Process and finish draw step
      */
-    finShapeGridStep: function() {
+    finDraw2Step: function() {
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -164,7 +164,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /*
      * Go back from draw step to resource selection
      */
-    backShapeGridStep: function() {
+    backDraw2Step: function() {
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -271,7 +271,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Move on to draw another shape
      */
     moveToDrawShapeStep: function() {
-        this.startShapeGridStep();
+        this.startDraw2Step();
     },
     
     /******************** Satisfied with resource shapes step *******************/
@@ -288,7 +288,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     finSatisfiedResourceShapesStep: function(result) {
     	if (!result.satisfied) {
-            this.startShapeGridStep();
+            this.startDraw2Step();
     	} else {
             this.startPennyInstrStep();
         }
@@ -314,7 +314,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from allocation to resource drawing
      */
     backPennyInstrStep: function() {
-        this.startShapeGridStep();
+        this.startDraw2Step();
     },
     
     /******************** Penny Allocation Step *******************/
@@ -337,7 +337,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from penny allocation to resource drawing
      */
     backPennyStep: function() {
-        this.startShapeGridStep();
+        this.startDraw2Step();
     },
     
     /******************** Satisfied with pennies step *******************/
@@ -543,7 +543,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             //When panel fires event saying it's all done, we want to process it and move on 
             this.drawPanel.on('draw-cont', this.finDrawStep, this);
             this.drawPanel.on('draw-back', this.backDrawStep, this);            
-            this.drawPanel.on('draw-grid', this.loadShapeGridPanel, this);
+            this.drawPanel.on('draw-grid', this.loadDraw2Panel, this);
         } else {
             this.drawPanel.updateBbar();
             this.drawPanel.updateText({
@@ -556,29 +556,29 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.viewport.setWestPanel(this.drawPanel);    	
     },
     
-    /* Load the grid draw west panel */
-    loadShapeGridPanel: function() {
-    	if (!this.shapeGridPanel) {
-            this.shapeGridPanel = new gwst.widgets.ShapeGridPanel({
-                xtype: 'gwst-shape-grid-panel',
+    /* Load the shape grid draw west panel */
+    loadDraw2Panel: function() {
+    	if (!this.draw2Panel) {
+            this.draw2Panel = new gwst.widgets.Draw2Panel({
+                xtype: 'gwst-draw-two-panel',
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
-            this.shapeGridPanel.on('shape-grid-cont', this.finShapeGridStep, this);
-            this.shapeGridPanel.on('shape-grid-back', this.backShapeGridStep, this);
-            this.shapeGridPanel.on('shape-grid-instructions', this.loadDrawPanel, this);
+            this.draw2Panel.on('draw-two-cont', this.finDraw2Step, this);
+            this.draw2Panel.on('draw-two-back', this.backDraw2Step, this);
+            this.draw2Panel.on('draw-two-instructions', this.loadDrawPanel, this);
         } else {
-            this.shapeGridPanel.updateText({
+            this.draw2Panel.updateText({
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
                 shape_name: gwst.settings.interview.shape_name
             });
         }
-        this.viewport.setWestPanel(this.shapeGridPanel);    	
+        this.viewport.setWestPanel(this.draw2Panel);    	
     },
     
     /* Create draw tool window and connect events to the map panel */

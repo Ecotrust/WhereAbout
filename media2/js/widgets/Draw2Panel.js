@@ -1,7 +1,7 @@
 Ext.namespace('gwst', 'gwst.widgets');
 
-gwst.widgets.ShapeGridPanel = Ext.extend(gwst.widgets.WestPanel, {
-    id: 'shape-grid-panel',
+gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
+    id: 'draw-two-panel',
 	resource: 'unknown',
 	user_group: 'unknown',
     shape_name: 'unknown',
@@ -12,9 +12,9 @@ gwst.widgets.ShapeGridPanel = Ext.extend(gwst.widgets.WestPanel, {
         // Constructor, config object already applied to 'this' so properties can 
         // be created and added/overridden here: Ext.apply(this, {});
 
-        this.addEvents('shape-grid-cont');        
-        this.addEvents('shape-grid-back');        
-        this.addEvents('shape-grid-instructions');
+        this.addEvents('draw-two-cont');        
+        this.addEvents('draw-two-back');        
+        this.addEvents('draw-two-instructions');
         
 		Ext.apply(this, {
 			title: '3. Draw',
@@ -41,7 +41,7 @@ gwst.widgets.ShapeGridPanel = Ext.extend(gwst.widgets.WestPanel, {
 		});
 		
         // Call parent (required)
-        gwst.widgets.ShapeGridPanel.superclass.initComponent.apply(
+        gwst.widgets.Draw2Panel.superclass.initComponent.apply(
           this, arguments);                     
     },
     
@@ -117,21 +117,21 @@ gwst.widgets.ShapeGridPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.add(this.inner_grid_panel);        
         
         // Call parent (required)
-        gwst.widgets.ShapeGridPanel.superclass.onRender.apply(this, arguments); 
+        gwst.widgets.Draw2Panel.superclass.onRender.apply(this, arguments); 
 	},     
 	
     continueBtnClicked: function() {
-        this.fireEvent('shape-grid-cont',this);
+        this.fireEvent('draw-two-cont',this);
     },
     
     instructionBtnClicked: function() {
-        this.fireEvent('shape-grid-instructions',this);
+        this.fireEvent('draw-two-instructions',this);
     },
     
     backBtnClicked: function() {
-        this.fireEvent('shape-grid-back',this);
+        this.fireEvent('draw-two-back',this);
     }
 });
  
 // register xtype to allow for lazy initialization
-Ext.reg('gwst-shape-grid-panel', gwst.widgets.ShapeGridPanel);
+Ext.reg('gwst-draw-two-panel', gwst.widgets.Draw2Panel);
