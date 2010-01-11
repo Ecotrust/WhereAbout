@@ -12,8 +12,9 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		this.addEvents('res-shape-complete');
 	
 		//Map region
-		var region = gwst.settings.region;	    
-	    var map_extent = new OpenLayers.Bounds(region.w_bound,region.s_bound,region.e_bound,region.n_bound)
+		var region = gwst.settings.region;
+		var map_extent = new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34);
+	    var region_extent = new OpenLayers.Bounds(region.w_bound,region.s_bound,region.e_bound,region.n_bound)
 	    
 	    //Map base options
         var map_options = {
@@ -72,10 +73,39 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             	maxZoomLevel: 14
             }
         );             
+
+        var nautLayer = new OpenLayers.Layer.TMS( 
+                "Nautical Charts", 
+                ["http://marinemap.org/tiles/OregonCharts/"], 
+                { 
+                    buffer: 1,
+                    'isBaseLayer': false,
+                    'opacity': 1.0,
+                    'sphericalMercator': true,
+                    getURL: function (bounds) {
+                		var layerExtent = new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34);
+                        var z = this.map.getZoom()+6;
+                        var url = this.url;
+                        var path = 'blank.png' ;
+
+                            var res = this.map.getResolution();
+                            var x = Math.round((bounds.left - layerExtent.left) / (res * this.tileSize.w));
+                            var y = Math.round((layerExtent.top - bounds.top) / (res * this.tileSize.h));
+                            var limit = Math.pow(2, z);
+                            var path = z + "/" + x + "/" + y + ".png";
+
+                        if (url instanceof Array) {
+                            url = this.selectUrl(path, url);
+                        }
+                        tilepath = url + path;
+                        return url + path;
+                    }
+                }
+            )        
+        
         this.vecLayer = new OpenLayers.Layer.Vector('mlpaFeatures',{
             styleMap: styleMap
-        });              
-        
+        });                      
         this.vecLayer.events.on({
             "sketchstarted": this.resShapeStarted,
             "sketchcomplete": this.resShapeComplete,
@@ -95,6 +125,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		map.addControl(new OpenLayers.Control.Navigation());		
 		map.addControl(new gwst.controls.gwstPanZoom());
 		map.addControl(new OpenLayers.Control.MousePosition());
+		map.addControl(new OpenLayers.Control.LayerSwitcher());
         
 		this.drawResControl = new OpenLayers.Control.DrawFeature(
             this.vecLayer, 
@@ -107,8 +138,10 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         
 		Ext.apply(this, {
 		    map: map,
-		    layers: [baseLayer, this.vecLayer],
-		    extent: map_extent
+		    layers: [baseLayer, nautLayer, this.vecLayer],
+		    extent: map_extent,
+	        center: region_extent.getCenterLonLat(),
+	        zoom: 1
 		});    		
 		
         // Call parent (required)
