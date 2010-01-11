@@ -104,6 +104,7 @@ gwst.widgets.ShapeGridPanel = Ext.extend(gwst.widgets.WestPanel, {
             }, this.grid_actions
             ],
             plugins: this.grid_actions,
+            sm: new GeoExt.grid.FeatureSelectionModel(),
             stripeRows: true,
             height: 250,
             width: 265,
