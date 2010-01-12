@@ -467,14 +467,33 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.splashPanel); 
     },
-
+    
     /* Load the map layer toggle window */
-    loadMapLayerWin: function() {    	
+    loadMapLayerWin: function() {
+		var sm = new Ext.grid.CheckboxSelectionModel();
 		this.layerWin = new Ext.Window({
-	        html: 'Satellite Imagery<br/>Nautical Charts<br/>Lat/Lon Grid',
-	        title: 'Extra Maps',
-	        width: 200,
-	        height: 90,
+			items: [
+		        new Ext.grid.GridPanel({
+		        	hideHeaders: true,
+		            store: gwst.settings.layerStore,
+		            cm: new Ext.grid.ColumnModel({
+		                defaults: {
+		                    width: 120,
+		                    sortable: true
+		                },
+		                columns: [
+		                    sm,
+		                    {header: "Title", dataIndex: 'title'}
+		                ]
+		            }),
+		            sm: sm,
+		            columnLines: true,
+		            iconCls:'icon-grid'
+		      })
+			],
+	        title: 'Maps',
+	        width: 140,
+	        height: 95,
 	        resizable: false,
 	        collapsible: false,
 	        draggable: false,
@@ -823,10 +842,11 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     mapPanelCreated: function() {
     	this.mapPanel = Ext.getCmp('mappanel');
-    	this.loadShapeStore(this.mapPanel.getShapeLayer());    	
-    	this.mapPanel.on('res-shape-started', this.resShapeStarted, this)
-    	this.mapPanel.on('res-shape-complete', this.resShapeComplete, this)    	
-    	this.loadMapLayerWin();
+    	this.loadShapeStore(this.mapPanel.getShapeLayer());
+    	gwst.settings.layerStore = this.mapPanel.getLayerStore();
+    	this.loadMapLayerWin();    	
+    	this.mapPanel.on('res-shape-started', this.resShapeStarted, this);
+    	this.mapPanel.on('res-shape-complete', this.resShapeComplete, this);
     },
 
     /*

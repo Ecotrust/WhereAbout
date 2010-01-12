@@ -65,7 +65,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 	    
 	    //Map base layers
         var baseLayer = new OpenLayers.Layer.Google(
-            "Google Satellite",
+            "Satellite Imagery",
             {
             	type: G_HYBRID_MAP, 
             	sphericalMercator: true,
@@ -80,11 +80,13 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                 { 
                     buffer: 1,
                     'isBaseLayer': false,
+                    visibility: false,
                     'opacity': 1.0,
                     'sphericalMercator': true,
                     getURL: function (bounds) {
+                		//Default global google extent
                 		var layerExtent = new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34);
-                        var z = this.map.getZoom()+6;
+                        var z = this.map.getZoom()+6;	//Amount to add should match the minZoomLevel setting on the google layer
                         var url = this.url;
                         var path = 'blank.png' ;
 
@@ -103,7 +105,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                 }
             )        
         
-        this.vecLayer = new OpenLayers.Layer.Vector('mlpaFeatures',{
+        this.vecLayer = new OpenLayers.Layer.Vector('Fishing Grounds',{
             styleMap: styleMap
         });                      
         this.vecLayer.events.on({
@@ -136,6 +138,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         map.addControl(this.selectControl);
         this.selectControl.activate();
         
+        //Update internal MapPanel properties
 		Ext.apply(this, {
 		    map: map,
 		    layers: [baseLayer, nautLayer, this.vecLayer],
@@ -148,6 +151,10 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		gwst.widgets.ResDrawMapPanel.superclass.initComponent.call(this);
     },
 
+    getLayerStore: function() {
+    	return this.layers;
+    },
+    
     zoomToMapRegion: function(region) {
     	this.mapRegion = region;
     	this.mapRegion.bounds = new OpenLayers.Bounds(region.w_bound,region.s_bound,region.e_bound,region.n_bound);
