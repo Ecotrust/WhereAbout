@@ -310,53 +310,6 @@
     }
   }, 
   {
-    "pk": 5, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "pri", 
-      "name": "Sport Boat", 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "member_title": "sport boat fisherman", 
-      "page_template": "base_form.html", 
-      "resources": [
-        1, 
-        4, 
-        5, 
-        7, 
-        24, 
-        25
-      ], 
-      "description": "Private Vessel"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "Dive/Spear Angling", 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "member_title": "dive/spear fisherman", 
-      "page_template": "base_form.html", 
-      "resources": [
-        4, 
-        15, 
-        24
-      ], 
-      "description": "Diving and spear/hand take"
-    }
-  }, 
-  {
     "pk": 1, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -482,6 +435,28 @@
     }
   }, 
   {
+    "pk": 4, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "div", 
+      "name": "Dive/Spear Angling", 
+      "required_group": false, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "member_title": "dive/spear fisherman", 
+      "page_template": "base_form.html", 
+      "resources": [
+        4, 
+        15, 
+        24
+      ], 
+      "description": "Diving and spear/hand take"
+    }
+  }, 
+  {
     "pk": 8, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -504,6 +479,31 @@
         25
       ], 
       "description": "Kayak or Non-Motorized Vessel Fishermen"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "pri", 
+      "name": "Sport Boat", 
+      "required_group": false, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "member_title": "sport boat fisherman", 
+      "page_template": "base_form.html", 
+      "resources": [
+        1, 
+        4, 
+        5, 
+        7, 
+        24, 
+        25
+      ], 
+      "description": "Private Vessel"
     }
   }, 
   {
@@ -1470,31 +1470,11 @@
     }
   }, 
   {
-    "pk": 114, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "divedyyr", 
-      "eng_text": "How many days 'on average' do you dive per year?", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
-    }
-  }, 
-  {
     "pk": 131, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": true, 
-      "code": "diveyrsp", 
+      "code": "d_day_spec", 
       "eng_text": "How many days 'on average' do you spend diving for this species?", 
       "int_group": 4, 
       "question_set": null, 
@@ -1510,11 +1490,31 @@
     }
   }, 
   {
+    "pk": 114, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_trips_yr", 
+      "eng_text": "How many days 'on average' do you dive per year?", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
+    }
+  }, 
+  {
     "pk": 115, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "years_exp", 
+      "code": "d_yr_exp", 
       "eng_text": "How many years of experience do you have diving?", 
       "int_group": 4, 
       "question_set": null, 
@@ -1534,7 +1534,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "access", 
+      "code": "d_acc_mod", 
       "eng_text": "What is your primary access method to your diving locations?", 
       "int_group": 4, 
       "question_set": null, 
@@ -1559,7 +1559,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "dive_boat", 
+      "code": "d_pct_isl", 
       "eng_text": "What percentage of your dives are from a vessel (such as a boat, kayak, or paddleboard)?", 
       "int_group": 4, 
       "question_set": null, 
@@ -1579,7 +1579,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "dive_shore", 
+      "code": "d_pct_shr", 
       "eng_text": "What percentage of your dives are shore based?", 
       "int_group": 4, 
       "question_set": null, 
@@ -1599,7 +1599,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "dive_mthd", 
+      "code": "d_method", 
       "eng_text": "What is your primary dive method? (We understand most do more than one type.  Answer which you do the most)", 
       "int_group": 4, 
       "question_set": null, 
@@ -1618,11 +1618,31 @@
     }
   }, 
   {
+    "pk": 132, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "v_day_spec", 
+      "eng_text": "How many days 'on average' do you spend fishing for this species from a sport boat?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
+    }
+  }, 
+  {
     "pk": 8, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "boat_type", 
+      "code": "v_type", 
       "eng_text": "What type of boat do you fish from?", 
       "int_group": 5, 
       "question_set": null, 
@@ -1642,31 +1662,11 @@
     }
   }, 
   {
-    "pk": 132, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "days_spec", 
-      "eng_text": "How many days 'on average' do you spend diving for this species from a sport boat?", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
-    }
-  }, 
-  {
     "pk": 9, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "boat_num", 
+      "code": "v_lic", 
       "eng_text": " What is the Department of Fish and Game boat number?", 
       "int_group": 5, 
       "question_set": null, 
@@ -1686,7 +1686,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "yrs_op", 
+      "code": "v_yr_op", 
       "eng_text": "For how many years (if any) have you operated a sport boat?", 
       "int_group": 5, 
       "question_set": null, 
@@ -1706,7 +1706,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "yrs_own", 
+      "code": "v_yr_own", 
       "eng_text": "For how many years (if any) have you owned a sport boat?", 
       "int_group": 5, 
       "question_set": null, 
@@ -1726,7 +1726,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "v_length", 
+      "code": "v_len", 
       "eng_text": "How long (in feet) is the primary vessel/boat?", 
       "int_group": 5, 
       "question_set": null, 
@@ -1746,7 +1746,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "storage", 
+      "code": "v_str_loc", 
       "eng_text": "How is the boat normally stored?", 
       "int_group": 5, 
       "question_set": null, 
@@ -1770,7 +1770,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "homeport", 
+      "code": "v_homep", 
       "eng_text": "Where is your primary port/ramp (dock/moorage/launch) located? ", 
       "int_group": 5, 
       "question_set": null, 
@@ -1790,7 +1790,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "launch1", 
+      "code": "v_landp_1", 
       "eng_text": "Other launch site (In addition to your primary) ", 
       "int_group": 5, 
       "question_set": null, 
@@ -1810,7 +1810,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "launch2", 
+      "code": "v_landp_2", 
       "eng_text": "Other launch site 2 ", 
       "int_group": 5, 
       "question_set": null, 
@@ -1830,7 +1830,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "launch3", 
+      "code": "v_landp_3", 
       "eng_text": "Other launch site 3 ", 
       "int_group": 5, 
       "question_set": null, 
@@ -1850,7 +1850,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "launch4", 
+      "code": "v_landp_4", 
       "eng_text": "Other launch site 4 ", 
       "int_group": 5, 
       "question_set": null, 
@@ -1870,7 +1870,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "years_exp", 
+      "code": "v_yr_fish", 
       "eng_text": "How many years experience do you have fishing from a private vessel? ", 
       "int_group": 5, 
       "question_set": null, 
@@ -1890,7 +1890,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "avg_ppl", 
+      "code": "v_num_pers", 
       "eng_text": "On average, how many other individuals are on the boat per trip (not including yourself)? ", 
       "int_group": 5, 
       "question_set": null, 
@@ -1910,7 +1910,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "avg_days", 
+      "code": "v_days_fsh", 
       "eng_text": "On average, how many days do you spend fishing from a private vessel each year? ", 
       "int_group": 5, 
       "question_set": null, 
@@ -2479,7 +2479,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": true, 
-      "code": "days_spec", 
+      "code": "k_day_spec", 
       "eng_text": "How many days 'on average' do you spend diving for this species from a kayak or non-motorized vessel?", 
       "int_group": 8, 
       "question_set": null, 
@@ -2499,7 +2499,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "pr_launch", 
+      "code": "k_port1", 
       "eng_text": "Primary kayak or non-motorized vessel launching port/site", 
       "int_group": 8, 
       "question_set": null, 
@@ -2519,7 +2519,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "launch1", 
+      "code": "k_port2", 
       "eng_text": "Other kayak or non-motorized launching port/site 1", 
       "int_group": 8, 
       "question_set": null, 
@@ -2539,7 +2539,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "launch2", 
+      "code": "k_port3", 
       "eng_text": "Other kayak or non-motorized launching port/site 2", 
       "int_group": 8, 
       "question_set": null, 
@@ -2559,7 +2559,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "launch3", 
+      "code": "k_port4", 
       "eng_text": "Other kayak or non-motorized launching port/site 3", 
       "int_group": 8, 
       "question_set": null, 
@@ -2579,7 +2579,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "years_exp", 
+      "code": "k_yr_exp", 
       "eng_text": "How many years experience do you have fishing from a kayak or non-motorized vessel?", 
       "int_group": 8, 
       "question_set": null, 
@@ -2599,7 +2599,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "days_fish", 
+      "code": "k_days_fsh", 
       "eng_text": "How many days 'on average' do you spend each year fishing from a kayak or non-motorized vessel?", 
       "int_group": 8, 
       "question_set": null, 
