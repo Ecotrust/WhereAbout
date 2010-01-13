@@ -9,10 +9,6 @@ gwst.widgets.WestPanel = Ext.extend(Ext.Panel, {
     	// be created and added/overridden here: Ext.apply(this, {});
          
         gwst.widgets.WestPanel.superclass.initComponent.call(this);  
-        
-		// Ext.apply(this, {
-            // anchor: '100% 100%'
-		// });        
     }
 });
  

@@ -23,7 +23,7 @@ gwst.widgets.MainViewport = Ext.extend(Ext.Viewport, {
                 width: 300,
                 id: 'west-panel-container',
                 collapsed: false,
-                layout: 'border'
+                layout: 'fit'
             }]        
 		});
 
