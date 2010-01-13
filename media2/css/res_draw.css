@@ -49,3 +49,11 @@ p.error_text {
 .shape-zoom {
 	background-image:url(/site-media/images/zoom.png) ! important;
 }
+
+.pennies-edit{
+    background-image:url(/site-media/images/coins.png) ! important;
+}
+
+.pennies-zoom {
+	background-image:url(/site-media/images/zoom.png) ! important;
+}

@@ -78,10 +78,14 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 			<b>Status</b>';
         return nav_text;
     },
-		// var shape_text = '\
-			// \
-			// ';//gwst_usershape: Shape# = select rownum(*) from gwst_usershape where user_id, int_group_id, AND resource_id
-				//Pennies = select pennies from gwst_usershape where user_id, int_group_id, AND resource_id
+    
+    gridActionClicked: function(grid, record, action, row, col) {
+        if(action == 'pennies-edit') {
+            alert('TODO: make pennies column editable for '+record.get('id')+'.');
+        } else if (action == 'pennies-zoom') {
+            alert('TODO: zoom in on '+record.get('id')+'.');
+        }
+    },
                 
     onRender: function(){
 		this.inner_panel = new Ext.Panel({
@@ -96,38 +100,57 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false,
 			style: 'margin: 10px'
 		});
-		var shape_data = [
-			[1, 25],
-			[2, 10],
-			[3, 20],
-			[4, ],
-			[5, ]
-		];
-		var shape_reader = new Ext.data.ArrayReader({}, [
-			{name: 'shape', type: 'int'},
-			{name: 'pennies', type: 'int'}
-		]);
-		var shape_grid = new Ext.grid.GridPanel({
-			store: new Ext.data.Store({
-				data: shape_data,
-				reader: shape_reader
-			}),
-			columns: [
-				{header: 'Shape #', width: 140, sortable: false, dataIndex: 'shape'},
-				{header: 'Pennies', width: 140, sortable: false, dataIndex: 'pennies'}
-			],
-			viewConfig: {
-				forceFit: false
-			},
-			width: 280,
-			autoHeight: true,
-			frame: false,
-			style: 'margin-left: 10px; margin-bottom: 10px',
-			border: false
+        
+        //Grid button actions
+	 	this.grid_actions = new Ext.ux.grid.RowActions({
+			 header:'',
+			 autoWidth: false,
+			 width: 155,
+			 keepSelection:true,
+			 actions:[{
+				iconCls:'pennies-edit',
+				text: 'Edit Pennies'
+			},{
+				iconCls:'pennies-zoom',
+				text: 'Zoom To'
+			}]
 		});
+
+		//Grid button event handlers
+		this.grid_actions.on({
+                //set scope to Panel (defaults to RowActions)
+			action:this.gridActionClicked.createDelegate(this)
+		});
+				
+        this.inner_grid_panel = new Ext.grid.GridPanel ({
+            store: gwst.settings.shapeStore,
+            columns: [{
+                id:'id',
+                header:'#',
+                width: 55,
+                sortable: true,
+                dataIndex:'id'
+            },{
+                header:'Pennies',
+                width: 50,
+                sortable: false,
+                dataIndex: 'pennies'
+            }, this.grid_actions
+            ],
+            plugins: this.grid_actions,
+            sm: new GeoExt.grid.FeatureSelectionModel(),
+            stripeRows: true,
+            height: 250,
+            width: 265,
+            title: 'Fishing Grounds',
+            style: 'margin: 15px',
+            stateful: true,
+            stateId: 'grid'
+        });
+        
 		this.add(this.inner_panel);
 		this.add(this.nav_panel);
-		this.add(shape_grid);
+		this.add(this.inner_grid_panel);
         // Call parent (required)
         gwst.widgets.PennyPanel.superclass.onRender.apply(this, arguments); 
 	},
