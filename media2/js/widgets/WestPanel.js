@@ -10,9 +10,9 @@ gwst.widgets.WestPanel = Ext.extend(Ext.Panel, {
          
         gwst.widgets.WestPanel.superclass.initComponent.call(this);  
         
-		Ext.apply(this, {
-            anchor: '100% 100%'
-		});        
+		// Ext.apply(this, {
+            // anchor: '100% 100%'
+		// });        
     }
 });
  
