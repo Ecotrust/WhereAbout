@@ -6,6 +6,8 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 	user_group: 'unknown',
     shape_name: 'unknown',
     action: 'unknown',
+    //store the selected record to delete to pass around
+    cur_action_record: null,
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -57,6 +59,29 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
         return html_text;
     },
     
+    deleteCheck: function(btn, text) {
+        if(btn == 'yes') {
+            this.fireEvent('draw-two-delete', this.cur_action_record);
+        }
+    },
+
+    gridActionClicked: function(grid, record, action, row, col) {
+        if(action == 'shape-delete') {
+            this.cur_action_record = record;
+            Ext.Msg.show({
+                title:'Delete?',
+                msg:'Do you really want to delete this shape?',
+                buttons: Ext.Msg.YESNO,
+                fn: this.deleteCheck.createDelegate(this),
+                animEl:'elId',
+                icon:Ext.MessageBox.QUESTION,
+                
+            });
+        } else if (action == 'shape-zoom') {
+            alert('TODO: zoom in on '+record.get('id')+'.');
+        }
+    },
+
     onRender: function(){
 		this.inner_panel = new Ext.Panel({
 			html: this.getText(),
@@ -83,9 +108,8 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 
 		//Grid button event handlers
 		this.grid_actions.on({
-			action:function(grid, record, action, row, col) {
-				alert('row:'+row+' col:'+col+' action:'+action);
-			}
+                //set scope to Panel (defaults to RowActions)
+			action:this.gridActionClicked.createDelegate(this)
 		});
 				
         this.inner_grid_panel = new Ext.grid.GridPanel ({

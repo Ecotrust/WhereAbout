@@ -589,6 +589,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.draw2Panel.on('draw-two-cont', this.finDraw2Step, this);
             this.draw2Panel.on('draw-two-back', this.backDraw2Step, this);
             this.draw2Panel.on('draw-two-instructions', this.loadDrawPanel, this);
+            this.draw2Panel.on('draw-two-delete', this.deleteShape, this);
         } else {
             this.draw2Panel.updateText({
                 resource: this.curResource.get('name'),
@@ -874,7 +875,11 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             geometry: feature.geometry,
             resource: gwst.settings.survey_group_id+'-'+this.curResource.id
          });
-    },        
+    },     
+
+    deleteShape: function(record) {
+        gwst.settings.shapeStore.remove(record);
+    },
     
     /******************** Server Operations ********************/
 
