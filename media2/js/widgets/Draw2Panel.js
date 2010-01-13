@@ -19,7 +19,6 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
         this.addEvents('draw-two-instructions');
         
 		Ext.apply(this, {
-			title: '3. Draw',
 			bbar: [
                 {
                     text: 'Phase 3 of 5'
@@ -83,12 +82,24 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     },
 
     onRender: function(){
+
+        this.header_panel = new Ext.Panel({  
+			html: '<img src="/site-media/images/3_2_DrawExtended_header.png">',
+            id: 'draw_extended_header_panel',
+			border: 'north',
+            bodyCfg: {
+                cls: 'action-panel-header'
+            }
+        });
+    
 		this.inner_panel = new Ext.Panel({
 			html: this.getText(),
-            id: 'draw_inner_panel',
+            id: 'draw_extended_inner_panel',
 			style: 'margin: 10px',
 			border: false
 		});
+        
+        this.add(this.header_panel);
 		this.add(this.inner_panel);
 
 		//Grid button actions

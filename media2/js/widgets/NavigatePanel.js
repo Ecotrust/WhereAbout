@@ -14,7 +14,6 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
         this.addEvents('nav-back');
 		
 		Ext.apply(this, {
-			title: '2. Navigate The Map',
 			bbar: [
                 {
                     text: 'Phase 2 of 5'
@@ -75,12 +74,24 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     },
 	
     onRender: function(){
+    
+        this.header_panel = new Ext.Panel({  
+			html: '<img src="/site-media/images/2_Navigate_header.png">',
+            id: 'nav_header_panel',
+			border: 'north',
+            bodyCfg: {
+                cls: 'action-panel-header'
+            }
+        });
+
 		this.inner_panel = new Ext.Panel({
 			html: this.getText(),
             id: 'nav_inner_panel',
 			style: 'margin: 10px',
 			border: false
 		});
+        
+        this.add(this.header_panel);
 		this.add(this.inner_panel);
         
         // Call parent (required)

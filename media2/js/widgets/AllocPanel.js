@@ -14,7 +14,6 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.addEvents('alloc-back');
         
 		Ext.apply(this, {
-			title: '4. Allocate Pennies',
 			bbar: [
                 {
                     text: 'Phase 4 of 5'
@@ -65,12 +64,24 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
             
     onRender: function(){
+    
+        this.header_panel = new Ext.Panel({  
+			html: '<img src="/site-media/images/4a_PennyInstructions_header.png">',
+            id: 'alloc_header_panel',
+			border: 'north',
+            bodyCfg: {
+                cls: 'action-panel-header'
+            }
+        });
+    
 		this.inner_panel = new Ext.Panel({
 			html: this.getText(),
             id: 'alloc_inner_panel',
 			style: 'margin: 10px',
 			border: false
 		});
+        
+        this.add(this.header_panel);
 		this.add(this.inner_panel);
         
         // Call parent (required)

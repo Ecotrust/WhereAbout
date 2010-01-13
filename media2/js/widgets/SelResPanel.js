@@ -41,7 +41,6 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
         });
         
 		Ext.apply(this, {
-			title: '1. Select a '+this.res_group_name,
             autoDestroy: false,
 			bbar: bToolbar
 		});
@@ -79,12 +78,24 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
         return html_text;
     },
     onRender: function(){
+    
+        this.header_panel = new Ext.Panel({  
+			html: '<img src="/site-media/images/1_PickFishery_header.png">',
+            id: 'sel_res_header_panel',
+			border: 'north',
+            bodyCfg: {
+                cls: 'action-panel-header'
+            }
+        });
+
 		this.inner_panel = new Ext.Panel({
 			html: this.getText(),
             id: 'sel_res_inner_panel',
 			style: 'margin: 10px',
 			border: false
 		});
+        
+        this.add(this.header_panel);
 		this.add(this.inner_panel);
 		this.add(this.res_grp_select);
         

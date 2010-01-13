@@ -26,34 +26,39 @@ p.error_text {
 	font-size: 17px;
 }
 
+.action-panel-header {
+    overflow: none;
+    background-color: #d0e6f0;
+}
+
 .west-panel .x-panel-body {
-    overflow:auto;
+    overflow: auto;
 }
 
 .begin-draw {
-	background-image:url(/site-media/images/pencil_go.png) !important;
+	background-image: url(/site-media/images/pencil_go.png) !important;
 }
 
 .cancel-draw {
-	background-image:url(/site-media/images/cancel.png) !important;
+	background-image: url(/site-media/images/cancel.png) !important;
 }
 
 .redo-draw {
-	background-image:url(/site-media/images/arrow_redo.png) !important;
+	background-image: url(/site-media/images/arrow_redo.png) !important;
 }
 
 .shape-delete {
-	background-image:url(/site-media/images/cross.png) ! important;
+	background-image: url(/site-media/images/cross.png) ! important;
 }
 
 .shape-zoom {
-	background-image:url(/site-media/images/zoom.png) ! important;
+	background-image: url(/site-media/images/zoom.png) ! important;
 }
 
 .pennies-edit{
-    background-image:url(/site-media/images/coins.png) ! important;
+    background-image: url(/site-media/images/coins.png) ! important;
 }
 
 .pennies-zoom {
-	background-image:url(/site-media/images/zoom.png) ! important;
+	background-image: url(/site-media/images/zoom.png) ! important;
 }

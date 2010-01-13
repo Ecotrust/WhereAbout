@@ -17,7 +17,6 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.addEvents('penny-back');
         
 		Ext.apply(this, {
-			title: '4. Allocate Pennies',
 			bbar: [
                 {
                     text: 'Phase 4 of 5'
@@ -88,6 +87,16 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
                 
     onRender: function(){
+        
+        this.header_panel = new Ext.Panel({  
+			html: '<img src="/site-media/images/4b_PennyAllocation_header.png">',
+            id: 'penny_header_panel',
+			border: 'north',
+            bodyCfg: {
+                cls: 'action-panel-header'
+            }
+        });
+
 		this.inner_panel = new Ext.Panel({
 			html: this.getHtmlText(),
             id: 'penny_inner_panel',
@@ -148,6 +157,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
             stateId: 'grid'
         });
         
+        this.add(this.header_panel);
 		this.add(this.inner_panel);
 		this.add(this.nav_panel);
 		this.add(this.inner_grid_panel);
