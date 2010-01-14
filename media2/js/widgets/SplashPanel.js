@@ -8,22 +8,6 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
-        // Constructor, config object already applied to 'this' so properties can 
-        // be created and added/overridden here: Ext.apply(this, {});
-
-        
-		Ext.apply(this, {
-			bbar: [
-                {
-                    text: 'Phase 0 of 5'
-                },
-                {xtype:'tbfill'},
-				{
-                    text: 'Begin >>',
-                    handler: this.beginBtnClicked.createDelegate(this)
-                }
-			]
-		});
 		
         // Call parent (required)
         gwst.widgets.SplashPanel.superclass.initComponent.apply(
@@ -38,31 +22,23 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
     getText: function() {
         var html_text = '<p>\
 			The drawing portion will now begin for the '+ this.user_group +' user group.<br><br>\
-            You will have instructions every step of the way on the left hand side of the screen (like this).<br><br>\
-            You will also be able to come back and finish later if you need more time.\
-			<br /><br />\
-            The map portion of this survey comes in 5 phases:<br /><br />\
-            <ul>\
-                <li>1. Select '+ this.res_group_name +'</li>\
-                <li>2. Navigating the Map</li>\
-                <li>3. Drawing '+ this.shape_name +'s</li>\
-                <li>4. Allocating Pennies</li>\
-                <li>5. Finishing with the '+ this.res_group_name +'</li>\
-            </ul><br />';
+            You will be able to come back and finish later if you need more time.\
+			<br />';
         return html_text;
     },
 
     onRender: function(){
-    
+        //header image
         this.header_panel = new Ext.Panel({  
 			html: '<img src="/site-media/images/0_Introduction_header.png">',
             id: 'intro_header_panel',
-			border: 'north',
+			border: false,
             bodyCfg: {
                 cls: 'action-panel-header'
             }
         });
         
+        //panel of text
 		this.inner_panel = new Ext.Panel({
 			html: this.getText(),
             id: 'intro_inner_panel',
@@ -70,8 +46,42 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
         });
         
+        //action for the button in the button panel
+        var cont = new Ext.Action({
+            text: 'Continue >>',
+            handler: this.beginBtnClicked.createDelegate(this),
+            scale: 'large'
+        });
+        
+        //nice border around button table - will be handled by another class for other panels
+        this.button_panel = new Ext.Panel({
+            id: 'intro_button_panel',
+            style: 'margin: 15px 35px; padding: 5px',
+            cls: 'gwst-button-panel',
+            layout:'table',
+            border: false,
+            defaults: {
+                bodyStyle:'border: none'
+            },
+            layoutConfig: {
+                columns: 2
+            },
+            items: [{
+                html:'',
+                width: 100
+            },{
+                items: [
+                    new Ext.Button(cont),
+                ],
+                width: 100,
+                style: 'padding-left: 10px'
+            }
+            ]
+        });
+        
         this.add(this.header_panel);
         this.add(this.inner_panel);
+        this.add(this.button_panel);
     
         // Call parent (required)
         gwst.widgets.SplashPanel.superclass.onRender.apply(this, arguments);     

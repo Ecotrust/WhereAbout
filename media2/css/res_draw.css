@@ -35,6 +35,13 @@ p.error_text {
     overflow: auto;
 }
 
+.gwst-button-panel {
+    overflow: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #999999;
+}
+
 .begin-draw {
 	background-image: url(/site-media/images/pencil_go.png) !important;
 }
