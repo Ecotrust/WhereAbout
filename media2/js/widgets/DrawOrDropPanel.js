@@ -13,24 +13,6 @@ gwst.widgets.DrawOrDropPanel = Ext.extend(gwst.widgets.WestPanel, {
 		this.addEvents('draw-another');
         this.addEvents('drop-pennies');
 		
-		Ext.apply(this, {
-			title: '3. Draw',
-			bbar: [
-                {
-                    text: 'Phase 3 of 5'
-                },
-				{xtype:'tbfill'},
-				{
-                    text: 'Draw Another Shape',
-                    handler: this.drawBtnClicked.createDelegate(this)
-                },
-				{xtype:'tbseparator'},
-				{
-					text: 'Add Pennies',
-                    handler: this.addBtnClicked.createDelegate(this)
-				}
-			]
-		});
         // Call parent (required)
         gwst.widgets.DrawOrDropPanel.superclass.initComponent.apply(
           this, arguments);                     
@@ -44,16 +26,6 @@ gwst.widgets.DrawOrDropPanel = Ext.extend(gwst.widgets.WestPanel, {
     getText: function() {
         var html_text = '<p class="top_instruct">\
 			<b>Would you like to draw another shape, or are you ready to begin adding pennies?</b></p><br />\
-			\
-			<p> \
-            Click on the \'Draw Another Shape\' button to return to draw mode and make another shape.\
-            </p><br />\
-            <p>\
-			Click on the \'Add Pennies\' button to add penny values to your shapes.\
-			</p><br />\
-			\
-			<p> \
-			Note: if you have not drawn any valid shapes and try to add pennies, you will be directed to the species select menu.\
 			</p>';
         return html_text;
     },
@@ -65,7 +37,31 @@ gwst.widgets.DrawOrDropPanel = Ext.extend(gwst.widgets.WestPanel, {
 			style: 'margin: 10px',
 			border: false
 		});
+        
+        this.button_panel = new gwst.widgets.CustomButtons ({
+            element_list: [{
+                elem: this.drawBtnClicked.createDelegate(this),
+                type: 'handler'
+            },{
+                elem: 'Draw Another',
+                type: 'text'
+            },{
+                elem: '<p>Return to draw mode and make another '+ this.shape_name +'.</p>',
+                type: 'text'
+            },{
+                elem: this.addBtnClicked.createDelegate(this),
+                type: 'handler'
+            },{
+                elem: 'Allocate Pennies',
+                type: 'text'
+            },{
+                elem: '<p>Add penny values to your '+ this.shape_name +'s.</p>',
+                type: 'text'
+            }]
+        });
+        
 		this.add(this.inner_panel);
+        this.add(this.button_panel);
         
         // Call parent (required)
         gwst.widgets.DrawOrDropPanel.superclass.onRender.apply(this, arguments); 

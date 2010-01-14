@@ -16,24 +16,6 @@ gwst.widgets.SatisfiedGroupPanel = Ext.extend(gwst.widgets.WestPanel, {
 		this.addEvents('satisfied');
         // this.addEvents('satisfied-no');
 		
-		Ext.apply(this, {
-			title: '5. Finish',
-			bbar: [
-                {
-                    text: 'Phase 5 of 5'
-                },
-				{xtype:'tbfill'},
-				{
-                    text: 'No',
-                    handler: this.noClicked.createDelegate(this)
-                },
-				{xtype:'tbseparator'},
-				{
-                    text: 'Yes',
-                    handler: this.yesClicked.createDelegate(this)
-				}
-			]
-		});
         // Call parent (required)
         gwst.widgets.SatisfiedGroupPanel.superclass.initComponent.apply(
           this, arguments);                     
@@ -49,13 +31,6 @@ gwst.widgets.SatisfiedGroupPanel = Ext.extend(gwst.widgets.WestPanel, {
 			<b>Are you satisfied with all '+ this.shape_name +'s you have drawn \
             and all penny values for all '+ this.resource_name_plural +' that you \
             '+ this.action +' as a '+ this.user_group +' ?</b></p><br />\
-			\
-			<p> \
-            Click \'Yes\' to save your '+ this.shape_name +'s and pennies.\
-            </p><br />\
-            <p>\
-			Clicking \'No\' will let you choose which '+ this.resource_name +' to edit.\
-			</p><br />\
 			';
         return html_text;
     },
@@ -67,7 +42,16 @@ gwst.widgets.SatisfiedGroupPanel = Ext.extend(gwst.widgets.WestPanel, {
 			style: 'margin: 10px',
 			border: false
 		});
+        
+        this.button_panel = new gwst.widgets.YesNoButtons ({
+            yes_handler: this.yesClicked.createDelegate(this),
+            yes_text: '<p>Save your '+ this.shape_name +'s and pennies.</p>',
+            no_handler: this.noClicked.createDelegate(this),
+            no_text: '<p>Will let you choose which '+ this.resource_name +' to edit.</p>'
+        });
+        
 		this.add(this.inner_panel);
+        this.add(this.button_panel);
         
         // Call parent (required)
         gwst.widgets.SatisfiedGroupPanel.superclass.onRender.apply(this, arguments); 

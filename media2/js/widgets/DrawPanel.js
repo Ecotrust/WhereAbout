@@ -77,7 +77,6 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
 		});
         
         this.button_panel = new gwst.widgets.BackContButtons ({
-            cont_handler: this.contBtnClicked.createDelegate(this),
             back_handler: this.backBtnClicked.createDelegate(this)
         });
 
@@ -89,18 +88,6 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         // Call parent (required)
         gwst.widgets.DrawPanel.superclass.onRender.apply(this, arguments); 
 	},
-    
-    contBtnClicked: function() {
-        if (gwst.settings.shapeStore.getCount() <= 0) {    
-            alert('Please draw a shape before continuing.');  
-        } else {
-            this.fireEvent('draw-cont',this);
-        }
-    },
-    
-    // gridBtnClicked: function() {
-        // this.fireEvent('draw-grid',this);
-    // },
     
     backBtnClicked: function() {
         this.fireEvent('draw-back',this);

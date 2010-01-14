@@ -15,24 +15,6 @@ gwst.widgets.SatisfiedResourceShapesPanel = Ext.extend(gwst.widgets.WestPanel, {
 		this.addEvents('satisfied');
         // this.addEvents('satisfied-no');
 		
-		Ext.apply(this, {
-			title: '3. Draw',
-			bbar: [
-                {
-                    text: 'Phase 3 of 5'
-                },
-				{xtype:'tbfill'},
-				{
-                    text: 'No',
-                    handler: this.noClicked.createDelegate(this)
-                },
-				{xtype:'tbseparator'},
-				{
-                    text: 'Yes',
-                    handler: this.yesClicked.createDelegate(this)
-				}
-			]
-		});
         // Call parent (required)
         gwst.widgets.SatisfiedResourceShapesPanel.superclass.initComponent.apply(
           this, arguments);                     
@@ -47,14 +29,7 @@ gwst.widgets.SatisfiedResourceShapesPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         var html_text = '<p class="top_instruct">\
 			<b>Are you satisfied with all '+ this.shape_name +'s you have drawn \
-            for '+ this.resource +' that you '+ this.action +' as a '+ this.user_group +' ?</b></p><br />\
-			\
-			<p> \
-            Click \'Yes\' to save your '+ this.shape_name +'s and move on to pennies.\
-            </p><br />\
-            <p>\
-			Clicking \'No\' will let you redraw or delete the '+ this.shape_name +'s if you wish\
-			</p><br />\
+            for '+ this.resource +' that you '+ this.action +' as a '+ this.user_group +'?</b></p><br />\
 			';
         return html_text;
     },
@@ -66,7 +41,16 @@ gwst.widgets.SatisfiedResourceShapesPanel = Ext.extend(gwst.widgets.WestPanel, {
 			style: 'margin: 10px',
 			border: false
 		});
+        
+        this.button_panel = new gwst.widgets.YesNoButtons ({
+            yes_handler: this.yesClicked.createDelegate(this),
+            yes_text: '<p>Save your '+ this.shape_name +'s and move on to pennies.</p>',
+            no_handler: this.noClicked.createDelegate(this),
+            no_text: '<p>Return to draw to redraw or delete the '+ this.shape_name +'s if you wish.</p>'
+        });
+        
 		this.add(this.inner_panel);
+        this.add(this.button_panel);
         
         // Call parent (required)
         gwst.widgets.SatisfiedResourceShapesPanel.superclass.onRender.apply(this, arguments); 

@@ -15,24 +15,6 @@ gwst.widgets.SatisfiedPenniesPanel = Ext.extend(gwst.widgets.WestPanel, {
 		this.addEvents('satisfied');
         // this.addEvents('satisfied-no');
 		
-		Ext.apply(this, {
-			title: '4. Allocate Pennies',
-			bbar: [
-                {
-                    text: 'Phase 4 of 5'
-                },
-				{xtype:'tbfill'},
-				{
-                    text: 'No',
-                    handler: this.noClicked.createDelegate(this)
-                },
-				{xtype:'tbseparator'},
-				{
-                    text: 'Yes',
-                    handler: this.yesClicked.createDelegate(this)
-				}
-			]
-		});
         // Call parent (required)
         gwst.widgets.SatisfiedPenniesPanel.superclass.initComponent.apply(
           this, arguments);                     
@@ -47,14 +29,7 @@ gwst.widgets.SatisfiedPenniesPanel = Ext.extend(gwst.widgets.WestPanel, {
         var html_text = '<p class="top_instruct">\
 			<b>Are you satisfied with all the '+ this.resource +' '+ this.shape_name +'s\
             you have drawn and all of the pennies assigned to them for \
-            that you '+ this.action +' as a '+ this.user_group +' ?</b></p><br />\
-			\
-			<p> \
-            Click \'Yes\' to save your '+ this.shape_name +'s and pennies.\
-            </p><br />\
-            <p>\
-			Clicking \'No\' will discard the '+ this.shape_name +'s and let you return to edit penny values.\
-			</p><br />\
+            that you '+ this.action +' as a '+ this.user_group +'?</b></p><br />\
 			';
         return html_text;
     },
@@ -66,7 +41,16 @@ gwst.widgets.SatisfiedPenniesPanel = Ext.extend(gwst.widgets.WestPanel, {
 			style: 'margin: 10px',
 			border: false
 		});
+        
+        this.button_panel = new gwst.widgets.YesNoButtons ({
+            yes_handler: this.yesClicked.createDelegate(this),
+            yes_text: '<p>Save your '+ this.shape_name +'s and pennies.</p>',
+            no_handler: this.noClicked.createDelegate(this),
+            no_text: '<p>Discard the '+ this.shape_name +'s and let you return to edit penny values.</p>'
+        });
+        
 		this.add(this.inner_panel);
+        this.add(this.button_panel);
         
         // Call parent (required)
         gwst.widgets.SatisfiedPenniesPanel.superclass.onRender.apply(this, arguments); 

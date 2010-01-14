@@ -792,7 +792,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.finishPanel) {
             this.finishPanel = new gwst.widgets.FinishPanel({
                 xtype: 'gwst-finish-panel',
-                resource: this.curResource.get('name'),
+                res_group_name: gwst.settings.interview.resource_name,
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
                 shape_name: gwst.settings.interview.shape_name
@@ -802,7 +802,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.finishPanel.on('select-another', this.selNewResStep, this);            
         } else {
             this.finishPanel.updateText({
-                resource: this.curResource.get('name'),
+                res_group_name: gwst.settings.interview.resource_name,
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
                 shape_name: gwst.settings.interview.shape_name

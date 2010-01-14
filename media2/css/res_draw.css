@@ -42,6 +42,10 @@ p.error_text {
     border-color: #999999;
 }
 
+.gwst-padded-table{
+    padding: 10px;
+}
+
 .begin-draw {
 	background-image: url(/site-media/images/pencil_go.png) !important;
 }

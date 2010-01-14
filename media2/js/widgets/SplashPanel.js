@@ -47,36 +47,8 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
         });
         
-        //action for the button in the button panel
-        var cont = new Ext.Action({
-            text: 'Continue >>',
-            handler: this.beginBtnClicked.createDelegate(this)
-        });
-        
-        //nice border around button table - will be handled by another class for other panels
-        this.button_panel = new Ext.Panel({
-            id: 'intro_button_panel',
-            style: 'margin: 15px 35px; padding: 5px',
-            cls: 'gwst-button-panel',
-            layout:'table',
-            border: false,
-            defaults: {
-                bodyStyle:'border: none'
-            },
-            layoutConfig: {
-                columns: 2
-            },
-            items: [{
-                html:'',
-                width: 100
-            },{
-                items: [
-                    new Ext.Button(cont)
-                ],
-                width: 100,
-                style: 'padding-left: 10px'
-            }
-            ]
+        this.button_panel = new gwst.widgets.BackContButtons ({
+            cont_handler: this.contBtnClicked.createDelegate(this)
         });
         
         this.add(this.header_panel);
@@ -87,7 +59,7 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
         gwst.widgets.SplashPanel.superclass.onRender.apply(this, arguments);     
 	},
 
-    beginBtnClicked: function() {
+    contBtnClicked: function() {
         this.fireEvent('splash-cont',this);
     }
 });

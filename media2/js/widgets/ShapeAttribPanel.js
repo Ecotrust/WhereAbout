@@ -9,20 +9,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         // Constructor, config object already applied to 'this' so properties can 
         // be created and added/overridden here: Ext.apply(this, {});
 
-		Ext.apply(this, {
-			title: '3. Draw',
-			bbar: [
-                {
-                    text: 'Phase 3 of 5'
-                },
-				{xtype:'tbfill'},
-				{
-                    text: 'Continue >>',
-                    handler: this.continueBtnClicked.createDelegate(this)
-                }
-			]
-		});
-		
         // Call parent (required)
         gwst.widgets.ShapeAttribPanel.superclass.initComponent.apply(
           this, arguments);                     
@@ -40,8 +26,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
 			<br />';
         return html_text;
     },
-
-    
             
     onRender: function(){
     
@@ -73,13 +57,19 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
                 name: 'w_bound'
             }]
 		});
+        
+        this.button_panel = new gwst.widgets.BackContButtons ({
+            cont_handler: this.contBtnClicked.createDelegate(this)
+        });
+
 		this.add(this.inner_form_panel);
+        this.add(this.button_panel);
         
         // Call parent (required)
         gwst.widgets.ShapeAttribPanel.superclass.onRender.apply(this, arguments);     
 	},
 
-    continueBtnClicked: function() {
+    contBtnClicked: function() {
         this.fireEvent('shape-attrib-cont',this);
     }
 });

@@ -13,24 +13,6 @@ gwst.widgets.SatisfiedShapePanel = Ext.extend(gwst.widgets.WestPanel, {
 		this.addEvents('satisfied');
         // this.addEvents('satisfied-no');
 		
-		Ext.apply(this, {
-			title: '3. Draw',
-			bbar: [
-                {
-                    text: 'Phase 3 of 5'
-                },
-				{xtype:'tbfill'},
-				{
-                    text: 'No',
-                    handler: this.noClicked.createDelegate(this)
-                },
-				{xtype:'tbseparator'},
-				{
-                    text: 'Yes',
-                    handler: this.yesClicked.createDelegate(this)
-				}
-			]
-		});
         // Call parent (required)
         gwst.widgets.SatisfiedShapePanel.superclass.initComponent.apply(
           this, arguments);                     
@@ -43,15 +25,7 @@ gwst.widgets.SatisfiedShapePanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p class="top_instruct">\
-			<b>Are you satisfied with this shape?</b></p><br />\
-			\
-			<p> \
-            Click \'Yes\' to save your shape.\
-            </p><br />\
-            <p>\
-			Clicking \'No\' will discard the shape and let you draw it again if you wish\
-			</p><br />\
-			';
+			<b>Are you satisfied with this '+ this.shape_name +'?</b></p><br />';
         return html_text;
     },
 	
@@ -62,7 +36,16 @@ gwst.widgets.SatisfiedShapePanel = Ext.extend(gwst.widgets.WestPanel, {
 			style: 'margin: 10px',
 			border: false
 		});
+        
+        this.button_panel = new gwst.widgets.YesNoButtons ({
+            yes_handler: this.yesClicked.createDelegate(this),
+            yes_text: '<p>Keep your fishing ground.</p>',
+            no_handler: this.noClicked.createDelegate(this),
+            no_text: '<p>Discard this fishing ground and draw again if you wish.</p>'
+        });
+        
 		this.add(this.inner_panel);
+        this.add(this.button_panel);
         
         // Call parent (required)
         gwst.widgets.SatisfiedShapePanel.superclass.onRender.apply(this, arguments); 
