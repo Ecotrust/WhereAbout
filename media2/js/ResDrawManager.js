@@ -562,11 +562,12 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             //When panel fires event saying it's all done, we want to process it and move on 
             this.drawPanel.on('draw-cont', this.finDrawStep, this);
             this.drawPanel.on('draw-back', this.backDrawStep, this);            
+            // this.drawPanel.on('draw-grid', this.loadDraw2Panel, this);
             this.drawPanel.on('draw-grid', this.loadDraw2Panel, this);
         } else {
-            this.drawPanel.updateBbar();
             this.drawPanel.updateText({
                 resource: this.curResource.get('name'),
+                resource_id: this.curResource.get('id'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
                 shape_name: gwst.settings.interview.shape_name
@@ -588,7 +589,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             //When panel fires event saying it's all done, we want to process it and move on 
             this.draw2Panel.on('draw-two-cont', this.finDraw2Step, this);
             this.draw2Panel.on('draw-two-back', this.backDraw2Step, this);
-            this.draw2Panel.on('draw-two-instructions', this.loadDrawPanel, this);
+            // this.draw2Panel.on('draw-two-instructions', this.loadDrawPanel, this);
             this.draw2Panel.on('draw-two-delete', this.deleteShape, this);
         } else {
             this.draw2Panel.updateText({

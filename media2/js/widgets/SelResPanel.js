@@ -55,11 +55,6 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
         return html_text;
     },
     
-    getButtons: function() {
-        var html_buttons = '<p>test</p>';
-        return html_buttons;
-    },
-    
     onRender: function(){
     
         this.header_panel = new Ext.Panel({  

@@ -12,25 +12,7 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
 
         this.addEvents('alloc-cont');
         this.addEvents('alloc-back');
-        
-		Ext.apply(this, {
-			bbar: [
-                {
-                    text: 'Phase 4 of 5'
-                },
-				{xtype:'tbfill'},
-				{
-                    text: '<< Go Back',
-                    handler: this.backBtnClicked.createDelegate(this)
-                },
-				{xtype:'tbseparator'},
-				{
-                    text: 'Continue >>',
-                    handler: this.continueBtnClicked.createDelegate(this)
-                }
-			]
-		});
-		
+        		
         // Call parent (required)
         gwst.widgets.AllocPanel.superclass.initComponent.apply(
           this, arguments);                     
@@ -81,8 +63,14 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		});
         
+        this.button_panel = new gwst.widgets.BackContButtons ({
+            cont_handler: this.contBtnClicked.createDelegate(this),
+            back_handler: this.backBtnClicked.createDelegate(this)
+        });
+        
         this.add(this.header_panel);
 		this.add(this.inner_panel);
+        this.add(this.button_panel);
         
         // Call parent (required)
         gwst.widgets.AllocPanel.superclass.onRender.apply(this, arguments);     
@@ -92,7 +80,7 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.fireEvent('alloc-back',this);
     },
     
-    continueBtnClicked: function() {
+    contBtnClicked: function() {
         this.fireEvent('alloc-cont',this);
     }
 });

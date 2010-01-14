@@ -13,23 +13,6 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
 		this.addEvents('nav-cont');
         this.addEvents('nav-back');
 		
-		Ext.apply(this, {
-			bbar: [
-                {
-                    text: 'Phase 2 of 5'
-                },
-                {xtype:'tbfill'},
-				{
-                    text: '<< Go Back',
-                    handler: this.backBtnClicked.createDelegate(this)
-                },
-				{xtype:'tbseparator'},
-				{
-					text: 'Continue >>',
-                    handler: this.continueBtnClicked.createDelegate(this)
-				}
-			]
-		});
         // Call parent (required)
         gwst.widgets.NavigatePanel.superclass.initComponent.apply(
           this, arguments);                     
@@ -91,8 +74,15 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		});
         
+        this.button_panel = new gwst.widgets.BackContButtons ({
+            cont_handler: this.contBtnClicked.createDelegate(this),
+            back_handler: this.backBtnClicked.createDelegate(this)
+        });
+
+        
         this.add(this.header_panel);
 		this.add(this.inner_panel);
+        this.add(this.button_panel);
         
         // Call parent (required)
         gwst.widgets.NavigatePanel.superclass.onRender.apply(this, arguments); 
@@ -102,7 +92,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
         this.fireEvent('nav-back',this);
     },
     
-	continueBtnClicked: function() {
+	contBtnClicked: function() {
 		this.fireEvent('nav-cont',this,this.resource);
     }
 });

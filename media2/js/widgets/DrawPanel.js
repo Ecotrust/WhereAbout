@@ -16,61 +16,12 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.addEvents('draw-back');        
         this.addEvents('draw-grid');
         
-        Ext.apply(this, {
-            bbar: [
-                {
-                    text: 'Phase 3 of 5'
-                },
-                {xtype:'tbfill'},
-                {
-                    text: '<< Go Back',
-                    handler: this.backBtnClicked.createDelegate(this)
-                }
-            ]
-        });
         // this.updateBbar(this.getBottomToolbar());
         // Call parent (required)
         gwst.widgets.DrawPanel.superclass.initComponent.apply(
           this, arguments);                     
     },
-    
-    updateBbar: function() {
-        var bBar = this.getBottomToolbar().bbar;
-        if (gwst.settings.shapeStore.getCount() <= 0 ) {
-            Ext.apply(bBar, {
-                bbar: [
-                    {xtype:'tbfill'},
-                    {
-                        text: '<< Go Back',
-                        handler: this.backBtnClicked.createDelegate(this)
-                    }
-                ]
-            });
-        } else {
-            Ext.apply(bBar, {
-                bbar: [
-                    {xtype:'tbfill'},
-                    {
-                        text: '<< Go Back',
-                        handler: this.backBtnClicked.createDelegate(this)
-                    },
-                    {xtype:'tbseparator'},
-                    {
-                        text: 'Grid view',
-                        handler: this.gridBtnClicked.createDelegate(this)
-                    },
-                    {xtype:'tbseparator'},
-                    {
-                        text: 'Continue >>',
-                        handler: this.continueBtnClicked.createDelegate(this)
-                    }
-                ]
-            });
-        };
-        // this.getEl().update(this.getBottomToolbar());
-        // this.render();
-    },
-    
+       
     updateText: function(text_config) {
         Ext.apply(this, text_config);
         this.inner_panel.getEl().update(this.getText());
@@ -125,20 +76,31 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		});
         
+        this.button_panel = new gwst.widgets.BackContButtons ({
+            cont_handler: this.contBtnClicked.createDelegate(this),
+            back_handler: this.backBtnClicked.createDelegate(this)
+        });
+
+        
         this.add(this.header_panel);
 		this.add(this.inner_panel);
+        this.add(this.button_panel);
         
         // Call parent (required)
         gwst.widgets.DrawPanel.superclass.onRender.apply(this, arguments); 
 	},
     
-    continueBtnClicked: function() {
-        this.fireEvent('draw-cont',this);
+    contBtnClicked: function() {
+        if (gwst.settings.shapeStore.getCount() <= 0) {    
+            alert('Please draw a shape before continuing.');  
+        } else {
+            this.fireEvent('draw-cont',this);
+        }
     },
     
-    gridBtnClicked: function() {
-        this.fireEvent('draw-grid',this);
-    },
+    // gridBtnClicked: function() {
+        // this.fireEvent('draw-grid',this);
+    // },
     
     backBtnClicked: function() {
         this.fireEvent('draw-back',this);

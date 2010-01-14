@@ -18,29 +18,6 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
         this.addEvents('draw-two-back');        
         this.addEvents('draw-two-instructions');
         
-		Ext.apply(this, {
-			bbar: [
-                {
-                    text: 'Phase 3 of 5'
-                },
-				{xtype:'tbfill'},
-				{
-                    text: '<< Go Back',
-                    handler: this.backBtnClicked.createDelegate(this)
-                },
-				{xtype:'tbseparator'},
-                {
-                    text: 'Instructions',
-                    handler: this.instructionBtnClicked.createDelegate(this)
-                },
-				{xtype:'tbseparator'},
-				{
-                    text: 'Continue >>',
-                    handler: this.continueBtnClicked.createDelegate(this)
-                }
-			]
-		});
-		
         // Call parent (required)
         gwst.widgets.Draw2Panel.superclass.initComponent.apply(
           this, arguments);                     
@@ -98,9 +75,6 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 			style: 'margin: 10px',
 			border: false
 		});
-        
-        this.add(this.header_panel);
-		this.add(this.inner_panel);
 
 		//Grid button actions
 	 	this.grid_actions = new Ext.ux.grid.RowActions({
@@ -149,19 +123,31 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             stateId: 'grid'
         });
         
-        this.add(this.inner_grid_panel);        
+        this.button_panel = new gwst.widgets.BackContButtons ({
+            cont_handler: this.contBtnClicked.createDelegate(this),
+            back_handler: this.backBtnClicked.createDelegate(this)
+        });
+        
+        this.add(this.header_panel);
+		this.add(this.inner_panel);
+        this.add(this.inner_grid_panel); 
+        this.add(this.button_panel);
         
         // Call parent (required)
         gwst.widgets.Draw2Panel.superclass.onRender.apply(this, arguments); 
 	},     
 	
-    continueBtnClicked: function() {
-        this.fireEvent('draw-two-cont',this);
+    contBtnClicked: function() {
+    // if (gwst.settings.shapeStore.getCount() <= 0) {    
+            // alert('Please draw a shape before continuing.');  
+        // } else {
+            this.fireEvent('draw-two-cont',this);
+        // }
     },
     
-    instructionBtnClicked: function() {
-        this.fireEvent('draw-two-instructions',this);
-    },
+    // instructionBtnClicked: function() {
+        // this.fireEvent('draw-two-instructions',this);
+    // },
     
     backBtnClicked: function() {
         this.fireEvent('draw-two-back',this);

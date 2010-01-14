@@ -16,24 +16,6 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.addEvents('penny-cont');
         this.addEvents('penny-back');
         
-		Ext.apply(this, {
-			bbar: [
-                {
-                    text: 'Phase 4 of 5'
-                },
-				{xtype:'tbfill'},
-				{
-                    text: '<< Back to Draw',
-                    handler: this.backBtnClicked.createDelegate(this)
-                },
-				{xtype:'tbseparator'},
-				{
-                    text: 'Continue >>',
-                    handler: this.continueBtnClicked.createDelegate(this)
-                }
-			]
-		});
-		
         // Call parent (required)
         gwst.widgets.PennyPanel.superclass.initComponent.apply(
           this, arguments);                     
@@ -157,10 +139,17 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
             stateId: 'grid'
         });
         
+        this.button_panel = new gwst.widgets.BackContButtons ({
+            cont_handler: this.contBtnClicked.createDelegate(this),
+            back_handler: this.backBtnClicked.createDelegate(this)
+        });
+        
         this.add(this.header_panel);
 		this.add(this.inner_panel);
 		this.add(this.nav_panel);
 		this.add(this.inner_grid_panel);
+        this.add(this.button_panel);
+        
         // Call parent (required)
         gwst.widgets.PennyPanel.superclass.onRender.apply(this, arguments); 
 	},
@@ -169,7 +158,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.fireEvent('penny-back',this);
     },
     
-    continueBtnClicked: function() {
+    contBtnClicked: function() {
         this.fireEvent('penny-cont',this);
     }
 });
