@@ -21,30 +21,7 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
 
         this.addEvents('res-sel-cont');
         this.addEvents('res-sel-back');
-		
-        var bToolbar = new Ext.Toolbar({
-            items: [
-                {
-                    text: 'Phase 1 of 5'
-                },
-                {xtype:'tbfill'},
-				{
-                    text: '<< Go Back',
-                    handler: this.backBtnClicked.createDelegate(this)
-                },
-				{xtype:'tbseparator'},
-				{
-                    text: 'Continue >>',
-                    handler: this.continueBtnClicked.createDelegate(this)
-                }
-			]
-        });
-        
-		Ext.apply(this, {
-            autoDestroy: false,
-			bbar: bToolbar
-		});
-        
+		        
 		this.res_grp_select = new gwst.widgets.SpeciesSelect({
 			store: gwst.settings.resourceStore
 		});
@@ -77,6 +54,12 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
 		;
         return html_text;
     },
+    
+    getButtons: function() {
+        var html_buttons = '<p>test</p>';
+        return html_buttons;
+    },
+    
     onRender: function(){
     
         this.header_panel = new Ext.Panel({  
@@ -95,9 +78,15 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		});
         
+        this.button_panel = new gwst.widgets.BackContButtons ({
+            cont_handler: this.contBtnClicked.createDelegate(this),
+            back_handler: this.backBtnClicked.createDelegate(this)
+        });
+        
         this.add(this.header_panel);
 		this.add(this.inner_panel);
 		this.add(this.res_grp_select);
+        this.add(this.button_panel);
         
         // Call parent (required)
         gwst.widgets.SelResPanel.superclass.onRender.apply(this, arguments); 
@@ -107,7 +96,7 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.fireEvent('res-sel-back',this);
     },
     
-    continueBtnClicked: function() {
+    contBtnClicked: function() {
 		var species_id = this.res_grp_select.getValue();
 		if (species_id == '') {
             gwst.error.load('You must select a species before continuing.');

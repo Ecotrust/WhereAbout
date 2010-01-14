@@ -21,7 +21,8 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p>\
-			The drawing portion will now begin for the '+ this.user_group +' user group.<br><br>\
+			<b>Instructions:</b><br />\
+            The drawing portion will now begin for the '+ this.user_group +' user group.<br><br>\
             You will be able to come back and finish later if you need more time.\
 			<br />';
         return html_text;
@@ -49,8 +50,7 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
         //action for the button in the button panel
         var cont = new Ext.Action({
             text: 'Continue >>',
-            handler: this.beginBtnClicked.createDelegate(this),
-            scale: 'large'
+            handler: this.beginBtnClicked.createDelegate(this)
         });
         
         //nice border around button table - will be handled by another class for other panels
@@ -71,7 +71,7 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
                 width: 100
             },{
                 items: [
-                    new Ext.Button(cont),
+                    new Ext.Button(cont)
                 ],
                 width: 100,
                 style: 'padding-left: 10px'
