@@ -118,7 +118,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
             columns: [{
                 id:'id',
                 header:'#',
-                width: 55,
+                width: 35,
                 sortable: true,
                 dataIndex:'id'
             },{
@@ -132,8 +132,8 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
             sm: new GeoExt.grid.FeatureSelectionModel(),
             stripeRows: true,
             height: 250,
-            width: 265,
-            title: 'Fishing Grounds',
+            width: 255,
+            title: ''+this.shape_name+'s',
             style: 'margin: 15px',
             stateful: true,
             stateId: 'grid'

@@ -60,7 +60,7 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.header_panel = new Ext.Panel({  
 			html: '<img src="/site-media/images/1_PickFishery_header.png">',
             id: 'sel_res_header_panel',
-			border: 'north',
+			border: false,
             bodyCfg: {
                 cls: 'action-panel-header'
             }
@@ -78,10 +78,19 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
             back_handler: this.backBtnClicked.createDelegate(this)
         });
         
+        this.content_panel = new Ext.Panel({
+            id: 'sel-rec-content-panel',
+            items: [
+                this.inner_panel,
+                this.res_grp_select,
+                this.button_panel
+            ],
+            autoScroll: true,
+            border: false
+        });
+        
         this.add(this.header_panel);
-		this.add(this.inner_panel);
-		this.add(this.res_grp_select);
-        this.add(this.button_panel);
+		this.add(this.content_panel);
         
         // Call parent (required)
         gwst.widgets.SelResPanel.superclass.onRender.apply(this, arguments); 

@@ -4,7 +4,7 @@ Ext.namespace('gwst', 'gwst.widgets');
 gwst.widgets.SpeciesSelect = Ext.extend(Ext.ux.Multiselect, {
     style: 'margin:10px;margin-left:20px', 
 	width: 250,
-	height: 250,
+	height: 150,
 	valueField:"id",
 	displayField:"name",
 	allowBlank:false,

@@ -138,16 +138,12 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 	},     
 	
     contBtnClicked: function() {
-    // if (gwst.settings.shapeStore.getCount() <= 0) {    
-            // alert('Please draw a shape before continuing.');  
-        // } else {
+    if (gwst.settings.shapeStore.getCount() <= 0) {    
+            alert('Please draw a '+ this.shape_name +' before continuing.');  
+        } else {
             this.fireEvent('draw-two-cont',this);
-        // }
+        }
     },
-    
-    // instructionBtnClicked: function() {
-        // this.fireEvent('draw-two-instructions',this);
-    // },
     
     backBtnClicked: function() {
         this.fireEvent('draw-two-back',this);

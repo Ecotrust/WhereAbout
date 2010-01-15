@@ -30,7 +30,7 @@ gwst.widgets.SatisfiedGroupPanel = Ext.extend(gwst.widgets.WestPanel, {
         var html_text = '<p class="top_instruct">\
 			<b>Are you satisfied with all '+ this.shape_name +'s you have drawn \
             and all penny values for all '+ this.resource_name_plural +' that you \
-            '+ this.action +' as a '+ this.user_group +' ?</b></p><br />\
+            '+ this.action +' as a '+ this.user_group +'?</b></p><br />\
 			';
         return html_text;
     },

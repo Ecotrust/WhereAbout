@@ -31,10 +31,6 @@ p.error_text {
     background-color: #d0e6f0;
 }
 
-.west-panel .x-panel-body {
-    overflow: auto;
-}
-
 .gwst-button-panel {
     overflow: none;
     border-style: solid;

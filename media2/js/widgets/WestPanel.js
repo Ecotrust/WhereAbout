@@ -7,6 +7,10 @@ gwst.widgets.WestPanel = Ext.extend(Ext.Panel, {
     initComponent: function(){
 		// Constructor, config object already applied to 'this' so properties can 
     	// be created and added/overridden here: Ext.apply(this, {});
+        
+        Ext.apply(this, {
+            autoScroll: true
+        });
          
         gwst.widgets.WestPanel.superclass.initComponent.call(this);  
     }

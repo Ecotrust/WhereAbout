@@ -6,7 +6,7 @@ gwst.widgets.BackContButtons = Ext.extend(Ext.Panel, {
     
     initComponent: function(){
         Ext.apply(this, {
-            style: 'margin: 15px 35px; padding: 5px',
+            style: 'margin: 15px 35px; padding: 5px 0px 5px 5px',
             cls: 'gwst-button-panel',
             layout:'table',
             border: false,
@@ -33,12 +33,13 @@ gwst.widgets.BackContButtons = Ext.extend(Ext.Panel, {
                 items: [
                     new Ext.Button(back)
                 ],
-                width: 100
+                width: 95,
+                style: 'margin-left: 20px'
             });
         } else {
             this.add({
                 html: '',
-                width: 100
+                width: 115
             })
         };
         if (this.cont_handler) {
@@ -50,8 +51,7 @@ gwst.widgets.BackContButtons = Ext.extend(Ext.Panel, {
                 items: [
                     new Ext.Button(cont)
                 ],
-                width: 100,
-                style: 'padding-left: 10px'
+                width: 85
             });
         }
         // Call parent (required)

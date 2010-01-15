@@ -25,7 +25,7 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p class="top_instruct">\
-			<b>Would you like to finish with the map tool or draw fishing grounds for another species?</b></p><br />';
+			<b>Would you like to finish with the map tool or draw '+ this.shape_name +' for another '+ this.res_group_name +'?</b></p><br />';
         return html_text;
     },
 	
