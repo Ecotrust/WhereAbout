@@ -5,7 +5,6 @@ import datetime
 from gwst_app.utils.geojson_encode import *
 from gwst_app.managers import *
 
-# ultimately the Region table needs to move to MM core
 class Region(Model):
     name = CharField( max_length=100, unique=True )
     n_bound = FloatField()
@@ -21,10 +20,9 @@ class Region(Model):
         return unicode('%s: %s' % (self.code, self.name))
 
 #Region to clip user-drawn shapes to.
-class ClipRegion(Model):
-    id = models.IntegerField(primary_key=True)    
+class ClipRegion(Model):  
     name = models.TextField()
-    the_geom = MultiPolygonField() # This field type is a guess.
+    geom = MultiPolygonField(srid=settings.SERVER_SRID)
     objects = GeoManager()
     class Meta:
         db_table = u'gwst_region_clip'

@@ -841,7 +841,7 @@ def validate_shape(request):
             return gen_validate_response(3, 'Shape is not valid', new_shape)
         
         #Clip the shape to the region
-        clipped_shape = new_shape.difference( interview.clip_region.the_geom )          
+        clipped_shape = new_shape.difference( interview.clip_region.geom )          
 
         #if no area, then no overlap, just return it
         if clipped_shape.area == 0:
