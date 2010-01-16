@@ -783,15 +783,69 @@ def get_user_shapes(request):
 
 def shapes(request):
     #int_group = InterviewGroup.objects.get(pk=id)
-    shape_qs = InterviewShape.objects.filter(user=request.user)
-    return render_to_geojson(
-        shape_qs,
-        geom_attribute='geometry',
-        excluded_fields=['creation_date'],
-        mimetype = 'text/plain',
-        proj_transform=settings.CLIENT_SRID,
-        pretty_print=True
-    )         
+    if request.method == 'GET':    
+        shape_qs = InterviewShape.objects.filter(user=request.user)
+        return render_to_geojson(
+            shape_qs,
+            geom_attribute='geometry',
+            excluded_fields=['creation_date'],
+            mimetype = 'text/plain',
+            proj_transform=settings.CLIENT_SRID,
+            pretty_print=True
+        )
+    elif request.method == 'POST':
+        result = '{"status_code":"-1",  "success":"false",  "message":"Action not permitted"}'    
+        # make sure the user has a valid session in-progress
+        try:
+            int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])        
+            status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+            status = status_object_qs[0]        
+        except Exception, e:
+            return HttpResponse(result, status=403)
+    
+        # see if the interview has been marked complete
+        if status.completed:
+            return HttpResponse(result, status=403)     
+            
+        if not request.POST.has_key('feature'):
+            result = '{"status_code":"-1",  "success":"false",  "message":"Expected \'feature\'"}'
+            return HttpResponse(result, status=403)
+        import simplejson
+        feat = simplejson.loads(request.POST.get('feature'))
+               
+        result = '{"status_code":"-1",  "success":"false",  "message":"Error saving"}'
+        try:
+            geom = GEOSGeometry(feat.get('geometry'), srid=settings.CLIENT_SRID)
+            geom.transform(settings.SERVER_SRID)                        
+            
+            new_shape = InterviewShape(
+                user = request.user,
+                geometry = geom,
+                boundary_n = feat.get('boundary_n'),
+                boundary_s = feat.get('boundary_s'),
+                boundary_e = feat.get('boundary_e'),
+                boundary_w = feat.get('boundary_w'),
+                int_group_id = int(feat.get('group_id')),
+                resource_id = int(feat.get('resource_id'))                
+            )                        
+            new_shape.save() 
+            
+            # check the status of the interview group membership for this shape and unfinalize it if necessary
+            group_memb = InterviewGroupMembership.objects.get(user=request.user,int_group=new_shape.int_group_id)
+            if group_memb.status == 'finalized':
+                group_memb.status = 'in-progress'
+                group_memb.save()
+                
+        except Exception, e:
+            return HttpResponse(result + e.message, status=500)
+
+        result = {
+            "status_code":1,  
+            "success":True, 
+            "message":"Saved successfully",
+            "feature": new_shape
+        }              
+        return HttpResponse(geojson_encode(result))                    
     
 @login_required
 def shape(request,id):

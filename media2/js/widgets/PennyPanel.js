@@ -180,7 +180,12 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     contBtnClicked: function() {
         this.fireEvent('penny-cont',this);
-    }
+    },
+    
+    //Refresh the whole grid to update the row numberer
+    refresh: function() {
+    	this.inner_grid_panel.getView().refresh();
+    }    
 });
  
 // register xtype to allow for lazy initialization

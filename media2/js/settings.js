@@ -30,7 +30,7 @@ gwst.settings = {
 gwst.settings.urls = {
     user: '/user/',
 	group_resources: '/group_resources/',
-	shape: '/shape/',
+	shapes: '/shapes/',
 	shape_validate: '/shape/validate/',
 	region: '/region/',
     group_draw_settings: '/draw_settings/'    //URL to fetch runtime settings

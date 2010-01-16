@@ -99,13 +99,8 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 				
         this.inner_grid_panel = new Ext.grid.GridPanel ({
             store: gwst.settings.shapeStore,
-            columns: [{
-                id:'id',
-                header:'Shape #',
-                width: 60,
-                sortable: true,
-                dataIndex:'id'
-            },{
+            columns: [
+            new Ext.grid.RowNumberer(),{
                 header:'Pennies',
                 width: 60,
                 sortable: false,
@@ -147,6 +142,11 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     
     backBtnClicked: function() {
         this.fireEvent('draw-two-back',this);
+    },
+    
+    //Refresh the whole grid to update the row numberer
+    refresh: function() {
+    	this.inner_grid_panel.getView().refresh();
     }
 });
  

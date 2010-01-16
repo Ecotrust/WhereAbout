@@ -1,5 +1,3 @@
-//Anything that's not 
-
 Ext.namespace('gwst');
 
 /*
@@ -20,6 +18,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         gwst.ResDrawManager.superclass.constructor.call(this);
         this.addEvents('settings-loaded');
         this.addEvents('res-shapes-loaded');
+        this.addEvents('shape-saved');
         this.mapPanelListeners = {
         		'render': this.mapPanelCreated.createDelegate(this),
         		'resize': this.mapResized.createDelegate(this)
@@ -31,7 +30,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * once loaded
      */
     startInit: function(){
-    	this.on('settings-loaded', this.finInit, this);    	
+    	this.on('settings-loaded', this.finInit, this);
+    	this.on('shape-saved', this.loadAnotherShapePanel, this);
         this.fetchSettings();
         this.loadWait('While the drawing tool loads');
     },               
@@ -198,7 +198,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Setup UI for satisfied with shape step 
      */
     startSatisfiedShapeStep: function(shape_obj) {
-    	this.addShape(shape_obj.geom);
+    	this.addValidatedShape(shape_obj.geom);
         this.mapPanel.disableResDraw(); //Turn off drawing    	
         this.loadSatisfiedShapePanel();        
         if (this.drawToolWin) {
@@ -241,7 +241,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Setup UI for draw another shape or drop penny step 
      */
     startAnotherShapeStep: function() {
-        this.loadAnotherShapePanel();        
+		this.saveNewShape();                
     },
        
     /*
@@ -588,7 +588,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             //When panel fires event saying it's all done, we want to process it and move on 
             this.draw2Panel.on('draw-two-cont', this.finDraw2Step, this);
             this.draw2Panel.on('draw-two-back', this.backDraw2Step, this);
-            this.draw2Panel.on('draw-two-delete', this.deleteShape, this);
+            this.draw2Panel.on('draw-two-delete', this.deleteShapeHandler, this);
         } else {
             this.draw2Panel.updateText({
                 resource: this.curResource.get('name'),
@@ -875,10 +875,23 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             resource: gwst.settings.survey_group_id+'-'+this.curResource.id
          });
     },     
-
-    deleteShape: function(record) {
-        gwst.settings.shapeStore.remove(record);
+    
+    /*
+     * Handler for user deleting a shape
+     */
+    deleteShapeHandler: function(record) {
+        gwst.settings.shapeStore.remove(record);        
     },
+
+    //Keep track of latest shape added to the shape store
+    trackNewShape: function(store, records, index) {
+    	console.log('keep track of me');
+    	if (records.length == 1) {
+    		this.newFeature = records[0];
+    	} else {
+    		console.error('More than one record added!');
+    	}
+    },    
     
     /******************** Server Operations ********************/
 
@@ -942,20 +955,62 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }        
     },       
     
-    saveShape: function(geometry, clipped) {
-        $.ajax({
-            data: {geometry:geometry, geometry_clipped:clipped, resource:target}, //form.serializeArray(),
-            dataType: 'json',
-            success: function(data, textStatus){
-                //Add the shape to the shape store
-            },
-            error: function(request, textStatus, errorThrown){                       
-                 gwst.error.load('There was a problem saving your '+gwst.settings.interview.shape_name);
-            },
-            type: 'POST',
-            url: '/save_shape/'
-         });                	
+    saveNewShape: function() {        
+    	this.loadWait('Saving');
+    	var data = {
+    		geometry: this.newFeature.get('feature').geometry.toString(),
+            pennies: this.newFeature.get('pennies'),
+            boundary_n: this.newFeature.get('boundary_n'),
+            boundary_s: this.newFeature.get('boundary_s'),
+            boundary_e: this.newFeature.get('boundary_e'),
+            boundary_w: this.newFeature.get('boundary_w'),
+            group_id: gwst.settings.survey_group_id,
+            resource_id: this.curResource.id
+        };
+    	Ext.Ajax.request({
+	        url: gwst.settings.urls.shapes,
+	        method: 'POST',
+	        disableCachingParam: true,
+	        params: {feature: Ext.util.JSON.encode(data)},
+	        success: this.finSaveNewShape,
+           	failure: function(response, opts) {
+        		//Change to error window
+              	this.hideWait.defer(500, this);
+              	gwst.error.load('An unknown error has occurred while trying to validate your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
+           	},
+            scope: this
+	    });                	
     },     
+    
+    finSaveNewShape: function(response) {
+    	var new_feat = Ext.decode(response.responseText);
+    	this.hideWait.defer(500, this);
+    	this.fireEvent('shape-saved');
+    },
+    
+    //Remove a shape already saved on the server
+    deleteSavedShape: function(record) {
+    	if (this.draw2Panel) {
+    		this.draw2Panel.refresh();
+    	}
+    	if (this.pennyPanel) {
+    		this.pennyPanel.refresh();
+    	}
+    },
+    
+    finDeleteSavedShape: function(response) {
+    	
+    },
+    
+    //Update a shape already saved on the server
+    updateSavedShape: function(store, record, operation) {
+    	console.log('update me');
+    	console.log(records);    	
+    }, 
+    
+    finUpdateSavedShape: function(response) {
+    	
+    },
     
     /******************** Utility Methods ********************/
     
@@ -1013,15 +1068,25 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             }],
 	        proxy: new GeoExt.data.ProtocolProxy({
 	            protocol: new OpenLayers.Protocol.HTTP({
-	                url: "/shapes",
+	                url: gwst.settings.urls.shapes,
 	                format: new OpenLayers.Format.GeoJSON()
 	            })
 	        }),
 	        autoLoad: true
 	    });
+	    gwst.settings.shapeStore.on('load', this.configShapeStore, this);   
     },
     
-    addShape: function(wkt) {
+    //Once store has been initially loaded, add events to handle adding and updating of records.
+    configShapeStore: function() {
+    	gwst.settings.shapeStore.on('add', this.trackNewShape, this);
+    	gwst.settings.shapeStore.on('update', this.updateSavedShape, this);
+    	//gwst.settings.shapeStore.on('remove', this.deleteSavedShape, this);
+    },
+    
+    //Add a freshly validated shape to the map
+    //TODO: See if just adding it to the feature store will trigger the add to the layer
+    addValidatedShape: function(wkt) {
     	var vec = this.wktParser.read(wkt);
     	this.mapPanel.addShape(vec);
     }
