@@ -935,9 +935,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.hideWait();
         var clip_obj = Ext.decode(response.responseText);
         var status_code = parseFloat(clip_obj.status_code);
-        if (status_code == 1 || status_code == 0 || status_code == 5) {        	
+        if (status_code == 0 || status_code == 1) {        	
             this.startSatisfiedShapeStep(clip_obj);
-        } else if (status_code != 4){
+        } else if (status_code > 1){
         	this.startInvalidShapeStep();	
         } else {
         	gwst.error.load('An unknown error has occurred while trying to validate your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
