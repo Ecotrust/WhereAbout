@@ -38,9 +38,9 @@ def geojson_encode(data):
             ret[f.attname] = _any(getattr(data, f.attname))
         # And additionally encode arbitrary properties that had been added.
         fields = dir(data.__class__) + ret.keys()
-        add_ons = [k for k in dir(data) if k not in fields]
+        add_ons = [k for k in dir(data) if (k not in fields) and (k[0] != '_')]
         for k in add_ons:
-            ret[k] = _any(getattr(data, k))
+                ret[k] = _any(getattr(data, k))
         return ret
     
     def _list(data):
