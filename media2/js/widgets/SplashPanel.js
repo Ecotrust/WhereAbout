@@ -21,7 +21,6 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p>\
-			<b>Instructions:</b><br />\
             The drawing portion will now begin for the '+ this.user_group +' user group.<br><br>\
             You will be able to come back and finish later if you need more time.\
 			<br />';

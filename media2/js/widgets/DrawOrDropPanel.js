@@ -3,6 +3,7 @@ Ext.namespace('gwst', 'gwst.widgets');
 gwst.widgets.DrawOrDropPanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'draw-or-drop-panel',
 	resource: 'unknown',
+    res_group_name: 'unknown',
     shape_name: 'unknown',
 	
     // Constructor Defaults, can be overridden by user's config object
@@ -25,8 +26,9 @@ gwst.widgets.DrawOrDropPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p class="top_instruct">\
-			<b>Would you like to draw another shape, or are you ready to begin adding pennies?</b></p><br />\
-			</p>';
+			<b>Would you like to draw another '+ this.shape_name +', or are you \
+            done with this '+this.res_group_name +' and ready to allocate pennies?</b>\
+            </p><br />';
         return html_text;
     },
 	

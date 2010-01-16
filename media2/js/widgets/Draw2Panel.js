@@ -29,9 +29,16 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getText: function() {
-        var html_text = '<p><b>Instructions:</b> \
-			Draw your <i>'+ this.resource +'</i> '+ this.shape_name +'s on the map one at a time.<br><br>  \
-			<i>Draw only the areas you '+ this.action +' as a '+ this.user_group +'!</i></p><br />';
+        var html_text = '<p class="top_instruct">\
+            <b>Instructions:</b> \
+			Finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name +'s \
+            you '+ this.action +' as a '+ this.user_group +'!</i></p><br />\
+            \
+            <p>Each '+this.resource+' '+this.shape_name+' you draw will be displayed on the table below.\
+            Click on the table row to highlight it on the map.  You can remove a '+this.shape_name+' with\
+            the \'Remove\' button.</p><br />\
+            \
+            <p>Click the \'Continue\' button when you are finished.</p><br />';
         return html_text;
     },
     
@@ -46,7 +53,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             this.cur_action_record = record;
             Ext.Msg.show({
                 title:'Delete?',
-                msg:'Do you really want to delete this shape?',
+                msg:'Do you really want to delete this '+this.shape_name+'?',
                 buttons: Ext.Msg.YESNO,
                 fn: this.deleteCheck.createDelegate(this),
                 animEl:'elId',
@@ -102,7 +109,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             columns: [
             new Ext.grid.RowNumberer(),{
                 header:'Pennies',
-                width: 60,
+                width: 50,
                 sortable: false,
                 dataIndex: 'pennies'
             }, this.grid_actions
@@ -112,7 +119,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             stripeRows: true,
             height: 250,
             width: 265,
-            title: 'Shapes',
+            title: this.sheape_name+'s',
             style: 'margin: 15px',
             stateful: true,
             stateId: 'grid'

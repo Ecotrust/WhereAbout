@@ -12,19 +12,6 @@ gwst.widgets.InvalidShapePanel = Ext.extend(gwst.widgets.WestPanel, {
 		
 		this.addEvents('okay-btn');
 		
-		Ext.apply(this, {
-			title: '3. Draw',
-			bbar: [
-                {
-                    text: 'Phase 3 of 5'
-                },
-				{xtype:'tbfill'},
-				{
-                    text: 'Okay',
-                    handler: this.okayBtnClicked.createDelegate(this)
-                }
-			]
-		});
         // Call parent (required)
         gwst.widgets.InvalidShapePanel.superclass.initComponent.apply(
           this, arguments);                     
@@ -37,28 +24,24 @@ gwst.widgets.InvalidShapePanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p class="error_text">\
-			<b><u>ERROR</u>: Invalid Shape Drawn!</b></p><br />\
+			<b><u>ERROR</u>: Invalid '+ this.shape_name +'</b></p><br />\
 			\
 			<b> Why?</b> \
 			\
-			<p> \
-            There are several reasons your shape may be invalid.\
-            Please review the below expectations if you are unsure of why your shape isn\'t accepted:\
-            </p><br />\
-            <p>\
-			a. No \'bow-tie\' shapes are accepted.<br />\
+			a. No \'bow-tie\' shapes are accepted.\
 			a \'bow-tie\' shape is one where the lines cross themselves.  \
-			Take extra care to keep your shapes simple, and focus on tracing the border in a systematic clockwise or counter-clockwise fashion \
-            rather than just randomly clicking corners.\
 			</p><br />\
 			\
 			<p> \
-			b. Your shape must be at least partially over the water.<br />\
-			If your shape overlaps with the shoreline, that is fine, but the shape should represent\
-			the water area you use, and not the land you launch from.\
+			b. '+ this.shape_name +' falls outside eligible area, which is\
+			ocean and estuaries from Crescent City, California north to Ilwaco.\
 			</p><br />\
-			\
-			<p> <a href=http://www.google.com>Watch Demonstration</a></p>';
+            \
+            <p> \
+			c. Your '+ this.shape_name +' overlaps another\
+            '+ this.shape_name+' you drew, which isn\'t allowed.\
+			</p><br />\
+			<p>Press continue to redraw your '+this.shape_name+'.</p>';
         return html_text;
     },
 	
@@ -69,13 +52,19 @@ gwst.widgets.InvalidShapePanel = Ext.extend(gwst.widgets.WestPanel, {
 			style: 'margin: 10px',
 			border: false
 		});
+        
+        this.button_panel = new gwst.widgets.BackContButtons ({
+            cont_handler: this.contBtnClicked.createDelegate(this)
+        });
+        
 		this.add(this.inner_panel);
+        this.add(this.button_panel);
         
         // Call parent (required)
         gwst.widgets.InvalidShapePanel.superclass.onRender.apply(this, arguments); 
 	},
     
-    okayBtnClicked: function() {
+    contBtnClicked: function() {
         this.fireEvent('okay-btn',this);
     }
 });

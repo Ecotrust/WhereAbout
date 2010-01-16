@@ -25,40 +25,22 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     updateText: function(text_config) {
         Ext.apply(this, text_config);
         this.inner_panel.getEl().update(this.getHtmlText());
-        this.nav_panel.getEl().update(this.getNavText());
     },
 	
     getHtmlText: function() {
         var html_text = '<p>\
 			<b>Instructions</b><br />\
 			<p>\
-			a. Your first <i>'+ this.resource +'</i> '+ this.shape_name +' is now loaded. \
-			Enter a penny value for it below in the white box. \
-			Then click the right arrow (>>) to move to your next '+ this.shape_name +'. \
-			</p><br />\
-			<p> \
-			b. Keep entering penny values.  Every '+ this.shape_name +' must have at least 1 penny\
-			and you must use all 100 pennies.\
-			</p><br />\
-			<p>\
-			c. Click the \'Continue\' button when you are done.\
+			- Enter a penny value for each of your '+this.shape_name+'s below by clicking \'Edit Pennies\'.\
+			<br />\
+			- Every '+this.shape_name+' must have at least 1 penny and you must use all 100 pennies.\
+            <br />\
+			- Click the \'Continue\' button when you are done.\
 			</p><br />\
 			<p> <a href=http://www.google.com>View Demonstration</a></p>\
-			<br />';
+			<br />\
+            <p><b>Current Allocations</b></p>';
         return html_text;
-    },
-    
-    getNavText: function() {
-		var nav_text = '<p>\
-			<b>Current '+ this.shape_name +': #'+ this.cur_num +' of '+ this.total_num +'</b>\
-			</p>\
-			<input type="button" name="prev_shape" value="<<" /> \
-			Pennies (<font color="red">'+ this.pennies_remaining +' left</font>):\
-			<input type="text" size="3" maxlength="3" />  \
-			<input type="button" name="next_shape" value=">>" /> \
-			<br /><br />\
-			<b>Status</b>';
-        return nav_text;
     },
     
     gridActionClicked: function(grid, selected_record, action, row, col) {
@@ -105,13 +87,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 			style: 'margin: 10px',
 			border: false
 		});
-		this.nav_panel = new Ext.Panel({
-			html: this.getNavText(),
-            id: 'penny_nav_panel',
-			border: false,
-			style: 'margin: 10px'
-		});
-        
+
         //Grid button actions
 	 	this.grid_actions = new Ext.ux.grid.RowActions({
 			 header:'',
@@ -159,6 +135,19 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
             stateId: 'grid'
         });
         
+        this.lower_panel = new Ext.Panel ({
+            id: 'penny_lower_panel',
+            html: '<p>\
+                '+this.pennies_remaining+' of 100 pennies allocated</p><br />\
+                <p>\
+                Status: Incomplete<br />\
+                - Use all 100 pennies<br />\
+                - Give each '+this.shape_name+' at least one penny\
+                </p>',
+            style: 'margin: 10px',
+			border: false
+        });
+        
         this.button_panel = new gwst.widgets.BackContButtons ({
             cont_handler: this.contBtnClicked.createDelegate(this),
             back_handler: this.backBtnClicked.createDelegate(this)
@@ -166,8 +155,8 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         this.add(this.header_panel);
 		this.add(this.inner_panel);
-		this.add(this.nav_panel);
 		this.add(this.inner_grid_panel);
+        this.add(this.lower_panel);
         this.add(this.button_panel);
         
         // Call parent (required)

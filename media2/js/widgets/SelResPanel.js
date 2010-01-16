@@ -34,25 +34,26 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     updateText: function(text_config) {
         Ext.apply(this, text_config);
         this.inner_panel.getEl().update(this.getText());
+        this.inner_panel.getEl().update(this.getText2());
     },
     
     getText: function() {
         var html_text = '<p class="top_instruct">\
-			<b>Instructions:</b> Select 1 of the '+ this.res_group_name +' \
+			<b>Instructions:</b> Select 1 of the '+ this.plural_res_group_name +' \
 			you '+ this.action +' as a <i>'+ this.user_group +'</i> from the list below \
 			and then click the \'Continue\' button.\
-			</p><br />\
-			<p>\
-			<b>Note:</b> Next, you are going to draw your '+ this.shape_name +'s for that '+ this.res_group_name +'. \
-			You will have a chance to do this for all of the '+ this.plural_res_group_name +' below, \
-			but you don\'t have to do all of them.\
-			</p><br />\
-			<p> \
+            </p><br />'
+        ;
+        return html_text;
+    },
+    
+    getText2: function(){
+		var html_text_2 = '<p> \
 			If you think an important '+ this.res_group_name +' is missing from the list, \
 			notify us at '+ this.contact_address +'.\
 			</p><br />'
 		;
-        return html_text;
+        return html_text_2;
     },
     
     onRender: function(){
@@ -73,6 +74,13 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		});
         
+        this.lower_panel = new Ext.Panel({
+            html: this.getText2(),
+            id: 'sel_res_lower_panel',
+            style: 'margin: 10px',
+            border: false
+         });
+        
         this.button_panel = new gwst.widgets.BackContButtons ({
             cont_handler: this.contBtnClicked.createDelegate(this),
             back_handler: this.backBtnClicked.createDelegate(this)
@@ -83,7 +91,8 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
             items: [
                 this.inner_panel,
                 this.res_grp_select,
-                this.button_panel
+                this.button_panel,
+                this.lower_panel
             ],
             autoScroll: true,
             border: false

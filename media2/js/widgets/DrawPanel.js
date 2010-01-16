@@ -29,34 +29,17 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p><b>Instructions:</b> \
-			Draw your <i>'+ this.resource +'</i> '+ this.shape_name +'s on the map one at a time.  \
-			<i>Draw only the areas you '+ this.action +' as a '+ this.user_group +'!</i></p><br />\
-			\
-			<p><b> How?</b></p> \
-			<p> \
-			a. Click once on the map to start a new boundary.  This creates the first point.\
-			</p><br />\
-			<p> \
-			b. Move your mouse along your '+ this.shape_name +' boundary and click again creating a second point.\
-			</p><br />\
-			<p> \
-			c. Continue clicking and tracing out your boundary one point at a time.  Just be as accurate as you can.\
-			</p><br />\
-			<p> \
-			d. Double-click the last point to complete your boundary\
-			</p><br />\
-			<p> \
-			e. If you make a mistake, click \'Cancel\' in the upper right and start over.\
-			</p><br />\
-            <p>\
-            f. You will be able to draw multiple shapes, so be as specific as possible with each.\
-            Just focus on this shape for now.\
-            </p><br />\
-			<p> <a href=http://www.google.com>Watch Demonstration Video</a></p><br />\
-			<p><b>Example:</b></p><br />\
-			<img src="/site-media/images/tux.png" style="width: 50px; height: 50px"><br />\
-			<p><b>Note:</b> You can still use the arrow and zoom button while you\'re in the middle of drawing.</p>';
+			Draw your '+ this.user_group +' <i>'+ this.resource +'</i> '+ this.shape_name +'s\
+            on the map one at a time.\
+            </p>';
         return html_text;
+    },
+    
+    getText2: function() {
+        var html_text_2 = '<p>\
+            <a href=http://www.google.com>Watch Demonstration Video</a>\
+            </p>';
+        return html_text_2;
     },
     onRender: function(){
     
@@ -76,6 +59,63 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		});
         
+        this.table_panel = new Ext.Panel({
+            layout: 'table',
+            border: false,
+            style: 'margin: 10px; padding: 5px',
+            defaults: {
+                bodyStyle: 'border: none; padding: 5px'
+            },
+            layoutConfig: {
+                columns: 2
+            },
+            id: 'draw_table_panel',
+            items: [{
+                html: '<p> \
+                    a. Click once on the map to create the first point.\
+                    </p>',
+            },{
+                html: '<p><img src="/site-media/images/draw_1.png" style="width: 50px; height: 50px"></p>',
+            },{
+                html: '<p> \
+                    b. Move mouse and click to create a second point.\
+                    </p>',
+            },{
+                html: '<p><img src="/site-media/images/tux.png" style="width: 50px; height: 50px"></p>',
+            },{
+                html: '<p>\
+                    c. Continue tracing being as accurate as you can.\
+                    </p>',
+            }, {
+                html: '<p><img src="/site-media/images/tux.png" style="width: 50px; height: 50px"></p>',
+            },{
+                html: '<p> \
+                    d. Double-click the last point to complete your '+this.shape_name+'.\
+                    </p>',
+            },{
+                html: '<p><img src="/site-media/images/tux.png" style="width: 50px; height: 50px"></p>',
+            },{
+                html: '<p>\
+                    e. If you make a mistake, click the \'Cancel\' button\
+                    </p>',
+            },{
+                html: '<p><img src="/site-media/images/tux.png" style="width: 50px; height: 50px"></p>',
+            },{
+                html: '<p>\
+                    f. You can control the map while you\'re drawing.\
+                    </p>',
+            },{
+                html: '<p><img src="/site-media/images/tux.png" style="width: 50px; height: 50px"></p>',
+            }]
+        });
+        
+        this.lower_panel = new Ext.Panel({
+			html: this.getText2(),
+            id: 'draw_lower_panel',
+			style: 'margin: 10px',
+			border: false
+		});
+        
         this.button_panel = new gwst.widgets.BackContButtons ({
             back_handler: this.backBtnClicked.createDelegate(this)
         });
@@ -83,6 +123,8 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         this.add(this.header_panel);
 		this.add(this.inner_panel);
+        this.add(this.table_panel);
+        this.add(this.lower_panel);
         this.add(this.button_panel);
         
         // Call parent (required)

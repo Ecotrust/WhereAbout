@@ -25,34 +25,9 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p class="top_instruct">\
-			<b>Instructions:</b> Navigate the map to your primary <i>'+ this.resource +'</i> '+ this.shape_name +'.</p><br />\
-			\
-			<b> How?</b> \
-			\
-			<p> \
-			a. First, turn on any maps you want from the \'Maps\' section on the top right. \
-			Nautical charts are sufficient for most.  Click the checkbox \
-			( <input type="checkbox"> ) \
-			to turn them on or off.\
-			</p><br />\
-			\
-			<p> \
-			b. Navigate the map to your first '+ this.shape_name +'.  You can zoom in with the \
-			<img style="width: 15px; height: 15px;" src="/site-media/third-party/OpenLayers-2.8/img/zoom-plus-mini.png"/> \
-			button, zoom out with the \
-			<img style="width: 15px; height: 15px;" src="/site-media/third-party/OpenLayers-2.8/img/zoom-minus-mini.png"/> \
-			button or move the map around with the arrow buttons (\
-			<img style="width: 15px; height: 15px;" src="/site-media/third-party/OpenLayers-2.8/img/west-mini.png"/> \
-			<img style="width: 15px; height: 15px;" src="/site-media/third-party/OpenLayers-2.8/img/north-mini.png"/> \
-			<img style="width: 15px; height: 15px;" src="/site-media/third-party/OpenLayers-2.8/img/east-mini.png"/> \
-			<img style="width: 15px; height: 15px;" src="/site-media/third-party/OpenLayers-2.8/img/south-mini.png"/>).\
-			</p><br />\
-			\
-			<p> \
-			c. Once you\'re close, press the continue button.\
-			</p><br />\
-			\
-			<p> <a href=http://www.google.com>Watch Demonstration</a></p>';
+			<b>Instructions:</b>\
+            Navigate the map to your primary <i>'+ this.resource +'</i> '+ this.shape_name +'.\
+            </p>';
         return html_text;
     },
 	
@@ -74,6 +49,45 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		});
         
+        this.table_panel = new Ext.Panel({
+            layout: 'table',
+            border: false,
+            style: 'margin: 10px; padding: 5px',
+            defaults: {
+                bodyStyle: 'border: none; padding: 5px'
+            },
+            layoutConfig: {
+                columns: 2
+            },
+            id: 'nav_table_panel',
+            items: [{
+                html: '<p> \
+                    a. First, turn on any maps you want from the \'Maps\' section on the top right. \
+                    Nautical charts are sufficient for most.  Click the checkbox to turn them on or off.\
+                    </p>'
+            },{
+                html: '<img src="/site-media/images/nav_1.png">'
+            },{
+                html: '<p> \
+                    b. Navigate the map to your first '+ this.shape_name +'.\
+                    To move the map, click and drag it or use the blue arrow buttons.\
+                    To zoom in and out, use the blue \'+\' and \'-\' buttons.\
+                    </p>'
+            },{
+                html: '<img src="/site-media/images/nav_2.png">'
+            },{
+                html: '<p>\
+                    c. Get as close as you can to your '+ this.shape_name +', then press the continue button.\
+                    </p>'
+            }, {
+                html: ''
+            },{
+                html: '<p>\
+                    <a href=http://www.google.com>Watch Demonstration</a>\
+                    </p>'
+            }]
+        });
+        
         this.button_panel = new gwst.widgets.BackContButtons ({
             cont_handler: this.contBtnClicked.createDelegate(this),
             back_handler: this.backBtnClicked.createDelegate(this)
@@ -82,6 +96,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
         
         this.add(this.header_panel);
 		this.add(this.inner_panel);
+        this.add(this.table_panel);
         this.add(this.button_panel);
         
         // Call parent (required)

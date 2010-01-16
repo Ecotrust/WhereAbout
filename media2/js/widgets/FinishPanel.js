@@ -4,6 +4,7 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'finish-panel',
 	res_group_name: 'unknown',
     shape_name: 'unknown',
+    user_group: 'unknown',
 	
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -25,7 +26,9 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p class="top_instruct">\
-			<b>Would you like to finish with the map tool or draw '+ this.shape_name +' for another '+ this.res_group_name +'?</b></p><br />';
+			<b>Would you like to select a new '+ this.res_group_name +' \
+            or have you finished them all for'+ this.user_group+'?</b>\
+            </p><br />';
         return html_text;
     },
 	

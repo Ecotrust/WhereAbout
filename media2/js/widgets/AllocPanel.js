@@ -24,21 +24,19 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getText: function() {
-        var html_text = '<p><b>Overview</b><br /> \
-			<p>\
+        var html_text = '<p class="top_instruct">\
+            <b>Instructions</b><br /> \
 			Now imagine you have a bag of <b>100 pennies</b>. You\'re going to \
-			distribute those pennies over the <i>'+ this.resource +'</i> '+ this.shape_name +'s \
+			allocate those pennies over the <i>'+ this.resource +'</i> '+ this.shape_name +'s \
 			you just drew.  The more pennies you place on a '+ this.shape_name +', the more \
-			value or importance it has to you.  This information will provide a much \
-			more accurate picture of your most important '+ this.shape_name +'s.\
+			value or importance it has to you.\
 			</p><br />\
 			<p> \
-            Please take a moment to examine each shape and to mentally map out \
-            how many pennies you value each '+ this.shape_name +'.\
-            This will make it easier when you actually begin assigning the pennies.\
+            Now look over your '+this.resource+' '+ this.shape_name +'s on the map and think about\
+            which are the most important to you.  Those are the ones on which you will allocate the most pennies\
             </p><br />\
 			<p> \
-			Click continue to move to the next step.\
+			Click the \'Continue\' button to begin allocating pennies.\
 			</p><br />\
 			<br />\
 			<img src="/site-media/images/tux.png" style="width: 50px; height: 50px"><br />';
