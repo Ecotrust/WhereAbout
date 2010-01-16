@@ -9,7 +9,7 @@ gwst.widgets.ErrorWindow = Ext.extend(Ext.Window, {
         	layout:'fit',
             width:250,
             html: {tag: 'div', id: 'err_msg_panel', html: 'Error'},  //Ext.DomHelper object
-            height:95,
+            height:180,
             plain: true,
             bodyStyle: 'padding: 8px; font-weight: bold',
             closeAction:'hide',
@@ -18,7 +18,7 @@ gwst.widgets.ErrorWindow = Ext.extend(Ext.Window, {
             bbar: [
 				{xtype:'tbfill'},
 				{
-                    text: 'Okay',
+                    text: 'OK',
                     handler: this.okBtnClicked.createDelegate(this)
                 }
 			]
