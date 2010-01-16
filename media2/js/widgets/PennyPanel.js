@@ -7,6 +7,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 	total_num: 'unknown',
 	pennies_remaining: 'unknown',
     shape_name: 'unknown',
+    record: null,
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -60,12 +61,31 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         return nav_text;
     },
     
-    gridActionClicked: function(grid, record, action, row, col) {
+    gridActionClicked: function(grid, selected_record, action, row, col) {
         if(action == 'pennies-edit') {
-            alert('TODO: make pennies column editable for '+record.get('id')+'.');
+            this.record = selected_record;
+            if (!this.pennyWin) {
+                this.pennyWin = new gwst.widgets.PennyWindow({
+                    prev_pennies: selected_record.get('pennies'),
+                    shape_name: this.shape_name
+                });
+                this.pennyWin.on('penny-set', this.pennySet, this);
+                this.pennyWin.show();	
+            } else {
+                Ext.apply(this.pennyWin, {
+                    prev_pennies: selected_record.get('pennies'),
+                    shape_name: this.shape_name
+                });
+                this.pennyWin.on('penny-set', this.pennySet, this);
+                this.pennyWin.show();
+            }
         } else if (action == 'pennies-zoom') {
-            alert('TODO: zoom in on '+record.get('id')+'.');
+            alert('TODO: zoom in on '+selected_record.get('id')+'.');
         }
+    },
+    
+    pennySet: function(pennies_value){
+        this.record.set('pennies', pennies_value);
     },
                 
     onRender: function(){

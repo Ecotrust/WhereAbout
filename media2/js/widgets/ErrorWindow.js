@@ -4,12 +4,11 @@ gwst.widgets.ErrorWindow = Ext.extend(Ext.Window, {
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){		
-        // this.addEvents('okay');
 		Ext.apply(this, {          
             title: 'Error',
         	layout:'fit',
             width:250,
-            html: {tag: 'div', id: 'err_msg_panel', html: 'Crock'},  //Ext.DomHelper object
+            html: {tag: 'div', id: 'err_msg_panel', html: 'Error'},  //Ext.DomHelper object
             height:95,
             plain: true,
             bodyStyle: 'padding: 8px; font-weight: bold',
