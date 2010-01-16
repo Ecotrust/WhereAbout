@@ -776,15 +776,18 @@ def draw_settings(request, id) :
         'code': interview.region.code
     }
     return HttpResponse(geojson_encode(result), mimetype='application/json')
-        
-def get_user_shapes(request):
-    resource_shapes = InterviewShape.objects.filter(user=request.user)
-    return HttpResponse(geojson_encode(resource_shapes), mimetype='application/json')    
 
-def shapes(request):
+'''
+Shape web service - 
+GET: filter by interview group: 'group_id'
+POST - expects {'feature':{geometry, group_id, resource_id, boundary_n, boundary_s, boundary_e, boundary_w}}
+'''
+def shapes(request, id=None):
     #int_group = InterviewGroup.objects.get(pk=id)
     if request.method == 'GET':    
-        shape_qs = InterviewShape.objects.filter(user=request.user)
+        shape_qs = InterviewShape.objects.filter(user=request.user)        
+        if (request.GET.get('group_id')):
+            shape_qs = shape_qs.filter(int_group__id=request.GET.get('group_id'))
         return render_to_geojson(
             shape_qs,
             geom_attribute='geometry',
@@ -793,6 +796,7 @@ def shapes(request):
             proj_transform=settings.CLIENT_SRID,
             pretty_print=True
         )
+        
     elif request.method == 'POST':
         result = '{"status_code":"-1",  "success":"false",  "message":"Action not permitted"}'    
         # make sure the user has a valid session in-progress
@@ -817,7 +821,7 @@ def shapes(request):
         try:
             geom = GEOSGeometry(feat.get('geometry'), srid=settings.CLIENT_SRID)
             geom.transform(settings.SERVER_SRID)                        
-            
+             
             new_shape = InterviewShape(
                 user = request.user,
                 geometry = geom,
@@ -845,14 +849,22 @@ def shapes(request):
             "message":"Saved successfully",
             "feature": new_shape
         }              
-        return HttpResponse(geojson_encode(result))                    
-    
-@login_required
-def shape(request,id):
-    shape = InterviewShape.objects.filter(pk=id)
-    return HttpResponse(shape[0].geojson(), mimetype='application/json')
+        return HttpResponse(geojson_encode(result)) 
+        
+    elif request.method == 'DELETE':
+        shape = get_object_or_404(InterviewShape, pk=id)
+        if (shape.user == request.user):
+            shape.delete()
+            result = {"success":True, "message":"Deleted successfully"}
+            return HttpResponse(geojson_encode(result)) 
+        else:
+            result = {"success":False, "message":"None of users shapes have given ID"}
+            return HttpResponse(result, status=403)
+        shape.delete()                   
 
 '''
+Shape validation and clipping
+
 HTTP error codes
 403 - interview already completed
 500 - exception raised

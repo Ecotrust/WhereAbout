@@ -7,6 +7,7 @@ shapes and pennies.  Extends Ext.Observable providing event handling
 gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     user:null,    		//The current user object
     curResource: null,  //Current resource user has selected
+    curDeleteRecord: null, //Current feature getting deleted
     studyRegion: null,	//Current study region
     viewport: null,  	//Reference to viewport container
     mapPanel: null,  	//Reference to map panel
@@ -880,7 +881,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Handler for user deleting a shape
      */
     deleteShapeHandler: function(record) {
-        gwst.settings.shapeStore.remove(record);        
+        this.deleteSavedShape(record);    
     },
 
     //Keep track of latest shape added to the shape store
@@ -990,16 +991,33 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     //Remove a shape already saved on the server
     deleteSavedShape: function(record) {
-    	if (this.draw2Panel) {
+        this.loadWait('Deleting');
+        this.curDeleteRecord = record;
+        Ext.Ajax.request({
+            url: gwst.settings.urls.shapes+record.get('id'),
+            method: 'DELETE',
+            disableCachingParam: true,
+            success: this.finDeleteSavedShape,
+         	failure: function(response, opts) {
+        		//Change to error window
+              	this.hideWait.defer(500, this);
+              	gwst.error.load('An unknown error has occurred while trying to validate your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
+           	},
+            scope: this
+	    });           
+    },
+    
+    finDeleteSavedShape: function(response) {
+    	this.hideWait.defer(500, this);
+        gwst.settings.shapeStore.remove(this.curDeleteRecord);        
+        this.curDeleteRecord = null;
+        //Refresh the grids so that the rows are re-numbered
+        if (this.draw2Panel) {
     		this.draw2Panel.refresh();
     	}
     	if (this.pennyPanel) {
     		this.pennyPanel.refresh();
     	}
-    },
-    
-    finDeleteSavedShape: function(response) {
-    	
     },
     
     //Update a shape already saved on the server
@@ -1057,18 +1075,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 name: 'boundary_w',
                 type: 'string',
                 'default': ''
-            },{
-                name: 'delete-qtip',
-                type: 'string',
-                'default': 'Delete'
-            },{
-                name: 'zoom-qtip',
-                type: 'string',
-                'default': 'Zoom'
             }],
 	        proxy: new GeoExt.data.ProtocolProxy({
 	            protocol: new OpenLayers.Protocol.HTTP({
-	                url: gwst.settings.urls.shapes,
+	                url: gwst.settings.urls.shapes+'?group_id='+gwst.settings.survey_group_id,
 	                format: new OpenLayers.Format.GeoJSON()
 	            })
 	        }),
@@ -1080,8 +1090,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     //Once store has been initially loaded, add events to handle adding and updating of records.
     configShapeStore: function() {
     	gwst.settings.shapeStore.on('add', this.trackNewShape, this);
-    	gwst.settings.shapeStore.on('update', this.updateSavedShape, this);
-    	//gwst.settings.shapeStore.on('remove', this.deleteSavedShape, this);
+    	gwst.settings.shapeStore.on('update', this.updateSavedShape, this);    	
     },
     
     //Add a freshly validated shape to the map

@@ -44,8 +44,7 @@ urlpatterns = patterns('',
     (r'^reset_interview/(\d+)/$', reset_interview ),
     
     (r'^draw_settings/(\d+)/json/$', draw_settings),
-    (r'^shapes/$', shapes),
-    (r'^shape/$', shape),    
+    (r'^shapes/(\d*)$', shapes),
     (r'^shape/validate/$', validate_shape),
     (r'^video/(\w+)$', video),
 
