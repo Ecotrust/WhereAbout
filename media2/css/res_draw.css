@@ -22,6 +22,11 @@ p.error_text {
     color: red;
 }
 
+p.error_text img {
+    width: 20px;
+    height: 20px;
+}
+
 .west-panel .x-panel-header {
 	font-size: 17px;
 }
@@ -69,3 +74,9 @@ p.error_text {
 .pennies-zoom {
 	background-image: url(/site-media/images/zoom.png) ! important;
 }
+
+.invalid-image {
+    padding-left: 40px;
+    padding-top: 15px;
+}
+
