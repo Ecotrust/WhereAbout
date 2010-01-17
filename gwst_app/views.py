@@ -915,18 +915,18 @@ def validate_shape(request):
         #Error if new shape intersects
         for i, shape in enumerate( other_shapes.all() ):
             if new_shape.intersects( shape.geometry ):
-                return gen_validate_response(3, 'New geometry overlaps existing shapes', None)
+                return gen_validate_response(4, 'New geometry overlaps existing shapes', None)
     
         #Error if shape is not valid
         if not new_shape.valid:
-            return gen_validate_response(1, 'Shape is not valid', new_shape)
+            return gen_validate_response(2, 'Shape is not valid', new_shape)
         
         #Clip the shape to the region
         clipped_shape = new_shape.difference( interview.clip_region.geom )          
 
         #Error if no area and shape was completely clipped away by clip region, 
         if clipped_shape.area == 0:
-            return gen_validate_response(2, 'Zero area after clipping', clipped_shape)
+            return gen_validate_response(3, 'Zero area after clipping', clipped_shape)
          
         #If clipped into more than one polygon, return the largest
         if clipped_shape.num_geom > 1:
