@@ -16,6 +16,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 
         this.addEvents('penny-cont');
         this.addEvents('penny-back');
+        this.addEvents('penny-zoom-shape');
         
         // Call parent (required)
         gwst.widgets.PennyPanel.superclass.initComponent.apply(
@@ -43,26 +44,26 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         return html_text;
     },
     
-    gridActionClicked: function(grid, selected_record, action, row, col) {
+    gridActionClicked: function(grid, record, action, row, col) {
         if(action == 'pennies-edit') {
-            this.record = selected_record;
+            this.record = record;
             if (!this.pennyWin) {
                 this.pennyWin = new gwst.widgets.PennyWindow({
-                    prev_pennies: selected_record.get('pennies'),
+                    prev_pennies: record.get('pennies'),
                     shape_name: this.shape_name
                 });
                 this.pennyWin.on('penny-set', this.pennySet, this);
                 this.pennyWin.show();	
             } else {
                 Ext.apply(this.pennyWin, {
-                    prev_pennies: selected_record.get('pennies'),
+                    prev_pennies: record.get('pennies'),
                     shape_name: this.shape_name
                 });
                 this.pennyWin.on('penny-set', this.pennySet, this);
                 this.pennyWin.show();
             }
         } else if (action == 'pennies-zoom') {
-            alert('TODO: zoom in on '+selected_record.get('id')+'.');
+            this.fireEvent('penny-zoom-shape', record);
         }
     },
     

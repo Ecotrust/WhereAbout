@@ -178,8 +178,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /* 
      * Setup UI for invalid shape error display step 
      */
-    startInvalidShapeStep: function() {
-        this.loadInvalidShapePanel();        
+    startInvalidShapeStep: function(status_code) {
+        this.loadInvalidShapePanel(status_code);        
         this.mapPanel.disableResDraw(); //Turn off drawing
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
@@ -232,6 +232,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process and finish Shape Attribute step
      */
     finAttribStep: function() {
+        this.saveNewShape();    
         this.startAnotherShapeStep();
     },    
     
@@ -241,8 +242,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /* 
      * Setup UI for draw another shape or drop penny step 
      */
-    startAnotherShapeStep: function() {
-		this.saveNewShape();                
+    startAnotherShapeStep: function() {    
+        this.startDraw2Step();
     },
        
     /*
@@ -266,14 +267,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     moveToDropPenniesStep: function() {
         this.startSatisfiedResourceShapesStep();
-    },
-    
-    /*
-     * Move on to draw another shape
-     */
-    moveToDrawShapeStep: function() {
-        this.startDraw2Step();
-    },
+    },   
     
     /******************** Satisfied with resource shapes step *******************/
     
@@ -590,6 +584,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.draw2Panel.on('draw-two-cont', this.finDraw2Step, this);
             this.draw2Panel.on('draw-two-back', this.backDraw2Step, this);
             this.draw2Panel.on('draw-two-delete', this.deleteShapeHandler, this);
+            this.draw2Panel.on('draw-two-zoom-shape', this.zoomMapToShape, this);
         } else {
             this.draw2Panel.updateText({
                 resource: this.curResource.get('name'),
@@ -613,22 +608,22 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     /* Load the Invalid Shape west panel */
-    loadInvalidShapePanel: function() {
+    loadInvalidShapePanel: function(status_code) {
     	if (!this.invalidShapePanel) {
             this.invalidShapePanel = new gwst.widgets.InvalidShapePanel({
                 xtype: 'gwst-invalid-shape-panel',
+                status_code: status_code,
                 resource: this.curResource.get('name'),
-                action: gwst.settings.interview.resource_action,
-                user_group: gwst.settings.group.member_title,
+                member_title: gwst.settings.group.member_title,
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.invalidShapePanel.on('okay-btn', this.finInvalidShapeStep, this);
         } else {
             this.invalidShapePanel.updateText({
+                status_code: status_code,
                 resource: this.curResource.get('name'),
-                action: gwst.settings.interview.resource_action,
-                user_group: gwst.settings.group.member_title,
+                member_title: gwst.settings.group.member_title,
                 shape_name: gwst.settings.interview.shape_name
             });
         }
@@ -688,7 +683,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.drawOrDropPanel.on('drop-pennies', this.penniesStepSelected, this);
-            this.drawOrDropPanel.on('draw-another', this.moveToDrawShapeStep, this);            
+            this.drawOrDropPanel.on('draw-another', this.startDraw2Step, this);            
         } else {
             this.drawOrDropPanel.updateText({
                 resource: this.curResource.get('name'),
@@ -754,6 +749,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             //When panel fires event saying it's all done, we want to process it and move on 
             this.pennyPanel.on('penny-cont', this.finPennyStep, this);
             this.pennyPanel.on('penny-back', this.backPennyStep, this);
+            this.pennyPanel.on('penny-zoom-shape', this.zoomMapToShape, this);
         } else {
             this.pennyPanel.updateText({
                 resource: this.curResource.get('name'),
@@ -859,6 +855,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	}
     },    
     
+    zoomMapToShape: function(record) {
+        this.mapPanel.zoomToResShape(record.get('feature'));
+    },
+    
     /*
      * Handler for user starting a shape
      */
@@ -950,7 +950,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         if (status_code == 0 || status_code == 1) {        	
             this.startSatisfiedShapeStep(clip_obj);
         } else if (status_code > 1){
-        	this.startInvalidShapeStep();	
+        	this.startInvalidShapeStep(status_code);	
         } else {
         	gwst.error.load('An unknown error has occurred while trying to validate your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
         }        

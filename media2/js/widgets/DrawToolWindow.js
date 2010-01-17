@@ -19,23 +19,14 @@ gwst.widgets.DrawToolWindow = Ext.extend(Ext.Window, {
 				scope: this
             },{
             	xtype:'tbseparator'
-            },{
-				text: 'Redo Shape',
-				iconCls: 'redo-draw',
-				handler: this.redoShape,
-				scope: this
-			}]                   
+            }]                   
         });
 		gwst.widgets.DrawToolWindow.superclass.initComponent.call(this);		
 	},
 	
 	cancelShape: function() {
 		this.fireEvent('cancel-res-shape');
-	},
-	
-	redoShape: function() {
-		this.fireEvent('redo-res-shape');
-	}
+	}	
 });
 
 //register xtype to allow for lazy initialization

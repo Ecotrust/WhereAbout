@@ -2,8 +2,10 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.InvalidShapePanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'invalid-shape-panel',
-	resource: 'unknown',
     shape_name: 'unknown',
+    member_title: 'unknown',
+    resource: 'unknown',
+    status_code: null,
 	
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -17,31 +19,20 @@ gwst.widgets.InvalidShapePanel = Ext.extend(gwst.widgets.WestPanel, {
           this, arguments);                     
     },
     
-    updateText: function(text_config) {
+    updateText: function(text_config, status_code) {
         Ext.apply(this, text_config);
         this.inner_panel.getEl().update(this.getText());
     },
     
     getText: function() {
-        var html_text = '<p class="error_text">\
-			<b><u>ERROR</u>: Invalid '+ this.shape_name +'</b></p><br />\
-			\
-			<b> Why?</b> \
-			\
-			a. No \'bow-tie\' shapes are accepted.\
-			a \'bow-tie\' shape is one where the lines cross themselves.  \
-			</p><br />\
-			\
-			<p> \
-			b. '+ this.shape_name +' falls outside eligible area, which is\
-			ocean and estuaries from Crescent City, California north to Ilwaco.\
-			</p><br />\
-            \
-            <p> \
-			c. Your '+ this.shape_name +' overlaps another\
-            '+ this.shape_name+' you drew, which isn\'t allowed.\
-			</p><br />\
-			<p>Press continue to redraw your '+this.shape_name+'.</p>';
+        var html_text = '<p class="error_text"><img src="/site-media/images/exclamation.png"> <b>There was a problem</b></p><br/>';
+        if (this.status_code == 2) {
+            html_text += '<p>Your '+this.shape_name+' is not valid because it overlaps itself.  It needs to be a single closed loop (see example below)</p>';
+        } else if (this.status_code == 3) {
+            html_text += '<p>Your '+this.shape_name+' falls completely outside the area of interest which is the Pacific Ocean off the Oregon Coast.  Rivers, estuaries and lakes are excluded from this survey.  <br/><br/>In the example below the '+this.shape_name+' falls within Coos Bay which is not valid.  Outside the mouth of Coos Bay would be.';
+        } else if (this.status_code == 4) {
+            html_text += '<p>Your new '+this.shape_name+' overlaps one of your other '+this.resource+' '+this.shape_name+'s.  They are not allowed to do this.  If you have two that border each other, just draw the second one along the edge of the first as best as you can and tell us in your boundary notes that it should border the other.  We will take care of the rest.';
+        }
         return html_text;
     },
 	

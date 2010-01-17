@@ -17,6 +17,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
         this.addEvents('draw-two-cont');        
         this.addEvents('draw-two-back');        
         this.addEvents('draw-two-instructions');
+        this.addEvents('draw-two-zoom-shape');
         
         // Call parent (required)
         gwst.widgets.Draw2Panel.superclass.initComponent.apply(
@@ -61,7 +62,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
                 
             });
         } else if (action == 'shape-zoom') {
-            alert('TODO: zoom in on '+record.get('id')+'.');
+            this.fireEvent('draw-two-zoom-shape', record);
         }
     },
 
