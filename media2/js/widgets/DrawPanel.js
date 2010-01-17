@@ -75,37 +75,37 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
                     a. Click once on the map to create the first point.\
                     </p>',
             },{
-                html: '<p><img src="/site-media/images/draw_1.png" style="width: 50px; height: 50px"></p>',
+                html: '<img src="/site-media/images/draw_1.png">',
             },{
                 html: '<p> \
                     b. Move mouse and click to create a second point.\
                     </p>',
             },{
-                html: '<p><img src="/site-media/images/tux.png" style="width: 50px; height: 50px"></p>',
+                html: '<img src="/site-media/images/draw_2.png">',
             },{
                 html: '<p>\
                     c. Continue tracing being as accurate as you can.\
                     </p>',
             }, {
-                html: '<p><img src="/site-media/images/tux.png" style="width: 50px; height: 50px"></p>',
+                html: '<img src="/site-media/images/draw_3.png">',
             },{
                 html: '<p> \
                     d. Double-click the last point to complete your '+this.shape_name+'.\
                     </p>',
             },{
-                html: '<p><img src="/site-media/images/tux.png" style="width: 50px; height: 50px"></p>',
+                html: '<img src="/site-media/images/draw_4.png">',
             },{
                 html: '<p>\
                     e. If you make a mistake, click the \'Cancel\' button\
                     </p>',
             },{
-                html: '<p><img src="/site-media/images/tux.png" style="width: 50px; height: 50px"></p>',
+                html: '<img src="/site-media/images/draw_5.png">',
             },{
                 html: '<p>\
                     f. You can control the map while you\'re drawing.\
                     </p>',
             },{
-                html: '<p><img src="/site-media/images/tux.png" style="width: 50px; height: 50px"></p>',
+                html: '<img src="/site-media/images/draw_6.png">',
             }]
         });
         
