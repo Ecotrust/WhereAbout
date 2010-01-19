@@ -7,6 +7,7 @@ shapes and pennies.  Extends Ext.Observable providing event handling
 gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     user:null,    		//The current user object
     curResource: null,  //Current resource user has selected
+    curSaveRecord: null,   //Current feature getting saved
     curDeleteRecord: null, //Current feature getting deleted
     curUpdateRecord: null, //Current feature getting updated
     studyRegion: null,	//Current study region
@@ -896,7 +897,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     trackNewShape: function(store, records, index) {
     	console.log('keep track of me');
     	if (records.length == 1) {
-    		this.newFeature = records[0];
+    		this.curSaveRecord = records[0];
     	} else {
     		console.error('More than one record added!');
     	}
@@ -967,12 +968,12 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     saveNewShape: function() {        
     	this.loadWait('Saving');
     	var data = {
-    		geometry: this.newFeature.get('feature').geometry.toString(),
-            pennies: this.newFeature.get('pennies'),
-            boundary_n: this.newFeature.get('boundary_n'),
-            boundary_s: this.newFeature.get('boundary_s'),
-            boundary_e: this.newFeature.get('boundary_e'),
-            boundary_w: this.newFeature.get('boundary_w'),
+    		geometry: this.curSaveRecord.get('feature').geometry.toString(),
+            pennies: this.curSaveRecord.get('pennies'),
+            boundary_n: this.curSaveRecord.get('boundary_n'),
+            boundary_s: this.curSaveRecord.get('boundary_s'),
+            boundary_e: this.curSaveRecord.get('boundary_e'),
+            boundary_w: this.curSaveRecord.get('boundary_w'),
             group_id: parseInt(gwst.settings.survey_group_id),
             resource_id: parseInt(this.curResource.id)
         };
@@ -993,8 +994,12 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     finSaveNewShape: function(response) {
     	var new_feat = Ext.decode(response.responseText);
+    	//Update the new record with its unique id assigned on the server
+    	//This will let us update it later
+    	this.curSaveRecord.set('id', new_feat.feature.id);
     	this.hideWait.defer(500, this);
     	this.fireEvent('shape-saved');
+    	gwst.settings.shapeStore.commitChanges();
     },
     
     //Remove a shape already saved on the server
@@ -1033,11 +1038,15 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     //Update a shape already saved on the server
     updateSavedShape: function(store, record, operation) {
+    	//if the pennies weren't modified, ignore it
+    	if (!record.modified.pennies) {
+    		return;
+    	}
     	var data = {
-                pennies: parseInt(record.get('pennies')),
-                group_id: parseInt(gwst.settings.survey_group_id),
-                resource_id: parseInt(this.curResource.id)
-            };
+            pennies: parseInt(record.get('pennies')),
+            group_id: parseInt(gwst.settings.survey_group_id),
+            resource_id: parseInt(this.curResource.id)
+        };
     	this.loadWait('Updating');
         this.curUpdateRecord = record;
         
