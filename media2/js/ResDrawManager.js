@@ -234,8 +234,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /*
      * Process and finish Shape Attribute step
      */
-    finAttribStep: function() {
-        this.saveNewShape();    
+    finAttribStep: function(boundary_values_obj) {
+        this.saveNewShape(boundary_values_obj);    
         this.startAnotherShapeStep();
     },    
     
@@ -379,6 +379,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from penny allocation to resource drawing
      */
     selNewResStep: function() {
+        gwst.settings.shapeStore.removeAll();
         this.startResSelStep();
     },
     /*
@@ -502,9 +503,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     loadResSelPanel: function() {
-        if(gwst.settings.shapeStore){
-            gwst.settings.shapeStore.removeAll();
-        }
     	if (!this.resSelPanel) {
             this.resSelPanel = new gwst.widgets.SelResPanel({
                 xtype: 'gwst-sel-res-panel',
@@ -978,18 +976,18 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }        
     },       
     
-    saveNewShape: function() {        
+    saveNewShape: function(boundary_values_obj) {        
     	this.loadWait('Saving');
-    	var data = {
-    		geometry: this.curSaveRecord.get('feature').geometry.toString(),
+
+        var data = {
+            geometry: this.curSaveRecord.get('feature').geometry.toString(),
             pennies: this.curSaveRecord.get('pennies'),
-            boundary_n: this.curSaveRecord.get('boundary_n'),
-            boundary_s: this.curSaveRecord.get('boundary_s'),
-            boundary_e: this.curSaveRecord.get('boundary_e'),
-            boundary_w: this.curSaveRecord.get('boundary_w'),
             group_id: parseInt(gwst.settings.survey_group_id),
             resource_id: parseInt(this.curResource.id)
         };
+        
+        Ext.apply(data, boundary_values_obj);
+        
     	Ext.Ajax.request({
 	        url: gwst.settings.urls.shapes,
 	        method: 'POST',

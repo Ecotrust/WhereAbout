@@ -17,6 +17,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
     updateText: function(text_config) {
         Ext.apply(this, text_config);
         this.inner_text_panel.getEl().update(this.getText());
+        this.inner_form_panel.getForm().reset();
     },
     
     getText: function() {
@@ -48,16 +49,16 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             defaultType: 'textfield',
             items: [{
                 fieldLabel: 'North Boundary',
-                name: 'n_bound'
+                name: 'boundary_n'
             },{
                 fieldLabel: 'East Boundary',
-                name: 'e_bound'
+                name: 'boundary_e'
             },{
                 fieldLabel: 'South Boundary',
-                name: 's_bound'
+                name: 'boundary_s'
             },{
                 fieldLabel: 'West Boundary',
-                name: 'w_bound'
+                name: 'boundary_w'
             }]
 		});
         
@@ -73,7 +74,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
 	},
 
     contBtnClicked: function() {
-        this.fireEvent('shape-attrib-cont',this);
+        this.fireEvent('shape-attrib-cont',this.inner_form_panel.getForm('shape_attrib_form_panel').getValues());
     }
 });
  
