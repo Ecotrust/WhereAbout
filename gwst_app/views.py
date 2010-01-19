@@ -797,26 +797,39 @@ def shapes(request, id=None):
             pretty_print=True
         )
         
-    elif request.method == 'POST':
-        result = '{"status_code":"-1",  "success":"false",  "message":"Action not permitted"}'    
-        # make sure the user has a valid session in-progress
+    elif request.method == 'POST':        
+        #Get session and status
         try:
             int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])        
             status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
             status = status_object_qs[0]        
         except Exception, e:
-            return HttpResponse(result, status=403)
-    
-        # see if the interview has been marked complete
+            return HttpResponse('{"status_code":"-1",  "success":"false",  "message":"Action not permitted"}', status=403)
+        
+        #See if the interview is complete
         if status.completed:
-            return HttpResponse(result, status=403)     
-            
+            return HttpResponse('{"status_code":"-1",  "success":"false",  "message":"Survey already completed"}', status=403)      
+        
+        #Make sure we were passed a feature
         if not request.POST.has_key('feature'):
-            result = '{"status_code":"-1",  "success":"false",  "message":"Expected \'feature\'"}'
-            return HttpResponse(result, status=403)
+            return HttpResponse('{"status_code":"-1",  "success":"false",  "message":"Expected \'feature\'"}', status=403)
         import simplejson
-        feat = simplejson.loads(request.POST.get('feature'))
-               
+        feat = simplejson.loads(request.POST.get('feature'))        
+        
+        #Check if it's an update
+        if (id):
+            shape = InterviewShape.objects.get(pk=id)
+            
+            if (shape.user == request.user):
+                shape.pennies = feat.get('pennies')
+                shape.save()
+                result = {"success":True, "message":"Update successfully"}
+                return HttpResponse(geojson_encode(result)) 
+            else:
+                result = {"success":False, "message":"None of users shapes have given ID"}
+                return HttpResponse(result, status=403)
+
+        #It must be a new shape, create it                                 
         result = '{"status_code":"-1",  "success":"false",  "message":"Error saving"}'
         try:
             geom = GEOSGeometry(feat.get('geometry'), srid=settings.CLIENT_SRID)
@@ -829,8 +842,8 @@ def shapes(request, id=None):
                 boundary_s = feat.get('boundary_s'),
                 boundary_e = feat.get('boundary_e'),
                 boundary_w = feat.get('boundary_w'),
-                int_group_id = int(feat.get('group_id')),
-                resource_id = int(feat.get('resource_id'))                
+                int_group_id = feat.get('group_id'),
+                resource_id = feat.get('resource_id')                
             )                        
             new_shape.save() 
             
@@ -849,8 +862,8 @@ def shapes(request, id=None):
             "message":"Saved successfully",
             "feature": new_shape
         }              
-        return HttpResponse(geojson_encode(result)) 
-        
+        return HttpResponse(geojson_encode(result))                  
+    
     elif request.method == 'DELETE':
         shape = get_object_or_404(InterviewShape, pk=id)
         if (shape.user == request.user):
@@ -875,6 +888,7 @@ Result status codes
 2 - shape not valid
 3 - zero area after clipping
 4 - overlapped existing shape
+5 - single point
 '''    
 @login_required
 def validate_shape(request):
@@ -895,6 +909,10 @@ def validate_shape(request):
     try:    
         # validate against this user's other shapes in this resource
         new_shape = GEOSGeometry( request.REQUEST["geometry"], srid=settings.CLIENT_SRID )
+    except Exception, e:
+        return gen_validate_response(5, 'Shape is not valid', None)
+    
+    try:        
         new_shape.transform( settings.SERVER_SRID )
         
         #If editing an existing shape, get its record and resource/group id's,
@@ -936,8 +954,7 @@ def validate_shape(request):
                     largest_geom = g
                     largest_area = g.area
             return gen_validate_response(1, 'Shape clipped to shoreline', largest_geom)            
-        return gen_validate_response(0, 'Shape clipped to shoreline', clipped_shape)            
-        
+        return gen_validate_response(0, 'Shape clipped to shoreline', clipped_shape)                   
     except Exception, e:
         return HttpResponse(result + e.message, status=500)
 

@@ -9,7 +9,8 @@ gwst.widgets.WestPanel = Ext.extend(Ext.Panel, {
     	// be created and added/overridden here: Ext.apply(this, {});
         
         Ext.apply(this, {
-            autoScroll: true
+            autoScroll: true,
+            border: false
         });
          
         gwst.widgets.WestPanel.superclass.initComponent.call(this);  

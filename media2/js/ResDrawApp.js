@@ -9,7 +9,15 @@ gwst.ResDrawApp = Ext.extend(Ext.util.Observable, {
 		gwst.ResDrawApp.superclass.constructor.call(this);
     },
 
-    init: function(){           		
+    init: function(){
+    	Ext.override(Ext.form.Field, {
+		  setFieldLabel : function(text) {
+		    if (this.rendered) {
+		      this.el.up('.x-form-item', 10, true).child('.x-form-item-label').update(text);
+		    }
+		    this.fieldLabel = text;
+		  }
+		});    	
 		this.draw_manager = new gwst.ResDrawManager();
 		this.draw_manager.startInit();		        	        
     }	

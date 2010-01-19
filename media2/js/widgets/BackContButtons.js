@@ -2,9 +2,11 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.BackContButtons = Ext.extend(Ext.Panel, {
     cont_handler: null,
+    cont_enabled: true,
     back_handler: null,
+    back_enabled: true,
     
-    initComponent: function(){
+    initComponent: function() {
         Ext.apply(this, {
             style: 'margin: 15px 35px; padding: 5px 0px 5px 5px',
             cls: 'gwst-button-panel',
@@ -22,17 +24,18 @@ gwst.widgets.BackContButtons = Ext.extend(Ext.Panel, {
           this, arguments);                     
     },
     
-    onRender: function(){
+    onRender: function() {
         if (this.back_handler) {
             // action for the button in the button panel
-            var back = new Ext.Action({
+            this.backBtn = new Ext.Button({
                 text: '<< Go Back',
                 handler: this.back_handler
             });
+            if (!this.back_enabled) {
+            	this.backBtn.disable();
+            }            
             this.add({
-                items: [
-                    new Ext.Button(back)
-                ],
+                items: [this.backBtn],
                 width: 95,
                 style: 'margin-left: 20px'
             });
@@ -43,20 +46,29 @@ gwst.widgets.BackContButtons = Ext.extend(Ext.Panel, {
             })
         };
         if (this.cont_handler) {
-            var cont = new Ext.Action({
+            this.contBtn = new Ext.Button({
                 text: 'Continue >>',
                 handler: this.cont_handler
             });
+            if (!this.cont_enabled) {
+            	this.contBtn.disable();
+            }
             this.add({
-                items: [
-                    new Ext.Button(cont)
-                ],
+                items: [this.contBtn],
                 width: 85
             });
         }
         // Call parent (required)
         gwst.widgets.BackContButtons.superclass.onRender.apply(this, arguments); 
-    }
+    },
+    
+    enableCont: function() {
+    	this.contBtn.enable();
+    },
+    
+    disableCont: function() {
+    	this.contBtn.disable();
+    }    
 });
 
 // register xtype to allow for lazy initialization

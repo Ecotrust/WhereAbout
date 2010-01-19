@@ -1,55 +1,76 @@
 Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
-    shape_name: 'unknown',
-    // selected_record: null,
-    prev_pennies: null,
-    rem_pennies: 100,
-    
     // Constructor Defaults, can be overridden by user's config object
-    initComponent: function(){		
-
+	shape_name: 'unknown',
+    prev_pennies: null,		//If user is changing a penny value, this will be the previous value
+    rem_pennies: null,		//Maximum number of pennies that can be entered
+    
+    initComponent: function(){
         this.pennies_field = new Ext.form.NumberField ({
-            fieldLabel: 'Pennies<br />('+this.rem_pennies+' left)',
+            fieldLabel: 'Pennies',
             id: 'penny-window-numfield',
             name: 'pennies',
             allowBlank:false,
+            width: 70,
             minValue: 1,
-            maxValue: this.rem_pennies,
+            maxValue: this.getMaxValue(),
+            maxText: 'Too Many',
             msgTarget: 'under',
             xtype: 'numberfield'
         });
+
+        this.penny_form = new Ext.form.FormPanel({  
+            bodyStyle: 'background-color: transparent',
+            border: false,
+            width: 140,
+            labelWidth: 50,
+            items: [ this.pennies_field ],
+            id: 'penny-window-form-panel',
+            defaultType: 'numberfield'
+        });
+        
+        var table_panel = new Ext.Panel({
+            layout: 'table',
+            bodyStyle: 'background-color: transparent',
+            border: false,
+            defaults: {
+                bodyStyle: 'border: none; padding: 5px; background-color: transparent'
+            },
+            layoutConfig: {
+                columns: 2
+            },
+            id: 'draw_table_panel',
+            items: [
+                this.penny_form,
+                {tag: 'div', id: 'penny-left-text', html: this.getLabelValue()},  //Ext.DomHelper object
+            ]
+        });        
         
 		Ext.apply(this, {          
             title: 'Enter a Penny Value',
             id: 'penny-window',
         	layout:'fit',
+            x: 9,
+            y: 130,
+            width:280,
+            height:160, 
+            bodyStyle: 'padding: 10px',            
             plain: true,
-            closeAction:'hide',
             closable: false,
             modal: true,
-            width:280,
-            height:150,
-            bodyStyle: 'padding: 10px',
-            resizable: true,
-            x: 9,
-            y: 68,
-            items: [
-                new Ext.form.FormPanel({  
-                    bodyStyle: 'background-color: transparent',
-                    border: false,
-                    items: [ this.pennies_field ],
-                    buttons: [{
-                        text: 'Save',
-                        handler: this.saveBtnClicked.createDelegate(this)
-                    },{
-                        text: 'Cancel',
-                        handler: this.cancelBtnClicked.createDelegate(this)
-                    }],
-                    id: 'penny_window_form_panel',
-                    defaultType: 'numberfield'
-                })
-            ]
+            resizable: false,
+            closable: false,
+            draggable: false,
+            constrain: true,	//Ensure window is never rendered outside of viewable area
+            items: [ table_panel ],
+            buttons: [{
+                text: 'Save',
+                handler: this.saveBtnClicked.createDelegate(this)
+            },{
+                text: 'Cancel',
+                handler: this.cancelBtnClicked.createDelegate(this)
+            }]            
 
         });
         
@@ -63,7 +84,7 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
 	},
     
     saveBtnClicked: function() {
-        var penny_form = this.getComponent('penny_window_form_panel').getForm();
+        var penny_form = this.penny_form.getForm();
         if (penny_form.isValid()) {
             var pennies_value = penny_form.getValues().pennies;
             this.fireEvent('penny-set', pennies_value);          
@@ -73,6 +94,26 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
     
     cancelBtnClicked: function() {
         this.hide();
+    },
+
+    getMaxValue: function() {
+	    var maxValue = this.rem_pennies;
+		if (this.prev_pennies) {
+			maxValue = this.prev_pennies+this.rem_pennies;
+		}
+		return maxValue;
+    },
+    
+    getLabelValue: function() {
+    	return '<span style="color:red">('+this.getMaxValue()+' left)</span>';    	
+    },
+    
+    load: function(config) {
+        this.show();
+        this.rem_pennies = config.rem_pennies;
+        this.prev_pennies = config.prev_pennies;
+        Ext.get('penny-left-text').update(this.getLabelValue());
+        this.pennies_field.maxValue = this.getMaxValue();
     }
 });
 

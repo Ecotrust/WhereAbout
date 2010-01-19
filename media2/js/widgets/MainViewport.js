@@ -24,7 +24,9 @@ gwst.widgets.MainViewport = Ext.extend(Ext.Viewport, {
                 id: 'west-panel-container',
                 collapsed: false,
                 layout: 'fit',
-                autoScroll: true
+                autoScroll: true,
+                border: false,
+                style: 'border-right: 1px solid #888888;'
             }]        
 		});
 

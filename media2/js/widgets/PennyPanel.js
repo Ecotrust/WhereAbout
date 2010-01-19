@@ -8,6 +8,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 	pennies_remaining: 'unknown',
     shape_name: 'unknown',
     record: null,
+    penniesLeft: null,	//pennies remaining for group 
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -17,10 +18,10 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.addEvents('penny-cont');
         this.addEvents('penny-back');
         this.addEvents('penny-zoom-shape');
+        this.addEvents('penny-zoom-all');
         
         // Call parent (required)
-        gwst.widgets.PennyPanel.superclass.initComponent.apply(
-          this, arguments);                     
+        gwst.widgets.PennyPanel.superclass.initComponent.apply(this, arguments);                     
     },
     
     updateText: function(text_config) {
@@ -29,18 +30,11 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
 	
     getHtmlText: function() {
-        var html_text = '<p>\
-			<b>Instructions</b><br />\
-			<p>\
-			- Enter a penny value for each of your '+this.shape_name+'s below by clicking \'Edit Pennies\'.\
-			<br />\
-			- Every '+this.shape_name+' must have at least 1 penny and you must use all 100 pennies.\
-            <br />\
-			- Click the \'Continue\' button when you are done.\
-			</p><br />\
-			<p> <a href=http://www.google.com>View Demonstration</a></p>\
-			<br />\
-            <p><b>Current Allocations</b></p>';
+        var html_text = '<h2>Instructions</h2>\
+            <p>a. Click \'Edit Pennies\' below and give each of your '+this.shape_name+'s a penny value.  You must use all 100.</p>\
+            <p>b. Click \'Go Back\' if you need to change your '+this.shape_name+'s.</p>\
+            <p>c. Click \'Continue\' to move on.</p>\
+            <p class="video-link"><img src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>';
         return html_text;
     },
     
@@ -48,19 +42,21 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         if(action == 'pennies-edit') {
             this.record = record;
             if (!this.pennyWin) {
+            	//Create a new penny window
                 this.pennyWin = new gwst.widgets.PennyWindow({
-                    prev_pennies: record.get('pennies'),
+                    prev_pennies: parseInt(record.get('pennies')),
+                    rem_pennies: this.getPenniesRemaining(),
                     shape_name: this.shape_name
                 });
-                this.pennyWin.on('penny-set', this.pennySet, this);
+                this.pennyWin.on('penny-set', this.pennySet, this);                
                 this.pennyWin.show();	
             } else {
-                Ext.apply(this.pennyWin, {
-                    prev_pennies: record.get('pennies'),
+            	//Update the existing penny window
+                this.pennyWin.load({
+                    prev_pennies: parseInt(record.get('pennies')),
+                    rem_pennies: this.getPenniesRemaining(),
                     shape_name: this.shape_name
                 });
-                this.pennyWin.on('penny-set', this.pennySet, this);
-                this.pennyWin.show();
             }
         } else if (action == 'pennies-zoom') {
             this.fireEvent('penny-zoom-shape', record);
@@ -71,8 +67,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.record.set('pennies', pennies_value);
     },
                 
-    onRender: function(){
-        
+    onRender: function(){        
         this.header_panel = new Ext.Panel({  
 			html: '<img src="/site-media/images/4b_PennyAllocation_header.png">',
             id: 'penny_header_panel',
@@ -93,7 +88,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 	 	this.grid_actions = new Ext.ux.grid.RowActions({
 			 header:'',
 			 autoWidth: false,
-			 width: 155,
+			 width: 168,
 			 keepSelection:true,
 			 actions:[{
 				iconCls:'pennies-edit',
@@ -113,51 +108,71 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.inner_grid_panel = new Ext.grid.GridPanel ({
             store: gwst.settings.shapeStore,
             columns: [{
-                id:'id',
-                header:'#',
-                width: 35,
-                sortable: true,
-                dataIndex:'id'
-            },{
+            	width: 24,
+            	sortable: false,
+            	renderer: function() {return '<img src="/site-media/images/control_play.png"/>';}
+            },
+            new Ext.grid.RowNumberer(),{
                 header:'Pennies',
                 width: 50,
                 sortable: false,
-                dataIndex: 'pennies'
+                dataIndex: 'pennies',
+                align: 'center'
             }, this.grid_actions
             ],
             plugins: this.grid_actions,
             sm: new GeoExt.grid.FeatureSelectionModel(),
             stripeRows: true,
-            height: 250,
-            width: 255,
-            title: ''+this.shape_name+'s',
-            style: 'margin: 15px',
+            height: 200,
+            width: 270,
+            title: 'Your '+this.resource+' '+capWords(this.shape_name)+'s',
+            style: 'margin: 10px;',
             stateful: true,
-            stateId: 'grid'
+            stateId: 'grid',
+            bbar: [{
+            	xtype:'tbfill'
+            },{
+            	text: 'Show All',
+            	iconCls: 'shape-zoom-all',
+            	handler: this.zoomAllClicked,
+            	scope: this
+            }]
         });
         
-        this.lower_panel = new Ext.Panel ({
-            id: 'penny_lower_panel',
-            html: '<p>\
-                '+this.pennies_remaining+' of 100 pennies allocated</p><br />\
-                <p>\
-                Status: Incomplete<br />\
-                - Use all 100 pennies<br />\
-                - Give each '+this.shape_name+' at least one penny\
-                </p>',
-            style: 'margin: 10px',
-			border: false
+        gwst.settings.shapeStore.on('update', this.updateStatus, this);
+        
+        this.status_panel = new Ext.Panel({
+            id: 'penny-status-panel',
+        	layout: 'table',
+            border: false,
+            style: 'margin: 5px; margin-left: 10px',
+            defaults: {
+                bodyStyle: 'border: none;'
+            },
+            layoutConfig: {
+                columns: 2
+            },
+            items: [{
+                html: 'Remaining:&nbsp;'
+            },{
+                html: '<img src="/site-media/images/coins.png"/> <span id="pen-rem">'+this.getPenniesRemaining()+'</span>'
+            },{
+                html: 'Status:'
+            },{
+                html: '<span id="pen-status">'+this.getStatusMsg()+'</span>'
+            }]
         });
         
         this.button_panel = new gwst.widgets.BackContButtons ({
             cont_handler: this.contBtnClicked.createDelegate(this),
+            cont_enabled: this.isComplete(),
             back_handler: this.backBtnClicked.createDelegate(this)
         });
         
         this.add(this.header_panel);
 		this.add(this.inner_panel);
 		this.add(this.inner_grid_panel);
-        this.add(this.lower_panel);
+        this.add(this.status_panel);
         this.add(this.button_panel);
         
         // Call parent (required)
@@ -169,13 +184,50 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     contBtnClicked: function() {
-        this.fireEvent('penny-cont',this);
+    	if (this.getPenniesRemaining() == 0) {
+    		this.fireEvent('penny-cont',this);
+    	}
+    },
+    
+    zoomAllClicked: function() {
+    	this.fireEvent('penny-zoom-all');
     },
     
     //Refresh the whole grid to update the row numberer
     refresh: function() {
     	this.inner_grid_panel.getView().refresh();
-    }    
+    },
+    
+    getPenniesRemaining: function() {
+    	return (100 - gwst.settings.shapeStore.getPennyCount());
+    },
+    
+    getStatusMsg: function() {
+    	if (this.getPenniesRemaining() > 0) {
+    		return 'Incomplete, use all 100 pennies';
+    	} else {
+    		return 'Complete, ready to move on';
+    	}
+    },
+    
+    isComplete: function() {
+    	if (this.getPenniesRemaining() == 0) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    },
+    
+    updateStatus: function() {
+    	var penniesLeft = this.getPenniesRemaining();
+    	Ext.get('pen-rem').update(penniesLeft);
+    	if (penniesLeft == 0) {
+    		this.button_panel.enableCont();    		
+    	} else {
+    		this.button_panel.disableCont();
+    	}
+    	Ext.get('pen-status').update(this.getStatusMsg());
+    }
 });
  
 // register xtype to allow for lazy initialization

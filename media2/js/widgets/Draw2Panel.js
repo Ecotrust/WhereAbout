@@ -18,6 +18,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
         this.addEvents('draw-two-back');        
         this.addEvents('draw-two-instructions');
         this.addEvents('draw-two-zoom-shape');
+        this.addEvents('draw-two-zoom-all');
         
         // Call parent (required)
         gwst.widgets.Draw2Panel.superclass.initComponent.apply(
@@ -32,7 +33,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     getText: function() {
         var html_text = '<p class="top_instruct">\
             <b>Instructions:</b> \
-			Finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name +'s \
+            Finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name +'s \
             you '+ this.action +' as a '+ this.user_group +'!</i></p><br />\
             \
             <p>Each '+this.resource+' '+this.shape_name+' you draw will be displayed on the table below.\
@@ -67,7 +68,6 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     },
 
     onRender: function(){
-
         this.header_panel = new Ext.Panel({  
 			html: '<img src="/site-media/images/3_2_DrawExtended_header.png">',
             id: 'draw_extended_header_panel',
@@ -107,23 +107,39 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 				
         this.inner_grid_panel = new Ext.grid.GridPanel ({
             store: gwst.settings.shapeStore,
-            columns: [
+            columns: [{
+            	width: 20,
+            	sortable: false,
+            	renderer: function() {return '<img src="/site-media/images/control_play.png"/>';}
+            },
             new Ext.grid.RowNumberer(),{
                 header:'Pennies',
                 width: 50,
                 sortable: false,
-                dataIndex: 'pennies'
+                dataIndex: 'pennies',
+                align: 'center',
             }, this.grid_actions
             ],
+            viewConfig: {
+                forceFit: true
+            },            
             plugins: this.grid_actions,
-            sm: new GeoExt.grid.FeatureSelectionModel(),
+            sm: new GeoExt.grid.FeatureSelectionModel({singleSelect:true}),
             stripeRows: true,
-            height: 250,
+            height: 200,
             width: 265,
-            title: this.sheape_name+'s',
-            style: 'margin: 15px',
+            title: 'Your '+this.resource+' '+capWords(this.shape_name)+'s',
+            style: 'margin: 10px',
             stateful: true,
-            stateId: 'grid'
+            stateId: 'grid',
+            bbar: [{
+            	xtype:'tbfill'
+            },{
+            	text: 'Show All',
+            	iconCls: 'shape-zoom-all',
+            	handler: this.zoomAllClicked,
+            	scope: this
+            }]
         });
         
         this.button_panel = new gwst.widgets.BackContButtons ({
@@ -140,16 +156,16 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
         gwst.widgets.Draw2Panel.superclass.onRender.apply(this, arguments); 
 	},     
 	
-    contBtnClicked: function() {
-    if (gwst.settings.shapeStore.getCount() <= 0) {    
-            alert('Please draw a '+ this.shape_name +' before continuing.');  
-        } else {
-            this.fireEvent('draw-two-cont',this);
-        }
+    contBtnClicked: function() {    
+	    this.fireEvent('draw-two-cont');
     },
     
     backBtnClicked: function() {
-        this.fireEvent('draw-two-back',this);
+        this.fireEvent('draw-two-back');
+    },
+    
+    zoomAllClicked: function() {
+    	this.fireEvent('draw-two-zoom-all');
     },
     
     //Refresh the whole grid to update the row numberer

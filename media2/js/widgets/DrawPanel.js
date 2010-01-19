@@ -29,8 +29,8 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p><b>Instructions:</b> \
-			Draw your '+ this.user_group +' <i>'+ this.resource +'</i> '+ this.shape_name +'s\
-            on the map one at a time.\
+			Draw your <u>first</u> '+ this.user_group +' <i>'+ this.resource +'</i> '+ this.shape_name +'\
+            on the map. (You\'ll be able to draw more)\
             </p>';
         return html_text;
     },

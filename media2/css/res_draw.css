@@ -6,12 +6,12 @@
 }
 
 body {
-	font-size: 0.9em;
+	font-size: 12px;
 	font-family: verdana,arial,sans-serif;
 }
 
 p {
-	font-size: 0.9em;
+	font-size: 12px;
 }
 
 p.top_instruct {
@@ -28,7 +28,23 @@ p.error_text img {
 }
 
 .west-panel .x-panel-header {
-	font-size: 17px;
+	font-size: 12px;
+}
+
+.west-panel p {
+    margin-bottom: 8px;
+    margin-top: 5px
+}
+
+.video-link {
+    font-size: 0.8em;
+}
+
+.west-panel h2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .action-panel-header {
@@ -67,6 +83,10 @@ p.error_text img {
 	background-image: url(/site-media/images/zoom.png) ! important;
 }
 
+.shape-zoom-all {
+    background-image: url(/site-media/images/world.png) ! important;
+}
+
 .pennies-edit{
     background-image: url(/site-media/images/coins.png) ! important;
 }
@@ -79,4 +99,3 @@ p.error_text img {
     padding-left: 40px;
     padding-top: 15px;
 }
-

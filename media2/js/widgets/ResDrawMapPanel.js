@@ -163,6 +163,12 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     
     zoomToResShape: function(feature) {
         this.map.zoomToExtent(feature.geometry.bounds);
+        this.selectControl.unselectAll();
+    	this.selectControl.select(feature);
+    },
+    
+    zoomToAllShapes: function() {
+    	this.map.zoomToExtent(this.vecLayer.getDataExtent());    	
     },
     
     getShapeLayer: function() {

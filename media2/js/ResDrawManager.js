@@ -8,6 +8,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     user:null,    		//The current user object
     curResource: null,  //Current resource user has selected
     curDeleteRecord: null, //Current feature getting deleted
+    curUpdateRecord: null, //Current feature getting updated
     studyRegion: null,	//Current study region
     viewport: null,  	//Reference to viewport container
     mapPanel: null,  	//Reference to map panel
@@ -159,7 +160,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         	this.drawToolWin.hide();
         }
         this.mapPanel.disableResDraw();
-        this.startAnotherShapeStep();
+        this.startPennyInstrStep();
     },    
     
     /*
@@ -319,6 +320,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     startPennyStep: function() {
         this.loadPennyPanel();
+        this.mapPanel.enableResDraw();
     },
     
     /*
@@ -585,6 +587,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.draw2Panel.on('draw-two-back', this.backDraw2Step, this);
             this.draw2Panel.on('draw-two-delete', this.deleteShapeHandler, this);
             this.draw2Panel.on('draw-two-zoom-shape', this.zoomMapToShape, this);
+            this.draw2Panel.on('draw-two-zoom-all', this.zoomToAllShapes, this);
         } else {
             this.draw2Panel.updateText({
                 resource: this.curResource.get('name'),
@@ -750,6 +753,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.pennyPanel.on('penny-cont', this.finPennyStep, this);
             this.pennyPanel.on('penny-back', this.backPennyStep, this);
             this.pennyPanel.on('penny-zoom-shape', this.zoomMapToShape, this);
+            this.pennyPanel.on('penny-zoom-all', this.zoomToAllShapes, this);
         } else {
             this.pennyPanel.updateText({
                 resource: this.curResource.get('name'),
@@ -858,6 +862,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     zoomMapToShape: function(record) {
         this.mapPanel.zoomToResShape(record.get('feature'));
     },
+
+    zoomToAllShapes: function(record) {
+        this.mapPanel.zoomToAllShapes();
+    },    
     
     /*
      * Handler for user starting a shape
@@ -965,8 +973,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             boundary_s: this.newFeature.get('boundary_s'),
             boundary_e: this.newFeature.get('boundary_e'),
             boundary_w: this.newFeature.get('boundary_w'),
-            group_id: gwst.settings.survey_group_id,
-            resource_id: this.curResource.id
+            group_id: parseInt(gwst.settings.survey_group_id),
+            resource_id: parseInt(this.curResource.id)
         };
     	Ext.Ajax.request({
 	        url: gwst.settings.urls.shapes,
@@ -977,7 +985,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
            	failure: function(response, opts) {
         		//Change to error window
               	this.hideWait.defer(500, this);
-              	gwst.error.load('An unknown error has occurred while trying to validate your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
+              	gwst.error.load('An unknown error has occurred while trying to save your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
            	},
             scope: this
 	    });                	
@@ -1001,7 +1009,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
          	failure: function(response, opts) {
         		//Change to error window
               	this.hideWait.defer(500, this);
-              	gwst.error.load('An unknown error has occurred while trying to validate your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
+              	gwst.error.load('An unknown error has occurred while trying to delete your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
            	},
             scope: this
 	    });           
@@ -1009,6 +1017,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     finDeleteSavedShape: function(response) {
     	this.hideWait.defer(500, this);
+    	if (!this.curDeleteRecord) {
+    		console.error('No record to delete!');
+    	}
         gwst.settings.shapeStore.remove(this.curDeleteRecord);        
         this.curDeleteRecord = null;
         //Refresh the grids so that the rows are re-numbered
@@ -1022,12 +1033,35 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     //Update a shape already saved on the server
     updateSavedShape: function(store, record, operation) {
-    	console.log('update me');
-    	console.log(records);    	
+    	var data = {
+                pennies: parseInt(record.get('pennies')),
+                group_id: parseInt(gwst.settings.survey_group_id),
+                resource_id: parseInt(this.curResource.id)
+            };
+    	this.loadWait('Updating');
+        this.curUpdateRecord = record;
+        
+        Ext.Ajax.request({
+            url: gwst.settings.urls.shapes+record.get('id'),
+            method: 'POST',
+            disableCachingParam: true,
+            params: {feature: Ext.util.JSON.encode(data)},
+            success: this.finUpdateSavedShape,
+         	failure: function(response, opts) {
+        		//Change to error window
+              	this.hideWait.defer(500, this);
+              	gwst.error.load('An unknown error has occurred while trying to update your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
+           	},
+            scope: this
+	    });    	
     }, 
     
     finUpdateSavedShape: function(response) {
-    	
+    	this.hideWait.defer(500, this);
+    	this.curUpdateRecord = null;
+    	//We've already saved the change, but telling the store to commit 
+    	//will remove any cell edit styling
+    	gwst.settings.shapeStore.commitChanges();
     },
     
     /******************** Utility Methods ********************/
@@ -1049,40 +1083,40 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     loadShapeStore: function(shapeLayer) {
-	    gwst.settings.shapeStore = new GeoExt.data.FeatureStore({
-	        layer: shapeLayer,
-	        fields: [{
-        		name:'id',
-        		type:'float',
-        		'default': null
-	        },{
-                name:'pennies',
-                type:'float',
-                'default': 0
-            },{
-                name: 'boundary_n',
-                type: 'string',
-                'default': ''
-            },{
-                name: 'boundary_s',
-                type: 'string',
-                'default': ''
-            },{
-                name: 'boundary_e',
-                type: 'string',
-                'default': ''
-            },{
-                name: 'boundary_w',
-                type: 'string',
-                'default': ''
-            }],
-	        proxy: new GeoExt.data.ProtocolProxy({
+	    gwst.settings.shapeStore = new gwst.data.ResFeatureStore({
+	    	layer: shapeLayer, 	        
+		    proxy: new GeoExt.data.ProtocolProxy({
 	            protocol: new OpenLayers.Protocol.HTTP({
 	                url: gwst.settings.urls.shapes+'?group_id='+gwst.settings.survey_group_id,
 	                format: new OpenLayers.Format.GeoJSON()
 	            })
 	        }),
-	        autoLoad: true
+	        fields: [{
+        		name:'id',
+        		type:'float',
+        		defaultValue: null
+	        },{
+                name:'pennies',
+                type:'int',
+                defaultValue: 0
+            },{
+                name: 'boundary_n',
+                type: 'string',
+                defaultValue: ''
+            },{
+                name: 'boundary_s',
+                type: 'string',
+                defaultValue: ''
+            },{
+                name: 'boundary_e',
+                type: 'string',
+                defaultValue: ''
+            },{
+                name: 'boundary_w',
+                type: 'string',
+                defaultValue: ''
+            }],	        
+	        autoLoad: true     
 	    });
 	    gwst.settings.shapeStore.on('load', this.configShapeStore, this);   
     },
