@@ -34,7 +34,7 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     updateText: function(text_config) {
         Ext.apply(this, text_config);
         this.inner_panel.getEl().update(this.getText());
-        this.inner_panel.getEl().update(this.getText2());
+        this.lower_panel.getEl().update(this.getText2());
     },
     
     getText: function() {

@@ -50,6 +50,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     startSplashStep: function() {
     	this.loadSplash();
+
     },
     
     /* Finish splash and start resource selection */
@@ -268,7 +269,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * TODO: Can we just call startPennyInstrStep directly? Is this needed?
      */
     moveToDropPenniesStep: function() {
-        this.startSatisfiedResourceShapesStep();
+        this.startPennyInstrStep();
     },   
     
     /******************** Satisfied with resource shapes step *******************/
@@ -276,20 +277,20 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /* 
      * Setup UI for satisfied with resource shapes step 
      */
-    startSatisfiedResourceShapesStep: function() {
-        this.loadSatisfiedResourceShapesPanel();        
-    },
+    // startSatisfiedResourceShapesStep: function() {
+        // this.loadSatisfiedResourceShapesPanel();        
+    // },
        
     /*
      * Process and finish satisfied with shape step
      */
-    finSatisfiedResourceShapesStep: function(result) {
-    	if (!result.satisfied) {
-            this.startDraw2Step();
-    	} else {
-            this.startPennyInstrStep();
-        }
-    },
+    // finSatisfiedResourceShapesStep: function(result) {
+    	// if (!result.satisfied) {
+            // this.startDraw2Step();
+    	// } else {
+            // this.startPennyInstrStep();
+        // }
+    // },
     
     /******************** Penny Allocation Instruction Step *******************/
 
@@ -335,7 +336,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from penny allocation to resource drawing
      */
     backPennyStep: function() {
-        this.startDraw2Step();
+        this.startPennyInstrStep();
     },
     
     /******************** Satisfied with pennies step *******************/
@@ -501,6 +502,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     loadResSelPanel: function() {
+        if(gwst.settings.shapeStore){
+            gwst.settings.shapeStore.removeAll();
+        }
     	if (!this.resSelPanel) {
             this.resSelPanel = new gwst.widgets.SelResPanel({
                 xtype: 'gwst-sel-res-panel',
