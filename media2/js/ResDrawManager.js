@@ -895,7 +895,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 
     //Keep track of latest shape added to the shape store
     trackNewShape: function(store, records, index) {
-    	console.log('keep track of me');
     	if (records.length == 1) {
     		this.curSaveRecord = records[0];
     	} else {

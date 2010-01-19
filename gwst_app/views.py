@@ -785,7 +785,7 @@ POST - expects {'feature':{geometry, group_id, resource_id, boundary_n, boundary
 def shapes(request, id=None):
     #int_group = InterviewGroup.objects.get(pk=id)
     if request.method == 'GET':    
-        shape_qs = InterviewShape.objects.filter(user=request.user)        
+        shape_qs = InterviewShape.objects.filter(user=request.user).order_by('id')
         if (request.GET.get('group_id')):
             shape_qs = shape_qs.filter(int_group__id=request.GET.get('group_id'))
         return render_to_geojson(
