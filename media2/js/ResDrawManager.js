@@ -925,7 +925,18 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         Ext.apply(gwst.settings, settings_obj);
 
         this.loadResourceStore(gwst.settings.group.sel_resources);
+        this.loadUnfinishedResource();
         this.fireEvent('settings-loaded');      
+    },
+    
+    loadUnfinishedResource: function() {
+    	gwst.settings.resourceStore.each(function(r) {
+        	if (r.get('started') && !r.get('finished')) {
+        		this.curResource = r;
+        		return false;
+        	}
+    	}, this);   
+    	return;
     },
     
     validateShape: function(config) {
@@ -1092,11 +1103,17 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     loadShapeStore: function(shapeLayer) {
+    	var autoLoad = false;
+    	var service_url = gwst.settings.urls.shapes+'?group_id='+gwst.settings.survey_group_id;
+    	if (this.curResource && this.curResource.id) {
+    		service_url += '&resource_id='+this.curResource.id;
+    		autoLoad = true;
+    	}
 	    gwst.settings.shapeStore = new gwst.data.ResFeatureStore({
 	    	layer: shapeLayer, 	        
 		    proxy: new GeoExt.data.ProtocolProxy({
 	            protocol: new OpenLayers.Protocol.HTTP({
-	                url: gwst.settings.urls.shapes+'?group_id='+gwst.settings.survey_group_id,
+	                url: service_url,
 	                format: new OpenLayers.Format.GeoJSON()
 	            })
 	        }),
@@ -1125,7 +1142,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 type: 'string',
                 defaultValue: ''
             }],	        
-	        autoLoad: true     
+	        autoLoad: autoLoad     
 	    });
 	    gwst.settings.shapeStore.on('load', this.configShapeStore, this);   
     },
