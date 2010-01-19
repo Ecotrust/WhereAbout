@@ -88,7 +88,8 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 	 	this.grid_actions = new Ext.ux.grid.RowActions({
 			 header:'',
 			 autoWidth: false,
-			 width: 140,
+			 sortable: false,
+			 width: 132,
 			 keepSelection:true,
 			 actions:[{
 				iconCls:'shape-delete',
@@ -127,10 +128,12 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             sm: new GeoExt.grid.FeatureSelectionModel({singleSelect:true}),
             stripeRows: true,
             height: 200,
-            width: 265,
+            width: 275,
             title: 'Your '+this.resource+' '+capWords(this.shape_name)+'s',
             style: 'margin: 10px',
             stateful: true,
+            enableColumnResize: false,
+            enableColumnHide: false,            
             stateId: 'grid',
             bbar: [{
             	xtype:'tbfill'

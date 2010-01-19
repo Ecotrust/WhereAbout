@@ -88,7 +88,8 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 	 	this.grid_actions = new Ext.ux.grid.RowActions({
 			 header:'',
 			 autoWidth: false,
-			 width: 168,
+			 width: 157,
+			 sortable: false,
 			 keepSelection:true,
 			 actions:[{
 				iconCls:'pennies-edit',
@@ -124,10 +125,12 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
             sm: new GeoExt.grid.FeatureSelectionModel(),
             stripeRows: true,
             height: 200,
-            width: 270,
+            width: 275,
             title: 'Your '+this.resource+' '+capWords(this.shape_name)+'s',
             style: 'margin: 10px;',
             stateful: true,
+            enableColumnResize: false,
+            enableColumnHide: false,
             stateId: 'grid',
             bbar: [{
             	xtype:'tbfill'
