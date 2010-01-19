@@ -1,4 +1,4 @@
-from django.db import models
+from django.contrib.gis.db import models
 class InterviewGroupMembershipManager(models.Manager):
     def get_current_group(self, user, interview):
         int_groups = self.filter(user=user, int_group__interview=interview).order_by('-percent_involvement','id')
@@ -8,3 +8,6 @@ class InterviewGroupMembershipManager(models.Manager):
                 current_group_found = True
                 return group
         return None
+    
+class InterviewShapeManager(models.GeoManager):
+    pass

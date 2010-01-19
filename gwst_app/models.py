@@ -112,8 +112,7 @@ class InterviewGroupMembership(Model):
     date_reviewed = DateTimeField( blank=True, null=True )
     percent_involvement = IntegerField( blank=True, null=True )
     opt_out = BooleanField( default=False )
-    objects = InterviewGroupMembershipManager()
-    
+    objects = InterviewGroupMembershipManager()    
  
     class Meta:
         db_table = u'gwst_groupmemb'
@@ -321,7 +320,7 @@ class InterviewShape(Model):
     boundary_e = CharField( max_length=100, blank=True, null=True )
     boundary_w = CharField( max_length=100, blank=True, null=True )
     creation_date = DateTimeField(default=datetime.datetime.today())
-    objects = GeoManager()
+    objects = InterviewShapeManager()
     
     class Meta:
         db_table = u'gwst_usershape'

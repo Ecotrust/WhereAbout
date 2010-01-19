@@ -924,7 +924,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         //Update local settings
         Ext.apply(gwst.settings, settings_obj);
 
-        this.loadResourceStore(gwst.settings.group.sel_resources);        
+        this.loadResourceStore(gwst.settings.group.sel_resources);
         this.fireEvent('settings-loaded');      
     },
     
@@ -1077,7 +1077,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         //Initialize resource store
         this.ResourceRecord = Ext.data.Record.create([
 	       {name: 'id', type: 'float'},
-	       {name: 'name'}
+	       {name: 'name'},
+	       {name: 'started', type: 'boolean'},
+	       {name: 'finished', type: 'boolean'}
 	   ]);
         var reader = new Ext.data.JsonReader(
             {id: 'id'}, 

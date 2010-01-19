@@ -743,8 +743,32 @@ def draw_settings(request, id) :
     interview = request.session['interview']
     int_group = InterviewGroup.objects.get(pk=id)
     group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=id )
-    resources = Resource.objects.filter(groupmemberresource__group_membership=group_memb).values('id','name')    
-    result = {}    
+    
+    #extract info on users selected resources including whether they are finished or not
+    resources = Resource.objects.filter(groupmemberresource__group_membership=group_memb)
+    res_list = [];
+    finished = False
+    for res in resources:
+        res_item = {}
+        res_item['id'] = res.id
+        res_item['name'] = res.name
+
+        res_item['started'] = False
+        res_item['finished'] = False
+        
+        resource_shapes = InterviewShape.objects.filter(user=request.user,int_group=int_group,resource=res)        
+        if resource_shapes and len(resource_shapes) > 0 :
+            res_item['started'] = True
+        
+        if res_item['started'] == True:
+            resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
+            zero_penny_shapes = resource_shapes.filter(pennies=0)                        
+            if resource_pennies == 100 and zero_penny_shapes.count() == 0:
+                res_item['finished'] = True        
+            
+        res_list.append(res_item)
+
+    result = {}      
     #User settings
     result['user'] = {
         'name': request.user.first_name+" "+request.user.last_name,
@@ -763,7 +787,7 @@ def draw_settings(request, id) :
     result['group'] = {
         'name': int_group.name,
         'description': int_group.description,
-        'sel_resources': resources,
+        'sel_resources': res_list,
         'member_title': int_group.member_title
     }    
     #Region settings
