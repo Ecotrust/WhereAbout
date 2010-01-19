@@ -38,8 +38,7 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
 			<p> \
 			Click the \'Continue\' button to begin allocating pennies.\
 			</p><br />\
-			<br />\
-			<img src="/site-media/images/tux.png" style="width: 50px; height: 50px"><br />';
+			<img src="/site-media/images/penny_overview.png" style="margin-left: 40px"><br />';
         return html_text;
     },
             
