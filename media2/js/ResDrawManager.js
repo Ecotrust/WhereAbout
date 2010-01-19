@@ -384,8 +384,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process completion of drawing phase
      */
     finDrawingPhase: function() {
-        gwst.error.load('TODO: get back to group status!');
-        this.startResSelStep();
+    	window.location = "/group_status/";
     },
     
     /******************** Satisfied with group step *******************/
@@ -1038,7 +1037,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     //Update a shape already saved on the server
     updateSavedShape: function(store, record, operation) {
     	//if the pennies weren't modified, ignore it
-    	if (!record.modified.pennies) {
+    	if (record.modified == null || record.modified.pennies == 'undefined' || record.modified.pennies == null) {
     		return;
     	}
     	var data = {
