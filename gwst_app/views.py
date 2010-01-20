@@ -545,9 +545,13 @@ def draw_group_resources(request, group_id):
 def draw_overview(request, group_id):
 
     if request.method == 'POST':
-        return HttpResponseRedirect('/penny_overview/'+str(group_id)+'/')
-    return render_to_response( 'draw_overview.html', RequestContext(request)) 
-
+        # return HttpResponseRedirect('/penny_overview/'+str(group_id)+'/')
+        interview = InterviewStatus.objects.get(user=request.user, interview=request.session['interview'])
+        interview.overview_completed = True
+        interview.save()
+        return HttpResponseRedirect('/draw_group_resources/'+str(group_id)+'/')
+    return render_to_response( 'draw_overview.html', RequestContext(request,{'interview':request.session['interview']})) 
+    
 # start drop penny quick tutorial 
 @login_required
 def penny_overview(request, group_id):
