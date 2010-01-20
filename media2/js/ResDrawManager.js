@@ -530,6 +530,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
 	
     loadNavPanel: function() {
+        if(!this.layerWin) {
+        	this.loadMapLayerWin();    	
+        }
         if (!this.navPanel) {
             this.navPanel = new gwst.widgets.NavigatePanel({
                 xtype: 'gwst-navigate-panel',
@@ -684,6 +687,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
+                res_group_name: gwst.settings.interview.resource_name,
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
@@ -694,6 +698,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
+                res_group_name: gwst.settings.interview.resource_name,
                 shape_name: gwst.settings.interview.shape_name
             });
         }
@@ -847,7 +852,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	this.mapPanel = Ext.getCmp('mappanel');
     	this.loadShapeStore(this.mapPanel.getShapeLayer());
     	gwst.settings.layerStore = this.mapPanel.getLayerStore();
-    	this.loadMapLayerWin();    	
+    	// this.loadMapLayerWin();    	
     	this.mapPanel.on('res-shape-started', this.resShapeStarted, this);
     	this.mapPanel.on('res-shape-complete', this.resShapeComplete, this);
     },

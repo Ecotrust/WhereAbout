@@ -59,10 +59,9 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
                 buttons: Ext.Msg.YESNO,
                 fn: this.deleteCheck.createDelegate(this),
                 animEl:'elId',
-                icon:Ext.MessageBox.QUESTION,
-                
+                icon:Ext.MessageBox.QUESTION
             });
-        } else if (action == 'shape-zoom') {
+        } else if(action == 'shape-zoom') {
             this.fireEvent('draw-two-zoom-shape', record);
         }
     },
@@ -118,7 +117,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
                 width: 50,
                 sortable: false,
                 dataIndex: 'pennies',
-                align: 'center',
+                align: 'center'
             }, this.grid_actions
             ],
             viewConfig: {
