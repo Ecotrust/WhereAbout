@@ -59,6 +59,7 @@ class Interview(Model):
     resource_name_plural = CharField( max_length=20, default='species' )
     resource_action = CharField( max_length=20, default='target' )
     shape_name = CharField( max_length=20, default='fishing ground' )
+    shape_name_plural = CharField( max_length=20, default='fishing grounds' )
     class Meta:
         db_table = u'gwst_interview'
         

@@ -37,14 +37,21 @@ function verify(link) {
             <img src="/site-media/images/delete.png" alt="Incomplete"/>
         {% endifnotequal %}
     {% endifnotequal %}
-    <b>{{ r.group_memb.int_group.name|capfirst }}</b>:   
-    {{r.group_memb.status|capfirst}}
+    <b>{{ r.group_memb.int_group.name|capfirst }}</b>: 
+    
+    {% ifequal r.group_memb.status "selecting resources" %}
+        Selecting {{interview.resource_name}}
+    {% else %}
+        {{r.group_memb.status|capfirst}}
+    {% endifequal %}
+    
     {% ifequal r.group_memb.status "in-progress" %}    
         {% if r.group_memb.int_group.user_draws_shapes %}
             - {{r.group_memb.user_status_msg}}  
         {% endif %}
     {% endifequal %}
     <br/>
+    
     {% ifnotequal r.group_memb.status "skipped" %}  
         <ul>
         {% ifequal r.group_memb.status "finalized" %}   
@@ -71,9 +78,9 @@ function verify(link) {
                         <li>Done. <a href="/review_resource_questions/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
                         <li>
                         {% ifequal num_shapes 0 %}
-                            <a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Draw shapes</a>
+                            <a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Draw {{interview.shape_name_plural}}</a>
                         {% else %}                           
-                            <a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Continue drawing/editing shapes</a>
+                            <a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Continue drawing/editing {{interview.shape_name_plural}}</a>
                         {% endifequal %}
                         </li>
                         {% ifnotequal r.group_memb.num_complete_resources 0 %}

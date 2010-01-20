@@ -604,6 +604,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
@@ -617,6 +618,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
         }
@@ -642,6 +644,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 status_code: status_code,
                 resource: this.curResource.get('name'),
                 member_title: gwst.settings.group.member_title,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
@@ -651,6 +654,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 status_code: status_code,
                 resource: this.curResource.get('name'),
                 member_title: gwst.settings.group.member_title,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
         }
@@ -707,6 +711,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
                 res_group_name: gwst.settings.interview.resource_name,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
@@ -718,6 +723,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
                 res_group_name: gwst.settings.interview.resource_name,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
         }
@@ -732,6 +738,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
@@ -741,6 +748,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
         }
@@ -753,6 +761,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.allocPanel = new gwst.widgets.AllocPanel({
                 xtype: 'gwst-alloc-panel',
                 resource: this.curResource.get('name'),
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
@@ -761,6 +770,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         } else {
             this.allocPanel.updateText({
                 resource: this.curResource.get('name'),
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
         }
@@ -773,6 +783,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.pennyPanel = new gwst.widgets.PennyPanel({
                 xtype: 'gwst-penny-panel',
                 resource: this.curResource.get('name'),
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
@@ -783,6 +794,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         } else {
             this.pennyPanel.updateText({
                 resource: this.curResource.get('name'),
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
         }
@@ -797,6 +809,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
@@ -806,6 +819,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
         }
@@ -845,6 +859,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 resource_name_plural: gwst.settings.interview.resource_name_plural,
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
@@ -855,6 +870,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 resource_name_plural: gwst.settings.interview.resource_name_plural,
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
         }

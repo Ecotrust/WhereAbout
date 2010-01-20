@@ -9,6 +9,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     shape_name: 'unknown',
     record: null,
     penniesLeft: null,	//pennies remaining for group 
+    shape_name_plural: 'unknown',
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -31,8 +32,8 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 	
     getHtmlText: function() {
         var html_text = '<h2>Instructions</h2>\
-            <p>a. Click \'Edit Pennies\' below and give each of your '+this.shape_name+'s a penny value.  You must use all 100.</p>\
-            <p>b. Click \'Go Back\' if you need to change your '+this.shape_name+'s.</p>\
+            <p>a. Click \'Edit Pennies\' below and give each of your '+this.shape_name_plural+' a penny value.  You must use all 100.</p>\
+            <p>b. Click \'Go Back\' if you need to change your '+this.shape_name_plural+'.</p>\
             <p>c. Click \'Continue\' to move on.</p>\
             <p class="video-link"><img src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>';
         return html_text;

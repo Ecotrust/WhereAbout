@@ -6,6 +6,7 @@ gwst.widgets.SatisfiedPenniesPanel = Ext.extend(gwst.widgets.WestPanel, {
     shape_name: 'unknown',
     action: 'unknown',
     user_group: 'unknown',
+    shape_name_plural: 'unknown',
 	
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -27,7 +28,7 @@ gwst.widgets.SatisfiedPenniesPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p class="top_instruct">\
-			<b>Are you satisfied with all the '+ this.resource +' '+ this.shape_name +'s\
+			<b>Are you satisfied with all the '+ this.resource +' '+ this.shape_name_plural +'\
             you have drawn and all of the pennies assigned to them for \
             that you '+ this.action +' as a '+ this.user_group +'?</b></p><br />\
 			';
@@ -44,9 +45,9 @@ gwst.widgets.SatisfiedPenniesPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         this.button_panel = new gwst.widgets.YesNoButtons ({
             yes_handler: this.yesClicked.createDelegate(this),
-            yes_text: '<p>Save your '+ this.shape_name +'s and pennies.</p>',
+            yes_text: '<p>Save your '+ this.shape_name_plural +' and pennies.</p>',
             no_handler: this.noClicked.createDelegate(this),
-            no_text: '<p>Discard the '+ this.shape_name +'s and let you return to edit penny values.</p>'
+            no_text: '<p>Discard the '+ this.shape_name_plural +' and let you return to edit penny values.</p>'
         });
         
 		this.add(this.inner_panel);

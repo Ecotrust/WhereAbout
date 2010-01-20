@@ -5,6 +5,7 @@ gwst.widgets.DrawOrDropPanel = Ext.extend(gwst.widgets.WestPanel, {
 	resource: 'unknown',
     res_group_name: 'unknown',
     shape_name: 'unknown',
+    shape_name_plural: 'unknown',
 	
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -57,7 +58,7 @@ gwst.widgets.DrawOrDropPanel = Ext.extend(gwst.widgets.WestPanel, {
                 elem: 'Allocate Pennies',
                 type: 'text'
             },{
-                elem: '<p>Add penny values to your '+ this.shape_name +'s.</p>',
+                elem: '<p>Add penny values to your '+ this.shape_name_plural +'.</p>',
                 type: 'text'
             }]
         });

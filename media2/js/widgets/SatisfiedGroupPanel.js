@@ -7,6 +7,7 @@ gwst.widgets.SatisfiedGroupPanel = Ext.extend(gwst.widgets.WestPanel, {
     shape_name: 'unknown',
     action: 'unknown',
     user_group: 'unknown',
+    shape_name_plural: 'unknown',
 	
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -28,7 +29,7 @@ gwst.widgets.SatisfiedGroupPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p class="top_instruct">\
-			<b>Are you satisfied with all '+ this.shape_name +'s you have drawn \
+			<b>Are you satisfied with all '+ this.shape_name_plural +' you have drawn \
             and all penny values for all '+ this.resource_name_plural +' that you \
             '+ this.action +' as a '+ this.user_group +'?</b></p><br />\
 			';
@@ -45,7 +46,7 @@ gwst.widgets.SatisfiedGroupPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         this.button_panel = new gwst.widgets.YesNoButtons ({
             yes_handler: this.yesClicked.createDelegate(this),
-            yes_text: '<p>Save your '+ this.shape_name +'s and pennies.</p>',
+            yes_text: '<p>Save your '+ this.shape_name_plural +' and pennies.</p>',
             no_handler: this.noClicked.createDelegate(this),
             no_text: '<p>Will let you choose which '+ this.resource_name +' to edit.</p>'
         });

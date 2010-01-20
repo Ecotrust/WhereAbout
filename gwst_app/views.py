@@ -206,7 +206,8 @@ def group_status(request):
             num_shapes = InterviewShape.objects.filter(user=request.user,int_group=group_memb.int_group).count()
             
             if num_shapes == 0:
-                group_memb.user_status_msg = 'no shapes drawn'
+                shape_name_plural = request.session['interview'].shape_name_plural
+                group_memb.user_status_msg = 'no '+shape_name_plural+' drawn'
                 
             else:
                 # tally complete and incomplete resource groups
@@ -781,6 +782,7 @@ def draw_settings(request, id) :
 		'resource_name': interview.resource_name,
 	    'resource_name_plural': interview.resource_name_plural,
     	'resource_action': interview.resource_action,
+        'shape_name_plural': interview.shape_name_plural,
         'shape_name': interview.shape_name
     }    
     #Group settings

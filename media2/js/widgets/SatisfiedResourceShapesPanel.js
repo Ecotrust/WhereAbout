@@ -6,6 +6,7 @@ gwst.widgets.SatisfiedResourceShapesPanel = Ext.extend(gwst.widgets.WestPanel, {
     shape_name: 'unknown',
     action: 'unknown',
     user_group: 'unknown',
+    shape_name_plural: 'unknown',
 	
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -28,7 +29,7 @@ gwst.widgets.SatisfiedResourceShapesPanel = Ext.extend(gwst.widgets.WestPanel, {
     getText: function() {
         
         var html_text = '<p class="top_instruct">\
-			<b>Are you satisfied with all '+ this.shape_name +'s you have drawn \
+			<b>Are you satisfied with all '+ this.shape_name_plural +' you have drawn \
             for '+ this.resource +' that you '+ this.action +' as a '+ this.user_group +'?</b></p><br />\
 			';
         return html_text;
@@ -44,9 +45,9 @@ gwst.widgets.SatisfiedResourceShapesPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         this.button_panel = new gwst.widgets.YesNoButtons ({
             yes_handler: this.yesClicked.createDelegate(this),
-            yes_text: '<p>Save your '+ this.shape_name +'s and move on to pennies.</p>',
+            yes_text: '<p>Save your '+ this.shape_name_plural +' and move on to pennies.</p>',
             no_handler: this.noClicked.createDelegate(this),
-            no_text: '<p>Return to draw to redraw or delete the '+ this.shape_name +'s if you wish.</p>'
+            no_text: '<p>Return to draw to redraw or delete the '+ this.shape_name_plural +' if you wish.</p>'
         });
         
 		this.add(this.inner_panel);

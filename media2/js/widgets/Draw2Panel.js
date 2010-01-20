@@ -6,6 +6,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 	user_group: 'unknown',
     shape_name: 'unknown',
     action: 'unknown',
+    shape_name_plural: 'unknown',
     //store the selected record to delete to pass around
     cur_action_record: null,
     
@@ -33,7 +34,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     getText: function() {
         var html_text = '<p class="top_instruct">\
             <b>Instructions:</b> \
-            Finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name +'s \
+            Finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name_plural +' \
             you '+ this.action +' as a '+ this.user_group +'!</i></p><br />\
             \
             <p>Each '+this.resource+' '+this.shape_name+' you draw will be displayed on the table below.\
