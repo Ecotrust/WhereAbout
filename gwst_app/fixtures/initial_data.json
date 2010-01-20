@@ -273,6 +273,7 @@
     "fields": {
       "code": "NCrecfish", 
       "description": "rec fish", 
+      "shape_name_plural": "fishing grounds", 
       "region": 1, 
       "resource_name_plural": "species", 
       "draw_shape_text": "<div id=\"help_panel\">\r\n\r\n<b> Getting Started </b>\r\n\r\n<p>Take the time to learn how to use this drawing tool before you dive in.  The instructions and videos provided will quickly show you through the entire process</p>\r\n\r\n<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species group</b> you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw shapes on the map representing your fishing grounds and then place some number of pennies on those shapes. The more pennies you place on a shape, the more value or importance you are placing on it. Keep doing this until you have drawn all your shapes and used all your pennies.  This process may seem complicated but it will allow the potential impact of MPA's on each fishery and each region to be measured much more accurately.</p>\r\n\r\n<p>How many shapes you draw and how specific you are is up to you.  Most people draw between three and eight shapes per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To get this window back after closing it, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.\r\n</p>\r\n<br/>\r\n<button type='button' onclick='gwst.app.splashTabs.activate(gwst.app.helpScreenText)'>Go To Instructions/Videos</button>&nbsp;&nbsp;&nbsp;&nbsp;<i><b>Highly Recommended</b></i>\r\n<br/> \r\n<button type='button' onclick='gwst.app.helpWindow.hide()'>Get Started</button>\r\n</div>", 
@@ -294,6 +295,7 @@
     "fields": {
       "code": "ORRrecfish", 
       "description": "Oregon central coast rec fishermen", 
+      "shape_name_plural": "fishing grounds", 
       "region": 2, 
       "resource_name_plural": "species", 
       "draw_shape_text": "<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species group</b> you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw fishing grounds on the map representing your fishing grounds and then place some number of pennies on those fishing grounds. The more pennies you place on a fishing ground, the more value or importance you are placing on it. Keep doing this until you have drawn all your fishing grounds and used all your pennies.  This process may seem complicated but it will allow the potential impact of MPA's on each fishery and each region to be measured much more accurately.</p>\r\n\r\n<p>How many fishing grounds you draw and how specific you are is up to you.  Most people draw between three and eight fishing grounds per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To get this window back after closing it, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.\r\n</p>\r\n<br/>\r\n<button type='button' onclick='gwst.app.splashTabs.activate(gwst.app.helpScreenText)'>Go To Instructions/Videos</button>&nbsp;&nbsp;&nbsp;&nbsp;<i><b>Highly Recommended</b></i>\r\n<br/> \r\n<button type='button' onclick='gwst.app.helpWindow.hide()'>Get Started</button>\r\n</div>", 
@@ -457,6 +459,31 @@
     }
   }, 
   {
+    "pk": 5, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "pri", 
+      "name": "Sport Boat ", 
+      "required_group": false, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "member_title": "sport boat fisherman", 
+      "page_template": "base_form.html", 
+      "resources": [
+        1, 
+        4, 
+        5, 
+        7, 
+        24, 
+        25
+      ], 
+      "description": "Private Vessel"
+    }
+  }, 
+  {
     "pk": 8, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -478,32 +505,7 @@
         24, 
         25
       ], 
-      "description": "Kayak or Non-Motorized Vessel Fishermen"
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "pri", 
-      "name": "Sport Boat", 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "member_title": "sport boat fisherman", 
-      "page_template": "base_form.html", 
-      "resources": [
-        1, 
-        4, 
-        5, 
-        7, 
-        24, 
-        25
-      ], 
-      "description": "Private Vessel"
+      "description": "Kayak or Non-Motorized Vessel"
     }
   }, 
   {
