@@ -470,6 +470,24 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /* Load the map layer toggle window */
     loadMapLayerWin: function() {
 		var sm = new Ext.grid.CheckboxSelectionModel();
+		//Synch layer window checkbox events with map layers
+		sm.on('rowselect', this.mapLayerToggled, this);
+		sm.on('rowdeselect', this.mapLayerToggled, this);
+
+		//Filter the layer store to only layers we want to display
+		//This is not a long term solution because clearing the filter
+		//will refresh the grid again and show all.  Filtering now
+		//may prevent further use of the layer store in the future.
+		gwst.settings.layerStore.filterBy(
+			function (record, id) {
+				var lyr = record.get('layer');
+				if (lyr.isBaseLayer || lyr.CLASS_NAME == 'OpenLayers.Layer.Vector') {
+					return false;
+				}
+				return true;
+			}
+		);
+				
 		this.layerWin = new Ext.Window({
 			items: [
 		        new Ext.grid.GridPanel({
@@ -490,14 +508,14 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 		            iconCls:'icon-grid'
 		      })
 			],
-	        title: 'Maps',
-	        width: 140,
-	        height: 95,
+	        width: 138,
+	        height: 39,
 	        resizable: false,
 	        collapsible: false,
 	        draggable: false,
 	        closable: false
-	    });
+	    });		
+		
 		this.layerWin.show();		
 		this.layerWin.alignTo(document.body, "tr-tr", this.layerWinOffset);		    			    	    
     },
@@ -533,6 +551,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         if(!this.layerWin) {
         	this.loadMapLayerWin();    	
         }
+        this.mapPanel.showPanZoom();
         if (!this.navPanel) {
             this.navPanel = new gwst.widgets.NavigatePanel({
                 xtype: 'gwst-navigate-panel',
@@ -850,9 +869,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     mapPanelCreated: function() {
     	this.mapPanel = Ext.getCmp('mappanel');
+    	this.mapPanel.hidePanZoom();
     	this.loadShapeStore(this.mapPanel.getShapeLayer());
-    	gwst.settings.layerStore = this.mapPanel.getLayerStore();
-    	// this.loadMapLayerWin();    	
+    	gwst.settings.layerStore = this.mapPanel.getLayerStore();    	
     	this.mapPanel.on('res-shape-started', this.resShapeStarted, this);
     	this.mapPanel.on('res-shape-complete', this.resShapeComplete, this);
     },
@@ -907,6 +926,16 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     		console.error('More than one record added!');
     	}
     },    
+    
+    //Given a LayerRecord, toggle the layers visibility
+    mapLayerToggled: function(sm, rowIndex, record) {
+		var lyr = record.get('layer');
+		if (lyr.getVisibility() == false) {
+			lyr.setVisibility(true);
+		} else {
+			lyr.setVisibility(false);
+		}
+	},
     
     /******************** Server Operations ********************/
 

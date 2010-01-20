@@ -127,7 +127,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		map.addControl(new OpenLayers.Control.Navigation());		
 		map.addControl(new gwst.controls.gwstPanZoom());
 		map.addControl(new OpenLayers.Control.MousePosition());
-		map.addControl(new OpenLayers.Control.LayerSwitcher());
         
 		this.drawResControl = new OpenLayers.Control.DrawFeature(
             this.vecLayer, 
@@ -153,6 +152,14 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 
     getLayerStore: function() {
     	return this.layers;
+    },
+    
+    hidePanZoom: function() {
+    	Ext.query(".olControlPanZoom")[0].style.display = 'none';
+    },
+    
+    showPanZoom: function() {
+    	Ext.query(".olControlPanZoom")[0].style.display = 'block';
     },
     
     zoomToMapRegion: function(region) {
