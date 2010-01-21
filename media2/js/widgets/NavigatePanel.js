@@ -62,19 +62,19 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
             id: 'nav_table_panel',
             items: [{
                 html: '<p> \
-                    a. First, turn on any maps you want from the \'Maps\' section on the top right. \
-                    Nautical charts are sufficient for most.  Click the checkbox to turn them on or off.\
-                    </p>'
-            },{
-                html: '<img src="/site-media/images/nav_1.png">'
-            },{
-                html: '<p> \
-                    b. Navigate the map to your first '+ this.shape_name +'.\
+                    a. Navigate the map to your first '+ this.shape_name +'.\
                     To move the map, click and drag it or use the blue arrow buttons.\
                     To zoom in and out, use the blue \'+\' and \'-\' buttons.\
                     </p>'
             },{
                 html: '<img src="/site-media/images/nav_2.png">'
+            },{
+                html: '<p> \
+                    b. First, turn on any maps you want from the \'Maps\' section on the top right. \
+                    Nautical charts are sufficient for most.  Click the checkbox to turn them on or off.\
+                    </p>'
+            },{
+                html: '<img src="/site-media/images/nav_1.png">'
             },{
                 html: '<p>\
                     c. Get as close as you can to your '+ this.shape_name +', then press the continue button.\

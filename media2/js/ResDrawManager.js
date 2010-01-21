@@ -34,7 +34,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     startInit: function(){
     	this.on('settings-loaded', this.finInit, this);
-    	this.on('shape-saved', this.loadAnotherShapePanel, this);
+    	this.on('shape-saved', this.startAnotherShapeStep, this);
         this.fetchSettings();
         this.loadWait('While the drawing tool loads');
     },               
@@ -236,7 +236,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     finAttribStep: function(boundary_values_obj) {
         this.saveNewShape(boundary_values_obj);    
-        this.startAnotherShapeStep();
     },    
     
     
@@ -246,7 +245,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Setup UI for draw another shape or drop penny step 
      */
     startAnotherShapeStep: function() {    
-        this.startDraw2Step();
+        this.loadAnotherShapePanel();
     },
        
     /*
@@ -322,7 +321,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     startPennyStep: function() {
         this.loadPennyPanel();
-        this.mapPanel.enableResDraw();
     },
     
     /*

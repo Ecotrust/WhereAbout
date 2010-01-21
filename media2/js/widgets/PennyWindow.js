@@ -14,6 +14,7 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
             allowBlank:false,
             width: 70,
             minValue: 1,
+            minText: 'Not Enough',
             maxValue: this.getMaxValue(),
             maxText: 'Too Many',
             msgTarget: 'under',
@@ -114,6 +115,7 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
         this.prev_pennies = config.prev_pennies;
         Ext.get('penny-left-text').update(this.getLabelValue());
         this.pennies_field.maxValue = this.getMaxValue();
+        this.pennies_field.setRawValue(0);
     }
 });
 
