@@ -46,9 +46,9 @@ gwst.widgets.SatisfiedGroupPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         this.button_panel = new gwst.widgets.YesNoButtons ({
             yes_handler: this.yesClicked.createDelegate(this),
-            yes_text: '<p>Save your '+ this.shape_name_plural +' and pennies.</p>',
+            yes_text: '',
             no_handler: this.noClicked.createDelegate(this),
-            no_text: '<p>Will let you choose which '+ this.resource_name +' to edit.</p>'
+            no_text: '<p>Choose another '+ this.resource_name +' to edit.</p>'
         });
         
 		this.add(this.inner_panel);

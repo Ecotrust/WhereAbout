@@ -270,27 +270,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     moveToDropPenniesStep: function() {
         this.startPennyInstrStep();
     },   
-    
-    /******************** Satisfied with resource shapes step *******************/
-    
-    /* 
-     * Setup UI for satisfied with resource shapes step 
-     */
-    // startSatisfiedResourceShapesStep: function() {
-        // this.loadSatisfiedResourceShapesPanel();        
-    // },
-       
-    /*
-     * Process and finish satisfied with shape step
-     */
-    // finSatisfiedResourceShapesStep: function(result) {
-    	// if (!result.satisfied) {
-            // this.startDraw2Step();
-    	// } else {
-            // this.startPennyInstrStep();
-        // }
-    // },
-    
+        
     /******************** Penny Allocation Instruction Step *******************/
 
     /*
@@ -401,6 +381,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     finSatisfiedGroupStep: function(result) {
     	if (!result.satisfied) {
+            gwst.settings.shapeStore.removeAll();
             this.startResSelStep();
     	} else {
             this.finDrawingPhase();

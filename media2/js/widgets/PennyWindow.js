@@ -41,7 +41,7 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
             layoutConfig: {
                 columns: 2
             },
-            id: 'draw_table_panel',
+            id: 'penny_window_panel',
             items: [
                 this.penny_form,
                 {tag: 'div', id: 'penny-left-text', html: this.getLabelValue()},  //Ext.DomHelper object
