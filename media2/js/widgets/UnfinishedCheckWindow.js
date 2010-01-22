@@ -4,6 +4,8 @@ gwst.widgets.UnfinishedCheckWindow = Ext.extend(Ext.Window, {
     res_group_name: 'unknown',
     shape_name_plural: 'unknown',
     resource_id: 'unknown',
+    cur_resource: 'unknown',
+    user_group_desc: 'unknown',
 
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){	
@@ -13,11 +15,12 @@ gwst.widgets.UnfinishedCheckWindow = Ext.extend(Ext.Window, {
 		Ext.apply(this, {          
         	layout:'fit',
             width:260,
-            html: '<p>If you go back now, you will <u><b>lose all of your '+ this.shape_name_plural +' \
-                for this '+ this.res_group_name +'</b></u>.\
+            html: '<p>If you select another '+ this.res_group_name +' now, you will <u><b>lose all of your \
+                '+ this.user_group_desc +' '+ this.shape_name_plural +' \
+                for '+ this.cur_resource +'</b></u>.\
                 <br /><br />\
-                Are you sure you want to go back?</p>',
-            height:130,
+                Are you sure you want to select another '+ this.res_group_name +'?</p>',
+            height:160,
             plain: true,
             bodyStyle: 'padding: 8px',
             closeAction:'hide',

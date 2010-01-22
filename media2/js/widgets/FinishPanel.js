@@ -48,16 +48,10 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
                 elem: 'Select '+this.res_group_name+'',
                 type: 'text'
             },{
-                elem: '<p></p>',
-                type: 'text'
-            },{
                 elem: this.finishBtnClicked.createDelegate(this),
                 type: 'handler'
             },{
                 elem: 'Finish',
-                type: 'text'
-            },{
-                elem: '<p>Return to the main menu.</p>',
                 type: 'text'
             }]
         });

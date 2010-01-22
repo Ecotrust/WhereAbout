@@ -45,9 +45,7 @@ gwst.widgets.SatisfiedResourceShapesPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         this.button_panel = new gwst.widgets.YesNoButtons ({
             yes_handler: this.yesClicked.createDelegate(this),
-            yes_text: '<p>Save your '+ this.shape_name_plural +' and move on to pennies.</p>',
-            no_handler: this.noClicked.createDelegate(this),
-            no_text: '<p>Return to draw to redraw or delete the '+ this.shape_name_plural +' if you wish.</p>'
+            no_handler: this.noClicked.createDelegate(this)
         });
         
 		this.add(this.inner_panel);

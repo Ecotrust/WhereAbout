@@ -50,14 +50,39 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         
     /******************** Top-level survey step handlers *******************/
     
+    /*load unfinished resource tool if there is one */
     startSplashStep: function() {
-    	this.loadSplash();
-
+        if (this.curResource) {
+            this.startUnfinishedResourceStartStep();
+        } else {
+            this.loadSplash();
+        }
     },
     
     /* Finish splash and start resource selection */
     finSplashStep: function() {
     	this.startResSelStep();
+    },
+    
+    /******************** Unfinished Resource Start Step *******************/
+    
+    startUnfinishedResourceStartStep: function() {
+        if(!this.layerWin) {
+        	this.loadMapLayerWin();    	
+        }
+        this.mapPanel.showPanZoom();
+    	this.loadUnfinishedResourceStartPanel();
+    },
+    
+    /* Finish splash and start resource selection */
+    finUnfinishedResourceStartStep: function() {
+    	this.startDraw2Step();
+    },
+    
+    skipUnfinishedResourceStartStep: function () {
+        this.loadUnfinishedCheck();
+        this.curResource.set('started', false);
+        
     },
     
     /******************** Resource Selection Step *******************/
@@ -482,6 +507,32 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.viewport.setWestPanel(this.splashPanel); 
     },
     
+    /* Load the initial unfinished resource screen for the user */
+    loadUnfinishedResourceStartPanel: function() {  
+    	if (!this.unfinResStartPanel) {
+            this.unfinResStartPanel = new gwst.widgets.UnfinishedResourceStartPanel({
+                xtype: 'gwst-splash-panel',
+                user_group: gwst.settings.group.member_title,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
+                res_group_name: gwst.settings.interview.resource_name,
+                cur_resource: this.curResource.get('name'),
+                user_group_desc: gwst.settings.group.description
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.unfinResStartPanel.on('unfin-res-start-cont', this.finUnfinishedResourceStartStep, this);
+            this.unfinResStartPanel.on('unfin-res-start-skip', this.skipUnfinishedResourceStartStep, this);
+        } else {
+            this.unfinResStartPanel.updateText({
+                user_group: gwst.settings.group.member_title,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
+                res_group_name: gwst.settings.interview.resource_name,
+                cur_resource: this.curResource.get('name'),
+                user_group_desc: gwst.settings.group.description
+            });
+        }
+        this.viewport.setWestPanel(this.unfinResStartPanel); 
+    },
+    
     /* Load the map layer toggle window */
     loadMapLayerWin: function() {
 		var sm = new Ext.grid.CheckboxSelectionModel();
@@ -590,7 +641,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.unfinishedCheckWin = new gwst.widgets.UnfinishedCheckWindow({
                 res_group_name: gwst.settings.interview.resource_name,
                 shape_name_plural: gwst.settings.interview.shape_name_plural,
-                resource_id: this.curResource.get('id')
+                resource_id: this.curResource.get('id'),
+                user_group_desc: gwst.settings.group.description,
+                cur_resource: this.curResource.get('name')
             });
             this.unfinishedCheckWin.on('unfin-okay', this.clearResourceShapes, this);
         } 
