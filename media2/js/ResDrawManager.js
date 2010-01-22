@@ -15,7 +15,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     mapPanel: null,  	//Reference to map panel
     layerWin: null,		//Map layers window
     layerWinOffset: [-8, 8],	//Offset from top right to render
-    drawToolWinOffset: [308, 8],	//Offset from top left to render
+    quitWinOffset: [308, 8],	//Offset from top left to render
+    drawToolWinOffset: [458, 8],	//Offset from top left to render
 
     constructor: function(){
         gwst.ResDrawManager.superclass.constructor.call(this);
@@ -44,6 +45,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.loadViewport();
         this.startSplashStep();  
         this.createError();
+        this.loadQuitWin();
     },
         
     /******************** Top-level survey step handlers *******************/
@@ -106,7 +108,11 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	 * Go back from the navigation step to resource selection
 	 */
     backNavStep: function() {
-        this.loadResSelPanel();
+        if (gwst.settings.shapeStore.getCount() == 0) {
+            this.loadResSelPanel();
+        } else {
+            this.loadUnfinishedCheck();
+        }
 	},    
     
     /******************** Draw Step *******************/
@@ -359,6 +365,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     selNewResStep: function() {
         gwst.settings.shapeStore.removeAll();
         this.startResSelStep();
+        if (this.unfinishedCheckWin) {
+            this.unfinishedCheckWin.hide();
+        }
     },
     /*
      * Process completion of drawing phase
@@ -423,6 +432,25 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 (function(){gwst.error.center();}).createDelegate(this)
             );            
         }
+    },
+    
+    /* Create Go To Main Menu window*/
+    loadQuitWin: function() {
+    	if (!this.quitWin) {
+			this.quitWin = new gwst.widgets.QuitWindow();
+			this.quitWin.on('quit-button', this.loadQuitCheckWin, this);
+		}
+		this.quitWin.show();		
+		this.quitWin.alignTo(document.body, "tl-tl", this.quitWinOffset);    	
+    },
+    
+    /*Show window to check that user wants to leave */
+    loadQuitCheckWin: function() {
+        if (!this.quitCheckWin) {
+            this.quitCheckWin = new gwst.widgets.QuitCheckWindow();
+            this.quitCheckWin.on('main-menu', this.finDrawingPhase, this);
+        }
+        this.quitCheckWin.show();
     },
     
     /* Load the initial splash screen for the user */
@@ -548,6 +576,31 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.viewport.setWestPanel(this.navPanel);    	
     },
     
+    /*Prevent 'Back' from Nav if shapes are drawn*/
+    loadUnfinishedCheck: function() {
+        if (!this.unfinishedCheckWin) {
+            this.unfinishedCheckWin = new gwst.widgets.UnfinishedCheckWindow({
+                res_group_name: gwst.settings.interview.resource_name,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
+                resource_id: this.curResource.get('id')
+            });
+            this.unfinishedCheckWin.on('unfin-okay', this.clearResourceShapes, this);
+        } 
+        this.unfinishedCheckWin.show();
+    },
+    
+    /*delete all of the shapes for one user, for one group, for one resource*/
+    clearResourceShapes: function() {
+        var delete_config = {
+            group_id: parseInt(gwst.settings.survey_group_id),
+            resource_id: parseInt(this.curResource.id),
+            action: 'DELETE'
+        };
+        this.deleteSavedShapes(delete_config);
+        this.selNewResStep();
+
+    },
+    
     /* Load the draw west panel */
     loadDrawPanel: function() {
     	if (!this.drawPanel) {
@@ -608,7 +661,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     loadDrawToolWin: function() {
     	if (!this.drawToolWin) {
 			this.drawToolWin = new gwst.widgets.DrawToolWindow();
-			this.drawToolWin.on('redo-res-shape', this.mapPanel.redoResShape, this.mapPanel);
 			this.drawToolWin.on('cancel-res-shape', this.mapPanel.cancelResShape, this.mapPanel);
 		}
 		this.drawToolWin.show();		
@@ -1048,8 +1100,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.curDeleteRecord = record;
         Ext.Ajax.request({
             url: gwst.settings.urls.shapes+record.get('id'),
-            method: 'DELETE',
+            method: 'POST',
             disableCachingParam: true,
+            params: {action: 'DELETE'},
             success: this.finDeleteSavedShape,
          	failure: function(response, opts) {
         		//Change to error window
@@ -1074,6 +1127,28 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (this.pennyPanel) {
     		this.pennyPanel.refresh();
     	}
+    },
+    
+    deleteSavedShapes: function(delete_config){   
+        this.loadWait('Deleting');
+        
+        Ext.Ajax.request({
+            url: gwst.settings.urls.shapes,
+            method: 'POST',
+            disableCachingParam: true,
+            params: delete_config,
+            success: this.finDeleteSavedShapes,
+            failure: function(id_obj, opts) {
+                //change to error window
+                this.hideWait.defer(500, this);
+                gwst.error.load('An unknown error has occurred while trying to delete your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
+            },
+            scope: this
+        });
+    },
+    
+    finDeleteSavedShapes: function(id_obj) {
+    	this.hideWait.defer(500, this);
     },
     
     //Update a shape already saved on the server

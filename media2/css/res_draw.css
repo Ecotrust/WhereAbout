@@ -63,6 +63,10 @@ p.error_text img {
     padding: 10px;
 }
 
+.quit-main{
+    background-image: url(/site-media/images/house.png) !important;
+}
+
 .begin-draw {
 	background-image: url(/site-media/images/pencil_go.png) !important;
 }

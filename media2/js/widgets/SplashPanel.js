@@ -21,9 +21,11 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p>\
-            The drawing portion will now begin for the '+ this.user_group +' user group.<br><br>\
-            You will be able to come back and finish later if you need more time.\
-			<br />';
+            The drawing portion will now begin for the '+ this.user_group +' user group.<br /><br />\
+            You will be able to come back and finish later if you need more time.<br />\
+			To do so, click the \'Go To Main Menu\' button at the top left of the map screen.<br /><br />\
+            <img src="/site-media/images/go_to.png" style="margin-left: 65px">\
+            <br />';
         return html_text;
     },
 

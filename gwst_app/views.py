@@ -811,6 +811,7 @@ def draw_settings(request, id) :
 Shape web service - 
 GET: filter by interview group: 'group_id'
 POST - expects {'feature':{geometry, group_id, resource_id, boundary_n, boundary_s, boundary_e, boundary_w}}
+DELETE - expects a shape id /shapes/id or resource_id param
 '''
 def shapes(request, id=None):    
     if request.method == 'GET':    
@@ -836,6 +837,30 @@ def shapes(request, id=None):
             status = status_object_qs[0]        
         except Exception, e:
             return HttpResponse('{"status_code":"-1",  "success":"false",  "message":"Action not permitted"}', status=403)
+            
+        #DELETE events (since it's not supported with params in Ext 2.2.1
+        if (request.POST.get('action') ==  'DELETE'):
+            if (id):
+                shape = get_object_or_404(InterviewShape, pk=id)
+                if (shape.user == request.user):
+                    shape.delete()
+                    result = {"success":True, "message":"Deleted successfully"}
+                    return HttpResponse(geojson_encode(result)) 
+                else:
+                    result = {"success":False, "message":"None of users shapes have given ID"}
+                    return HttpResponse(result, status=403)
+            else:
+                resource_id = request.POST.get('resource_id')
+                group_id = request.POST.get('group_id')
+                if (resource_id):
+                    shapes = InterviewShape.objects.filter(resource=resource_id, int_group=group_id, user=request.user)
+                    shapes.delete()
+                    result = {"success":True, "message":"Deleted successfully"}
+                    return HttpResponse(geojson_encode(result)) 
+                else:
+                    result = {"success":False, "message":"None of users shapes have given ID"}
+                    return HttpResponse(result, status=500)
+            
         
         #See if the interview is complete
         if status.completed:
@@ -895,17 +920,6 @@ def shapes(request, id=None):
         }              
         return HttpResponse(geojson_encode(result))                  
     
-    elif request.method == 'DELETE':
-        shape = get_object_or_404(InterviewShape, pk=id)
-        if (shape.user == request.user):
-            shape.delete()
-            result = {"success":True, "message":"Deleted successfully"}
-            return HttpResponse(geojson_encode(result)) 
-        else:
-            result = {"success":False, "message":"None of users shapes have given ID"}
-            return HttpResponse(result, status=403)
-        shape.delete()                   
-
 '''
 Shape validation and clipping
 

@@ -96,7 +96,7 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
                 html: '<img src="/site-media/images/draw_4.png">'
             },{
                 html: '<p>\
-                    e. If you make a mistake, click the \'Cancel\' button\
+                    e. If you make a mistake, click the \'Cancel\' button at the top.\
                     </p>'
             },{
                 html: '<img src="/site-media/images/draw_5.png">'
