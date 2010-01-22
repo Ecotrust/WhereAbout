@@ -74,7 +74,14 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     finResSelStep: function(obj, resource_id) {
         this.curResource = gwst.settings.resourceStore.getById(resource_id);
-        this.startNavStep();
+        if (this.curResource.get('finished') == true) {
+            gwst.error.load('You have already finished drawing '+ gwst.settings.interview.shape_name +' \
+                for this '+ gwst.settings.interview.resource_name +'.\
+                <br /><br />\
+                Please select another, or return to the Main Menu.');
+        } else {    
+            this.startNavStep();
+        }
     },
     
     /*
@@ -339,6 +346,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!result.satisfied) {
             this.startPennyStep();
     	} else {
+            this.curResource.set('finished', true);
             this.startFinishStep();
         }
     },
