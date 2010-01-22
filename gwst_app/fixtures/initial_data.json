@@ -16,6 +16,14 @@
     }
   }, 
   {
+    "pk": 4, 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "or-rec-survey-dev.ecotrust.org", 
+      "name": "or-rec-survey-dev.ecotrust.org"
+    }
+  }, 
+  {
     "pk": 3, 
     "model": "sites.site", 
     "fields": {
