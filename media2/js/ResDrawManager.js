@@ -389,7 +389,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process finish/finish later/delect new resource step
      */
     finFinishStep: function() {
-        this.startSatisfiedGroupStep();
+        this.finDrawingPhase();
     },
     
     /*
@@ -408,28 +408,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     finDrawingPhase: function() {
     	window.location = "/group_status/";
     },
-    
-    /******************** Satisfied with group step *******************/
-    
-    /* 
-     * Setup UI for satisfied with group step 
-     */
-    startSatisfiedGroupStep: function() {
-        this.loadSatisfiedGroupPanel();        
-    },
-       
-    /*
-     * Process and finish satisfied with shape step
-     */
-    finSatisfiedGroupStep: function(result) {
-    	if (!result.satisfied) {
-            gwst.settings.shapeStore.removeAll();
-            this.startResSelStep();
-    	} else {
-            this.finDrawingPhase();
-        }
-    },
-        
+            
     /******************** UI widget handlers ********************/
 
     /* Render viewport with main widgets to document body (right now) */
@@ -941,34 +920,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.finishPanel);    	
     },
-    
-    /* Load the satisfied with group west panel */
-    loadSatisfiedGroupPanel: function() {
-    	if (!this.satGroupPanel) {
-            this.satGroupPanel = new gwst.widgets.SatisfiedGroupPanel({
-                xtype: 'gwst-satisfied-group-panel',
-                resource_name: gwst.settings.interview.resource_name,
-                resource_name_plural: gwst.settings.interview.resource_name_plural,
-                action: gwst.settings.interview.resource_action,
-                user_group: gwst.settings.group.member_title,
-                shape_name_plural: gwst.settings.interview.shape_name_plural,
-                shape_name: gwst.settings.interview.shape_name
-            });
-            //When panel fires event saying it's all done, we want to process it and move on 
-            this.satGroupPanel.on('satisfied', this.finSatisfiedGroupStep, this);   
-        } else {
-            this.satGroupPanel.updateText({
-                resource_name: gwst.settings.interview.resource_name,
-                resource_name_plural: gwst.settings.interview.resource_name_plural,
-                action: gwst.settings.interview.resource_action,
-                user_group: gwst.settings.group.member_title,
-                shape_name_plural: gwst.settings.interview.shape_name_plural,
-                shape_name: gwst.settings.interview.shape_name
-            });
-        }
-        this.viewport.setWestPanel(this.satGroupPanel);    	
-    },
-    
+        
     /******************** Event Handlers ********************/
 
     /* 
