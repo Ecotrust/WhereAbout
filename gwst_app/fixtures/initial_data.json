@@ -316,7 +316,7 @@
       "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  Also these values must add up to 100%.  For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling, 40% for dive angling and nothing for private vessel angling.]</i></p>", 
       "clip_region": 1, 
       "interview_complete_text": "<p>The fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.</p>\r\n\r\n<p>When the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated and subsequent iterations of the analysis will be completed. The maps will then be used in evaluating MPA proposals.  For each MPA proposal, stakeholders will be able to see the potential impacts that MPA would have on a given fishery and/or user group.  This is a valuable tool in finding the best areas for protection while trying to minimize the impact on fisheries.</p>\r\n\r\n<p>Your willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a></p>", 
-      "name": "ORCC rec fisherman"
+      "name": "Oregon Recreational Fishing"
     }
   }, 
   {
@@ -1741,7 +1741,7 @@
       "int_group": 5, 
       "question_set": null, 
       "display_order": 5.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": 6.0, 
@@ -1761,7 +1761,7 @@
       "int_group": 5, 
       "question_set": null, 
       "display_order": 6.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [
         11, 
@@ -2485,26 +2485,6 @@
     }
   }, 
   {
-    "pk": 133, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "k_day_spec", 
-      "eng_text": "How many days 'on average' do you spend diving for this species from a kayak or non-motorized vessel?", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
-    }
-  }, 
-  {
     "pk": 108, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -2522,6 +2502,26 @@
       "answer_type": "text", 
       "eng_tooltip": "Primary port and sites you launch your kayak from", 
       "val_max": null
+    }
+  }, 
+  {
+    "pk": 133, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "k_day_spec", 
+      "eng_text": "How many days 'on average' do you spend diving for this species from a kayak or non-motorized vessel?", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
     }
   }, 
   {
