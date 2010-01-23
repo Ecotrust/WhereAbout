@@ -206,16 +206,28 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     	return (100 - gwst.settings.shapeStore.getPennyCount());
     },
     
+    pennilessShapesExist: function() {
+        for (var i = 0; i < gwst.settings.shapeStore.getCount(); i++) {
+            if (gwst.settings.shapeStore.getAt(i).get('pennies') == 0) {
+                return true;
+            }
+        }
+        return false;
+    },
+    
+    
     getStatusMsg: function() {
     	if (this.getPenniesRemaining() > 0) {
     		return 'Incomplete, use all 100 pennies';
-    	} else {
+    	} else if (this.pennilessShapesExist()) {
+            return 'Incomplete, not all '+ this.shape_name_plural +' have pennies allocated';
+        } else {
     		return 'Complete, ready to move on';
     	}
     },
     
     isComplete: function() {
-    	if (this.getPenniesRemaining() == 0) {
+    	if (this.getPenniesRemaining() == 0 && !(this.pennilessShapesExist())) {
     		return true;
     	} else {
     		return false;
@@ -225,7 +237,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     updateStatus: function() {
     	var penniesLeft = this.getPenniesRemaining();
     	Ext.get('pen-rem').update(penniesLeft);
-    	if (penniesLeft == 0) {
+    	if (penniesLeft == 0 && !(this.pennilessShapesExist())) {
     		this.button_panel.enableCont();    		
     	} else {
     		this.button_panel.disableCont();

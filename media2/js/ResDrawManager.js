@@ -900,7 +900,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 xtype: 'gwst-satisfied-pennies-panel',
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
-                user_group: gwst.settings.group.member_title,
+                user_group_desc: gwst.settings.group.description,
                 shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
@@ -910,7 +910,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.satPenniesPanel.updateText({
                 resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
-                user_group: gwst.settings.group.member_title,
+                user_group_desc: gwst.settings.group.description,
                 shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });

@@ -5,7 +5,7 @@ gwst.widgets.SatisfiedPenniesPanel = Ext.extend(gwst.widgets.WestPanel, {
 	resource: 'unknown',
     shape_name: 'unknown',
     action: 'unknown',
-    user_group: 'unknown',
+    user_group_desc: 'unknown',
     shape_name_plural: 'unknown',
 	
     // Constructor Defaults, can be overridden by user's config object
@@ -28,9 +28,8 @@ gwst.widgets.SatisfiedPenniesPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getText: function() {
         var html_text = '<p class="top_instruct">\
-			<b>Are you satisfied with all the '+ this.resource +' '+ this.shape_name_plural +'\
-            you have drawn and all of the pennies assigned to them for \
-            that you '+ this.action +' as a '+ this.user_group +'?</b></p><br />\
+			<b>Are you satisfied with all the '+ this.resource +' '+ this.user_group_desc +' '+ this.shape_name_plural +'\
+            you have drawn and all of the pennies assigned to them?</b></p>\
 			';
         return html_text;
     },

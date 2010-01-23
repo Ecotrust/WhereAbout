@@ -762,13 +762,13 @@ def draw_settings(request, id) :
         res_item['finished'] = False
         
         resource_shapes = InterviewShape.objects.filter(user=request.user,int_group=int_group,resource=res)        
-        if resource_shapes and len(resource_shapes) > 0 :
+        if resource_shapes and len(resource_shapes) > 0:
             res_item['started'] = True
         
         if res_item['started'] == True:
             resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
             zero_penny_shapes = resource_shapes.filter(pennies=0)                        
-            if resource_pennies == 100 and zero_penny_shapes.count() == 0:
+            if resource_pennies == 100 and zero_penny_shapes.count() == 0 and resource_shapes.filter(pennies=0).count() == 0:
                 res_item['finished'] = True        
             
         res_list.append(res_item)
