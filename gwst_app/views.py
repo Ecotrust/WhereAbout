@@ -594,7 +594,6 @@ def finalize_group(request,id):
             return render_to_response( '404.html', RequestContext(request,{}))
             
         group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group=int_group)
-        
         if group_memb.count() == 1:
         
             # validation based on number of pennies assigned by user
@@ -629,6 +628,69 @@ def finalize_group(request,id):
         # redirect to interview_group_status
         return HttpResponseRedirect('/group_status/')
         
+# user skips unfinished resources if at least one is finished and finalizes group
+@login_required
+def skip_res_finalize_group(request,id):        
+        
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
+ 
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+        
+        
+    if request.method == 'GET':
+        # update InterviewGroupMembership record
+        try:
+            int_group = InterviewGroup.objects.get(pk=id)
+        except ObjectDoesNotExist:
+            return render_to_response( '404.html', RequestContext(request,{}))
+            
+        group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group=int_group)
+        if group_memb.count() == 1:
+        
+            # validation based on number of pennies assigned by user
+            if int_group.user_draws_shapes:
+            
+                total_shape_count = 0
+                
+                for resource in int_group.resources.all():
+                    resource_shapes = InterviewShape.objects.filter(user=request.user,int_group=int_group,resource=resource)
+                    shape_count = resource_shapes.count()
+                    if shape_count > 0:
+                        shape_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
+                    
+                        # check if user drew shapes but didn't get pennies to 100
+                        if shape_count > 0 and shape_pennies != 100:
+                            resource_shapes.delete()
+                        else: 
+                            total_shape_count = total_shape_count + shape_count
+                    
+                # check if user failed to draw any shapes
+                if total_shape_count == 0:
+                    return HttpResponseRedirect('/group_status/')
+                
+            update_memb = group_memb[0]
+            update_memb.status = 'finalized'
+            update_memb.date_completed = datetime.datetime.now()
+            update_memb.save()
+            
+        else: #404
+            return render_to_response( '404.html', RequestContext(request,{}))
+        
+        # redirect to interview_group_status
+        return HttpResponseRedirect('/group_status/')        
         
 # user unfinalizes group
 @login_required

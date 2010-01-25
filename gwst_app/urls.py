@@ -38,6 +38,7 @@ urlpatterns = patterns('',
     (r'^penny_overview/(\d+)/$', penny_overview ),
         
     (r'^finalize_group/(\d+)/$', finalize_group ),
+    (r'^skip_res_finalize_group/(\d+)/$', skip_res_finalize_group ),
     (r'^unfinalize_group/(\d+)/$', unfinalize_group ),
     (r'^skip_group/(\d+)/$', skip_group ),
     (r'^finalize_interview/(\d+)/$', finalize_interview ),

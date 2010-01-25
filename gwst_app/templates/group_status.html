@@ -3,8 +3,15 @@
 {% block content %}
 
 <script language="javascript">
-function verify(link) {
+function skip_group_verify(link) {
     var agree=confirm("Are you sure you want to skip this group?  You won't be able to undo this action.");
+    if (agree) {
+        location.href=link;
+    }
+}
+
+function skip_res_verify(link) {
+    var agree=confirm("Are you sure you want to skip the unfinished {{interview.resource_name_plural}} and finalize this group?  All data for those {{interview.resource_name_plural}} will be lost.");
     if (agree) {
         location.href=link;
     }
@@ -84,9 +91,13 @@ function verify(link) {
                         {% endifequal %}
                         </li>
                         {% ifnotequal r.group_memb.num_complete_resources 0 %}
+                            <li>
                             {% ifequal r.group_memb.num_incomplete_resources 0 %}  
-                                <li><a href="/finalize_group/{{r.group_memb.int_group.id}}/">Finalize this group</a></li> 
+                                <a href="/finalize_group/{{r.group_memb.int_group.id}}/">Finalize this group</a>
+                            {% else %}
+                                <a href='#' onclick="skip_res_verify('/skip_res_finalize_group/{{r.group_memb.int_group.id}}/')">Skip remaining {{interview.resource_name_plural}} and finalize this group</a>
                             {% endifequal %}
+                            </li>
                         {% endifnotequal %}
                     {% else %}  
                         <li><a href="/finalize_group/{{r.group_memb.int_group.id}}/">Finalize this group</a></li>       
@@ -95,7 +106,7 @@ function verify(link) {
                 
                 {% ifnotequal forloop.counter 1 %}      {#  NOT MAIN  #}
                     {% ifnotequal forloop.counter 2 %}      {#  NOT PRIMARY GROUP  #}
-                        <li><a href='#' onclick="verify('/skip_group/{{r.group_memb.int_group.id}}/')">Skip this group</a></li>
+                        <li><a href='#' onclick="skip_group_verify('/skip_group/{{r.group_memb.int_group.id}}/')">Skip this group</a></li>
                     {% endifnotequal %}
                 {% endifnotequal %}
             {#{% endifequal %}#}
