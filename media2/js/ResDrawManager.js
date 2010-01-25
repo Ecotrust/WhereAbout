@@ -845,7 +845,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 shape_name: gwst.settings.interview.shape_name
             });
         }
-        this.viewport.setWestPanel(this.allocPanel);    	
+        this.viewport.setWestPanel(this.allocPanel); 
+        this.zoomToAllShapes();
     },
     
     /* Load the penny allocation west panel */
