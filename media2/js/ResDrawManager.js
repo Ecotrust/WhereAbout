@@ -1110,7 +1110,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     //Remove a shape already saved on the server
     deleteSavedShape: function(record) {
-        this.loadWait('Deleting');
+        this.loadWait('Removing your '+this.curResource.get('name')+' '+gwst.settings.interview.shape_name);
         this.curDeleteRecord = record;
         Ext.Ajax.request({
             url: gwst.settings.urls.shapes+record.get('id'),
