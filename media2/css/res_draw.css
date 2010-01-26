@@ -31,6 +31,18 @@ p.error_text img {
 	font-size: 12px;
 }
 
+.secondary-panel .x-panel-header{
+    background: none;
+    background-color: #EEEEEE;
+    font-size: 0.8em;
+    color: #444444;
+    border: none;
+}
+
+.secondary-panel .x-panel-body{
+    border: none;
+}
+
 .west-panel p {
     margin-bottom: 8px;
     margin-top: 5px

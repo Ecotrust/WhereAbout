@@ -105,7 +105,8 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
                 //set scope to Panel (defaults to RowActions)
 			action:this.gridActionClicked.createDelegate(this)
 		});
-				
+			
+        //Shape grid panel - for selection, deletion, and zooming
         this.inner_grid_panel = new Ext.grid.GridPanel ({
             store: gwst.settings.shapeStore,
             columns: [{
@@ -128,7 +129,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             sm: new GeoExt.grid.FeatureSelectionModel({singleSelect:true}),
             stripeRows: true,
             height: 200,
-            width: 275,
+            width: 260,
             title: 'Your '+this.resource+' '+capWords(this.shape_name)+'s',
             style: 'margin: 10px',
             stateful: true,
@@ -145,14 +146,72 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             }]
         });
         
+        //collapsible instruction panel - content from first draw panel
+        this.instruction_panel = new Ext.Panel({
+            id: 'draw_extended_instruction_panel',
+            title: 'Instructions',
+            style: 'margin: 5px; padding: 5px',
+            width: 270,
+            collapsible: true,
+            layout: 'table',
+            collapsed: true,
+            cls: 'secondary-panel',
+            border: 'none',
+            defaults: {
+                bodyStyle: 'border: none; padding: 5px'
+            },
+            layoutConfig: {
+                columns: 2
+            },    
+            items: [{
+                html: '<p> \
+                    a. Click once on the map to create the first point.\
+                    </p>'
+            },{
+                html: '<img src="/site-media/images/draw_1.png">'
+            },{
+                html: '<p> \
+                    b. Move mouse and click to create a second point.\
+                    </p>'
+            },{
+                html: '<img src="/site-media/images/draw_2.png">'
+            },{
+                html: '<p>\
+                    c. Continue tracing being as accurate as you can.\
+                    </p>'
+            }, {
+                html: '<img src="/site-media/images/draw_3.png">'
+            },{
+                html: '<p> \
+                    d. Double-click the last point to complete your '+this.shape_name+'.\
+                    </p>'
+            },{
+                html: '<img src="/site-media/images/draw_4.png">'
+            },{
+                html: '<p>\
+                    e. If you make a mistake, click the \'Cancel\' button at the top.\
+                    </p>'
+            },{
+                html: '<img src="/site-media/images/draw_5.png">'
+            },{
+                html: '<p>\
+                    f. You can control the map while you\'re drawing.\
+                    </p>'
+            },{
+                html: '<img src="/site-media/images/draw_6.png">'
+            }]
+        });
+        
+        //navigation buttons (back/continue)
         this.button_panel = new gwst.widgets.BackContButtons ({
             cont_handler: this.contBtnClicked.createDelegate(this),
             back_handler: this.backBtnClicked.createDelegate(this)
         });
-        
+
         this.add(this.header_panel);
 		this.add(this.inner_panel);
         this.add(this.inner_grid_panel); 
+        this.add(this.instruction_panel);
         this.add(this.button_panel);
         
         // Call parent (required)
