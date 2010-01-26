@@ -28,8 +28,42 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
         var html_text = '<p class="top_instruct">\
 			<b>Would you like to select a new '+ this.res_group_name +' \
             or have you finished them all for'+ this.user_group+'?</b>\
-            </p>';
+            </p>'+this.getCompletedResources()+this.getIncompleteResources();
         return html_text;
+    },
+    
+    getCompletedResources: function() {
+        var empty = true;
+        var comp_res = '\
+            <table class="resource-list">\
+            <tr><th><b>Complete Resources</b></th></tr>';
+        for (var res = 0; res < gwst.settings.resourceStore.getCount(); res++) {
+            if (gwst.settings.resourceStore.getAt(res).get('finished')) {
+                empty = false;
+                comp_res = comp_res+'<tr><td>'+gwst.settings.resourceStore.getAt(res).get('name')+'</td></tr>';
+            }
+        }
+        if (empty == true) {
+            comp_res = comp_res+'<tr><td>none</td></tr>';
+        }
+        return comp_res+'</table>';
+    },
+    
+     getIncompleteResources: function() {
+        var empty = true;
+        var incomp_res = '\
+            <table class="resource-list">\
+            <tr><th><b>Incomplete Resources</b></th></tr>';
+        for (var res = 0; res < gwst.settings.resourceStore.getCount(); res++) {
+            if (!gwst.settings.resourceStore.getAt(res).get('finished')) {
+                empty = false;
+                incomp_res = incomp_res+'<tr><td>'+gwst.settings.resourceStore.getAt(res).get('name')+'</td></tr>';
+            }
+        }
+        if (empty == true) {
+            incomp_res = incomp_res+'<tr><td>none</td></tr>';
+        }
+            return incomp_res+'</table>';
     },
 	
     onRender: function(){

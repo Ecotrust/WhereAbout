@@ -45,7 +45,18 @@ p.error_text img {
 
 .west-panel p {
     margin-bottom: 8px;
-    margin-top: 5px
+    margin-top: 5px;
+}
+
+.west-panel table.resource-list {
+    margin-top: 5px;
+    margin-left: 40px;
+    margin-bottom: 8px;
+    border: solid;
+    rules: none;
+    background: #EEEEEE;
+    width: 200px;
+    border-color: #DDDDDD;
 }
 
 .video-link {
