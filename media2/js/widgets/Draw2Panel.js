@@ -28,20 +28,17 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     
     updateText: function(text_config) {
         Ext.apply(this, text_config);
-        this.inner_panel.getEl().update(this.getText());
+        this.inner_panel.getEl().update(this.getHtmlText());
     },
     
-    getText: function() {
-        var html_text = '<p class="top_instruct">\
-            <b>Instructions:</b> \
-            Finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name_plural +' \
-            you '+ this.action +' as a '+ this.user_group +'!</i></p><br />\
-            \
+    getHtmlText: function() {
+        var html_text = '<h2>Instructions</h2> \
+            <p>Finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name_plural +' \
+            you '+ this.action +' as a '+ this.user_group +'!</i></p>\
             <p>Each '+this.resource+' '+this.shape_name+' you draw will be displayed on the table below.\
             Click on the table row to highlight it on the map.  You can remove a '+this.shape_name+' with\
-            the \'Remove\' button.</p><br />\
-            \
-            <p>Click the \'Continue\' button when you are finished.</p><br />';
+            the \'Remove\' button.</p>\
+            <p>Click the \'Continue\' button when you are finished.</p>';
         return html_text;
     },
     
@@ -78,7 +75,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
         });
     
 		this.inner_panel = new Ext.Panel({
-			html: this.getText(),
+			html: this.getHtmlText(),
             id: 'draw_extended_inner_panel',
 			style: 'margin: 10px',
 			border: false

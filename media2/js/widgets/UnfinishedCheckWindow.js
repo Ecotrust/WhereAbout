@@ -20,7 +20,7 @@ gwst.widgets.UnfinishedCheckWindow = Ext.extend(Ext.Window, {
                 for '+ this.cur_resource +'</b></u>.\
                 <br /><br />\
                 Are you sure you want to select another '+ this.res_group_name +'?</p>',
-            height:160,
+            height:175,
             plain: true,
             bodyStyle: 'padding: 8px',
             closeAction:'hide',

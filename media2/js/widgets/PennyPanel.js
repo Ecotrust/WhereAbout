@@ -35,7 +35,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
             <p>a. Click \'Edit Pennies\' below and give each of your '+this.shape_name_plural+' a penny value.  You must use all 100.</p>\
             <p>b. Click \'Go Back\' if you need to change your '+this.shape_name_plural+'.</p>\
             <p>c. Click \'Continue\' to move on.</p>\
-            <p class="video-link"><img src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>';
+            <p class="video-link"><img src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a></p>';
         return html_text;
     },
     

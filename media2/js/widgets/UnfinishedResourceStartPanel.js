@@ -21,15 +21,13 @@ gwst.widgets.UnfinishedResourceStartPanel = Ext.extend(gwst.widgets.WestPanel, {
 	
     updateText: function(text_config) {
         Ext.apply(this, text_config);
-        this.inner_panel.getEl().update(this.getText());
+        this.inner_panel.getEl().update(this.getHtmlText());
     },
     
-    getText: function() {
+    getHtmlText: function() {
         var html_text = '<p class="top_instruct">\
-            <b>You did not finish drawing your '+ this.user_group_desc +' '+ this.cur_resource +' '+ this.shape_name_plural +' during your last session.\
-            <br /><br />\
-            Please take the time to finish with this '+ this.res_group_name +'.</b></p>\
-            <br />\
+            <b>You did not finish drawing your '+ this.user_group_desc +' '+ this.cur_resource +' '+ this.shape_name_plural +' during your last session.</b></p>\
+            <p><b>Please take the time to finish with this '+ this.res_group_name +'.</b></p>\
             <p>If you do not want to finish this '+ this.res_group_name +' at this time, \
             please use the \'Skip\' button below.\
             </p>';
@@ -40,7 +38,7 @@ gwst.widgets.UnfinishedResourceStartPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         //panel of text
 		this.inner_panel = new Ext.Panel({
-			html: this.getText(),
+			html: this.getHtmlText(),
             id: 'intro_inner_panel',
 			style: 'margin: 10px',
 			border: false

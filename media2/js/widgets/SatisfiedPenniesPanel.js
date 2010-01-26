@@ -14,7 +14,6 @@ gwst.widgets.SatisfiedPenniesPanel = Ext.extend(gwst.widgets.WestPanel, {
         // be created and added/overridden here: Ext.apply(this, {});
 		
 		this.addEvents('satisfied');
-        // this.addEvents('satisfied-no');
 		
         // Call parent (required)
         gwst.widgets.SatisfiedPenniesPanel.superclass.initComponent.apply(
@@ -23,10 +22,10 @@ gwst.widgets.SatisfiedPenniesPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     updateText: function(text_config) {
         Ext.apply(this, text_config);
-        this.inner_panel.getEl().update(this.getText());
+        this.inner_panel.getEl().update(this.getHtmlText());
     },
     
-    getText: function() {
+    getHtmlText: function() {
         var html_text = '<p class="top_instruct">\
 			<b>Are you satisfied with all the '+ this.resource +' '+ this.user_group_desc +' '+ this.shape_name_plural +'\
             you have drawn and all of the pennies assigned to them?</b></p>\
@@ -36,7 +35,7 @@ gwst.widgets.SatisfiedPenniesPanel = Ext.extend(gwst.widgets.WestPanel, {
 	
     onRender: function(){
 		this.inner_panel = new Ext.Panel({
-			html: this.getText(),
+			html: this.getHtmlText(),
             id: 'satisfied_pennies_inner_panel',
 			style: 'margin: 10px',
 			border: false

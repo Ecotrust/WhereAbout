@@ -22,20 +22,20 @@ gwst.widgets.DrawOrDropPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     updateText: function(text_config) {
         Ext.apply(this, text_config);
-        this.inner_panel.getEl().update(this.getText());
+        this.inner_panel.getEl().update(this.getHtmlText());
     },
     
-    getText: function() {
+    getHtmlText: function() {
         var html_text = '<p class="top_instruct">\
 			<b>Would you like to draw another '+ this.shape_name +', or are you \
             done with this '+this.res_group_name +' and ready to allocate pennies?</b>\
-            </p><br />';
+            </p>';
         return html_text;
     },
 	
     onRender: function(){
 		this.inner_panel = new Ext.Panel({
-			html: this.getText(),
+			html: this.getHtmlText(),
             id: 'draw_or_drop_inner_panel',
 			style: 'margin: 10px',
 			border: false

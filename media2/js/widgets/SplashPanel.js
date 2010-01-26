@@ -16,16 +16,15 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
 	
     updateText: function(text_config) {
         Ext.apply(this, text_config);
-        this.inner_panel.getEl().update(this.getText());
+        this.inner_panel.getEl().update(this.getHtmlText());
     },
     
-    getText: function() {
+    getHtmlText: function() {
         var html_text = '<p>\
-            The drawing portion will now begin for the '+ this.user_group +' user group.<br /><br />\
-            You will be able to come back and finish later if you need more time.<br />\
-			To do so, click the \'Go To Main Menu\' button at the top left of the map screen.<br /><br />\
-            <img src="/site-media/images/go_to.png" style="margin-left: 65px">\
-            <br />';
+            The drawing portion will now begin for the '+ this.user_group +' user group.</p>\
+            <p>You will be able to come back and finish later if you need more time.</p>\
+			<p>To do so, click the \'Go To Main Menu\' button at the top left of the map screen.</p>\
+            <img src="/site-media/images/go_to.png" style="margin-left: 65px">';
         return html_text;
     },
 
@@ -42,7 +41,7 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         //panel of text
 		this.inner_panel = new Ext.Panel({
-			html: this.getText(),
+			html: this.getHtmlText(),
             id: 'intro_inner_panel',
 			style: 'margin: 10px',
 			border: false

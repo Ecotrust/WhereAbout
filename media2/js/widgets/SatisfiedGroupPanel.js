@@ -24,21 +24,21 @@ gwst.widgets.SatisfiedGroupPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     updateText: function(text_config) {
         Ext.apply(this, text_config);
-        this.inner_panel.getEl().update(this.getText());
+        this.inner_panel.getEl().update(this.getHtmlText());
     },
     
-    getText: function() {
+    getHtmlText: function() {
         var html_text = '<p class="top_instruct">\
 			<b>Are you satisfied with all '+ this.shape_name_plural +' you have drawn \
             and all penny values for all '+ this.resource_name_plural +' that you \
-            '+ this.action +' as a '+ this.user_group +'?</b></p><br />\
+            '+ this.action +' as a '+ this.user_group +'?</b></p>\
 			';
         return html_text;
     },
 	
     onRender: function(){
 		this.inner_panel = new Ext.Panel({
-			html: this.getText(),
+			html: this.getHtmlText(),
             id: 'satisfied_group_inner_panel',
 			style: 'margin: 10px',
 			border: false

@@ -8,6 +8,8 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
     initComponent: function(){
         // Constructor, config object already applied to 'this' so properties can 
         // be created and added/overridden here: Ext.apply(this, {});
+        
+        this.addEvents('shape-attrib-cont');
 
         // Call parent (required)
         gwst.widgets.ShapeAttribPanel.superclass.initComponent.apply(
@@ -16,25 +18,23 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
 	
     updateText: function(text_config) {
         Ext.apply(this, text_config);
-        this.inner_text_panel.getEl().update(this.getText());
+        this.inner_text_panel.getEl().update(this.getHtmlText());
         this.inner_form_panel.getForm().reset();
     },
     
-    getText: function() {
-        var html_text = '<p class="top_instruct">\
-            <b>Instructions</b>\
-			Optionally, please provide more detailed boundary information for this '+ this.shape_name +'.\
-            You may leave this section blank and just press \'Continue\'.</p><br />\
-            \
+    getHtmlText: function() {
+        var html_text = '<h2>Instructions</h2>\
+			<p>Optionally, please provide more detailed boundary information for this '+ this.shape_name +'.\
+            You may leave this section blank and just press \'Continue\'.</p>\
             <p>For example, your North boundary might be the mouth of the Nehalem River and your West boundary 30 fathoms.\
-			</p><br />';
+			</p>';
         return html_text;
     },
             
     onRender: function(){
     
 		this.inner_text_panel = new Ext.Panel({
-			html: this.getText(),
+			html: this.getHtmlText(),
             id: 'shape_attrib_text_panel',
 			style: 'margin: 10px',
 			border: false

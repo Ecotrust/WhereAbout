@@ -21,20 +21,20 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     updateText: function(text_config) {
         Ext.apply(this, text_config);
-        this.inner_panel.getEl().update(this.getText());
+        this.inner_panel.getEl().update(this.getHtmlText());
     },
     
-    getText: function() {
+    getHtmlText: function() {
         var html_text = '<p class="top_instruct">\
 			<b>Would you like to select a new '+ this.res_group_name +' \
             or have you finished them all for'+ this.user_group+'?</b>\
-            </p><br />';
+            </p>';
         return html_text;
     },
 	
     onRender: function(){
 		this.inner_panel = new Ext.Panel({
-			html: this.getText(),
+			html: this.getHtmlText(),
             id: 'finish_inner_panel',
 			style: 'margin: 10px',
 			border: false

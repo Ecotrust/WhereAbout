@@ -20,13 +20,12 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     
     updateText: function(text_config) {
         Ext.apply(this, text_config);
-        this.inner_panel.getEl().update(this.getText());
+        this.inner_panel.getEl().update(this.getHtmlText());
     },
     
-    getText: function() {
-        var html_text = '<p class="top_instruct">\
-			<b>Instructions:</b>\
-            Navigate the map to your primary <i>'+ this.resource +'</i> '+ this.shape_name +'.\
+    getHtmlText: function() {
+        var html_text = '<h2>Instructions</h2>\
+            <p>Navigate the map to your primary <i>'+ this.resource +'</i> '+ this.shape_name +'.\
             </p>';
         return html_text;
     },
@@ -43,7 +42,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
         });
 
 		this.inner_panel = new Ext.Panel({
-			html: this.getText(),
+			html: this.getHtmlText(),
             id: 'nav_inner_panel',
 			style: 'margin: 10px',
 			border: false
@@ -82,9 +81,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
             }, {
                 html: ''
             },{
-                html: '<p>\
-                    <a href=http://www.google.com>Watch Demonstration</a>\
-                    </p>'
+                html: '<p class="video-link"><img src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>'
             }]
         });
         

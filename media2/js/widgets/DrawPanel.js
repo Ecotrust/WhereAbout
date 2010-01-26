@@ -24,20 +24,20 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
        
     updateText: function(text_config) {
         Ext.apply(this, text_config);
-        this.inner_panel.getEl().update(this.getText());
+        this.inner_panel.getEl().update(this.getHtmlText());
     },
     
-    getText: function() {
-        var html_text = '<p><b>Instructions:</b> \
-			Draw your <u>first</u> '+ this.user_group +' <i>'+ this.resource +'</i> '+ this.shape_name +'\
+    getHtmlText: function() {
+        var html_text = '<h2>Instructions</h2> \
+			<p>Draw your <u>first</u> '+ this.user_group +' <i>'+ this.resource +'</i> '+ this.shape_name +'\
             on the map. (You\'ll be able to draw more)\
             </p>';
         return html_text;
     },
     
-    getText2: function() {
-        var html_text_2 = '<p>\
-            <a href=http://www.google.com>Watch Demonstration Video</a>\
+    getHtmlText2: function() {
+        var html_text_2 = '<p class="video-link">\
+            <img src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>\
             </p>';
         return html_text_2;
     },
@@ -53,7 +53,7 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         });
 
 		this.inner_panel = new Ext.Panel({
-			html: this.getText(),
+			html: this.getHtmlText(),
             id: 'draw_inner_panel',
 			style: 'margin: 10px',
 			border: false
@@ -110,7 +110,7 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         });
         
         this.lower_panel = new Ext.Panel({
-			html: this.getText2(),
+			html: this.getHtmlText2(),
             id: 'draw_lower_panel',
 			style: 'margin: 10px',
 			border: false

@@ -2,7 +2,6 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'select-res-grp-panel',
-    
     /* ``Ext.ux.Multiselect``
      * For species selection
      */
@@ -33,31 +32,30 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
 	
     updateText: function(text_config) {
         Ext.apply(this, text_config);
-        this.inner_panel.getEl().update(this.getText());
-        this.lower_panel.getEl().update(this.getText2());
+        this.inner_panel.getEl().update(this.getHtmlText());
+        this.lower_panel.getEl().update(this.getHtmlText2());
     },
     
-    getText: function() {
-        var html_text = '<p class="top_instruct">\
-			<b>Instructions:</b> Select 1 of the '+ this.plural_res_group_name +' \
+    getHtmlText: function() {
+        var html_text = '<h2>Instructions:</h2> \
+            <p>Select 1 of the '+ this.plural_res_group_name +' \
 			you '+ this.action +' as a <i>'+ this.user_group +'</i> from the list below \
 			and then click the \'Continue\' button.\
-            </p><br />'
+            </p>'
         ;
         return html_text;
     },
     
-    getText2: function(){
+    getHtmlText2: function(){
 		var html_text_2 = '<p> \
 			If you think an important '+ this.res_group_name +' is missing from the list, \
 			notify us at '+ this.contact_address +'.\
-			</p><br />'
+			</p>'
 		;
         return html_text_2;
     },
     
     onRender: function(){
-    
         this.header_panel = new Ext.Panel({  
 			html: '<img src="/site-media/images/1_PickFishery_header.png">',
             id: 'sel_res_header_panel',
@@ -68,14 +66,14 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
         });
 
 		this.inner_panel = new Ext.Panel({
-			html: this.getText(),
+			html: this.getHtmlText(),
             id: 'sel_res_inner_panel',
 			style: 'margin: 10px',
 			border: false
 		});
         
         this.lower_panel = new Ext.Panel({
-            html: this.getText2(),
+            html: this.getHtmlText2(),
             id: 'sel_res_lower_panel',
             style: 'margin: 10px',
             border: false
