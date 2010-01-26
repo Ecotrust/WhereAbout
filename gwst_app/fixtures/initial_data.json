@@ -308,15 +308,15 @@
       "resource_name_plural": "species", 
       "draw_shape_text": "<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species group</b> you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw fishing grounds on the map representing your fishing grounds and then place some number of pennies on those fishing grounds. The more pennies you place on a fishing ground, the more value or importance you are placing on it. Keep doing this until you have drawn all your fishing grounds and used all your pennies.  This process may seem complicated but it will allow the potential impact of MPA's on each fishery and each region to be measured much more accurately.</p>\r\n\r\n<p>How many fishing grounds you draw and how specific you are is up to you.  Most people draw between three and eight fishing grounds per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To get this window back after closing it, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.\r\n</p>\r\n<br/>\r\n<button type='button' onclick='gwst.app.splashTabs.activate(gwst.app.helpScreenText)'>Go To Instructions/Videos</button>&nbsp;&nbsp;&nbsp;&nbsp;<i><b>Highly Recommended</b></i>\r\n<br/> \r\n<button type='button' onclick='gwst.app.helpWindow.hide()'>Get Started</button>\r\n</div>", 
       "resource_action": "target", 
-      "group_status_text": "Please carefully read all instructions and complete each survey section. You will be asked to answer questions and draw your fishing grounds. The drawing portion can be technically challenging and you may get discouraged by the amount of time it will take you. We apologize for this. Please understand that your input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend will be worth the effort. \r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to share your information and fishing grounds with us, please  <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email. We are listening to your feedback. \r\n<h2>Instructions</h2>\r\n\r\n<p>\r\nComplete each section below one at a time.  A red circle indicates an unfinished section.  Once you have completed the necessary steps within a section you will be able to finalize it.  Once a group is finalized it will change to the color green.  Once all groups are green you will be able to finalize your survey.  You must complete at least the first user group including drawing your fishing grounds.  You may skip the others and move on.\r\n</p>", 
+      "group_status_text": "<p>\r\nPlease carefully read all instructions and complete each survey section.\r\n</p>\r\n\r\n<p>You will be asked to answer questions on fishing trip expenditures and draw your fishing grounds for each species you target. We greatly appreciate your participation as your direct input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend in this survey will be worth the effort\r\n</p>\r\n\r\n<p>\r\nIf you have questions about Ecotrust's mapping project for Oregon\u2019s Territorial Sea Plan and what your incentive is to share your information and fishing grounds with us, please  <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our Oregon TSP page</a>.\r\n</p>\r\n\r\n<p>\r\nWe strongly encourage feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, or have additional questions please email us at <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> and we will respond within a few hours if not sooner. \r\n</p>\r\n\r\n<h2>Instructions</h2>\r\n<p>\r\nComplete each section below one at a time.  A red circle indicates an unfinished section.  Once you have completed the necessary steps within a section you will be able to finalize it.  Once a group is finalized it will change to the color green.  Once all groups are green you will be able to finalize your survey.\r\n</p>", 
       "resource_name": "species", 
       "shape_name": "fishing ground", 
       "active": true, 
       "organization": "Ecotrust", 
       "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  Also these values must add up to 100%.  For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling, 40% for dive angling and nothing for private vessel angling.]</i></p>", 
       "clip_region": 1, 
-      "interview_complete_text": "<p>The fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.</p>\r\n\r\n<p>When the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated and subsequent iterations of the analysis will be completed. The maps will then be used in evaluating MPA proposals.  For each MPA proposal, stakeholders will be able to see the potential impacts that MPA would have on a given fishery and/or user group.  This is a valuable tool in finding the best areas for protection while trying to minimize the impact on fisheries.</p>\r\n\r\n<p>Your willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a></p>", 
-      "name": "Oregon Recreational Fishing"
+      "interview_complete_text": "<p>\r\nThe fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.\r\n</p>\r\n<p>\r\nWhen the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated to complete the maps. The maps will then be submitted to Oregon\u2019s Department of Land and Conservation Development to be considered along with other data and information to help guide the location of waver energy sites so that impacts to existing uses are minimized.\r\n</p>\r\n<p>\r\nYour willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a>\r\n</p>", 
+      "name": "Recreational Fishing Areas and Value in Oregon"
     }
   }, 
   {
@@ -2668,13 +2668,6 @@
     }
   }, 
   {
-    "pk": 2, 
-    "model": "gwst_app.faqgroup", 
-    "fields": {
-      "faq_group_name": "Rockfish"
-    }
-  }, 
-  {
     "pk": 3, 
     "model": "gwst_app.faqgroup", 
     "fields": {
@@ -2689,36 +2682,6 @@
       "importance": 1, 
       "question": "How many shapes should I draw?", 
       "faq_group": 1
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "If you didn't fish rockfish before the closure areas where created then you should only select Rockfish B (Post-RCA).  If you fished rockfish before the closure areas where created then select all 3 groups.", 
-      "importance": 1, 
-      "question": "Which rockfish groups should I select?", 
-      "faq_group": 2
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "The Marine Life Protection Act is law and will be implemented.  There are stakeholders involved representing your fishing interests and they need the best information they can get.  If you provide no information or false information then that can only increase the chances of your actual fishing grounds being targeted for protection because they are essentially invisible to this process.\r\n\r\nThe information you provide will be kept condidential by us at the individual level.  Any visualizations we produce (maps) will not disclose individual fishing spots as much as possible.  A review process is in place to ensure this.\r\n\r\nYes, other stakeholders will have access to this information as well, but having all interests represented will ensure that the information is not used improperly.  If you have any doubt you should consider becoming involved in the process as well.  Public participation is encouraged.", 
-      "importance": 1, 
-      "question": "Why should I show you my fishing spots?", 
-      "faq_group": 3
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "We try to make the cumulative group easier for you.  By drawing your Pre-RCA And Post-RCA fishing grounds first, you can simply pick out the best grounds from those groups and put them into your cumulative group, then redistribute the pennies.  If you haven't done any drawing yet, this will make more sense once you do and the demonstration videos will show you how to do it.", 
-      "importance": 4, 
-      "question": "How do I draw my fishing grounds for the cumulative group?", 
-      "faq_group": 2
     }
   }, 
   {
@@ -2752,16 +2715,6 @@
     }
   }, 
   {
-    "pk": 9, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "Some parts of the shape drawing are done with a right click on a two-button mouse.  Many apple computers only have one button.  The way around this is to hold the Ctrl-key on the keyboard and then click the single mouse button.  That is the same thing as using the 'right' mouse button on a two-button mouse.  Anywhere you hear to use the 'right' mouse button in the videos or instructions, just replace that with a Ctrl-click on your Apple.", 
-      "importance": 6, 
-      "question": "How do I do the shape drawing using an Apple computer with a single click mouse?", 
-      "faq_group": 1
-    }
-  }, 
-  {
     "pk": 10, 
     "model": "gwst_app.faq", 
     "fields": {
@@ -2782,22 +2735,22 @@
     }
   }, 
   {
-    "pk": 4, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "Breaking rockfish out into three groups will provide better information for decision makers than surveying for a single group alone.  These data will allow stakeholders and the MLPA science advisory team to better assess potential impacts to rockfish fishermen.  To better explain the groups:\r\n<p>The Pre-RCA group will capture where you fished before RCAs were put into place.</p>\r\n<p>The Post-RCA group will capture where you fished after RCAs were put into place.</p>\r\n<p>The cumulative group is where you would fish if Rockfish Conservation Areas (RCAs) didn't exist anymore.  Rockfish are one of the few species that are currently closed to fishing in specific areas, also known as Rockfish Conservation Areas or RCAs.  These existing RCAs will not be directly included as marine protected areas in the MLPA process. In order to better assess the impact of new proposed MPAs to rockfish fishermen, it's important to know how you would fish differently if the existing RCAs were removed.  The Pre-RCA and Post-RCA groups alone do not provide enough information.</p>\r\n\r\nMake sense?  If you still don't understand this, we apologize.  Please call or email us using the contact information in your registration email and we'll help you out.  Your patience is appreciated.", 
-      "importance": 2, 
-      "question": "Why are there 3 different rockfish groups instead of just 1 and what do they mean?", 
-      "faq_group": 2
-    }
-  }, 
-  {
     "pk": 12, 
     "model": "gwst_app.faq", 
     "fields": {
-      "answer": "On windows,  right-click 'My Computer' or just right-click your desktop and select \"Properties\", then click the \"Settings\" tab. Use the \"Screen resolution\" slider to increase your resolution to at least 1024 x 768, then click the \"Apply\" button. ", 
+      "answer": "On Windows,  right-click 'My Computer' or just right-click your desktop and select \"Properties\", then click the \"Settings\" tab. Use the \"Screen resolution\" slider to increase your resolution to at least 1024 x 768, then click the \"Apply\" button. ", 
       "importance": 2, 
       "question": "How do I increase my screen resolution?", 
+      "faq_group": 3
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The information you provide will be used to represent the socioeconomic value of recreational fishing areas and help guide the location of wave energy facilities so that impacts to existing ocean uses are minimized.  All information is kept confidential by us at the individual level. Any visualizations we produce (maps) will be a combination of fishing grounds and will not disclose individual fishing spots. A review process is in place to ensure this.", 
+      "importance": 1, 
+      "question": "Why should I show you my fishing spots?", 
       "faq_group": 3
     }
   }

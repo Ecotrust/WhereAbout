@@ -4,37 +4,66 @@
 
 {% block content %}
 <h1> Please log in to your survey</h1>
-{% if not user.is_authenticated %}
-			 {% if form.errors %}
-<p class="error">Please correct the errors below:{{ form.non_field_errors }}</p>
-{% endif %}
+<table border="0px">
+    <tr>
+    <td width="350px">
+            <form method="post" action="?next={{ next|default:"/" }}">
+        {% if not user.is_authenticated %}
+            {% if form.errors %}
+                <p class="error">Please correct the errors below:{{ form.non_field_errors }}</p>
+            {% endif %}
+                {% csrf_token %}
+                <dl>
+                    <dt>
+                        <label for="id_username">Username:</label>{% if form.username.errors %} <span class="error">{{ form.username.errors|join:", " }}</span>{% endif %}
+                    </dt>
+                    <dd>
+                        <!--{{ form.username }}--><input id="id_username" type="text" name="username" value="" maxlength="100" />
+                    </dd>
+                    <dt>
+                        <label for="id_password">Password:</label>{% if form.password.errors %} <span class="error">{{ form.password.errors|join:", " }}</span>{% endif %}
+                    </dt>
+                    <dd>
+                        {{ form.password }}
+                    </dd>
+                    <dt>
+                        <input type="submit" value="Log in" /> 
+                        {% if user.SELF_REGISTRATION %}
+                            &nbsp;&nbsp;&nbsp;<a href='/accounts/register'>Create a new account</a>
+                        {% endif %}
+                    </dt>
+                </dl>
+            </form>
+            <br/>
+            <p>
+                Web browser requirements:<ul><li>Internet Explorer 7+</li><li>FireFox 1.5+</li><li>Safari 3+</li><li>Opera 9+</li><li>Google Chrome 2+</li></ul>
+            </p>
+            <p>
+                Minimum screen resolution: 1024 x 768.
+            </p>
+            <!--<p>If you don't have an account, you can <a href="/accounts/register/">sign up for one.</a></p>
 
-<form method="post" action="?next={{ next|default:"/" }}">
-{% csrf_token %}
-<dl>
-<dt><label for="id_username">Username:</label>{% if form.username.errors %} <span class="error">{{ form.username.errors|join:", " }}</span>{% endif %}</dt>
-<dd><!--{{ form.username }}--><input id="id_username" type="text" name="username" value="" maxlength="100" /></dd>
-<dt><label for="id_password">Password:</label>{% if form.password.errors %} <span class="error">{{ form.password.errors|join:", " }}</span>{% endif %}</dt>
-<dd>{{ form.password }}</dd>
-<dt><input type="submit" value="Log in" /> 
-{% if user.SELF_REGISTRATION %}
-    &nbsp;&nbsp;&nbsp;<a href='/accounts/register'>Create a new account</a>
-{% endif %}
-</dt>
-</dl>
-</form>
-<br/>
-<p>
-Web browser requirements:<ul><li>Internet Explorer 7+</li><li>FireFox 1.5+</li><li>Safari 3+</li><li>Opera 9+</li><li>Google Chrome 2+</li></ul>
-</p>
-<p>Minimum screen resolution: 1024 x 768.
-</p>
-<!--<p>If you don't have an account, you can <a href="/accounts/register/">sign up for one.</a></p>
-
-<p>Forgot your password? You can <a href="/accounts/password/reset/">reset it</a> and receive an email.</p>
--->
-{% else %}
-<p>You are already logged in | <b>{{user.email|escape}}</b></p>
-{% endif %}
+            <p>Forgot your password? You can <a href="/accounts/password/reset/">reset it</a> and receive an email.</p>
+            -->
+        {% else %}
+            <p>You are already logged in | <b>{{user.email|escape}}</b></p>
+        {% endif %}
+    </td><td width="400px">
+        <p>
+            Oregon is currently amending its Territorial Sea Plan by developing policies and procedures to help guide the location of wave energy generators. 
+            One of these policies (Goal 19) states that we must "conserve marine resources and ecological functions for the purpose of providing long-term 
+            ecological, economic, and social value and benefits to future generations".
+        </p>
+        <p>
+            To do this, Ecotrust has been contracted by the state of Oregon to conduct a comprehensive mapping project that will assess the socioeconomic 
+            importance of ocean areas to recreational and commercial fishermen and the larger coastal community. This information will then be to help 
+            inform the location of wave energy facilities so that impacts to existing human uses may be minimized.  
+        </p>
+        <p>
+            If you'd like more information about our project please visit our <a href="http://www.ecotrust.org/mlpa/">Oregon TSP page</a> or <a href="http://www.oregon.gov/LCD/tspac.shtml">the DLCD TSP page</a>.
+        </p>
+    </td>
+    </tr>
+</table>
 
 {% endblock %}
