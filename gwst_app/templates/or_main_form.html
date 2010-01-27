@@ -12,13 +12,13 @@
     {# This can be more dynamic using template language and the "question_set" attribute.  All you need to do is have one loop through all, then three smaller loops engaging when the desired question_set begins, and only acting on the space determined by the counter of the parent loop (either use parentloop.counter or use "with" to store the value). #}
     
     {% for question in form %}
-        {% if forloop.counter < 8 %}
+        {% if forloop.counter < 10 %}
             <p><div class="fieldWrapper">
                 {{ question.errors }}
                 {{ question.label_tag }}: {{ question }}
             </div></p>
         {% endif %}
-        {% ifequal forloop.counter 8 %}   
+        {% ifequal forloop.counter 10 %}   
         <br>
         <p>
             Please estimate the percentage of your total 2008 (NOT 2009) expenditures used in each<br> 
@@ -30,13 +30,13 @@
             <th><b>Trip Related</b></th>
         </tr>
         {% endifequal %}
-        {% ifequal forloop.counter 18 %}   
+        {% ifequal forloop.counter 20 %}   
         <tr></tr>
         <tr>
             <th><b>Equipment & Annual Related</b></th>
         </tr>
         {% endifequal %}
-        {% if forloop.counter > 7 %}
+        {% if forloop.counter > 9 %}
             {% if question.errors %}
                 </table>
                     {{ question.errors }}
