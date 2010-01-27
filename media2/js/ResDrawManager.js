@@ -695,7 +695,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 shape_name: gwst.settings.interview.shape_name
             });
         }
-        this.viewport.setWestPanel(this.draw2Panel);    	
+        this.viewport.setWestPanel(this.draw2Panel); 
+        this.draw2Panel.updateGrid();
     },
     
     /* Create draw tool window and connect events to the map panel */

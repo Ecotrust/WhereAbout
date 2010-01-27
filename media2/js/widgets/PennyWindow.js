@@ -12,6 +12,7 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
             id: 'penny-window-numfield',
             name: 'pennies',
             allowBlank:false,
+            allowDecimals: false,
             width: 70,
             minValue: 1,
             minText: 'Not Enough',

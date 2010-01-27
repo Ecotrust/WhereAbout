@@ -144,6 +144,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         });
         
         gwst.settings.shapeStore.on('update', this.updateStatus, this);
+        gwst.settings.shapeStore.on('remove', this.updateStatus, this);
         
         this.status_panel = new Ext.Panel({
             id: 'penny-status-panel',
