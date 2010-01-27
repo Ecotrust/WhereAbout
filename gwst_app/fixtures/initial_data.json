@@ -308,7 +308,7 @@
       "resource_name_plural": "species", 
       "draw_shape_text": "<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species group</b> you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw fishing grounds on the map representing your fishing grounds and then place some number of pennies on those fishing grounds. The more pennies you place on a fishing ground, the more value or importance you are placing on it. Keep doing this until you have drawn all your fishing grounds and used all your pennies.  This process may seem complicated but it will allow the potential impact of MPA's on each fishery and each region to be measured much more accurately.</p>\r\n\r\n<p>How many fishing grounds you draw and how specific you are is up to you.  Most people draw between three and eight fishing grounds per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To get this window back after closing it, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.\r\n</p>\r\n<br/>\r\n<button type='button' onclick='gwst.app.splashTabs.activate(gwst.app.helpScreenText)'>Go To Instructions/Videos</button>&nbsp;&nbsp;&nbsp;&nbsp;<i><b>Highly Recommended</b></i>\r\n<br/> \r\n<button type='button' onclick='gwst.app.helpWindow.hide()'>Get Started</button>\r\n</div>", 
       "resource_action": "target", 
-      "group_status_text": "<p>\r\nPlease carefully read all instructions and complete each survey section.\r\n</p>\r\n\r\n<p>You will be asked to answer questions on fishing trip expenditures and draw your fishing grounds for each species you target. We greatly appreciate your participation as your direct input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend in this survey will be worth the effort\r\n</p>\r\n\r\n<p>\r\nIf you have questions about Ecotrust's mapping project for Oregon\u2019s Territorial Sea Plan and what your incentive is to share your information and fishing grounds with us, please  <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our Oregon TSP page</a>.\r\n</p>\r\n\r\n<p>\r\nWe strongly encourage feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, or have additional questions please email us at <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> and we will respond within a few hours if not sooner. \r\n</p>\r\n\r\n<h2>Instructions</h2>\r\n<p>\r\nComplete each section below one at a time. Once you have completed the necessary steps within a section you must <b>finalize it</b>.  A red circle indicates an unfinished section. Once a group is finalized it will change to the color green.  Once all groups are green you will be able to finalize your survey.\r\n</p>", 
+      "group_status_text": "<p>\r\nPlease carefully read all instructions and complete each survey section.\r\n</p>\r\n\r\n<p>You will be asked to answer questions on fishing trip expenditures and draw your fishing grounds for each species you target. We greatly appreciate your participation as your direct input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend in this survey will be worth the effort\r\n</p>\r\n\r\n<p>\r\nIf you have questions about Ecotrust's mapping project for Oregon\u2019s Territorial Sea Plan and what your incentive is to share your information and fishing grounds with us, please  <a target='_blank' href='http://www.ecotrust.org/tsp/'>visit our Oregon TSP page</a>.\r\n</p>\r\n\r\n<p>\r\nWe strongly encourage feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, or have additional questions please email us at <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> and we will respond within a few hours if not sooner. \r\n</p>\r\n\r\n<h2>Instructions</h2>\r\n<p>\r\nComplete each section below one at a time. Once you have completed the necessary steps within a section you must <b>finalize it</b>.  A red circle indicates an unfinished section. Once a group is finalized it will change to the color green.  Once all groups are green you will be able to finalize your survey.\r\n</p>", 
       "resource_name": "species", 
       "shape_name": "fishing ground", 
       "active": true, 
@@ -2701,67 +2701,17 @@
     }
   }, 
   {
-    "pk": 1, 
-    "model": "gwst_app.faqgroup", 
-    "fields": {
-      "faq_group_name": "Drawing Shapes"
-    }
-  }, 
-  {
     "pk": 3, 
     "model": "gwst_app.faqgroup", 
     "fields": {
-      "faq_group_name": "General"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "The number of shapes you draw is your choice.  Most people draw anywhere from 2-10 shapes per resource.", 
-      "importance": 1, 
-      "question": "How many shapes should I draw?", 
-      "faq_group": 1
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "The map takes the longest to load.  People without a broadband internet connection may need to wait up to a minute or two the first time they draw shapes.  If you wait and still nothing loads then try refreshing the page. If still nothing then verify you are using a supported browser (IE 6+, Firefox 1.0+, Safari 1.2+, Chrome 2+). If you have a supported browser then next verify you have 'javascript' enabled in your browser preferences (it is by default). Seek the help of friends and family if you're unsure how to do any of these steps or email us at fish@ecotrust.org.  Another option is simply to try another computer. Computers more than 5 years old are more likely to have issues.", 
-      "importance": 1, 
-      "question": "Why is the page not loading correctly or not loading at all when I go to draw shapes?", 
-      "faq_group": 1
+      "faq_group_name": "1. General"
     }
   }, 
   {
     "pk": 1, 
-    "model": "gwst_app.faq", 
+    "model": "gwst_app.faqgroup", 
     "fields": {
-      "answer": "The precision of your shapes is important; however, we understand that accuracy will vary between users.  Please just do the best you can with the time you have and provide us with any extra information on boundaries so that our team can make your shapes more accurate.\r\n\r\nWe also understand that you might be reluctant to share your favorite little fishing hole, while at the same time you don't want to lose it.  Just make sure your fishing hole is at least captured in one of your shapes and you put a sufficient value on it.\r\n\r\nIn most cases you should not be drawing a single shape that covers hundreds of square miles.  Tuna and other migratory species are a bit of an exception.  Split these large shapes up into multiple areas if possible and weight them separately with pennies.", 
-      "importance": 1, 
-      "question": "How much precision should I use when drawing shapes?", 
-      "faq_group": 1
-    }
-  }, 
-  {
-    "pk": 8, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "We understand that water temperature and other factors affect migratory patterns of species like tuna.  This will make the general area you fish larger when looking at things all together like this but often there are still specific places you fish.  Maybe certain sections of water always tend to be warmer and you tend to do better there.  Maybe you don't fish tuna unless they're within 20 miles of shore or maybe you do multi-days out 60 miles.  Maybe you don't fish tuna any further north or south than a given point.  That's the information we want to capture.", 
-      "importance": 5, 
-      "question": "I don't fish in the same places for migratory fish like tuna.  How do I deal with that when drawing shapes?", 
-      "faq_group": 1
-    }
-  }, 
-  {
-    "pk": 10, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "Unfortunately internet explorer 6 is an aging web browser and doesn't support the necessary map features.  Upgrading to internet explorer 7 or 8 will solve your problem.  If you can't upgrade for one reason or another, try using another browser like Firefox if you can or simply use a different computer.", 
-      "importance": 4, 
-      "question": "When I click to start drawing shapes I get an error saying that Internet Explorer 6 isn't supported.  What do I do?", 
-      "faq_group": 3
+      "faq_group_name": "2. Drawing Fishing Grounds"
     }
   }, 
   {
@@ -2791,6 +2741,56 @@
       "answer": "The information you provide will be used to represent the socioeconomic value of recreational fishing areas and help guide the location of wave energy facilities so that impacts to existing ocean uses are minimized.  All information is kept confidential by us at the individual level. Any visualizations we produce (maps) will be a combination of fishing grounds and will not disclose individual fishing spots. A review process is in place to ensure this.", 
       "importance": 1, 
       "question": "Why should I show you my fishing spots?", 
+      "faq_group": 3
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "We understand that water temperature and other factors affect migratory patterns of species like tuna.  This will make the general area you fish larger when looking at things all together like this but often there are still specific places you fish.  Maybe certain sections of water always tend to be warmer and you tend to do better there.  Maybe you don't fish tuna unless they're within 20 miles of shore or maybe you do multi-days out 60 miles.  Maybe you don't fish tuna any further north or south than a given point.  That's the information we want to capture.", 
+      "importance": 5, 
+      "question": "I don't fish in the same places for migratory fish like tuna.  How do I deal with that when drawing fishing grounds?", 
+      "faq_group": 1
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The map takes the longest to load.  People without a broadband internet connection may need to wait up to a minute or two the first time they draw fishing grounds.  If you wait and still nothing loads then try refreshing the page. If still nothing then verify you are using a supported browser (IE 6+, Firefox 1.0+, Safari 1.2+, Chrome 2+). If you have a supported browser then next verify you have 'javascript' enabled in your browser preferences (it is by default). Seek the help of friends and family if you're unsure how to do any of these steps or email us at fish@ecotrust.org.  Another option is simply to try another computer. Computers more than 5 years old are more likely to have issues.", 
+      "importance": 1, 
+      "question": "Why is the page not loading correctly or not loading at all when I go to draw fishing grounds?", 
+      "faq_group": 1
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The number of fishing grounds you draw is your choice.  Most people draw anywhere from 2-10 fishing grounds per species.", 
+      "importance": 1, 
+      "question": "How many fishing grounds should I draw?", 
+      "faq_group": 1
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The precision of your fishing grounds is important; however, we understand that accuracy will vary between users.  Please just do the best you can with the time you have and provide us with any extra information on boundaries so that our team can make your fishing grounds more accurate.\r\n\r\nWe also understand that you might be reluctant to share your favorite little fishing hole, while at the same time you don't want to lose it.  Just make sure your fishing hole is at least captured in one of your fishing grounds and you put a sufficient value on it.\r\n\r\nIn most cases you should not be drawing a single fishing ground that covers hundreds of square miles.  Tuna and other migratory species are a bit of an exception.  Split these large fishing grounds up into multiple areas if possible and weight them separately with pennies.", 
+      "importance": 1, 
+      "question": "How much precision should I use when drawing fishing grounds?", 
+      "faq_group": 1
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "Unfortunately internet explorer 6 is an aging web browser and doesn't support the necessary map features.  Upgrading to internet explorer 7 or 8 will solve your problem.  If you can't upgrade for one reason or another, try using another browser like Firefox if you can or simply use a different computer.", 
+      "importance": 4, 
+      "question": "When I click to start drawing fishing grounds I get an error saying that Internet Explorer 6 isn't supported.  What do I do?", 
       "faq_group": 3
     }
   }

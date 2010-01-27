@@ -397,7 +397,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     selNewResStep: function() {
         gwst.settings.shapeStore.removeAll();
-        this.resSelPanel.resetSelect();
+        if (this.resSelPanel) {
+            this.resSelPanel.resetSelect();
+        }
         this.startResSelStep();
         if (this.unfinishedCheckWin) {
             this.unfinishedCheckWin.hide();
