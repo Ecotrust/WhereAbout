@@ -19,8 +19,8 @@
     "pk": 4, 
     "model": "sites.site", 
     "fields": {
-      "domain": "or-rec-survey-dev.ecotrust.org", 
-      "name": "or-rec-survey-dev.ecotrust.org"
+      "domain": "oregonfishing-dev.ecotrust.org", 
+      "name": "oregonfishing-dev.ecotrust.org"
     }
   }, 
   {
