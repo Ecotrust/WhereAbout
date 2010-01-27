@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Draw_Instruction_Panel</title>
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}third-party/extjs2/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/res_draw.css"/>
+<script type="text/javascript" src="{{MEDIA_URL}}third-party/extjs2/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}third-party/extjs2/ext-all-debug.js"></script>
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/WestPanel.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/DrawInstructionPanel.js"></script>
+<script type="text/javascript">
+Ext.onReady(function() {
+	shape_name = 'fishing ground';
+
+	var p = new gwst.widgets.DrawInstructionPanel({
+        renderTo: 'panel-basic',    		
+		shape_name: shape_name
+    });
+});
+</script>
+</head>
+
+<body>
+<div id="panel-basic" class="container"/>
+</body>
+</html>

@@ -16,7 +16,6 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.addEvents('draw-back');        
         this.addEvents('draw-grid');
         
-        // this.updateBbar(this.getBottomToolbar());
         // Call parent (required)
         gwst.widgets.DrawPanel.superclass.initComponent.apply(
           this, arguments);                     
@@ -59,54 +58,11 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		});
         
-        this.table_panel = new Ext.Panel({
-            layout: 'table',
-            border: false,
-            style: 'margin: 10px; padding: 5px',
-            defaults: {
-                bodyStyle: 'border: none; padding: 5px'
-            },
-            layoutConfig: {
-                columns: 2
-            },
-            id: 'draw_table_panel',
-            items: [{
-                html: '<p> \
-                    a. Click once on the map to create the first point.\
-                    </p>'
-            },{
-                html: '<img src="/site-media/images/draw_1.png">'
-            },{
-                html: '<p> \
-                    b. Move mouse and click to create a second point.\
-                    </p>'
-            },{
-                html: '<img src="/site-media/images/draw_2.png">'
-            },{
-                html: '<p>\
-                    c. Continue tracing being as accurate as you can.\
-                    </p>'
-            }, {
-                html: '<img src="/site-media/images/draw_3.png">'
-            },{
-                html: '<p> \
-                    d. Double-click the last point to complete your '+this.shape_name+'.\
-                    </p>'
-            },{
-                html: '<img src="/site-media/images/draw_4.png">'
-            },{
-                html: '<p>\
-                    e. If you make a mistake, click the \'Cancel\' button at the top.\
-                    </p>'
-            },{
-                html: '<img src="/site-media/images/draw_5.png">'
-            },{
-                html: '<p>\
-                    f. You can control the map while you\'re drawing.\
-                    </p>'
-            },{
-                html: '<img src="/site-media/images/draw_6.png">'
-            }]
+        // this.table_panel = new Ext.Panel({
+        this.table_panel = new gwst.widgets.DrawInstructionPanel({
+            xtype: 'gwst-draw-instruction-panel',
+            shape_name: this.shape_name,
+            id: 'draw_table_panel'
         });
         
         this.lower_panel = new Ext.Panel({
