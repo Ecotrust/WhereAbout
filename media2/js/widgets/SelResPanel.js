@@ -36,6 +36,10 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.lower_panel.getEl().update(this.getHtmlText2());
     },
     
+    resetSelect: function() {
+        this.res_grp_select.reset();
+    },
+    
     getHtmlText: function() {
         var html_text = '<h2>Instructions:</h2> \
             <p>Select 1 of the '+ this.plural_res_group_name +' \
@@ -112,7 +116,6 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
 		if (species_id == '') {
             gwst.error.load('You must select a species before continuing.');
 		} else {
-			this.res_grp_select.reset();
 			this.fireEvent('res-sel-cont',this,species_id);
 		}
     }

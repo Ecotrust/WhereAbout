@@ -11,6 +11,7 @@ gwst.widgets.QuitWindow = Ext.extend(Ext.Window, {
             layout:'fit',
             html:'blort',
             closable: false,
+            resizable: false,
             tbar: [{
 				text: 'Go To Main Menu',
 				iconCls: 'quit-main',
