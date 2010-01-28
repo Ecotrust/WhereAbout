@@ -15,7 +15,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: gwst_region_clip; Type: TABLE; Schema: public; Owner: gisdev; Tablespace: 
+-- Name: gwst_region_clip; Type: TABLE; Schema: public; Owner: gwst; Tablespace: 
 --
 
 CREATE TABLE gwst_region_clip (
@@ -28,10 +28,10 @@ CREATE TABLE gwst_region_clip (
 );
 
 
-ALTER TABLE public.gwst_region_clip OWNER TO gisdev;
+ALTER TABLE public.gwst_region_clip OWNER TO gwst;
 
 --
--- Name: gwst_region_clip_id_seq; Type: SEQUENCE; Schema: public; Owner: gisdev
+-- Name: gwst_region_clip_id_seq; Type: SEQUENCE; Schema: public; Owner: gwst
 --
 
 CREATE SEQUENCE gwst_region_clip_id_seq
@@ -41,31 +41,31 @@ CREATE SEQUENCE gwst_region_clip_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.gwst_region_clip_id_seq OWNER TO gisdev;
+ALTER TABLE public.gwst_region_clip_id_seq OWNER TO gwst;
 
 --
--- Name: gwst_region_clip_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gisdev
+-- Name: gwst_region_clip_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gwst
 --
 
 ALTER SEQUENCE gwst_region_clip_id_seq OWNED BY gwst_region_clip.id;
 
 
 --
--- Name: gwst_region_clip_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gisdev
+-- Name: gwst_region_clip_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gwst
 --
 
 SELECT pg_catalog.setval('gwst_region_clip_id_seq', 1, true);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: gisdev
+-- Name: id; Type: DEFAULT; Schema: public; Owner: gwst
 --
 
 ALTER TABLE gwst_region_clip ALTER COLUMN id SET DEFAULT nextval('gwst_region_clip_id_seq'::regclass);
 
 
 --
--- Data for Name: gwst_region_clip; Type: TABLE DATA; Schema: public; Owner: gisdev
+-- Data for Name: gwst_region_clip; Type: TABLE DATA; Schema: public; Owner: gwst
 --
 
 COPY gwst_region_clip (id, name, geom) FROM stdin;
@@ -74,7 +74,7 @@ COPY gwst_region_clip (id, name, geom) FROM stdin;
 
 
 --
--- Name: gwst_region_clip_pkey; Type: CONSTRAINT; Schema: public; Owner: gisdev; Tablespace: 
+-- Name: gwst_region_clip_pkey; Type: CONSTRAINT; Schema: public; Owner: gwst; Tablespace: 
 --
 
 ALTER TABLE ONLY gwst_region_clip
@@ -82,7 +82,7 @@ ALTER TABLE ONLY gwst_region_clip
 
 
 --
--- Name: gwst_region_clip_geom_id; Type: INDEX; Schema: public; Owner: gisdev; Tablespace: 
+-- Name: gwst_region_clip_geom_id; Type: INDEX; Schema: public; Owner: gwst; Tablespace: 
 --
 
 CREATE INDEX gwst_region_clip_geom_id ON gwst_region_clip USING gist (geom);
