@@ -43,6 +43,10 @@ p.error_text img {
     border: none;
 }
 
+.x-window-body .x-panel-body  {
+    background: none;
+}
+
 .west-panel p {
     margin-bottom: 8px;
     margin-top: 5px;
