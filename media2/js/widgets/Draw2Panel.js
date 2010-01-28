@@ -37,8 +37,8 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     
     getHtmlText: function() {
         var html_text = '<h2>Instructions</h2> \
-            <p>Finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name_plural +' \
-            you '+ this.action +' as a '+ this.user_group +'!</i></p>\
+            <p>Please finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name_plural +' \
+            you '+ this.action +' as a '+ this.user_group +'.</i></p>\
             <p>Each '+this.resource+' '+this.shape_name+' you draw will be displayed on the table below.\
             Click on the table row to highlight it on the map.  You can remove a '+this.shape_name+' with\
             the \'Remove\' button.</p>\
@@ -76,6 +76,9 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             }
         }
         this.inner_grid_panel.getColumnModel().setHidden(2, !pennies_exist);
+        if (pennies_exist) {
+            this.inner_grid_panel.getColumnModel().setColumnWidth(2, 50);
+        }
     },
 
     onRender: function(){
@@ -167,6 +170,9 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             xtype: 'gwst-draw-instruction-panel'
         });
         
+        gwst.settings.shapeStore.on('update', this.updateStatus, this);
+        gwst.settings.shapeStore.on('remove', this.updateStatus, this);
+        
         //navigation buttons (back/continue)
         this.button_panel = new gwst.widgets.BackContButtons ({
             cont_handler: this.contBtnClicked.createDelegate(this),
@@ -199,6 +205,15 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     //Refresh the whole grid to update the row numberer
     refresh: function() {
     	this.inner_grid_panel.getView().refresh();
+    },
+    
+    //disable continue button if all shapes are deleted
+    updateStatus: function() {
+    	if (gwst.settings.shapeStore.getCount() > 0) {
+    		this.button_panel.enableCont();    		
+    	} else {
+    		this.button_panel.disableCont();
+    	}
     }
 });
  
