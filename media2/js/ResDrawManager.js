@@ -100,13 +100,20 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     finResSelStep: function(obj, resource_id) {
         this.curResource = gwst.settings.resourceStore.getById(resource_id);
         if (this.curResource.get('finished') == true) {
-            gwst.error.load('You have already finished drawing '+ gwst.settings.interview.shape_name +' \
-                for this '+ gwst.settings.interview.resource_name +'.\
-                <br /><br />\
-                Please select another, or return to the Main Menu.');
+            this.loadFinishedResourceSelectedWindow();
         } else {    
             this.startNavStep();
         }
+    },
+    
+    /*
+     *  Load and reopen the shape store for a previously finished resource
+     */
+    reopenResource: function() {
+        this.curResource.set('finished', false);   
+        this.loadShapeStore(this.mapPanel.getShapeLayer());
+        this.finResSelWin.hide();
+        this.startNavStep();
     },
     
     /*
@@ -593,6 +600,26 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             });
         }
         this.viewport.setWestPanel(this.resSelPanel);    	
+    },
+    
+    loadFinishedResourceSelectedWindow: function() {
+        if (!this.finResSelWin) {
+            this.finResSelWin = new gwst.widgets.FinishedResourceSelectedWindow({
+                res_group_name: gwst.settings.interview.resource_name,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
+                cur_resource: this.curResource.get('name'),
+                user_group_desc: gwst.settings.group.description
+            });
+            this.finResSelWin.on('edit-finished', this.reopenResource, this);
+        } else {
+            this.finResSelWin.updateWindow({
+                res_group_name: gwst.settings.interview.resource_name,
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
+                cur_resource: this.curResource.get('name'),
+                user_group_desc: gwst.settings.group.description
+            });
+        }
+        this.finResSelWin.show();
     },
 	
     loadNavPanel: function() {
@@ -1225,55 +1252,72 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         });                           
         gwst.settings.resourceStore.loadData(resources);
     },
-    
-    loadShapeStore: function(shapeLayer) {
-    	var autoLoad = false;
+
+    _getResourceUrl: function() {
     	var service_url = gwst.settings.urls.shapes+'?group_id='+gwst.settings.survey_group_id;
     	if (this.curResource && this.curResource.id) {
     		service_url += '&resource_id='+this.curResource.id;
-    		autoLoad = true;
     	}
-	    gwst.settings.shapeStore = new gwst.data.ResFeatureStore({
-	    	layer: shapeLayer, 	        
-		    proxy: new GeoExt.data.ProtocolProxy({
-	            protocol: new OpenLayers.Protocol.HTTP({
-	                url: service_url,
-	                format: new OpenLayers.Format.GeoJSON()
-	            })
-	        }),
-	        fields: [{
-        		name:'id',
-        		type:'float',
-        		defaultValue: null
-	        },{
-                name:'pennies',
-                type:'int',
-                defaultValue: 0
-            },{
-                name: 'boundary_n',
-                type: 'string',
-                defaultValue: ''
-            },{
-                name: 'boundary_s',
-                type: 'string',
-                defaultValue: ''
-            },{
-                name: 'boundary_e',
-                type: 'string',
-                defaultValue: ''
-            },{
-                name: 'boundary_w',
-                type: 'string',
-                defaultValue: ''
-            }],	        
-	        autoLoad: autoLoad     
-	    });
-	    //If we're autloading, don't listen for load event until after its preloaded, otherwise start listening now
-	    if (autoLoad) {
-	    	gwst.settings.shapeStore.on('load', this.configShapeStore, this);
-	    } else {
-	    	this.configShapeStore();
-	    }
+        return service_url;
+    },
+    
+    _createResourceProxy: function() {
+        var prxy = new GeoExt.data.ProtocolProxy({
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: this._getResourceUrl(),
+                format: new OpenLayers.Format.GeoJSON()
+            })
+        })
+        return prxy;
+    },
+    
+    loadShapeStore: function(shapeLayer) {
+	    if (!gwst.settings.shapeStore) {
+            var autoLoad = false;
+            if (this.curResource && this.curResource.id) {
+                autoLoad = true;
+            }
+            gwst.settings.shapeStore = new gwst.data.ResFeatureStore({
+                layer: shapeLayer, 	        
+                proxy:  this._createResourceProxy(),
+                fields: [{
+                    name:'id',
+                    type:'float',
+                    defaultValue: null
+                },{
+                    name:'pennies',
+                    type:'int',
+                    defaultValue: 0
+                },{
+                    name: 'boundary_n',
+                    type: 'string',
+                    defaultValue: ''
+                },{
+                    name: 'boundary_s',
+                    type: 'string',
+                    defaultValue: ''
+                },{
+                    name: 'boundary_e',
+                    type: 'string',
+                    defaultValue: ''
+                },{
+                    name: 'boundary_w',
+                    type: 'string',
+                    defaultValue: ''
+                }],	        
+                autoLoad: autoLoad  
+            });
+            //If we're autloading, don't listen for load event until after its preloaded, otherwise start listening now
+            if (autoLoad) {
+                gwst.settings.shapeStore.on('load', this.configShapeStore, this);
+            } else {
+                this.configShapeStore();
+            }
+        } else {
+            gwst.settings.shapeStore.proxy = this._createResourceProxy();
+            gwst.settings.shapeStore.reload();
+        }
+	    
     },
     
     //Once store has been initially loaded, add events to handle adding and updating of records.
