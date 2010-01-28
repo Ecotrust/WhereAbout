@@ -13,7 +13,7 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
             name: 'pennies',
             allowBlank:false,
             allowDecimals: false,
-            width: 70,
+            width: 100,
             minValue: 1,
             minText: 'Not Enough',
             maxValue: this.getMaxValue(),
@@ -26,7 +26,7 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
         this.penny_form = new Ext.form.FormPanel({  
             bodyStyle: 'background-color: transparent',
             border: false,
-            width: 140,
+            width: 170,
             labelWidth: 50,
             items: [ this.pennies_field ],
             id: 'penny-window-form-panel',
