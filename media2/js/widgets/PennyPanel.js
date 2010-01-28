@@ -49,8 +49,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
                     rem_pennies: this.getPenniesRemaining(),
                     shape_name: this.shape_name
                 });
-                this.pennyWin.on('penny-set', this.pennySet, this);                
-                this.pennyWin.show();	
+                this.pennyWin.on('penny-set', this.pennySet, this);             
             } else {
             	//Update the existing penny window
                 this.pennyWin.load({
@@ -59,6 +58,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
                     shape_name: this.shape_name
                 });
             }
+            this.pennyWin.show();
         } else if (action == 'pennies-zoom') {
             this.fireEvent('penny-zoom-shape', record);
         }
