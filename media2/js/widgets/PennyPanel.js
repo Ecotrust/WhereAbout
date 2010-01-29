@@ -158,7 +158,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
                 columns: 2
             },
             items: [{
-                html: 'Remaining:&nbsp;'
+                html: '<p class="x-panel-static">Remaining:&nbsp;</p>'
             },{
                 html: '<img src="/site-media/images/coins.png"/> <span id="pen-rem">'+this.getPenniesRemaining()+'</span>'
             },{

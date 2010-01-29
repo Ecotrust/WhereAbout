@@ -20,7 +20,8 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
             maxText: 'Too Many',
             msgTarget: 'under',
             selectOnFocus: true,
-            xtype: 'numberfield'
+            xtype: 'numberfield',
+            enableKeyEvents: true
         });
 
         this.penny_form = new Ext.form.FormPanel({  
@@ -33,7 +34,21 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
             defaultType: 'numberfield'
         });
         
-        this.penny_form.on('show', this.prepPennyForm);
+        this.on('show', this.prepPennyForm);
+        this.pennies_field.on(
+            'keypress', 
+            function(el, ev) {
+                if (ev.getKey() == ev.ENTER) {
+                    this.saveBtnClicked();
+                }
+            }, 
+            this
+        );
+                
+        this.pennies_left_panel = new Ext.Panel({
+            id: 'penny-left-panel',
+            html: this.getLabelValue()
+        });
         
         var table_panel = new Ext.Panel({
             layout: 'table',
@@ -48,9 +63,9 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
             id: 'penny_window_panel',
             items: [
                 this.penny_form,
-                {tag: 'div', id: 'penny-left-text', html: this.getLabelValue()},  //Ext.DomHelper object
+                this.pennies_left_panel
             ]
-        });        
+        });     
         
 		Ext.apply(this, {          
             title: 'Enter a Penny Value',
@@ -71,9 +86,11 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
             items: [ table_panel ],
             buttons: [{
                 text: 'Save',
+                id: 'saveButton',
                 handler: this.saveBtnClicked.createDelegate(this)
             },{
                 text: 'Cancel',
+                id: 'cancelButton',
                 handler: this.cancelBtnClicked.createDelegate(this)
             }]            
         });
@@ -83,6 +100,7 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
     
     prepPennyForm: function() {
         this.pennies_field.setRawValue(null);
+        this.pennies_field.reset();
         this.pennies_field.focus(true, true);
     },
     
@@ -114,10 +132,8 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
     load: function(config) {
         this.rem_pennies = config.rem_pennies;
         this.prev_pennies = config.prev_pennies;
-        Ext.get('penny-left-text').update(this.getLabelValue());
+        this.pennies_left_panel.getEl().update(this.getLabelValue());
         this.pennies_field.maxValue = this.getMaxValue();
-        this.pennies_field.setRawValue(null);
-        
     }
 });
 
