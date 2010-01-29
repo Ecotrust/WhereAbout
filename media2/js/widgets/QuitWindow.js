@@ -8,6 +8,7 @@ gwst.widgets.QuitWindow = Ext.extend(Ext.Window, {
 		
 		Ext.apply(this, {          
             height: 25,
+            width:125,
             layout:'fit',
             html:'blort',
             closable: false,

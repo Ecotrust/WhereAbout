@@ -42,7 +42,7 @@ gwst.widgets.BackContButtons = Ext.extend(Ext.Panel, {
         } else {
             this.add({
                 html: '',
-                width: 115
+                width: 105
             })
         };
         if (this.cont_handler) {
@@ -55,7 +55,7 @@ gwst.widgets.BackContButtons = Ext.extend(Ext.Panel, {
             }
             this.add({
                 items: [this.contBtn],
-                width: 85
+                width: 95
             });
         }
         // Call parent (required)

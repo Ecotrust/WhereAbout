@@ -8,9 +8,13 @@ gwst.widgets.DrawToolWindow = Ext.extend(Ext.Window, {
 		
 		Ext.apply(this, {          
             height: 25,
+            width: 155,
             layout:'fit',
             html:'blort',
+            resizable: false,
             closable: false,
+            collapsible: false,
+            draggable: false,
             tbar: [{
 				text: 'Cancel Fishing Ground',
 				iconCls: 'cancel-draw',

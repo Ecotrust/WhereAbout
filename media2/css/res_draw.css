@@ -27,6 +27,10 @@ p.error_text img {
     height: 20px;
 }
 
+p.x-panel-static{
+    position: static;
+}
+
 .west-panel .x-panel-header {
 	font-size: 12px;
 }
@@ -129,4 +133,16 @@ p.error_text img {
 .invalid-image {
     padding-left: 40px;
     padding-top: 15px;
+}
+
+.olControlMousePosition {
+    background-color: #EEEEEE;
+    color: #222222;
+    font-size: 12px ! important;
+    right: 0px ! important;
+    filter:alpha(opacity=55);
+	-moz-opacity:0.55;
+	-khtml-opacity: 0.55;
+	opacity: 0.55;
+
 }

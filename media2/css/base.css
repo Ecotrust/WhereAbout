@@ -34,7 +34,7 @@ a.section:link, a.section:visited {
 /* GLOBAL DEFAULTS */
 
 p, ol, ul, dl {
-    margin: .2em 0 .8em 0;
+    margin: .2em 2.0em .8em;
 }
 
 p {
