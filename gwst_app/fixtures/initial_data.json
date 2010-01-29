@@ -1991,7 +1991,7 @@
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
-      "eng_tooltip": "#", 
+      "eng_tooltip": "", 
       "val_max": null
     }
   }, 
