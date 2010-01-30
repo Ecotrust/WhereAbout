@@ -146,3 +146,7 @@ p.x-panel-static{
 	opacity: 0.55;
 
 }
+
+.custom-left-button {
+    float:right;
+}
