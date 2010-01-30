@@ -114,8 +114,10 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     contBtnClicked: function() {
 		var species_id = this.res_grp_select.getValue();
 		if (species_id == '') {
-            gwst.error.load('You must select a species before continuing.');
-		} else {
+            gwst.error.load('You must select a '+this.res_group_name+' before continuing.');
+		} else if (species_id.contains(',')) {
+            gwst.error.load('You have more than one '+this.res_group_name+' selected.  Please just select one at a time.');
+        } else {
 			this.fireEvent('res-sel-cont',this,species_id);
 		}
     }
