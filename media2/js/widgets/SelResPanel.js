@@ -33,6 +33,7 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     updateText: function(text_config) {
         Ext.apply(this, text_config);
         this.inner_panel.getEl().update(this.getHtmlText());
+        this.finished_list_panel.getEl().update(this.getCompletedResources());
         this.lower_panel.getEl().update(this.getHtmlText2());
     },
     
@@ -59,6 +60,23 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
         return html_text_2;
     },
     
+    getCompletedResources: function() {
+        var empty = true;
+        var comp_res = '\
+            <b>Complete Resources</b>\
+            <ul>';
+        for (var res = 0; res < gwst.settings.resourceStore.getCount(); res++) {
+            if (gwst.settings.resourceStore.getAt(res).get('finished')) {
+                empty = false;
+                comp_res = comp_res+'<li>'+gwst.settings.resourceStore.getAt(res).get('name')+'</li>';
+            }
+        }
+        if (empty == true) {
+            return comp_res+'<li>None</li></ul>';
+        }
+        return comp_res+'</ul>';
+    },
+    
     onRender: function(){
         this.header_panel = new Ext.Panel({  
 			html: '<img src="/site-media/images/1_PickFishery_header.png">',
@@ -82,6 +100,13 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
             style: 'margin: 10px',
             border: false
          });
+         
+         this.finished_list_panel = new Ext.Panel({
+            html: this.getCompletedResources(),
+            id: 'sel_res_fin_list_panel',
+            style: 'margin: 30px',
+            border: false
+         });
         
         this.button_panel = new gwst.widgets.BackContButtons ({
             cont_handler: this.contBtnClicked.createDelegate(this),
@@ -93,6 +118,7 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
             items: [
                 this.inner_panel,
                 this.res_grp_select,
+                this.finished_list_panel,
                 this.button_panel,
                 this.lower_panel
             ],
