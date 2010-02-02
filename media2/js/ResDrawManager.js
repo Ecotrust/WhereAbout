@@ -1307,21 +1307,33 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 }],	        
                 autoLoad: autoLoad  
             });
-            //If we're autloading, don't listen for load event until after its preloaded, otherwise start listening now
+            
+            //Zoom to all on load
+            gwst.settings.shapeStore.on('load', this.afterShapesLoaded, this);
+            
+            //If we're autoloading, don't listen for load event until after its preloaded, otherwise start listening now
             if (autoLoad) {
                 gwst.settings.shapeStore.on('load', this.configShapeStore, this);
             } else {
                 this.configShapeStore();
             }
         } else {
+            gwst.settings.shapeStore.on('load', this.afterShapesLoaded, this);
             gwst.settings.shapeStore.proxy = this._createResourceProxy();
             gwst.settings.shapeStore.reload();
         }
 	    
     },
     
+    //remove listener and zoom in - listener removed because 'load' is firing when a new shape is drawn and saved.
+    afterShapesLoaded: function() {
+        this.zoomToAllShapes();
+        gwst.settings.shapeStore.removeListener('load', this.afterShapesLoaded, this);
+    },
+    
     //Once store has been initially loaded, add events to handle adding and updating of records.
     configShapeStore: function() {
+        gwst.settings.shapeStore.removeListener('load', this.configShapeStore, this);
     	gwst.settings.shapeStore.on('add', this.trackNewShape, this);
     	gwst.settings.shapeStore.on('update', this.updateSavedShape, this);    	
     },
