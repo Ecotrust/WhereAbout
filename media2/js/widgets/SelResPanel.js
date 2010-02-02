@@ -63,7 +63,7 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     getCompletedResources: function() {
         var empty = true;
         var comp_res = '\
-            <b>Complete Resources</b>\
+            <b>Complete '+capFirst(this.res_group_name)+'</b>\
             <ul>';
         for (var res = 0; res < gwst.settings.resourceStore.getCount(); res++) {
             if (gwst.settings.resourceStore.getAt(res).get('finished')) {

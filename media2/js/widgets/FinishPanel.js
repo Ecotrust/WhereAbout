@@ -36,7 +36,7 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
         var empty = true;
         var comp_res = '\
             <table class="resource-list">\
-            <tr><th><b>Complete Resources</b></th></tr>';
+            <tr><th><b>Complete '+capFirst(this.res_group_name)+'</b></th></tr>';
         for (var res = 0; res < gwst.settings.resourceStore.getCount(); res++) {
             if (gwst.settings.resourceStore.getAt(res).get('finished')) {
                 empty = false;
@@ -53,7 +53,7 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
         var empty = true;
         var incomp_res = '\
             <table class="resource-list">\
-            <tr><th><b>Incomplete Resources</b></th></tr>';
+            <tr><th><b>Incomplete '+capFirst(this.res_group_name)+'</b></th></tr>';
         for (var res = 0; res < gwst.settings.resourceStore.getCount(); res++) {
             if (!gwst.settings.resourceStore.getAt(res).get('finished')) {
                 empty = false;
