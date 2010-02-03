@@ -2,7 +2,9 @@ from django import forms
 from models import *
 from django.forms.util import ValidationError
 from django.forms.util import ErrorList
-from fields import PhoneField
+from fields import PhoneField, MoneyField, PercentField
+import re
+
 
 class NameModelChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
@@ -27,23 +29,23 @@ class SelectInterviewGroupsForm( forms.Form ):
             # percent involvement field
             dynamic_args['label'] = group.name+' (%)'
             dynamic_args['required'] = False
-            dynamic_args['min_value']=0
-            dynamic_args['max_value']=100
-            self.fields['group_%d_pc' % group.id] = forms.IntegerField( **dynamic_args )
+            self.fields['group_%d_pc' % group.id] = PercentField( **dynamic_args )
             self.fields['group_%d_pc' % group.id].group = group
          
     def clean(self):
         pct_sum = 0
-        
         for i, group in enumerate(self.groups):
             try:
                 pct_val = self.cleaned_data['group_%d_pc' % group.id]
-                if pct_val:
-                    pct_sum = pct_sum + self.cleaned_data['group_%d_pc' % group.id]
+                if pct_val: 
+                    self.cleaned_data['group_%d_pc' % group.id] = int(re.sub("%","",pct_val))
+                    pct_sum = pct_sum + int(re.sub("%","",pct_val))
+                elif pct_val == "":
+                    self.cleaned_data['group_%d_pc' % group.id] = 0
             except Exception, e:
                 pass
                 
-        if pct_sum < 100 or pct_sum > 100:
+        if pct_sum != 100:
             raise forms.ValidationError( 'Percentages must add up to 100.' )
             
         return self.cleaned_data
@@ -151,7 +153,23 @@ class AnswerForm(forms.Form):
                     dynamic_args['initial']=ans
                 elif question.val_default != '':
                     dynamic_args['initial']=question.val_default                 
-                self.fields['question_' + str(question.id) + resource_postfix] = PhoneField(**dynamic_args )                        
+                self.fields['question_' + str(question.id) + resource_postfix] = PhoneField(**dynamic_args )   
+
+            elif question.answer_type == 'money':
+                if answer.count() == 1:
+                    ans = answer[0].text_val
+                    dynamic_args['initial']=ans
+                elif question.val_default != '':
+                    dynamic_args['initial']=question.val_default
+                self.fields['question_' + str(question.id) + resource_postfix] = MoneyField( **dynamic_args )     
+
+            elif question.answer_type == 'percent':
+                if answer.count() == 1:
+                    ans = answer[0].text_val
+                    dynamic_args['initial']=ans
+                elif question.val_default != '':
+                    dynamic_args['initial']=question.val_default                    
+                self.fields['question_' + str(question.id) + resource_postfix] = PercentField( **dynamic_args )
             
             # now add any tooltip text
             if question.eng_tooltip:
@@ -171,10 +189,23 @@ class AnswerForm(forms.Form):
             prev_question = question
 
     def clean(self):
+        # first loop through all answers and clean out unnecessary characters
         for question in self.questions:
+            key = 'question_'+unicode(question.id)
+            # Due to new custom types (percent & money) proper values aren't populated in cleaned_data.
+            if question.answer_type == "money":
+                self.cleaned_data[key] = re.sub("\$","",str(self.data[key]))
+            elif question.answer_type == "percent":
+                self.cleaned_data[key] = re.sub("%","",str(self.data[key]))
+            if self.data.get(key) == "" and (question.answer_type == "money" or question.answer_type == "percent"):
+                self.cleaned_data[key] = 0
+         
+        # now loop again running validation assuming all fields have been cleaned.
+        for question in self.questions:        
             if question.question_group:
                 self.question_group_validation() 
                 break         
+        
         return self.cleaned_data
 
     def question_group_validation(self):
@@ -209,10 +240,16 @@ class AnswerForm(forms.Form):
     def validate_sum(self, target, answers):
         sum = 0
         for key, value in answers.iteritems():
-            sum += int(value)
-        if sum != target:
+            if str(value) != "":
+                sum += float(value)
+            if sum > target:
+                msg = 'Values must add up to '+unicode(target)+', currently at '+unicode(sum)
+                self._errors[key] = ErrorList([msg])
+                break
+        if sum < target:
             msg = 'Values must add up to '+unicode(target)+', currently at '+unicode(sum)
-            self._errors[key] = ErrorList([msg])     
+            self._errors[key] = ErrorList([msg])
+
 
     def save(self, user):
         for field_name in self.fields:
@@ -229,10 +266,10 @@ class AnswerForm(forms.Form):
             if self.resource_id:
                 answer.resource_id = self.resource_id
                 
-            if field.question.answer_type == 'integer':
+            if field.question.answer_type == 'integer' or field.question.answer_type == 'percent':
                 answer.integer_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 answer.text_val = str(answer.integer_val) # makes the db a little more human readable
-            elif field.question.answer_type == 'decimal':
+            elif field.question.answer_type == 'decimal' or field.question.answer_type == 'money':
                 answer.decimal_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 answer.text_val = str(answer.decimal_val) # makes the db a little more human readable
             elif field.question.answer_type == 'boolean':
@@ -246,7 +283,7 @@ class AnswerForm(forms.Form):
                 answer.option_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 answer.text_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix + '_other']
             elif field.question.answer_type == 'text' or field.question.answer_type == 'phone':
-                answer.text_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
+                answer.text_val = str(self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix])
             answer.save()
             
             #print "saved answer (res: %d, q: %d, user: %d)" % (answer.resource_id, answer.int_question.id, answer.user.id)

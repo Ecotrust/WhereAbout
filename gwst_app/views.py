@@ -340,7 +340,6 @@ def answer_questions(request,group_id):
     else:
         # form validation
         form = AnswerForm(questions, answers, group_id, resource_id, request.POST )
-        
         if form.is_valid():
             # update the group membership status, if necessary
             group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=group_id)

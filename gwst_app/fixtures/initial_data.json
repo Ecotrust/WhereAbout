@@ -427,6 +427,24 @@
     }
   }, 
   {
+    "pk": 7, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "main", 
+      "name": "Main Questions", 
+      "required_group": true, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 2, 
+      "member_title": "main", 
+      "page_template": "or_main_form.html", 
+      "resources": [], 
+      "description": "General Questions"
+    }
+  }, 
+  {
     "pk": 8, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -449,28 +467,6 @@
         25
       ], 
       "description": "Kayak or Non-Motorized Vessel"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "Dive/Spear Fishing", 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "member_title": "dive/spear fisherman", 
-      "page_template": "base_form.html", 
-      "resources": [
-        4, 
-        15, 
-        24
-      ], 
-      "description": "Diving and spear/hand take"
     }
   }, 
   {
@@ -499,21 +495,25 @@
     }
   }, 
   {
-    "pk": 7, 
+    "pk": 4, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FF", 
-      "code": "main", 
-      "name": "Main Questions", 
-      "required_group": true, 
+      "code": "div", 
+      "name": "Dive/Spear Fishing", 
+      "required_group": false, 
       "select_resource_text": "", 
       "preselect": true, 
-      "user_draws_shapes": false, 
+      "user_draws_shapes": true, 
       "interview": 2, 
-      "member_title": "main", 
-      "page_template": "or_main_form.html", 
-      "resources": [], 
-      "description": "General Questions"
+      "member_title": "dive/spear fisherman", 
+      "page_template": "base_form.html", 
+      "resources": [
+        4, 
+        15, 
+        24
+      ], 
+      "description": "Diving and spear/hand take"
     }
   }, 
   {
@@ -756,6 +756,39 @@
     "fields": {
       "code": "soc_econ", 
       "eng_text": "Socio-Economic Expenses", 
+      "validators": [
+        1
+      ]
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.questiongroup", 
+    "fields": {
+      "code": "k_lnchpct", 
+      "eng_text": "Kayak: Percentage use of this port", 
+      "validators": [
+        1
+      ]
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.questiongroup", 
+    "fields": {
+      "code": "v_lnchpct", 
+      "eng_text": "Private Vessel: Percentage use of this port", 
+      "validators": [
+        1
+      ]
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.questiongroup", 
+    "fields": {
+      "code": "d_lnchpct", 
+      "eng_text": "Dive: Percentage use of this port", 
       "validators": [
         1
       ]
@@ -1500,6 +1533,166 @@
     }
   }, 
   {
+    "pk": 167, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_port0", 
+      "eng_text": "Primary diving or spear/hand take launching port/site", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 2.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 168, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_lnchpct0", 
+      "eng_text": "Percentage of your trips from this launching port/site", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 3.0, 
+      "required": true, 
+      "question_group": 6, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 169, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_port1", 
+      "eng_text": "Other diving or spear/hand take launching port/site 1", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 4.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 172, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_lnchpct1", 
+      "eng_text": "Percentage of your trips from launching port/site 1", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 5.0, 
+      "required": false, 
+      "question_group": 6, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 170, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_port2", 
+      "eng_text": "Other diving or spear/hand take launching port/site 2", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 6.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 173, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_lnchpct2", 
+      "eng_text": "Percentage of your trips from launching port/site 2", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 7.0, 
+      "required": false, 
+      "question_group": 6, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 171, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_port3", 
+      "eng_text": "Other diving or spear/hand take launching port/site 3", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 8.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 174, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_lnchpct3", 
+      "eng_text": "Percentage of your trips from launching port/site 3", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 9.0, 
+      "required": false, 
+      "question_group": 6, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 114, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -1508,7 +1701,7 @@
       "eng_text": "How many days 'on average' do you dive per year?", 
       "int_group": 4, 
       "question_set": null, 
-      "display_order": 1.0, 
+      "display_order": 10.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -1528,7 +1721,7 @@
       "eng_text": "How many years of experience do you have diving?", 
       "int_group": 4, 
       "question_set": null, 
-      "display_order": 2.0, 
+      "display_order": 20.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -1548,7 +1741,7 @@
       "eng_text": "What is your primary access method to your diving locations?", 
       "int_group": 4, 
       "question_set": null, 
-      "display_order": 3.0, 
+      "display_order": 30.0, 
       "required": true, 
       "question_group": null, 
       "options": [
@@ -1573,15 +1766,15 @@
       "eng_text": "What percentage of your dives are from a vessel (such as a boat, kayak, or paddleboard)?", 
       "int_group": 4, 
       "question_set": null, 
-      "display_order": 4.0, 
-      "required": true, 
+      "display_order": 40.0, 
+      "required": false, 
       "question_group": 2, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -1593,15 +1786,15 @@
       "eng_text": "What percentage of your dives are shore based?", 
       "int_group": 4, 
       "question_set": null, 
-      "display_order": 5.0, 
-      "required": true, 
+      "display_order": 50.0, 
+      "required": false, 
       "question_group": 2, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -1613,7 +1806,7 @@
       "eng_text": "What is your primary dive method? (We understand most do more than one type.  Answer which you do the most)", 
       "int_group": 4, 
       "question_set": null, 
-      "display_order": 6.0, 
+      "display_order": 60.0, 
       "required": true, 
       "question_group": null, 
       "options": [
@@ -1656,7 +1849,7 @@
       "eng_text": "What type of boat do you fish from?", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 1.0, 
+      "display_order": 10.0, 
       "required": true, 
       "question_group": null, 
       "options": [
@@ -1680,7 +1873,7 @@
       "eng_text": " What is the Department of Fish and Game boat number?", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 2.0, 
+      "display_order": 20.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
@@ -1700,7 +1893,7 @@
       "eng_text": "For how many years (if any) have you operated a sport boat?", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 3.0, 
+      "display_order": 30.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
@@ -1720,7 +1913,7 @@
       "eng_text": "For how many years (if any) have you owned a sport boat?", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 4.0, 
+      "display_order": 40.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
@@ -1740,7 +1933,7 @@
       "eng_text": "How long (in feet) is the primary vessel/boat?", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 5.0, 
+      "display_order": 50.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
@@ -1760,7 +1953,7 @@
       "eng_text": "How is the boat normally stored?", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 6.0, 
+      "display_order": 60.0, 
       "required": false, 
       "question_group": null, 
       "options": [
@@ -1784,13 +1977,33 @@
       "eng_text": "Where is your primary port/ramp (dock/moorage/launch) located? ", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 7.0, 
+      "display_order": 70.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 162, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_lnchpct0", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 75.0, 
+      "required": true, 
+      "question_group": 5, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1804,13 +2017,33 @@
       "eng_text": "Other launch site (In addition to your primary) ", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 8.0, 
+      "display_order": 80.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 163, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_lnchpct1", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 85.0, 
+      "required": false, 
+      "question_group": 5, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1824,13 +2057,33 @@
       "eng_text": "Other launch site 2 ", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 9.0, 
+      "display_order": 90.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 164, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_lnchpct2", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 95.0, 
+      "required": false, 
+      "question_group": 5, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1844,13 +2097,33 @@
       "eng_text": "Other launch site 3 ", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 10.0, 
+      "display_order": 100.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 165, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_lnchpct3", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 105.0, 
+      "required": false, 
+      "question_group": 5, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1864,13 +2137,33 @@
       "eng_text": "Other launch site 4 ", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 11.0, 
+      "display_order": 110.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 166, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_lnchpct4", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 115.0, 
+      "required": false, 
+      "question_group": 5, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1884,7 +2177,7 @@
       "eng_text": "How many years experience do you have fishing from a private vessel? ", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 12.0, 
+      "display_order": 120.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -1904,7 +2197,7 @@
       "eng_text": "On average, how many other individuals are on the boat per trip (not including yourself)? ", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 13.0, 
+      "display_order": 130.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -1924,7 +2217,7 @@
       "eng_text": "On average, how many days do you spend fishing from a private vessel each year? ", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 14.0, 
+      "display_order": 140.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -2093,7 +2386,7 @@
       "options": [], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "decimal", 
+      "answer_type": "money", 
       "eng_tooltip": "hotel, food, bait, fees, gear, etc...", 
       "val_max": null
     }
@@ -2134,14 +2427,14 @@
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 800.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2154,14 +2447,14 @@
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 801.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2174,14 +2467,14 @@
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 802.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2194,14 +2487,14 @@
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 803.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2214,14 +2507,14 @@
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 804.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2234,14 +2527,14 @@
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 805.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2254,14 +2547,14 @@
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 806.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2274,14 +2567,14 @@
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 807.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2294,14 +2587,14 @@
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 808.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2314,14 +2607,14 @@
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 809.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2334,14 +2627,14 @@
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 900.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2354,14 +2647,14 @@
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 901.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2374,14 +2667,14 @@
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 902.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2394,14 +2687,14 @@
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 903.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2414,14 +2707,14 @@
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 904.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2434,14 +2727,14 @@
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 905.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2454,14 +2747,14 @@
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 906.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2474,14 +2767,14 @@
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 907.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2494,14 +2787,14 @@
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 908.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
+      "val_min": null, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "GPS, fish locator, radio, etc...", 
-      "val_max": 100.0
+      "val_max": null
     }
   }, 
   {
@@ -2514,33 +2807,13 @@
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 909.0, 
-      "required": true, 
+      "required": false, 
       "question_group": 3, 
       "options": [], 
-      "val_min": 0.0, 
-      "val_default": "0", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": 108, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_port1", 
-      "eng_text": "Primary kayak or non-motorized vessel launching port/site", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
       "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Primary port and sites you launch your kayak from", 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
       "val_max": null
     }
   }, 
@@ -2550,7 +2823,7 @@
     "fields": {
       "all_resources": true, 
       "code": "k_day_spec", 
-      "eng_text": "How many days 'on average' do you spend diving for this species from a kayak or non-motorized vessel?", 
+      "eng_text": "How many days 'on average' do you spend fishing for this species from a kayak or non-motorized vessel?", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 1.0, 
@@ -2565,6 +2838,46 @@
     }
   }, 
   {
+    "pk": 108, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_port1", 
+      "eng_text": "Primary kayak or non-motorized vessel launching port/site", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 10.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Primary port and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 158, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_lnchpct1", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 15.0, 
+      "required": true, 
+      "question_group": 4, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 109, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -2573,7 +2886,7 @@
       "eng_text": "Other kayak or non-motorized launching port/site 1", 
       "int_group": 8, 
       "question_set": null, 
-      "display_order": 2.0, 
+      "display_order": 20.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
@@ -2581,6 +2894,26 @@
       "val_default": "", 
       "answer_type": "text", 
       "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 159, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_lnchpct2", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 25.0, 
+      "required": false, 
+      "question_group": 4, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
       "val_max": null
     }
   }, 
@@ -2593,7 +2926,7 @@
       "eng_text": "Other kayak or non-motorized launching port/site 2", 
       "int_group": 8, 
       "question_set": null, 
-      "display_order": 3.0, 
+      "display_order": 30.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
@@ -2601,6 +2934,26 @@
       "val_default": "", 
       "answer_type": "text", 
       "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 160, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_lnchpct3", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 35.0, 
+      "required": false, 
+      "question_group": 4, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
       "val_max": null
     }
   }, 
@@ -2613,7 +2966,7 @@
       "eng_text": "Other kayak or non-motorized launching port/site 3", 
       "int_group": 8, 
       "question_set": null, 
-      "display_order": 4.0, 
+      "display_order": 40.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
@@ -2621,6 +2974,26 @@
       "val_default": "", 
       "answer_type": "text", 
       "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 161, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_lnchpct4", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 45.0, 
+      "required": false, 
+      "question_group": 4, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
       "val_max": null
     }
   }, 
@@ -2633,7 +3006,7 @@
       "eng_text": "How many years experience do you have fishing from a kayak or non-motorized vessel?", 
       "int_group": 8, 
       "question_set": null, 
-      "display_order": 5.0, 
+      "display_order": 50.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -2653,7 +3026,7 @@
       "eng_text": "How many days 'on average' do you spend each year fishing from a kayak or non-motorized vessel?", 
       "int_group": 8, 
       "question_set": null, 
-      "display_order": 6.0, 
+      "display_order": 60.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
