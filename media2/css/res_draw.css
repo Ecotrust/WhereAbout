@@ -144,7 +144,8 @@ p.x-panel-static{
 	-moz-opacity:0.55;
 	-khtml-opacity: 0.55;
 	opacity: 0.55;
-
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .custom-left-button {
