@@ -144,11 +144,18 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         this.selectControl = new OpenLayers.Control.SelectFeature(this.vecLayer);        
         map.addControl(this.selectControl);
         this.selectControl.activate();
+
+        map.addLayers([baseLayer, nautLayer, this.vecLayer]);
+        
+        var layerStore = new GeoExt.data.LayerStore({
+            layers: [nautLayer],
+            map: this.map
+        });
         
         //Update internal MapPanel properties
 		Ext.apply(this, {
 		    map: map,
-		    layers: [baseLayer, nautLayer, this.vecLayer],
+		    layers: layerStore,
 		    extent: map_extent,
 	        center: region_extent.getCenterLonLat(),
 	        zoom: this.defaultZoom

@@ -529,20 +529,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 		sm.on('rowselect', this.mapLayerToggled, this);
 		sm.on('rowdeselect', this.mapLayerToggled, this);
 
-		//Filter the layer store to only layers we want to display
-		//This is not a long term solution because clearing the filter
-		//will refresh the grid again and show all.  Filtering now
-		//may prevent further use of the layer store in the future.
-		gwst.settings.layerStore.filterBy(
-			function (record, id) {
-				var lyr = record.get('layer');
-				if (lyr.isBaseLayer || lyr.CLASS_NAME == 'OpenLayers.Layer.Vector') {
-					return false;
-				}
-				return true;
-			}
-		);
-				
 		this.layerWin = new Ext.Window({
 			items: [
 		        new Ext.grid.GridPanel({
