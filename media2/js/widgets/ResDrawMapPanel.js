@@ -3,6 +3,9 @@ Ext.namespace('gwst', 'gwst.widgets');
 gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     //Default properties can defined here and overriden by config object passed to contructor
 	
+    defaultZoom: 1,
+    maxZoom: 6,
+    
     initComponent: function(){
     	//Constructor config object already applied by now.  Properties can be added/overridden using Ext.apply	
 		
@@ -24,7 +27,11 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             units: "m",
             numZoomLevels: 18,
             maxResolution: 156543.0339,
-            maxExtent: map_extent
+            maxExtent: map_extent,
+            eventListeners: {
+                "zoomend": this.zoomHandler,
+                scope: this
+            }
         };        
 
         //Map vector style
@@ -144,13 +151,20 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		    layers: [baseLayer, nautLayer, this.vecLayer],
 		    extent: map_extent,
 	        center: region_extent.getCenterLonLat(),
-	        zoom: 1
+	        zoom: this.defaultZoom
 		});    		
 		
         // Call parent (required)
 		gwst.widgets.ResDrawMapPanel.superclass.initComponent.call(this);
     },
 
+    zoomHandler: function() {
+        var zoomLvl = this.map.getZoom();
+        if (zoomLvl > this.maxZoom){
+            this.map.zoomTo(this.maxZoom);
+        }
+    },
+    
     getLayerStore: function() {
     	return this.layers;
     },
