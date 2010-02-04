@@ -238,7 +238,11 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process and finish Invalid Shape step
      */
     finInvalidShapeStep: function() {
-        this.startAnotherShapeStep();
+        if (gwst.settings.shapeStore.getCount() > 0) {
+            this.startAnotherShapeStep();
+        } else {
+            this.startDrawStep();
+        }
     },
     
     /******************** Satisfied with shape step *******************/
