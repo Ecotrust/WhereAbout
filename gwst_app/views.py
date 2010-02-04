@@ -205,8 +205,9 @@ def group_status(request):
             #'num shapes' is how many have been drawn
             num_shapes = InterviewShape.objects.filter(user=request.user,int_group=group_memb.int_group).count()
             
+            shape_name_plural = request.session['interview'].shape_name_plural
+            resource_name = request.session['interview'].resource_name
             if num_shapes == 0:
-                shape_name_plural = request.session['interview'].shape_name_plural
                 group_memb.user_status_msg = 'no '+shape_name_plural+' drawn'
                 
             else:
@@ -242,10 +243,10 @@ def group_status(request):
                 
                 # calculate completion of total resources selected
                 num_resources = num_incomplete_resources+num_complete_resources
-                group_memb.user_status_msg = '%s/%s resource group(s) complete' % (num_complete_resources,num_resources)
+                group_memb.user_status_msg = '%s/%s %s group(s) complete' % (num_complete_resources,num_resources,resource_name)
 
                 if bZeroPennyShapes:
-                    group_memb.user_status_msg = group_memb.user_status_msg + ', You have shapes with 0 pennies, please allocate or remove them to move on'
+                    group_memb.user_status_msg = group_memb.user_status_msg + ', You have '+shape_name_plural+' with 0 pennies, please allocate or remove them to move on'
                         
                 group_memb.num_complete_resources = num_complete_resources
                 group_memb.num_incomplete_resources = num_incomplete_resources
