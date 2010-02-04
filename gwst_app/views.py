@@ -995,9 +995,14 @@ Result status codes
 3 - zero area after clipping
 4 - overlapped existing shape
 5 - single point
+6 - too large
 '''    
 @login_required
 def validate_shape(request):
+    
+    #maximum size a shape should logically be.  It is probably in square meters.
+    maxArea = 11000000000
+
     result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'    
     # make sure the user has a valid session in-progress
     interview = request.session['interview']
@@ -1052,6 +1057,10 @@ def validate_shape(request):
         if clipped_shape.area == 0:
             return gen_validate_response(3, 'Zero area after clipping', clipped_shape)
          
+        #Error if area is too large (set by maxArea) 
+        if clipped_shape.area > maxArea:
+            return gen_validate_response(6, 'Shape is too large', new_shape)
+            
         #If clipped into more than one polygon, return the largest
         if clipped_shape.num_geom > 1:
             largest_area = 0.0

@@ -45,6 +45,9 @@ gwst.widgets.InvalidShapePanel = Ext.extend(gwst.widgets.WestPanel, {
         } else if (this.status_code == 5) {
         	html_text += '<p>Your '+this.shape_name+' is not valid because it had less than 3 points.</p>  \
                 <p>You probably accidentally double clicked and completed it before you were done.</p>';
+        } else if (this.status_code == 6) {
+            html_text += '<p>Your '+this.shape_name+' is not valid because it is too large.\
+            Please break it up into smaller '+this.shape_name_plural+'.</p>';
         }
         html_text += '<p>Click the \'Continue\' button to try again.</p>';
         return html_text;
