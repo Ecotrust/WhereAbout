@@ -470,6 +470,28 @@
     }
   }, 
   {
+    "pk": 4, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "div", 
+      "name": "Dive/Spear Fishing", 
+      "required_group": false, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "member_title": "dive/spear fisherman", 
+      "page_template": "base_form.html", 
+      "resources": [
+        4, 
+        15, 
+        24
+      ], 
+      "description": "Diving and spear/hand take"
+    }
+  }, 
+  {
     "pk": 5, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -492,28 +514,6 @@
         25
       ], 
       "description": "Private Vessel"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "Dive/Spear Fishing", 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "member_title": "dive/spear fisherman", 
-      "page_template": "base_form.html", 
-      "resources": [
-        4, 
-        15, 
-        24
-      ], 
-      "description": "Diving and spear/hand take"
     }
   }, 
   {
@@ -1870,7 +1870,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_lic", 
-      "eng_text": " What is the Department of Fish and Game boat number?", 
+      "eng_text": " What is the Department of Fish and Wildlife boat number?", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 20.0, 
