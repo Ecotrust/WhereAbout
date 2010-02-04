@@ -265,7 +265,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     finSatisfiedShapeStep: function(result) {
     	if (!result.satisfied) {
     		this.mapPanel.removeLastShape();
-            this.startAnotherShapeStep();
+            this.startDraw2Step();
     	} else {
             this.startAttribStep();
         }
@@ -1298,11 +1298,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 autoLoad: autoLoad  
             });
             
-            //Zoom to all on load
-            gwst.settings.shapeStore.on('load', this.afterShapesLoaded, this);
-            
             //If we're autoloading, don't listen for load event until after its preloaded, otherwise start listening now
             if (autoLoad) {
+                //Zoom to all on load
+                gwst.settings.shapeStore.on('load', this.afterShapesLoaded, this);
                 gwst.settings.shapeStore.on('load', this.configShapeStore, this);
             } else {
                 this.configShapeStore();
