@@ -24,7 +24,7 @@
     <a href='/'><img alt="Logo" src="http://www.ecotrust.org/images/ecotrust_logo08.gif"/></a>
     {% if user.is_authenticated %}
     <div id='menu'>
-      Welcome <b>{{ user.first_name }}.</b>
+      Welcome
       <div id='user-tools'>      
       {% if user.is_staff %}
         <a href="/admin/">Site Admin</a> |
