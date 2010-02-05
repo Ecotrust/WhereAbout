@@ -104,7 +104,7 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
          this.finished_list_panel = new Ext.Panel({
             html: this.getCompletedResources(),
             id: 'sel_res_fin_list_panel',
-            style: 'margin: 30px',
+            style: 'margin-left: 40px; margin-bottom: 10px',
             border: false
          });
         
