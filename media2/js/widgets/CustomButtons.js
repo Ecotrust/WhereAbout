@@ -45,7 +45,7 @@ gwst.widgets.CustomButtons = Ext.extend(Ext.Panel, {
                     items: [
                         new Ext.Button(btn_action)
                     ],
-                    width: 115
+                    width: 143
                 });
                 i++;
             } else if (this.element_list[i].type == 'text') {
