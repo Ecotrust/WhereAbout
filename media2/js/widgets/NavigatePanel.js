@@ -51,7 +51,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
         this.table_panel = new Ext.Panel({
             layout: 'table',
             border: false,
-            style: 'margin: 10px; padding: 5px',
+            style: 'margin: 5px; padding: 5px',
             defaults: {
                 bodyStyle: 'border: none; padding: 5px'
             },
@@ -61,9 +61,8 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
             id: 'nav_table_panel',
             items: [{
                 html: '<p> \
-                    a. First, navigate the map to your first '+ this.shape_name +'.\
-                    To move the map, click and drag it or use the blue arrow buttons.\
-                    To zoom in and out, use the blue \'+\' and \'-\' buttons.\
+                    a. To move the map, use the blue arrow buttons.\
+                    To zoom the map in and out, use the blue \'+\' and \'-\' buttons.\
                     </p>'
             },{
                 html: '<img src="/site-media/images/nav_2.png">'
