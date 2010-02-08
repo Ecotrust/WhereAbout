@@ -76,7 +76,12 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     /* Finish splash and start resource selection */
     finUnfinishedResourceStartStep: function() {
-    	this.startDraw2Step();
+        if (gwst.settings.shapeStore.getCount() > 0) {
+            gwst.settings.shapeStore.removeListener('load', this.finUnfinishedResourceStartStep, this);
+            this.startDraw2Step();
+        } else {
+            gwst.settings.shapeStore.on('load', this.finUnfinishedResourceStartStep, this);
+        }
     },
     
     skipUnfinishedResourceStartStep: function () {
