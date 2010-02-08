@@ -25,10 +25,7 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<p class="top_instruct">\
-			<b>Would you like to select a new '+ this.res_group_name +' \
-            or have you finished them all for'+ this.user_group+'?</b>\
-            </p>'+this.getCompletedResources()+this.getIncompleteResources();
+        var html_text = '<p>Current status for '+this.user_group+':</p><p>'+this.getCompletedResources()+this.getIncompleteResources()+'<p>';
         return html_text;
     },
     
@@ -36,7 +33,7 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
         var empty = true;
         var comp_res = '\
             <table class="resource-list">\
-            <tr><th><b>Complete '+capFirst(this.res_group_name)+'</b></th></tr>';
+            <tr><th><b>Completed '+capFirst(this.res_group_name)+':</b></th></tr>';
         for (var res = 0; res < gwst.settings.resourceStore.getCount(); res++) {
             if (gwst.settings.resourceStore.getAt(res).get('finished')) {
                 empty = false;
@@ -53,7 +50,7 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
         var empty = true;
         var incomp_res = '\
             <table class="resource-list">\
-            <tr><th><b>Incomplete '+capFirst(this.res_group_name)+'</b></th></tr>';
+            <tr><th><b>Incomplete '+capFirst(this.res_group_name)+':</b></th></tr>';
         for (var res = 0; res < gwst.settings.resourceStore.getCount(); res++) {
             if (!gwst.settings.resourceStore.getAt(res).get('finished')) {
                 empty = false;
@@ -82,10 +79,16 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
                 elem: 'Select '+this.res_group_name+'',
                 type: 'text'
             },{
+            	elem: 'Start your next '+ this.res_group_name +' or change one you already completed',
+            	type: 'text'            	
+            },{
                 elem: this.finishBtnClicked.createDelegate(this),
                 type: 'handler'
             },{
                 elem: 'Finish',
+                type: 'text'
+            },{
+                elem: 'Finish the drawing section of the survey',
                 type: 'text'
             }]
         });
