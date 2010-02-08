@@ -361,7 +361,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process penny allocation step
      */
     finPennyStep: function() {
-        this.startSatisfiedPenniesStep();
+        this.startFinishStep();
     },
     
     /*
@@ -371,33 +371,13 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.startPennyInstrStep();
     },
     
-    /******************** Satisfied with pennies step *******************/
-    
-    /* 
-     * Setup UI for satisfied with pennies step 
-     */
-    startSatisfiedPenniesStep: function() {
-        this.loadSatisfiedPenniesPanel();        
-    },
-       
-    /*
-     * Process and finish satisfied with shape step
-     */
-    finSatisfiedPenniesStep: function(result) {
-    	if (!result.satisfied) {
-            this.startPennyStep();
-    	} else {
-            this.curResource.set('finished', true);
-            this.startFinishStep();
-        }
-    },
-    
     /******************** Finish Step *******************/
     
     /*
      * Load option panel to finish/finish later/select new resource 
      */
     startFinishStep: function() {
+        this.curResource.set('finished', true);
         this.loadFinishPanel();
     },
     
@@ -898,32 +878,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.pennyPanel);    	
     },
-    
-    /* Load the satisfied with pennies west panel */
-    loadSatisfiedPenniesPanel: function() {
-    	if (!this.satPenniesPanel) {
-            this.satPenniesPanel = new gwst.widgets.SatisfiedPenniesPanel({
-                xtype: 'gwst-satisfied-pennies-panel',
-                resource: this.curResource.get('name'),
-                action: gwst.settings.interview.resource_action,
-                user_group_desc: gwst.settings.group.description,
-                shape_name_plural: gwst.settings.interview.shape_name_plural,
-                shape_name: gwst.settings.interview.shape_name
-            });
-            //When panel fires event saying it's all done, we want to process it and move on 
-            this.satPenniesPanel.on('satisfied', this.finSatisfiedPenniesStep, this);   
-        } else {
-            this.satPenniesPanel.updateText({
-                resource: this.curResource.get('name'),
-                action: gwst.settings.interview.resource_action,
-                user_group_desc: gwst.settings.group.description,
-                shape_name_plural: gwst.settings.interview.shape_name_plural,
-                shape_name: gwst.settings.interview.shape_name
-            });
-        }
-        this.viewport.setWestPanel(this.satPenniesPanel);    	
-    },
-    
+        
     /* Load the finish/finish later/select another resource west panel */
     loadFinishPanel: function() {
     	if (!this.finishPanel) {
