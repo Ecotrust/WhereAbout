@@ -37,8 +37,8 @@ gwst.widgets.BackContButtons = Ext.extend(Ext.Panel, {
             }            
             this.add({
                 items: [this.backBtn],
-                width: 105,
-                style: 'margin-left: 20px'
+                width: 85,
+                style: 'margin-left: 40px'
             });
         } else {
             this.add({

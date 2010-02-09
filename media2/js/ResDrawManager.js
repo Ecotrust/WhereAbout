@@ -16,7 +16,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     layerWin: null,		//Map layers window
     layerWinOffset: [-8, 8],	//Offset from top right to render
     quitWinOffset: [308, 8],	//Offset from top left to render
-    drawToolWinOffset: [488, 8],	//Offset from top left to render
+    drawToolWinOffset: [445, 8],	//Offset from top left to render
 
     constructor: function(){
         gwst.ResDrawManager.superclass.constructor.call(this);
