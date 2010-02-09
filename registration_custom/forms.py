@@ -1,9 +1,9 @@
 from django import forms
-from registration.forms import RegistrationForm
+from registration.forms import RegistrationFormUniqueEmail
 from django.utils.translation import ugettext_lazy as _
 from registration_custom.models import OdfwRegistrationProfile
 
-class RegistrationFormFull(RegistrationForm):
+class RegistrationFormFull(RegistrationFormUniqueEmail):
 
     def save(self, profile_callback=None):
         """
