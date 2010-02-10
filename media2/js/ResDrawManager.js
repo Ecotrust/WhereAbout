@@ -606,6 +606,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.navPanel = new gwst.widgets.NavigatePanel({
                 xtype: 'gwst-navigate-panel',
                 resource: this.curResource.get('name'),
+                user_group: gwst.settings.group.member_title,
                 shape_name: gwst.settings.interview.shape_name
             });
             this.navPanel.on('nav-cont', this.finNavStep, this);
@@ -613,6 +614,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         } else {
             this.navPanel.updateText({
                 resource: this.curResource.get('name'),
+                user_group: gwst.settings.group.member_title,
                 shape_name: gwst.settings.interview.shape_name
             });
         }

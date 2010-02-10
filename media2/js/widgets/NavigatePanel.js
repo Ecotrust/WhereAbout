@@ -4,6 +4,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'navigate-panel',
 	resource: 'unknown',
     shape_name: 'unknown',
+    user_group: 'unknown',
 	
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -25,7 +26,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getHtmlText: function() {
         var html_text = '<h2>Instructions</h2>\
-            <p>Navigate the map to your primary <i>'+ this.resource +'</i> '+ this.shape_name +'.\
+            <p>Navigate the map to your primary <i>'+ this.resource +'</i> '+ this.shape_name +' as a <i>'+ this.user_group +'</i>.\
             </p>';
         return html_text;
     },
