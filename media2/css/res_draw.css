@@ -68,6 +68,12 @@ p.x-panel-static{
 
 .video-link {
     font-size: 0.8em;
+    margin-top: 3px !important;
+    margin-bottom: 5px !important;
+}
+
+.video-img {
+    vertical-align: middle;
 }
 
 .west-panel h2 {

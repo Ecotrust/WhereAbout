@@ -36,7 +36,7 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getHtmlText2: function() {
         var html_text_2 = '<p class="video-link">\
-            <img src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>\
+            <img class="video-img" src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>\
             </p>';
         return html_text_2;
     },

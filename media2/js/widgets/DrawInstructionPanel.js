@@ -9,13 +9,13 @@ gwst.widgets.DrawInstructionPanel = Ext.extend(Ext.Panel, {
         // Constructor, config object already applied to 'this' so properties can 
         // be created and added/overridden here: Ext.apply(this, {});
         Ext.apply(this, {
-            style: 'margin: 5px; padding: 5px',
+            style: 'margin: 5px; padding: 3px',
             width: 270,
             layout: 'table',
             cls: 'secondary-panel',
             border: 'none',
             defaults: {
-                bodyStyle: 'border: none; padding: 5px'
+                bodyStyle: 'border: none; padding: 3px 2px 3px 2px; '
             },
             layoutConfig: {
                 columns: 2

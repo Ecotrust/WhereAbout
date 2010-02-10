@@ -45,6 +45,20 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
         return html_text;
     },
     
+    getDrawVideoHtml: function() {
+        var html_text_2 = '<p class="video-link">\
+            <img class="video-img" src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>\
+            </p>';
+        return html_text_2;
+    },
+    
+    getDraw2VideoHtml: function() {
+        var html_text_3 = '<p class="video-link">\
+            <img class="video-img" src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>\
+            </p>';
+        return html_text_3;
+    },
+    
     deleteCheck: function(btn, text) {
         if(btn == 'yes') {
             this.fireEvent('draw-two-delete', this.cur_action_record);
@@ -141,7 +155,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             plugins: this.grid_actions,
             sm: new GeoExt.grid.FeatureSelectionModel({singleSelect:true}),
             stripeRows: true,
-            height: 200,
+            height: 165,
             width: 260,
             title: 'Your '+this.resource+' '+capWords(this.shape_name)+'s',
             style: 'margin: 10px',
@@ -169,6 +183,22 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             xtype: 'gwst-draw-instruction-panel'
         });
         
+        this.lower_instruction_panel = new Ext.Panel({
+			html: this.getDrawVideoHtml(),
+            id: 'draw_extended_lower_instruction_panel',
+			style: 'margin: 10px',
+			border: false
+		});
+        
+        this.instruction_panel.add(this.lower_instruction_panel);
+        
+        this.lower_panel = new Ext.Panel({
+			html: this.getDraw2VideoHtml(),
+            id: 'draw_extended_lower_panel',
+			style: 'margin: 10px',
+			border: false
+		});
+        
         gwst.settings.shapeStore.on('update', this.updateStatus, this);
         gwst.settings.shapeStore.on('remove', this.updateStatus, this);
         
@@ -180,6 +210,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 
         this.add(this.header_panel);
 		this.add(this.inner_panel);
+        this.add(this.lower_panel);
         this.add(this.instruction_panel);
         this.add(this.inner_grid_panel); 
         this.hidePennyColumn();

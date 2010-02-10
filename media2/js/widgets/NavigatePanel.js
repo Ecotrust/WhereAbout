@@ -80,7 +80,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
             }, {
                 html: ''
             },{
-                html: '<p class="video-link"><img src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>'
+                html: '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>'
             }]
         });
         
