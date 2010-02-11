@@ -8,7 +8,7 @@ gwst.widgets.DrawToolWindow = Ext.extend(Ext.Window, {
 		
 		Ext.apply(this, {          
             height: 25,
-            width: 149,
+            width: 160,
             layout:'fit',
             html:'blort',
             resizable: false,
