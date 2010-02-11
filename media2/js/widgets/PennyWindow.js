@@ -126,7 +126,7 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
     },
     
     getLabelValue: function() {
-    	return '<span style="color:red">('+this.getMaxValue()+' left)</span>';    	
+    	return '<span style="color:red">'+this.getMaxValue()+' available</span>';    	
     },
     
     load: function(config) {
