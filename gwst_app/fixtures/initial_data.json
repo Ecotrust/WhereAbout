@@ -445,31 +445,6 @@
     }
   }, 
   {
-    "pk": 8, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FFFFFF", 
-      "code": "kyk", 
-      "name": "Kayak or Non-Motorized Vessel Fishing", 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "member_title": "kayak or non-motorized vessel fisherman", 
-      "page_template": "base_form.html", 
-      "resources": [
-        1, 
-        4, 
-        5, 
-        7, 
-        24, 
-        25
-      ], 
-      "description": "Kayak or Non-Motorized Vessel"
-    }
-  }, 
-  {
     "pk": 4, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -514,6 +489,31 @@
         25
       ], 
       "description": "Private Vessel"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "code": "kyk", 
+      "name": "Kayak or Non-Motorized Vessel Fishing", 
+      "required_group": false, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "member_title": "kayak or non-motorized vessel fisherman", 
+      "page_template": "base_form.html", 
+      "resources": [
+        1, 
+        4, 
+        5, 
+        7, 
+        24, 
+        25
+      ], 
+      "description": "Kayak or Non-Motorized Vessel"
     }
   }, 
   {
@@ -1533,166 +1533,6 @@
     }
   }, 
   {
-    "pk": 167, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_port0", 
-      "eng_text": "Primary diving or spear/hand take launching port/site", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 2.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 168, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_lnchpct0", 
-      "eng_text": "Percentage of your trips from this launching port/site", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 3.0, 
-      "required": true, 
-      "question_group": 6, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 169, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_port1", 
-      "eng_text": "Other diving or spear/hand take launching port/site 1", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 4.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 172, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_lnchpct1", 
-      "eng_text": "Percentage of your trips from launching port/site 1", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 5.0, 
-      "required": false, 
-      "question_group": 6, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 170, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_port2", 
-      "eng_text": "Other diving or spear/hand take launching port/site 2", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 6.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 173, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_lnchpct2", 
-      "eng_text": "Percentage of your trips from launching port/site 2", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 7.0, 
-      "required": false, 
-      "question_group": 6, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 171, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_port3", 
-      "eng_text": "Other diving or spear/hand take launching port/site 3", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 8.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 174, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_lnchpct3", 
-      "eng_text": "Percentage of your trips from launching port/site 3", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 9.0, 
-      "required": false, 
-      "question_group": 6, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 114, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -1816,6 +1656,166 @@
       "val_min": null, 
       "val_default": "", 
       "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 167, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_port0", 
+      "eng_text": "Primary diving or spear/hand take launching port/site", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 70.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 168, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_lnchpct0", 
+      "eng_text": "Percentage of your trips from this launching port/site", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 75.0, 
+      "required": true, 
+      "question_group": 6, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 169, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_port1", 
+      "eng_text": "Other diving or spear/hand take launching port/site 1", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 80.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 172, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_lnchpct1", 
+      "eng_text": "Percentage of your trips from launching port/site 1", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 85.0, 
+      "required": false, 
+      "question_group": 6, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 170, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_port2", 
+      "eng_text": "Other diving or spear/hand take launching port/site 2", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 90.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 173, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_lnchpct2", 
+      "eng_text": "Percentage of your trips from launching port/site 2", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 95.0, 
+      "required": false, 
+      "question_group": 6, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 171, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_port3", 
+      "eng_text": "Other diving or spear/hand take launching port/site 3", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 100.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 174, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "d_lnchpct3", 
+      "eng_text": "Percentage of your trips from launching port/site 3", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 105.0, 
+      "required": false, 
+      "question_group": 6, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1969,206 +1969,6 @@
     }
   }, 
   {
-    "pk": 123, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_homep", 
-      "eng_text": "Where is your primary port/ramp (dock/moorage/launch) located? ", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 70.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 162, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_lnchpct0", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 75.0, 
-      "required": true, 
-      "question_group": 5, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 124, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_landp_1", 
-      "eng_text": "Other launch site (In addition to your primary) ", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 80.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 163, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_lnchpct1", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 85.0, 
-      "required": false, 
-      "question_group": 5, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 125, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_landp_2", 
-      "eng_text": "Other launch site 2 ", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 90.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 164, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_lnchpct2", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 95.0, 
-      "required": false, 
-      "question_group": 5, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 126, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_landp_3", 
-      "eng_text": "Other launch site 3 ", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 100.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 165, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_lnchpct3", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 105.0, 
-      "required": false, 
-      "question_group": 5, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 127, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_landp_4", 
-      "eng_text": "Other launch site 4 ", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 110.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 166, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_lnchpct4", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 115.0, 
-      "required": false, 
-      "question_group": 5, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 128, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -2226,6 +2026,206 @@
       "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": 365.0
+    }
+  }, 
+  {
+    "pk": 123, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_homep", 
+      "eng_text": "Where is your primary port/ramp (dock/moorage/launch) located? ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 170.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 162, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_lnchpct0", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 175.0, 
+      "required": true, 
+      "question_group": 5, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 124, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_landp_1", 
+      "eng_text": "Other launch site (In addition to your primary) ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 180.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 163, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_lnchpct1", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 185.0, 
+      "required": false, 
+      "question_group": 5, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 125, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_landp_2", 
+      "eng_text": "Other launch site 2 ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 190.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 164, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_lnchpct2", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 195.0, 
+      "required": false, 
+      "question_group": 5, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 126, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_landp_3", 
+      "eng_text": "Other launch site 3 ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 200.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 165, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_lnchpct3", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 205.0, 
+      "required": false, 
+      "question_group": 5, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 127, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_landp_4", 
+      "eng_text": "Other launch site 4 ", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 210.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 166, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "v_lnchpct4", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 215.0, 
+      "required": false, 
+      "question_group": 5, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
     }
   }, 
   {
@@ -2838,166 +2838,6 @@
     }
   }, 
   {
-    "pk": 108, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_port1", 
-      "eng_text": "Primary kayak or non-motorized vessel launching port/site", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 10.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Primary port and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 158, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_lnchpct1", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 15.0, 
-      "required": true, 
-      "question_group": 4, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 109, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_port2", 
-      "eng_text": "Other kayak or non-motorized launching port/site 1", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 20.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Ports and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 159, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_lnchpct2", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 25.0, 
-      "required": false, 
-      "question_group": 4, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 110, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_port3", 
-      "eng_text": "Other kayak or non-motorized launching port/site 2", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 30.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Ports and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 160, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_lnchpct3", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 35.0, 
-      "required": false, 
-      "question_group": 4, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 111, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_port4", 
-      "eng_text": "Other kayak or non-motorized launching port/site 3", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 40.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Ports and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 161, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_lnchpct4", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 45.0, 
-      "required": false, 
-      "question_group": 4, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 112, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -3035,6 +2875,166 @@
       "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": 365.0
+    }
+  }, 
+  {
+    "pk": 108, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_port1", 
+      "eng_text": "Primary kayak or non-motorized vessel launching port/site", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 70.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Primary port and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 158, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_lnchpct1", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 75.0, 
+      "required": true, 
+      "question_group": 4, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 109, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_port2", 
+      "eng_text": "Other kayak or non-motorized launching port/site 1", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 80.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 159, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_lnchpct2", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 85.0, 
+      "required": false, 
+      "question_group": 4, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 110, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_port3", 
+      "eng_text": "Other kayak or non-motorized launching port/site 2", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 90.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 160, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_lnchpct3", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 95.0, 
+      "required": false, 
+      "question_group": 4, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 111, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_port4", 
+      "eng_text": "Other kayak or non-motorized launching port/site 3", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 100.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Ports and sites you launch your kayak from", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 161, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "k_lnchpct4", 
+      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 105.0, 
+      "required": false, 
+      "question_group": 4, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
     }
   }, 
   {
