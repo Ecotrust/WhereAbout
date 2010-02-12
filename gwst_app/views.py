@@ -12,6 +12,8 @@ from shortcuts import render_to_geojson
 
 #Pass extra settings around whether user can self-register
 def login(request, template_name='registration/login.html'):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/select_interview/')
     request.user.SELF_REGISTRATION = settings.SELF_REGISTRATION
     from django.contrib.auth.views import login as default_login
     return default_login(request, template_name)
