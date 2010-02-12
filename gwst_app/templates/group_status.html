@@ -24,6 +24,7 @@ function skip_res_verify(link) {
 </div>
 <br/>
 
+<a name='main_menu' />
 {% if user.is_staff %}
     <a href='/reset_interview/{{interview.id}}'>Restart Survey</a>
     <br/>
@@ -32,7 +33,6 @@ function skip_res_verify(link) {
 <a href="/accounts/logout/">Logout and finish later</a>
 <br/>
 <br/>
-
 <ul>
 {% for r in result %} 
     <li style='line-height:16px'>
@@ -134,5 +134,5 @@ function skip_res_verify(link) {
 {% endif %}
 </li>
 </ul>
-
+<div style="height: 600px" />
 {% endblock %}

@@ -25,11 +25,11 @@ urlpatterns = patterns('',
     (r'^assign_groups/$', assign_groups ),
     (r'^interview_complete/$', interview_complete ),
     
-    (r'^group_status/$', group_status ),
+    (r'^group_status', group_status ),
     (r'^group_qs/(\d+)/answer/$', answer_questions ),
     (r'^group_qs/(\d+)/view/$', view_answers ),
     (r'^answer_resource_questions/(\d+)/$', answer_resource_questions ),
-    (r'^review_resource_questions/(\d+)/$', answer_resource_questions, {'next_url': '/group_status/'} ),
+    (r'^review_resource_questions/(\d+)/$', answer_resource_questions, {'next_url': '/group_status#main_menu'} ),
 
     (r'^select_group_resources/(\d+)/$', select_group_resources ),
 	(r'^draw_group_resources/(\d+)/$', draw_group_resources ),

@@ -405,7 +405,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process completion of drawing phase
      */
     finDrawingPhase: function() {
-    	window.location = "/group_status/";
+    	window.location = "/group_status#main_menu";
     },
             
     /******************** UI widget handlers ********************/

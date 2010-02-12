@@ -361,7 +361,7 @@ def answer_questions(request,group_id):
             # create or update InterviewAnswer records
             form.save(request.user)
             
-            return HttpResponseRedirect('/group_status/')
+            return HttpResponseRedirect('/group_status#main_menu')
     return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))     
     
 
@@ -457,7 +457,7 @@ def answer_resource_questions(request, group_id, next_url=None):
         if next_url:
             return HttpResponseRedirect(next_url)
         else:
-            return HttpResponseRedirect('/group_status/')
+            return HttpResponseRedirect('/group_status#main_menu')
             
     answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
     
@@ -495,7 +495,7 @@ def answer_resource_questions(request, group_id, next_url=None):
             if next_url:
                 return HttpResponseRedirect(next_url)
             else:
-                return HttpResponseRedirect('/group_status/')
+                return HttpResponseRedirect('/group_status#main_menu')
         
     return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions}))   
 
@@ -611,13 +611,13 @@ def finalize_group(request,id):
                     
                         # check if user drew shapes but didn't get pennies to 100
                         if shape_count > 0 and shape_pennies != 100:
-                            return HttpResponseRedirect('/group_status/')
+                            return HttpResponseRedirect('/group_status#main_menu')
                         
                         total_shape_count = total_shape_count + shape_count
                     
                 # check if user failed to draw any shapes
                 if total_shape_count == 0:
-                    return HttpResponseRedirect('/group_status/')
+                    return HttpResponseRedirect('/group_status#main_menu')
                 
             update_memb = group_memb[0]
             update_memb.status = 'finalized'
@@ -628,7 +628,7 @@ def finalize_group(request,id):
             return render_to_response( '404.html', RequestContext(request,{}))
         
         # redirect to interview_group_status
-        return HttpResponseRedirect('/group_status/')
+        return HttpResponseRedirect('/group_status#main_menu')
         
 # user skips unfinished resources if at least one is finished and finalizes group
 @login_required
@@ -681,7 +681,7 @@ def skip_res_finalize_group(request,id):
                     
                 # check if user failed to draw any shapes
                 if total_shape_count == 0:
-                    return HttpResponseRedirect('/group_status/')
+                    return HttpResponseRedirect('/group_status#main_menu')
                 
             update_memb = group_memb[0]
             update_memb.status = 'finalized'
@@ -692,7 +692,7 @@ def skip_res_finalize_group(request,id):
             return render_to_response( '404.html', RequestContext(request,{}))
         
         # redirect to interview_group_status
-        return HttpResponseRedirect('/group_status/')        
+        return HttpResponseRedirect('/group_status#main_menu')        
         
 # user unfinalizes group
 @login_required
@@ -734,7 +734,7 @@ def unfinalize_group(request,id):
             return render_to_response( '404.html', RequestContext(request,{}))
         
         # redirect to interview_group_status
-        return HttpResponseRedirect('/group_status/')
+        return HttpResponseRedirect('/group_status#main_menu')
      
 @login_required
 def skip_group(request, id):
@@ -746,7 +746,7 @@ def skip_group(request, id):
     group_memb.opt_out = True
     group_memb.status = 'skipped'
     group_memb.save()
-    return HttpResponseRedirect('/group_status/')
+    return HttpResponseRedirect('/group_status#main_menu')
         
 # user finalizes interview
 @login_required
