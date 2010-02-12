@@ -6,6 +6,7 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
 	user_group: 'unknown',
     shape_name: 'unknown',
     action: 'unknown',
+    help_url: gwst.settings.urls.draw_help,
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -36,7 +37,7 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getHtmlText2: function() {
         var html_text_2 = '<p class="video-link">\
-            <img class="video-img" src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>\
+            <img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a>\
             </p>';
         return html_text_2;
     },

@@ -9,6 +9,8 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     shape_name_plural: 'unknown',
     //store the selected record to delete to pass around
     cur_action_record: null,
+    help_url: gwst.settings.urls.draw_2_help,
+    draw_help_url: gwst.settings.urls.draw_help,
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -47,14 +49,14 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     
     getDrawVideoHtml: function() {
         var html_text_2 = '<p class="video-link">\
-            <img class="video-img" src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>\
+            <img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.draw_help_url +'" target="_blank">View Video Demonstration</a>\
             </p>';
         return html_text_2;
     },
     
     getDraw2VideoHtml: function() {
         var html_text_3 = '<p class="video-link">\
-            <img class="video-img" src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>\
+            <img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a>\
             </p>';
         return html_text_3;
     },

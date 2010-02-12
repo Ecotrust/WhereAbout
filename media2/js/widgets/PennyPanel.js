@@ -10,6 +10,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     record: null,
     penniesLeft: null,	//pennies remaining for group 
     shape_name_plural: 'unknown',
+    help_url: gwst.settings.urls.penny_help,
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -35,7 +36,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
             <p>a. Click \'Edit Pennies\' below and give each of your '+this.shape_name_plural+' a penny value.  You must use all 100.</p>\
             <p>b. Click \'Go Back\' if you need to change your '+this.shape_name_plural+'.</p>\
             <p>c. Click \'Continue\' to move on.</p>\
-            <p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a></p>';
+            <p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a></p>';
         return html_text;
     },
     

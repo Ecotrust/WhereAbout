@@ -5,6 +5,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
 	resource: 'unknown',
     shape_name: 'unknown',
     user_group: 'unknown',
+    help_url: gwst.settings.urls.nav_help,
 	
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -81,7 +82,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
             }, {
                 html: ''
             },{
-                html: '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a onclick="return false;" href="#">View Video Demonstration</a>'
+                html: '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a>'
             }]
         });
         
