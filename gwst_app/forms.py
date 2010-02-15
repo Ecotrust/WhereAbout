@@ -243,11 +243,11 @@ class AnswerForm(forms.Form):
             if str(value) != "":
                 sum += float(value)
             if sum > target:
-                msg = 'Values must add up to '+unicode(target)+', currently at '+unicode(sum)
+                msg = 'Values must add up to '+unicode(int(target))+', currently at '+unicode(int(sum))
                 self._errors[key] = ErrorList([msg])
                 break
         if sum < target:
-            msg = 'Values must add up to '+unicode(target)+', currently at '+unicode(sum)
+            msg = 'Values must add up to '+unicode(int(target))+', currently at '+unicode(int(sum))
             self._errors[key] = ErrorList([msg])
 
 
