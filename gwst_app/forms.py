@@ -242,11 +242,7 @@ class AnswerForm(forms.Form):
         for key, value in answers.iteritems():
             if str(value) != "":
                 sum += float(value)
-            if sum > target:
-                msg = 'Values must add up to '+unicode(int(target))+', currently at '+unicode(int(sum))
-                self._errors[key] = ErrorList([msg])
-                break
-        if sum < target:
+        if sum != target:
             msg = 'Values must add up to '+unicode(int(target))+', currently at '+unicode(int(sum))
             self._errors[key] = ErrorList([msg])
 
