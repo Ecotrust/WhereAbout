@@ -308,12 +308,12 @@
       "resource_name_plural": "species", 
       "draw_shape_text": "<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species group</b> you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw fishing grounds on the map representing your fishing grounds and then place some number of pennies on those fishing grounds. The more pennies you place on a fishing ground, the more value or importance you are placing on it. Keep doing this until you have drawn all your fishing grounds and used all your pennies.  This process may seem complicated but it will allow the potential impact of MPA's on each fishery and each region to be measured much more accurately.</p>\r\n\r\n<p>How many fishing grounds you draw and how specific you are is up to you.  Most people draw between three and eight fishing grounds per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To get this window back after closing it, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.\r\n</p>\r\n<br/>\r\n<button type='button' onclick='gwst.app.splashTabs.activate(gwst.app.helpScreenText)'>Go To Instructions/Videos</button>&nbsp;&nbsp;&nbsp;&nbsp;<i><b>Highly Recommended</b></i>\r\n<br/> \r\n<button type='button' onclick='gwst.app.helpWindow.hide()'>Get Started</button>\r\n</div>", 
       "resource_action": "target", 
-      "group_status_text": "<p>\r\nPlease carefully read all instructions and complete each survey section.\r\n</p>\r\n\r\n<p>You will be asked to answer questions on fishing trip expenditures and draw your fishing grounds for each species you target. We greatly appreciate your participation as your direct input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend in this survey will be worth the effort\r\n</p>\r\n\r\n<p>\r\nIf you have questions about Ecotrust's mapping project for Oregon\u2019s Territorial Sea Plan and what your incentive is to share your information and fishing grounds with us, please  <a target='_blank' href='http://www.ecotrust.org/tsp/'>visit our Oregon TSP page</a>.\r\n</p>\r\n\r\n<p>\r\nWe strongly encourage feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, or have additional questions please email us at <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> and we will respond within a few hours if not sooner. \r\n</p>\r\n\r\n<h2>Instructions</h2>\r\n<p>\r\nComplete each section below one at a time. You will be asked to finalize each section before moving on to the next.  You can logout of the survey at any time and your progress will be saved for you to finish at a later time.\r\n</p>", 
+      "group_status_text": "<p>\r\nPlease carefully read all instructions and complete each survey section.\r\n</p>\r\n\r\n<p>You will be asked to answer questions on fishing trip expenditures and draw your fishing grounds for each species you target.\r\n</p>\r\n\r\n<p>\r\nIf you have questions about Ecotrust's mapping project for Oregon\u2019s Territorial Sea Plan and what your incentive is to share your information and fishing grounds with us, please  <a target='_blank' href='http://www.ecotrust.org/tsp/'>visit our Oregon TSP page</a>.\r\n</p>\r\n\r\n<p>\r\nWe strongly encourage feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, or have additional questions, please email us at <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> and we will respond within a few hours if not sooner. \r\n</p>\r\n\r\n<p>\r\nWe greatly appreciate your participation as your direct input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend in this survey will be worth the effort.\r\n</p>\r\n\r\n<h2>Instructions</h2>\r\n<p>\r\nComplete each section below one at a time. You will be asked to finalize each section before moving onto the next.  You can logout of the survey at any time and your survey will be saved for you to finish at a later time.\r\n</p>", 
       "resource_name": "species", 
       "shape_name": "fishing ground", 
       "active": true, 
       "organization": "Ecotrust", 
-      "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  Also these values must add up to 100%.  For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling, 40% for dive angling and nothing for private vessel angling.]</i></p>", 
+      "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  In addition, these values must add up to 100%.  For example, if someone participates in both kayak fishing and dive fishing, they might enter 60% for kayak fishing, 40% for dive fishing and nothing for private vessel fishing.]</i></p>", 
       "clip_region": 1, 
       "interview_complete_text": "<p>\r\nThe fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.\r\n</p>\r\n<p>\r\nWhen the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated to complete the maps. The maps will then be submitted to Oregon\u2019s Department of Land and Conservation Development to be considered along with other data and information to help guide the location of waver energy sites so that impacts to existing uses are minimized.\r\n</p>\r\n<p>\r\nYour willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a>\r\n</p>", 
       "name": "Recreational Fishing Areas and Value in Oregon"
@@ -445,25 +445,28 @@
     }
   }, 
   {
-    "pk": 4, 
+    "pk": 8, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "Dive/Spear Fishing", 
+      "shape_color": "FFFFFF", 
+      "code": "kyk", 
+      "name": "Kayak or Non-Motorized Vessel Fishing", 
       "required_group": false, 
       "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": true, 
       "interview": 2, 
-      "member_title": "dive/spear fisherman", 
+      "member_title": "kayak or non-motorized vessel fisherman", 
       "page_template": "base_form.html", 
       "resources": [
+        1, 
         4, 
-        15, 
-        24
+        5, 
+        7, 
+        24, 
+        25
       ], 
-      "description": "Diving and spear/hand take"
+      "description": "Kayak or Non-Motorized Vessel"
     }
   }, 
   {
@@ -492,28 +495,25 @@
     }
   }, 
   {
-    "pk": 8, 
+    "pk": 4, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
-      "shape_color": "FFFFFF", 
-      "code": "kyk", 
-      "name": "Kayak or Non-Motorized Vessel Fishing", 
+      "shape_color": "FF", 
+      "code": "div", 
+      "name": "Dive/Spear Fishing", 
       "required_group": false, 
       "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": true, 
       "interview": 2, 
-      "member_title": "kayak or non-motorized vessel fisherman", 
+      "member_title": "dive/spear fisherman", 
       "page_template": "base_form.html", 
       "resources": [
-        1, 
         4, 
-        5, 
-        7, 
-        24, 
-        25
+        15, 
+        24
       ], 
-      "description": "Kayak or Non-Motorized Vessel"
+      "description": "Diving and spear/hand take"
     }
   }, 
   {
@@ -1518,7 +1518,7 @@
     "fields": {
       "all_resources": true, 
       "code": "d_day_spec", 
-      "eng_text": "How many days 'on average' do you spend diving for this species?", 
+      "eng_text": "Number of days 'on average' spent diving for this species", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 1.0, 
@@ -1538,7 +1538,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_trips_yr", 
-      "eng_text": "How many days 'on average' do you dive per year?", 
+      "eng_text": "Number of days 'on average' that you dive (spear fish or hand-take) per year", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 10.0, 
@@ -1558,7 +1558,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_yr_exp", 
-      "eng_text": "How many years of experience do you have diving?", 
+      "eng_text": "Years of experience that you have diving (spear fish or hand-take)", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 20.0, 
@@ -1578,7 +1578,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_acc_mod", 
-      "eng_text": "What is your primary access method to your diving locations?", 
+      "eng_text": "Your primary access method to your diving (spear fish or hand-take) locations", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 30.0, 
@@ -1603,7 +1603,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_pct_isl", 
-      "eng_text": "What percentage of your dives are from a vessel (such as a boat, kayak, or paddleboard)?", 
+      "eng_text": "Percentage of your dives (spear fish or hand-take) that are from a vessel (such as a boat, kayak, or paddleboard)", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 40.0, 
@@ -1623,7 +1623,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_pct_shr", 
-      "eng_text": "What percentage of your dives are shore based?", 
+      "eng_text": "Percentage of your dives (spear fish or hand-take) that are shore based", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 50.0, 
@@ -1643,7 +1643,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_method", 
-      "eng_text": "What is your primary dive method? (We understand most do more than one type.  Answer which you do the most)", 
+      "eng_text": "Dive (spear fish or hand-take) method that you use the most", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 60.0, 
@@ -1666,7 +1666,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_port0", 
-      "eng_text": "Primary diving or spear/hand take launching port/site", 
+      "eng_text": "Primary diving (spear fish or hand-take) launch port/site", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 70.0, 
@@ -1686,7 +1686,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_lnchpct0", 
-      "eng_text": "Percentage of your trips from this launching port/site", 
+      "eng_text": "Percentage of your trips from this launch port/site", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 75.0, 
@@ -1706,7 +1706,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_port1", 
-      "eng_text": "Other diving or spear/hand take launching port/site 1", 
+      "eng_text": "Other diving (spear fish or hand-take) launch port/site 1", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 80.0, 
@@ -1726,7 +1726,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_lnchpct1", 
-      "eng_text": "Percentage of your trips from launching port/site 1", 
+      "eng_text": "Percentage of your trips from launch port/site 1", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 85.0, 
@@ -1746,7 +1746,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_port2", 
-      "eng_text": "Other diving or spear/hand take launching port/site 2", 
+      "eng_text": "Other diving (spear fish or hand-take) launch port/site 2", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 90.0, 
@@ -1766,7 +1766,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_lnchpct2", 
-      "eng_text": "Percentage of your trips from launching port/site 2", 
+      "eng_text": "Percentage of your trips from launch port/site 2", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 95.0, 
@@ -1786,7 +1786,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_port3", 
-      "eng_text": "Other diving or spear/hand take launching port/site 3", 
+      "eng_text": "Other diving (spear fish or hand-take) launch port/site 3", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 100.0, 
@@ -1806,7 +1806,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_lnchpct3", 
-      "eng_text": "Percentage of your trips from launching port/site 3", 
+      "eng_text": "Percentage of your trips from launch port/site 3", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 105.0, 
@@ -1826,7 +1826,7 @@
     "fields": {
       "all_resources": true, 
       "code": "v_day_spec", 
-      "eng_text": "How many days 'on average' do you spend fishing for this species from a sport boat?", 
+      "eng_text": "Number of days 'on average' spent fishing for this species from a sport boat", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 1.0, 
@@ -1846,7 +1846,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_type", 
-      "eng_text": "What type of boat do you fish from?", 
+      "eng_text": "Type of boat that you fish from", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 10.0, 
@@ -1870,7 +1870,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_lic", 
-      "eng_text": " What is the Department of Fish and Wildlife boat number?", 
+      "eng_text": "Department of Fish and Wildlife boat number", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 20.0, 
@@ -1890,7 +1890,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_yr_op", 
-      "eng_text": "For how many years (if any) have you operated a sport boat?", 
+      "eng_text": "Years (if any) that you have operated a sport boat", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 30.0, 
@@ -1910,7 +1910,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_yr_own", 
-      "eng_text": "For how many years (if any) have you owned a sport boat?", 
+      "eng_text": "Years (if any) that  you have owned a sport boat", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 40.0, 
@@ -1930,7 +1930,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_len", 
-      "eng_text": "How long (in feet) is the primary vessel/boat?", 
+      "eng_text": "Length (in feet) of your vessel/boat?", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 50.0, 
@@ -1950,7 +1950,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_str_loc", 
-      "eng_text": "How is the boat normally stored?", 
+      "eng_text": "How your boat is normally stored", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 60.0, 
@@ -1974,7 +1974,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_yr_fish", 
-      "eng_text": "How many years experience do you have fishing from a private vessel? ", 
+      "eng_text": "Years of experience fishing from a private vessel", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 120.0, 
@@ -1994,7 +1994,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_num_pers", 
-      "eng_text": "On average, how many other individuals are on the boat per trip (not including yourself)? ", 
+      "eng_text": "Average number of other individuals that are on the boat each trip (not including yourself)", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 130.0, 
@@ -2014,7 +2014,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_days_fsh", 
-      "eng_text": "On average, how many days do you spend fishing from a private vessel each year? ", 
+      "eng_text": "Average number of days spent fishing from a private vessel each year", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 140.0, 
@@ -2034,7 +2034,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_homep", 
-      "eng_text": "Where is your primary port/ramp (dock/moorage/launch) located? ", 
+      "eng_text": "The location of your primary port/ramp (dock/moorage/launch)", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 170.0, 
@@ -2054,7 +2054,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_lnchpct0", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "eng_text": "Percentage of your launches that are from this launch port/site", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 175.0, 
@@ -2094,7 +2094,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_lnchpct1", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "eng_text": "Percentage of your launches that are from this launch port/site", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 185.0, 
@@ -2134,7 +2134,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_lnchpct2", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "eng_text": "Percentage of your launches that are from this launch port/site", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 195.0, 
@@ -2174,7 +2174,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_lnchpct3", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "eng_text": "Percentage of your launches that are from this launch port/site", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 205.0, 
@@ -2214,7 +2214,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_lnchpct4", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "eng_text": "Percentage of your launches that are from this launch port/site", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 215.0, 
@@ -2234,7 +2234,7 @@
     "fields": {
       "all_resources": false, 
       "code": "f_name", 
-      "eng_text": "First Name", 
+      "eng_text": "First name", 
       "int_group": 7, 
       "question_set": 0, 
       "display_order": 105.0, 
@@ -2254,7 +2254,7 @@
     "fields": {
       "all_resources": false, 
       "code": "l_name", 
-      "eng_text": "Last Name", 
+      "eng_text": "Last name", 
       "int_group": 7, 
       "question_set": 0, 
       "display_order": 106.0, 
@@ -2274,7 +2274,7 @@
     "fields": {
       "all_resources": false, 
       "code": "city", 
-      "eng_text": "City/Town", 
+      "eng_text": "City/town", 
       "int_group": 7, 
       "question_set": 0, 
       "display_order": 110.0, 
@@ -2314,7 +2314,7 @@
     "fields": {
       "all_resources": false, 
       "code": "phone", 
-      "eng_text": "Phone Number", 
+      "eng_text": "Phone number", 
       "int_group": 7, 
       "question_set": 0, 
       "display_order": 130.0, 
@@ -2377,7 +2377,7 @@
     "fields": {
       "all_resources": false, 
       "code": "expenses", 
-      "eng_text": "Please estimate your recreational fishing related expenditures for the year 2008 (NOT 2009)", 
+      "eng_text": "Please estimate your recreational fishing related expenditures for the year 2008 in whole dollars (NOT 2009)", 
       "int_group": 7, 
       "question_set": 0, 
       "display_order": 160.0, 
@@ -2443,7 +2443,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_food_re", 
-      "eng_text": "   - Food - Restaurants", 
+      "eng_text": "   - Food - restaurants", 
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 801.0, 
@@ -2483,7 +2483,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_lodging", 
-      "eng_text": "   - Lodging & Camping", 
+      "eng_text": "   - Lodging & camping", 
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 803.0, 
@@ -2503,7 +2503,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_fuel", 
-      "eng_text": "   - Boat/Car fuel", 
+      "eng_text": "   - Boat/car fuel", 
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 804.0, 
@@ -2523,7 +2523,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_heat_f", 
-      "eng_text": "   - Heating & Cooking fuel", 
+      "eng_text": "   - Heating & cooking fuel", 
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 805.0, 
@@ -2543,7 +2543,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_charter", 
-      "eng_text": "   - Party/Charter/Guide fees", 
+      "eng_text": "   - Party/charter/guide fees", 
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 806.0, 
@@ -2563,7 +2563,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_boat_fe", 
-      "eng_text": "   - Land access/Boat launch fees", 
+      "eng_text": "   - Land access/boat launch fees", 
       "int_group": 7, 
       "question_set": 1, 
       "display_order": 807.0, 
@@ -2623,7 +2623,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_tackle", 
-      "eng_text": "   - Gear & Tackle", 
+      "eng_text": "   - Gear & tackle", 
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 900.0, 
@@ -2643,7 +2643,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_taxidrm", 
-      "eng_text": "   - Processing/Taxidermy", 
+      "eng_text": "   - Processing/taxidermy", 
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 901.0, 
@@ -2663,7 +2663,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_club_fe", 
-      "eng_text": "   - Membership & Club Dues", 
+      "eng_text": "   - Membership & club dues", 
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 902.0, 
@@ -2683,7 +2683,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_storage", 
-      "eng_text": "   - Moorage/Storage", 
+      "eng_text": "   - Moorage/storage", 
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 903.0, 
@@ -2743,7 +2743,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_powboat", 
-      "eng_text": "   - Power boat purchace", 
+      "eng_text": "   - Power boat purchase", 
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 906.0, 
@@ -2763,7 +2763,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_np_boat", 
-      "eng_text": "   - Non-Power boat purchase", 
+      "eng_text": "   - Non-power boat purchase", 
       "int_group": 7, 
       "question_set": 2, 
       "display_order": 907.0, 
@@ -2823,7 +2823,7 @@
     "fields": {
       "all_resources": true, 
       "code": "k_day_spec", 
-      "eng_text": "How many days 'on average' do you spend fishing for this species from a kayak or non-motorized vessel?", 
+      "eng_text": "Number of days 'on average' spent fishing for this species from a kayak or non-motorized vessel", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 1.0, 
@@ -2843,7 +2843,7 @@
     "fields": {
       "all_resources": false, 
       "code": "k_yr_exp", 
-      "eng_text": "How many years experience do you have fishing from a kayak or non-motorized vessel?", 
+      "eng_text": "Years of experience fishing from a kayak or non-motorized vessel", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 50.0, 
@@ -2863,7 +2863,7 @@
     "fields": {
       "all_resources": false, 
       "code": "k_days_fsh", 
-      "eng_text": "How many days 'on average' do you spend each year fishing from a kayak or non-motorized vessel?", 
+      "eng_text": "Days 'on average' spent each year fishing from a kayak or non-motorized vessel", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 60.0, 
@@ -2883,7 +2883,7 @@
     "fields": {
       "all_resources": false, 
       "code": "k_port1", 
-      "eng_text": "Primary kayak or non-motorized vessel launching port/site", 
+      "eng_text": "Primary kayak or non-motorized vessel launch port/site", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 70.0, 
@@ -2903,7 +2903,7 @@
     "fields": {
       "all_resources": false, 
       "code": "k_lnchpct1", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "eng_text": "Percentage of your launches that are from this launch port/site", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 75.0, 
@@ -2923,7 +2923,7 @@
     "fields": {
       "all_resources": false, 
       "code": "k_port2", 
-      "eng_text": "Other kayak or non-motorized launching port/site 1", 
+      "eng_text": "Other kayak or non-motorized launch port/site 1", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 80.0, 
@@ -2943,7 +2943,7 @@
     "fields": {
       "all_resources": false, 
       "code": "k_lnchpct2", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "eng_text": "Percentage of your launches that are from this launch port/site", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 85.0, 
@@ -2963,7 +2963,7 @@
     "fields": {
       "all_resources": false, 
       "code": "k_port3", 
-      "eng_text": "Other kayak or non-motorized launching port/site 2", 
+      "eng_text": "Other kayak or non-motorized launch port/site 2", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 90.0, 
@@ -2983,7 +2983,7 @@
     "fields": {
       "all_resources": false, 
       "code": "k_lnchpct3", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "eng_text": "Percentage of your launches that are from this launch port/site", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 95.0, 
@@ -3003,7 +3003,7 @@
     "fields": {
       "all_resources": false, 
       "code": "k_port4", 
-      "eng_text": "Other kayak or non-motorized launching port/site 3", 
+      "eng_text": "Other kayak or non-motorized launch port/site 3", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 100.0, 
@@ -3023,7 +3023,7 @@
     "fields": {
       "all_resources": false, 
       "code": "k_lnchpct4", 
-      "eng_text": "What percentage of your launches are from this launching port/site?", 
+      "eng_text": "Percentage of your launches that are from this launch port/site", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 105.0, 

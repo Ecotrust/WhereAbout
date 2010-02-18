@@ -26,13 +26,13 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getHtmlText: function() {
         var html_text = '<h2>Instructions</h2>\
-			<p>Now imagine you have a bag of <b>100 pennies</b>. You\'re going to \
+			<p>Now imagine you have <b>100 pennies</b>. You\'re going to \
 			allocate those pennies over the <i>'+ this.resource +'</i> '+ this.shape_name_plural +' \
 			you just drew.  The more pennies you place on a '+ this.shape_name +', the more \
 			value or importance it has to you.\
 			</p>\
 			<p> \
-            Now look over your '+this.resource+' '+ this.shape_name_plural +' on the map and think about\
+            Look over your '+this.resource+' '+ this.shape_name_plural +' on the map and think about\
             which are the most important to you.  Those are the ones on which you will allocate the most pennies\
             </p>\
 			<p> \

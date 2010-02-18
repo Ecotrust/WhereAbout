@@ -27,7 +27,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getHtmlText: function() {
         var html_text = '<h2>Instructions</h2>\
-            <p>Navigate the map to your primary <i>'+ this.resource +'</i> '+ this.shape_name +' as a <i>'+ this.user_group +'</i>.\
+            <p>First, navigate the map to the general area of your primary <i>'+ this.resource +'</i> '+ this.shape_name +' as a <i>'+ this.user_group +'</i>.\
             </p>';
         return html_text;
     },
@@ -70,8 +70,8 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
                 html: '<img src="/site-media/images/nav_2.png">'
             },{
                 html: '<p> \
-                    b. Turn on \'Nautical Charts\' if you want from the selection window on the top right. \
-                    Click the checkbox to turn it on or off.\
+                    b. To turn on \'Nautical Charts\' use the selection window on the top right. \
+                    Click the checkbox to turn them on or off.\
                     </p>'
             },{
                 html: '<img src="/site-media/images/nav_1.png">'
