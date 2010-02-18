@@ -9,4 +9,4 @@ then
   exit $E_BADARGS
 fi
 
-python manage.py dumpdata --indent=2 auth.User gwst_app.InterviewGroupMembership gwst_app.GroupMemberResource gwst_app.InterviewAnswer gwst_app.InterviewStatus gwst_app.InterviewShape > fixtures/$1
+python manage.py dumpdata --indent=2 auth.User gwst_app.InterviewGroupMembership gwst_app.GroupMemberResource gwst_app.InterviewAnswer gwst_app.InterviewStatus gwst_app.InterviewShape > gwst_app/fixtures/$1
