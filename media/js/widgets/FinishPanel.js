@@ -31,9 +31,7 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     getCompletedResources: function() {
         var empty = true;
-        var comp_res = '\
-            <table class="resource-list">\
-            <tr><th><b>Completed '+capFirst(this.res_group_name)+':</b></th></tr>';
+        var comp_res = '<table class="resource-list"><tr><th><b>Completed '+capFirst(this.res_group_name)+':</b></th></tr>';
         for (var res = 0; res < gwst.settings.resourceStore.getCount(); res++) {
             if (gwst.settings.resourceStore.getAt(res).get('finished')) {
                 empty = false;
@@ -48,9 +46,7 @@ gwst.widgets.FinishPanel = Ext.extend(gwst.widgets.WestPanel, {
     
      getIncompleteResources: function() {
         var empty = true;
-        var incomp_res = '\
-            <table class="resource-list">\
-            <tr><th><b>Incomplete '+capFirst(this.res_group_name)+':</b></th></tr>';
+        var incomp_res = '<table class="resource-list"><tr><th><b>Incomplete '+capFirst(this.res_group_name)+':</b></th></tr>';
         for (var res = 0; res < gwst.settings.resourceStore.getCount(); res++) {
             if (!gwst.settings.resourceStore.getAt(res).get('finished')) {
                 empty = false;

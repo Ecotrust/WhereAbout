@@ -28,17 +28,12 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<h2>Instructions</h2> \
-			<p>Draw your <u>first</u> '+ this.user_group +' <i>'+ this.resource +'</i> '+ this.shape_name +'\
-            on the map. (You\'ll be able to draw more)\
-            </p>';
+        var html_text = '<h2>Instructions</h2><p>Draw your <u>first</u> '+ this.user_group +' <i>'+ this.resource +'</i> '+ this.shape_name +' on the map. (You\'ll be able to draw more)</p>';
         return html_text;
     },
     
     getHtmlText2: function() {
-        var html_text_2 = '<p class="video-link">\
-            <img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a>\
-            </p>';
+        var html_text_2 = '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a></p>';
         return html_text_2;
     },
     onRender: function(){

@@ -20,11 +20,7 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<p>\
-            This is the drawing portion for the '+ this.user_group +' user group.</p>\
-            <p>You will be able to come back and finish later if you need more time.</p>\
-			<p>To do so, click the \'Go To Main Menu\' button at the top left of the map screen.</p>\
-            <img src="/site-media/images/go_to.png" style="margin-left: 65px">';
+        var html_text = '<p>This is the drawing portion for the '+ this.user_group +' user group.</p> <p>You will be able to come back and finish later if you need more time.</p> <p>To do so, click the \'Go To Main Menu\' button at the top left of the map screen.</p><img src="/site-media/images/go_to.png" style="margin-left: 65px">';
         return html_text;
     },
 

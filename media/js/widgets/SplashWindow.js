@@ -16,11 +16,7 @@ gwst.widgets.SplashWindow = Ext.extend(Ext.Window, {
             closable: false,
             plain: true,
             bodyStyle: 'padding: 10px',
-            html: "\
-            	<p>The drawing portion will now begin for the <u><i>"+gwst.settings.survey_group_name+"</i></u> user group.  You will have instructions every step of the way \
-            	on the left hand side of the screen.  You will also be able to come back and finish later \
-            	if you need more time. \
-            	",
+            html: "<p>The drawing portion will now begin for the <u><i>"+gwst.settings.survey_group_name+"</i></u> user group.  You will have instructions every step of the way on the left hand side of the screen. You will also be able to come back and finish later if you need more time.",
             bbar: [
                {xtype:'tbfill', width:20},
                {

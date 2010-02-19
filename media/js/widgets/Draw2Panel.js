@@ -38,26 +38,17 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<h2>Instructions</h2> \
-            <p>a. <b>At this time</b>, finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name_plural +' \
-            you '+ this.action +' as a '+ this.user_group +'.</i> Draw them the same way you drew your first.</p> \
-            <p>b. Each of the '+this.resource+' '+this.shape_name+'s you draw can be found in the table below. \
-            Click any table row to highlight, remove or zoom to that '+ this.shape_name +'.</p> \
-            <p>c. Click the \'Continue\' button when you are satisfied with the '+ this.shape_name +'s you\'ve drawn.</p>';
+        var html_text = '<h2>Instructions</h2><p>a. <b>At this time</b>, finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name_plural +' you '+ this.action +' as a '+ this.user_group +'.</i> Draw them the same way you drew your first.</p> <p>b. Each of the '+this.resource+' '+this.shape_name+'s you draw can be found in the table below. Click any table row to highlight, remove or zoom to that '+ this.shape_name +'.</p> <p>c. Click the \'Continue\' button when you are satisfied with the '+ this.shape_name +'s you\'ve drawn.</p>';
         return html_text;
     },
     
     getDrawVideoHtml: function() {
-        var html_text_2 = '<p class="video-link">\
-            <img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.draw_help_url +'" target="_blank">View Video Demonstration</a>\
-            </p>';
+        var html_text_2 = '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.draw_help_url +'" target="_blank">View Video Demonstration</a></p>';
         return html_text_2;
     },
     
     getDraw2VideoHtml: function() {
-        var html_text_3 = '<p class="video-link">\
-            <img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a>\
-            </p>';
+        var html_text_3 = '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a></p>';
         return html_text_3;
     },
     

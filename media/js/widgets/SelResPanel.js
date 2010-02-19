@@ -42,29 +42,18 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<h2>Instructions:</h2> \
-            <p>Select 1 of the '+ this.plural_res_group_name +' \
-			you '+ this.action +' as a <i>'+ this.user_group +'</i> from the list below \
-			and then click the \'Continue\' button.\
-            </p>'
-        ;
+        var html_text = '<h2>Instructions:</h2><p>Select 1 of the '+ this.plural_res_group_name +' you '+ this.action +' as a <i>'+ this.user_group +'</i> from the list below and then click the \'Continue\' button.</p>';
         return html_text;
     },
     
     getHtmlText2: function(){
-		var html_text_2 = '<p> \
-			If you think an important '+ this.res_group_name +' is missing from the list, \
-			notify us at '+ this.contact_address +'.\
-			</p>'
-		;
+		var html_text_2 = '<p>If you think an important '+ this.res_group_name +' is missing from the list, notify us at '+ this.contact_address +'.</p>';
         return html_text_2;
     },
     
     getCompletedResources: function() {
         var empty = true;
-        var comp_res = '\
-            <b>Complete '+capFirst(this.res_group_name)+'</b>\
-            <ul>';
+        var comp_res = '<b>Complete '+capFirst(this.res_group_name)+'</b><ul>';
         for (var res = 0; res < gwst.settings.resourceStore.getCount(); res++) {
             if (gwst.settings.resourceStore.getAt(res).get('finished')) {
                 empty = false;

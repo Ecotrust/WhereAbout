@@ -32,11 +32,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
 	
     getHtmlText: function() {
-        var html_text = '<h2>Instructions</h2>\
-            <p>a. Click \'Edit Pennies\' below and give each of your '+this.shape_name_plural+' a penny value.  You must use all 100 pennies.</p>\
-            <p>b. Click \'Go Back\' if you need to change your '+this.shape_name_plural+'.</p>\
-            <p>c. Click \'Continue\' after you have allocated 100 pennies.</p>\
-            <p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a></p>';
+        var html_text = '<h2>Instructions</h2><p>a. Click \'Edit Pennies\' below and give each of your '+this.shape_name_plural+' a penny value.  You must use all 100 pennies.</p> <p>b. Click \'Go Back\' if you need to change your '+this.shape_name_plural+'.</p> <p>c. Click \'Continue\' after you have allocated 100 pennies.</p> <p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a></p>';
         return html_text;
     },
     

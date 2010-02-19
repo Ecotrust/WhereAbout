@@ -15,11 +15,7 @@ gwst.widgets.UnfinishedCheckWindow = Ext.extend(Ext.Window, {
 		Ext.apply(this, {          
         	layout:'fit',
             width:260,
-            html: '<p>If you select another '+ this.res_group_name +' now, you will <u><b>lose all of your \
-                '+ this.user_group_desc +' '+ this.shape_name_plural +' \
-                for '+ this.cur_resource +'</b></u>.\
-                <br /><br />\
-                Are you sure you want to select another '+ this.res_group_name +'?</p>',
+            html: '<p>If you select another '+ this.res_group_name +' now, you will <u><b>lose all of your '+ this.user_group_desc +' '+ this.shape_name_plural +' for '+ this.cur_resource +'</b></u>.<br /><br />Are you sure you want to select another '+ this.res_group_name +'?</p>',
             height:175,
             plain: true,
             bodyStyle: 'padding: 8px',

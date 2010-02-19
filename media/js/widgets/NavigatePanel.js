@@ -26,9 +26,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<h2>Instructions</h2>\
-            <p>First, navigate the map to the general area of your primary <i>'+ this.resource +'</i> '+ this.shape_name +' as a <i>'+ this.user_group +'</i>.\
-            </p>';
+        var html_text = '<h2>Instructions</h2><p>First, navigate the map to the general area of your primary <i>'+ this.resource +'</i> '+ this.shape_name +' as a <i>'+ this.user_group +'</i>.</p>';
         return html_text;
     },
 	
@@ -62,23 +60,15 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
             },
             id: 'nav_table_panel',
             items: [{
-                html: '<p> \
-                    a. To move the map, use the blue arrow buttons.\
-                    To zoom the map in and out, use the blue \'+\' and \'-\' buttons.\
-                    </p>'
+                html: '<p>a. To move the map, use the blue arrow buttons. To zoom the map in and out, use the blue \'+\' and \'-\' buttons.</p>'
             },{
                 html: '<img src="/site-media/images/nav_2.png">'
             },{
-                html: '<p> \
-                    b. To turn on \'Nautical Charts\' use the selection window on the top right. \
-                    Click the checkbox to turn them on or off.\
-                    </p>'
+                html: '<p>b. To turn on \'Nautical Charts\' use the selection window on the top right. Click the checkbox to turn them on or off.</p>'
             },{
                 html: '<img src="/site-media/images/nav_1.png">'
             },{
-                html: '<p>\
-                    c. Get as close as you can to your '+ this.shape_name +', then press the continue button.\
-                    </p>'
+                html: '<p>c. Get as close as you can to your '+ this.shape_name +', then press the continue button.</p>'
             }, {
                 html: ''
             },{

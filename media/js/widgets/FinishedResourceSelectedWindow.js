@@ -38,12 +38,7 @@ gwst.widgets.FinishedResourceSelectedWindow = Ext.extend(Ext.Window, {
 	},
     
     getHtmlText: function() {
-        var html_text = '<p>\
-            You have already finished this '+ this.res_group_name +'.\
-            </p>\
-            <p>\
-            Would you like to edit your '+ this.user_group_desc +' '+ this.shape_name_plural +' for '+ this.cur_resource +'?\
-            </p>';
+        var html_text = '<p>You have already finished this '+ this.res_group_name +'.</p> <p>Would you like to edit your '+ this.user_group_desc +' '+ this.shape_name_plural +' for '+ this.cur_resource +'?</p>';
         return html_text;
     },
     

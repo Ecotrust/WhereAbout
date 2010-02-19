@@ -26,10 +26,7 @@ gwst.widgets.DrawOrDropPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<p class="top_instruct">\
-			<b>Would you like to draw another '+ this.shape_name +', or are you \
-            done with this '+this.res_group_name +' and ready to allocate pennies?</b>\
-            </p>';
+        var html_text = '<p class="top_instruct"><b>Would you like to draw another '+ this.shape_name +', or are you done with this '+this.res_group_name +' and ready to allocate pennies?</b></p>';
         return html_text;
     },
 	

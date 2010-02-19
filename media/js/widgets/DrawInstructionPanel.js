@@ -21,39 +21,27 @@ gwst.widgets.DrawInstructionPanel = Ext.extend(Ext.Panel, {
                 columns: 2
             },    
             items: [{
-                html: '<p> \
-                    a. Click once on the map to create the first point.\
-                    </p>'
+                html: '<p>a. Click once on the map to create the first point.</p>'
             },{
                 html: '<img src="/site-media/images/draw_1.png">'
             },{
-                html: '<p> \
-                    b. Move mouse and click to create a second point.\
-                    </p>'
+                html: '<p>b. Move mouse and click to create a second point.</p>'
             },{
                 html: '<img src="/site-media/images/draw_2.png">'
             },{
-                html: '<p>\
-                    c. Continue tracing being as accurate as you can.\
-                    </p>'
+                html: '<p>c. Continue tracing being as accurate as you can.</p>'
             }, {
                 html: '<img src="/site-media/images/draw_3.png">'
             },{
-                html: '<p> \
-                    d. Double-click the last point to complete your '+this.shape_name+'.\
-                    </p>'
+                html: '<p>d. Double-click the last point to complete your '+this.shape_name+'.</p>'
             },{
                 html: '<img src="/site-media/images/draw_4.png">'
             },{
-                html: '<p>\
-                    e. If you make a mistake, click the \'Cancel\' button at the top.\
-                    </p>'
+                html: '<p>e. If you make a mistake, click the \'Cancel\' button at the top.</p>'
             },{
                 html: '<img src="/site-media/images/draw_5.png">'
             },{
-                html: '<p>\
-                    f. You can control the map while you\'re drawing.\
-                    </p>'
+                html: '<p>f. You can control the map while you\'re drawing.</p>'
             },{
                 html: '<img src="/site-media/images/draw_6.png">'
             }]

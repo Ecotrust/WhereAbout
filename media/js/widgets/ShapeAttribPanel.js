@@ -23,11 +23,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<h2>Instructions</h2>\
-			<p>Optionally, please provide more detailed boundary information for this '+ this.shape_name +'.\
-            You may leave this section blank and just press \'Continue\'.</p>\
-            <p>For example, your North boundary might be the mouth of the Nehalem River and your West boundary 30 fathoms.\
-			</p>';
+        var html_text = '<h2>Instructions</h2><p>Optionally, please provide more detailed boundary information for this '+ this.shape_name +'. You may leave this section blank and just press \'Continue\'.</p> <p>For example, your North boundary might be the mouth of the Nehalem River and your West boundary 30 fathoms.</p>';
         return html_text;
     },
             
