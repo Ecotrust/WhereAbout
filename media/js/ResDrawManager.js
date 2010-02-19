@@ -808,31 +808,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.drawOrDropPanel);    	
     },
-
-    /* Load the satisfied with resource shapes west panel */
-    loadSatisfiedResourceShapesPanel: function() {
-    	if (!this.satResPanel) {
-            this.satResPanel = new gwst.widgets.SatisfiedResourceShapesPanel({
-                xtype: 'gwst-satisfied-resource-shapes-panel',
-                resource: this.curResource.get('name'),
-                action: gwst.settings.interview.resource_action,
-                user_group: gwst.settings.group.member_title,
-                shape_name_plural: gwst.settings.interview.shape_name_plural,
-                shape_name: gwst.settings.interview.shape_name
-            });
-            //When panel fires event saying it's all done, we want to process it and move on 
-            this.satResPanel.on('satisfied', this.finSatisfiedResourceShapesStep, this);   
-        } else {
-            this.satResPanel.updateText({
-                resource: this.curResource.get('name'),
-                action: gwst.settings.interview.resource_action,
-                user_group: gwst.settings.group.member_title,
-                shape_name_plural: gwst.settings.interview.shape_name_plural,
-                shape_name: gwst.settings.interview.shape_name
-            });
-        }
-        this.viewport.setWestPanel(this.satResPanel);    	
-    },
     
      /* Load the alloc west panel */
     loadAllocPanel: function() {
