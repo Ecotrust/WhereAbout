@@ -17,61 +17,9 @@
 
 	<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key={{GMAPS_API_KEY}}' type="text/javascript" ></script>
 	<script src="{{MEDIA_URL}}third-party/OpenLayers-2.8/OpenLayers.js" type="text/javascript" charset="utf-8"></script>
-	
-	<script src="{{MEDIA_URL}}third-party/GeoExt-0.6/widgets/MapPanel.js" type="text/javascript" charset="utf-8"></script>	
-	<script src="{{MEDIA_URL}}third-party/GeoExt-0.6/data/LayerRecord.js" type="text/javascript" charset="utf-8"></script>
-	<script src="{{MEDIA_URL}}third-party/GeoExt-0.6/data/LayerReader.js" type="text/javascript" charset="utf-8"></script>
-	<script src="{{MEDIA_URL}}third-party/GeoExt-0.6/data/LayerStore.js" type="text/javascript" charset="utf-8"></script>
-	<script src="{{MEDIA_URL}}third-party/GeoExt-0.6/data/ProtocolProxy.js" type="text/javascript" charset="utf-8"></script>	
-	<script src="{{MEDIA_URL}}third-party/GeoExt-0.6/data/FeatureRecord.js" type="text/javascript" charset="utf-8"></script>
-	<script src="{{MEDIA_URL}}third-party/GeoExt-0.6/data/FeatureReader.js" type="text/javascript" charset="utf-8"></script>
-	<script src="{{MEDIA_URL}}third-party/GeoExt-0.6/data/FeatureStore.js" type="text/javascript" charset="utf-8"></script>		
-    <script src="{{MEDIA_URL}}third-party/GeoExt-0.6/widgets/grid/FeatureSelectionModel.js" type="text/javascript" charset="utf-8"></script>
     
-	<script type="text/javascript" src="{{MEDIA_URL}}third-party/ext-ux/multiselect/MultiSelect.js" charset="utf-8"></script>
-	<script type="text/javascript" src="{{MEDIA_URL}}third-party/ext-ux/multiselect/DDView.js" charset="utf-8"></script>
-	<script type="text/javascript" src="{{MEDIA_URL}}third-party/ext-ux/grid/RowActions.js" charset="utf-8"></script>
-
-	<script type="text/javascript" src="{{MEDIA_URL}}js/settings.js" charset="utf-8"></script>
-	<script type="text/javascript" src="{{MEDIA_URL}}js/util.js" charset="utf-8"></script>
-	<script type="text/javascript" src="{{MEDIA_URL}}js/ResDrawApp.js" charset="utf-8"></script>
-	<script type="text/javascript" src="{{MEDIA_URL}}js/ResDrawManager.js" charset="utf-8"></script>	
-	<script type="text/javascript" src="{{MEDIA_URL}}js/controls/gwstPanZoom.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/data/ResFeatureStore.js" charset="utf-8"></script>	
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/MainViewport.js" charset="utf-8"></script>
-	<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/ResDrawMapPanel.js" charset="utf-8"></script>
-	<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/WestPanel.js" charset="utf-8"></script>
-	<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SelResPanel.js" charset="utf-8"></script>	
-	<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/NavigatePanel.js" charset="utf-8"></script>	
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/DrawPanel.js" charset="utf-8"></script>
-	<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/AllocPanel.js" charset="utf-8"></script>	
-	<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/PennyPanel.js" charset="utf-8"></script>	
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/DrawToolWindow.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/WaitWindow.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SplashWindow.js" charset="utf-8"></script>
-	<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SpeciesSelect.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/InvalidShapePanel.js" charset="utf-8"></script>	
-	<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SatisfiedShapePanel.js" charset="utf-8"></script>	
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/DrawOrDropPanel.js" charset="utf-8"></script>
-	<script type="text/javascript" src="{{MEDIA_URL}}js/widgets/FinishPanel.js" charset="utf-8"></script>	
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/ErrorWindow.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/ShapeAttribPanel.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SplashPanel.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/Draw2Panel.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SatisfiedResourceShapesPanel.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SatisfiedPenniesPanel.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/SatisfiedGroupPanel.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/BackContButtons.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/YesNoButtons.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/CustomButtons.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/PennyWindow.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/QuitWindow.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/QuitCheckWindow.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/UnfinishedCheckWindow.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/UnfinishedResourceStartPanel.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/DrawInstructionPanel.js" charset="utf-8"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}js/widgets/FinishedResourceSelectedWindow.js" charset="utf-8"></script>
-
+    {% load compressed %}
+    {% compressed_js 'gwst_or_rec' %}
 
 	<script type="text/javascript" charset="utf-8">
         // Hack to support IE. See http://trac.openlayers.org/wiki/FrequentlyAskedQuestions#WhywontmyvectorlayerworkinIEbeforemypageisdoneloading

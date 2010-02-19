@@ -1,8 +1,5 @@
 # Django settings for gwst project.
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
@@ -82,7 +79,8 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'registration_custom',
     'gwst_app',
-    'gwst_surveymonkey'
+    'gwst_surveymonkey',
+    'compress'
 )
 
 SELF_REGISTRATION=False
