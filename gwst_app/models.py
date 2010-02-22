@@ -272,8 +272,8 @@ class InterviewAnswer(Model):
     integer_val = IntegerField(null=True, blank=True)
     decimal_val = FloatField(null=True, blank=True)
     boolean_val = NullBooleanField(null=True, blank=True)
-    creation_date = DateTimeField(default=datetime.datetime.now())
-    last_modified = DateTimeField(default=datetime.datetime.now())
+    creation_date = DateTimeField(default=datetime.datetime.now)
+    last_modified = DateTimeField(default=datetime.datetime.now)
     num_times_saved = IntegerField(default=1)
     
     class Meta:
@@ -296,7 +296,7 @@ class InterviewStatus(Model):
     interview = ForeignKey(Interview)
     user = ForeignKey(User)
     completed = BooleanField(default=False)
-    creation_date = DateTimeField(default=datetime.datetime.now())
+    creation_date = DateTimeField(default=datetime.datetime.now)
     first_login = DateTimeField(null=True)
     last_login = DateTimeField(null=True)
     num_logins = IntegerField(default=0)
@@ -322,7 +322,7 @@ class InterviewShape(Model):
     boundary_s = CharField( max_length=100, blank=True, null=True )
     boundary_e = CharField( max_length=100, blank=True, null=True )
     boundary_w = CharField( max_length=100, blank=True, null=True )
-    creation_date = DateTimeField(default=datetime.datetime.now())
+    creation_date = DateTimeField(default=datetime.datetime.now)
     objects = InterviewShapeManager()
     
     class Meta:
