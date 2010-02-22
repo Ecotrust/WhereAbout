@@ -1,11 +1,5 @@
 # Django settings for gwst project.
 
-ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
-)
-
-MANAGERS = ADMINS
-
 #DATABASE_ENGINE = 'django.contrib.gis.db.backends.postgis'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 #DATABASE_NAME = 'gwst'             # Or path to database file if using sqlite3.
 #DATABASE_USER = 'gwst'             # Not used with sqlite3.
