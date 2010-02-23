@@ -133,7 +133,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         //Create the map and dump everything in
 	    map = new OpenLayers.Map('ol-map', map_options);
 		map.addControl(new OpenLayers.Control.Navigation());		
-		map.addControl(new gwst.controls.gwstPanZoom());
+        map.addControl(new OpenLayers.Control.PanZoomBar());
 		map.addControl(new OpenLayers.Control.MousePosition());
         
 		this.drawResControl = new OpenLayers.Control.DrawFeature(
@@ -164,10 +164,11 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         // Call parent (required)
 		gwst.widgets.ResDrawMapPanel.superclass.initComponent.call(this);
     },
-
+    
     zoomHandler: function() {
         var zoomLvl = this.map.getZoom();
         if (zoomLvl > this.maxZoom){
+            gwst.error.load('You are already at the maximum zoom level available.');
             this.map.zoomTo(this.maxZoom);
         }
     },
@@ -176,12 +177,13 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     	return this.layers;
     },
     
-    hidePanZoom: function() {
-    	Ext.query(".olControlPanZoom")[0].style.display = 'none';
+    hidePanZoomBar: function() {
+    	Ext.query(".olControlPanZoomBar")[0].style.display = 'none';
     },
     
-    showPanZoom: function() {
-    	Ext.query(".olControlPanZoom")[0].style.display = 'block';
+    showPanZoomBar: function() {
+    	Ext.query(".olControlPanZoomBar")[0].style.display = 'block';
+        Ext.query(".olControlPanZoomBar")[0].style.left = '';
     },
     
     zoomToMapRegion: function(region) {

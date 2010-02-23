@@ -70,7 +70,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         if(!this.layerWin) {
         	this.loadMapLayerWin();    	
         }
-        this.mapPanel.showPanZoom();
+        this.mapPanel.showPanZoomBar();
     	this.loadUnfinishedResourceStartPanel();
     },
     
@@ -601,7 +601,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         if(!this.layerWin) {
         	this.loadMapLayerWin();    	
         }
-        this.mapPanel.showPanZoom();
+        this.mapPanel.showPanZoomBar();
         if (!this.navPanel) {
             this.navPanel = new gwst.widgets.NavigatePanel({
                 xtype: 'gwst-navigate-panel',
@@ -888,7 +888,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     mapPanelCreated: function() {
     	this.mapPanel = Ext.getCmp('mappanel');
-    	this.mapPanel.hidePanZoom();
+    	this.mapPanel.hidePanZoomBar();
     	this.loadShapeStore(this.mapPanel.getShapeLayer());
     	gwst.settings.layerStore = this.mapPanel.getLayerStore();    	
     	this.mapPanel.on('res-shape-started', this.resShapeStarted, this);
