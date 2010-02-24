@@ -156,3 +156,7 @@ p.x-panel-static{
 .custom-left-button {
     float:right;
 }
+
+.x-btn-center {
+    padding: 0 2px;
+}
