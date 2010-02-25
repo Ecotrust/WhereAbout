@@ -54,7 +54,7 @@ gwst.widgets.MainViewport = Ext.extend(Ext.Viewport, {
         this.curWestPanel = panel;
         this.curWestPanel.show();
         westPanelContainer.doLayout();
-        
+        westPanelContainer.body.scroll('top');
     }
 });
  
