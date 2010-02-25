@@ -155,6 +155,15 @@ def assign_groups(request):
                     membership.int_group = field.group
                     membership.percent_involvement = form.cleaned_data['group_%d_pc' % field.group.id]
                     membership.save()
+            
+            qs = InterviewGroupMembership.objects.all()
+            for q in qs:
+                if q.int_group_id == 9:
+                    q.order = 1000 
+                    q.save()
+                else:
+                    q.order = 0
+                    q.save()
                 
             # redirect to interview_group_status
             return HttpResponseRedirect('/group_status/')
@@ -189,7 +198,8 @@ def group_status(request):
     
     title = request.session['interview'].name + ' Status'
        
-    qs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).order_by('-percent_involvement','id')
+    qs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).order_by('order','-percent_involvement','id')
+    
     num_shapes = None
     # update the user status message for each in-progress group
     

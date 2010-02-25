@@ -313,7 +313,7 @@
       "shape_name": "fishing ground", 
       "active": true, 
       "organization": "Ecotrust", 
-      "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  In addition, these values must add up to 100%.  For example, if someone participates in both kayak fishing and dive fishing, they might enter 60% for kayak fishing, 40% for dive fishing and nothing for private vessel fishing.]</i></p>", 
+      "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p>You won't be surveyed for groups you don't provide a value for here.  In addition, these values must add up to 100%.  For example, if someone participates in both kayak fishing and dive fishing, they might enter 60% for kayak fishing, 40% for dive fishing and nothing for private vessel fishing.</p>\r\n<p><i>[Note: This survey is only for \u201cNon-charter\u201d recreational fishermen.  There will be a separate survey for charter-boat companies.]</i></p>\r\n", 
       "clip_region": 1, 
       "interview_complete_text": "<p>\r\nThe fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.\r\n</p>\r\n<p>\r\nWhen the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated to complete the maps. The maps will then be submitted to Oregon\u2019s Department of Land and Conservation Development to be considered along with other data and information to help guide the location of waver energy sites so that impacts to existing uses are minimized.\r\n</p>\r\n<p>\r\nYour willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a>\r\n</p>", 
       "name": "Recreational Fishing Areas and Value in Oregon"
@@ -427,24 +427,6 @@
     }
   }, 
   {
-    "pk": 7, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "main", 
-      "name": "Main Questions", 
-      "required_group": true, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": false, 
-      "interview": 2, 
-      "member_title": "main", 
-      "page_template": "or_main_form.html", 
-      "resources": [], 
-      "description": "General Questions"
-    }
-  }, 
-  {
     "pk": 8, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -475,7 +457,7 @@
     "fields": {
       "shape_color": "FF", 
       "code": "pri", 
-      "name": "Sport Boat Fishing", 
+      "name": "Sport Boat Fishing \"Non-charter\"", 
       "required_group": false, 
       "select_resource_text": "", 
       "preselect": true, 
@@ -487,11 +469,12 @@
         1, 
         4, 
         5, 
+        10, 
         7, 
         24, 
         25
       ], 
-      "description": "Private Vessel"
+      "description": "Sport Boat"
     }
   }, 
   {
@@ -514,6 +497,42 @@
         24
       ], 
       "description": "Diving and spear/hand take"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "main", 
+      "name": "Main Questions", 
+      "required_group": true, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 2, 
+      "member_title": "main", 
+      "page_template": "base_form.html", 
+      "resources": [], 
+      "description": "General Questions"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "code": "soc", 
+      "name": "Socio-Economic Questions", 
+      "required_group": true, 
+      "select_resource_text": "Impacts to fishing grounds affect not only fishermen but also coastal economies. The data you provide below will associate the value of your fishing grounds to the revenue your fishing brings to coastal communities. This information is important to complete as it will support future analyses to  guide the placement of wave energy facilities in ways that reduce impacts to fishermen and coastal communities.", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 2, 
+      "member_title": "soc", 
+      "page_template": "or_soc_econ_form.html", 
+      "resources": [], 
+      "description": "Socio-Economic Questions"
     }
   }, 
   {
@@ -714,6 +733,14 @@
     "fields": {
       "display_order": 5.0, 
       "eng_text": "Significantly lower"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 20.0, 
+      "eng_text": "Wood"
     }
   }, 
   {
@@ -1578,7 +1605,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_acc_mod", 
-      "eng_text": "Your primary access method to your diving (spear fish or hand-take) locations", 
+      "eng_text": "Primary access method to your diving (spear fish or hand-take) locations", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 30.0, 
@@ -1603,7 +1630,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_pct_isl", 
-      "eng_text": "Percentage of your dives (spear fish or hand-take) that are from a vessel (such as a boat, kayak, or paddleboard)", 
+      "eng_text": "Percentage of dives (spear fish or hand-take) that are from a vessel (such as a boat, kayak, or paddleboard)", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 40.0, 
@@ -1623,7 +1650,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_pct_shr", 
-      "eng_text": "Percentage of your dives (spear fish or hand-take) that are shore based", 
+      "eng_text": "Percentage of dives (spear fish or hand-take) that are shore based", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 50.0, 
@@ -1643,7 +1670,7 @@
     "fields": {
       "all_resources": false, 
       "code": "d_method", 
-      "eng_text": "Dive (spear fish or hand-take) method that you use the most", 
+      "eng_text": "Primary dive (spear fish or hand-take) method", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 60.0, 
@@ -1855,7 +1882,8 @@
       "options": [
         17, 
         18, 
-        19
+        19, 
+        26
       ], 
       "val_min": null, 
       "val_default": "", 
@@ -1870,7 +1898,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_lic", 
-      "eng_text": "Department of Fish and Wildlife boat number", 
+      "eng_text": "Oregon Marine Board boat number", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 20.0, 
@@ -1930,7 +1958,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_len", 
-      "eng_text": "Length (in feet) of your vessel/boat?", 
+      "eng_text": "Length (in feet) of your vessel/boat", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 50.0, 
@@ -1950,7 +1978,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_str_loc", 
-      "eng_text": "How your boat is normally stored", 
+      "eng_text": "Primary mode of boat storage", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 60.0, 
@@ -1974,7 +2002,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_yr_fish", 
-      "eng_text": "Years of experience fishing from a private vessel", 
+      "eng_text": "Years of experience fishing from a sport boat", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 120.0, 
@@ -1994,7 +2022,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_num_pers", 
-      "eng_text": "Average number of other individuals that are on the boat each trip (not including yourself)", 
+      "eng_text": "Average number of individuals that are on the boat each trip (not including yourself)", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 130.0, 
@@ -2014,7 +2042,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_days_fsh", 
-      "eng_text": "Average number of days spent fishing from a private vessel each year", 
+      "eng_text": "Average number of days spent fishing from a sport boat each year", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 140.0, 
@@ -2034,7 +2062,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_homep", 
-      "eng_text": "The location of your primary port/ramp (dock/moorage/launch)", 
+      "eng_text": "The location of your primary launch port/site", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 170.0, 
@@ -2074,7 +2102,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_landp_1", 
-      "eng_text": "Other launch site (In addition to your primary) ", 
+      "eng_text": "Other launch port/site (In addition to your primary)", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 180.0, 
@@ -2114,7 +2142,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_landp_2", 
-      "eng_text": "Other launch site 2 ", 
+      "eng_text": "Other launch port/site 2", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 190.0, 
@@ -2154,7 +2182,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_landp_3", 
-      "eng_text": "Other launch site 3 ", 
+      "eng_text": "Other launch port/site 3", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 200.0, 
@@ -2194,7 +2222,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_landp_4", 
-      "eng_text": "Other launch site 4 ", 
+      "eng_text": "Other launch port/site 4", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 210.0, 
@@ -2367,452 +2395,6 @@
       "val_min": null, 
       "val_default": "", 
       "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 134, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "expenses", 
-      "eng_text": "Please estimate your recreational fishing related expenditures for the year 2008 in whole dollars (NOT 2009)", 
-      "int_group": 7, 
-      "question_set": 0, 
-      "display_order": 160.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "money", 
-      "eng_tooltip": "hotel, food, bait, fees, gear, etc...", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 135, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "exp_comp", 
-      "eng_text": "Please estimate how your recreational fishing related expenditures compare to previous years", 
-      "int_group": 7, 
-      "question_set": 0, 
-      "display_order": 170.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [
-        21, 
-        22, 
-        23, 
-        24, 
-        25
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 136, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_trans", 
-      "eng_text": "   - Private or public transportation", 
-      "int_group": 7, 
-      "question_set": 1, 
-      "display_order": 800.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 137, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_food_re", 
-      "eng_text": "   - Food - restaurants", 
-      "int_group": 7, 
-      "question_set": 1, 
-      "display_order": 801.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 138, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_food_gr", 
-      "eng_text": "   - Food - grocery stores, other", 
-      "int_group": 7, 
-      "question_set": 1, 
-      "display_order": 802.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 139, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_lodging", 
-      "eng_text": "   - Lodging & camping", 
-      "int_group": 7, 
-      "question_set": 1, 
-      "display_order": 803.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 140, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_fuel", 
-      "eng_text": "   - Boat/car fuel", 
-      "int_group": 7, 
-      "question_set": 1, 
-      "display_order": 804.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 141, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_heat_f", 
-      "eng_text": "   - Heating & cooking fuel", 
-      "int_group": 7, 
-      "question_set": 1, 
-      "display_order": 805.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 142, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_charter", 
-      "eng_text": "   - Party/charter/guide fees", 
-      "int_group": 7, 
-      "question_set": 1, 
-      "display_order": 806.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 143, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_boat_fe", 
-      "eng_text": "   - Land access/boat launch fees", 
-      "int_group": 7, 
-      "question_set": 1, 
-      "display_order": 807.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 144, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_equip_r", 
-      "eng_text": "   - Equipment rental", 
-      "int_group": 7, 
-      "question_set": 1, 
-      "display_order": 808.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 145, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_bait", 
-      "eng_text": "   - Bait & ice", 
-      "int_group": 7, 
-      "question_set": 1, 
-      "display_order": 809.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 146, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_tackle", 
-      "eng_text": "   - Gear & tackle", 
-      "int_group": 7, 
-      "question_set": 2, 
-      "display_order": 900.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 147, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_taxidrm", 
-      "eng_text": "   - Processing/taxidermy", 
-      "int_group": 7, 
-      "question_set": 2, 
-      "display_order": 901.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 148, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_club_fe", 
-      "eng_text": "   - Membership & club dues", 
-      "int_group": 7, 
-      "question_set": 2, 
-      "display_order": 902.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 149, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_storage", 
-      "eng_text": "   - Moorage/storage", 
-      "int_group": 7, 
-      "question_set": 2, 
-      "display_order": 903.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 150, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_license", 
-      "eng_text": "   - License, stamps, tags, etc...", 
-      "int_group": 7, 
-      "question_set": 2, 
-      "display_order": 904.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 151, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_maintnc", 
-      "eng_text": "   - Boat maintenance/expenses", 
-      "int_group": 7, 
-      "question_set": 2, 
-      "display_order": 905.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 152, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_powboat", 
-      "eng_text": "   - Power boat purchase", 
-      "int_group": 7, 
-      "question_set": 2, 
-      "display_order": 906.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 153, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_np_boat", 
-      "eng_text": "   - Non-power boat purchase", 
-      "int_group": 7, 
-      "question_set": 2, 
-      "display_order": 907.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 154, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_electro", 
-      "eng_text": "   - Electronics", 
-      "int_group": 7, 
-      "question_set": 2, 
-      "display_order": 908.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "GPS, fish locator, radio, etc...", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 155, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_misc", 
-      "eng_text": "   - Miscellaneous", 
-      "int_group": 7, 
-      "question_set": 2, 
-      "display_order": 909.0, 
-      "required": false, 
-      "question_group": 3, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -3032,6 +2614,452 @@
       "options": [], 
       "val_min": null, 
       "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 175, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "expenses", 
+      "eng_text": "Please estimate your expenses for all recreational fishing activities in which you participated for the year 2008 (NOT 2009) in whole dollars", 
+      "int_group": 9, 
+      "question_set": 0, 
+      "display_order": 10.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "hotel, food, bait, fees, gear, etc...", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 176, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "exp_comp", 
+      "eng_text": "Please estimate how your recreational fishing related expenditures compare to previous years", 
+      "int_group": 9, 
+      "question_set": 0, 
+      "display_order": 20.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [
+        21, 
+        22, 
+        23, 
+        24, 
+        25
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 177, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_trans", 
+      "eng_text": "   - Private or public transportation", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 30.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 178, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_food_re", 
+      "eng_text": "   - Food - restaurants", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 40.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 179, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_food_gr", 
+      "eng_text": "   - Food - grocery stores, other", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 50.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 180, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_lodging", 
+      "eng_text": "   - Lodging & camping", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 60.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 181, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_fuel", 
+      "eng_text": "   - Boat/car fuel", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 70.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 182, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_heat_f", 
+      "eng_text": "   - Heating & cooking fuel", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 80.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 183, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_charter", 
+      "eng_text": "   - Party/charter/guide fees", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 90.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 184, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_boat_fe", 
+      "eng_text": "   - Land access/boat launch fees", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 100.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 185, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_equip_r", 
+      "eng_text": "   - Equipment rental", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 110.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 186, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_bait", 
+      "eng_text": "   - Bait & ice", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 120.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 187, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_tackle", 
+      "eng_text": "   - Gear & tackle", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 130.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 188, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_taxidrm", 
+      "eng_text": "   - Processing/taxidermy", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 140.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 189, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_club_fe", 
+      "eng_text": "   - Membership & club dues", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 150.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 190, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_storage", 
+      "eng_text": "   - Moorage/storage", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 160.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 191, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_license", 
+      "eng_text": "   - License, stamps, tags, etc...", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 170.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 192, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_maintnc", 
+      "eng_text": "   - Boat maintenance/expenses", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 180.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 193, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_powboat", 
+      "eng_text": "   - Power boat purchase", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 190.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 194, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_np_boat", 
+      "eng_text": "   - Non-power boat purchase", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 200.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 195, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_electro", 
+      "eng_text": "   - Electronics", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 210.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "GPS, fish locator, radio, etc...", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 196, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_misc", 
+      "eng_text": "   - Miscellaneous", 
+      "int_group": 9, 
+      "question_set": 1, 
+      "display_order": 220.0, 
+      "required": false, 
+      "question_group": 3, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "0", 
       "answer_type": "percent", 
       "eng_tooltip": "", 
       "val_max": null

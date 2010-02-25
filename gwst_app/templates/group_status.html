@@ -69,7 +69,6 @@ function skip_res_verify(link) {
             <li>Done. <a href="/unfinalize_group/{{r.group_memb.int_group.id}}/">Re-open this group</a></li>
         {% else %}
             {% if r.current %}
-            {#{% ifequal current_group.int_group r.group_memb.int_group %}#}
                 {% ifequal r.group_memb.status "in-progress" %}   
                     <li>Done. <a href="/group_qs/{{r.group_memb.int_group.id}}/answer/">Edit answers</a></li>
                 {% else %}
@@ -107,12 +106,11 @@ function skip_res_verify(link) {
                     {% endif %}
                 {% endifequal %}
                 
-                {% ifnotequal forloop.counter 1 %}      {#  NOT MAIN  #}
+                {% if not r.group_memb.int_group.required_group %}      {#  NOT REQUIRED  #}
                     {% ifnotequal forloop.counter 2 %}      {#  NOT PRIMARY GROUP  #}
                         <li><a href='#' onclick="skip_group_verify('/skip_group/{{r.group_memb.int_group.id}}/')">Skip this group</a></li>
                     {% endifnotequal %}
-                {% endifnotequal %}
-            {#{% endifequal %}#}
+                {% endif %}
             {% endif %}
         {% endifequal %}
         </ul>

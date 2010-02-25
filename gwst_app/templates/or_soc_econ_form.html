@@ -12,35 +12,36 @@
     {# This can be more dynamic using template language and the "question_set" attribute.  All you need to do is have one loop through all, then three smaller loops engaging when the desired question_set begins, and only acting on the space determined by the counter of the parent loop (either use parentloop.counter or use "with" to store the value). #}
     
     {% for question in form %}
-        {% if forloop.counter < 10 %}
+        {% if forloop.counter < 3 %}
             <p><div class="fieldWrapper">
                 {{ question.errors }}
                 {{ question.label_tag }}: {{ question }}
             </div></p>
+        {% else %}    
+            {% ifequal forloop.counter 3 %}   
+                <br>
+                <p>
+                    Please estimate the percentage of your total 2008 (NOT 2009) expenditures used in each of the <br /> 
+                    following categories - note that the <u>total</u> sum of the two categories should equal 100%.
+                <p>
+            {% endifequal %}
+            {{ question.errors }}
         {% endif %}
-        {% ifequal forloop.counter 10 %}   
-        <br>
-        <p>
-            Please estimate the percentage of your total 2008 (NOT 2009) expenditures used in each of the <br /> 
-            following categories - note that the <u>total</u> sum of the two categories should equal 100%.
-        <p>
-        <table border="1">
-        <tr>
-            <th><b>Trip Related</b></th>
-        </tr>
+    {% endfor %}
+    {% for question in form %}
+        {% ifequal forloop.counter 3 %}   
+            <table style="margin-left: 50px" border="1">
+            <tr>
+                <th><b>Trip Related</b></th>
+            </tr>
         {% endifequal %}
-        {% ifequal forloop.counter 20 %}   
-        <tr></tr>
-        <tr>
-            <th><b>Equipment & General</b></th>
-        </tr>
+        {% ifequal forloop.counter 13 %}   
+            <tr></tr>
+            <tr>
+                <th><b>Equipment & General</b></th>
+            </tr>
         {% endifequal %}
-        {% if forloop.counter > 9 %}
-            {% if question.errors %}
-                </table>
-                    {{ question.errors }}
-                <table border="1">
-            {% endif %}
+        {% if forloop.counter > 2 %}
             <tr>
                 <td>{{ question.label_tag }}</td>
                 <td>{{ question }}</td>
