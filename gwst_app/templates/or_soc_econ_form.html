@@ -9,6 +9,8 @@
     <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
     {{ form.non_field_errors }}
     
+    <p style="margin: 0px"><b>Impacts to fishing grounds affect not only fishermen but also coastal economies. The data you provide below will help us associate the value of your fishing grounds to the revenue your fishing brings to coastal communities. This information is important to complete as it will support future analyses to guide the placement of wave energy facilities in ways that reduce impacts to fishermen and coastal communities.</b></p>
+    
     {# This can be more dynamic using template language and the "question_set" attribute.  All you need to do is have one loop through all, then three smaller loops engaging when the desired question_set begins, and only acting on the space determined by the counter of the parent loop (either use parentloop.counter or use "with" to store the value). #}
     
     {% for question in form %}

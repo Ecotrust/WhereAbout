@@ -313,7 +313,7 @@
       "shape_name": "fishing ground", 
       "active": true, 
       "organization": "Ecotrust", 
-      "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p>You won't be surveyed for groups you don't provide a value for here.  In addition, these values must add up to 100%.  For example, if someone participates in both kayak fishing and dive fishing, they might enter 60% for kayak fishing, 40% for dive fishing and nothing for private vessel fishing.</p>\r\n<p><i>[Note: This survey is only for \u201cNon-charter\u201d recreational fishermen.  There will be a separate survey for charter-boat companies.]</i></p>\r\n", 
+      "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p>You won't be surveyed for groups you don't provide a value for here.  In addition, these values must add up to 100%.  For example, if someone participates in both kayak fishing and dive fishing, they might enter 60% for kayak fishing, 40% for dive fishing and nothing for sport boat fishing.</p>\r\n<p><i>[Note: This survey is not for recreational fishermen who ONLY fish from charter boats. There will be a separate survey for charter-boat companies.]</i></p>\r\n", 
       "clip_region": 1, 
       "interview_complete_text": "<p>\r\nThe fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.\r\n</p>\r\n<p>\r\nWhen the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated to complete the maps. The maps will then be submitted to Oregon\u2019s Department of Land and Conservation Development to be considered along with other data and information to help guide the location of waver energy sites so that impacts to existing uses are minimized.\r\n</p>\r\n<p>\r\nYour willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a>\r\n</p>", 
       "name": "Recreational Fishing Areas and Value in Oregon"
@@ -452,6 +452,24 @@
     }
   }, 
   {
+    "pk": 7, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "main", 
+      "name": "Main Questions", 
+      "required_group": true, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 2, 
+      "member_title": "main", 
+      "page_template": "base_form.html", 
+      "resources": [], 
+      "description": "General Questions"
+    }
+  }, 
+  {
     "pk": 5, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -500,24 +518,6 @@
     }
   }, 
   {
-    "pk": 7, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "main", 
-      "name": "Main Questions", 
-      "required_group": true, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": false, 
-      "interview": 2, 
-      "member_title": "main", 
-      "page_template": "base_form.html", 
-      "resources": [], 
-      "description": "General Questions"
-    }
-  }, 
-  {
     "pk": 9, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -525,7 +525,7 @@
       "code": "soc", 
       "name": "Socio-Economic Questions", 
       "required_group": true, 
-      "select_resource_text": "Impacts to fishing grounds affect not only fishermen but also coastal economies. The data you provide below will associate the value of your fishing grounds to the revenue your fishing brings to coastal communities. This information is important to complete as it will support future analyses to  guide the placement of wave energy facilities in ways that reduce impacts to fishermen and coastal communities.", 
+      "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": false, 
       "interview": 2, 
@@ -576,30 +576,6 @@
     }
   }, 
   {
-    "pk": 6, 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 1.0, 
-      "eng_text": "Swimming"
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 2.0, 
-      "eng_text": "Kayak"
-    }
-  }, 
-  {
-    "pk": 8, 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 3.0, 
-      "eng_text": "Private Boat"
-    }
-  }, 
-  {
     "pk": 9, 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
@@ -637,14 +613,6 @@
     "fields": {
       "display_order": 3.0, 
       "eng_text": "Dry Dock"
-    }
-  }, 
-  {
-    "pk": 14, 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 4.0, 
-      "eng_text": "Paddleboard"
     }
   }, 
   {
@@ -741,6 +709,46 @@
     "fields": {
       "display_order": 20.0, 
       "eng_text": "Wood"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 5.0, 
+      "eng_text": "Paddleboard"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 4.0, 
+      "eng_text": "Charter Boat"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1.0, 
+      "eng_text": "Swimming"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 2.0, 
+      "eng_text": "Kayak"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 3.0, 
+      "eng_text": "Sport Boat"
     }
   }, 
   {
@@ -957,10 +965,10 @@
       "required": true, 
       "question_group": null, 
       "options": [
+        14, 
         6, 
         7, 
-        8, 
-        14
+        8
       ], 
       "val_min": null, 
       "val_default": "", 
@@ -1612,10 +1620,11 @@
       "required": true, 
       "question_group": null, 
       "options": [
+        14, 
+        27, 
         6, 
         7, 
-        8, 
-        14
+        8
       ], 
       "val_min": null, 
       "val_default": "", 
@@ -2062,7 +2071,7 @@
     "fields": {
       "all_resources": false, 
       "code": "v_homep", 
-      "eng_text": "The location of your primary launch port/site", 
+      "eng_text": "Location of your primary launch port/site", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 170.0, 
