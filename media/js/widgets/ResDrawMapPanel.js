@@ -5,6 +5,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 	
     defaultZoom: 1,
     maxZoom: 6,
+    autoZoom: false,
     
     initComponent: function(){
     	//Constructor config object already applied by now.  Properties can be added/overridden using Ext.apply	
@@ -168,9 +169,12 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     zoomHandler: function() {
         var zoomLvl = this.map.getZoom();
         if (zoomLvl > this.maxZoom){
-            gwst.error.load('You are already at the maximum zoom level available.');
+            if (!this.autoZoom) {
+                gwst.error.load('You are already at the maximum zoom level available.');
+            }
             this.map.zoomTo(this.maxZoom);
         }
+        this.autoZoom = false;
     },
     
     getLayerStore: function() {
@@ -187,18 +191,21 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     },
     
     zoomToMapRegion: function(region) {
+        this.autoZoom = true
     	this.mapRegion = region;
     	this.mapRegion.bounds = new OpenLayers.Bounds(region.w_bound,region.s_bound,region.e_bound,region.n_bound);
     	this.map.zoomToExtent(this.mapRegion.bounds);
     },
     
     zoomToResShape: function(feature) {
+        this.autoZoom = true
         this.map.zoomToExtent(feature.geometry.bounds);
         this.selectControl.unselectAll();
     	this.selectControl.select(feature);
     },
     
     zoomToAllShapes: function() {
+        this.autoZoom = true
     	this.map.zoomToExtent(this.vecLayer.getDataExtent());    	
     },
     

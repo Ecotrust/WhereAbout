@@ -237,7 +237,7 @@ tfoot td {
     color: #666;
     padding: 2px 5px;
     font-size: 11px;
-    background: #e1e1e1 url(../img/admin/nav-bg.gif) top left repeat-x;
+    /*background: #e1e1e1 url(../img/admin/nav-bg.gif) top left repeat-x;*/
     border-left: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
@@ -312,7 +312,7 @@ table.orderable tbody tr td:hover {
 
 table.orderable tbody tr td:first-child {
     padding-left: 14px;
-    background-image: url(../img/admin/nav-bg-grabber.gif);
+    /*background-image: url(../img/admin/nav-bg-grabber.gif);*/
     background-repeat: repeat-y;
 }
 
@@ -342,7 +342,7 @@ input[type=text], input[type=password], textarea, select, .vTextField {
 /* FORM BUTTONS */
 
 .gwst_cancel, .button, input[type=submit], input[type=button], .submit-row input {
-    background: white url(../img/admin/nav-bg.gif) bottom repeat-x;
+    /*background: white url(../img/admin/nav-bg.gif) bottom repeat-x;*/
     padding: 3px;
     color: black;
     border: 1px solid #bbb;
@@ -350,7 +350,7 @@ input[type=text], input[type=password], textarea, select, .vTextField {
 }
 
 .button:active, input[type=submit]:active, input[type=button]:active {
-    background-image: url(../img/admin/nav-bg-reverse.gif);
+    /*background-image: url(../img/admin/nav-bg-reverse.gif);*/
     background-position: top;
 }
 
@@ -492,7 +492,7 @@ div.question_set {
 /* BREADCRUMBS */
 
 div.breadcrumbs {
-    background: white url(../img/admin/nav-bg-reverse.gif) 0 -10px repeat-x;
+    /*background: white url(../img/admin/nav-bg-reverse.gif) 0 -10px repeat-x;*/
     padding: 2px 8px 3px 8px;
     font-size: 11px;
     color: #999;
