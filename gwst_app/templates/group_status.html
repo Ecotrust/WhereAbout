@@ -69,6 +69,11 @@ function skip_res_verify(link) {
             <li>Done. <a href="/unfinalize_group/{{r.group_memb.int_group.id}}/">Re-open this group</a></li>
         {% else %}
             {% if r.current %}
+                {% if not r.group_memb.int_group.required_group %}      {#  NOT REQUIRED  #}
+                    {% ifnotequal forloop.counter 2 %}      {#  NOT PRIMARY GROUP  #}
+                        <li><a href='#main_menu' onclick="skip_group_verify('/skip_group/{{r.group_memb.int_group.id}}/')">Skip this group</a></li>
+                    {% endifnotequal %}
+                {% endif %}
                 {% ifequal r.group_memb.status "in-progress" %}   
                     <li>Done. <a href="/group_qs/{{r.group_memb.int_group.id}}/answer/">Edit answers</a></li>
                 {% else %}
@@ -97,7 +102,7 @@ function skip_res_verify(link) {
                             {% ifequal r.group_memb.num_incomplete_resources 0 %}  
                                 <a href="/finalize_group/{{r.group_memb.int_group.id}}/">Finalize this group</a>
                             {% else %}
-                                <a href='#' onclick="skip_res_verify('/skip_res_finalize_group/{{r.group_memb.int_group.id}}/')">Skip remaining {{interview.resource_name_plural}} and finalize this group</a>
+                                <a href='#main_menu' onclick="skip_res_verify('/skip_res_finalize_group/{{r.group_memb.int_group.id}}/')">Skip remaining {{interview.resource_name_plural}} and finalize this group</a>
                             {% endifequal %}
                             </li>
                         {% endifnotequal %}
@@ -106,11 +111,6 @@ function skip_res_verify(link) {
                     {% endif %}
                 {% endifequal %}
                 
-                {% if not r.group_memb.int_group.required_group %}      {#  NOT REQUIRED  #}
-                    {% ifnotequal forloop.counter 2 %}      {#  NOT PRIMARY GROUP  #}
-                        <li><a href='#' onclick="skip_group_verify('/skip_group/{{r.group_memb.int_group.id}}/')">Skip this group</a></li>
-                    {% endifnotequal %}
-                {% endif %}
             {% endif %}
         {% endifequal %}
         </ul>
