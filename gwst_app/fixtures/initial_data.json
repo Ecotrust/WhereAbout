@@ -326,6 +326,7 @@
       "shape_color": "FF", 
       "code": "div", 
       "name": "Dive/Spear Angling", 
+      "question_width": 275, 
       "required_group": false, 
       "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) were put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these three different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
       "preselect": true, 
@@ -353,6 +354,7 @@
       "shape_color": "FF", 
       "code": "kyk", 
       "name": "Kayak Angling", 
+      "question_width": 275, 
       "required_group": false, 
       "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) were put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these three different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
       "preselect": true, 
@@ -380,6 +382,7 @@
       "shape_color": "FF", 
       "code": "prvsl", 
       "name": "Private Vessel Angling", 
+      "question_width": 275, 
       "required_group": false, 
       "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) were put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these three different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
       "preselect": true, 
@@ -415,6 +418,7 @@
       "shape_color": "FF", 
       "code": "main", 
       "name": "Main Questions", 
+      "question_width": 275, 
       "required_group": true, 
       "select_resource_text": "", 
       "preselect": true, 
@@ -427,37 +431,13 @@
     }
   }, 
   {
-    "pk": 8, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FFFFFF", 
-      "code": "kyk", 
-      "name": "Kayak or Non-Motorized Vessel Fishing", 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "member_title": "kayak or non-motorized vessel fisherman", 
-      "page_template": "base_form.html", 
-      "resources": [
-        1, 
-        4, 
-        5, 
-        7, 
-        24, 
-        25
-      ], 
-      "description": "Kayak or Non-Motorized Vessel"
-    }
-  }, 
-  {
     "pk": 7, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FF", 
       "code": "main", 
       "name": "Main Questions", 
+      "question_width": 100, 
       "required_group": true, 
       "select_resource_text": "", 
       "preselect": true, 
@@ -470,12 +450,36 @@
     }
   }, 
   {
+    "pk": 4, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "div", 
+      "name": "Dive/Spear Fishing", 
+      "question_width": 375, 
+      "required_group": false, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "member_title": "dive/spear fisherman", 
+      "page_template": "base_form.html", 
+      "resources": [
+        4, 
+        15, 
+        24
+      ], 
+      "description": "Diving and spear/hand take"
+    }
+  }, 
+  {
     "pk": 5, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FF", 
       "code": "pri", 
       "name": "Sport Boat Fishing \"Non-charter\"", 
+      "question_width": 300, 
       "required_group": false, 
       "select_resource_text": "", 
       "preselect": true, 
@@ -496,25 +500,29 @@
     }
   }, 
   {
-    "pk": 4, 
+    "pk": 8, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "Dive/Spear Fishing", 
+      "shape_color": "FFFFFF", 
+      "code": "kyk", 
+      "name": "Kayak or Non-Motorized Vessel Fishing", 
+      "question_width": 300, 
       "required_group": false, 
       "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": true, 
       "interview": 2, 
-      "member_title": "dive/spear fisherman", 
+      "member_title": "kayak or non-motorized vessel fisherman", 
       "page_template": "base_form.html", 
       "resources": [
+        1, 
         4, 
-        15, 
-        24
+        5, 
+        7, 
+        24, 
+        25
       ], 
-      "description": "Diving and spear/hand take"
+      "description": "Kayak or Non-Motorized Vessel"
     }
   }, 
   {
@@ -524,6 +532,7 @@
       "shape_color": "FFFFFF", 
       "code": "soc", 
       "name": "Socio-Economic Questions", 
+      "question_width": 225, 
       "required_group": true, 
       "select_resource_text": "", 
       "preselect": true, 

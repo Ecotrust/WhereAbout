@@ -3,11 +3,20 @@
 {% block content %}
 <h3>Your Answers</h3>
 {% for question in questions %}
-{% for answer in answers %}
-{% ifequal question answer.int_question %}
-{{ question.eng_text }}: {{ answer.text_val }}<br>
-{% endifequal %}
-{% endfor %}
+    {% for answer in answers %}
+        {% ifequal question answer.int_question %}
+            <table>
+                <tr>
+                    <td style='width:{{ q_width }}px; padding-right:20px'>
+                        {{ question.eng_text }}:
+                    </td>
+                    <td style='width:150px'>
+                        {{ answer.text_val }}
+                    </td>
+                </tr>
+            </table>
+        {% endifequal %}
+    {% endfor %}
 {% endfor %}
 <p><a href="/group_status#main_menu">Return to Interview Menu</a></p>
 {% endblock %}

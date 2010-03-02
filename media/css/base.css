@@ -220,7 +220,7 @@ table {
 td, th {
     font-size: 11px;
     line-height: 13px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #CCCCCC;
     vertical-align: top;
     padding: 5px;
     font-family: "Lucida Grande", Verdana, Arial, sans-serif;
@@ -230,6 +230,10 @@ th {
     text-align: left;
     font-size: 12px;
     font-weight: bold;
+}
+
+.fieldWrapper td{
+    border-bottom: 0px;
 }
 
 thead th,
@@ -445,7 +449,7 @@ ul.errorlist {
     margin: 0 0 3px 0;
     border: 1px solid red;
     color: white;
-    background: red url(../img/admin/icon_alert.gif) 5px .3em no-repeat;
+    background: red /*url(../img/admin/icon_alert.gif)*/ 5px .3em no-repeat;
 }
 
 td ul.errorlist {

@@ -17,7 +17,16 @@
         {% if forloop.counter < 3 %}
             <p><div class="fieldWrapper">
                 {{ question.errors }}
-                {{ question.label_tag }}: {{ question }}
+                <table>
+                    <tr>
+                        <td style='width:400px'>
+                            {{ question.label_tag }}: 
+                        </td>
+                        <td>
+                            {{ question }}
+                        </td>
+                    </tr>
+                </table>
             </div></p>
         {% else %}    
             {% ifequal forloop.counter 3 %}   

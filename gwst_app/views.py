@@ -139,7 +139,7 @@ def assign_groups(request):
         # let user select which groups they are in
         groups = InterviewGroup.objects.filter(interview=interview,required_group=False)
         form = SelectInterviewGroupsForm( groups )
-        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'instructions':instructions, 'value':'Continue'}))
+        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'instructions':instructions, 'value':'Continue', 'q_width':265}))
         
     else:
         groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
@@ -169,7 +169,7 @@ def assign_groups(request):
             return HttpResponseRedirect('/group_status/')
         
         # validation errors
-        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))
+        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue', 'q_width':265}))
     
     
 # show a list of user's groups and current status of each
@@ -303,7 +303,9 @@ def view_answers(request,group_id):
         
     title = group.name + ' Answered Questions'
     
-    return render_to_response( 'view_answers.html', RequestContext(request,{'title':title, 'questions': questions, 'answers':answers}))        
+    q_width = group.question_width
+    
+    return render_to_response( 'view_answers.html', RequestContext(request,{'title':title, 'questions': questions, 'answers':answers, 'q_width':q_width}))        
         
 @login_required    
 def answer_questions(request,group_id):
@@ -372,7 +374,9 @@ def answer_questions(request,group_id):
             form.save(request.user)
             
             return HttpResponseRedirect('/group_status#main_menu')
-    return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))     
+            
+    q_width = group.question_width
+    return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue', 'q_width':q_width}))     
     
 
 @login_required
