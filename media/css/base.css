@@ -208,7 +208,6 @@ table {
 td, th {
     font-size: 11px;
     line-height: 13px;
-    border-bottom: 1px solid #CCCCCC;
     vertical-align: top;
     padding: 5px;
     font-family: "Lucida Grande", Verdana, Arial, sans-serif;
@@ -229,7 +228,6 @@ tfoot td {
     color: #666;
     padding: 2px 5px;
     font-size: 11px;
-    /*background: #e1e1e1 url(../img/admin/nav-bg.gif) top left repeat-x;*/
     border-left: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
@@ -304,7 +302,6 @@ table.orderable tbody tr td:hover {
 
 table.orderable tbody tr td:first-child {
     padding-left: 14px;
-    /*background-image: url(../img/admin/nav-bg-grabber.gif);*/
     background-repeat: repeat-y;
 }
 
@@ -323,8 +320,6 @@ form.other { /* for forms that need unaligned class */
     display:inline; 
 } 
 label { 
-   /* display:block; 
-    float: left; */
     width: 10em; 
     margin-right: .5em; 
     text-align:right; 
@@ -466,7 +461,7 @@ ul.errorlist {
     margin: 0 0 3px 0;
     border: 1px solid red;
     color: white;
-    background: red /*url(../img/admin/icon_alert.gif)*/ 5px .3em no-repeat;
+    background: red 5px .3em no-repeat;
 }
 
 td ul.errorlist {
@@ -506,14 +501,12 @@ div.system-message p.system-message-title {
 }
 
 div.question_set {
-  border-top: 1px solid #cccccc;
-  padding: 4px 0px 4px 0px;
+
 }
 
 /* BREADCRUMBS */
 
 div.breadcrumbs {
-    /*background: white url(../img/admin/nav-bg-reverse.gif) 0 -10px repeat-x;*/
     padding: 2px 8px 3px 8px;
     font-size: 11px;
     color: #999;
