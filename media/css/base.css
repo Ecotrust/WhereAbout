@@ -388,7 +388,6 @@ input:focus, text:focus, textarea:focus, textfield:focus, password:focus, checkb
 	border: 1px solid #39F;
 	}
 
-
 /* MODULES */
 
 .module {
@@ -563,7 +562,8 @@ a.deletelink:hover {
 
 #header {
     width: 100%;
-    padding: 6px;
+    padding-bottom: 6px;
+    padding-top: 6px;
 }
 
 #content-main {
@@ -598,7 +598,7 @@ a.deletelink:hover {
 #menu {
   border-top: 1px solid #cccccc;
   border-bottom: 1px solid #cccccc;
-  padding: 4px 0px 4px 0px;
+  padding: 20px 0px 4px 0px;
   margin-top: 8px;
 }
 
@@ -629,10 +629,10 @@ a.deletelink:hover {
 #user-tools {
     position: absolute;
     top: 186px;
-    right: 0;
+    left: 0;
     padding: 1.2em 10px;
     font-size: 11px;
-    text-align: right;
+    text-align: left;
 }
 
 #wrap {
@@ -640,4 +640,6 @@ a.deletelink:hover {
 	width: 800px; /*Width of main container*/
 	margin: 0 auto; /*Center container on page*/
 	background:#f9f9f9; 
+    padding-bottom: 6px;
+    Margin-bottom: 10px;
 	}

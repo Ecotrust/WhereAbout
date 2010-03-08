@@ -35,8 +35,9 @@ You'll be sent an email with instructions on how to finish your registration.</p
   <td>{{ form.password2 }}</td>
   {% if form.password2.errors %}<td><span class="error">{{ form.password2.errors|join:", " }}</span></td>{% endif %}
 </tr>
-<tr>
-<tr><td></td><td><input type="submit" value="Register" /></td></tr>
+<tr><td colspan='2' align='right'>
+<input type="submit" value="Register" style="margin-top:9px"/></td></tr>
+</td></tr>
 </table>
 </form>
 {% endblock %}
