@@ -329,9 +329,13 @@ label {
     margin-right: .5em; 
     text-align:right; 
 }
-label input, input.button { 
+input.button { 
     position:absolute; 
     left:11.5em; 
+}
+
+label input{
+    
 }
 
 fieldset { 
@@ -350,24 +354,6 @@ legend {
 input { 
     font-size:.9em; 
     margin-bottom:1em; 
-}
-/*
-
-input, textarea, select, button {
-    margin: 2px 0;
-    padding: 2px 3px;
-    vertical-align: middle;
-    font-family: "Lucida Grande", Verdana, Arial, sans-serif;
-    font-weight: normal;
-    font-size: 11px;
-}
-
-textarea {
-    vertical-align: top !important;
-}
-
-input[type=text], input[type=password], textarea, select, .vTextField {
-    border: 1px solid #ccc;
 }
 
 /* FORM BUTTONS */
