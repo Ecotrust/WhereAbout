@@ -81,9 +81,9 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
                 pennies_exist = true;
             }
         }
-        this.inner_grid_panel.getColumnModel().setHidden(2, !pennies_exist);
+        this.d2_inner_grid_panel.getColumnModel().setHidden(2, !pennies_exist);
         if (pennies_exist) {
-            this.inner_grid_panel.getColumnModel().setColumnWidth(2, 50);
+            this.d2_inner_grid_panel.getColumnModel().setColumnWidth(2, 50);
         }
     },
 
@@ -127,10 +127,10 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 		});
 			
         //Shape grid panel - for selection, deletion, and zooming
-        this.inner_grid_panel = new Ext.grid.GridPanel ({
+        this.d2_inner_grid_panel = new Ext.grid.GridPanel ({
             store: gwst.settings.shapeStore,
             columns: [{
-            	width: 20,
+            	width: 30,
             	sortable: false,
             	renderer: function() {return '<img src="/site-media/images/control_play.png"/>';}
             },
@@ -205,7 +205,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 		this.add(this.inner_panel);
         this.add(this.lower_panel);
         this.add(this.instruction_panel);
-        this.add(this.inner_grid_panel); 
+        this.add(this.d2_inner_grid_panel); 
         this.hidePennyColumn();
         this.add(this.button_panel);
         
@@ -227,7 +227,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     
     //Refresh the whole grid to update the row numberer
     refresh: function() {
-    	this.inner_grid_panel.getView().refresh();
+    	this.d2_inner_grid_panel.getView().refresh();
     },
     
     //disable continue button if all shapes are deleted

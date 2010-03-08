@@ -86,7 +86,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 	 	this.grid_actions = new Ext.ux.grid.RowActions({
 			 header:'',
 			 autoWidth: false,
-			 width: 157,
+			 width: 160,
 			 sortable: false,
 			 keepSelection:true,
 			 actions:[{
@@ -104,10 +104,10 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
 			action:this.gridActionClicked.createDelegate(this)
 		});
 				
-        this.inner_grid_panel = new Ext.grid.GridPanel ({
+        this.penny_inner_grid_panel = new Ext.grid.GridPanel ({
             store: gwst.settings.shapeStore,
             columns: [{
-            	width: 24,
+            	width: 30,
             	sortable: false,
             	renderer: function() {return '<img src="/site-media/images/control_play.png"/>';}
             },
@@ -139,6 +139,8 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
             	scope: this
             }]
         });
+        
+        this.penny_inner_grid_panel.getColumnModel().setHidden(2, false);
         
         gwst.settings.shapeStore.on('update', this.updateStatus, this);
         gwst.settings.shapeStore.on('remove', this.updateStatus, this);
@@ -173,7 +175,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         this.add(this.header_panel);
 		this.add(this.inner_panel);
-		this.add(this.inner_grid_panel);
+		this.add(this.penny_inner_grid_panel);
         this.add(this.status_panel);
         this.add(this.button_panel);
         
@@ -197,7 +199,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     //Refresh the whole grid to update the row numberer
     refresh: function() {
-    	this.inner_grid_panel.getView().refresh();
+    	this.penny_inner_grid_panel.getView().refresh();
     },
     
     getPenniesRemaining: function() {
