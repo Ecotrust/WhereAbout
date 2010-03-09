@@ -3134,16 +3134,6 @@
     }
   }, 
   {
-    "pk": 11, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "We apologize.  Internet explorer simply isn't displaying it properly.  Firefox or any of the other browsers don't have this problem as far as we can tell.  Please do the best you can and use the contour lines available on the nautical charts layer if possible.", 
-      "importance": 5, 
-      "question": "The depth contours layer doesn't look right in internet explorer.  It has dark blue contour lines and doesn't look like the video at all.", 
-      "faq_group": 3
-    }
-  }, 
-  {
     "pk": 12, 
     "model": "gwst_app.faq", 
     "fields": {
