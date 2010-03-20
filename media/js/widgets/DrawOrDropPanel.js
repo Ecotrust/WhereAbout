@@ -46,7 +46,7 @@ gwst.widgets.DrawOrDropPanel = Ext.extend(gwst.widgets.WestPanel, {
                 elem: 'Draw Another',
                 type: 'text'
             },{
-                elem: '<p>Return to draw mode and make another '+ this.shape_name +'.</p>',
+                elem: '<p>Draw another '+ this.shape_name +'.</p>',
                 type: 'text'
             },{
                 elem: this.addBtnClicked.createDelegate(this),
