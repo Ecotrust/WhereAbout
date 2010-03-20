@@ -24,6 +24,14 @@
     }
   }, 
   {
+    "pk": 5, 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "oregonfishing.ecotrust.org", 
+      "name": "oregonfishing.ecotrust.org"
+    }
+  }, 
+  {
     "pk": 3, 
     "model": "sites.site", 
     "fields": {
