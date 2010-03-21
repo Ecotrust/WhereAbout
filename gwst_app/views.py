@@ -1168,7 +1168,7 @@ def video(request, name):
     import string
     video = {
         'player':settings.MEDIA_URL+'video_player/player.swf',
-        'file':settings.MEDIA_URL+'videos/'+str(name)+'.flv',
+        'file':settings.VIDEO_URL+str(name)+'.flv',
         'title':string.capwords(name.replace('_',' '))
     }
     return render_to_response('demo_video.html', {'video':video}, context_instance=RequestContext(request)) 
