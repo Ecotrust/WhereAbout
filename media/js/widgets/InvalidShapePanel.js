@@ -28,11 +28,11 @@ gwst.widgets.InvalidShapePanel = Ext.extend(gwst.widgets.WestPanel, {
     getHtmlText: function() {
         var html_text = '<p class="error_text"><b>There was a problem</b> <img src="/site-media/images/exclamation.png"></p>';
         if (this.status_code == 2) {
-            html_text += '<p>Your '+this.shape_name+' is not valid because it overlaps itself (example below).</p> <img class="invalid-image" src="/site-media/images/invalid_bowtie.png">';
+            html_text += '<p>Your '+this.shape_name+' is not valid because it overlaps itself (example below).</p> <img class="invalid-image" src="/site-media/images/invalid_bowtie.gif">';
         } else if (this.status_code == 3) {
-            html_text += '<p>Your '+this.shape_name+' falls completely outside the area of interest which is the Pacific Ocean off the Oregon Coast. Rivers, estuaries and lakes are excluded from this survey.</p> <p>In the example below the '+this.shape_name+' falls within Coos Bay which is not valid.  Outside the mouth of Coos Bay would be.</p><img class="invalid-image" src="/site-media/images/invalid_bounds.png">';
+            html_text += '<p>Your '+this.shape_name+' falls completely outside the area of interest which is the Pacific Ocean off the Oregon Coast. Rivers, estuaries and lakes are excluded from this survey.</p> <p>In the example below the '+this.shape_name+' falls within Coos Bay which is not valid.  Outside the mouth of Coos Bay would be.</p><img class="invalid-image" src="/site-media/images/invalid_bounds.gif">';
         } else if (this.status_code == 4) {
-            html_text += '<p>Your new '+this.shape_name+' overlaps one of your other '+this.resource+' '+this.shape_name_plural+'. They are not allowed to do this.</p>  <p>If you have two that border each other, just draw the second one along the edge of the first as best as you can and tell us in your boundary notes that it should border the other. We will take care of the rest.</p><img class="invalid-image" src="/site-media/images/invalid_overlap.png">';
+            html_text += '<p>Your new '+this.shape_name+' overlaps one of your other '+this.resource+' '+this.shape_name_plural+'. They are not allowed to do this.</p>  <p>If you have two that border each other, just draw the second one along the edge of the first as best as you can and tell us in your boundary notes that it should border the other. We will take care of the rest.</p><img class="invalid-image" src="/site-media/images/invalid_overlap.gif">';
         } else if (this.status_code == 5) {
         	html_text += '<p>Your '+this.shape_name+' is not valid because it had less than 3 points.</p> <p>You probably accidentally double clicked and completed it before you were done.</p>';
         } else if (this.status_code == 6) {
