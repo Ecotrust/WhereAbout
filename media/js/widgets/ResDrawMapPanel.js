@@ -186,6 +186,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     },
     
     showPanZoomBar: function() {
+        Ext.query(".olControlPanZoomBar")[0].style.display = 'none';
     	Ext.query(".olControlPanZoomBar")[0].style.display = 'block';
         Ext.query(".olControlPanZoomBar")[0].style.left = '';
     },
