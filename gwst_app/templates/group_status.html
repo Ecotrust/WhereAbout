@@ -68,8 +68,8 @@ function skip_res_verify(link) {
         
         <ul>
         {% ifequal r.group_memb.status "finalized" %}   
-            <li>Done. <a href="/group_qs/{{r.group_memb.int_group.id}}/view/">Review answers</a></li>
-            <li>Done. <a href="/unfinalize_group/{{r.group_memb.int_group.id}}/">Re-open this group</a></li>
+            <li>Done. <a class='menu-disabled' href="/group_qs/{{r.group_memb.int_group.id}}/view/">Review answers</a></li>
+            <li>Done. <a class='menu-disabled' href="/unfinalize_group/{{r.group_memb.int_group.id}}/">Re-open this group</a></li>
         {% else %}
         
             {% if r.current %}
@@ -94,18 +94,17 @@ function skip_res_verify(link) {
                     {% if r.group_memb.int_group.user_draws_shapes %}
                         <li>Done. <a href="/select_group_resources/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}</a></li>
                         <li>Done. <a href="/review_resource_questions/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
-                        <li class='current-item'>
                         {% ifequal num_shapes 0 %}
-                            <a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Draw {{interview.shape_name_plural}}</a>
-                        {% else %}                           
-                            <a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Continue drawing/editing {{interview.shape_name_plural}}</a>
+                        <li class='current-item'><a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Draw {{interview.shape_name_plural}}</a></li>
                         {% endifequal %}
-                        </li>
+                        
                         {% ifnotequal r.group_memb.num_complete_resources 0 %}
                             {% ifequal r.group_memb.num_incomplete_resources 0 %}  
+                                <li><a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Continue drawing/editing {{interview.shape_name_plural}}</a></li>
                                 <li class='current-item'><a href="/finalize_group/{{r.group_memb.int_group.id}}/">Finalize this group</a></li>
                             {% else %}
-                                <li><a href='#main_menu' onclick="skip_res_verify('/skip_res_finalize_group/{{r.group_memb.int_group.id}}/')">Skip remaining {{interview.resource_name_plural}} and finalize this group</a></li>
+                                <li class='current-item'><a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Continue drawing/editing {{interview.shape_name_plural}}</a></li>
+                                <li class='current-item'><a href='#main_menu' onclick="skip_res_verify('/skip_res_finalize_group/{{r.group_memb.int_group.id}}/')">Skip remaining {{interview.resource_name_plural}} and finalize this group</a></li>
                             {% endifequal %}
                         {% endifnotequal %}
                     {% else %}  

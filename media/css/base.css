@@ -18,6 +18,15 @@ a:link, a:visited {
     text-decoration: none;
 }
 
+a.menu-disabled:link, a.menu-disabled:visited{
+    color: #99BBDD;
+    text-decoration: none;
+}
+
+a.menu-disabled:hover , a.menu-disabled:active{
+    color: #000;
+}
+
 a:hover , a:active{
     color: #000;
 }
@@ -121,6 +130,7 @@ li, dt, dd {
 
 li.current-item {
     list-style-type: disc;
+    font-weight: bold;
 }
 
 dt {
