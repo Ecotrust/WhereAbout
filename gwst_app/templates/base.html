@@ -14,6 +14,16 @@
     <link href="/site-media/css/base.css" rel="stylesheet" type="text/css" media="screen" />
     {% endblock %}
     {% block js %}
+    <SCRIPT TYPE="text/javascript">
+        <!--
+        function faq_popup()
+        {
+        if (! window.focus)return true;
+        window.open("/faq", 'faq', 'width=825,height=600,scrollbars=yes');
+        return false;
+        }
+        //-->
+    </SCRIPT>
     {% endblock %}
   </head>
   
@@ -31,8 +41,8 @@
         <a href="/databrowse/">Databrowse</a> |
       {% endif %}    
       
-      <a href="/">Home</a> | 
-      <a href="/faq">FAQ</a> |
+      <a href="/">Main Menu</a> | 
+      <a href="/faq" onClick="return faq_popup()">FAQ</a> |
       <a href="/accounts/logout/">Sign out</a>
     </div>
     </div>
@@ -42,7 +52,7 @@
   <div id="main">  
 	<div id="content">
 	  {% if interview.name %}
-	  <h1>{{ interview.name }}</h1>
+        <h1>{{ interview.name }}</h1>
 	  {% endif %}
 	  {% block content %}
 	  {% endblock %}

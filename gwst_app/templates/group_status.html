@@ -22,9 +22,9 @@ function skip_res_verify(link) {
 <div style='width:600px;'>
 {{ interview.group_status_text|safe }} 
 </div>
-<br/>
 
-<a name='main_menu' />
+<p class='menu-status'><b>Interview status: in-progress</b></p>
+
 {% if user.is_staff %}
     <a href='/reset_interview/{{interview.id}}'>Restart Survey</a>
     <br/>
@@ -35,39 +35,44 @@ function skip_res_verify(link) {
 <br/>
 <ul>
 {% for r in result %} 
-    <li style='line-height:16px'>
-    {% ifequal r.group_memb.status "finalized" %}
-        <img src="/site-media/images/accept.png" alt="Finalized"/>
-    {% endifequal %}    
-    {% ifequal r.group_memb.status "skipped" %}
-        <img src="/site-media/images/accept.png" alt="Skipped"/>
-    {% endifequal %}    
-    {% ifnotequal r.group_memb.status "finalized" %}
-        {% ifnotequal r.group_memb.status "skipped" %}
-            <img src="/site-media/images/delete.png" alt="Incomplete"/>
-        {% endifnotequal %}
-    {% endifnotequal %}
-    <b>{{ r.group_memb.int_group.name|capfirst }}</b>: 
-    
-    {% ifequal r.group_memb.status "selecting resources" %}
-        Selecting {{interview.resource_name}}
+    {% if r.current %}
+        <li class='menu-group'>
     {% else %}
-        {{r.group_memb.status|capfirst}}
-    {% endifequal %}
-    
-    {% ifequal r.group_memb.status "in-progress" %}    
-        {% if r.group_memb.int_group.user_draws_shapes %}
-            - {{r.group_memb.user_status_msg}}  
-        {% endif %}
-    {% endifequal %}
-    <br/>
-    
+        <li class='menu-disabled'>
+    {% endif %}
     {% ifnotequal r.group_memb.status "skipped" %}  
+    
+        {% ifequal r.group_memb.status "finalized" %}
+            <img src="/site-media/images/accept.png" alt="Finalized"/>
+        {% else %}
+            {% if r.current %}
+                <img src="/site-media/images/arrow_right.png" alt="Current"/>
+            {% else %}
+                <img src="/site-media/images/delete.png" alt="Incomplete"/>
+            {% endif %}
+        {% endifequal %}    
+
+        <b>{{ r.group_memb.int_group.name|capfirst }}</b>: 
+        
+        {% ifequal r.group_memb.status "selecting resources" %}
+            Selecting {{interview.resource_name}}
+        {% else %}
+            {{r.group_memb.status|capfirst}}
+        {% endifequal %}
+        
+        {% ifequal r.group_memb.status "in-progress" %}    
+            {% if r.group_memb.int_group.user_draws_shapes %}
+                - {{r.group_memb.user_status_msg}}  
+            {% endif %}
+        {% endifequal %}
+        <br/>
+        
         <ul>
         {% ifequal r.group_memb.status "finalized" %}   
             <li>Done. <a href="/group_qs/{{r.group_memb.int_group.id}}/view/">Review answers</a></li>
             <li>Done. <a href="/unfinalize_group/{{r.group_memb.int_group.id}}/">Re-open this group</a></li>
         {% else %}
+        
             {% if r.current %}
                 {% if not r.group_memb.int_group.required_group %}      {#  NOT REQUIRED  #}
                     {% ifnotequal forloop.counter 2 %}      {#  NOT PRIMARY GROUP  #}
@@ -80,17 +85,17 @@ function skip_res_verify(link) {
                     {% ifequal r.group_memb.status "selecting resources" %}   
                         <li>Done. <a href="/group_qs/{{r.group_memb.int_group.id}}/answer/">Edit answers</a></li>
                     {% else %}
-                        <li><a href="/group_qs/{{r.group_memb.int_group.id}}/answer/">Answer questions</a></li>
+                        <li class='current-item'><a href="/group_qs/{{r.group_memb.int_group.id}}/answer/">Answer questions</a></li>
                     {% endifequal %}
                 {% endifequal %} 
                 {% ifequal r.group_memb.status "selecting resources" %}
-                    <li><a href="/select_group_resources/{{r.group_memb.int_group.id}}/">Select {{interview.resource_name}}</a></li>
+                    <li class='current-item'><a href="/select_group_resources/{{r.group_memb.int_group.id}}/">Select {{interview.resource_name}}</a></li>
                 {% endifequal %}
                 {% ifequal r.group_memb.status "in-progress" %}
                     {% if r.group_memb.int_group.user_draws_shapes %}
                         <li>Done. <a href="/select_group_resources/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}</a></li>
                         <li>Done. <a href="/review_resource_questions/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
-                        <li>
+                        <li class='current-item'>
                         {% ifequal num_shapes 0 %}
                             <a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Draw {{interview.shape_name_plural}}</a>
                         {% else %}                           
@@ -98,39 +103,31 @@ function skip_res_verify(link) {
                         {% endifequal %}
                         </li>
                         {% ifnotequal r.group_memb.num_complete_resources 0 %}
-                            <li>
                             {% ifequal r.group_memb.num_incomplete_resources 0 %}  
-                                <a href="/finalize_group/{{r.group_memb.int_group.id}}/">Finalize this group</a>
+                                <li class='current-item'><a href="/finalize_group/{{r.group_memb.int_group.id}}/">Finalize this group</a></li>
                             {% else %}
-                                <a href='#main_menu' onclick="skip_res_verify('/skip_res_finalize_group/{{r.group_memb.int_group.id}}/')">Skip remaining {{interview.resource_name_plural}} and finalize this group</a>
+                                <li><a href='#main_menu' onclick="skip_res_verify('/skip_res_finalize_group/{{r.group_memb.int_group.id}}/')">Skip remaining {{interview.resource_name_plural}} and finalize this group</a></li>
                             {% endifequal %}
-                            </li>
                         {% endifnotequal %}
                     {% else %}  
-                        <li><a href="/finalize_group/{{r.group_memb.int_group.id}}/">Finalize this group</a></li>       
+                        <li class='current-item'><a href="/finalize_group/{{r.group_memb.int_group.id}}/">Finalize this group</a></li>       
                     {% endif %}
                 {% endifequal %}
-                
             {% endif %}
         {% endifequal %}
         </ul>
-    {# {% else %} #}
-         {# <ul>#}
-            {#  <li>Skipped. <a href="/unskip_group/{{r.group_memb.int_group.id}}/">Re-open this group</a></li>#}
-         {# </ul> #}
+    {% else %}
+        <img src="/site-media/images/accept.png" alt="Skipped"/>
+        <b>{{ r.group_memb.int_group.name|capfirst }}</b>: {{r.group_memb.status|capfirst}}
     {% endifnotequal %}
+    </li>
     <br/>
 {% endfor %}
 
-<li style='line-height:16px'>
-<img src="/site-media/images/delete.png" alt="Incomplete"/>
-<b> Interview status: in-progress</b>
-{% if allow_finalize %}
-    <ul><li>
-    <a href="/finalize_interview/{{interview.id}}/">Finalize this interview</a></h4></li>
-    </li></ul>
-{% endif %}
-</li>
 </ul>
-<div style="height: 600px" />
+{% if allow_finalize %}
+    <img src='/site-media/images/arrow_right.png' alt='Finish' />
+    <a href="/finalize_interview/{{interview.id}}/" style='font-size: 1.6em'>Finalize this interview</a>
+{% endif %}
+<a name='main_menu' />
 {% endblock %}

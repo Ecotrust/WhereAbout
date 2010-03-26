@@ -11,8 +11,6 @@
     
     <p style="margin: 0px"><b>Impacts to fishing grounds affect not only fishermen but also coastal economies. The data you provide below will help us associate the value of your fishing grounds to the revenue your fishing brings to coastal communities. This information is important to complete as it will support future analyses to guide the placement of wave energy facilities in ways that reduce impacts to fishermen and coastal communities.</b></p>
     
-    {# This can be more dynamic using template language and the "question_set" attribute.  All you need to do is have one loop through all, then three smaller loops engaging when the desired question_set begins, and only acting on the space determined by the counter of the parent loop (either use parentloop.counter or use "with" to store the value). #}
-    
     {% for question in form %}
         {% if forloop.counter < 3 %}
             <p><div class="fieldWrapper">
@@ -22,7 +20,7 @@
                         <td style='width:400px'>
                             {{ question.label_tag }}: 
                         </td>
-                        <td>
+                        <td style='vertical-align: bottom'>
                             {{ question }}
                         </td>
                     </tr>
@@ -32,34 +30,47 @@
             {% ifequal forloop.counter 3 %}   
                 <br>
                 <p>
-                    Please estimate the percentage of your total 2008 (NOT 2009) expenditures used in each of the <br /> 
-                    following categories - note that the <u>total</u> sum of the two categories should equal 100%.
+                    We recognize that this next question may require some additional time and thought -- please do the best you can. <br />
+                    The percentages you supply do not have to be exact -- general values based on your best estimate are fine.
+                </p>
+                <p>
+                    Please estimate the <u>percentage</u> of your total 2008 (NOT 2009) expenditures used in each of the <br /> 
+                    following categories - note that the <u>total</u> sum of the two columns together should equal 100%.
                 <p>
             {% endifequal %}
             {{ question.errors }}
         {% endif %}
     {% endfor %}
     {% for question in form %}
-        {% ifequal forloop.counter 3 %}   
-            <table style="margin-left: 50px" border="1">
+        {% ifequal forloop.counter 3 %}  
+            <table border="0">
             <tr>
-                <th><b>Trip Related</b></th>
-            </tr>
+                <td style="padding-right: 0px;">
+                    <table style="margin-left: 60px" border="1">
+                        <tr>
+                            <th><b>Trip Related</b></th>
+                        </tr>
         {% endifequal %}
         {% ifequal forloop.counter 13 %}   
-            <tr></tr>
-            <tr>
-                <th><b>Equipment & General</b></th>
-            </tr>
+                </table>
+            </td>
+            <td style="padding-left: 0px;">
+                <table style="margin-right: 50px" border="1">
+                <tr>
+                    <th><b>Equipment & General</b></th>
+                </tr>
         {% endifequal %}
         {% if forloop.counter > 2 %}
             <tr>
                 <td>{{ question.label_tag }}</td>
-                <td>{{ question }}</td>
+                <td style='width: 115px'>{{ question }} %</td>
             </tr>
         {% endif %}
 
     {% endfor %}   
+    </table>
+    </td>
+    </tr>
     </table>
     <p><input id="submit" type="submit" value="{{ value }}" style="margin: 20px"/>
     {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}

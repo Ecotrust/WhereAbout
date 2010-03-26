@@ -83,8 +83,23 @@ h6 {
 }
 
 ul li {
-    list-style-type: square;
     padding: 1px 0;
+    list-style-type: circle;
+}
+
+li img {
+    vertical-align: middle;
+}
+
+li.menu-group {
+    list-style-type: decimal;
+    line-height:16px;
+}
+
+li.menu-disabled {
+    color: #AAAAAA;
+    list-style-type: decimal;
+    line-height:16px;
 }
 
 ul.plainlist {
@@ -102,6 +117,10 @@ li ul {
 li, dt, dd {
     font-size: 11px;
     line-height: 14px;
+}
+
+li.current-item {
+    list-style-type: disc;
 }
 
 dt {
@@ -148,6 +167,10 @@ p.tiny {
 
 p.mini {
     margin-top: -3px;
+}
+
+p.menu-status {
+    font-size: 1.2em;
 }
 
 .help, p.help {

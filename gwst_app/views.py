@@ -139,7 +139,7 @@ def assign_groups(request):
         # let user select which groups they are in
         groups = InterviewGroup.objects.filter(interview=interview,required_group=False)
         form = SelectInterviewGroupsForm( groups )
-        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'instructions':instructions, 'value':'Continue', 'q_width':265}))
+        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'form': form, 'instructions':instructions, 'value':'Continue', 'q_width':265}))
         
     else:
         groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
@@ -258,7 +258,7 @@ def group_status(request):
                 group_memb.user_status_msg = '%s/%s %s group(s) complete' % (num_complete_resources,num_resources,resource_name)
 
                 if bZeroPennyShapes:
-                    group_memb.user_status_msg = group_memb.user_status_msg + ', You have '+shape_name_plural+' with 0 pennies, please allocate or remove them to move on'
+                    group_memb.user_status_msg = group_memb.user_status_msg + ', you have '+shape_name_plural+' with 0 pennies, please allocate or remove them to move on'
                         
                 group_memb.num_complete_resources = num_complete_resources
                 group_memb.num_incomplete_resources = num_incomplete_resources

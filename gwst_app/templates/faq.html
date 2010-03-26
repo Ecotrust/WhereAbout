@@ -1,30 +1,59 @@
-{% extends "base.html" %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 {% load i18n %}
 
-{% block content %}
-    <h1>Frequently Asked Questions</h1>
-    <br/>
-    <div style='width:600px; border: 1px dotted #BBBBBB; padding: 5px'>
-    {% for group in faqs_by_group %}
-    <h3><a href='#group_{{ group.group_obj.id }}'>{{ group.group_obj.faq_group_name }}</a></h3>
-        <ul>
-        {% for faq in group.group_faqs %}
-            <li><a href='#faq_{{ faq.id }}'>{{ faq.question }}</a></li>
-        {% endfor %}
-        </ul>
-    {% endfor %}
-    </div>
-    <br/>
-    <div style='width: 600px;'>
-    {% for group in faqs_by_group %}
-    <h3><a name='group_{{ group.group_obj.id }}'>{{ group.group_obj.faq_group_name }}</a></h3>
-        <div style='padding-left: 25px'>
-        {% for faq in group.group_faqs %}
-            <h4><a name='faq_{{ faq.id }}'>Q. {{ faq.question }}</a></h4>
-            <p>A. {{ faq.answer|safe }} </p>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en-us" />
+    <title>{% block title %}{% if title %}{{ title }}{% else %}Web Survey Tool{% endif %}{% endblock %}</title>
+    <meta name="description" content=" " />
+    <meta name="keywords" content=" " />
+    <meta name="robots" content="index, follow" /> 
+    <link rel="shortcut icon" href="/media/images/favicon.ico" />
+    <link href="/site-media/css/base.css" rel="stylesheet" type="text/css" media="screen" />
+  </head>
+    
+  <body {% block body_attribs %}{% endblock %}>
+  <div id="wrap">
+  {% block header %}
+  <div id="header">
+    <a href='/'><img src="/site-media/images/ORsurvey_banner.jpg"/></a>
+  </div>
+  {% endblock %}
+  <div id="main">  
+	<div id="content">
+	  {% if interview.name %}
+        <h1>{{ interview.name }}</h1>
+	  {% endif %}    
+    
+
+        <h1>Frequently Asked Questions</h1>
+        <br/>
+        <div style='width:600px; border: 1px dotted #BBBBBB; padding: 5px'>
+        {% for group in faqs_by_group %}
+        <h3><a href='#group_{{ group.group_obj.id }}'>{{ group.group_obj.faq_group_name }}</a></h3>
+            <ul>
+            {% for faq in group.group_faqs %}
+                <li><a href='#faq_{{ faq.id }}'>{{ faq.question }}</a></li>
+            {% endfor %}
+            </ul>
         {% endfor %}
         </div>
-    {% endfor %}
-    </div>    
-{% endblock %}
- 
+        <br/>
+        <div style='width: 600px;'>
+        {% for group in faqs_by_group %}
+        <h3><a name='group_{{ group.group_obj.id }}'>{{ group.group_obj.faq_group_name }}</a></h3>
+            <div style='padding-left: 25px'>
+            {% for faq in group.group_faqs %}
+                <h4><a name='faq_{{ faq.id }}'>Q. {{ faq.question }}</a></h4>
+                <p>A. {{ faq.answer|safe }} </p>
+            {% endfor %}
+            </div>
+        {% endfor %}
+        </div>    
+ 	</div>
+  </div>
+</body>
+</html>
