@@ -94,9 +94,6 @@ function skip_res_verify(link) {
                     {% if r.group_memb.int_group.user_draws_shapes %}
                         <li>Done. <a href="/select_group_resources/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}</a></li>
                         <li>Done. <a href="/review_resource_questions/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
-                        {% ifequal num_shapes 0 %}
-                        <li class='current-item'><a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Draw {{interview.shape_name_plural}}</a></li>
-                        {% endifequal %}
                         
                         {% ifnotequal r.group_memb.num_complete_resources 0 %}
                             {% ifequal r.group_memb.num_incomplete_resources 0 %}  
@@ -106,6 +103,8 @@ function skip_res_verify(link) {
                                 <li class='current-item'><a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Continue drawing/editing {{interview.shape_name_plural}}</a></li>
                                 <li class='current-item'><a href='#main_menu' onclick="skip_res_verify('/skip_res_finalize_group/{{r.group_memb.int_group.id}}/')">Skip remaining {{interview.resource_name_plural}} and finalize this group</a></li>
                             {% endifequal %}
+                        {% else %}
+                            <li class='current-item'><a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Draw {{interview.shape_name_plural}}</a></li>
                         {% endifnotequal %}
                     {% else %}  
                         <li class='current-item'><a href="/finalize_group/{{r.group_memb.int_group.id}}/">Finalize this group</a></li>       
