@@ -47,7 +47,7 @@ urlpatterns = patterns('',
     (r'^draw_settings/(\d+)/json/$', draw_settings),
     (r'^shapes/(\d*)$', shapes),
     (r'^shape/validate/$', validate_shape),
-    (r'^video/(\w+)$', video),
+    url(r'^video/(\w+)$', video, name="video"),
 
     (r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
     (r'^faq', faq),
