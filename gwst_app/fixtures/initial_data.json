@@ -481,33 +481,6 @@
     }
   }, 
   {
-    "pk": 5, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "pri", 
-      "name": "Sport Boat Fishing \"Non-charter\"", 
-      "question_width": 300, 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "member_title": "sport boat fisherman", 
-      "page_template": "base_form.html", 
-      "resources": [
-        1, 
-        4, 
-        5, 
-        10, 
-        7, 
-        24, 
-        25
-      ], 
-      "description": "Sport Boat"
-    }
-  }, 
-  {
     "pk": 8, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -550,6 +523,33 @@
       "page_template": "or_soc_econ_form.html", 
       "resources": [], 
       "description": "Socio-Economic Questions"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "pri", 
+      "name": "Sport Boat Fishing \"Non-charter\"", 
+      "question_width": 300, 
+      "required_group": false, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "member_title": "sport boat fisherman", 
+      "page_template": "base_form.html", 
+      "resources": [
+        1, 
+        4, 
+        5, 
+        10, 
+        7, 
+        24, 
+        25
+      ], 
+      "description": "Sport Boat"
     }
   }, 
   {
@@ -1953,7 +1953,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "text", 
+      "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": 100.0
     }
