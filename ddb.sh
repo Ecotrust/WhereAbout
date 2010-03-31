@@ -1,2 +1,2 @@
 #!/bin/bash
-dropdb spatial-survey-demo
+dropdb or-rec-survey

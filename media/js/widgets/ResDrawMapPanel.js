@@ -85,7 +85,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 
         var nautLayer = new OpenLayers.Layer.TMS( 
                 "Nautical Charts", 
-                ["http://marinemap.org/tiles/OregonCharts/"], 
+                ["http://d34dcc2grel7cy.cloudfront.net/OregonCharts/"], 
                 { 
                     buffer: 1,
                     'isBaseLayer': false,
