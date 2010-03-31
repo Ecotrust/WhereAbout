@@ -16,7 +16,7 @@ class PhoneField(RegexField):
                             
 class MoneyField(RegexField):
     default_error_messages = {
-        'invalid': u'Enter a valid number or dollar amount such as 12 or $123.45',
+        'invalid': u'Enter a valid number or dollar amount without commas, such as 10000 or $123.45',
     }
     
     def __init__(self, max_length=None, min_length=None, *args, **kwargs):
