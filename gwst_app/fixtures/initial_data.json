@@ -3210,5 +3210,15 @@
       "question": "When I click to start drawing fishing grounds I get an error saying that Internet Explorer 6 isn't supported.  What do I do?", 
       "faq_group": 3
     }
+  }, 
+  {
+    "pk": 13, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The overall project to map and gather information on the importance of commercial, charter, and recreational fishing grounds is funded by both the state-established Oregon Wave Energy Trust (OWET) and the David and Lucille Packard Foundation.\r\n", 
+      "importance": 6, 
+      "question": "Where does the funding for this project come from?", 
+      "faq_group": 3
+    }
   }
 ]
