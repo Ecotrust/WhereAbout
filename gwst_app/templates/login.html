@@ -4,6 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Oregon Recreational Fishery Survey Tool</title>
 <link href="/site-media/css/orsurvey.css" rel="stylesheet" type="text/css" />
+
+    <SCRIPT TYPE="text/javascript">
+        <!--
+        function faq_popup()
+        {
+        if (! window.focus)return true;
+        window.open("/faq", 'faq', 'width=825,height=600,scrollbars=yes');
+        return false;
+        }
+        //-->
+    </SCRIPT>
+
 </head>
 <body>
 <div id="wrapper">
@@ -41,6 +53,10 @@
     {% else %}
         <p>You are already signed in | <b>{{user.email|escape}}</b></p>
     {% endif %}
+    
+    <p>
+        For more information about this project, funding sources, and how this data will be used, please go to our <a href="/faq" onClick="return faq_popup()">FAQ page</a>
+    </p>
 </div>
 <div id="frontrightbox" style='margin-top: 10px'>
     <p>Oregon is currently amending its Territorial Sea Plan by developing policies and procedures to help guide the location of wave energy generators. One of these policies (Goal 19) states that we must "conserve marine resources and ecological functions for the purpose of providing long-term ecological, economic, and social value and benefits to future generations".</p>
