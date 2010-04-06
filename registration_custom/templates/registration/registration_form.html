@@ -11,7 +11,7 @@ You'll be sent an email with instructions on how to finish your registration.</p
 <p>If you are not an Oregon recreational fisherman, please don't create an account.  Also, if you are an Oregon recreational fisherman, and you ONLY fish from charter boats, please don't create an account - there is a separate survey for the charter boat companies, and we will get input from them directly.</p>
 
 {% if form.errors %}
-<p class="error">Please correct the errors below:</p>
+<p class="register-field-error">Please correct the errors below:</p>
 {% endif %}
 
 <form method="post" action="">
@@ -19,22 +19,22 @@ You'll be sent an email with instructions on how to finish your registration.</p
 <tr>
   <td><label for="id_username">Username:</label></td>
   <td>{{ form.username }}</td>
-  {% if form.username.errors %}<td><span class="error">{{ form.username.errors|join:", " }}</span></td>{% endif %}
+  {% if form.username.errors %}<td><span class="register-field-error">{{ form.username.errors|join:", " }}</span></td>{% endif %}
 </tr>
 <tr>
   <td><label for="id_email">Email address:</label></td>
   <td>{{ form.email }}</td>
-  {% if form.email.errors %}<td><span class="error">{{ form.email.errors|join:", " }}</span></td>{% endif %}
+  {% if form.email.errors %}<td><span class="register-field-error">{{ form.email.errors|join:", " }}</span></td>{% endif %}
 </tr>  
 <tr>
   <td><label for="id_password1">Password:</label></td>
   <td>{{ form.password1 }}</td>
-  {% if form.password1.errors %}<td><span class="error">{{ form.password1.errors|join:", " }}</span></td>{% endif %}
+  {% if form.password1.errors %}<td><span class="register-field-error">{{ form.password1.errors|join:", " }}</span></td>{% endif %}
 </tr>
 <tr>
   <td><label for="id_password2">Password (type again to catch any typos):</label></td>
   <td>{{ form.password2 }}</td>
-  {% if form.password2.errors %}<td><span class="error">{{ form.password2.errors|join:", " }}</span></td>{% endif %}
+  {% if form.password2.errors %}<td><span class="register-field-error">{{ form.password2.errors|join:", " }}</span></td>{% endif %}
 </tr>
 <tr><td colspan='2' align='right'>
 <input type="submit" value="Register" style="margin-top:9px"/></td></tr>

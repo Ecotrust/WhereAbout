@@ -533,6 +533,12 @@ div.system-message p.system-message-title {
     padding: 5px 0 0 12px;
 }
 
+.register-field-error {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
 div.question_set {
 
 }
