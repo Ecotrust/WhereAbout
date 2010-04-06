@@ -13,7 +13,7 @@ body {
 
 /* LINKS */
 
-a:link, a:visited {
+a:link, a:visited, a {
     color: #39F;
     text-decoration: none;
 }

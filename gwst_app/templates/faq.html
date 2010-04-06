@@ -44,10 +44,10 @@
         <br/>
         <div style='width: 600px;'>
         {% for group in faqs_by_group %}
-        <h3><a name='group_{{ group.group_obj.id }}'>{{ group.group_obj.faq_group_name }}</a></h3>
+        <h3><a style="color: #666666" name='group_{{ group.group_obj.id }}'>{{ group.group_obj.faq_group_name }}</a></h3>
             <div style='padding-left: 25px'>
             {% for faq in group.group_faqs %}
-                <h4><a name='faq_{{ faq.id }}'>Q. {{ faq.question }}</a></h4>
+                <h4><a style="color: #666666" name='faq_{{ faq.id }}'>Q. {{ faq.question }}</a></h4>
                 <p>A. {{ faq.answer|safe }} </p>
             {% endfor %}
             </div>

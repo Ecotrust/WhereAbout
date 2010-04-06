@@ -334,8 +334,9 @@
       "shape_color": "FF", 
       "code": "div", 
       "name": "Dive/Spear Angling", 
-      "question_width": 275, 
+      "is_user_group": false, 
       "required_group": false, 
+      "question_width": 275, 
       "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) were put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these three different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
       "preselect": true, 
       "user_draws_shapes": true, 
@@ -362,8 +363,9 @@
       "shape_color": "FF", 
       "code": "kyk", 
       "name": "Kayak Angling", 
-      "question_width": 275, 
+      "is_user_group": false, 
       "required_group": false, 
+      "question_width": 275, 
       "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) were put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these three different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
       "preselect": true, 
       "user_draws_shapes": true, 
@@ -390,8 +392,9 @@
       "shape_color": "FF", 
       "code": "prvsl", 
       "name": "Private Vessel Angling", 
-      "question_width": 275, 
+      "is_user_group": false, 
       "required_group": false, 
+      "question_width": 275, 
       "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) were put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these three different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
       "preselect": true, 
       "user_draws_shapes": true, 
@@ -426,8 +429,9 @@
       "shape_color": "FF", 
       "code": "main", 
       "name": "Main Questions", 
-      "question_width": 275, 
+      "is_user_group": false, 
       "required_group": true, 
+      "question_width": 275, 
       "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": false, 
@@ -445,8 +449,9 @@
       "shape_color": "FF", 
       "code": "main", 
       "name": "Main Questions", 
-      "question_width": 100, 
+      "is_user_group": false, 
       "required_group": true, 
+      "question_width": 100, 
       "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": false, 
@@ -458,37 +463,15 @@
     }
   }, 
   {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "Dive/Spear Fishing", 
-      "question_width": 375, 
-      "required_group": false, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "member_title": "dive/spear fisherman", 
-      "page_template": "base_form.html", 
-      "resources": [
-        4, 
-        15, 
-        24
-      ], 
-      "description": "Diving and spear/hand take"
-    }
-  }, 
-  {
     "pk": 8, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FFFFFF", 
       "code": "kyk", 
       "name": "Kayak or Non-Motorized Vessel Fishing", 
-      "question_width": 300, 
+      "is_user_group": true, 
       "required_group": false, 
+      "question_width": 300, 
       "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": true, 
@@ -507,33 +490,15 @@
     }
   }, 
   {
-    "pk": 9, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FFFFFF", 
-      "code": "soc", 
-      "name": "Socio-Economic Questions", 
-      "question_width": 225, 
-      "required_group": true, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": false, 
-      "interview": 2, 
-      "member_title": "soc", 
-      "page_template": "or_soc_econ_form.html", 
-      "resources": [], 
-      "description": "Socio-Economic Questions"
-    }
-  }, 
-  {
     "pk": 5, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FF", 
       "code": "pri", 
       "name": "Sport Boat Fishing \"Non-charter\"", 
-      "question_width": 300, 
+      "is_user_group": true, 
       "required_group": false, 
+      "question_width": 300, 
       "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": true, 
@@ -550,6 +515,50 @@
         25
       ], 
       "description": "Sport Boat"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FF", 
+      "code": "div", 
+      "name": "Dive/Spear Fishing", 
+      "is_user_group": true, 
+      "required_group": false, 
+      "question_width": 375, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 2, 
+      "member_title": "dive/spear fisherman", 
+      "page_template": "base_form.html", 
+      "resources": [
+        4, 
+        15, 
+        24
+      ], 
+      "description": "Diving and spear/hand take"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "code": "soc", 
+      "name": "Socio-Economic Questions", 
+      "is_user_group": false, 
+      "required_group": false, 
+      "question_width": 225, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 2, 
+      "member_title": "soc", 
+      "page_template": "or_soc_econ_form.html", 
+      "resources": [], 
+      "description": "Socio-Economic Questions"
     }
   }, 
   {
@@ -2655,7 +2664,7 @@
       "int_group": 9, 
       "question_set": 0, 
       "display_order": 10.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
@@ -2675,7 +2684,7 @@
       "int_group": 9, 
       "question_set": 0, 
       "display_order": 20.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [
         21, 
@@ -3135,30 +3144,17 @@
     }
   }, 
   {
+    "pk": 4, 
+    "model": "gwst_app.faqgroup", 
+    "fields": {
+      "faq_group_name": "2. Technical"
+    }
+  }, 
+  {
     "pk": 1, 
     "model": "gwst_app.faqgroup", 
     "fields": {
-      "faq_group_name": "2. Drawing Fishing Grounds"
-    }
-  }, 
-  {
-    "pk": 12, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "On Windows,  right-click 'My Computer' or just right-click your desktop and select \"Properties\", then click the \"Settings\" tab. Use the \"Screen resolution\" slider to increase your resolution to at least 1024 x 768, then click the \"Apply\" button. ", 
-      "importance": 2, 
-      "question": "How do I increase my screen resolution?", 
-      "faq_group": 3
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "The information you provide will be used to represent the socioeconomic value of recreational fishing areas and help guide the location of wave energy facilities so that impacts to existing ocean uses are minimized.  All information is kept confidential by us at the individual level. Any visualizations we produce (maps) will be a combination of fishing grounds and will not disclose individual fishing spots. A review process is in place to ensure this.", 
-      "importance": 1, 
-      "question": "Why should I show you my fishing spots?", 
-      "faq_group": 3
+      "faq_group_name": "3. Drawing Fishing Grounds"
     }
   }, 
   {
@@ -3202,22 +3198,112 @@
     }
   }, 
   {
-    "pk": 10, 
+    "pk": 12, 
     "model": "gwst_app.faq", 
     "fields": {
-      "answer": "Unfortunately internet explorer 6 is an aging web browser and doesn't support the necessary map features.  Upgrading to internet explorer 7 or 8 will solve your problem.  If you can't upgrade for one reason or another, try using another browser like Firefox if you can or simply use a different computer.", 
-      "importance": 4, 
-      "question": "When I click to start drawing fishing grounds I get an error saying that Internet Explorer 6 isn't supported.  What do I do?", 
-      "faq_group": 3
+      "answer": "On Windows,  right-click 'My Computer' or just right-click your desktop and select \"Properties\", then click the \"Settings\" tab. Use the \"Screen resolution\" slider to increase your resolution to at least 1024 x 768, then click the \"Apply\" button. ", 
+      "importance": 2, 
+      "question": "How do I increase my screen resolution?", 
+      "faq_group": 4
     }
   }, 
   {
     "pk": 13, 
     "model": "gwst_app.faq", 
     "fields": {
-      "answer": "The overall project to map and gather information on the importance of commercial, charter, and recreational fishing grounds is funded by both the state-established Oregon Wave Energy Trust (OWET) and the David and Lucille Packard Foundation.\r\n", 
+      "answer": "For the overall project to map and gather information on the importance of Oregon\u2019s coastal commercial, charter, and recreational fishing grounds is funded by the Oregon Wave Energy Trust (OWET- <a href=\"http://www.oregonwave.org\">http://www.oregonwave.org</a>), the Oregon Department of Land Conservation and Development (DLCD- <a href=\"http://www.lcd.state.or.us\">http://www.lcd.state.or.us</a>), and the David and Lucile Packard Foundation (<a href=\"http://www.packard.org\">http://www.packard.org</a>). ", 
+      "importance": 1, 
+      "question": "Who provided funding for this project?", 
+      "faq_group": 3
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "Unfortunately internet explorer 6 is an aging web browser and doesn't support the necessary map features.  Upgrading to internet explorer 7 or 8 will solve your problem.  If you can't upgrade for one reason or another, try using another browser like Firefox if you can or simply use a different computer.", 
+      "importance": 4, 
+      "question": "When I click to start drawing fishing grounds I get an error saying that Internet Explorer 6 isn't supported.  What do I do?", 
+      "faq_group": 4
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The information you provide will be used to represent the socioeconomic importance of recreational fishing areas along the coast of Oregon. This information will help guide the placement of wave energy facilities in ways that reduce the impacts on fishermen. By taking part in this survey, you have the opportunity to directly contribute to Oregon\u2019s wave energy planning process and enable decision-makers to reduce potential impacts on fishermen and the coastal economies. ", 
+      "importance": 3, 
+      "question": "Why should I provide information about my fishing?", 
+      "faq_group": 3
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "No, Ecotrust\u2019s Oregon Fisheries Uses and Values project was designed and began as a solely state funded project. This project from the beginning has been designed to respond and address the fishing community\u2019s need to be represented alongside other datasets in Oregon\u2019s Territorial Sea Planning process. Packard will not receive any data from Ecotrust nor do they have input or influence on how the project is conducted. Packard has simply provided the funds up front for a project that had already been conceptualized with the state and the fishing community. ", 
+      "importance": 2, 
+      "question": "Does the Packard Foundation have control over any aspect of the project or the data collected?", 
+      "faq_group": 3
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The data collected on recreational, charter, and commercial fishing grounds will be aggregated (all individual information combined) to create \u2018heat maps\u2019 for each fishery-sector combination in each port. These \u2018heat maps\u2019 will display the relative importance of fishing grounds, with red hot areas indicating areas of high importance. How maps are presented to the DLCD for planning usage will be at the discretion of each port\u2019s fishing community. A community may decide to release individual fishery-sector maps or they may simply release what we call a \u2018cross-sector aggregate map\u2019 which gives equal weight to and combines each sector\u2019s (recreational, charter, and commercial) grounds into one map. This type of map was created and released for the Southern Oregon Ocean Resources Coalition (SOORC) and has set the standard for what at minimum the state will accept for the Territorial Sea Planning process. This type of map will also be the method to display the relative importance of fishing grounds in a state-wide map.  ", 
+      "importance": 4, 
+      "question": "How will fishing area information be used?", 
+      "faq_group": 3
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The data collected on fishing expenditures will be used to conduct economic impact analyses on candidate wave energy locations. These impact analyses will not only calculate the potential loss of revenue and percentage loss of fishing grounds to the commercial, charter, and recreational sectors but also to the adjacent coastal and state economies- which fishermen have long called attention to the importance of representing. It should be emphasized that this survey is not designed to determine the overall value of recreational, charter, or commercial fishing in a particular port or to the overall state/coastal economy. Moreover, summary statistics on economic information provided will not be compiled of made public. The expenditure survey is solely designed to determine the general percentage of expenditures associated with the various industries that also rely upon fishing. ", 
+      "importance": 5, 
+      "question": "How will economic information be used?", 
+      "faq_group": 3
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "Ecotrust will widely announce and hold review map meetings with the fishing community in each port. These fishermen will then provide feedback to ensure the data collected is an accurate representation of the relative importance of fishing grounds associated with their port. During the review map meeting each sector (commercial, charter, and recreational) will be provided individual fishery and aggregate maps to review. These maps are only for review purpose and will not be released to any individual or group. During the Oregon Territorial Sea Planning process Ecoturst will also work with fishing communities and association to review impact analyses on identified potential waver energy sites. ", 
       "importance": 6, 
-      "question": "Where does the funding for this project come from?", 
+      "question": "How will you check the accuracy of fishing ground maps and information?", 
+      "faq_group": 3
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "All individual information will be kept private and confidential. The only information that is made public are the maps that each port fishing communities decides to submit to the DLCD- such as the cross-sector aggregate maps (mentioned in the \u201cHow will fishing area information be used?\u201d question above).", 
+      "importance": 7, 
+      "question": "What information is kept private and what is public?", 
+      "faq_group": 3
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The Department of Land Conservation and Development (DLCD) will be administering the planning process which will involve Oregon\u2019s Ocean Policy Advisory Council (OPAC) and Territorial Sea Plan Advisory Committee (TSPAC). These entities have several fishing interests serving in these groups. Decision-making and planning will be done on a port by port scale with input from various stakeholders including the fishing community at every step.  However, the entity responsible for approving a TSP plan under Oregon Law is the Land Conservation and Development Commission (LCDC) which will receive recommendations from the DLCD based on the community input outlined above. ", 
+      "importance": 8, 
+      "question": "Who is in charge of Oregon\u2019s Territorial Sea planning process and who will be making decisions?", 
+      "faq_group": 3
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "Only the cross-sector aggregate maps are made public and requests for this information must be made through the DLCD. Any other requests for more detailed information belongs to the decision of each fishing community and their representatives, such as; SOORC (Southern Oregon Ocean Resource Coalition), FINE (Fishermen Involved in Natural Energy), FACT (Fisherman Advisory Committee of Tillamook), and NSAT (Depoe Bay Near Shore Action Team). If these groups decide it is to the benefit of the fishing community to release additional data (such as sector or species maps) then each individual fisherman that contributed information to the maps must be contacted and approve its use for the solicited purpose. However, under no circumstances will individual information be released. ", 
+      "importance": 9, 
+      "question": "Can individuals or institutions/agencies ask permission to see additional information? Who will control the release of that information?", 
       "faq_group": 3
     }
   }

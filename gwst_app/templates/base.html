@@ -13,8 +13,9 @@
     {% block styles %}
     <link href="/site-media/css/base.css" rel="stylesheet" type="text/css" media="screen" />
     {% endblock %}
-    {% block js %}
     <SCRIPT TYPE="text/javascript">
+    {% block js %}
+    {% endblock %}
         <!--
         function faq_popup()
         {
@@ -22,9 +23,8 @@
         window.open("/faq", 'faq', 'width=825,height=600,scrollbars=yes');
         return false;
         }
-        //-->
+        //-->        
     </SCRIPT>
-    {% endblock %}
   </head>
   
   <body {% block body_attribs %}{% endblock %}>

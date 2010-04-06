@@ -137,19 +137,19 @@ def assign_groups(request):
 
     if request.method == 'GET':
         # let user select which groups they are in
-        groups = InterviewGroup.objects.filter(interview=interview,required_group=False)
-        form = SelectInterviewGroupsForm( groups )
+        groups = InterviewGroup.objects.filter(interview=interview,is_user_group=True)
+        form = SelectInterviewGroupsForm( groups)
         return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'form': form, 'instructions':instructions, 'value':'Continue', 'q_width':265}))
         
     else:
         groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
         form = SelectInterviewGroupsForm( groups, request.POST )
-
+        
         if form.is_valid():       
             # save InterviewGroupMembership records
             for field_name in form.fields:
                 field = form.fields[field_name]
-                if field.group and form.cleaned_data['group_%d_pc' % field.group.id] > 0:
+                if field.group and (form.cleaned_data['group_%d_pc' % field.group.id] > 0 or field.group.is_user_group == False):
                     membership, created = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=field.group)
                     membership.user = request.user
                     membership.int_group = field.group

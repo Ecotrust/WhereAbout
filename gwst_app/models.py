@@ -75,6 +75,7 @@ class InterviewGroup(Model):
     resources = ManyToManyField(Resource,blank=True,null=True,verbose_name='Resource Groups')
     select_resource_text = TextField( blank=True, default='' )
     required_group = BooleanField( default=False )
+    is_user_group = BooleanField( default=False )
     user_draws_shapes = BooleanField( default=True )
     shape_color = CharField( max_length=6, blank=True, default="FFFFFF" )
     preselect = BooleanField( default=True ) #Allow user to select which resources they use before drawing? 
