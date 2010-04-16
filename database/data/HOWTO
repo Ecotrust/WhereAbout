@@ -1,0 +1,8 @@
+how to put a new clip region into place on a production server
+(test this out on your dev server first)
+- create a copy of the sql file holding your clip region, call it foo.sql
+- edit that file and search/replace gwst_clip_region with foo
+- load foo into your database, cat foo.sql | psql -d or-rec-survey
+- copy the geometry from foo to gwst_region_clip table
+update gwst_region_clip set geom = a.geom from foo a where a.id=1;
+- Test the app
