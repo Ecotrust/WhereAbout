@@ -123,12 +123,10 @@ def assign_groups(request):
     except Exception, e:
         return HttpResponseRedirect('/select_interview/')
 
- 
     # see if the interview has been marked complete
     if status.completed:
         # redirect to interview_complete
         return HttpResponseRedirect('/interview_complete/')
-
 
     title = request.session['interview'].name + ' - Group Membership Selection'
     interview = request.session['interview']
@@ -167,9 +165,10 @@ def assign_groups(request):
                 
             # redirect to interview_group_status
             return HttpResponseRedirect('/group_status/')
+       
         
-        # validation errors
-        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue', 'q_width':265}))
+        # validation errors        
+        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': SelectInterviewGroupsForm( InterviewGroup.objects.filter(interview=interview,is_user_group=True), request.POST ), 'value':'Continue', 'q_width':265}))
     
     
 # show a list of user's groups and current status of each
