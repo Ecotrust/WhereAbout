@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block content %}
+{% if instructions %}
+<div style='width:600px'>{{ instructions.main|safe }}</div>
+{% endif %}
+    <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+    {{ form.non_field_errors }}
+    
+    <p style="margin: 0px"><b>Potential impacts to fishing grounds affect not only fishermen, but also the economy. To better understand and assess these larger potential impacts, Ecotrust may soon be collecting additional information on how spending associated with recreational fishing supports coastal communities and the larger Oregon economy.</b></p>
+    
+    {% for question in form %}
+        <p><div class="fieldWrapper">
+            {{ question.errors }}
+            <table>
+                <tr>
+                    <td style='width:550px'>
+                        {{ question.label_tag }}
+                    </td>
+                    <td style='vertical-align: bottom'>
+                        {{ question }}
+                    </td>
+                </tr>
+            </table>
+        </div></p>
+    {% endfor %}
+    <p><input id="submit" type="submit" value="{{ value }}" style="margin: 20px"/>
+    {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+    </p>
+    </form>
+{% endblock %}

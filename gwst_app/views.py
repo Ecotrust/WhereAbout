@@ -35,9 +35,12 @@ def handleSelectInterview(request,selected_interview):
         # create group records for any required groups
         required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
         for group in required_groups:
+            
             membership, created = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=group)
             membership.user = request.user
             membership.int_group = group
+            if (group.name != 'Main Questions'):
+                membership.percent_involvement = 0
             membership.save()
     
         # redirect to assign_groups
@@ -147,12 +150,15 @@ def assign_groups(request):
             # save InterviewGroupMembership records
             for field_name in form.fields:
                 field = form.fields[field_name]
+                
                 if field.group and (form.cleaned_data['group_%d_pc' % field.group.id] > 0 or field.group.is_user_group == False):
-                    membership, created = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=field.group)
-                    membership.user = request.user
-                    membership.int_group = field.group
-                    membership.percent_involvement = form.cleaned_data['group_%d_pc' % field.group.id]
-                    membership.save()
+                    if (field.group.name != 'Socio-Economic Questions'):
+                        membership, created = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=field.group)
+                        membership.user = request.user
+                        membership.int_group = field.group
+                        membership.percent_involvement = form.cleaned_data['group_%d_pc' % field.group.id]
+                        membership.order = 5
+                        membership.save()
             
             qs = InterviewGroupMembership.objects.all()
             for q in qs:

@@ -328,6 +328,46 @@
     }
   }, 
   {
+    "pk": 9, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "code": "soc", 
+      "name": "Socio-Economic Questions", 
+      "is_user_group": false, 
+      "required_group": false, 
+      "question_width": 225, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 2, 
+      "member_title": "soc", 
+      "page_template": "or_soc_econ_form.html", 
+      "resources": [], 
+      "description": "Socio-Economic Questions"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "code": "fup", 
+      "name": "Expenditure Followup", 
+      "is_user_group": false, 
+      "required_group": true, 
+      "question_width": 550, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 2, 
+      "member_title": "fup", 
+      "page_template": "followup_form.html", 
+      "resources": [], 
+      "description": "Questions regarding followups"
+    }
+  }, 
+  {
     "pk": 1, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -539,26 +579,6 @@
         24
       ], 
       "description": "Diving and spear/hand take"
-    }
-  }, 
-  {
-    "pk": 9, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FFFFFF", 
-      "code": "soc", 
-      "name": "Socio-Economic Questions", 
-      "is_user_group": false, 
-      "required_group": false, 
-      "question_width": 225, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": false, 
-      "interview": 2, 
-      "member_title": "soc", 
-      "page_template": "or_soc_econ_form.html", 
-      "resources": [], 
-      "description": "Socio-Economic Questions"
     }
   }, 
   {
@@ -1164,26 +1184,6 @@
     }
   }, 
   {
-    "pk": 37, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "days_spec", 
-      "eng_text": "Average number of days per year fishing for this species", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 12, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -1202,6 +1202,26 @@
       "val_min": null, 
       "val_default": "", 
       "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "days_spec", 
+      "eng_text": "Average number of days per year fishing for this species", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -3101,6 +3121,29 @@
     }
   }, 
   {
+    "pk": 198, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_fup", 
+      "eng_text": "May we contact you at a later date to see if you would be interested in participating in this additional component of our project?\r\n", 
+      "int_group": 10, 
+      "question_set": null, 
+      "display_order": 10.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [
+        1, 
+        2
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 1, 
     "model": "gwst_app.interviewinstructions", 
     "fields": {
@@ -3158,6 +3201,26 @@
     }
   }, 
   {
+    "pk": 2, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "The number of fishing grounds you draw is your choice.  Most people draw anywhere from 2-10 fishing grounds per species.", 
+      "importance": 1, 
+      "question": "How many fishing grounds should I draw?", 
+      "faq_group": 1
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "gwst_app.faq", 
+    "fields": {
+      "answer": "On Windows,  right-click 'My Computer' or just right-click your desktop and select \"Properties\", then click the \"Settings\" tab. Use the \"Screen resolution\" slider to increase your resolution to at least 1024 x 768, then click the \"Apply\" button. ", 
+      "importance": 2, 
+      "question": "How do I increase my screen resolution?", 
+      "faq_group": 4
+    }
+  }, 
+  {
     "pk": 8, 
     "model": "gwst_app.faq", 
     "fields": {
@@ -3178,16 +3241,6 @@
     }
   }, 
   {
-    "pk": 2, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "The number of fishing grounds you draw is your choice.  Most people draw anywhere from 2-10 fishing grounds per species.", 
-      "importance": 1, 
-      "question": "How many fishing grounds should I draw?", 
-      "faq_group": 1
-    }
-  }, 
-  {
     "pk": 1, 
     "model": "gwst_app.faq", 
     "fields": {
@@ -3195,16 +3248,6 @@
       "importance": 1, 
       "question": "How much precision should I use when drawing fishing grounds?", 
       "faq_group": 1
-    }
-  }, 
-  {
-    "pk": 12, 
-    "model": "gwst_app.faq", 
-    "fields": {
-      "answer": "On Windows,  right-click 'My Computer' or just right-click your desktop and select \"Properties\", then click the \"Settings\" tab. Use the \"Screen resolution\" slider to increase your resolution to at least 1024 x 768, then click the \"Apply\" button. ", 
-      "importance": 2, 
-      "question": "How do I increase my screen resolution?", 
-      "faq_group": 4
     }
   }, 
   {
