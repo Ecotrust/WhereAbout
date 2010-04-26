@@ -798,6 +798,22 @@
     }
   }, 
   {
+    "pk": 28, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 0.0, 
+      "eng_text": "Yes"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1.0, 
+      "eng_text": "No"
+    }
+  }, 
+  {
     "pk": 1, 
     "model": "gwst_app.questiongroupvalidator", 
     "fields": {
@@ -1184,6 +1200,26 @@
     }
   }, 
   {
+    "pk": 37, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "days_spec", 
+      "eng_text": "Average number of days per year fishing for this species", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 1.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 12, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -1202,26 +1238,6 @@
       "val_min": null, 
       "val_default": "", 
       "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 37, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "days_spec", 
-      "eng_text": "Average number of days per year fishing for this species", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -3133,8 +3149,8 @@
       "required": true, 
       "question_group": null, 
       "options": [
-        1, 
-        2
+        28, 
+        29
       ], 
       "val_min": null, 
       "val_default": "", 
