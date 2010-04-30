@@ -7,6 +7,8 @@
 #DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 #DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
+SPATIALITE_LIBRARY_PATH = 'libspatialite-1.dll'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -73,7 +75,7 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'registration_custom',
     'gwst_app',
-    'gwst_surveymonkey',
+    #'gwst_surveymonkey',
     'compress'
 )
 
@@ -81,7 +83,7 @@ SELF_REGISTRATION=False
 SELF_SURVEY_RESET=False
 
 CLIENT_SRID = 900913    #Google projection
-SERVER_SRID = 900913   #Google projection
+SERVER_SRID = 3310   #Google projection
 
 try:
     from local_settings import *

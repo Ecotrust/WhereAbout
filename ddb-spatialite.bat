@@ -1,0 +1,1 @@
+del database\db.sqlite
