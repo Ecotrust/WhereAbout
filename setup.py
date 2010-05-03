@@ -52,12 +52,12 @@ class InnoScript:
         print >> ofi, r"VersionInfoDescription=Desktop Survey Tool"
         print >> ofi, r"VersionInfoCopyright=Ecotrust"
         print >> ofi, r"AppCopyright=Ecotrust"
-        print >> ofi, r"InfoAfterFile=desktop-packaging\README.TXT"
-        print >> ofi, r"LicenseFile=desktop-packaging\LICENSE.TXT"
+        print >> ofi, r"InfoAfterFile=C:\dev\SurfRider\prototyping\gwst\branches\desktop-dev\desktop-packaging\README.TXT"
+        print >> ofi, r"LicenseFile=C:\dev\SurfRider\prototyping\gwst\branches\desktop-dev\desktop-packaging\LICENSE.TXT"
         print >> ofi, r"WizardImageBackColor=clBlack"
-        print >> ofi, r"WizardImageFile=desktop-packaging\Images\OCEAN_VERT_INNO.bmp"
-        print >> ofi, r"WizardSmallImageFile=desktop-packaging\Images\OCEAN_SMALL_INNO.bmp"
-        print >> ofi, r"SetupIconFile=desktop-packaging\Images\OCEAN_SMALL_INNO.ico"
+        print >> ofi, r"WizardImageFile=C:\dev\SurfRider\prototyping\gwst\branches\desktop-dev\desktop-packaging\Images\OCEAN_VERT_INNO.bmp"
+        print >> ofi, r"WizardSmallImageFile=C:\dev\SurfRider\prototyping\gwst\branches\desktop-dev\desktop-packaging\Images\OCEAN_SMALL_INNO.bmp"
+        print >> ofi, r"SetupIconFile=C:\dev\SurfRider\prototyping\gwst\branches\desktop-dev\desktop-packaging\Images\OCEAN_SMALL_INNO.ico"
         print >> ofi
 
         print >> ofi, r"[Files]"
@@ -77,7 +77,7 @@ class InnoScript:
         #for path in self.windows_exe_files:
         #    print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"; WorkingDir: {app}' % \
         #          (self.name, path)       
-        print >> ofi, 'Name: "{group}\%s"; Filename: "{app}\\run.bat"' % self.name		
+        print >> ofi, 'Name: "{group}\%s"; Filename: "{app}\\run-desktop.bat"' % self.name		
         print >> ofi, 'Name: "{group}\Uninstall %s"; Filename: "{uninstallexe}"' % self.name
 
     def compile(self):
@@ -123,15 +123,15 @@ class build_installer(py2exe):
         dist_dir = self.dist_dir
         
         # create the Installer, using the files py2exe has created.
-        #script = InnoScript("Desktop Survey Tool",
-        #                    lib_dir,
-        #                    dist_dir,
-        #                    self.console_exe_files,
-        #                    self.lib_files)
+        script = InnoScript("Desktop Survey Tool",
+                            lib_dir,
+                            dist_dir,
+                            self.console_exe_files,
+                            self.lib_files)
         #print "*** creating the inno setup script***"
-        #script.create()
+        script.create()
         #print "*** compiling the inno setup script***"
-        #script.compile()
+        script.compile()
         # Note: By default the final setup.exe will be in an Output subdirectory.
 
 		
