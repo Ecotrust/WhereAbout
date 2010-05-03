@@ -58,9 +58,11 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'urls'
 
-import os
+import os, sys
 TEMPLATE_DIRS = (
-    os.path.dirname(__file__)+'/gwst_surveymonkey/templates/',
+    os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_app/templates/',
+    os.path.abspath(os.path.dirname(sys.argv[0])) +'/registration_custom/templates/',
+    os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_surveymonkey/templates/',
     '/usr/local/django-trunk/django/contrib/gis/templates/'
 )
 

@@ -3,7 +3,7 @@
 DATABASE_NAME = ''
 DATABASE_USER = ''
 DATABASE_PASSWORD = '' # like: '1234'
-MEDIA_ROOT = '' # like: 'U:/dev/gwst/media' - where the Django development server goes to look for your static files
+MEDIA_ROOT = '' # like: os.path.abspath(os.path.dirname(sys.argv[0])) + '/media/' - where the Django development server goes to look for your static files
 MEDIA_URL = '' # the URL dir through which your web server serves static pages and images
 
 GMAPS_API_KEY = '' # like: a big long string of characters you get from Google
