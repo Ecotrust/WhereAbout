@@ -8,6 +8,7 @@
 #DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 SPATIALITE_LIBRARY_PATH = 'libspatialite-1.dll'
+DESKTOP_BUILD = True
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
