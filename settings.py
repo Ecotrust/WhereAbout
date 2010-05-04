@@ -59,7 +59,10 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'urls'
 
 import os, sys
-TEMPLATE_DIRS = (
+
+TILE_BASE = os.path.abspath(os.path.dirname(sys.argv[0])) + '/tiles/'
+
+TEMPLATE_DIRS = ( # use os.path.abspath(os.path.dirname(sys.argv[0])) to get a directory root that will be correct for py2exe'd version
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_app/templates/',
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/registration_custom/templates/',
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_surveymonkey/templates/',

@@ -123,15 +123,15 @@ class build_installer(py2exe):
         dist_dir = self.dist_dir
         
         # create the Installer, using the files py2exe has created.
-        script = InnoScript("Desktop Survey Tool",
-                            lib_dir,
-                            dist_dir,
-                            self.console_exe_files,
-                            self.lib_files)
+        #script = InnoScript("Desktop Survey Tool",
+        #                    lib_dir,
+        #                    dist_dir,
+        #                    self.console_exe_files,
+        #                    self.lib_files)
         #print "*** creating the inno setup script***"
-        script.create()
+        #script.create()
         #print "*** compiling the inno setup script***"
-        script.compile()
+        #script.compile()
         # Note: By default the final setup.exe will be in an Output subdirectory.
 
 		

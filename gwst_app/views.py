@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext, loader
 from django.conf import settings
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from models import *
 from forms import *
 from gwst_app.utils.geojson_encode import *
@@ -1180,3 +1180,16 @@ def video(request, name):
     
 def sample(request, name):
 		return render_to_response('samples/'+name+'.html', context_instance=RequestContext(request)) 
+        
+def tiles(request, tilePath):
+    from PIL import Image
+    try:
+        image = Image.open(settings.TILE_BASE+tilePath)
+    except Exception, e:
+        response = HttpResponseNotFound("Tile not found.", mimetype="text/plain")
+        return response
+
+    # serialize to HTTP response
+    response = HttpResponse(mimetype="image/png")
+    image.save(response, "PNG")
+    return response

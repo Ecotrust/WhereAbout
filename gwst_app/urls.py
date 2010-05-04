@@ -52,5 +52,6 @@ urlpatterns = patterns('',
     (r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
     (r'^faq', faq),
 	
-	(r'^samples/(\S+)/$', sample)
+	(r'^samples/(\S+)/$', sample),
+    (r'^tiles/(\S+)$', tiles ),
 )
