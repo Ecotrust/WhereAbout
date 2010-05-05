@@ -49,7 +49,7 @@ urlpatterns = patterns('',
     (r'^shape/validate/$', validate_shape),
     url(r'^video/(\w+)$', video, name="video"),
 
-    (r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
+    #(r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
     (r'^faq', faq),
 	
 	(r'^samples/(\S+)/$', sample),
