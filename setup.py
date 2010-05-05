@@ -3,15 +3,27 @@ import py2exe
 import os
 
 #Build tree of files given a dir (for appending to py2exe data_files)
-#Taken from http://osdir.com/ml/python.py2exe/2006-02/msg00085.html
-def tree(src):
-    list = [(root, map(lambda f: os.path.join(root, f), files)) for (root, dirs, files) in os.walk(os.path.normpath(src))]
-    new_list = []
-    for (root, files) in list:
-	#print "%s , %s" % (root,files)
-        if len(files) > 0 and root.count('.svn') == 0:
-            new_list.append((root, files))
-    return new_list 
+def add_path_tree( base_path, path, skip_dirs=[ '.svn', '.git'  ]):
+	  path = os.path.join( base_path, path )
+	  partial_data_files = []
+	  for root, dirs, files in os.walk( os.path.join( path )):
+	    sample_list = []
+	    for skip_dir in skip_dirs:
+	      if skip_dir in dirs:
+	        dirs.remove( skip_dir )
+	    if files:
+	      for filename in files:
+	        sample_list.append( os.path.join( root, filename ))
+	    if sample_list:
+	      partial_data_files.append((
+	        root.replace(
+	          base_path + os.sep if base_path else '',
+	          '',
+	          1
+	        ),
+	        sample_list
+	      ))
+	  return partial_data_files
 
 	
 ################################################################
@@ -123,33 +135,50 @@ class build_installer(py2exe):
         dist_dir = self.dist_dir
         
         # create the Installer, using the files py2exe has created.
-        #script = InnoScript("Desktop Survey Tool",
-        #                    lib_dir,
-        #                    dist_dir,
-        #                    self.console_exe_files,
-        #                    self.lib_files)
+        script = InnoScript("Desktop Survey Tool",
+                            lib_dir,
+                            dist_dir,
+                            self.console_exe_files,
+                            self.lib_files)
         #print "*** creating the inno setup script***"
-        #script.create()
+        script.create()
         #print "*** compiling the inno setup script***"
-        #script.compile()
+        script.compile()
         # Note: By default the final setup.exe will be in an Output subdirectory.
 
 		
 ######################## py2exe setup options ########################################
 	
-data_files = [(".",["run-desktop.bat","path_test.bat"])] +tree('database') + tree('media') + tree('lib') + tree('gwst_app/templates') + tree('registration_custom/templates') + tree('tiles')
+# Take the first value from the environment variable PYTHON_PATH
+python_path = os.environ[ 'PYTHONPATH' ].split( ';' )[ 0 ]
+django_admin_path = os.path.normpath( python_path + '/lib/site-packages/django/contrib/admin/' )
+django_gis_path = os.path.normpath( python_path + '/lib/site-packages/django/contrib/gis/' )
+    
+py2exe_data_files = [(".",["run-desktop.bat","path_test.bat"])]
+
+py2exe_data_files += add_path_tree( django_admin_path, 'templates' )
+py2exe_data_files += add_path_tree( django_admin_path, 'media' )
+py2exe_data_files += add_path_tree( django_gis_path, 'templates' )
+
+py2exe_data_files += add_path_tree( '', 'database' )
+py2exe_data_files += add_path_tree( '', 'site-media' )
+py2exe_data_files += add_path_tree( '', 'lib' )
+py2exe_data_files += add_path_tree( '', 'gwst_app/templates' )
+py2exe_data_files += add_path_tree( '', 'registration_custom/templates' )
+py2exe_data_files += add_path_tree( '', 'tiles' )
+
 
 setup(
     options = {"py2exe": {"compressed": False,
                           "optimize": 2,
                           "ascii": 1,
                           "bundle_files": 3,
-                          "packages":["encodings","django","gwst_app","simplejson"],
+                          "packages":["encodings","django","gwst_app","simplejson","registration"],
                            "excludes" : ["pywin", "pywin.debugger", "pywin.debugger.dbgcon","pywin.dialogs",
                                        "pywin.dialogs.list","Tkconstants","Tkinter","tcl"],
 
                             }},
-    data_files = data_files,
+    data_files = py2exe_data_files,
     zipfile = r"lib\shardlib",
 	console=[{"script": "gwst.py", "icon_resources": [(1, "desktop-packaging\Images\OCEAN_SMALL_INNO.ico")]}],
 	cmdclass = {"py2exe": build_installer},

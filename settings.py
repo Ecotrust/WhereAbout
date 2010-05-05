@@ -39,7 +39,7 @@ MEDIA_URL = '/site-media/'
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/admin-media/'
+ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'ox6_$0433w05!fzz_$ts5(xs1v3_q$!p@uw#wrzt=!6#kem2#9'
@@ -66,8 +66,9 @@ TILE_BASE = os.path.abspath(os.path.dirname(sys.argv[0])) + '/tiles/'
 TEMPLATE_DIRS = ( # use os.path.abspath(os.path.dirname(sys.argv[0])) to get a directory root that will be correct for py2exe'd version
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_app/templates/',
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/registration_custom/templates/',
-    os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_surveymonkey/templates/',
-    '/usr/local/django-trunk/django/contrib/gis/templates/'
+    os.path.abspath(os.path.dirname(sys.argv[0])) +'/templates/', # for admin, in desktop configuration
+    #os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_surveymonkey/templates/',
+    #'/usr/local/django-trunk/django/contrib/gis/templates/'
 )
 
 INSTALLED_APPS = (

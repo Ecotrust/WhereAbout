@@ -87,6 +87,7 @@ import manage
 import settings
 import compress
 import simplejson
+import registration
 
 #let us hook up cherrypy
 from cherrypy import wsgiserver

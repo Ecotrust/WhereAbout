@@ -16,7 +16,7 @@ urlpatterns = patterns('',
         {'form_class': RegistrationFormFull},                           
         name='registration_register'),
     
-    (r'^accounts/', include('registration.urls')),
+    (r'^accounts/', include('registration.backends.default.urls')),
     
     (r'^draw_help/text/$', draw_help_text ),
 
