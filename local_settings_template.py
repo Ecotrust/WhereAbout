@@ -1,6 +1,6 @@
 # local settings.  Override default settings.py
 
-DATABASE_NAME = ''
+DATABASE_NAME = '' # os.environ['APPDATA'] + '/Ecotrust/db.sqlite' # for desktop build
 DATABASE_USER = ''
 DATABASE_PASSWORD = '' # like: '1234'
 MEDIA_ROOT = '' # like: os.path.abspath(os.path.dirname(sys.argv[0])) + '/media/' - where the Django development server goes to look for your static files

@@ -166,6 +166,7 @@ py2exe_data_files += add_path_tree( '', 'lib' )
 py2exe_data_files += add_path_tree( '', 'gwst_app/templates' )
 py2exe_data_files += add_path_tree( '', 'registration_custom/templates' )
 py2exe_data_files += add_path_tree( '', 'tiles' )
+py2exe_data_files += add_path_tree( '', 'gdal_data' )
 
 
 setup(
