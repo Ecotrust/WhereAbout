@@ -83,36 +83,71 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             }
         );             
 
-        var nautLayer = new OpenLayers.Layer.TMS( 
-                "Nautical Charts", 
-                ["http://d34dcc2grel7cy.cloudfront.net/OregonCharts/"], 
-                { 
-                    buffer: 1,
+		if ( gwst.settings.desktop_build )
+		{
+			var nautLayer = new OpenLayers.Layer.TMS(
+				"Oregon Nautical Charts", 
+				["/tiles/OregonCharts/"], 
+				{               
+					buffer: 1,
                     'isBaseLayer': false,
                     visibility: false,
                     'opacity': 1.0,
                     'sphericalMercator': true,
-                    getURL: function (bounds) {
-                		//Default global google extent
-                		var layerExtent = new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34);
-                        var z = this.map.getZoom()+6;	//Amount to add should match the minZoomLevel setting on the google layer
-                        var url = this.url;
-                        var path = 'blank.png' ;
+					getURL: function (bounds) {
+						var layerExtent = new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34);
+                        var z = map.getZoom()+6;
+						var url = this.url;
+						var path = 'blank.png' ;
+						if ( z <= 12 && z >= 6 ) {
+							var res = map.getResolution();
+							var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
+							var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
+							var limit = Math.pow(2, z);
+							var path = z + "/" + x + "/" + y + ".png";
+						}
+						if (url instanceof Array) {
+							url = this.selectUrl(path, url);
+						}
+						tilepath = url + path;
+						return url + path;
+					}
+				}
+            );
+		}	
+		else
+		{
+			var nautLayer = new OpenLayers.Layer.TMS( 
+				"Nautical Charts", 
+				["http://d34dcc2grel7cy.cloudfront.net/OregonCharts/"], 
+				{ 
+					buffer: 1,
+					'isBaseLayer': false,
+					visibility: false,
+					'opacity': 1.0,
+					'sphericalMercator': true,
+					getURL: function (bounds) {
+						//Default global google extent
+						var layerExtent = new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34);
+						var z = this.map.getZoom()+6;	//Amount to add should match the minZoomLevel setting on the google layer
+						var url = this.url;
+						var path = 'blank.png' ;
 
-                            var res = this.map.getResolution();
-                            var x = Math.round((bounds.left - layerExtent.left) / (res * this.tileSize.w));
-                            var y = Math.round((layerExtent.top - bounds.top) / (res * this.tileSize.h));
-                            var limit = Math.pow(2, z);
-                            var path = z + "/" + x + "/" + y + ".png";
+							var res = this.map.getResolution();
+							var x = Math.round((bounds.left - layerExtent.left) / (res * this.tileSize.w));
+							var y = Math.round((layerExtent.top - bounds.top) / (res * this.tileSize.h));
+							var limit = Math.pow(2, z);
+							var path = z + "/" + x + "/" + y + ".png";
 
-                        if (url instanceof Array) {
-                            url = this.selectUrl(path, url);
-                        }
-                        tilepath = url + path;
-                        return url + path;
-                    }
-                }
-            )        
+						if (url instanceof Array) {
+							url = this.selectUrl(path, url);
+						}
+						tilepath = url + path;
+						return url + path;
+					}
+				}
+			);
+		}
         
         this.vecLayer = new OpenLayers.Layer.Vector('Fishing Grounds',{
             styleMap: styleMap

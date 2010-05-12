@@ -16,7 +16,7 @@ urlpatterns = patterns('',
         {'form_class': RegistrationFormFull},                           
         name='registration_register'),
     
-    (r'^accounts/', include('registration.urls')),
+    (r'^accounts/', include('registration.backends.default.urls')),
     
     (r'^draw_help/text/$', draw_help_text ),
 
@@ -49,8 +49,9 @@ urlpatterns = patterns('',
     (r'^shape/validate/$', validate_shape),
     url(r'^video/(\w+)$', video, name="video"),
 
-    (r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
+    #(r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
     (r'^faq', faq),
 	
-	(r'^samples/(\S+)/$', sample)
+	(r'^samples/(\S+)/$', sample),
+    (r'^tiles/(\S+)$', tiles ),
 )

@@ -7,6 +7,9 @@
 #DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 #DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
+SPATIALITE_LIBRARY_PATH = 'libspatialite-1.dll'
+DESKTOP_BUILD = False
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -36,7 +39,7 @@ MEDIA_URL = '/site-media/'
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/admin-media/'
+ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'ox6_$0433w05!fzz_$ts5(xs1v3_q$!p@uw#wrzt=!6#kem2#9'
@@ -56,10 +59,16 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'urls'
 
-import os
-TEMPLATE_DIRS = (
-    os.path.dirname(__file__)+'/gwst_surveymonkey/templates/',
-    '/usr/local/django-trunk/django/contrib/gis/templates/'
+import os, sys
+
+TILE_BASE = os.path.abspath(os.path.dirname(sys.argv[0])) + '/tiles/'
+
+TEMPLATE_DIRS = ( # use os.path.abspath(os.path.dirname(sys.argv[0])) to get a directory root that will be correct for py2exe'd version
+    os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_app/templates/',
+    os.path.abspath(os.path.dirname(sys.argv[0])) +'/registration_custom/templates/',
+    os.path.abspath(os.path.dirname(sys.argv[0])) +'/templates/', # for admin, in desktop configuration
+    #os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_surveymonkey/templates/',
+    #'/usr/local/django-trunk/django/contrib/gis/templates/'
 )
 
 INSTALLED_APPS = (
@@ -73,7 +82,7 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'registration_custom',
     'gwst_app',
-    'gwst_surveymonkey',
+    #'gwst_surveymonkey',
     'compress'
 )
 
@@ -81,7 +90,7 @@ SELF_REGISTRATION=False
 SELF_SURVEY_RESET=False
 
 CLIENT_SRID = 900913    #Google projection
-SERVER_SRID = 900913   #Google projection
+SERVER_SRID = 3310   #Google projection
 
 try:
     from local_settings import *

@@ -6,3 +6,13 @@ how to put a new clip region into place on a production server
 - copy the geometry from foo to gwst_region_clip table
 update gwst_region_clip set geom = a.geom from foo a where a.id=1;
 - Test the app
+
+
+Spatialite:
+spatialite.exe database/db.sqlite < database/data/fake-or-coast.sql
+
+database/data/fake-or-coast.sql:
+.loadshp database/data/fake-or-coast foo CP1252 3310 
+# where fake-or-coast is a shapefile, foo is the new table that is created, cp1252 is the string type, 3310 is srid)
+insert into gwst_region_clip (name, geom)
+select name, Geometry from foo;

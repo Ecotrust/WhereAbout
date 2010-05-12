@@ -203,26 +203,26 @@ def render_to_geojson(query_set, geom_field=None, geom_attribute=None, extra_att
     collection['features'] = features
     
     # Attach extent of all features
-    if query_set:
-        ex = None
-        query_set.query.distinct = False
-        if hasattr(query_set,'agg_extent'): 
-            ex = [x for x in query_set.agg_extent.tuple]
-        elif '.' in geometry_name:
-            prop, meth = geometry_name.split('.')
-            a = getattr(item,prop)
-            if a:
-                ex = [x for x in a.extent()]
-        else:
-            # make sure qs does not have .distinct() in it...
-            ex = [x for x in query_set.extent()]
-        if ex:
-            if proj_transform:
-                poly = Polygon.from_bbox(ex)
-                poly.srid = srid
-                poly.transform(proj_transform)
-                ex = poly.extent
-        collection['bbox'] = ex
+    #if query_set:
+    #    ex = None
+    #    query_set.query.distinct = False
+    #    if hasattr(query_set,'agg_extent'): 
+    #        ex = [x for x in query_set.agg_extent.tuple]
+    #    elif '.' in geometry_name:
+    #        prop, meth = geometry_name.split('.')
+    #        a = getattr(item,prop)
+    #        if a:
+    #            ex = [x for x in a.extent()]
+    #    else:
+    #        # make sure qs does not have .distinct() in it...
+    #        ex = [x for x in query_set.extent()]
+    #    if ex:
+    #        if proj_transform:
+    #            poly = Polygon.from_bbox(ex)
+    #            poly.srid = srid
+    #            poly.transform(proj_transform)
+    #            ex = poly.extent
+    #    collection['bbox'] = ex
     
     # Return response
     response = HttpResponse()

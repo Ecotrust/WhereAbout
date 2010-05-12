@@ -22,7 +22,7 @@ class Region(Model):
 #Region to clip user-drawn shapes to.
 class ClipRegion(Model):  
     name = models.TextField()
-    geom = MultiPolygonField(srid=settings.SERVER_SRID)
+    geom = PolygonField(srid=settings.SERVER_SRID)
     objects = GeoManager()
     class Meta:
         db_table = u'gwst_region_clip'
