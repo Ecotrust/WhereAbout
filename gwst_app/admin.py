@@ -75,6 +75,9 @@ class GroupMemberResourceAdmin(admin.ModelAdmin):
 class IntAdmin(admin.ModelAdmin):
     pass
 
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'created_by')
+
 admin.site.register(Interview,InterviewAdmin)
 admin.site.register(Region,IntAdmin)
 admin.site.register(Resource,ResourceAdmin)
@@ -91,5 +94,6 @@ admin.site.register(InterviewShape,InterviewShapeAdmin)
 admin.site.register(InterviewInstructions,IntAdmin)
 admin.site.register(FaqGroup,FaqGroupAdmin)
 admin.site.register(Faq,FaqAdmin)
+admin.site.register(UserProfile,UserProfileAdmin)
 
 

@@ -5,6 +5,7 @@ import datetime
 from gwst_app.utils.geojson_encode import *
 from gwst_app.managers import *
 
+
 class Region(Model):
     name = CharField( max_length=100, unique=True )
     n_bound = FloatField()
@@ -415,3 +416,30 @@ class Faq(models.Model):
     answer = models.TextField(max_length=2000)
     importance = models.IntegerField(choices=IMPORTANCE_CHOICES)
     faq_group = models.ForeignKey(FaqGroup)    
+
+    
+class UserProfile(models.Model):
+    class Meta:
+        db_table = u'gwst_userprofile'
+        
+    user = models.ForeignKey(User, unique=True)
+    created_by = models.ForeignKey(User, related_name="user_creator_fk", null=True)
+    
+    
+def user_post_save(sender, instance, **kwargs):
+    qs = User.objects.filter(is_staff=True).order_by('-last_login')
+    if qs.count() == 0:
+        creator = instance
+    else:
+        creator = qs[0]
+
+    try:
+        profile = UserProfile.objects.get(user=instance)
+    except ObjectDoesNotExist:
+        profile = UserProfile()
+        profile.user = instance
+        profile.created_by = creator
+        profile.save()
+        print 'Added profile object'
+
+models.signals.post_save.connect(user_post_save, sender=User)

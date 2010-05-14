@@ -10,6 +10,9 @@
 SPATIALITE_LIBRARY_PATH = 'libspatialite-1.dll'
 DESKTOP_BUILD = False
 
+AUTH_PROFILE_MODULE = 'gwst_app.userprofile'
+
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.

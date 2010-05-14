@@ -1,6 +1,48 @@
 [
   {
-    "pk": 50, 
+    "pk": "7f4a9f8f-5f7a-11df-a8ad-002564dc53a4", 
+    "model": "gwst_app.userprofile", 
+    "fields": {
+      "user": "7f3a4bde-5f7a-11df-ad64-002564dc53a4", 
+      "created_by": "7f3a4bde-5f7a-11df-ad64-002564dc53a4"
+    }
+  }, 
+  {
+    "pk": "89ff1a11-5f7a-11df-89fd-002564dc53a4", 
+    "model": "gwst_app.userprofile", 
+    "fields": {
+      "user": "50", 
+      "created_by": "7f3a4bde-5f7a-11df-ad64-002564dc53a4"
+    }
+  }, 
+  {
+    "pk": "8a00046e-5f7a-11df-92ce-002564dc53a4", 
+    "model": "gwst_app.userprofile", 
+    "fields": {
+      "user": "51", 
+      "created_by": "7f3a4bde-5f7a-11df-ad64-002564dc53a4"
+    }
+  }, 
+  {
+    "pk": "7f3a4bde-5f7a-11df-ad64-002564dc53a4", 
+    "model": "auth.user", 
+    "fields": {
+      "username": "admin", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2010-05-14 10:02:36", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$2690d$825979c239f7627616b6e891fac905a0d4812dd9", 
+      "email": "admin@admin.admin", 
+      "date_joined": "2010-05-14 10:02:36"
+    }
+  }, 
+  {
+    "pk": "50", 
     "model": "auth.user", 
     "fields": {
       "username": "test", 
@@ -18,7 +60,7 @@
     }
   }, 
   {
-    "pk": 51, 
+    "pk": "51", 
     "model": "auth.user", 
     "fields": {
       "username": "testadmin", 
