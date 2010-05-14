@@ -21,7 +21,7 @@ TIME_ZONE = 'America/Los_Angeles'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-SITE_ID = 1
+SITE_ID = 'a1'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -83,7 +83,8 @@ INSTALLED_APPS = (
     'registration_custom',
     'gwst_app',
     #'gwst_surveymonkey',
-    'compress'
+    'compress',
+    'django_extensions'
 )
 
 SELF_REGISTRATION=False

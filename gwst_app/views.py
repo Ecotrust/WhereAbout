@@ -151,12 +151,12 @@ def assign_groups(request):
             for field_name in form.fields:
                 field = form.fields[field_name]
                 
-                if field.group and (form.cleaned_data['group_%d_pc' % field.group.id] > 0 or field.group.is_user_group == False):
+                if field.group and (form.cleaned_data['group_%s_pc' % field.group.id] > 0 or field.group.is_user_group == False):
                     if (field.group.name != 'Socio-Economic Questions'):
                         membership, created = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=field.group)
                         membership.user = request.user
                         membership.int_group = field.group
-                        membership.percent_involvement = form.cleaned_data['group_%d_pc' % field.group.id]
+                        membership.percent_involvement = form.cleaned_data['group_%s_pc' % field.group.id]
                         membership.order = 5
                         membership.save()
             
@@ -795,7 +795,7 @@ def finalize_interview(request,id):
     if request.method == 'GET':
 
         # make sure this interview is the current one for this user session
-        if int(id) == request.session['interview'].id:
+        if str(id) == request.session['interview'].id:
             # get the interviewstatus object
             int_status = InterviewStatus.objects.get(user=request.user,interview=id)
             int_status.completed = True

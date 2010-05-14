@@ -29,19 +29,19 @@ class SelectInterviewGroupsForm( forms.Form ):
             # percent involvement field
             dynamic_args['label'] = group.name+' (%)'
             dynamic_args['required'] = False
-            self.fields['group_%d_pc' % group.id] = PercentField( **dynamic_args )
-            self.fields['group_%d_pc' % group.id].group = group
+            self.fields['group_%s_pc' % group.id] = PercentField( **dynamic_args )
+            self.fields['group_%s_pc' % group.id].group = group
          
     def clean(self):
         pct_sum = 0
         for i, group in enumerate(self.groups):
             try:
-                pct_val = self.cleaned_data['group_%d_pc' % group.id]
+                pct_val = self.cleaned_data['group_%s_pc' % group.id]
                 if pct_val: 
-                    self.cleaned_data['group_%d_pc' % group.id] = int(re.sub("%","",pct_val))
+                    self.cleaned_data['group_%s_pc' % group.id] = int(re.sub("%","",pct_val))
                     pct_sum = pct_sum + int(re.sub("%","",pct_val))
                 elif pct_val == "":
-                    self.cleaned_data['group_%d_pc' % group.id] = 0
+                    self.cleaned_data['group_%s_pc' % group.id] = 0
             except Exception, e:
                 pass
                 

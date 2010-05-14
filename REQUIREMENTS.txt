@@ -1,0 +1,11 @@
+Python modules needed:
+
+django_extensions (used for UUID's)
+django_compress (compresses JS files into one pack)
+django_registration
+
+
+Additional build directories (hang off of trunk):
+gdal_data - files needed to support desktop install
+lib - files needed to support desktop install
+tiles - home to any local tile sets to be used

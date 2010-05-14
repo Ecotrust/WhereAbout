@@ -638,8 +638,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /*delete all of the shapes for one user, for one group, for one resource*/
     clearResourceShapes: function() {
         var delete_config = {
-            group_id: parseInt(gwst.settings.survey_group_id),
-            resource_id: parseInt(this.curResource.id),
+            group_id: gwst.settings.survey_group_id,
+            resource_id: this.curResource.id,
             action: 'DELETE'
         };
         this.deleteSavedShapes(delete_config);
@@ -1033,8 +1033,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         var data = {
             geometry: this.curSaveRecord.get('feature').geometry.toString(),
             pennies: this.curSaveRecord.get('pennies'),
-            group_id: parseInt(gwst.settings.survey_group_id),
-            resource_id: parseInt(this.curResource.id)
+            group_id: gwst.settings.survey_group_id,
+            resource_id: this.curResource.id
         };
         
         Ext.apply(data, boundary_values_obj);
@@ -1129,8 +1129,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	}
     	var data = {
             pennies: parseInt(record.get('pennies')),
-            group_id: parseInt(gwst.settings.survey_group_id),
-            resource_id: parseInt(this.curResource.id)
+            group_id: gwst.settings.survey_group_id,
+            resource_id: this.curResource.id
         };
     	this.loadWait('Updating');
         this.curUpdateRecord = record;
@@ -1163,7 +1163,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     loadResourceStore: function(resources) {
         //Initialize resource store
         this.ResourceRecord = Ext.data.Record.create([
-	       {name: 'id', type: 'float'},
+	       {name: 'id'},
 	       {name: 'name'},
 	       {name: 'started', type: 'boolean'},
 	       {name: 'finished', type: 'boolean'}
@@ -1207,8 +1207,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 proxy:  this._createResourceProxy(),
                 fields: [{
                     name:'id',
-                    type:'float',
-                    defaultValue: null
+                    type: 'string',
+                    defaultValue: ''
                 },{
                     name:'pennies',
                     type:'int',
