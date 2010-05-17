@@ -1,6 +1,12 @@
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.sites.models import Site
+from django.contrib.auth import login as auth_login
 from django.template import RequestContext, loader
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
@@ -17,7 +23,67 @@ def login(request, template_name='registration/login.html'):
     request.user.SELF_REGISTRATION = settings.SELF_REGISTRATION
     from django.contrib.auth.views import login as default_login
     return default_login(request, template_name)
+    
+@csrf_protect
+@never_cache
+def login_as(request, template_name='registration/login.html',
+          redirect_field_name=REDIRECT_FIELD_NAME,
+          authentication_form=AuthenticationForm):
+    """Displays the login form and handles the login action."""
 
+    redirect_to = request.REQUEST.get(redirect_field_name, '')
+    
+    if request.method == "POST":
+        form = authentication_form(data=request.POST)
+        if form.is_valid():
+            # Light security check -- make sure redirect_to isn't garbage.
+            if not redirect_to or ' ' in redirect_to:
+                redirect_to = settings.LOGIN_REDIRECT_URL
+            
+            # Heavier security check -- redirects to http://example.com should 
+            # not be allowed, but things like /view/?param=http://example.com 
+            # should be allowed. This regex checks if there is a '//' *before* a
+            # question mark.
+            elif '//' in redirect_to and re.match(r'[^\?]*//', redirect_to):
+                    redirect_to = settings.LOGIN_REDIRECT_URL
+            
+            # Okay, security checks complete. Log the user in.
+            auth_login(request, form.get_user())
+
+            if request.session.test_cookie_worked():
+                request.session.delete_test_cookie()
+
+            return HttpResponseRedirect(redirect_to)
+
+    else:
+        form = authentication_form(request)
+    
+    from django.contrib.auth import logout
+    logout(request)
+    
+    request.session.set_test_cookie()
+    
+    if Site._meta.installed:
+        current_site = Site.objects.get_current()
+    else:
+        current_site = RequestSite(request)
+        
+    next_user_str = request.REQUEST.get('next_user', '')
+    if next_user_str:
+        try:
+            next_user_obj = User.objects.get(pk=next_user_str)
+            next_user_str = next_user_obj.username
+        except ObjectDoesNotExist:
+            pass
+    
+    return render_to_response(template_name, {
+        'form': form,
+        redirect_field_name: redirect_to,
+        'site': current_site,
+        'site_name': current_site.name,
+        'next_user': next_user_str
+    }, context_instance=RequestContext(request))
+    
 def handleSelectInterview(request,selected_interview):
     request.session['interview'] = selected_interview
     status_object_qs = InterviewStatus.objects.filter(interview=selected_interview, user=request.user)
