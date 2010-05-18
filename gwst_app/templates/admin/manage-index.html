@@ -1,0 +1,59 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Survey Management' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'Survey management' %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css" />{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content_title %}{% endblock %}
+{% block content %}
+<div id="content-main">
+
+        <div class="module">
+        <table>
+        <caption>{% trans 'User account management' %}</caption>
+        <tr>
+            <th scope="row"><a href="auth/user/">{% trans 'List user accounts' %}</a></th>
+			<td>&nbsp;</td>
+        </tr>
+		<tr>
+			<th><a href="auth/user/add/">{% trans 'Create new user account' %}</a></th>
+		</tr>
+        </table>
+        </div>
+		
+		<div class="module">
+        <table>
+        <caption>{% trans 'Survey management' %}</caption>
+		<tr>
+			<th><a href="auth/user/">{% trans 'Start/continue a survey' %}</a></th>
+			<td>&nbsp;</td>
+		</tr>
+        </table>
+        </div>
+		
+		<div class="module">
+        <table>
+        <caption>{% trans 'DANGEROUS THINGS' %}</caption>
+		<tr>
+			<th><a href="auth/user/">{% trans 'Delete a user account and its survey responses' %}</a></th>
+			<td>&nbsp;</td>
+		</tr>
+        </table>
+        </div>
+ 
+</div>
+{% endblock %}
+

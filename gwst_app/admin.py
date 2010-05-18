@@ -4,6 +4,7 @@ from gwst_app.models import *
 from django.contrib import databrowse
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
+from django.conf import settings
 
 databrowse.site.register(Interview)
 databrowse.site.register(Region)
@@ -77,23 +78,48 @@ class IntAdmin(admin.ModelAdmin):
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'created_by')
+    
 
-admin.site.register(Interview,InterviewAdmin)
-admin.site.register(Region,IntAdmin)
-admin.site.register(Resource,ResourceAdmin)
-admin.site.register(InterviewQuestion,InterviewQuestionAdmin)
-admin.site.register(QuestionGroupValidator,IntAdmin)
-admin.site.register(QuestionGroup,IntAdmin)
-admin.site.register(InterviewGroup,InterviewGroupAdmin)
-admin.site.register(InterviewGroupMembership,IntAdmin)
-admin.site.register(GroupMemberResource,GroupMemberResourceAdmin)
-admin.site.register(InterviewAnswerOption,IntAdmin)
-admin.site.register(InterviewAnswer,InterviewAnswerAdmin)
-admin.site.register(InterviewStatus,InterviewStatusAdmin)
-admin.site.register(InterviewShape,InterviewShapeAdmin)
-admin.site.register(InterviewInstructions,IntAdmin)
-admin.site.register(FaqGroup,FaqGroupAdmin)
-admin.site.register(Faq,FaqAdmin)
-admin.site.register(UserProfile,UserProfileAdmin)
+if settings.FULL_ADMIN:
+    admin.site.register(Interview,InterviewAdmin)
+    admin.site.register(Region,IntAdmin)
+    admin.site.register(Resource,ResourceAdmin)
+    admin.site.register(InterviewQuestion,InterviewQuestionAdmin)
+    admin.site.register(QuestionGroupValidator,IntAdmin)
+    admin.site.register(QuestionGroup,IntAdmin)
+    admin.site.register(InterviewGroup,InterviewGroupAdmin)
+    admin.site.register(InterviewGroupMembership,IntAdmin)
+    admin.site.register(GroupMemberResource,GroupMemberResourceAdmin)
+    admin.site.register(InterviewAnswerOption,IntAdmin)
+    admin.site.register(InterviewAnswer,InterviewAnswerAdmin)
+    admin.site.register(InterviewStatus,InterviewStatusAdmin)
+    admin.site.register(InterviewShape,InterviewShapeAdmin)
+    admin.site.register(InterviewInstructions,IntAdmin)
+    admin.site.register(FaqGroup,FaqGroupAdmin)
+    admin.site.register(Faq,FaqAdmin)
+    admin.site.register(UserProfile,UserProfileAdmin)
+else:
+    #from django.contrib.admin.sites import AdminSite
 
+    #manager_admin = AdminSite()
+    #manager_admin.index_template = 'admin/manage-index.html'
+    #manager_admin.disable_action('delete_selected')
+    #manager_admin.register(User,UserAdmin)
 
+    admin.site.index_template = 'admin/manage-index.html'
+    admin.site.disable_action('delete_selected')
+
+    class OverrideUserAdmin(UserAdmin):
+        list_display = ('username', 'first_name', 'last_name', 'is_staff', 'login_as', 'delete_survey')
+        def login_as( self, obj ):
+            return '<a href="/accounts/login_as/?next_user=' + obj.id + '">Start/continue survey for ' + obj.username +'</a>'
+        login_as.allow_tags = True
+        login_as.short_description = ''
+        
+        def delete_survey( self, obj ):
+            return '<a href="/admin/auth/user/' + obj.id + '/delete/">Delete survey for ' + obj.username +'</a>'
+        delete_survey.allow_tags = True
+        delete_survey.short_description = ''
+
+    admin.site.unregister(User)
+    admin.site.register(User,OverrideUserAdmin)
