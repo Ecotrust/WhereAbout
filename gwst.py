@@ -2,6 +2,8 @@ import os, sys
 
 os.environ['DJANGO_SETTINGS_MODULE'] = "settings"
 
+import overrides
+
 import gwst_app
 import gwst_app.admin
 import gwst_app.fields
