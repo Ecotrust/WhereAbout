@@ -1,12 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_protect
-from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.sites.models import Site
-from django.contrib.auth import login as auth_login
 from django.template import RequestContext, loader
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
@@ -24,74 +18,33 @@ def login(request, template_name='registration/login.html'):
     from django.contrib.auth.views import login as default_login
     return default_login(request, template_name)
     
-@csrf_protect
-@never_cache
-def login_as(request, template_name='registration/login.html',
-          redirect_field_name=REDIRECT_FIELD_NAME,
-          authentication_form=AuthenticationForm):
-    """Displays the login form and handles the login action."""
-
-    redirect_to = request.REQUEST.get(redirect_field_name, '')
     
-    if request.method == "POST":
-        form = authentication_form(data=request.POST)
-        if form.is_valid():
-            # Light security check -- make sure redirect_to isn't garbage.
-            if not redirect_to or ' ' in redirect_to:
-                redirect_to = settings.LOGIN_REDIRECT_URL
-            
-            # Heavier security check -- redirects to http://example.com should 
-            # not be allowed, but things like /view/?param=http://example.com 
-            # should be allowed. This regex checks if there is a '//' *before* a
-            # question mark.
-            elif '//' in redirect_to and re.match(r'[^\?]*//', redirect_to):
-                    redirect_to = settings.LOGIN_REDIRECT_URL
-            
-            # Okay, security checks complete. Log the user in.
-            auth_login(request, form.get_user())
+@login_required
+def login_as(request):
+    if request.user.is_authenticated() and request.user.is_staff:
 
-            if request.session.test_cookie_worked():
-                request.session.delete_test_cookie()
-
-            return HttpResponseRedirect(redirect_to)
-
+        next_user_str = request.REQUEST.get('next_user', '')
+        if next_user_str:
+            try:
+                next_user_obj = User.objects.get(pk=next_user_str)
+                request.session['interviewee'] = next_user_obj
+            except ObjectDoesNotExist:
+                pass
+                
+        return HttpResponseRedirect('/select_interview/')
     else:
-        form = authentication_form(request)
-    
-    from django.contrib.auth import logout
-    logout(request)
-    
-    request.session.set_test_cookie()
-    
-    if Site._meta.installed:
-        current_site = Site.objects.get_current()
-    else:
-        current_site = RequestSite(request)
-        
-    next_user_str = request.REQUEST.get('next_user', '')
-    if next_user_str:
-        try:
-            next_user_obj = User.objects.get(pk=next_user_str)
-            next_user_str = next_user_obj.username
-        except ObjectDoesNotExist:
-            pass
-    
-    return render_to_response(template_name, {
-        'form': form,
-        redirect_field_name: redirect_to,
-        'site': current_site,
-        'site_name': current_site.name,
-        'next_user': next_user_str
-    }, context_instance=RequestContext(request))
+        return HttpResponseRedirect('/accounts/login/')
+
     
 def handleSelectInterview(request,selected_interview):
     request.session['interview'] = selected_interview
-    status_object_qs = InterviewStatus.objects.filter(interview=selected_interview, user=request.user)
+    
+    status_object_qs = InterviewStatus.objects.filter(interview=selected_interview, user=request.session['interviewee'])
             
     if status_object_qs.count() == 0: # no InterviewStatus record exists?
         # create InterviewStatus record
         status = InterviewStatus()
-        status.user = request.user
+        status.user = request.session['interviewee']
         status.interview = selected_interview
         status.first_login = datetime.datetime.today()
         status.last_login = datetime.datetime.today()
@@ -102,8 +55,8 @@ def handleSelectInterview(request,selected_interview):
         required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
         for group in required_groups:
             
-            membership, created = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=group)
-            membership.user = request.user
+            membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=group)
+            membership.user = request.session['interviewee']
             membership.int_group = group
             if (group.name != 'Main Questions'):
                 membership.percent_involvement = 0
@@ -128,7 +81,7 @@ def handleSelectInterview(request,selected_interview):
         # see if there are any group memberships
         int_groups = InterviewGroup.objects.filter(interview=selected_interview)
         req_groups = int_groups.filter(required_group=True)
-        num_group_membs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).count()
+        num_group_membs = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__in=int_groups).count()
         
         # if there are no group memberships, a user may have aborted before selecting them before, give them another chance now
         if num_group_membs == 0:
@@ -146,11 +99,19 @@ def handleSelectInterview(request,selected_interview):
 
 @login_required
 def select_interview(request):
+
+    try:
+        if request.session['interviewee'] != request.user:
+            if not request.user.is_staff:
+                request.session['interviewee'] = request.user
+    except KeyError:
+        request.session['interviewee'] = request.user
     
-    if request.user.is_staff:
+    if request.session['interviewee'].is_staff:
         active_interviews = Interview.objects.all()
     else:
         active_interviews = Interview.objects.filter(active=True)
+
     
     # special handling if there is only one active interview
     if active_interviews.count() == 1:
@@ -185,7 +146,7 @@ def assign_groups(request):
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
         status = status_object_qs[0]
         
@@ -219,8 +180,8 @@ def assign_groups(request):
                 
                 if field.group and (form.cleaned_data['group_%s_pc' % field.group.id] > 0 or field.group.is_user_group == False):
                     if (field.group.name != 'Socio-Economic Questions'):
-                        membership, created = InterviewGroupMembership.objects.get_or_create(user=request.user, int_group=field.group)
-                        membership.user = request.user
+                        membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=field.group)
+                        membership.user = request.session['interviewee']
                         membership.int_group = field.group
                         membership.percent_involvement = form.cleaned_data['group_%s_pc' % field.group.id]
                         membership.order = 5
@@ -251,7 +212,7 @@ def group_status(request):
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
         status = status_object_qs[0]
         
@@ -269,12 +230,12 @@ def group_status(request):
     
     title = request.session['interview'].name + ' Status'
        
-    qs = InterviewGroupMembership.objects.filter(user=request.user, int_group__in=int_groups).order_by('order','-percent_involvement','id')
+    qs = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__in=int_groups).order_by('order','-percent_involvement','id')
     
     num_shapes = None
     # update the user status message for each in-progress group
     
-    current_group = InterviewGroupMembership.objects.get_current_group(request.user, request.session['interview'])    
+    current_group = InterviewGroupMembership.objects.get_current_group(request.session['interviewee'], request.session['interview'])    
     result = []
     
     for group_memb in qs.all(): 
@@ -286,7 +247,7 @@ def group_status(request):
         #if current group has drawing and is 'in-progress'
         if group_memb.status == 'in-progress' and group_memb.int_group.user_draws_shapes:
             #'num shapes' is how many have been drawn
-            num_shapes = InterviewShape.objects.filter(user=request.user,int_group=group_memb.int_group).count()
+            num_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=group_memb.int_group).count()
             
             shape_name_plural = request.session['interview'].shape_name_plural
             resource_name = request.session['interview'].resource_name
@@ -301,7 +262,7 @@ def group_status(request):
                 # iterate through all resources currently checked
                 for resource in GroupMemberResource.objects.filter(group_membership=group_memb.id):
                     #find shapes for each
-                    res_shapes = InterviewShape.objects.filter(user=request.user,int_group=group_memb.int_group,resource=resource.resource)
+                    res_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=group_memb.int_group,resource=resource.resource)
                     zero_penny_shapes = res_shapes.filter(pennies=0)
                         
                     #find any shapes with no pennies and count resource as incomplete
@@ -337,7 +298,7 @@ def group_status(request):
         group_memb.save() 
 
     # if user has finalized each of their registered groups, let them finalize their interview
-    finalized_groups = InterviewGroupMembership.objects.filter(Q(status='finalized') | Q(status='skipped')).filter(user=request.user, int_group__in=int_groups)
+    finalized_groups = InterviewGroupMembership.objects.filter(Q(status='finalized') | Q(status='skipped')).filter(user=request.session['interviewee'], int_group__in=int_groups)
     allow_finalize = qs.count() == finalized_groups.count()
 
     return render_to_response( 'group_status.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'result':result, 'allow_finalize':allow_finalize, 'num_shapes':num_shapes}))
@@ -349,7 +310,7 @@ def view_answers(request,group_id):
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
         status = status_object_qs[0]
         
@@ -365,7 +326,7 @@ def view_answers(request,group_id):
         
     # show questions for this group, with any existing user answers
     questions = InterviewQuestion.objects.filter(int_group__pk=group_id,all_resources=False).order_by('question_set', 'display_order')
-    answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
+    answers = InterviewAnswer.objects.filter(user=request.session['interviewee'], int_question__in=questions)
     
     try:
         group = InterviewGroup.objects.get(pk=group_id)
@@ -385,7 +346,7 @@ def answer_questions(request,group_id):
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
         status = status_object_qs[0]
         
@@ -417,7 +378,7 @@ def answer_questions(request,group_id):
     resource_id = None
     
     questions = InterviewQuestion.objects.filter(int_group__pk=group_id,all_resources=False).order_by('question_set', 'display_order')
-    answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
+    answers = InterviewAnswer.objects.filter(user=request.session['interviewee'], int_question__in=questions)
             
     if request.method == 'GET':
         # show questions for this group, with any existing user answers
@@ -428,7 +389,7 @@ def answer_questions(request,group_id):
         form = AnswerForm(questions, answers, group_id, resource_id, request.POST )
         if form.is_valid():
             # update the group membership status, if necessary
-            group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=group_id)
+            group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__pk=group_id)
             if group_memb.count()==1:
                 updated_group = group_memb[0]
                 if updated_group.status == 'not yet started':
@@ -442,7 +403,7 @@ def answer_questions(request,group_id):
                 return render_to_response( '404.html', RequestContext(request,{}))
         
             # create or update InterviewAnswer records
-            form.save(request.user)
+            form.save(request.session['interviewee'])
             
             return HttpResponseRedirect('/group_status#main_menu')
             
@@ -456,7 +417,7 @@ def select_group_resources(request, group_id):
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         interview = request.session['interview']
-        status_object_qs = InterviewStatus.objects.filter(interview=interview, user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=interview, user=request.session['interviewee'])
 
         status = status_object_qs[0]
         
@@ -470,7 +431,7 @@ def select_group_resources(request, group_id):
 
     try:
         group = InterviewGroup.objects.get(pk=group_id)
-        group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=group_id)
+        group_memb = InterviewGroupMembership.objects.get(user=request.session['interviewee'], int_group__pk=group_id)
             
     except ObjectDoesNotExist:
         return render_to_response( '404.html', RequestContext(request,{}))
@@ -503,7 +464,7 @@ def answer_resource_questions(request, group_id, next_url=None):
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
         status = status_object_qs[0]
         
@@ -517,7 +478,7 @@ def answer_resource_questions(request, group_id, next_url=None):
         
     try:
         group = InterviewGroup.objects.get(pk=group_id)
-        group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=group_id )
+        group_memb = InterviewGroupMembership.objects.get(user=request.session['interviewee'], int_group__pk=group_id )
         sel_resources = GroupMemberResource.objects.filter(group_membership=group_memb)
         
     except ObjectDoesNotExist:
@@ -544,7 +505,7 @@ def answer_resource_questions(request, group_id, next_url=None):
         else:
             return HttpResponseRedirect('/group_status#main_menu')
             
-    answers = InterviewAnswer.objects.filter(user=request.user, int_question__in=questions)
+    answers = InterviewAnswer.objects.filter(user=request.session['interviewee'], int_question__in=questions)
     
     forms = {}
         
@@ -565,7 +526,7 @@ def answer_resource_questions(request, group_id, next_url=None):
             forms[sel_resource.resource.name]=form
         
         if forms_valid:
-            group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group__pk=group_id)
+            group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__pk=group_id)
             if group_memb.count()==1:
                 updated_group = group_memb[0]
                 if updated_group.status == 'selecting resources':
@@ -575,7 +536,7 @@ def answer_resource_questions(request, group_id, next_url=None):
             else: #404
                 return render_to_response( '404.html', RequestContext(request,{}))
             for name, form in forms.items():
-                form.save(request.user)
+                form.save(request.session['interviewee'])
                 
             if next_url:
                 return HttpResponseRedirect(next_url)
@@ -590,7 +551,7 @@ def draw_group_resources(request, group_id):
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
         status = status_object_qs[0]
         
@@ -610,7 +571,7 @@ def draw_group_resources(request, group_id):
         return HttpResponseRedirect('/draw_overview/'+str(group_id)+'/')
 
     group = InterviewGroup.objects.get(pk=group_id)
-    group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=group_id)
+    group_memb = InterviewGroupMembership.objects.get(user=request.session['interviewee'], int_group__pk=group_id)
     if group_memb.int_group.user_draws_shapes:
         #Have user select resources if they are required to and haven't yet
         if group.preselect:
@@ -636,7 +597,7 @@ def draw_overview(request, group_id):
 
     if request.method == 'POST':
         # return HttpResponseRedirect('/penny_overview/'+str(group_id)+'/')
-        interview = InterviewStatus.objects.get(user=request.user, interview=request.session['interview'])
+        interview = InterviewStatus.objects.get(user=request.session['interviewee'], interview=request.session['interview'])
         interview.overview_completed = True
         interview.save()
         return HttpResponseRedirect('/draw_group_resources/'+str(group_id)+'/')
@@ -648,7 +609,7 @@ def penny_overview(request, group_id):
 
     if request.method == 'POST':
         #update status to reflect that this overview has been seen
-        interview = InterviewStatus.objects.get(user=request.user, interview=request.session['interview'])
+        interview = InterviewStatus.objects.get(user=request.session['interviewee'], interview=request.session['interview'])
         interview.overview_completed = True
         interview.save()
         return HttpResponseRedirect('/draw_group_resources/'+str(group_id)+'/')
@@ -662,7 +623,7 @@ def finalize_group(request,id):
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
         status = status_object_qs[0]
         
@@ -683,7 +644,7 @@ def finalize_group(request,id):
         except ObjectDoesNotExist:
             return render_to_response( '404.html', RequestContext(request,{}))
             
-        group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group=int_group)
+        group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group=int_group)
         if group_memb.count() == 1:
         
             # validation based on number of pennies assigned by user
@@ -692,7 +653,7 @@ def finalize_group(request,id):
                 total_shape_count = 0
                 
                 for resource in int_group.resources.all():
-                    resource_shapes = InterviewShape.objects.filter(user=request.user,int_group=int_group,resource=resource)
+                    resource_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=resource)
                     shape_count = resource_shapes.count()
                     if shape_count > 0:
                         shape_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
@@ -726,7 +687,7 @@ def skip_res_finalize_group(request,id):
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
         status = status_object_qs[0]
         
@@ -747,7 +708,7 @@ def skip_res_finalize_group(request,id):
         except ObjectDoesNotExist:
             return render_to_response( '404.html', RequestContext(request,{}))
             
-        group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group=int_group)
+        group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group=int_group)
         if group_memb.count() == 1:
         
             # validation based on number of pennies assigned by user
@@ -756,7 +717,7 @@ def skip_res_finalize_group(request,id):
                 total_shape_count = 0
                 
                 for resource in int_group.resources.all():
-                    resource_shapes = InterviewShape.objects.filter(user=request.user,int_group=int_group,resource=resource)
+                    resource_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=resource)
                     shape_count = resource_shapes.count()
                     if shape_count > 0:
                         shape_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
@@ -790,7 +751,7 @@ def unfinalize_group(request,id):
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
         status = status_object_qs[0]
         
@@ -810,7 +771,7 @@ def unfinalize_group(request,id):
             int_group = InterviewGroup.objects.get(pk=id)
         except ObjectDoesNotExist:
             return render_to_response( '404.html', RequestContext(request,{}))            
-        group_memb = InterviewGroupMembership.objects.filter(user=request.user, int_group=int_group)
+        group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group=int_group)
         
         if group_memb.count() == 1:
         
@@ -830,7 +791,7 @@ def skip_group(request, id):
         int_group = InterviewGroup.objects.get(pk=id)
     except ObjectDoesNotExist:
         return render_to_response( '404.html', RequestContext(request,{}))            
-    group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group=int_group)
+    group_memb = InterviewGroupMembership.objects.get(user=request.session['interviewee'], int_group=int_group)
     group_memb.opt_out = True
     group_memb.status = 'skipped'
     group_memb.save()
@@ -844,7 +805,7 @@ def finalize_interview(request,id):
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
         status = status_object_qs[0]
         
@@ -863,7 +824,7 @@ def finalize_interview(request,id):
         # make sure this interview is the current one for this user session
         if str(id) == request.session['interview'].id:
             # get the interviewstatus object
-            int_status = InterviewStatus.objects.get(user=request.user,interview=id)
+            int_status = InterviewStatus.objects.get(user=request.session['interviewee'],interview=id)
             int_status.completed = True
             int_status.complete_date = datetime.datetime.today()
             int_status.save()
@@ -885,13 +846,13 @@ def interview_complete(request):
 
 @login_required
 def reset_interview(request, id):
-    answers = InterviewAnswer.objects.filter(user=request.user, int_question__int_group__interview__id=id)
+    answers = InterviewAnswer.objects.filter(user=request.session['interviewee'], int_question__int_group__interview__id=id)
     answers.delete()
-    shapes = InterviewShape.objects.filter(user=request.user, int_group__interview__id=id)
+    shapes = InterviewShape.objects.filter(user=request.session['interviewee'], int_group__interview__id=id)
     shapes.delete()
-    group_membs = InterviewGroupMembership.objects.filter(user=request.user, int_group__interview__id=id)
+    group_membs = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__interview__id=id)
     group_membs.delete()
-    survey_status = InterviewStatus.objects.filter(user=request.user, interview__id=id)
+    survey_status = InterviewStatus.objects.filter(user=request.session['interviewee'], interview__id=id)
     survey_status.delete()
     return HttpResponseRedirect('/')        
 
@@ -899,7 +860,7 @@ def reset_interview(request, id):
 def draw_settings(request, id) :
     interview = request.session['interview']
     int_group = InterviewGroup.objects.get(pk=id)
-    group_memb = InterviewGroupMembership.objects.get(user=request.user, int_group__pk=id )
+    group_memb = InterviewGroupMembership.objects.get(user=request.session['interviewee'], int_group__pk=id )
     
     #extract info on users selected resources including whether they are finished or not
     resources = Resource.objects.filter(groupmemberresource__group_membership=group_memb)
@@ -913,7 +874,7 @@ def draw_settings(request, id) :
         res_item['started'] = False
         res_item['finished'] = False
         
-        resource_shapes = InterviewShape.objects.filter(user=request.user,int_group=int_group,resource=res)        
+        resource_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=res)        
         if resource_shapes and len(resource_shapes) > 0:
             res_item['started'] = True
         
@@ -928,10 +889,10 @@ def draw_settings(request, id) :
     result = {}      
     #User settings
     result['user'] = {
-        'name': request.user.first_name+" "+request.user.last_name,
-        'email': request.user.email,
-        'username': request.user.username,
-        'is_staff': request.user.is_staff
+        'name': request.session['interviewee'].first_name+" "+request.session['interviewee'].last_name,
+        'email': request.session['interviewee'].email,
+        'username': request.session['interviewee'].username,
+        'is_staff': request.session['interviewee'].is_staff
     }     
     #Interview settings
     result['interview'] = {
@@ -967,7 +928,7 @@ DELETE - expects a shape id /shapes/id or resource_id param
 '''
 def shapes(request, id=None):    
     if request.method == 'GET':    
-        shape_qs = InterviewShape.objects.filter(user=request.user).order_by('id')
+        shape_qs = InterviewShape.objects.filter(user=request.session['interviewee']).order_by('id')
         if (request.GET.get('group_id')):
             shape_qs = shape_qs.filter(int_group__id=request.GET.get('group_id'))
         if (request.GET.get('resource_id')):
@@ -985,7 +946,7 @@ def shapes(request, id=None):
         #Get session and status
         try:
             int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])        
-            status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+            status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
             status = status_object_qs[0]        
         except Exception, e:
             return HttpResponse('{"status_code":"-1",  "success":"false",  "message":"Action not permitted"}', status=403)
@@ -994,7 +955,7 @@ def shapes(request, id=None):
         if (request.POST.get('action') ==  'DELETE'):
             if (id):
                 shape = get_object_or_404(InterviewShape, pk=id)
-                if (shape.user == request.user):
+                if (shape.user == request.session['interviewee']):
                     shape.delete()
                     result = {"success":True, "message":"Deleted successfully"}
                     return HttpResponse(geojson_encode(result)) 
@@ -1005,7 +966,7 @@ def shapes(request, id=None):
                 resource_id = request.POST.get('resource_id')
                 group_id = request.POST.get('group_id')
                 if (resource_id):
-                    shapes = InterviewShape.objects.filter(resource=resource_id, int_group=group_id, user=request.user)
+                    shapes = InterviewShape.objects.filter(resource=resource_id, int_group=group_id, user=request.session['interviewee'])
                     shapes.delete()
                     result = {"success":True, "message":"Deleted successfully"}
                     return HttpResponse(geojson_encode(result)) 
@@ -1028,7 +989,7 @@ def shapes(request, id=None):
         if (id):
             shape = InterviewShape.objects.get(pk=id)
             
-            if (shape.user == request.user):
+            if (shape.user == request.session['interviewee']):
                 shape.pennies = feat.get('pennies')
                 shape.save()
                 result = {"success":True, "message":"Update successfully"}
@@ -1044,7 +1005,7 @@ def shapes(request, id=None):
             geom.transform(settings.SERVER_SRID)                        
              
             new_shape = InterviewShape(
-                user = request.user,
+                user = request.session['interviewee'],
                 geometry = geom,
                 boundary_n = feat.get('boundary_n'),
                 boundary_s = feat.get('boundary_s'),
@@ -1056,7 +1017,7 @@ def shapes(request, id=None):
             new_shape.save() 
             
             # check the status of the interview group membership for this shape and unfinalize it if necessary
-            group_memb = InterviewGroupMembership.objects.get(user=request.user,int_group=new_shape.int_group_id)
+            group_memb = InterviewGroupMembership.objects.get(user=request.session['interviewee'],int_group=new_shape.int_group_id)
             if group_memb.status == 'finalized':
                 group_memb.status = 'in-progress'
                 group_memb.save()
@@ -1098,7 +1059,7 @@ def validate_shape(request):
     # make sure the user has a valid session in-progress
     interview = request.session['interview']
     try:                        
-        status_object_qs = InterviewStatus.objects.filter(interview=interview, user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=interview, user=request.session['interviewee'])
         status = status_object_qs[0]        
     except Exception, e:
         return HttpResponse(result, status=403)
@@ -1126,7 +1087,7 @@ def validate_shape(request):
         else:
             int_group_id, resource_id = request.REQUEST['resource'].split('-')        
         
-        other_shapes = InterviewShape.objects.filter(user=request.user,int_group__id=int_group_id,resource__id=resource_id)
+        other_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group__id=int_group_id,resource__id=resource_id)
 
         #If editing, exclude original shape from those to check
         if request.REQUEST.get("orig_shape_id"):
@@ -1185,7 +1146,7 @@ def save_shape(request):
     # make sure the user has a valid session in-progress
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])        
-        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.user)
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
         status = status_object_qs[0]        
     except Exception, e:
         return HttpResponse(result, status=403)
@@ -1197,7 +1158,7 @@ def save_shape(request):
     result = '{"status_code":"-1",  "success":"false",  "message":"error in save_shape in views.py"}'
     try:
         new_shape = InterviewShape()
-        new_shape.user = request.user
+        new_shape.user = request.session['interviewee']
         
         geom = GEOSGeometry(request.REQUEST['geometry'], srid=settings.CLIENT_SRID)
         geom.transform(settings.SERVER_SRID)
@@ -1216,7 +1177,7 @@ def save_shape(request):
         result = new_shape.json()
         
         # check the status of the interview group membership for this shape and unfinalize it if necessary
-        group_memb = InterviewGroupMembership.objects.get(user=request.user,int_group=int_group_id)
+        group_memb = InterviewGroupMembership.objects.get(user=request.session['interviewee'],int_group=int_group_id)
         if group_memb.status == 'finalized':
             group_memb.status = 'in-progress'
             group_memb.save()
