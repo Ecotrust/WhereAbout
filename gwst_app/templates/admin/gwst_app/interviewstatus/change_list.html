@@ -1,0 +1,32 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+
+{% if not is_popup %}
+  {% block breadcrumbs %}
+    <div class="breadcrumbs">
+      <a href="../../">
+        {% trans "Home" %}
+      </a>
+      &rsaquo; 
+      {{ cl.opts.verbose_name_plural|capfirst }}
+    </div>
+  {% endblock %}
+{% endif %}
+
+{% block coltype %}flex{% endblock %}
+
+{% block content %}
+  <div id="content-main">
+    <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+      
+      <form action="../../../export_surveys" method="post">{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+      Export All Completed Surveys:  
+      <input type="submit" value="Export Surveys">
+      </form>
+      
+    </div>
+  </div>
+{% endblock %}

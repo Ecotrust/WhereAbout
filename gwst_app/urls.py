@@ -55,4 +55,6 @@ urlpatterns = patterns('',
 	
 	(r'^samples/(\S+)/$', sample),
     (r'^tiles/(\S+)$', tiles ),
+    
+    (r'^export_surveys', export_surveys ),
 )

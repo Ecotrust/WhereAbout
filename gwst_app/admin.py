@@ -105,7 +105,6 @@ else:
     #manager_admin.index_template = 'admin/manage-index.html'
     #manager_admin.disable_action('delete_selected')
     #manager_admin.register(User,UserAdmin)
-
     admin.site.index_template = 'admin/manage-index.html'
     admin.site.disable_action('delete_selected')
 
@@ -123,3 +122,4 @@ else:
 
     admin.site.unregister(User)
     admin.site.register(User,OverrideUserAdmin)
+    admin.site.register(InterviewStatus,InterviewStatusAdmin) #used for Export Surveys

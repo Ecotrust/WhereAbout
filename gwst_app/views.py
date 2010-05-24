@@ -9,6 +9,9 @@ from forms import *
 from gwst_app.utils.geojson_encode import *
 from django.db.models import Sum
 from shortcuts import render_to_geojson
+from django.contrib.auth.models import User
+from django.core import serializers
+import datetime
 
 #Pass extra settings around whether user can self-register
 def login(request, template_name='registration/login.html'):
@@ -1055,7 +1058,6 @@ Result status codes
 '''    
 @login_required
 def validate_shape(request):
-    
     #maximum size a shape should logically be.  It is probably in square meters.
     maxArea = 11000000000
 
@@ -1227,3 +1229,33 @@ def tiles(request, tilePath):
     response = HttpResponse(mimetype="image/png")
     image.save(response, "PNG")
     return response
+    
+def export_surveys(request):
+    if not request.user.is_staff:
+        return HttpResponse('You do not have permission to view this feature', status=401)
+    #get all records from gwst_userstatus (InterviewStatus)
+    interviews = InterviewStatus.objects.filter(completed=True)
+    survey_objects = []
+    for interview in interviews:
+        #compile survey entries into one list
+        user = User.objects.get(pk=interview.user_id)
+        survey_objects.extend([user])
+        survey_objects.extend(InterviewGroupMembership.objects.filter(user=user))
+        #survey_objects.extend(GroupMemberResource.objects.all()) #what am I missing here?????
+        survey_objects.extend([res for res in GroupMemberResource.objects.all() if res.user()==user.username])#how about this??
+        survey_objects.extend(InterviewAnswer.objects.filter(user=user))
+        survey_objects.extend(InterviewShape.objects.filter(user=user))
+    #serialize the survey objects into json 
+    fixture_text = serializers.serialize('json', survey_objects, indent=2)
+    response = HttpResponse(fixture_text, mimetype='application/json')
+    #return fixture with <staff_username>_<today's date>.json convention
+    response['Content-Disposition'] = 'filename=%s_%s.json' % (request.user, datetime.date.today())
+    return response
+  
+def import_surveys(request):
+    if not request.user.is_staff:
+        return HttpResponse('You do not have permission to view this feature', status=401)
+    user = request.user
+    pass
+    #check out loaddata command  and work off that
+    
