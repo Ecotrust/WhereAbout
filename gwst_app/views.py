@@ -18,22 +18,20 @@ def login(request, template_name='registration/login.html'):
     from django.contrib.auth.views import login as default_login
     return default_login(request, template_name)
     
-    
+   
+''' 
+Admin tool allowing staff user to set the interviewee user and proceed with interview with their credentials 
+'''
 @login_required
 def login_as(request):
     if request.user.is_authenticated() and request.user.is_staff:
-
         next_user_str = request.REQUEST.get('next_user', '')
         if next_user_str:
-            try:
-                next_user_obj = User.objects.get(pk=next_user_str)
-                request.session['interviewee'] = next_user_obj
-            except ObjectDoesNotExist:
-                pass
-                
-        return HttpResponseRedirect('/select_interview/')
-    else:
-        return HttpResponseRedirect('/accounts/login/')
+            next_user_obj = get_object_or_404(User,pk=next_user_str)
+            request.session['interviewee'] = next_user_obj
+            return HttpResponseRedirect('/select_interview/')
+			
+    return HttpResponseRedirect('/accounts/login/')
 
     
 def handleSelectInterview(request,selected_interview):
@@ -100,12 +98,18 @@ def handleSelectInterview(request,selected_interview):
 @login_required
 def select_interview(request):
 
+    # Post-login checking to make sure a properly-authorized interviewee is set in the session
+    # If user came via login-as, interviewee should be set, and request.user should be a staff user
+    # otherwise user came from login, and interviewee _must_ be set to the request.user.
     try:
         if request.session['interviewee'] != request.user:
             if not request.user.is_staff:
                 request.session['interviewee'] = request.user
-    except KeyError:
+    except KeyError: # request.session['interviewee'] is not set yet -- standard handling for normal login
         request.session['interviewee'] = request.user
+        
+    # From here on, we use request.session['interviewee'] for all interview record resolution for the 
+    # remainder of the interview.
     
     if request.session['interviewee'].is_staff:
         active_interviews = Interview.objects.all()
@@ -892,7 +896,7 @@ def draw_settings(request, id) :
         'name': request.session['interviewee'].first_name+" "+request.session['interviewee'].last_name,
         'email': request.session['interviewee'].email,
         'username': request.session['interviewee'].username,
-        'is_staff': request.session['interviewee'].is_staff
+        'is_staff': request.user.is_staff # maybe the one time we want to use request.user instead of session interviewee -- send is_staff if logged in user is staff
     }     
     #Interview settings
     result['interview'] = {
