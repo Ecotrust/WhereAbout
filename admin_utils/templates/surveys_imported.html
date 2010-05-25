@@ -1,0 +1,33 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+
+{% if not is_popup %}
+  {% block breadcrumbs %}
+    <div class="breadcrumbs">
+      <a href="../../">
+        {% trans "Home" %}
+      </a>
+      &rsaquo; 
+      <a href="../port_surveys/">
+        Port Surveys
+      </a>
+      &rsaquo; Imported
+    </div>
+  {% endblock %}
+{% endif %}
+
+{% block coltype %}flex{% endblock %}
+
+{% block content %}
+  <div id="content-main">
+    <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+      <p> {{ output }} </p>
+      {% if success == 0 %}
+        <p>The <b>{{ fixture }}</b> fixture was successfully loaded into the database.</p>
+      <!--<p>Installed {{ num_objects }} object(s) from {{ num_fixtures }} fixture(s).</p>-->
+      {% else %}
+        <p>The <b>{{ fixture }}</b> fixture failed to load.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

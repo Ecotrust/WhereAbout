@@ -88,7 +88,8 @@ INSTALLED_APPS = (
     'gwst_app',
     #'gwst_surveymonkey',
     'compress',
-    'django_extensions'
+    'django_extensions',
+    'admin_utils'
 )
 
 SELF_REGISTRATION=False

@@ -7,8 +7,7 @@
       <a href="../../">
         {% trans "Home" %}
       </a>
-      &rsaquo; 
-      {{ cl.opts.verbose_name_plural|capfirst }}
+      &rsaquo; Port Surveys
     </div>
   {% endblock %}
 {% endif %}
@@ -18,14 +17,20 @@
 {% block content %}
   <div id="content-main">
     <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
-      
-      <form action="../../../export_surveys" method="post">{% csrf_token %}
-      {% if cl.formset %}
-        {{ cl.formset.management_form }}
-      {% endif %}
-      Export All Completed Surveys:  
+      <p>
+      <form action="../export_surveys/" method="post">
+      <b>Export</b> Completed Surveys:   
+      {{ export_form.as_p }}
       <input type="submit" value="Export Surveys">
       </form>
+      </p>
+      <p>
+      <form action="../import_surveys/" method="post" enctype="multipart/form-data">
+      <b>Import</b> Completed Surveys:  
+      {{ import_form.as_p }}
+      <input type="submit" value="Import Surveys" />
+      </form>
+      </p>
       
     </div>
   </div>
