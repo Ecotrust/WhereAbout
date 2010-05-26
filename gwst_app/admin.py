@@ -122,4 +122,3 @@ else:
 
     admin.site.unregister(User)
     admin.site.register(User,OverrideUserAdmin)
-    admin.site.register(InterviewStatus,InterviewStatusAdmin) #used for Export Surveys

@@ -11,7 +11,7 @@ from django.contrib import databrowse
 
 urlpatterns = patterns('',
     (r'^', include('gwst_app.urls')),
-    (r'^admin/utils/', include('admin_utils.urls')),
+    (r'^admin/utils/', include('admin_utils.urls')), #added for Exporting and Importing of Survey data
     (r'^admin/', include(admin.site.urls)),
     (r'^databrowse/(.*)', databrowse.site.root),
 )
