@@ -253,7 +253,7 @@ def group_status(request):
         #if current group has drawing and is 'in-progress'
         if group_memb.status == 'in-progress' and group_memb.int_group.user_draws_shapes:
             #'num shapes' is how many have been drawn
-            num_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=group_memb.int_group).count()
+            num_shapes = InterviewPoint.objects.filter(user=request.session['interviewee'],int_group=group_memb.int_group).count() + InterviewPoly.objects.filter(user=request.session['interviewee'],int_group=group_memb.int_group).count()
             
             shape_name_plural = request.session['interview'].shape_name_plural
             resource_name = request.session['interview'].resource_name
@@ -268,7 +268,13 @@ def group_status(request):
                 # iterate through all resources currently checked
                 for resource in GroupMemberResource.objects.filter(group_membership=group_memb.id):
                     #find shapes for each
-                    res_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=group_memb.int_group,resource=resource.resource)
+                    if resource.resource.draw_type == 'point':
+                        res_shapes = InterviewPoint.objects.filter(user=request.session['interviewee'],int_group=group_memb.int_group,resource=resource.resource)
+                    elif resource.resource.draw_type == 'polygon':
+                        res_shapes = InterviewPoly.objects.filter(user=request.session['interviewee'],int_group=group_memb.int_group,resource=resource.resource)
+                    else:
+                        continue
+                        
                     zero_penny_shapes = res_shapes.filter(pennies=0)
                         
                     #find any shapes with no pennies and count resource as incomplete
@@ -595,8 +601,38 @@ def draw_group_resources(request, group_id):
         if settings.DESKTOP_BUILD:
             return render_to_response( 'draw_group_resources_desktop.html', RequestContext(request, {'title':title, 'group_id':group_id,  'group_name':group.name, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
         else:
-            return render_to_response( 'draw_group_resources.html', RequestContext(request, {'title':title, 'group_id':group_id,  'group_name':group.name, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
+            point_act = []
+            poly_act = []
+            
+            (point_act, poly_act) = get_ordered_act(resources)
+            point_act = geojson_encode(point_act)
+            poly_act = geojson_encode(poly_act)
+        
+            #return render_to_response( 'draw_group_resources.html', RequestContext(request, {'title':title, 'group_id':group_id,  'group_name':group.name, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
+            
+            return render_to_response( 'cumul_draw.html', RequestContext(request,{'GMAPS_API_KEY':settings.GMAPS_API_KEY, 'group_id':group_id, 'group_name':group.name, 'point_act':point_act, 'poly_act':poly_act, 'return_url':'/group_status/', 'user_id':''}))
 	
+    
+###################### Common methods #######################
+
+def get_ordered_act(resources):
+    point_act = []
+    poly_act = []
+    for gres in resources:
+        act = gres.resource
+        if act.draw_type == 'point':
+            act.shape_name = 'marker'            
+            act.finished = False
+            point_act.append(act)
+        elif act.draw_type == 'polygon':
+            act.draw_type = 'polygon'
+            act.shape_name = 'area'
+            act.finished = False
+            poly_act.append(act)
+        act.num_saved = 0;
+    return (point_act,poly_act)
+    
+    
 # start draw shapes quick tutorial   
 @login_required
 def draw_overview(request, group_id):
@@ -659,7 +695,13 @@ def finalize_group(request,id):
                 total_shape_count = 0
                 
                 for resource in int_group.resources.all():
-                    resource_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=resource)
+                    if resource.draw_type == 'point':
+                        resource_shapes = InterviewPoint.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=resource)
+                    elif resource.draw_type == 'polygon':
+                        resource_shapes = InterviewPoly.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=resource)
+                    else:
+                        continue
+                        
                     shape_count = resource_shapes.count()
                     if shape_count > 0:
                         shape_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
@@ -723,7 +765,13 @@ def skip_res_finalize_group(request,id):
                 total_shape_count = 0
                 
                 for resource in int_group.resources.all():
-                    resource_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=resource)
+                    if resource.draw_type == 'point':
+                        resource_shapes = InterviewPoint.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=resource)
+                    elif resource.draw_type == 'polygon':
+                        resource_shapes = InterviewPoly.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=resource)
+                    else:
+                        continue
+                        
                     shape_count = resource_shapes.count()
                     if shape_count > 0:
                         shape_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
@@ -854,8 +902,10 @@ def interview_complete(request):
 def reset_interview(request, id):
     answers = InterviewAnswer.objects.filter(user=request.session['interviewee'], int_question__int_group__interview__id=id)
     answers.delete()
-    shapes = InterviewShape.objects.filter(user=request.session['interviewee'], int_group__interview__id=id)
-    shapes.delete()
+    points = InterviewPoint.objects.filter(user=request.session['interviewee'], int_group__interview__id=id)
+    points.delete()
+    polys = InterviewPoly.objects.filter(user=request.session['interviewee'], int_group__interview__id=id)
+    polys.delete()
     group_membs = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__interview__id=id)
     group_membs.delete()
     survey_status = InterviewStatus.objects.filter(user=request.session['interviewee'], interview__id=id)
@@ -880,7 +930,15 @@ def draw_settings(request, id) :
         res_item['started'] = False
         res_item['finished'] = False
         
-        resource_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=res)        
+        if res.draw_type == 'point':
+            resource_shapes = InterviewPoint.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=res)
+        elif res.draw_type == 'polygon':
+            resource_shapes = InterviewPoly.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=res)
+        else:
+            res_item['started'] = True
+            res_item['finished'] = True
+            continue
+                        
         if resource_shapes and len(resource_shapes) > 0:
             res_item['started'] = True
         
@@ -933,13 +991,17 @@ POST - expects {'feature':{geometry, group_id, resource_id, boundary_n, boundary
 DELETE - expects a shape id /shapes/id or resource_id param
 '''
 def shapes(request, id=None):    
-    if request.method == 'GET':    
-        shape_qs = InterviewShape.objects.filter(user=request.session['interviewee']).order_by('id')
+    if request.method == 'GET':  
+    
+        # find points
+        shape_qs = InterviewPoint.objects.filter(user=request.session['interviewee']).order_by('id')
+        
         if (request.GET.get('group_id')):
             shape_qs = shape_qs.filter(int_group__id=request.GET.get('group_id'))
         if (request.GET.get('resource_id')):
             shape_qs = shape_qs.filter(resource__id =request.GET.get('resource_id'))
-        return render_to_geojson(
+            
+        geojson_response = render_to_geojson(
             shape_qs,
             geom_attribute='geometry',
             excluded_fields=['creation_date'],
@@ -947,6 +1009,26 @@ def shapes(request, id=None):
             proj_transform=settings.CLIENT_SRID,
             pretty_print=True
         )
+        
+        # find polys
+        shape_qs = InterviewPoly.objects.filter(user=request.session['interviewee']).order_by('id')
+        
+        if (request.GET.get('group_id')):
+            shape_qs = shape_qs.filter(int_group__id=request.GET.get('group_id'))
+        if (request.GET.get('resource_id')):
+            shape_qs = shape_qs.filter(resource__id =request.GET.get('resource_id'))
+            
+        #TODO: make this aggregate the geojson instead of overwriting it with last shape set
+        geojson_response = render_to_geojson(
+            shape_qs,
+            geom_attribute='geometry',
+            excluded_fields=['creation_date'],
+            mimetype = 'text/plain',
+            proj_transform=settings.CLIENT_SRID,
+            pretty_print=True
+        )
+         
+        return geojson_response
         
     elif request.method == 'POST':        
         #Get session and status
@@ -960,7 +1042,14 @@ def shapes(request, id=None):
         #DELETE events (since it's not supported with params in Ext 2.2.1
         if (request.POST.get('action') ==  'DELETE'):
             if (id):
-                shape = get_object_or_404(InterviewShape, pk=id)
+                shape_qs = InterviewPoly.objects.filter(pk=id)
+                if shape_qs.count() == 0:
+                    shape_qs = InterviewPoint.objects.filter(pk=id)
+                if shape_qs.count() == 0:
+                    result = {"success":False, "message":"None of users shapes have given ID"}
+                    return HttpResponse(result, status=403)
+                shape = shape_qs[0]
+                
                 if (shape.user == request.session['interviewee']):
                     shape.delete()
                     result = {"success":True, "message":"Deleted successfully"}
@@ -972,8 +1061,10 @@ def shapes(request, id=None):
                 resource_id = request.POST.get('resource_id')
                 group_id = request.POST.get('group_id')
                 if (resource_id):
-                    shapes = InterviewShape.objects.filter(resource=resource_id, int_group=group_id, user=request.session['interviewee'])
-                    shapes.delete()
+                    polys = InterviewPoly.objects.filter(resource=resource_id, int_group=group_id, user=request.session['interviewee'])
+                    polys.delete()
+                    points = InterviewPoint.objects.filter(resource=resource_id, int_group=group_id, user=request.session['interviewee'])
+                    points.delete()
                     result = {"success":True, "message":"Deleted successfully"}
                     return HttpResponse(geojson_encode(result)) 
                 else:
@@ -993,7 +1084,14 @@ def shapes(request, id=None):
         
         #Check if it's an update
         if (id):
-            shape = InterviewShape.objects.get(pk=id)
+            res = Resource.objects.get(pk=feat.get('activity_id'))
+            if res.draw_type == 'point':
+                shape = InterviewPoint.objects.get(pk=id)
+            elif res.draw_type == 'polygon': 
+                shape = InterviewPoly.objects.get(pk=id)
+            else:
+                result = {"success":False, "message":"None of users shapes have given ID"}
+                return HttpResponse(result, status=403)
             
             if (shape.user == request.session['interviewee']):
                 shape.pennies = feat.get('pennies')
@@ -1010,17 +1108,36 @@ def shapes(request, id=None):
             geom = GEOSGeometry(feat.get('geometry'), srid=settings.CLIENT_SRID)
             geom.transform(settings.SERVER_SRID)                        
              
-            new_shape = InterviewShape(
-                user = request.session['interviewee'],
-                geometry = geom,
-                boundary_n = feat.get('boundary_n'),
-                boundary_s = feat.get('boundary_s'),
-                boundary_e = feat.get('boundary_e'),
-                boundary_w = feat.get('boundary_w'),
-                int_group_id = feat.get('group_id'),
-                resource_id = feat.get('resource_id')                
-            )                        
-            new_shape.save() 
+            res = get_object_or_404( Resource, pk=feat.get('activity_id') )
+            if res.draw_type == 'point':
+                new_shape = InterviewPoint(
+                    user = request.session['interviewee'],
+                    geometry = geom,
+                    boundary_n = feat.get('boundary_n'),
+                    boundary_s = feat.get('boundary_s'),
+                    boundary_e = feat.get('boundary_e'),
+                    boundary_w = feat.get('boundary_w'),
+                    int_group_id = feat.get('group_id'),
+                    time_range = feat.get('time_range'),
+                    resource_id = feat.get('activity_id')                
+                )                        
+                new_shape.save() 
+            elif res.draw_type == 'polygon':
+                new_shape = InterviewPoly(
+                    user = request.session['interviewee'],
+                    geometry = geom,
+                    boundary_n = feat.get('boundary_n'),
+                    boundary_s = feat.get('boundary_s'),
+                    boundary_e = feat.get('boundary_e'),
+                    boundary_w = feat.get('boundary_w'),
+                    int_group_id = feat.get('group_id'),
+                    time_range = feat.get('time_range'),
+                    resource_id = feat.get('activity_id')                
+                )                        
+                new_shape.save()
+            else: # should never be here
+                result = {"success":False, "message":"resource draw_type unsupported"}
+                return HttpResponse(result, status=403)
             
             # check the status of the interview group membership for this shape and unfinalize it if necessary
             group_memb = InterviewGroupMembership.objects.get(user=request.session['interviewee'],int_group=new_shape.int_group_id)
@@ -1050,8 +1167,8 @@ Result status codes
 0 - successfully clipped
 1 - Multiple geometry, largest kept
 2 - shape not valid
-3 - zero area after clipping
-4 - overlapped existing shape
+3 - overlapped existing shape
+4 - zero area after clipping
 5 - single point
 6 - too large
 '''    
@@ -1059,6 +1176,16 @@ Result status codes
 def validate_shape(request):
     #maximum size a shape should logically be.  It is probably in square meters.
     maxArea = 11000000000
+    
+    try:    
+        resource_id = request.REQUEST['activity_id']
+        shape_json = request.REQUEST['geometry']
+        time_period = request.REQUEST['time_period']
+        int_group_id = request.REQUEST['group_id']
+        
+        cur_resource = Resource.objects.get(pk=resource_id)        
+    except Exception, e:
+        return gen_validate_response(2, 'Invalid, missing arguments. user_id, activity_id and geometry are required', None)
 
     result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'    
     # make sure the user has a valid session in-progress
@@ -1086,14 +1213,25 @@ def validate_shape(request):
         #If editing an existing shape, get its record and resource/group id's,
         #else get the resource/group id's from the request
         if request.REQUEST.get("orig_shape_id"):
-            orig_shape = InterviewShape.objects.get(pk=request.REQUEST.get("orig_shape_id"))
+            if cur_resource.draw_type == 'point':
+                orig_shape_qs = InterviewPoint.objects.filter(pk=request.REQUEST.get("orig_shape_id"))
+            elif cur_resource.draw_type == 'polygon':
+                orig_shape_qs = InterviewPoly.objects.filter(pk=request.REQUEST.get("orig_shape_id"))
+            else:
+                result = {"success":False, "message":"None of users shapes have given ID"}
+                return HttpResponse(result, status=403)
+            orig_shape = orig_shape_qs[0]
+            
             int_group_id = orig_shape.int_group.id
             resource_id = orig_shape.resource.id
-        else:
-            int_group_id, resource_id = request.REQUEST['resource'].split('-')        
         
-        other_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group__id=int_group_id,resource__id=resource_id)
-
+        if cur_resource.draw_type == 'point':
+            other_shapes = InterviewPoint.objects.filter(user=request.session['interviewee'],int_group__id=int_group_id,resource__id=resource_id,time_range=time_period)
+        elif cur_resource.draw_type == 'polygon':
+            other_shapes = InterviewPoly.objects.filter(user=request.session['interviewee'],int_group__id=int_group_id,resource__id=resource_id,time_range=time_period)
+        else:
+            return HttpResponse(result, status=403)
+            
         #If editing, exclude original shape from those to check
         if request.REQUEST.get("orig_shape_id"):
             other_shapes = other_shapes.exclude(pk=request.REQUEST["orig_shape_id"])
@@ -1101,7 +1239,7 @@ def validate_shape(request):
         #Error if new shape intersects
         for i, shape in enumerate( other_shapes.all() ):
             if new_shape.intersects( shape.geometry ):
-                return gen_validate_response(4, 'New geometry overlaps existing shapes', None)
+                return gen_validate_response(3, 'New geometry overlaps existing shapes', None)
     
         #Error if shape is not valid
         if not new_shape.valid:
@@ -1112,7 +1250,7 @@ def validate_shape(request):
 
         #Error if no area and shape was completely clipped away by clip region, 
         if clipped_shape.area == 0:
-            return gen_validate_response(3, 'Zero area after clipping', clipped_shape)
+            return gen_validate_response(4, 'Zero area after clipping', clipped_shape)
          
         #Error if area is too large (set by maxArea) 
         if clipped_shape.area > maxArea:
@@ -1144,7 +1282,8 @@ def gen_validate_response(code, message, geom):
     return HttpResponse(geojson_encode(result))
 
 
-#Save a user-drawn shape.  Shape should already have been validated    
+# Save a user-drawn shape.  Shape should already have been validated 
+# Note: this no longer seems to be used anywhere
 @login_required
 def save_shape(request):
     result = '{"status_code":"-1",  "success":"false",  "message":"disallowed"}'    
@@ -1162,7 +1301,16 @@ def save_shape(request):
 
     result = '{"status_code":"-1",  "success":"false",  "message":"error in save_shape in views.py"}'
     try:
-        new_shape = InterviewShape()
+        int_group_id, resource_id = request.REQUEST['resource'].split('_')
+        res = Resource.objects.get( pk=resource_id )
+        
+        if res.draw_type == 'point':
+            new_shape = InterviewPoint()
+        elif res.draw_type == 'polygon':
+            new_shape = InterviewPoly()
+        else:
+            return HttpResponse(result, status=403)
+            
         new_shape.user = request.session['interviewee']
         
         geom = GEOSGeometry(request.REQUEST['geometry'], srid=settings.CLIENT_SRID)
@@ -1173,9 +1321,8 @@ def save_shape(request):
         geom_clipped.transform(settings.SERVER_SRID)
         new_shape.geometry_clipped = geom_clipped
         
-        int_group_id, resource_id = request.REQUEST['resource'].split('-')
-        new_shape.int_group_id = int(int_group_id)
-        new_shape.resource_id = int(resource_id)
+        new_shape.int_group_id = int_group_id
+        new_shape.resource_id = resource_id
         new_shape.save() 
         
         result = '{"status_code":"1",  "success":"true", "message":"mpa saved successfully"'
@@ -1216,6 +1363,9 @@ def video(request, name):
 def sample(request, name):
 		return render_to_response('samples/'+name+'.html', context_instance=RequestContext(request)) 
         
+'''
+Locally hosted tiles service (desktop build)
+'''
 def tiles(request, tilePath):
     from PIL import Image
     try:
@@ -1228,5 +1378,61 @@ def tiles(request, tilePath):
     response = HttpResponse(mimetype="image/png")
     image.save(response, "PNG")
     return response
-
     
+    
+'''
+Oregon coast cities geojson service
+'''
+def or_coast_cities(request):    
+    """Coast cities web service"""    
+    qs = OrCoastCities.objects.filter().order_by('city')
+    return render_to_geojson(
+        qs,
+        geom_attribute='the_geom',
+        mimetype = 'text/plain',
+        proj_transform=900913,
+        pretty_print=True
+    )
+
+'''
+Oregon coast placemark geojson service
+'''
+def or_coast_placemarks(request):    
+    """Coast placemarks web service"""    
+    qs = OrCoastPlacemarks.objects.filter().order_by('name').exclude(type='Cemetery').exclude(type='Airport').exclude(type='Building').exclude(type='Canal').exclude(type='Census').exclude(type='Church').exclude(type='Channel').exclude(type='Civil').exclude(type='Gut').exclude(type='Mine').exclude(type='Populated Place').exclude(type='Post Office').exclude(type='School').exclude(type='Tower').exclude(type='Civil').exclude(type='Dam').exclude(type='Hospital').exclude(type='Military').exclude(type='Military (Historical)').exclude(type='Spring').exclude(type='Swamp').exclude(type='Valley').distinct()
+    return render_to_geojson(
+        qs,
+        geom_attribute='the_geom',
+        excluded_fields=['gid','type'],
+        mimetype = 'text/plain',
+        proj_transform=900913,
+        pretty_print=True
+    )
+    
+'''
+Status web service - 
+stub
+'''
+def statuses(request, id=None):    
+
+    result = {
+        "status_code":1,  
+        "success":True, 
+        "message":"Updated successfully",
+        "status record":True
+    }              
+    return HttpResponse(geojson_encode(result)) 
+    
+'''
+Session web service - 
+stub
+'''
+def session(request, id=None):    
+
+    result = {
+        "status_code":1,  
+        "success":True, 
+        "message":"Updated successfully",
+        "session record":True
+    }              
+    return HttpResponse(geojson_encode(result))  

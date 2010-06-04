@@ -44,8 +44,8 @@ gwst.widgets.YesNoButtons = Ext.extend(Ext.Panel, {
             items: [
                 new Ext.Button(yes)
             ],
-            width: 50,
-            style: 'margin-left: 55px'
+            width: 60,
+            style: 'margin-left: 45px'
         },{
             items: [
                 new Ext.Button(no)

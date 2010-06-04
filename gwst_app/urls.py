@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from django.contrib.auth.views import *
+from django.views.decorators.cache import cache_page
 
 from registration.views import register
 from registration_custom.forms import RegistrationFormFull
@@ -56,4 +57,9 @@ urlpatterns = patterns('',
 	(r'^samples/(\S+)/$', sample),
     (r'^tiles/(\S+)$', tiles ),
     
+    # noncon integration
+    (r'^statuses/(\d*)$', statuses),
+    (r'^session/(\d*)$', session),
+    (r'^or_coast_cities/json/$', cache_page(or_coast_cities, 60*15)),
+    (r'^or_coast_placemarks/json/$', cache_page(or_coast_placemarks, 60*15)),
 )

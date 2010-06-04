@@ -1,7 +1,7 @@
 Ext.namespace('gwst', 'gwst.widgets');
 
-gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
-    id: 'splash-panel',
+gwst.widgets.CumulSplashPanel = Ext.extend(gwst.widgets.WestPanel, {
+    id: 'cumul-splash-panel',
 	user_group: 'unknown',
     shape_name: 'unknown',
     res_group_name: 'unknown',
@@ -10,14 +10,14 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
     initComponent: function(){
 		
         // Call parent (required)
-        gwst.widgets.SplashPanel.superclass.initComponent.apply(
+        gwst.widgets.CumulSplashPanel.superclass.initComponent.apply(
           this, arguments);                     
     },
 
     onRender: function(){
         //panel of text
 		this.inner_panel = new Ext.Panel({
-			html: '<h2>Instructions</h2><p>Based on the activities you participated in during your last visit to the coast, we would like you to indicate where these activities took place using a map.</p><p>Press the \'Continue button.</p>',
+			html: '<h2>Instructions</h2><p>Based on all the activities you said you\'ve participated in at the coast, we would again like you to indicate where these activities took place using a map and we would also like you indicate how valuable each of these areas are to you.</p><p>Press the \'Continue button.</p>',
 			style: 'margin: 10px',
 			border: false
         });
@@ -33,7 +33,7 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.add(this.button_panel);
     
         // Call parent (required)
-        gwst.widgets.SplashPanel.superclass.onRender.apply(this, arguments);     
+        gwst.widgets.CumulSplashPanel.superclass.onRender.apply(this, arguments);     
 	},
 
     contBtnClicked: function() {
@@ -42,4 +42,4 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
 });
  
 // register xtype to allow for lazy initialization
-Ext.reg('gwst-splash-panel', gwst.widgets.SplashPanel);
+Ext.reg('gwst-cumul-splash-panel', gwst.widgets.CumulSplashPanel);

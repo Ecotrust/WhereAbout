@@ -23,8 +23,10 @@ class Region(Model):
 #Region to clip user-drawn shapes to.
 class ClipRegion(Model):  
     name = models.TextField()
-    #geom = PolygonField(srid=settings.SERVER_SRID) # for spatialite testing
-    geom = MultiPolygonField(srid=settings.SERVER_SRID)
+    if settings.DESKTOP_BUILD:
+        geom = PolygonField(srid=settings.SERVER_SRID) # for spatialite
+    else:
+        geom = MultiPolygonField(srid=settings.SERVER_SRID)
     objects = GeoManager()
     class Meta:
         db_table = u'gwst_region_clip'
@@ -33,11 +35,16 @@ class ClipRegion(Model):
         return unicode('%s' % (self.name))                    
         
 class Resource(Model):
+    DrawTypeChoices = (
+        ( 'point', 'point' ),
+        ( 'polygon', 'polygon' ),
+        ( 'none', 'none' )
+    )
     name = CharField( max_length=100, unique=True )
     code = CharField( max_length=10, unique=True )
     select_description = CharField( max_length=300, default = '', blank=True) #Holds information on why you would/should select this resource
     shape_color = CharField( max_length=6, default = 'FFFF00', blank=True )
-    
+    draw_type = CharField( max_length=20, choices=DrawTypeChoices, default='none' )
     class Meta:
         db_table = u'gwst_resource'
         
@@ -316,21 +323,29 @@ class InterviewStatus(Model):
         return unicode('%s: %s' % (self.user, self.interview))
 
 
+        
+# drawing models
+        
+TimeRangeChoices = (
+    ( 'last trip', 'last trip' ),
+    ( 'cumulative', 'cumulative' )
+) 
+
 class InterviewShape(Model):
     user = ForeignKey(User)
     int_group = ForeignKey(InterviewGroup)
     resource = ForeignKey(Resource)
-    geometry = PolygonField(srid=settings.SERVER_SRID, blank=True, null=True)
     pennies = IntegerField( default=0 )
+    time_range = CharField( max_length=20, choices=TimeRangeChoices, default='none' )
     boundary_n = CharField( max_length=100, blank=True, null=True ) 
     boundary_s = CharField( max_length=100, blank=True, null=True )
     boundary_e = CharField( max_length=100, blank=True, null=True )
     boundary_w = CharField( max_length=100, blank=True, null=True )
     creation_date = DateTimeField(default=datetime.datetime.now)
-    objects = InterviewShapeManager()
     
     class Meta:
-        db_table = u'gwst_usershape'
+        abstract = True
+        managed = False
 
     def __unicode__(self):
         return unicode('%s: %s %s' % (self.user, self.resource.code, self.int_group))
@@ -384,6 +399,21 @@ class InterviewShape(Model):
     #        m.save() #This save generates the new mpa_id
     #        return m
 
+class InterviewPoint(InterviewShape):
+    geometry = PointField(srid=settings.SERVER_SRID)
+    objects = GeoManager()    
+    class Meta:
+        db_table = u'gwst_userpoint'
+    
+class InterviewPoly(InterviewShape):
+    geometry = PolygonField(srid=settings.SERVER_SRID)
+    objects = GeoManager()    
+    class Meta:
+        db_table = u'gwst_userpoly'  
+    
+    
+# FAQ models
+    
 class FaqGroup(models.Model):
     class Meta:
         db_table = u'gwst_faqgroup'
@@ -444,3 +474,24 @@ def user_post_save(sender, instance, **kwargs):
         print 'Added profile object'
 
 models.signals.post_save.connect(user_post_save, sender=User)
+
+
+
+# draw assistance service models
+
+class OrCoastCities(Model):
+    gid = IntegerField(primary_key = True)
+    city = CharField(max_length=25)
+    the_geom = PointField(srid=4326)        
+    objects = GeoManager()
+    class Meta:
+        db_table = u'or_coast_cities'
+        
+class OrCoastPlacemarks(Model):
+    gid = IntegerField(primary_key = True)
+    name = CharField(max_length=25)
+    type = CharField(max_length=25)
+    the_geom = PointField(srid=4326)        
+    objects = GeoManager()
+    class Meta:
+        db_table = u'or_coast_placemarks' 

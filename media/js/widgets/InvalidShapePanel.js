@@ -2,11 +2,7 @@ Ext.namespace('gwst', 'gwst.widgets');
 
 gwst.widgets.InvalidShapePanel = Ext.extend(gwst.widgets.WestPanel, {
     id: 'invalid-shape-panel',
-    shape_name: 'unknown',
-    member_title: 'unknown',
-    resource: 'unknown',
     status_code: null,
-    shape_name_plural: 'unknown',
 	
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){
@@ -26,17 +22,15 @@ gwst.widgets.InvalidShapePanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<p class="error_text"><b>There was a problem</b> <img src="/site-media/images/exclamation.png"></p>';
+        var html_text = gwst.settings.shape_error_text;
         if (this.status_code == 2) {
-            html_text += '<p>Your '+this.shape_name+' is not valid because it overlaps itself (example below).</p> <img class="invalid-image" src="/site-media/images/invalid_bowtie.gif">';
+            html_text += gwst.settings.shape_self_overlap_text;
         } else if (this.status_code == 3) {
-            html_text += '<p>Your '+this.shape_name+' falls completely outside the area of interest which is the Pacific Ocean off the Oregon Coast. Rivers and lakes are excluded from this survey.</p> <p>In the example below the '+this.shape_name+' falls within Woahink Lake which is not valid.  Any Oregon estuary, bay, or ocean would be.</p><img class="invalid-image" src="/site-media/images/invalid_bounds.gif">';
+            html_text += gwst.settings.shape_other_overlap_text;
         } else if (this.status_code == 4) {
-            html_text += '<p>Your new '+this.shape_name+' overlaps one of your other '+this.resource+' '+this.shape_name_plural+'. They are not allowed to do this.</p>  <p>If you have two that border each other, just draw the second one along the edge of the first as best as you can and tell us in your boundary notes that it should border the other. We will take care of the rest.</p><img class="invalid-image" src="/site-media/images/invalid_overlap.gif">';
+        	html_text += gwst.settings.invalid_poly_text;
         } else if (this.status_code == 5) {
-        	html_text += '<p>Your '+this.shape_name+' is not valid because it had less than 3 points.</p> <p>You probably accidentally double clicked and completed it before you were done.</p>';
-        } else if (this.status_code == 6) {
-            html_text += '<p>Your '+this.shape_name+' is not valid because it is too large. Please break it up into smaller '+this.shape_name_plural+'.</p>';
+            html_text += gwst.settings.poly_too_large_text;
         }
         html_text += '<p>Click the \'Continue\' button to try again.</p>';
         return html_text;
@@ -50,8 +44,11 @@ gwst.widgets.InvalidShapePanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		});
         
-        this.button_panel = new gwst.widgets.BackContButtons ({
-            cont_handler: this.contBtnClicked.createDelegate(this)
+		this.button_panel = new gwst.widgets.TwoButtonPanel ({
+        	btn2_text: 'Continue >>',        	
+            btn2_handler: this.contBtnClicked.createDelegate(this),
+            btn2_width: 110,
+            left_margin: 50
         });
         
 		this.add(this.inner_panel);

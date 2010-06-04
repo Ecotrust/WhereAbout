@@ -70,7 +70,8 @@
       "shape_color": "00FFFF", 
       "select_description": "", 
       "code": "sal", 
-      "name": "Salmon"
+      "name": "Salmon",
+      "draw_type": "point"
     }
   }, 
   {
@@ -80,7 +81,8 @@
       "shape_color": "00FF00", 
       "select_description": "", 
       "code": "dcrb", 
-      "name": "Dungeness Crab"
+      "name": "Dungeness Crab",
+      "draw_type": "polygon"
     }
   }, 
   {
@@ -260,7 +262,8 @@
       "shape_color": "FF00FF", 
       "select_description": "Represents what your rockfish grounds would be if closure areas were removed.  See instructions above.", 
       "code": "rockc", 
-      "name": "Rockfish C - (Cumulative)"
+      "name": "Rockfish C - (Cumulative)",
+      "draw_type": "polygon"
     }
   }, 
   {

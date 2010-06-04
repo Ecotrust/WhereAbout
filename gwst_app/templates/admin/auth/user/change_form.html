@@ -1,7 +1,6 @@
 {% extends "admin/change_form.html" %}
 {% load i18n %}
 {% block object-tools %}
-{% block breadcrumbs %}{% endblock %}
 {% if change %}{% if not is_popup %}
   <ul class="object-tools">
     <li><a href="/accounts/login_as/?next_user={{object_id}}" class="historylink">Login as this user</a></li>
