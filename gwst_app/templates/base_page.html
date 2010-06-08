@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block content %}
+{% if instructions %}
+    <div style='width:600px'>{{ instructions.main|safe }}</div>
+{% endif %}
+    <form class="gwst-form" method="post" action="/page/{{ page.nextPage.pk }}">
+    {{ form.non_field_errors }}
+   
+    {% for question in form %}
+        {% if question.field.question_set %}
+            {% with question.field.question_set as index %}
+                <p><div class="question_set"></div>
+                {% for key, val in instructions.items %}
+                    {% ifequal key index %}
+                        {{ val|safe }}
+                    {% endifequal %}
+                {% endfor %}
+                </p>
+            {% endwith %}
+        {% endif %}
+        <p><div class="fieldWrapper">
+            {{ question.errors }}
+            <table>
+                <tr>
+                    <td style='width:{{ q_width }}px'>
+                        {{ question.label_tag }}:
+                    </td>
+                    <td>
+                        {{ question }}
+                    </td>
+                </tr>
+            </table>
+        </div></p>
+    {% endfor %}   
+    {% if page.nextPage.name %}
+        <p><input id="submit" type="submit" value="next page" style="margin:15px"/>
+    {% else %}
+        <h2> This is the last page of the survey.  Thanks.</h2>
+        <p>To see previous pages of the survey, check out the <a href="/pages/">page list</a>.
+    {% endif %}
+    
+   </p>
+   </form>
+{% endblock %}
