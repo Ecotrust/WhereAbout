@@ -62,4 +62,7 @@ urlpatterns = patterns('',
     (r'^session/(\d*)$', session),
     (r'^or_coast_cities/json/$', cache_page(or_coast_cities, 60*15)),
     (r'^or_coast_placemarks/json/$', cache_page(or_coast_placemarks, 60*15)),
+    
+    (r'^page/([A-Za-z0-9_-]+)$', page),
+    (r'^pages/$', pages),
 )

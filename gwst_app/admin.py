@@ -23,12 +23,17 @@ databrowse.site.register(InterviewInstructions)
 databrowse.site.register(FaqGroup)
 databrowse.site.register(Faq)
 databrowse.site.register(GroupMemberResource)
+databrowse.site.register(InterviewPage)
 
 class InterviewQuestionInline(admin.StackedInline):
     model = InterviewQuestion
     
 class InterviewGroupInline(admin.TabularInline):
     model = InterviewGroup
+
+class InterviewPageAdmin(admin.ModelAdmin):
+    list_display = ('__unicode__', 'name', 'group', 'nextPage')
+    ordering = ('name', 'group', 'nextPage')
     
 class InterviewAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'name', 'organization')
@@ -100,6 +105,7 @@ if settings.FULL_ADMIN:
     admin.site.register(FaqGroup,FaqGroupAdmin)
     admin.site.register(Faq,FaqAdmin)
     admin.site.register(UserProfile,UserProfileAdmin)
+    admin.site.register(InterviewPage,InterviewPageAdmin)
 else:
     #from django.contrib.admin.sites import AdminSite
 

@@ -20,7 +20,6 @@ def login(request, template_name='registration/login.html'):
     from django.contrib.auth.views import login as default_login
     return default_login(request, template_name)
     
-   
 ''' 
 Admin tool allowing staff user to set the interviewee user and proceed with interview with their credentials 
 '''
@@ -203,8 +202,10 @@ def assign_groups(request):
                     q.save()
                 
             # redirect to interview_group_status
-            return HttpResponseRedirect('/group_status/')
-       
+            #return HttpResponseRedirect('/group_status/')
+            first_page = InterviewPage.objects.get(firstPage = True)
+            first_html = '/page/'+first_page.pk
+            return HttpResponseRedirect(first_html)
         
         # validation errors        
         return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': SelectInterviewGroupsForm( InterviewGroup.objects.filter(interview=interview,is_user_group=True), request.POST ), 'value':'Continue', 'q_width':265}))
@@ -1422,6 +1423,64 @@ def statuses(request, id=None):
         "status record":True
     }              
     return HttpResponse(geojson_encode(result)) 
+    
+'''
+Page web service - 
+stub
+'''
+def page(request, page_id):    
+
+    request.session['interviewee'] = request.user
+
+    #qs = InterviewPage.objects.filter().order_by('name')
+    # instructions_qs = InterviewInstructions.objects.filter(int_group__pk=group_id).order_by('-question_set')
+    
+    # instructions = {}
+    # for instruct in instructions_qs:
+        # if instruct.question_set == None:
+            # instructions['main'] = instruct.eng_text
+        # else:
+            # instructions[str(instruct.question_set)] = instruct.eng_text
+            
+    try:
+        page = InterviewPage.objects.get(pk=page_id)
+    except ObjectDoesNotExist:
+        return render_to_response( '404.html', RequestContext(request,{}))
+        
+    title = page.name + ' Questions'
+            
+            
+    questions = InterviewQuestion.objects.filter(page__pk=page.pk).order_by('question_set', 'display_order')
+    answers = InterviewAnswer.objects.filter(user=request.session['interviewee'], int_question__in=questions)
+            
+    if request.method == 'GET':
+        # show questions for this group, with any existing user answers
+        form = AnswerForm(questions, answers, page.pk, None)
+        
+    else:
+        # form validation
+        form = AnswerForm(questions, answers, page.pk, request.POST )
+        if form.is_valid():
+            # update the group membership status, if necessary
+            group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], page__pk=page_id)
+            
+            #create or update InterviewAnswer records
+            form.save(request.session['interviewee'])
+   
+    q_width = page.question_width
+    return render_to_response( page.page_template, RequestContext(request,{'title':title, 'form': form, 'value':'Continue', 'q_width':q_width, 'page':page}))
+
+    
+'''
+Page web service - 
+stub
+'''
+def pages(request):     
+    
+    pages = InterviewPage.objects.filter();
+   
+    return render_to_response('base_pages.html', RequestContext(request,{'pages':pages}))
+    
     
 '''
 Session web service - 

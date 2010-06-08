@@ -5,7 +5,6 @@ import datetime
 from gwst_app.utils.geojson_encode import *
 from gwst_app.managers import *
 
-
 class Region(Model):
     name = CharField( max_length=100, unique=True )
     n_bound = FloatField()
@@ -185,9 +184,24 @@ class QuestionGroupValidator(Model):
     
     class Meta:
         db_table = u'gwst_qstn_grp_validator'
+        
+'''
+Represents the collection of questions into a page 
+'''        
+        
+class InterviewPage(Model):
+    name = CharField( max_length=100, unique=True )
+    group = ForeignKey(InterviewGroup)
+    nextPage = ForeignKey('self', blank=True, null=True)
+    firstPage = BooleanField(default=False)
+    page_template = CharField( max_length=60, default="base_page.html" )
+    question_width = IntegerField( default = 275 )
+    
+    def __unicode__(self):
+        return unicode('%s' % (self.name))
 
 '''
-Represents the collection of questions into a group 
+Represents the collection of questions into a group (TODO: Deprecate?)
 '''
 class QuestionGroup(Model):
     validators = ManyToManyField(QuestionGroupValidator)
@@ -226,6 +240,7 @@ class InterviewQuestion(Model):
     display_order = FloatField( help_text='tab order of this question on its page' )
     required = BooleanField( help_text='require that this field be filled out', default=False)
     all_resources = BooleanField( help_text='is this a question to be asked once for each resource?', default=False)
+    page = ForeignKey(InterviewPage, blank=True, null=True)
         
     class Meta:
         db_table = u'gwst_question'
@@ -246,7 +261,7 @@ class InterviewInstructions(Model):
     def __unicode__(self):
         return unicode('%s-%s' % (self.int_group, self.question_set))
     
-        
+
 # localization tables, for future use
 class InterviewQuestionText(Model):
     int_question = ForeignKey(InterviewQuestion)
