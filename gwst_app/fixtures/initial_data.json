@@ -64,29 +64,27 @@
     }
   }, 
   {
-    "pk": "a1", 
+    "pk": 1, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "00FFFF", 
       "select_description": "", 
       "code": "sal", 
-      "name": "Salmon",
-      "draw_type": "point"
+      "name": "Salmon"
     }
   }, 
   {
-    "pk": "a4", 
+    "pk": 4, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "00FF00", 
       "select_description": "", 
       "code": "dcrb", 
-      "name": "Dungeness Crab",
-      "draw_type": "polygon"
+      "name": "Dungeness Crab"
     }
   }, 
   {
-    "pk": "a5", 
+    "pk": 5, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "0000FF", 
@@ -96,7 +94,7 @@
     }
   }, 
   {
-    "pk": "a9", 
+    "pk": 9, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "888800", 
@@ -106,7 +104,7 @@
     }
   }, 
   {
-    "pk": "a10", 
+    "pk": 10, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "008888", 
@@ -116,7 +114,7 @@
     }
   }, 
   {
-    "pk": "a11", 
+    "pk": 11, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FF8888", 
@@ -126,7 +124,7 @@
     }
   }, 
   {
-    "pk": "a7", 
+    "pk": 7, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "8888FF", 
@@ -136,7 +134,7 @@
     }
   }, 
   {
-    "pk": "a15", 
+    "pk": 15, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "88FF88", 
@@ -146,7 +144,7 @@
     }
   }, 
   {
-    "pk": "a16", 
+    "pk": 16, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF88", 
@@ -156,7 +154,7 @@
     }
   }, 
   {
-    "pk": "a17", 
+    "pk": 17, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FF88FF", 
@@ -166,7 +164,7 @@
     }
   }, 
   {
-    "pk": "a14", 
+    "pk": 14, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "88FFFF", 
@@ -176,7 +174,7 @@
     }
   }, 
   {
-    "pk": "a6", 
+    "pk": 6, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "666666", 
@@ -186,7 +184,7 @@
     }
   }, 
   {
-    "pk": "a18", 
+    "pk": 18, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FF0033", 
@@ -196,7 +194,7 @@
     }
   }, 
   {
-    "pk": "a19", 
+    "pk": 19, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFCC00", 
@@ -206,7 +204,7 @@
     }
   }, 
   {
-    "pk": "a20", 
+    "pk": 20, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
@@ -216,7 +214,7 @@
     }
   }, 
   {
-    "pk": "a21", 
+    "pk": 21, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FF6600", 
@@ -226,7 +224,7 @@
     }
   }, 
   {
-    "pk": "a8", 
+    "pk": 8, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "880088", 
@@ -236,7 +234,7 @@
     }
   }, 
   {
-    "pk": "a23", 
+    "pk": 23, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "DDFF22", 
@@ -246,7 +244,7 @@
     }
   }, 
   {
-    "pk": "a22", 
+    "pk": 22, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFCC44", 
@@ -256,18 +254,17 @@
     }
   }, 
   {
-    "pk": "a3", 
+    "pk": 3, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FF00FF", 
       "select_description": "Represents what your rockfish grounds would be if closure areas were removed.  See instructions above.", 
       "code": "rockc", 
-      "name": "Rockfish C - (Cumulative)",
-      "draw_type": "polygon"
+      "name": "Rockfish C - (Cumulative)"
     }
   }, 
   {
-    "pk": "a24", 
+    "pk": 24, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
@@ -277,7 +274,7 @@
     }
   }, 
   {
-    "pk": "a25", 
+    "pk": 25, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
@@ -387,8 +384,8 @@
       "member_title": "dive/spear angler", 
       "page_template": "base_form.html", 
       "resources": [
-        "a1", 
-        "a3"
+        1, 
+        3
       ], 
       "description": "Diving and spear/hand take"
     }
@@ -410,8 +407,8 @@
       "member_title": "kayak angler", 
       "page_template": "base_form.html", 
       "resources": [
-        "a1", 
-        "a3"
+        1, 
+        3
       ], 
       "description": "kayakers"
     }
@@ -433,8 +430,8 @@
       "member_title": "private vessel angler", 
       "page_template": "base_form.html", 
       "resources": [
-        "a1", 
-        "a3"
+        1, 
+        3
       ], 
       "description": "private vessel anglers"
     }
@@ -496,8 +493,8 @@
       "member_title": "kayak or non-motorized vessel fisherman", 
       "page_template": "base_form.html", 
       "resources": [
-        "a1", 
-        "a3"
+        1, 
+        3
       ], 
       "description": "Kayak or Non-Motorized Vessel"
     }
@@ -519,8 +516,8 @@
       "member_title": "sport boat fisherman", 
       "page_template": "base_form.html", 
       "resources": [
-        "a1", 
-        "a3"
+        1, 
+        3
       ], 
       "description": "Sport Boat"
     }
@@ -542,8 +539,8 @@
       "member_title": "dive/spear fisherman", 
       "page_template": "base_form.html", 
       "resources": [
-        "a1", 
-        "a3"
+        1, 
+        3
       ], 
       "description": "Diving and spear/hand take"
     }

@@ -52,8 +52,8 @@ class SelectInterviewGroupsForm( forms.Form ):
     
 # from http://code.djangoproject.com/wiki/CookBookNewFormsDynamicFields
 class AnswerForm(forms.Form):
-    def __init__(self, questions, answers, page_id, resource_id, *args, **kwargs):
-        self.page_id = page_id
+    def __init__(self, questions, answers, group_id, resource_id, *args, **kwargs):
+        self.group_id = group_id
         self.resource_id = resource_id
         self.questions = questions
         self.answers = answers
@@ -201,10 +201,10 @@ class AnswerForm(forms.Form):
                 self.cleaned_data[key] = 0
          
         # now loop again running validation assuming all fields have been cleaned.
-        # for question in self.questions:        
-            # if question.question_group:
-                # self.question_group_validation() 
-                # break         
+        for question in self.questions:        
+            if question.question_group:
+                self.question_group_validation() 
+                break         
         
         return self.cleaned_data
 

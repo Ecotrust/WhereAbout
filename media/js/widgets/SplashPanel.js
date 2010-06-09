@@ -13,22 +13,41 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
         gwst.widgets.SplashPanel.superclass.initComponent.apply(
           this, arguments);                     
     },
+	
+    updateText: function(text_config) {
+        Ext.apply(this, text_config);
+        this.inner_panel.getEl().update(this.getHtmlText());
+    },
+    
+    getHtmlText: function() {
+        var html_text = '<p>This is the drawing portion for the '+ this.user_group +' user group.</p> <p>You will be able to come back and finish later if you need more time.</p> <p>To do so, click the \'Go To Main Menu\' button at the top left of the map screen.</p><img src="/site-media/images/go_to.png" style="margin-left: 65px">';
+        return html_text;
+    },
 
     onRender: function(){
+        //header image
+        this.header_panel = new Ext.Panel({  
+			html: '<img src="/site-media/images/0_Introduction_header.png">',
+            id: 'intro_header_panel',
+			border: false,
+            bodyCfg: {
+                cls: 'action-panel-header'
+            }
+        });
+        
         //panel of text
 		this.inner_panel = new Ext.Panel({
-			html: '<h2>Instructions</h2><p>Based on the activities you participated in during your last visit to the coast, we would like you to indicate where these activities took place using a map.</p><p>Press the \'Continue button.</p>',
+			html: this.getHtmlText(),
+            id: 'intro_inner_panel',
 			style: 'margin: 10px',
 			border: false
         });
         
-        this.button_panel = new gwst.widgets.TwoButtonPanel ({
-        	btn2_text: 'Continue >>',        	
-            btn2_handler: this.contBtnClicked.createDelegate(this),
-            btn2_width: 110,
-            left_margin: 50
+        this.button_panel = new gwst.widgets.BackContButtons ({
+            cont_handler: this.contBtnClicked.createDelegate(this)
         });
         
+        this.add(this.header_panel);
         this.add(this.inner_panel);
         this.add(this.button_panel);
     

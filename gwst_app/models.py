@@ -22,10 +22,8 @@ class Region(Model):
 #Region to clip user-drawn shapes to.
 class ClipRegion(Model):  
     name = models.TextField()
-    if settings.DESKTOP_BUILD:
-        geom = PolygonField(srid=settings.SERVER_SRID) # for spatialite
-    else:
-        geom = MultiPolygonField(srid=settings.SERVER_SRID)
+    #geom = PolygonField(srid=settings.SERVER_SRID) # for spatialite testing
+    geom = MultiPolygonField(srid=settings.SERVER_SRID)
     objects = GeoManager()
     class Meta:
         db_table = u'gwst_region_clip'
@@ -34,16 +32,12 @@ class ClipRegion(Model):
         return unicode('%s' % (self.name))                    
         
 class Resource(Model):
-    DrawTypeChoices = (
-        ( 'point', 'point' ),
-        ( 'polygon', 'polygon' ),
-        ( 'none', 'none' )
-    )
+    id = models.AutoField( primary_key = True )
     name = CharField( max_length=100, unique=True )
     code = CharField( max_length=10, unique=True )
     select_description = CharField( max_length=300, default = '', blank=True) #Holds information on why you would/should select this resource
     shape_color = CharField( max_length=6, default = 'FFFF00', blank=True )
-    draw_type = CharField( max_length=20, choices=DrawTypeChoices, default='none' )
+    
     class Meta:
         db_table = u'gwst_resource'
         
@@ -184,24 +178,9 @@ class QuestionGroupValidator(Model):
     
     class Meta:
         db_table = u'gwst_qstn_grp_validator'
-        
-'''
-Represents the collection of questions into a page 
-'''        
-        
-class InterviewPage(Model):
-    name = CharField( max_length=100, unique=True )
-    group = ForeignKey(InterviewGroup)
-    nextPage = ForeignKey('self', blank=True, null=True)
-    firstPage = BooleanField(default=False)
-    page_template = CharField( max_length=60, default="base_page.html" )
-    question_width = IntegerField( default = 275 )
-    
-    def __unicode__(self):
-        return unicode('%s' % (self.name))
 
 '''
-Represents the collection of questions into a group (TODO: Deprecate?)
+Represents the collection of questions into a group 
 '''
 class QuestionGroup(Model):
     validators = ManyToManyField(QuestionGroupValidator)
@@ -240,7 +219,6 @@ class InterviewQuestion(Model):
     display_order = FloatField( help_text='tab order of this question on its page' )
     required = BooleanField( help_text='require that this field be filled out', default=False)
     all_resources = BooleanField( help_text='is this a question to be asked once for each resource?', default=False)
-    page = ForeignKey(InterviewPage, blank=True, null=True)
         
     class Meta:
         db_table = u'gwst_question'
@@ -261,7 +239,7 @@ class InterviewInstructions(Model):
     def __unicode__(self):
         return unicode('%s-%s' % (self.int_group, self.question_set))
     
-
+        
 # localization tables, for future use
 class InterviewQuestionText(Model):
     int_question = ForeignKey(InterviewQuestion)
@@ -338,29 +316,21 @@ class InterviewStatus(Model):
         return unicode('%s: %s' % (self.user, self.interview))
 
 
-        
-# drawing models
-        
-TimeRangeChoices = (
-    ( 'last trip', 'last trip' ),
-    ( 'cumulative', 'cumulative' )
-) 
-
 class InterviewShape(Model):
     user = ForeignKey(User)
     int_group = ForeignKey(InterviewGroup)
     resource = ForeignKey(Resource)
+    geometry = PolygonField(srid=settings.SERVER_SRID, blank=True, null=True)
     pennies = IntegerField( default=0 )
-    time_range = CharField( max_length=20, choices=TimeRangeChoices, default='none' )
     boundary_n = CharField( max_length=100, blank=True, null=True ) 
     boundary_s = CharField( max_length=100, blank=True, null=True )
     boundary_e = CharField( max_length=100, blank=True, null=True )
     boundary_w = CharField( max_length=100, blank=True, null=True )
     creation_date = DateTimeField(default=datetime.datetime.now)
+    objects = InterviewShapeManager()
     
     class Meta:
-        abstract = True
-        managed = False
+        db_table = u'gwst_usershape'
 
     def __unicode__(self):
         return unicode('%s: %s %s' % (self.user, self.resource.code, self.int_group))
@@ -414,21 +384,6 @@ class InterviewShape(Model):
     #        m.save() #This save generates the new mpa_id
     #        return m
 
-class InterviewPoint(InterviewShape):
-    geometry = PointField(srid=settings.SERVER_SRID)
-    objects = GeoManager()    
-    class Meta:
-        db_table = u'gwst_userpoint'
-    
-class InterviewPoly(InterviewShape):
-    geometry = PolygonField(srid=settings.SERVER_SRID)
-    objects = GeoManager()    
-    class Meta:
-        db_table = u'gwst_userpoly'  
-    
-    
-# FAQ models
-    
 class FaqGroup(models.Model):
     class Meta:
         db_table = u'gwst_faqgroup'
@@ -489,24 +444,3 @@ def user_post_save(sender, instance, **kwargs):
         print 'Added profile object'
 
 models.signals.post_save.connect(user_post_save, sender=User)
-
-
-
-# draw assistance service models
-
-class OrCoastCities(Model):
-    gid = IntegerField(primary_key = True)
-    city = CharField(max_length=25)
-    the_geom = PointField(srid=4326)        
-    objects = GeoManager()
-    class Meta:
-        db_table = u'or_coast_cities'
-        
-class OrCoastPlacemarks(Model):
-    gid = IntegerField(primary_key = True)
-    name = CharField(max_length=25)
-    type = CharField(max_length=25)
-    the_geom = PointField(srid=4326)        
-    objects = GeoManager()
-    class Meta:
-        db_table = u'or_coast_placemarks' 

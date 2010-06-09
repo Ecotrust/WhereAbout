@@ -19,7 +19,7 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE gwst_region_clip (
-    id varchar NOT NULL,
+    id VARCHAR NOT NULL,
     name text NOT NULL,
     geom geometry NOT NULL,
     CONSTRAINT enforce_dims_geom CHECK ((ndims(geom) = 2)),

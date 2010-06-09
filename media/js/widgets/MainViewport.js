@@ -20,7 +20,7 @@ gwst.widgets.MainViewport = Ext.extend(Ext.Viewport, {
 				listeners: this.mapPanelListeners
 			},{
                 region: 'west',
-                width: 330,
+                width: 300,
                 id: 'west-panel-container',
                 collapsed: false,
                 layout: 'fit',
@@ -54,8 +54,7 @@ gwst.widgets.MainViewport = Ext.extend(Ext.Viewport, {
         this.curWestPanel = panel;
         this.curWestPanel.show();
         westPanelContainer.doLayout();
-        (westPanelContainer.body).scroll('top');
-        
+        westPanelContainer.body.scroll('top');
     }
 });
  

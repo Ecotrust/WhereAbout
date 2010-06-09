@@ -23,7 +23,7 @@ gwst.widgets.SatisfiedShapePanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<h3>Are you satisfied with this '+ this.shape_name +'?</h3>';
+        var html_text = '<p class="top_instruct"><b>Are you satisfied with this '+ this.shape_name +'?</b></p>';
         return html_text;
     },
 	
