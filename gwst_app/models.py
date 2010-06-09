@@ -46,6 +46,7 @@ class Resource(Model):
         
         
 class Interview(Model):
+    id = models.AutoField( primary_key = True )
     region = ForeignKey(Region)
     clip_region = ForeignKey(ClipRegion)
     name = CharField( max_length=100, unique=True )
@@ -70,6 +71,7 @@ class Interview(Model):
     
     
 class InterviewGroup(Model):
+    id = models.AutoField( primary_key = True )
     interview = ForeignKey(Interview)
     name = CharField( max_length=100 )
     description = CharField( max_length=200 )

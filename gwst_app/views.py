@@ -150,6 +150,7 @@ def assign_groups(request):
 
     # make sure the user has a valid session in-progress
     try:
+    
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         
         status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
@@ -172,11 +173,50 @@ def assign_groups(request):
     if request.method == 'GET':
         # let user select which groups they are in
         groups = InterviewGroup.objects.filter(interview=interview,is_user_group=True)
+        
         form = SelectInterviewGroupsForm( groups)
+        
+        if groups.count() == 1:
+            group = groups[0]
+                    
+            membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=group)
+            membership.user = request.session['interviewee']
+            membership.int_group = group
+            membership.percent_involvement = 100 #form.cleaned_data['group_%s_pc' % field.group.id]
+            membership.order = 5
+            membership.save()
+                
+            qs = InterviewGroupMembership.objects.all()
+            for q in qs:
+                if q.int_group_id == 9:
+                    q.order = 1000 
+                    q.save()
+                else:
+                    q.order = 0
+                    q.save()
+                
+            # redirect to interview_group_status
+            return HttpResponseRedirect('/group_status/')
+            
+        if groups.count() == 0:
+            qs = InterviewGroupMembership.objects.all()
+            for q in qs:
+                if q.int_group_id == 9:
+                    q.order = 1000 
+                    q.save()
+                else:
+                    q.order = 0
+                    q.save()
+                
+            # redirect to interview_group_status
+            return HttpResponseRedirect('/group_status/')
+        
+        
         return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'form': form, 'instructions':instructions, 'value':'Continue', 'q_width':265}))
         
     else:
         groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
+
         form = SelectInterviewGroupsForm( groups, request.POST )
         
         if form.is_valid():       
