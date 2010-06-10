@@ -13,8 +13,9 @@ urlpatterns = patterns('',
 
     #Custom registration with extra profile fields
     url(r'^accounts/register/$',
-        register,
-        {'form_class': RegistrationFormFull},                           
+        register, 
+        {'form_class': RegistrationFormFull,
+        'backend': 'registration.backends.default.DefaultBackend'},
         name='registration_register'),
     
     (r'^accounts/', include('registration.backends.default.urls')),
