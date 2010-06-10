@@ -1,0 +1,18 @@
+For Spatialite on Windows:
+=========================
+Get precompiled binaries at: http://www.gaia-gis.it/spatialite/binaries.html
+		-libspatialite
+		-proj (under libspatialite)
+		-spatialite-tools
+	Extract them somewhere and add them (individually) to your path.
+
+Install pysqlite2 at: http://code.google.com/p/pysqlite/downloads/list
+
+Check that local_settings.py, cdb-spatialite.bat, and ddb-spatialite.bat all reference the right database name
+	and that local_settings has the correct DATABASE_ENGINE 
+		(like 'django.contrib.gis.db.backends.spatialite')
+
+run cdb-spatialite.bat
+
+NOTE: This assumes that init_spatialite-2.3.sql is available in the database folder.  
+	If not, it can be found at: http://www.gaia-gis.it/spatialite/resources.html under 'SQL scripts'
