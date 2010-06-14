@@ -276,7 +276,7 @@ def group_status(request):
     
     title = request.session['interview'].name + ' Status'
        
-    qs = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__in=int_groups).order_by('order','-percent_involvement','id')
+    qs = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__in=int_groups).order_by('order','-percent_involvement','int_group')
     
     num_shapes = None
     # update the user status message for each in-progress group
