@@ -4,6 +4,12 @@ os.environ['DJANGO_SETTINGS_MODULE'] = "settings"
 
 import overrides
 
+import admin_utils
+import admin_utils.urls
+import admin_utils.forms
+import admin_utils.models
+import admin_utils.views
+
 import gwst_app
 import gwst_app.admin
 import gwst_app.fields
