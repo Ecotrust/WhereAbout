@@ -1,6 +1,6 @@
 from distutils.core import setup
 import py2exe
-import os
+import os, sys
 
 #Build tree of files given a dir (for appending to py2exe data_files)
 def add_path_tree( base_path, path, skip_dirs=[ '.svn', '.git'  ]):
@@ -50,6 +50,7 @@ class InnoScript:
         return pathname[len(self.dist_dir):]
     
     def create(self, pathname="dist\\DesktopGWST.iss"):
+        curr_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
         self.pathname = pathname
         ofi = self.file = open(pathname, "w")
         print >> ofi, "; WARNING: This script has been created by py2exe. Changes to this script"
@@ -64,12 +65,12 @@ class InnoScript:
         print >> ofi, r"VersionInfoDescription=Desktop Survey Tool"
         print >> ofi, r"VersionInfoCopyright=Ecotrust"
         print >> ofi, r"AppCopyright=Ecotrust"
-        print >> ofi, r"InfoAfterFile=C:\dev\SurfRider\prototyping\gwst\branches\desktop-dev\desktop-packaging\README.TXT"
-        print >> ofi, r"LicenseFile=C:\dev\SurfRider\prototyping\gwst\branches\desktop-dev\desktop-packaging\LICENSE.TXT"
+        print >> ofi, r"InfoAfterFile=" + curr_dir + "\desktop-packaging\README.TXT"
+        print >> ofi, r"LicenseFile=" + curr_dir + "\desktop-packaging\LICENSE.TXT"
         print >> ofi, r"WizardImageBackColor=clBlack"
-        print >> ofi, r"WizardImageFile=C:\dev\SurfRider\prototyping\gwst\branches\desktop-dev\desktop-packaging\Images\OCEAN_VERT_INNO.bmp"
-        print >> ofi, r"WizardSmallImageFile=C:\dev\SurfRider\prototyping\gwst\branches\desktop-dev\desktop-packaging\Images\OCEAN_SMALL_INNO.bmp"
-        print >> ofi, r"SetupIconFile=C:\dev\SurfRider\prototyping\gwst\branches\desktop-dev\desktop-packaging\Images\OCEAN_SMALL_INNO.ico"
+        print >> ofi, r"WizardImageFile=" + curr_dir + "\desktop-packaging\Images\OCEAN_VERT_INNO.bmp"
+        print >> ofi, r"WizardSmallImageFile=" + curr_dir + "\desktop-packaging\Images\OCEAN_SMALL_INNO.bmp"
+        print >> ofi, r"SetupIconFile=" + curr_dir + "\desktop-packaging\Images\OCEAN_SMALL_INNO.ico"
         print >> ofi
 
         print >> ofi, r"[Files]"
