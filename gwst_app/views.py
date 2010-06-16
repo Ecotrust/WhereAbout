@@ -53,6 +53,7 @@ def handleSelectInterview(request,selected_interview):
         
         # create group records for any required groups
         required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
+        
         for group in required_groups:
             
             membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=group)
@@ -60,6 +61,8 @@ def handleSelectInterview(request,selected_interview):
             membership.int_group = group
             if (group.name != 'Main Questions'):
                 membership.percent_involvement = 0
+            else :
+                membership.percent_involvement = 101
             membership.save()
     
         # redirect to assign_groups
