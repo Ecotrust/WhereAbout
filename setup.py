@@ -148,40 +148,62 @@ class build_installer(py2exe):
         # Note: By default the final setup.exe will be in an Output subdirectory.
 
 		
-######################## py2exe setup options ########################################
-	
-# Take the first value from the environment variable PYTHON_PATH
-python_path = os.environ[ 'PYTHONPATH' ].split( ';' )[ 0 ]
-django_admin_path = os.path.normpath( python_path + '/lib/site-packages/django/contrib/admin/' )
-django_gis_path = os.path.normpath( python_path + '/lib/site-packages/django/contrib/gis/' )
+######################## py2exe setup options #######################################
+
+django_admin_path = None
+
+# look for django install in python path
+for django_path in os.environ[ 'PYTHONPATH' ].split( ';' ):
+    # does lib/site-packages/django exist?
+    if os.path.exists( os.path.normpath( django_path + '/lib/site-packages/django/' )):
+        django_admin_path = os.path.normpath( django_path + '/lib/site-packages/django/contrib/admin/' )
+        django_gis_path = os.path.normpath( django_path + '/lib/site-packages/django/contrib/gis/' )
+        break
+        
+    # does django/contrib directory exist?
+    if os.path.exists( os.path.normpath( django_path + '/django/contrib/' )):
+        django_admin_path = os.path.normpath( django_path + '/django/contrib/admin/' )
+        django_gis_path = os.path.normpath( django_path + '/django/contrib/gis/' )
+        break
+
+    # does contrib directory exist?
+    if os.path.exists( os.path.normpath( django_path + '/contrib/' )):
+        django_admin_path = os.path.normpath( django_path + '/contrib/admin/' )
+        django_gis_path = os.path.normpath( django_path + '/contrib/gis/' )
+        break
+        
+if django_admin_path:
     
-py2exe_data_files = [(".",["run-desktop.bat","path_test.bat"])]
+    py2exe_data_files = [(".",["run-desktop.bat","path_test.bat"])]
 
-py2exe_data_files += add_path_tree( django_admin_path, 'templates' )
-py2exe_data_files += add_path_tree( django_admin_path, 'media' )
-py2exe_data_files += add_path_tree( django_gis_path, 'templates' )
+    py2exe_data_files += add_path_tree( django_admin_path, 'templates' )
+    py2exe_data_files += add_path_tree( django_admin_path, 'media' )
+    py2exe_data_files += add_path_tree( django_gis_path, 'templates' )
 
-py2exe_data_files += add_path_tree( '', 'database' )
-py2exe_data_files += add_path_tree( '', 'site-media' )
-py2exe_data_files += add_path_tree( '', 'lib' )
-py2exe_data_files += add_path_tree( '', 'gwst_app/templates' )
-py2exe_data_files += add_path_tree( '', 'registration_custom/templates' )
-py2exe_data_files += add_path_tree( '', 'tiles' )
-py2exe_data_files += add_path_tree( '', 'gdal_data' )
+    py2exe_data_files += add_path_tree( '', 'database' )
+    py2exe_data_files += add_path_tree( '', 'site-media' )
+    py2exe_data_files += add_path_tree( '', 'lib' )
+    py2exe_data_files += add_path_tree( '', 'gwst_app/templates' )
+    py2exe_data_files += add_path_tree( '', 'registration_custom/templates' )
+    py2exe_data_files += add_path_tree( '', 'tiles' )
+    py2exe_data_files += add_path_tree( '', 'gdal_data' )
 
 
-setup(
-    options = {"py2exe": {"compressed": False,
-                          "optimize": 2,
-                          "ascii": 1,
-                          "bundle_files": 3,
-                          "packages":["encodings","django","gwst_app","simplejson","registration"],
-                           "excludes" : ["pywin", "pywin.debugger", "pywin.debugger.dbgcon","pywin.dialogs",
-                                       "pywin.dialogs.list","Tkconstants","Tkinter","tcl"],
+    setup(
+        options = {"py2exe": {"compressed": False,
+                              "optimize": 2,
+                              "ascii": 1,
+                              "bundle_files": 3,
+                              "packages":["encodings","django","gwst_app","simplejson","registration"],
+                               "excludes" : ["pywin", "pywin.debugger", "pywin.debugger.dbgcon","pywin.dialogs",
+                                           "pywin.dialogs.list","Tkconstants","Tkinter","tcl"],
 
-                            }},
-    data_files = py2exe_data_files,
-    zipfile = r"lib\shardlib",
-	console=[{"script": "gwst.py", "icon_resources": [(1, "desktop-packaging\Images\OCEAN_SMALL_INNO.ico")]}],
-	cmdclass = {"py2exe": build_installer},
-    )
+                                }},
+        data_files = py2exe_data_files,
+        zipfile = r"lib\shardlib",
+        console=[{"script": "gwst.py", "icon_resources": [(1, "desktop-packaging\Images\OCEAN_SMALL_INNO.ico")]}],
+        cmdclass = {"py2exe": build_installer},
+        )
+        
+else:
+    print "ERROR: cannot find django install in PYTHONPATH -- " + os.environ['PYTHONPATH']
