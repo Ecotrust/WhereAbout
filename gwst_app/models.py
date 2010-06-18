@@ -20,16 +20,16 @@ class Region(Model):
         return unicode('%s: %s' % (self.code, self.name))
 
 #Region to clip user-drawn shapes to.
-class ClipRegion(Model):  
-    name = models.TextField()
-    #geom = PolygonField(srid=settings.SERVER_SRID) # for spatialite testing
-    geom = MultiPolygonField(srid=settings.SERVER_SRID)
-    objects = GeoManager()
-    class Meta:
-        db_table = u'gwst_region_clip'
+# class ClipRegion(Model):  
+    # name = models.TextField()
+    # geom = PolygonField(srid=settings.SERVER_SRID) # for spatialite testing
+    # geom = MultiPolygonField(srid=settings.SERVER_SRID)
+    # objects = GeoManager()
+    # class Meta:
+        # db_table = u'gwst_region_clip'
         
-    def __unicode__(self):
-        return unicode('%s' % (self.name))                    
+    # def __unicode__(self):
+        # return unicode('%s' % (self.name))                    
         
 class Resource(Model):
     id = models.AutoField( primary_key = True )
@@ -48,7 +48,7 @@ class Resource(Model):
 class Interview(Model):
     id = models.AutoField( primary_key = True )
     region = ForeignKey(Region)
-    clip_region = ForeignKey(ClipRegion)
+    # clip_region = ForeignKey(ClipRegion)
     name = CharField( max_length=100, unique=True )
     organization = CharField( max_length=100 )
     description = CharField( max_length=200 )
@@ -196,6 +196,7 @@ class QuestionGroup(Model):
         db_table = u'gwst_qstn_grp'  
       
 class InterviewQuestion(Model):
+    id = models.AutoField( primary_key = True )
     AnswerTypeChoices = (
         ( 'integer', 'integer value' ),
         ( 'decimal', 'decimal value' ),

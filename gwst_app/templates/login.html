@@ -33,7 +33,7 @@
                     <label for="id_username">Username:</label>{% if form.username.errors %} <span class="error">{{ form.username.errors|join:", " }}</span>{% endif %}
                 </dt>
                 <dd>
-                    <!--{{ form.username }}--><input id="id_username" type="text" name="username" value="{{ next_user }}" maxlength="100" />
+                    <input id="id_username" type="text" name="username" value="{{ next_user }}" maxlength="100" />
                 </dd>
                 <dt>
                     <label for="id_password">Password:</label>{% if form.password.errors %} <span class="error">{{ form.password.errors|join:", " }}</span>{% endif %}
@@ -49,6 +49,8 @@
 
         {% if user.SELF_REGISTRATION %}
             <p style='margin-left: 40px; margin-top: 30px'><b><a href='/accounts/register'>Create a new account</a></b></p>
+        {% else %}
+            <br />
         {% endif %}
     {% else %}
         <p>You are already signed in | <b>{{user.email|escape}}</b></p>

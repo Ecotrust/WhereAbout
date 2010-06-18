@@ -1,5 +1,21 @@
 [
   {
+    "pk": "e6502c5e-7afe-11df-aaa3-001b210ee9bb", 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  }, 
+  {
+    "pk": "9f13aa4f-7a51-11df-9ead-001b210ee9bb", 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  }, 
+  {
     "pk": "56323ad1-7412-11df-abdf-001b210ee9bb", 
     "model": "sites.site", 
     "fields": {
@@ -72,233 +88,13 @@
     }
   }, 
   {
-    "pk": 1, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "00FFFF", 
-      "select_description": "", 
-      "code": "sal", 
-      "name": "Salmon"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "00FF00", 
-      "select_description": "", 
-      "code": "dcrb", 
-      "name": "Dungeness Crab"
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "0000FF", 
-      "select_description": "", 
-      "code": "phal", 
-      "name": "Pacific Halibut"
-    }
-  }, 
-  {
-    "pk": 9, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "888800", 
-      "select_description": "", 
-      "code": "shray", 
-      "name": "Sharks/Rays"
-    }
-  }, 
-  {
-    "pk": 10, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "008888", 
-      "select_description": "", 
-      "code": "atna", 
-      "name": "Albacore Tuna"
-    }
-  }, 
-  {
-    "pk": 11, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF8888", 
-      "select_description": "", 
-      "code": "hsqd", 
-      "name": "Humboldt Squid"
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "8888FF", 
-      "select_description": "", 
-      "code": "oflt", 
-      "name": "Other Flatfish (soles, turbots)"
-    }
-  }, 
-  {
-    "pk": 15, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "88FF88", 
-      "select_description": "", 
-      "code": "abl", 
-      "name": "Abalone"
-    }
-  }, 
-  {
-    "pk": 16, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF88", 
-      "select_description": "", 
-      "code": "urch", 
-      "name": "Urchin"
-    }
-  }, 
-  {
-    "pk": 17, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF88FF", 
-      "select_description": "", 
-      "code": "rscl", 
-      "name": "Rock Scallops"
-    }
-  }, 
-  {
-    "pk": 14, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "88FFFF", 
-      "select_description": "", 
-      "code": "sndb", 
-      "name": "Sanddabs"
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "666666", 
-      "select_description": "", 
-      "code": "chal", 
-      "name": "California Halibut"
-    }
-  }, 
-  {
-    "pk": 18, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF0033", 
-      "select_description": "Represents your pre-RCA fishing grounds.  See instructions above.", 
-      "code": "rckpr", 
-      "name": "Rockfish A - (Pre-RCA)"
-    }
-  }, 
-  {
-    "pk": 19, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFCC00", 
-      "select_description": "Represents your Post-RCA fishing grounds.  See instructions above.", 
-      "code": "rckpo", 
-      "name": "Rockfish B - (Post-RCA)"
-    }
-  }, 
-  {
-    "pk": 20, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "clm", 
-      "name": "Clams"
-    }
-  }, 
-  {
-    "pk": 21, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF6600", 
-      "select_description": "", 
-      "code": "pch", 
-      "name": "Perch"
-    }
-  }, 
-  {
-    "pk": 8, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "880088", 
-      "select_description": "", 
-      "code": "bait", 
-      "name": "Anchovy/Herring/Smelt (bait fish)"
-    }
-  }, 
-  {
-    "pk": 23, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "DDFF22", 
-      "select_description": "", 
-      "code": "rcrb", 
-      "name": "Rock Crab"
-    }
-  }, 
-  {
-    "pk": 22, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFCC44", 
-      "select_description": "", 
-      "code": "lob", 
-      "name": "Lobster"
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FF00FF", 
-      "select_description": "Represents what your rockfish grounds would be if closure areas were removed.  See instructions above.", 
-      "code": "rockc", 
-      "name": "Rockfish C - (Cumulative)"
-    }
-  }, 
-  {
-    "pk": 24, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "rock", 
-      "name": "Rockfish"
-    }
-  }, 
-  {
-    "pk": 25, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "shpr", 
-      "name": "Shrimp/Prawn"
-    }
-  }, 
-  {
     "pk": 26, 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
-      "select_description": "Charter Diving", 
+      "select_description": "diving", 
       "code": "chr_div", 
-      "name": "Diving"
+      "name": "diving"
     }
   }, 
   {
@@ -306,53 +102,59 @@
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
-      "select_description": "Charter Whale Watching", 
+      "select_description": "watching whales", 
       "code": "chr_wha", 
-      "name": "Whale Watching"
+      "name": "whale watching"
     }
   }, 
   {
-    "pk": 1, 
-    "model": "gwst_app.interview", 
+    "pk": 28, 
+    "model": "gwst_app.resource", 
     "fields": {
-      "code": "NCrecfish", 
-      "description": "rec fish", 
-      "shape_name_plural": "fishing grounds", 
-      "region": "a1", 
-      "resource_name_plural": "species", 
-      "draw_shape_text": "<div id=\"help_panel\">\r\n\r\n<b> Getting Started </b>\r\n\r\n<p>Take the time to learn how to use this drawing tool before you dive in.  The instructions and videos provided will quickly show you through the entire process</p>\r\n\r\n<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species group</b> you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw shapes on the map representing your fishing grounds and then place some number of pennies on those shapes. The more pennies you place on a shape, the more value or importance you are placing on it. Keep doing this until you have drawn all your shapes and used all your pennies.  This process may seem complicated but it will allow the potential impact of MPA's on each fishery and each region to be measured much more accurately.</p>\r\n\r\n<p>How many shapes you draw and how specific you are is up to you.  Most people draw between three and eight shapes per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To get this window back after closing it, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.\r\n</p>\r\n<br/>\r\n<button type='button' onclick='gwst.app.splashTabs.activate(gwst.app.helpScreenText)'>Go To Instructions/Videos</button>&nbsp;&nbsp;&nbsp;&nbsp;<i><b>Highly Recommended</b></i>\r\n<br/> \r\n<button type='button' onclick='gwst.app.helpWindow.hide()'>Get Started</button>\r\n</div>", 
-      "resource_action": "target", 
-      "group_status_text": "Please carefully read all instructions and complete each survey section. You will be asked to answer questions and draw your fishing grounds. The drawing portion can be technically challenging and you may get discouraged by the amount of time it will take you. We apologize for this. Please understand that your input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend will be worth the effort. \r\n<br/><br/>\r\nIf you have questions about Ecotrust's involvement in the MLPA process and what your incentive is to share your information and fishing grounds to us, please  <a target='_blank' href='http://www.ecotrust.org/mlpa/'>visit our MLPA page</a>.\r\n<br/><br/>\r\nWe are listening to your feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, please email us at fish@ecotrust.org or call us using the number provided in your registration email. We are listening to your feedback. \r\n<h2>Instructions</h2>\r\n\r\n<p>\r\nComplete each section below one at a time.  A red circle indicates an unfinished section.  Once you have completed the necessary steps within a section you will be able to finalize it.  Once a group is finalized it will change to the color green.  Once all groups are green you will be able to finalize your survey.  You must complete at least the first user group including drawing your fishing grounds.  You may skip the others and move on.\r\n</p>", 
-      "resource_name": "species", 
-      "shape_name": "fishing ground", 
-      "active": false, 
-      "organization": "Ecotrust", 
-      "assign_groups_text": "<p>What percentage of time do you spend fishing in each of these user groups?</p>\r\n<p><i>[Note: You won't be surveyed for groups you don't provide a value for here.  Also these values must add up to 100%.  For example, if someone participates in both kayak angling and dive angling, they might enter 60% for kayak angling, 40% for dive angling and nothing for private vessel angling.]</i></p>", 
-      "clip_region": "a1", 
-      "interview_complete_text": "<p>The fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.</p>\r\n\r\n<p>When the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated and subsequent iterations of the analysis will be completed. The maps will then be used in evaluating MPA proposals.  For each MPA proposal, stakeholders will be able to see the potential impacts that MPA would have on a given fishery and/or user group.  This is a valuable tool in finding the best areas for protection while trying to minimize the impact on fisheries.</p>\r\n\r\n<p>Your willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a></p>", 
-      "name": "MLPA North Coast Recreational Fishing Survey"
+      "shape_color": "FFFF00", 
+      "select_description": "watching birds", 
+      "code": "bird_watch", 
+      "name": "bird watching"
     }
   }, 
   {
-    "pk": 2, 
-    "model": "gwst_app.interview", 
+    "pk": 29, 
+    "model": "gwst_app.resource", 
     "fields": {
-      "code": "ORRrecfish", 
-      "description": "Oregon central coast rec fishermen", 
-      "shape_name_plural": "fishing grounds", 
-      "region": "a2", 
-      "resource_name_plural": "species", 
-      "draw_shape_text": "<b>How It Works</b>\r\n\r\n<p>The way the drawing process works is <b>for each species group</b> you target, you are given an imaginary bag of <b>100 pennies</b>.  You will draw fishing grounds on the map representing your fishing grounds and then place some number of pennies on those fishing grounds. The more pennies you place on a fishing ground, the more value or importance you are placing on it. Keep doing this until you have drawn all your fishing grounds and used all your pennies.  This process may seem complicated but it will allow the potential impact of MPA's on each fishery and each region to be measured much more accurately.</p>\r\n\r\n<p>How many fishing grounds you draw and how specific you are is up to you.  Most people draw between three and eight fishing grounds per fishery per user group. </p>\r\n\r\n<b>More Help</b>\r\n\r\n<p>To get this window back after closing it, click the Help button in the upper right.  Additional help can be found on our <a href='/faq' target='_blank'>frequently asked questions</a> page. Please do not hesitate to email <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> if you need more help.\r\n</p>\r\n<br/>\r\n<button type='button' onclick='gwst.app.splashTabs.activate(gwst.app.helpScreenText)'>Go To Instructions/Videos</button>&nbsp;&nbsp;&nbsp;&nbsp;<i><b>Highly Recommended</b></i>\r\n<br/> \r\n<button type='button' onclick='gwst.app.helpWindow.hide()'>Get Started</button>\r\n</div>", 
-      "resource_action": "target", 
-      "group_status_text": "<h2>Instructions</h2>\r\n<p>\r\nComplete each section below one at a time. You will be asked to <b>finalize each section</b> before moving onto the next.  You can logout of the survey at any time and your survey will be saved for you to finish at a later time.\r\n</p>\r\n\r\n<p>\r\nWe strongly encourage feedback. If you have technical problems please read our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.  If you are finding the online interview too difficult to complete, or have additional questions, please email us at <a href=\"mailto:fish@ecotrust.org\">fish@ecotrust.org</a> and we will respond within a few hours if not sooner. \r\n</p>", 
-      "resource_name": "species", 
-      "shape_name": "fishing ground", 
-      "active": true, 
-      "organization": "Ecotrust", 
-      "assign_groups_text": "<p>\r\nPlease carefully read all instructions and complete each survey section. You will be asked to answer questions on fishing trip expenditures and draw your fishing grounds for each species you target.\r\n</p>\r\n\r\n<p>\r\nWe greatly appreciate your participation as your direct input provides the best representation of your fishing interests and provides an opportunity for your voice to be heard. For these reasons, we believe the time you spend in this survey will be worth the effort.\r\n</p>\r\n\r\n<p>\r\nFirst, what percentage of time do you spend fishing in each of the following user groups?\r\n[These values must add up to 100%.  For example, 60% for kayak fishing, 40% for sport boat fishing.]\r\n</p>\r\n\r\n", 
-      "clip_region": "a1", 
-      "interview_complete_text": "<p>\r\nThe fishing grounds you drew will be edited if necessary, using any bounding information you provided (e.g. north, south, east, and west boundaries).  Our team will then begin the process of aggregating the surveys to create maps showing overall fishing grounds and their value for different user-group/fishery/port combinations.\r\n</p>\r\n<p>\r\nWhen the initial round of analysis is complete we will conduct reviews by port group. This will provide an opportunity for groups of fishermen to give feedback on the accuracy of the regional data. Again, this will be done in such a way that your individual fishing grounds will not be identifiable. Recommendations from the review meetings will be incorporated to complete the maps. The maps will then be submitted to Oregon\u2019s Department of Land and Conservation Development to be considered along with other data and information to help guide the location of waver energy sites so that impacts to existing uses are minimized.\r\n</p>\r\n<p>\r\nYour willingness to participate is greatly appreciated! If you have any questions or \r\nconcerns please contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a>\r\n</p>", 
-      "name": "Recreational Fishing Areas and Value in Oregon"
+      "shape_color": "FFFF00", 
+      "select_description": "viewing marine mammals", 
+      "code": "mammal_vie", 
+      "name": "marine mammal viewing"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "cruising leisurely", 
+      "code": "leisure", 
+      "name": "leisure cruise"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "boat with glass bottom", 
+      "code": "glass_bott", 
+      "name": "glass bottom boat"
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "other", 
+      "code": "other", 
+      "name": "other"
     }
   }, 
   {
@@ -360,157 +162,27 @@
     "model": "gwst_app.interview", 
     "fields": {
       "code": "non_con", 
-      "description": "Non-Consumptive desktop survey (Intercept)", 
+      "name": "Oregon Non-Consumptive", 
       "shape_name_plural": "activity areas", 
       "region": "a2", 
       "resource_name_plural": "activities", 
       "draw_shape_text": "INTERVIEW: DRAW SHAPE TEXT", 
       "resource_action": "do", 
-      "group_status_text": "INTERVIEW: GROUP STATUS TEXT", 
       "resource_name": "activity", 
       "shape_name": "activity area", 
       "active": true, 
       "organization": "Ecotrust", 
       "assign_groups_text": "INTERVIEW: ASSIGN GROUPS TEXT", 
-      "clip_region": "a1", 
+      "group_status_text": "INTERVIEW: GROUP STATUS TEXT", 
       "interview_complete_text": "INTERVIEW: INTERVIEW COMPLETE TEXT", 
-      "name": "Oregon Non-Consumptive"
-    }
-  }, 
-  {
-    "pk": 9, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FFFFFF", 
-      "code": "soc", 
-      "name": "Socio-Economic Questions", 
-      "is_user_group": false, 
-      "required_group": false, 
-      "question_width": 225, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": false, 
-      "interview": 2, 
-      "member_title": "soc", 
-      "page_template": "or_soc_econ_form.html", 
-      "resources": [], 
-      "description": "Socio-Economic Questions"
-    }
-  }, 
-  {
-    "pk": 10, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FFFFFF", 
-      "code": "fup", 
-      "name": "Expenditure Followup", 
-      "is_user_group": false, 
-      "required_group": true, 
-      "question_width": 550, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": false, 
-      "interview": 2, 
-      "member_title": "fup", 
-      "page_template": "followup_form.html", 
-      "resources": [], 
-      "description": "Questions regarding followups"
+      "description": "Non-Consumptive desktop survey (Intercept)"
     }
   }, 
   {
     "pk": 1, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "Dive/Spear Angling", 
-      "is_user_group": false, 
-      "required_group": false, 
-      "question_width": 275, 
-      "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) were put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these three different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 1, 
-      "member_title": "dive/spear angler", 
-      "page_template": "base_form.html", 
-      "resources": [
-        1, 
-        3
-      ], 
-      "description": "Diving and spear/hand take"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "kyk", 
-      "name": "Kayak Angling", 
-      "is_user_group": false, 
-      "required_group": false, 
-      "question_width": 275, 
-      "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) were put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these three different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 1, 
-      "member_title": "kayak angler", 
-      "page_template": "base_form.html", 
-      "resources": [
-        1, 
-        3
-      ], 
-      "description": "kayakers"
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "prvsl", 
-      "name": "Private Vessel Angling", 
-      "is_user_group": false, 
-      "required_group": false, 
-      "question_width": 275, 
-      "select_resource_text": "* <b>Rockfish fishermen</b>.  Select all of the rockfish groups that apply to you.  If you fished for rockfish (including lingcod and other bottomfish) before Rockfish Conservation Areas (RCAs) were put into place, select all three groups (A,B and C).  If you've only fished rockfish after the RCAs were put into place then only select group B, post-RCA.  To learn more about these three different groups and why it's important we break things up like this, please visit our <a href='/faq' target='_blank'>Frequently Asked Questions</a>.", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 1, 
-      "member_title": "private vessel angler", 
-      "page_template": "base_form.html", 
-      "resources": [
-        1, 
-        3
-      ], 
-      "description": "private vessel anglers"
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "main", 
-      "name": "Main Questions", 
-      "is_user_group": false, 
-      "required_group": true, 
-      "question_width": 275, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": false, 
-      "interview": 1, 
-      "member_title": "main", 
-      "page_template": "base_form.html", 
-      "resources": [], 
-      "description": "General questions"
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
+      "shape_color": "FFFFFF", 
       "code": "main", 
       "name": "Main Questions", 
       "is_user_group": false, 
@@ -519,7 +191,7 @@
       "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": false, 
-      "interview": 2, 
+      "interview": 3, 
       "member_title": "main", 
       "page_template": "base_form.html", 
       "resources": [], 
@@ -527,139 +199,51 @@
     }
   }, 
   {
-    "pk": 8, 
+    "pk": 2, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FFFFFF", 
-      "code": "kyk", 
-      "name": "Kayak or Non-Motorized Vessel Fishing", 
-      "is_user_group": true, 
-      "required_group": false, 
-      "question_width": 300, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "member_title": "kayak or non-motorized vessel fisherman", 
-      "page_template": "base_form.html", 
-      "resources": [
-        1, 
-        3
-      ], 
-      "description": "Kayak or Non-Motorized Vessel"
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "pri", 
-      "name": "Sport Boat Fishing \"Non-charter\"", 
-      "is_user_group": true, 
-      "required_group": false, 
-      "question_width": 300, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "member_title": "sport boat fisherman", 
-      "page_template": "base_form.html", 
-      "resources": [
-        1, 
-        3
-      ], 
-      "description": "Sport Boat"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FF", 
-      "code": "div", 
-      "name": "Dive/Spear Fishing", 
-      "is_user_group": true, 
-      "required_group": false, 
-      "question_width": 375, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 2, 
-      "member_title": "dive/spear fisherman", 
-      "page_template": "base_form.html", 
-      "resources": [
-        1, 
-        3
-      ], 
-      "description": "Diving and spear/hand take"
-    }
-  }, 
-  {
-    "pk": 11, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FFFFFF", 
-      "code": "chrtr", 
-      "name": "Charter", 
-      "is_user_group": true, 
-      "required_group": false, 
-      "question_width": 275, 
-      "select_resource_text": "GROUP CHARTER: SELECT RESOURCE TEXT", 
-      "preselect": true, 
-      "user_draws_shapes": true, 
-      "interview": 3, 
-      "member_title": "Charter Operator", 
-      "page_template": "base_form.html", 
-      "resources": [
-        26, 
-        27
-      ], 
-      "description": "activities done from a charter vessel"
-    }
-  }, 
-  {
-    "pk": 12, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FFFFFF", 
-      "code": "main", 
-      "name": "Main Questions", 
+      "code": "ch_own", 
+      "name": "Charter Boat Owner", 
       "is_user_group": false, 
-      "required_group": true, 
+      "required_group": false, 
       "question_width": 275, 
-      "select_resource_text": "GROUP MAIN: SELECT RESOURCE TEXT", 
+      "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": false, 
       "interview": 3, 
-      "member_title": "main questionee", 
+      "member_title": "charter boat owner", 
       "page_template": "base_form.html", 
       "resources": [], 
-      "description": "General Questions"
+      "description": "Owner Questions"
     }
   }, 
   {
-    "pk": "a1", 
-    "model": "gwst_app.interviewansweroption", 
+    "pk": 3, 
+    "model": "gwst_app.interviewgroup", 
     "fields": {
-      "display_order": 0.0, 
-      "eng_text": "Yes!"
-    }
-  }, 
-  {
-    "pk": "a2", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 1.5, 
-      "eng_text": "No."
-    }
-  }, 
-  {
-    "pk": "a3", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 2.0, 
-      "eng_text": "Don't mind if I do!"
+      "shape_color": "FFFFFF", 
+      "code": "ch_op", 
+      "name": "Charter Boat Operator", 
+      "is_user_group": false, 
+      "required_group": true, 
+      "question_width": 275, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": true, 
+      "interview": 3, 
+      "member_title": "charter boat operator", 
+      "page_template": "base_form.html", 
+      "resources": [
+        26, 
+        27, 
+        28, 
+        29, 
+        30, 
+        31, 
+        32
+      ], 
+      "description": "Operator Questions"
     }
   }, 
   {
@@ -676,86 +260,6 @@
     "fields": {
       "display_order": 5.0, 
       "eng_text": "Female"
-    }
-  }, 
-  {
-    "pk": "a9", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 1.0, 
-      "eng_text": "Free dive"
-    }
-  }, 
-  {
-    "pk": "a10", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 2.0, 
-      "eng_text": "Scuba Dive"
-    }
-  }, 
-  {
-    "pk": "a11", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 1.0, 
-      "eng_text": "Trailer"
-    }
-  }, 
-  {
-    "pk": "a12", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 2.0, 
-      "eng_text": "Slip"
-    }
-  }, 
-  {
-    "pk": "a13", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 3.0, 
-      "eng_text": "Dry Dock"
-    }
-  }, 
-  {
-    "pk": "a15", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 1.0, 
-      "eng_text": "Motor"
-    }
-  }, 
-  {
-    "pk": "a16", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 2.0, 
-      "eng_text": "Non-motorized"
-    }
-  }, 
-  {
-    "pk": "a17", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 16.0, 
-      "eng_text": "Aluminum"
-    }
-  }, 
-  {
-    "pk": "a18", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 17.0, 
-      "eng_text": "Fiberglass"
-    }
-  }, 
-  {
-    "pk": "a19", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 18.0, 
-      "eng_text": "Inflatable"
     }
   }, 
   {
@@ -807,54 +311,6 @@
     }
   }, 
   {
-    "pk": "a26", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 20.0, 
-      "eng_text": "Wood"
-    }
-  }, 
-  {
-    "pk": "a14", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 5.0, 
-      "eng_text": "Paddleboard"
-    }
-  }, 
-  {
-    "pk": "a27", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 4.0, 
-      "eng_text": "Charter Boat"
-    }
-  }, 
-  {
-    "pk": "a6", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 1.0, 
-      "eng_text": "Swimming"
-    }
-  }, 
-  {
-    "pk": "a7", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 2.0, 
-      "eng_text": "Kayak"
-    }
-  }, 
-  {
-    "pk": "a8", 
-    "model": "gwst_app.interviewansweroption", 
-    "fields": {
-      "display_order": 3.0, 
-      "eng_text": "Sport Boat"
-    }
-  }, 
-  {
     "pk": "a28", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
@@ -871,6 +327,46 @@
     }
   }, 
   {
+    "pk": "347dac00-7b22-11df-94a8-001b210ee9bb", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 25.0, 
+      "eng_text": "1/4 day"
+    }
+  }, 
+  {
+    "pk": "39bbfccf-7b22-11df-9a97-001b210ee9bb", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 50.0, 
+      "eng_text": "1/2 day"
+    }
+  }, 
+  {
+    "pk": "40376180-7b22-11df-8ac7-001b210ee9bb", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 75.0, 
+      "eng_text": "3/4 day"
+    }
+  }, 
+  {
+    "pk": "4610b9cf-7b22-11df-856f-001b210ee9bb", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 100.0, 
+      "eng_text": "full day"
+    }
+  }, 
+  {
+    "pk": "50627ade-7b22-11df-b2b8-001b210ee9bb", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 101.0, 
+      "eng_text": "> 1 day"
+    }
+  }, 
+  {
     "pk": "a1", 
     "model": "gwst_app.questiongroupvalidator", 
     "fields": {
@@ -883,776 +379,166 @@
     }
   }, 
   {
-    "pk": "a1", 
+    "pk": "1a0015a1-7b1f-11df-865d-001b210ee9bb", 
     "model": "gwst_app.questiongroup", 
     "fields": {
-      "code": "dive_perc", 
-      "eng_text": "What percentage of your dives are", 
+      "code": "chr_GER", 
+      "eng_text": "%GER - Charter", 
       "validators": [
         "a1"
       ]
     }
   }, 
   {
-    "pk": "a2", 
-    "model": "gwst_app.questiongroup", 
-    "fields": {
-      "code": "boatVshore", 
-      "eng_text": "What percentage of your dives are", 
-      "validators": [
-        "a1"
-      ]
-    }
-  }, 
-  {
-    "pk": "a3", 
-    "model": "gwst_app.questiongroup", 
-    "fields": {
-      "code": "soc_econ", 
-      "eng_text": "Socio-Economic Expenses", 
-      "validators": [
-        "a1"
-      ]
-    }
-  }, 
-  {
-    "pk": "a4", 
-    "model": "gwst_app.questiongroup", 
-    "fields": {
-      "code": "k_lnchpct", 
-      "eng_text": "Kayak: Percentage use of this port", 
-      "validators": [
-        "a1"
-      ]
-    }
-  }, 
-  {
-    "pk": "a5", 
-    "model": "gwst_app.questiongroup", 
-    "fields": {
-      "code": "v_lnchpct", 
-      "eng_text": "Private Vessel: Percentage use of this port", 
-      "validators": [
-        "a1"
-      ]
-    }
-  }, 
-  {
-    "pk": "a6", 
-    "model": "gwst_app.questiongroup", 
-    "fields": {
-      "code": "d_lnchpct", 
-      "eng_text": "Dive: Percentage use of this port", 
-      "validators": [
-        "a1"
-      ]
-    }
-  }, 
-  {
-    "pk": "a1", 
+    "pk": 1, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "diveprtr", 
-      "eng_text": "Average number of dives per trip", 
+      "code": "int_name", 
+      "eng_text": "Interviewer's Name(s)", 
       "int_group": 1, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 1.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a35", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "diveyrsp", 
-      "eng_text": "Average number of days per year diving for this species", 
-      "int_group": 1, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a38", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "divedyyr", 
-      "eng_text": "Average number of days diving per year", 
-      "int_group": 1, 
-      "question_set": null, 
-      "display_order": 2.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 1000.0
-    }
-  }, 
-  {
-    "pk": "a32", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "dive_meth", 
-      "eng_text": "Primary dive method (we understand most do more than one type.  Answer which you do the most)", 
-      "int_group": 1, 
-      "question_set": null, 
-      "display_order": 3.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [
-        "a10", 
-        "a9"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "other", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a33", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "dive_shore", 
-      "eng_text": "What percentage of your dives are shore based?", 
-      "int_group": 1, 
-      "question_set": null, 
-      "display_order": 4.0, 
-      "required": true, 
-      "question_group": "a1", 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "0", 
-      "answer_type": "integer", 
-      "eng_tooltip": "Percentage of dives from which you start out from the mainland", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a34", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "dive_boat", 
-      "eng_text": "What percentage of your dives are from a boat?", 
-      "int_group": 1, 
-      "question_set": null, 
-      "display_order": 5.0, 
-      "required": true, 
-      "question_group": "a1", 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "0", 
-      "answer_type": "integer", 
-      "eng_tooltip": "Percentage of dives from which you start out from a boat", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a31", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "access", 
-      "eng_text": "Primary access method to dive locations", 
-      "int_group": 1, 
-      "question_set": null, 
-      "display_order": 6.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [
-        "a14", 
-        "a6", 
-        "a7", 
-        "a8"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a39", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "pr_lnch", 
-      "eng_text": "Primary launch port/site", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a36", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "days_spec", 
-      "eng_text": "Average number of days per year fishing for this species", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a2", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "launch1", 
-      "eng_text": "Other launch port/site 1", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 2.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Ports and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a26", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "launch2", 
-      "eng_text": "Other launch port/site 2", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 3.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Ports and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a27", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "launch3", 
-      "eng_text": "Other launch port/site 3", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 4.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Ports and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a28", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "launch4", 
-      "eng_text": "Other launch port/site 4", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 5.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Ports and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a29", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "years_exp", 
-      "eng_text": "How many years experience do you have fishing from a kayak?", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 6.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a30", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "days_fish", 
-      "eng_text": "How many days 'on average' do you spend each year fishing from a kayak?", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 7.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 1.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
-    }
-  }, 
-  {
-    "pk": "a37", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "days_spec", 
-      "eng_text": "Average number of days per year fishing for this species", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a12", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "boat_type", 
-      "eng_text": "Type of boat (your primary boat)", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [
-        "a15", 
-        "a16"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a13", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "reg_num", 
-      "eng_text": "Boat registration number (your primary boat)", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 2.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a14", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "yrs_op", 
-      "eng_text": "Years operating a sport boat", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 3.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a15", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "yrs_own", 
-      "eng_text": "Years owning a sport boat", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 4.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a16", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_length", 
-      "eng_text": "Vessel length in feet (your primary boat)", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 5.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 6.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 200.0
-    }
-  }, 
-  {
-    "pk": "a17", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "storage", 
-      "eng_text": "Storage location (your primary boat)", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 6.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [
-        "a11", 
-        "a12", 
-        "a13"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a18", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "homeport", 
-      "eng_text": "Primary port/ramp (dock/moorage/launch)", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 7.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a19", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "launch1", 
-      "eng_text": "Other Launch 1 (In addition to your primary)", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 8.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a20", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "launch2", 
-      "eng_text": "Other Launch 2", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 9.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a21", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "launch3", 
-      "eng_text": "Other Launch 3", 
-      "int_group": 3, 
       "question_set": null, 
       "display_order": 10.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Names of all individuals (field staff) conducting interview", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_f_name", 
+      "eng_text": "Operator's First Name", 
+      "int_group": 1, 
+      "question_set": null, 
+      "display_order": 20.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
-      "eng_tooltip": "", 
+      "eng_tooltip": "First name of Operator", 
       "val_max": null
     }
   }, 
   {
-    "pk": "a22", 
+    "pk": 3, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "launch4", 
-      "eng_text": "Other Launch 4", 
-      "int_group": 3, 
+      "code": "op_l_name", 
+      "eng_text": "Operator's Last Name", 
+      "int_group": 1, 
       "question_set": null, 
-      "display_order": 11.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a23", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "yrs_exp", 
-      "eng_text": "Years experience fishing from a sport boat", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 12.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 1.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 120.0
-    }
-  }, 
-  {
-    "pk": "a24", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "avg_ppl", 
-      "eng_text": "Average number of individuals with you on a boat per trip (not including yourself)", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 13.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 1.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a25", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "avg_days", 
-      "eng_text": "Average number of days fishing from a sport boat per year", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 14.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
-    }
-  }, 
-  {
-    "pk": "a3", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "city", 
-      "eng_text": "City/Town", 
-      "int_group": 6, 
-      "question_set": null, 
-      "display_order": 1.0, 
+      "display_order": 30.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
-      "eng_tooltip": "#", 
+      "eng_tooltip": "Last Name of Operator", 
       "val_max": null
     }
   }, 
   {
-    "pk": "a4", 
+    "pk": 4, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "state", 
-      "eng_text": "State", 
-      "int_group": 6, 
+      "code": "mail_ad", 
+      "eng_text": "Mailing Address", 
+      "int_group": 1, 
       "question_set": null, 
-      "display_order": 2.0, 
+      "display_order": 40.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
-      "val_default": "CA", 
+      "val_default": "", 
       "answer_type": "text", 
-      "eng_tooltip": "", 
+      "eng_tooltip": "Address to which we can send the operator\u2019s  maps for verification", 
       "val_max": null
     }
   }, 
   {
-    "pk": "a5", 
+    "pk": 5, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "phone", 
-      "eng_text": "Phone Number", 
-      "int_group": 6, 
+      "code": "op_phone", 
+      "eng_text": "Operator's Phone Number", 
+      "int_group": 1, 
       "question_set": null, 
-      "display_order": 3.0, 
+      "display_order": 50.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
       "answer_type": "phone", 
-      "eng_tooltip": "", 
+      "eng_tooltip": "Phone number where the operator can be reached", 
       "val_max": null
     }
   }, 
   {
-    "pk": "a6", 
+    "pk": 6, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "age", 
-      "eng_text": "Age", 
-      "int_group": 6, 
+      "code": "op_email", 
+      "eng_text": "Operator's Email Address", 
+      "int_group": 1, 
       "question_set": null, 
-      "display_order": 4.0, 
-      "required": true, 
+      "display_order": 60.0, 
+      "required": false, 
       "question_group": null, 
       "options": [], 
-      "val_min": 10.0, 
+      "val_min": null, 
       "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 120.0
+      "answer_type": "text", 
+      "eng_tooltip": "Email address where the operator can be reached", 
+      "val_max": null
     }
   }, 
   {
-    "pk": "a7", 
+    "pk": 7, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "gender", 
-      "eng_text": "Gender", 
-      "int_group": 6, 
+      "code": "op_age", 
+      "eng_text": "Operator's Age", 
+      "int_group": 1, 
       "question_set": null, 
-      "display_order": 5.0, 
+      "display_order": 70.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 12.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s age in years", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_gender", 
+      "eng_text": "Operator's Gender", 
+      "int_group": 1, 
+      "question_set": null, 
+      "display_order": 80.0, 
       "required": true, 
       "question_group": null, 
       "options": [
@@ -1667,1540 +553,13 @@
     }
   }, 
   {
-    "pk": "a131", 
+    "pk": 9, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
-      "all_resources": true, 
-      "code": "d_day_spec", 
-      "eng_text": "Number of days 'on average' spent diving for this species", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
-    }
-  }, 
-  {
-    "pk": "a114", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_trips_yr", 
-      "eng_text": "Number of days 'on average' that you dive (spear fish or hand-take) per year", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 10.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
-    }
-  }, 
-  {
-    "pk": "a115", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_yr_exp", 
-      "eng_text": "Years of experience that you have diving (spear fish or hand-take)", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 20.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a116", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_acc_mod", 
-      "eng_text": "Primary access method to your diving (spear fish or hand-take) locations", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 30.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [
-        "a14", 
-        "a27", 
-        "a6", 
-        "a7", 
-        "a8"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a117", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_pct_isl", 
-      "eng_text": "Percentage of dives (spear fish or hand-take) that are from a vessel (such as a boat, kayak, or paddleboard)", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 40.0, 
-      "required": false, 
-      "question_group": "a2", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a118", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_pct_shr", 
-      "eng_text": "Percentage of dives (spear fish or hand-take) that are shore based", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 50.0, 
-      "required": false, 
-      "question_group": "a2", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a119", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_method", 
-      "eng_text": "Primary dive (spear fish or hand-take) method", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 60.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [
-        "a10", 
-        "a9"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a167", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_port0", 
-      "eng_text": "Primary diving (spear fish or hand-take) launch port/site", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 70.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a168", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_lnchpct0", 
-      "eng_text": "Percentage of your trips from this launch port/site", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 75.0, 
-      "required": true, 
-      "question_group": "a6", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a169", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_port1", 
-      "eng_text": "Other diving (spear fish or hand-take) launch port/site 1", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 80.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a172", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_lnchpct1", 
-      "eng_text": "Percentage of your trips from launch port/site 1", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 85.0, 
-      "required": false, 
-      "question_group": "a6", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a170", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_port2", 
-      "eng_text": "Other diving (spear fish or hand-take) launch port/site 2", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 90.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a173", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_lnchpct2", 
-      "eng_text": "Percentage of your trips from launch port/site 2", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 95.0, 
-      "required": false, 
-      "question_group": "a6", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a171", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_port3", 
-      "eng_text": "Other diving (spear fish or hand-take) launch port/site 3", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 100.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a174", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "d_lnchpct3", 
-      "eng_text": "Percentage of your trips from launch port/site 3", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 105.0, 
-      "required": false, 
-      "question_group": "a6", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a132", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "v_day_spec", 
-      "eng_text": "Number of days 'on average' spent fishing for this species from a sport boat", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
-    }
-  }, 
-  {
-    "pk": "a8", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_type", 
-      "eng_text": "Type of boat that you fish from", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 10.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [
-        "a17", 
-        "a18", 
-        "a19", 
-        "a26"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a9", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_lic", 
-      "eng_text": "Oregon Marine Board boat number", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 20.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a10", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_yr_op", 
-      "eng_text": "Years (if any) that you have operated a sport boat", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 30.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "0", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a120", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_yr_own", 
-      "eng_text": "Years (if any) that  you have owned a sport boat", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 40.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "0", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a121", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_len", 
-      "eng_text": "Length (in feet) of your vessel/boat", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 50.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 6.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 200.0
-    }
-  }, 
-  {
-    "pk": "a122", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_str_loc", 
-      "eng_text": "Primary mode of boat storage", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 60.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "a11", 
-        "a12", 
-        "a13"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a128", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_yr_fish", 
-      "eng_text": "Years of experience fishing from a sport boat", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 120.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a129", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_num_pers", 
-      "eng_text": "Average number of individuals that are on the boat each trip (not including yourself)", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 130.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a130", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_days_fsh", 
-      "eng_text": "Average number of days spent fishing from a sport boat each year", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 140.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
-    }
-  }, 
-  {
-    "pk": "a123", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_homep", 
-      "eng_text": "Location of your primary launch port/site", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 170.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a162", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_lnchpct0", 
-      "eng_text": "Percentage of your launches that are from this launch port/site", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 175.0, 
-      "required": true, 
-      "question_group": "a5", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a124", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_landp_1", 
-      "eng_text": "Other launch port/site (In addition to your primary)", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 180.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a163", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_lnchpct1", 
-      "eng_text": "Percentage of your launches that are from this launch port/site", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 185.0, 
-      "required": false, 
-      "question_group": "a5", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a125", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_landp_2", 
-      "eng_text": "Other launch port/site 2", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 190.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a164", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_lnchpct2", 
-      "eng_text": "Percentage of your launches that are from this launch port/site", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 195.0, 
-      "required": false, 
-      "question_group": "a5", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a126", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_landp_3", 
-      "eng_text": "Other launch port/site 3", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 200.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a165", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_lnchpct3", 
-      "eng_text": "Percentage of your launches that are from this launch port/site", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 205.0, 
-      "required": false, 
-      "question_group": "a5", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a127", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_landp_4", 
-      "eng_text": "Other launch port/site 4", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 210.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a166", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "v_lnchpct4", 
-      "eng_text": "Percentage of your launches that are from this launch port/site", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 215.0, 
-      "required": false, 
-      "question_group": "a5", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a156", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "f_name", 
-      "eng_text": "First name", 
-      "int_group": 7, 
-      "question_set": 0, 
-      "display_order": 105.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a157", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "l_name", 
-      "eng_text": "Last name", 
-      "int_group": 7, 
-      "question_set": 0, 
-      "display_order": 106.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a103", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "city", 
-      "eng_text": "City/town", 
-      "int_group": 7, 
-      "question_set": 0, 
-      "display_order": 110.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a104", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "state", 
-      "eng_text": "State", 
-      "int_group": 7, 
-      "question_set": 0, 
-      "display_order": 120.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "OR", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a105", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "phone", 
-      "eng_text": "Phone number", 
-      "int_group": 7, 
-      "question_set": 0, 
-      "display_order": 130.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "phone", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a106", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "age", 
-      "eng_text": "Age", 
-      "int_group": 7, 
-      "question_set": 0, 
-      "display_order": 140.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 10.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 120.0
-    }
-  }, 
-  {
-    "pk": "a107", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "gender", 
-      "eng_text": "Gender", 
-      "int_group": 7, 
-      "question_set": 0, 
-      "display_order": 150.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [
-        "a4", 
-        "a5"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a133", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "k_day_spec", 
-      "eng_text": "Number of days 'on average' spent fishing for this species from a kayak or non-motorized vessel", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
-    }
-  }, 
-  {
-    "pk": "a112", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_yr_exp", 
-      "eng_text": "Years of experience fishing from a kayak or non-motorized vessel", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 50.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": "a113", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_days_fsh", 
-      "eng_text": "Days 'on average' spent each year fishing from a kayak or non-motorized vessel", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 60.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
-    }
-  }, 
-  {
-    "pk": "a108", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_port1", 
-      "eng_text": "Primary kayak or non-motorized vessel launch port/site", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 70.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Primary port and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a158", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_lnchpct1", 
-      "eng_text": "Percentage of your launches that are from this launch port/site", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 75.0, 
-      "required": true, 
-      "question_group": "a4", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a109", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_port2", 
-      "eng_text": "Other kayak or non-motorized launch port/site 1", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 80.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Ports and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a159", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_lnchpct2", 
-      "eng_text": "Percentage of your launches that are from this launch port/site", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 85.0, 
-      "required": false, 
-      "question_group": "a4", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a110", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_port3", 
-      "eng_text": "Other kayak or non-motorized launch port/site 2", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 90.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Ports and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a160", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_lnchpct3", 
-      "eng_text": "Percentage of your launches that are from this launch port/site", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 95.0, 
-      "required": false, 
-      "question_group": "a4", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a111", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_port4", 
-      "eng_text": "Other kayak or non-motorized launch port/site 3", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 100.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Ports and sites you launch your kayak from", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a161", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "k_lnchpct4", 
-      "eng_text": "Percentage of your launches that are from this launch port/site", 
-      "int_group": 8, 
-      "question_set": null, 
-      "display_order": 105.0, 
-      "required": false, 
-      "question_group": "a4", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a175", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "expenses", 
-      "eng_text": "Please estimate your expenses for all recreational fishing activities on the coast in which you participated for the year 2008 (NOT 2009) in whole dollars", 
-      "int_group": 9, 
-      "question_set": 0, 
-      "display_order": 10.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "money", 
-      "eng_tooltip": "hotel, food, bait, fees, gear, etc...", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a176", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "exp_comp", 
-      "eng_text": "Please estimate how your recreational fishing related expenditures compare to previous years", 
-      "int_group": 9, 
-      "question_set": 0, 
-      "display_order": 20.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "a21", 
-        "a22", 
-        "a23", 
-        "a24", 
-        "a25"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a177", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_trans", 
-      "eng_text": "   - Private or public transportation", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 30.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a178", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_food_re", 
-      "eng_text": "   - Food - restaurants", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 40.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a179", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_food_gr", 
-      "eng_text": "   - Food - grocery stores, other", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 50.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a180", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_lodging", 
-      "eng_text": "   - Lodging & camping", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 60.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a181", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_fuel", 
-      "eng_text": "   - Boat/car fuel", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 70.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a182", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_heat_f", 
-      "eng_text": "   - Heating & cooking fuel", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 80.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a183", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_charter", 
-      "eng_text": "   - Party/charter/guide fees", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 90.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a184", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_boat_fe", 
-      "eng_text": "   - Land access/boat launch fees", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 100.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a185", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_equip_r", 
-      "eng_text": "   - Equipment rental", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 110.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a186", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_bait", 
-      "eng_text": "   - Bait & ice", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 120.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a187", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_tackle", 
-      "eng_text": "   - Gear & tackle", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 130.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a188", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_taxidrm", 
-      "eng_text": "   - Processing/taxidermy", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 140.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a189", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_club_fe", 
-      "eng_text": "   - Membership & club dues", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 150.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a190", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_storage", 
-      "eng_text": "   - Moorage/storage", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 160.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a191", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_license", 
-      "eng_text": "   - License, stamps, tags, etc...", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 170.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a192", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_maintnc", 
-      "eng_text": "   - Boat maintenance/expenses", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 180.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a193", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_powboat", 
-      "eng_text": "   - Power boat purchase", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 190.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a194", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_np_boat", 
-      "eng_text": "   - Non-power boat purchase", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 200.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a195", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_electro", 
-      "eng_text": "   - Electronics", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 210.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "GPS, fish locator, radio, etc...", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a196", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "se_misc", 
-      "eng_text": "   - Miscellaneous", 
-      "int_group": 9, 
-      "question_set": 1, 
-      "display_order": 220.0, 
-      "required": false, 
-      "question_group": "a3", 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "0", 
-      "answer_type": "percent", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "a198", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
       "all_resources": false, 
-      "code": "se_fup", 
-      "eng_text": "May we contact you at a later date to see if you would be interested in participating in this additional component of our project?\r\n", 
-      "int_group": 10, 
+      "code": "ow_op", 
+      "eng_text": "Does the owner generally operate the vessel(s)", 
+      "int_group": 2, 
       "question_set": null, 
       "display_order": 10.0, 
       "required": true, 
@@ -3217,112 +576,469 @@
     }
   }, 
   {
-    "pk": "86c6cb61-7413-11df-9582-001b210ee9bb", 
+    "pk": 10, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "chr_pie", 
-      "eng_text": "Do you like pie", 
-      "int_group": 11, 
+      "code": "ow_numboat", 
+      "eng_text": "Number of charter boats", 
+      "int_group": 2, 
       "question_set": null, 
-      "display_order": 1.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [
-        "a1", 
-        "a28"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "of course you do!", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": "86cb864f-7413-11df-ad84-001b210ee9bb", 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "chr_days", 
-      "eng_text": "How many days on average do you do this each year", 
-      "int_group": 11, 
-      "question_set": null, 
-      "display_order": 1.0, 
+      "display_order": 20.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": 1.0, 
       "val_default": "", 
       "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
+      "eng_tooltip": "Number of charter boats the operator owns", 
+      "val_max": 100.0
     }
   }, 
   {
-    "pk": "ad68a040-7413-11df-9cab-001b210ee9bb", 
+    "pk": 11, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "chr_main", 
-      "eng_text": "Select a thing", 
-      "int_group": 12, 
+      "code": "ow_yearown", 
+      "eng_text": "Years of ownership", 
+      "int_group": 2, 
       "question_set": null, 
-      "display_order": 1.0, 
+      "display_order": 30.0, 
       "required": true, 
       "question_group": null, 
-      "options": [
-        "a11", 
-        "a15", 
-        "a18", 
-        "a19", 
-        "a20", 
-        "a23", 
-        "a26", 
-        "a7", 
-        "a8"
-      ], 
-      "val_min": null, 
+      "options": [], 
+      "val_min": 0.0, 
       "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Number of years the owner has owned ANY charter boat(s)", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_grosrev", 
+      "eng_text": "Average annual gross revenue", 
+      "int_group": 2, 
+      "question_set": null, 
+      "display_order": 40.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "Owner's average annual gross revenue from both consumptive and non-consumptive charter activities ", 
       "val_max": null
     }
   }, 
   {
-    "pk": "a1", 
-    "model": "gwst_app.interviewinstructions", 
+    "pk": 13, 
+    "model": "gwst_app.interviewquestion", 
     "fields": {
+      "all_resources": false, 
+      "code": "ow_pctrev", 
+      "eng_text": "Percentage of gross revenue from non-consumptive activities", 
+      "int_group": 2, 
       "question_set": null, 
-      "eng_text": "Please answer these questions in relation to dive/spear angling only. The information you provide will be kept confidential.", 
-      "int_group": 1
+      "display_order": 50.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "Owner's percentage of annual gross revenue from non-consumptive charter activities", 
+      "val_max": 100.0
     }
   }, 
   {
-    "pk": "a2", 
-    "model": "gwst_app.interviewinstructions", 
+    "pk": 14, 
+    "model": "gwst_app.interviewquestion", 
     "fields": {
+      "all_resources": false, 
+      "code": "ow_pctcst", 
+      "eng_text": "Percentage of total annual operating costs goes towards non-consumptive trips", 
+      "int_group": 2, 
       "question_set": null, 
-      "eng_text": "Please answer these questions in relation to kayak angling only. The information you provide will be kept confidential.", 
-      "int_group": 2
+      "display_order": 60.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "What percent of total annual operating costs goes towards non-consumptive trips", 
+      "val_max": 100.0
     }
   }, 
   {
-    "pk": "a3", 
-    "model": "gwst_app.interviewinstructions", 
+    "pk": 15, 
+    "model": "gwst_app.interviewquestion", 
     "fields": {
+      "all_resources": false, 
+      "code": "ow_crew", 
+      "eng_text": "Percentage of total GER goes to operating cost: crew/labor", 
+      "int_group": 2, 
       "question_set": null, 
-      "eng_text": "Please answer these questions in relation to private vessel angling only. The information you provide will be kept confidential.", 
-      "int_group": 3
+      "display_order": 70.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "What percent of total annual operating costs (consumptive and non-consumptive combined) goes towards crew/labor ", 
+      "val_max": 100.0
     }
   }, 
   {
-    "pk": "a4", 
-    "model": "gwst_app.interviewinstructions", 
+    "pk": 16, 
+    "model": "gwst_app.interviewquestion", 
     "fields": {
+      "all_resources": false, 
+      "code": "ow_fuel", 
+      "eng_text": "Percentage of total GER goes to operating cost: fuel", 
+      "int_group": 2, 
       "question_set": null, 
-      "eng_text": "Please answer these general questions. The information you provide will be kept confidential.", 
-      "int_group": 6
+      "display_order": 80.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "What percent of total annual operating costs (consumptive and non-consumptive combined) goes towards fuel", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_other", 
+      "eng_text": "Percent of total GER goes to all other operating costs", 
+      "int_group": 2, 
+      "question_set": null, 
+      "display_order": 90.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "What percent of total annual operating costs (consumptive and non-consumptive combined) goes towards all other operating costs, which excludes fuel and crew/labor", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_crewnon", 
+      "eng_text": "Number of crew used for non-consumptive trips", 
+      "int_group": 2, 
+      "question_set": null, 
+      "display_order": 110.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Average number of paid crew members present on non-consumptive trips", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_crewcon", 
+      "eng_text": "Number of crew used for consumptive trips", 
+      "int_group": 2, 
+      "question_set": null, 
+      "display_order": 120.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Average number of paid crew members present on consumptive fishing trips", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_inchrtr", 
+      "eng_text": "Percentage income from overall charter boat operations", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 10.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "The percentage of the operator\u2019s total income that is derived from consumptive and non-consumptive charter boat operation", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "ac_pcttrip", 
+      "eng_text": "Percentage of annual trips", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 10.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "Percentage of annual trips conducted as this type of trip ", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_inc_non", 
+      "eng_text": "Percentage charter operation income from non-consumptive activities", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 20.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "The percentage of the operator\u2019s charter income that is derived from non-consumptive activities", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "ac_triplen", 
+      "eng_text": "Trip Length", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 20.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "347dac00-7b22-11df-94a8-001b210ee9bb", 
+        "39bbfccf-7b22-11df-9a97-001b210ee9bb", 
+        "40376180-7b22-11df-8ac7-001b210ee9bb", 
+        "4610b9cf-7b22-11df-856f-001b210ee9bb", 
+        "50627ade-7b22-11df-b2b8-001b210ee9bb"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "Average time taken for each trip", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_doc_num", 
+      "eng_text": "Vessel document number", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 30.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "5-7 character alphanumeric code", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "ac_cost", 
+      "eng_text": "Cost to passenger", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 30.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "How much do you charge for a trip for this particular activity", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_v_name", 
+      "eng_text": "Vessel name(s)", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 40.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Name of the vessel(s)", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_v_leng", 
+      "eng_text": "Vessel length (feet)", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 50.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 6.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "Length of the vessel in feet ", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_hm_port", 
+      "eng_text": "Home port", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 60.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Where the operator docks or moorages", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_numboat", 
+      "eng_text": "Number of charter boats operated", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 70.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Number of charter boats the individual operates", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_yearsop", 
+      "eng_text": "Years of operating charter boats", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 80.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Number of years the individual has operated charter boats", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_avgdays", 
+      "eng_text": "Average number of days operating non-consumptive charter boat trips per year", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 90.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Average number of days the operator spends operating a non-consumptive charter trip each year", 
+      "val_max": 365.0
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_numpass", 
+      "eng_text": "Average number of passengers on a boat per trip", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 100.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Average number of passengers on the charter boat during each non-consumptive trip", 
+      "val_max": 200.0
     }
   }, 
   {

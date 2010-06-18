@@ -25,7 +25,16 @@
         {% endif %}
         <p><div class="fieldWrapper">
             {{ field.errors }}
-            {{ field.label_tag }}: {{ field }}
+            <table>
+                <tr>
+                    <td style='width:{{ q_width }}px'>
+                        {{ field.label_tag }}:
+                    </td>
+                    <td>
+                        {{ field }}
+                    </td>
+                </tr>
+            </table>
         </div></p>
     {% endfor %}   
     

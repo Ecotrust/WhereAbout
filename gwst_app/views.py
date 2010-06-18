@@ -52,17 +52,22 @@ def handleSelectInterview(request,selected_interview):
         status.save()
         
         # create group records for any required groups
-        required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
+        # required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
+        all_groups = InterviewGroup.objects.filter(interview=selected_interview)
         
-        for group in required_groups:
+        #for group in required_groups:
+        for group in all_groups:
             
             membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=group)
             membership.user = request.session['interviewee']
             membership.int_group = group
-            if (group.name != 'Main Questions'):
-                membership.percent_involvement = 0
-            else :
-                membership.percent_involvement = 101
+            if (group.required_group == True) :
+                if (group.name != 'Main Questions'):
+                    membership.percent_involvement = 0
+                else :
+                    membership.percent_involvement = 101
+            else:
+                membership.percent_involvement = 50
             membership.save()
     
         # redirect to assign_groups
@@ -592,7 +597,7 @@ def answer_resource_questions(request, group_id, next_url=None):
             else:
                 return HttpResponseRedirect('/group_status#main_menu')
         
-    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions}))   
+    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':165}))   
 
 @login_required
 def draw_group_resources(request, group_id):
