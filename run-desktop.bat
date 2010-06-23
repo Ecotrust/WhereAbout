@@ -1,4 +1,4 @@
-set path=%PATH%;%~dp0lib
+set path=%SystemRoot%\system32;%SystemRoot%;%~dp0lib
 
 IF NOT "%GDAL_DATA%" == "" GOTO CHECK_FOR_DB
 

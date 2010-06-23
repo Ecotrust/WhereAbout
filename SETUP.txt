@@ -32,6 +32,8 @@ for python 2.5:
 rename media folder site-media to avoid conflict with admin media
 update MEDIA_ROOT in local_settings to os.path.abspath(os.path.dirname(sys.argv[0])) + '/site-media';
 
+Check that DEBUG = True in local_settings.py
+
 recompress javascript - manage.py synccompress
 
 setup.py py2exe
