@@ -8,7 +8,7 @@
 #DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 SPATIALITE_LIBRARY_PATH = 'libspatialite-1.dll'
-DESKTOP_BUILD = False
+DESKTOP_BUILD = True
 FULL_ADMIN = False
 
 AUTH_PROFILE_MODULE = 'gwst_app.userprofile'
@@ -70,6 +70,7 @@ TILE_BASE = os.path.abspath(os.path.dirname(sys.argv[0])) + '/tiles/'
 TEMPLATE_DIRS = ( # use os.path.abspath(os.path.dirname(sys.argv[0])) to get a directory root that will be correct for py2exe'd version
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_app/templates/',
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/registration_custom/templates/',
+    os.path.abspath(os.path.dirname(sys.argv[0])) +'/admin_utils/templates/',
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/templates/', # for admin, in desktop configuration
     #os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_surveymonkey/templates/',
     #'/usr/local/django-trunk/django/contrib/gis/templates/'
