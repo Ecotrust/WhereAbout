@@ -857,6 +857,7 @@ def finalize_interview(request,id):
 
     # make sure the user has a valid session in-progress
     try:
+    
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
         
         status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
@@ -876,7 +877,7 @@ def finalize_interview(request,id):
     if request.method == 'GET':
 
         # make sure this interview is the current one for this user session
-        if str(id) == request.session['interview'].id:
+        if str(id) == str(request.session['interview'].id):
             # get the interviewstatus object
             int_status = InterviewStatus.objects.get(user=request.session['interviewee'],interview=id)
             int_status.completed = True
