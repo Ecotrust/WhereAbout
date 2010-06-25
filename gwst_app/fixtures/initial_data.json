@@ -1,5 +1,29 @@
 [
   {
+    "pk": "d8c8b880-80a0-11df-bbc9-001b210ee9bb", 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  }, 
+  {
+    "pk": "60807c00-80a0-11df-b9d0-001b210ee9bb", 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  }, 
+  {
+    "pk": "e9bbc15e-7fd2-11df-a082-001b210ee9bb", 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  }, 
+  {
     "pk": "e6502c5e-7afe-11df-aaa3-001b210ee9bb", 
     "model": "sites.site", 
     "fields": {
@@ -207,7 +231,7 @@
       "name": "Charter Boat Owner", 
       "is_user_group": false, 
       "required_group": false, 
-      "question_width": 275, 
+      "question_width": 425, 
       "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": false, 
@@ -390,6 +414,17 @@
     }
   }, 
   {
+    "pk": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+    "model": "gwst_app.questiongroup", 
+    "fields": {
+      "code": "co_pctrev", 
+      "eng_text": "Charter owner's percentage of gross revenue", 
+      "validators": [
+        "a1"
+      ]
+    }
+  }, 
+  {
     "pk": 1, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -560,7 +595,7 @@
       "code": "ow_op", 
       "eng_text": "Does the owner generally operate the vessel(s)", 
       "int_group": 2, 
-      "question_set": null, 
+      "question_set": 1, 
       "display_order": 10.0, 
       "required": true, 
       "question_group": null, 
@@ -583,7 +618,7 @@
       "code": "ow_numboat", 
       "eng_text": "Number of charter boats", 
       "int_group": 2, 
-      "question_set": null, 
+      "question_set": 1, 
       "display_order": 20.0, 
       "required": true, 
       "question_group": null, 
@@ -603,7 +638,7 @@
       "code": "ow_yearown", 
       "eng_text": "Years of ownership", 
       "int_group": 2, 
-      "question_set": null, 
+      "question_set": 1, 
       "display_order": 30.0, 
       "required": true, 
       "question_group": null, 
@@ -623,7 +658,7 @@
       "code": "ow_grosrev", 
       "eng_text": "Average annual gross revenue", 
       "int_group": 2, 
-      "question_set": null, 
+      "question_set": 1, 
       "display_order": 40.0, 
       "required": true, 
       "question_group": null, 
@@ -640,18 +675,178 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "ow_pctrev", 
-      "eng_text": "Percentage of gross revenue from non-consumptive activities", 
+      "code": "ow_revpct0", 
+      "eng_text": "Percentage of gross revenue from WHALE WATCHING", 
       "int_group": 2, 
-      "question_set": null, 
+      "question_set": 2, 
       "display_order": 50.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Owner's percentage of annual gross revenue from non-consumptive charter whale watching", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_revpct1", 
+      "eng_text": "Percentage of gross revenue from BIRD WATCHING", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 51.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from bird watching", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_revpct2", 
+      "eng_text": "Percentage of gross revenue from MARINE MAMMAL VIEWING", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 52.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from marine mammal viewing", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_revpct3", 
+      "eng_text": "Percentage of gross revenue from LEISURE CRUISING", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 53.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from leisure cruising", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_revpct4", 
+      "eng_text": "Operator\u2019s percentage of annual gross revenue from GLASS BOTTOM BOATING", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 54.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from glass bottom boat cruises", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_revpct5", 
+      "eng_text": "Operator\u2019s percentage of annual gross revenue from DIVING", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 55.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from diving", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_revpct6", 
+      "eng_text": "Operator\u2019s percentage of annual gross revenue from OTHER", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 56.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from other non-consumptive activities", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_rev_c", 
+      "eng_text": "Percentage of gross revenue from FISHING", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 59.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from consumptive charter activities like fishing", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_p_rev_t", 
+      "eng_text": "Percentage of gross revenue for total annual operating costs ", 
+      "int_group": 2, 
+      "question_set": 3, 
+      "display_order": 60.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": 0.0, 
       "val_default": "", 
       "answer_type": "decimal", 
-      "eng_tooltip": "Owner's percentage of annual gross revenue from non-consumptive charter activities", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue that goes towards both consumptive and non-consumptive operating costs", 
       "val_max": 100.0
     }
   }, 
@@ -661,10 +856,10 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_pctcst", 
-      "eng_text": "Percentage of total annual operating costs goes towards non-consumptive trips", 
+      "eng_text": "Percentage of total annual operating costs for non-consumptive trips", 
       "int_group": 2, 
-      "question_set": null, 
-      "display_order": 60.0, 
+      "question_set": 3, 
+      "display_order": 70.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -681,10 +876,10 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_crew", 
-      "eng_text": "Percentage of total GER goes to operating cost: crew/labor", 
+      "eng_text": "Percentage of non-consumptive operating costs for: crew/labor ", 
       "int_group": 2, 
-      "question_set": null, 
-      "display_order": 70.0, 
+      "question_set": 3, 
+      "display_order": 80.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -701,10 +896,10 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_fuel", 
-      "eng_text": "Percentage of total GER goes to operating cost: fuel", 
+      "eng_text": "Percentage of total non-consumptive operating costs goes for: fuel ", 
       "int_group": 2, 
-      "question_set": null, 
-      "display_order": 80.0, 
+      "question_set": 3, 
+      "display_order": 90.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -716,26 +911,6 @@
     }
   }, 
   {
-    "pk": 17, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "ow_other", 
-      "eng_text": "Percent of total GER goes to all other operating costs", 
-      "int_group": 2, 
-      "question_set": null, 
-      "display_order": 90.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "What percent of total annual operating costs (consumptive and non-consumptive combined) goes towards all other operating costs, which excludes fuel and crew/labor", 
-      "val_max": 100.0
-    }
-  }, 
-  {
     "pk": 19, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -743,8 +918,8 @@
       "code": "ow_crewnon", 
       "eng_text": "Number of crew used for non-consumptive trips", 
       "int_group": 2, 
-      "question_set": null, 
-      "display_order": 110.0, 
+      "question_set": 3, 
+      "display_order": 100.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -763,8 +938,8 @@
       "code": "ow_crewcon", 
       "eng_text": "Number of crew used for consumptive trips", 
       "int_group": 2, 
-      "question_set": null, 
-      "display_order": 120.0, 
+      "question_set": 3, 
+      "display_order": 110.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
