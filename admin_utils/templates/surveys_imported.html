@@ -21,8 +21,8 @@
 {% block content %}
   <div id="content-main">
     <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
-      <p> {{ output }} </p>
-      {% if success == 0 %}
+      {% if success %}
+        <p> {{ output }} </p>
         <p>The <b>{{ fixture }}</b> fixture was successfully loaded into the database.</p>
       {% else %}
         <p>The <b>{{ fixture }}</b> fixture failed to load.</p>
