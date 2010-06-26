@@ -88,6 +88,8 @@ import email.quoprimime
 import django.core.cache.backends.locmem
 import django.templatetags
 import django.templatetags.i18n
+import django.core.management
+import django.core.management.commands.loaddata
 
 import copy
 import urls
