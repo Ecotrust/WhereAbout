@@ -1,5 +1,13 @@
 [
   {
+    "pk": "0e237f80-80a9-11df-9407-001b210ee9bb", 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  }, 
+  {
     "pk": "d8c8b880-80a0-11df-bbc9-001b210ee9bb", 
     "model": "sites.site", 
     "fields": {
@@ -116,7 +124,7 @@
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
-      "select_description": "diving", 
+      "select_description": "", 
       "code": "chr_div", 
       "name": "diving"
     }
@@ -126,7 +134,7 @@
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
-      "select_description": "watching whales", 
+      "select_description": "", 
       "code": "chr_wha", 
       "name": "whale watching"
     }
@@ -136,7 +144,7 @@
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
-      "select_description": "watching birds", 
+      "select_description": "", 
       "code": "bird_watch", 
       "name": "bird watching"
     }
@@ -146,7 +154,7 @@
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
-      "select_description": "viewing marine mammals", 
+      "select_description": "", 
       "code": "mammal_vie", 
       "name": "marine mammal viewing"
     }
@@ -156,7 +164,7 @@
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
-      "select_description": "cruising leisurely", 
+      "select_description": "", 
       "code": "leisure", 
       "name": "leisure cruise"
     }
@@ -166,7 +174,7 @@
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
-      "select_description": "boat with glass bottom", 
+      "select_description": "", 
       "code": "glass_bott", 
       "name": "glass bottom boat"
     }
@@ -176,7 +184,7 @@
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
-      "select_description": "other", 
+      "select_description": "", 
       "code": "other", 
       "name": "other"
     }
