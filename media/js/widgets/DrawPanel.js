@@ -32,10 +32,10 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         return html_text;
     },
     
-    getHtmlText2: function() {
-        var html_text_2 = '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a></p>';
-        return html_text_2;
-    },
+    // getHtmlText2: function() {
+        // var html_text_2 = '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a></p>';
+        // return html_text_2;
+    // },
     onRender: function(){
     
         this.header_panel = new Ext.Panel({  
@@ -61,12 +61,12 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
             id: 'draw_table_panel'
         });
         
-        this.lower_panel = new Ext.Panel({
-			html: this.getHtmlText2(),
-            id: 'draw_lower_panel',
-			style: 'margin: 10px',
-			border: false
-		});
+        // this.lower_panel = new Ext.Panel({
+			// html: this.getHtmlText2(),
+            // id: 'draw_lower_panel',
+			// style: 'margin: 10px',
+			// border: false
+		// });
         
         this.button_panel = new gwst.widgets.BackContButtons ({
             back_handler: this.backBtnClicked.createDelegate(this)
@@ -76,7 +76,7 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.add(this.header_panel);
 		this.add(this.inner_panel);
         this.add(this.table_panel);
-        this.add(this.lower_panel);
+        // this.add(this.lower_panel);
         this.add(this.button_panel);
         
         // Call parent (required)

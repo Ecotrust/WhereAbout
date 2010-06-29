@@ -42,15 +42,15 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
         return html_text;
     },
     
-    getDrawVideoHtml: function() {
-        var html_text_2 = '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.draw_help_url +'" target="_blank">View Video Demonstration</a></p>';
-        return html_text_2;
-    },
+    // getDrawVideoHtml: function() {
+        // var html_text_2 = '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.draw_help_url +'" target="_blank">View Video Demonstration</a></p>';
+        // return html_text_2;
+    // },
     
-    getDraw2VideoHtml: function() {
-        var html_text_3 = '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a></p>';
-        return html_text_3;
-    },
+    // getDraw2VideoHtml: function() {
+        // var html_text_3 = '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a></p>';
+        // return html_text_3;
+    // },
     
     deleteCheck: function(btn, text) {
         if(btn == 'yes') {
@@ -176,21 +176,21 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             xtype: 'gwst-draw-instruction-panel'
         });
         
-        this.lower_instruction_panel = new Ext.Panel({
-			html: this.getDrawVideoHtml(),
-            id: 'draw_extended_lower_instruction_panel',
-			style: 'margin: 10px',
-			border: false
-		});
+        // this.lower_instruction_panel = new Ext.Panel({
+			// html: this.getDrawVideoHtml(),
+            // id: 'draw_extended_lower_instruction_panel',
+			// style: 'margin: 10px',
+			// border: false
+		// });
         
-        this.instruction_panel.add(this.lower_instruction_panel);
+        // this.instruction_panel.add(this.lower_instruction_panel);
         
-        this.lower_panel = new Ext.Panel({
-			html: this.getDraw2VideoHtml(),
-            id: 'draw_extended_lower_panel',
-			style: 'margin: 10px',
-			border: false
-		});
+        // this.lower_panel = new Ext.Panel({
+			// html: this.getDraw2VideoHtml(),
+            // id: 'draw_extended_lower_panel',
+			// style: 'margin: 10px',
+			// border: false
+		// });
         
         gwst.settings.shapeStore.on('update', this.updateStatus, this);
         gwst.settings.shapeStore.on('remove', this.updateStatus, this);
@@ -203,7 +203,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 
         this.add(this.header_panel);
 		this.add(this.inner_panel);
-        this.add(this.lower_panel);
+        // this.add(this.lower_panel);
         this.add(this.instruction_panel);
         this.add(this.d2_inner_grid_panel); 
         this.hidePennyColumn();

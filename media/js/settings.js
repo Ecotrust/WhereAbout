@@ -33,11 +33,11 @@ gwst.settings.urls = {
 	shapes: '/shapes/',
 	shape_validate: '/shape/validate/',
 	region: '/region/',
-    group_draw_settings: '/draw_settings/',   //URL to fetch runtime settings
-    nav_help: '/video/navigation',
-    draw_help: '/video/starting_drawing',
-    draw_2_help: '/video/drawing',
-    penny_help: '/video/allocating_pennies'
+    group_draw_settings: '/draw_settings/'//,   //URL to fetch runtime settings
+    // nav_help: '/video/navigation',
+    // draw_help: '/video/starting_drawing',
+    // draw_2_help: '/video/drawing',
+    // penny_help: '/video/allocating_pennies'
 };
 
 /*

@@ -71,8 +71,8 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
                 html: '<p>c. Get as close as you can to your '+ this.shape_name +', then press the continue button.</p>'
             }, {
                 html: ''
-            },{
-                html: '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a>'
+            // },{
+                // html: '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a>'
             }]
         });
         
