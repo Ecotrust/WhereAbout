@@ -1,5 +1,13 @@
 [
   {
+    "pk": "66abcc40-830e-11df-bfe9-001b210ee9bb", 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  }, 
+  {
     "pk": "0e237f80-80a9-11df-9407-001b210ee9bb", 
     "model": "sites.site", 
     "fields": {
@@ -198,15 +206,15 @@
       "shape_name_plural": "activity areas", 
       "region": "a2", 
       "resource_name_plural": "activities", 
-      "draw_shape_text": "INTERVIEW: DRAW SHAPE TEXT", 
+      "draw_shape_text": "", 
       "resource_action": "do", 
       "resource_name": "activity", 
       "shape_name": "activity area", 
       "active": true, 
       "organization": "Ecotrust", 
-      "assign_groups_text": "INTERVIEW: ASSIGN GROUPS TEXT", 
-      "group_status_text": "INTERVIEW: GROUP STATUS TEXT", 
-      "interview_complete_text": "INTERVIEW: INTERVIEW COMPLETE TEXT", 
+      "assign_groups_text": "", 
+      "group_status_text": "MAIN MENU: Each group of questions will be presented one at a time. Before moving on to the next group, you must finalize your current group. You may review or even reopen a 'finalized' group later if you change your mind.  You cannot complete the survey until all required groups are finalized.  You are free to skip any groups that give you the option.", 
+      "interview_complete_text": "This survey is now complete.  I you have any questions or concerns, please feel free to contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a>", 
       "description": "Non-Consumptive desktop survey (Intercept)"
     }
   }, 
@@ -219,7 +227,7 @@
       "name": "Main Questions", 
       "is_user_group": false, 
       "required_group": true, 
-      "question_width": 100, 
+      "question_width": 200, 
       "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": false, 
