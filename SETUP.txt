@@ -8,6 +8,8 @@ Get precompiled binaries at: http://www.gaia-gis.it/spatialite/binaries.html
 
 Install pysqlite2 at: http://code.google.com/p/pysqlite/downloads/list
 
+Install the Python Imaging Library (PIL) : http://www.pythonware.com/products/pil/
+
 Check that local_settings.py, cdb-spatialite.bat, and ddb-spatialite.bat all reference the right database name
 	and that local_settings has the correct DATABASE_ENGINE 
 		(like 'django.contrib.gis.db.backends.spatialite')
@@ -43,9 +45,4 @@ dist/run-desktop.bat to run
 
 
 
-Debugging 
-=========
-
-OGR error on shape validate: 
-likely gdal_data folder was not present in trunk when building, or GDAL_DATA environment variable issue
 

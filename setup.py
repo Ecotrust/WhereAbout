@@ -91,6 +91,7 @@ class InnoScript:
         #    print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"; WorkingDir: {app}' % \
         #          (self.name, path)       
         print >> ofi, 'Name: "{group}\%s"; Filename: "{app}\\run-desktop.bat"' % self.name		
+        print >> ofi, 'Name: "{group}\User Guide"; Filename: "{app}\site-media\README.doc"'		
         print >> ofi, 'Name: "{group}\Uninstall %s"; Filename: "{uninstallexe}"' % self.name
 
     def compile(self):

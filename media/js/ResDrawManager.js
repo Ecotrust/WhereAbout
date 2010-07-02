@@ -34,6 +34,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * once loaded
      */
     startInit: function(){
+        this.createError();
     	this.on('settings-loaded', this.finInit, this);
     	this.on('shape-saved', this.startAnotherShapeStep, this);
         this.fetchSettings();
@@ -44,7 +45,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.hideWait();
         this.loadViewport();
         this.startSplashStep();  
-        this.createError();
         this.loadQuitWin();
         this.mapPanel.showPanZoomBar();
     },
@@ -68,9 +68,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /******************** Unfinished Resource Start Step *******************/
     
     startUnfinishedResourceStartStep: function() {
-        if(!this.layerWin) {
-        	this.loadMapLayerWin();    	
-        }
     	this.loadUnfinishedResourceStartPanel();
     },
     
@@ -511,45 +508,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.viewport.setWestPanel(this.unfinResStartPanel); 
     },
     
-    /* Load the map layer toggle window */
-    loadMapLayerWin: function() {
-		var sm = new Ext.grid.CheckboxSelectionModel();
-		//Synch layer window checkbox events with map layers
-		sm.on('rowselect', this.mapLayerToggled, this);
-		sm.on('rowdeselect', this.mapLayerToggled, this);
-
-		this.layerWin = new Ext.Window({
-			items: [
-		        new Ext.grid.GridPanel({
-		        	hideHeaders: true,
-		            store: gwst.settings.layerStore,
-		            cm: new Ext.grid.ColumnModel({
-		                defaults: {
-		                    width: 120,
-		                    sortable: true
-		                },
-		                columns: [
-		                    sm,
-		                    {header: "Title", dataIndex: 'title'}
-		                ]
-		            }),
-		            sm: sm,
-		            columnLines: true,
-		            iconCls:'icon-grid'
-		      })
-			],
-	        width: 138,
-	        height: 39,
-	        resizable: false,
-	        collapsible: false,
-	        draggable: false,
-	        closable: false
-	    });		
-		
-		this.layerWin.show();		
-		this.layerWin.alignTo(document.body, "tr-tr", this.layerWinOffset);		    			    	    
-    },
-    
     loadResSelPanel: function() {
     	if (!this.resSelPanel) {
             this.resSelPanel = new gwst.widgets.SelResPanel({
@@ -598,9 +556,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
 	
     loadNavPanel: function() {
-        if(!this.layerWin) {
-        	this.loadMapLayerWin();    	
-        }
         if (!this.navPanel) {
             this.navPanel = new gwst.widgets.NavigatePanel({
                 xtype: 'gwst-navigate-panel',

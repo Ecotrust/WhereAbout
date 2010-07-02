@@ -16,6 +16,8 @@ import datetime
 def login(request, template_name='registration/login.html'):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/select_interview/')
+    if settings.DESKTOP_BUILD:   #For Desktop, we want to force user to log in through admin.
+        return HttpResponseRedirect('/admin/')
     request.user.SELF_REGISTRATION = settings.SELF_REGISTRATION
     from django.contrib.auth.views import login as default_login
     return default_login(request, template_name)
@@ -105,12 +107,16 @@ def handleSelectInterview(request,selected_interview):
         return HttpResponseRedirect('/group_status/')
                 
 
-@login_required
+# @login_required
 def select_interview(request):
 
     # Post-login checking to make sure a properly-authorized interviewee is set in the session
     # If user came via login-as, interviewee should be set, and request.user should be a staff user
     # otherwise user came from login, and interviewee _must_ be set to the request.user.
+    
+    
+    if not request.user.is_authenticated(): 
+        return HttpResponseRedirect('/accounts/login/')
     try:
         if request.session['interviewee'] != request.user:
             if not request.user.is_staff:
