@@ -6,11 +6,11 @@ IF NOT "%GDAL_DATA%" == "" GOTO CHECK_FOR_DB
 set GDAL_DATA=%~dp0gdal_data
 
 :CHECK_FOR_DB
-IF EXIST "%APPDATA%\Ecotrust\db.sqlite" GOTO RUN_APP
+IF EXIST "%ALLUSERSPROFILE%\Application Data\Ecotrust\db.sqlite" GOTO RUN_APP
 
-IF NOT EXIST "%APPDATA%\Ecotrust\NUL" mkdir "%APPDATA%\Ecotrust"
+IF NOT EXIST "%ALLUSERSPROFILE%\Application Data\Ecotrust\NUL" mkdir "%ALLUSERSPROFILE%\Application Data\Ecotrust"
 
-copy "%~dp0database\db.sqlite" "%APPDATA%\Ecotrust\db.sqlite"
+copy "%~dp0database\db.sqlite" "%ALLUSERSPROFILE%\Application Data\Ecotrust\db.sqlite"
 
 :RUN_APP
 %~d0

@@ -49,6 +49,7 @@ def compile_survey_fixture():
     #get all records from gwst_userstatus (InterviewStatus)
     interviews = InterviewStatus.objects.filter(completed=True)
     survey_objects = []
+    survey_objects.extend(res for res in Resource.objects.all())
     for interview in interviews:
         #compile survey entries into one list
         user = User.objects.get(pk=interview.user_id)
@@ -57,7 +58,7 @@ def compile_survey_fixture():
         survey_objects.extend(InterviewGroupMembership.objects.filter(user=user))
         #survey_objects.extend(GroupMemberResource.objects.all()) #not sure this is what we want...
         #how about the following??
-        survey_objects.extend([res for res in GroupMemberResource.objects.all() if res.user()==user.username])
+        survey_objects.extend([gmres for gmres in GroupMemberResource.objects.all() if gmres.user()==user.username])
         survey_objects.extend(InterviewAnswer.objects.filter(user=user))
         survey_objects.extend(InterviewShape.objects.filter(user=user))
     #serialize the survey objects into json 

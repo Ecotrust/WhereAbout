@@ -1,5 +1,29 @@
 [
   {
+    "pk": "4702df00-8ecb-11df-88de-001b210ee9bb", 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  }, 
+  {
+    "pk": "05a8ea8f-891c-11df-a2f5-001b210ee9bb", 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  }, 
+  {
+    "pk": "d0b1490f-861c-11df-bc01-001b210ee9bb", 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  }, 
+  {
     "pk": "a1", 
     "model": "sites.site", 
     "fields": {
@@ -64,7 +88,7 @@
     }
   }, 
   {
-    "pk": 26, 
+    "pk": "26", 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
@@ -74,7 +98,7 @@
     }
   }, 
   {
-    "pk": 27, 
+    "pk": "27", 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
@@ -84,7 +108,7 @@
     }
   }, 
   {
-    "pk": 28, 
+    "pk": "28", 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
@@ -94,7 +118,7 @@
     }
   }, 
   {
-    "pk": 29, 
+    "pk": "29", 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
@@ -104,7 +128,7 @@
     }
   }, 
   {
-    "pk": 30, 
+    "pk": "30", 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
@@ -114,23 +138,13 @@
     }
   }, 
   {
-    "pk": 31, 
+    "pk": "31", 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "glass_bott", 
       "name": "glass bottom boat"
-    }
-  }, 
-  {
-    "pk": 32, 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "other", 
-      "name": "other"
     }
   }, 
   {
@@ -141,7 +155,7 @@
       "name": "Oregon Non-Consumptive", 
       "shape_name_plural": "activity areas", 
       "region": "a2", 
-      "resource_name_plural": "activities", 
+      "resource_name_plural": "non-consumptive activities", 
       "draw_shape_text": "", 
       "resource_action": "do", 
       "resource_name": "activity", 
@@ -211,13 +225,12 @@
       "member_title": "charter boat operator", 
       "page_template": "base_form.html", 
       "resources": [
-        26, 
-        27, 
-        28, 
-        29, 
-        30, 
-        31, 
-        32
+        "26", 
+        "27", 
+        "28", 
+        "29", 
+        "30", 
+        "31"
       ], 
       "description": "Operator Questions"
     }
@@ -608,7 +621,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_grosrev", 
-      "eng_text": "Average annual gross revenue", 
+      "eng_text": "Average annual gross revenue from all charter trips", 
       "int_group": 2, 
       "question_set": 1, 
       "display_order": 40.0, 
@@ -708,7 +721,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_revpct4", 
-      "eng_text": "Operator\u2019s percentage of annual gross revenue from GLASS BOTTOM BOATING", 
+      "eng_text": "Percentage of annual gross revenue from GLASS BOTTOM BOATING", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 54.0, 
@@ -728,7 +741,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_revpct5", 
-      "eng_text": "Operator\u2019s percentage of annual gross revenue from DIVING", 
+      "eng_text": "Percentage of annual gross revenue from DIVING", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 55.0, 
@@ -743,12 +756,12 @@
     }
   }, 
   {
-    "pk": 39, 
+    "pk": 34, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "ow_revpct6", 
-      "eng_text": "Operator\u2019s percentage of annual gross revenue from OTHER", 
+      "code": "ow_rev_c", 
+      "eng_text": "Percentage of gross revenue from FISHING", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 56.0, 
@@ -758,27 +771,27 @@
       "val_min": 0.0, 
       "val_default": "0", 
       "answer_type": "integer", 
-      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from other non-consumptive activities", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from consumptive charter activities like fishing", 
       "val_max": 100.0
     }
   }, 
   {
-    "pk": 34, 
+    "pk": 39, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "ow_rev_c", 
-      "eng_text": "Percentage of gross revenue from FISHING", 
+      "code": "ow_revpct6", 
+      "eng_text": "Percentage of annual gross revenue from OTHER", 
       "int_group": 2, 
       "question_set": 2, 
-      "display_order": 59.0, 
+      "display_order": 57.0, 
       "required": false, 
       "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
       "answer_type": "integer", 
-      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from consumptive charter activities like fishing", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from other non-consumptive activities", 
       "val_max": 100.0
     }
   }, 
@@ -828,7 +841,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_crew", 
-      "eng_text": "Percentage of non-consumptive operating costs for: crew/labor ", 
+      "eng_text": "Percentage of total operating costs for: NON-CONSUMPTIVE trip crew/labor ", 
       "int_group": 2, 
       "question_set": 3, 
       "display_order": 80.0, 
@@ -848,7 +861,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_fuel", 
-      "eng_text": "Percentage of total non-consumptive operating costs goes for: fuel ", 
+      "eng_text": "Percentage of total operating costs that goes for: NON-CONSUMPTIVE trip fuel ", 
       "int_group": 2, 
       "question_set": 3, 
       "display_order": 90.0, 
@@ -868,7 +881,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_crewnon", 
-      "eng_text": "Number of crew used for non-consumptive trips", 
+      "eng_text": "Number of crew used for NON-CONSUMPTIVE trips", 
       "int_group": 2, 
       "question_set": 3, 
       "display_order": 100.0, 
@@ -888,7 +901,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_crewcon", 
-      "eng_text": "Number of crew used for consumptive trips", 
+      "eng_text": "Number of crew used for CONSUMPTIVE trips", 
       "int_group": 2, 
       "question_set": 3, 
       "display_order": 110.0, 
@@ -989,6 +1002,46 @@
     }
   }, 
   {
+    "pk": 27, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_numboat", 
+      "eng_text": "Number of charter boats operated", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 25.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Number of charter boats the individual operates", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_v_name", 
+      "eng_text": "Vessel name(s)", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 27.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Name of the vessel(s)", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 23, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -998,7 +1051,7 @@
       "int_group": 3, 
       "question_set": null, 
       "display_order": 30.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
@@ -1029,26 +1082,6 @@
     }
   }, 
   {
-    "pk": 24, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "op_v_name", 
-      "eng_text": "Vessel name(s)", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 40.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "Name of the vessel(s)", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 25, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -1057,13 +1090,13 @@
       "eng_text": "Vessel length (feet)", 
       "int_group": 3, 
       "question_set": null, 
-      "display_order": 50.0, 
+      "display_order": 32.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": 6.0, 
       "val_default": "", 
-      "answer_type": "decimal", 
+      "answer_type": "text", 
       "eng_tooltip": "Length of the vessel in feet ", 
       "val_max": null
     }
@@ -1086,26 +1119,6 @@
       "answer_type": "text", 
       "eng_tooltip": "Where the operator docks or moorages", 
       "val_max": null
-    }
-  }, 
-  {
-    "pk": 27, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "op_numboat", 
-      "eng_text": "Number of charter boats operated", 
-      "int_group": 3, 
-      "question_set": null, 
-      "display_order": 70.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "Number of charter boats the individual operates", 
-      "val_max": 100.0
     }
   }, 
   {
@@ -1154,7 +1167,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_numpass", 
-      "eng_text": "Average number of passengers on a boat per trip", 
+      "eng_text": "Average number of passengers on a boat per NON-CONSUMPTIVE trip", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 100.0, 

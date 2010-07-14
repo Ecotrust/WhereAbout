@@ -11,6 +11,7 @@ from django.db.models import Sum
 from shortcuts import render_to_geojson
 from django.contrib.auth.models import User
 import datetime
+import string
 
 #Pass extra settings around whether user can self-register
 def login(request, template_name='registration/login.html'):
@@ -447,6 +448,7 @@ def answer_questions(request,group_id):
     else:
         # form validation
         form = AnswerForm(questions, answers, group_id, resource_id, request.POST )
+
         if form.is_valid():
             # update the group membership status, if necessary
             group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__pk=group_id)
@@ -497,9 +499,11 @@ def select_group_resources(request, group_id):
         return render_to_response( '404.html', RequestContext(request,{}))
 
     #Get all resources for current group
-    resources = group.resources.all().order_by('name')
 
-    if request.method == 'GET':        
+    resources = group.resources.all().order_by('name')
+    resource_id = None
+
+    if request.method == 'GET':  
         resource_list = []
         for resource in GroupMemberResource.objects.filter(group_membership=group_memb):
             resource_list.append(resource.resource_id);
@@ -508,14 +512,12 @@ def select_group_resources(request, group_id):
         else:
             form = GroupMemberResourceForm(interview, resources, {'resources':resource_list})
     else:       
-    
         form = GroupMemberResourceForm(interview, resources, request.POST)
         if form.is_valid():
             form.save(group_memb)
-            #Store the selected resources          
             return HttpResponseRedirect('/answer_resource_questions/'+str(group_id)+'/')
+    
     return render_to_response( 'select_group_resources.html', RequestContext(request,{'group':group, 'form': form, 'value':'Continue','interview':request.session['interview']}))     
-
     
 @login_required
 def answer_resource_questions(request, group_id, next_url=None):
@@ -1145,7 +1147,11 @@ def validate_shape(request):
             int_group_id = orig_shape.int_group.id
             resource_id = orig_shape.resource.id
         else:
-            int_group_id, resource_id = request.REQUEST['resource'].split('-')        
+            #RDH: uuids contain hyphens, now it only splits on the first hyphen
+            first_hyph_loc = string.find(request.REQUEST['resource'], "-")
+            # int_group_id, resource_id = request.REQUEST['resource'].split('-')        
+            int_group_id = request.REQUEST['resource'][:first_hyph_loc]     
+            resource_id = request.REQUEST['resource'][first_hyph_loc+1:]
             
         other_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group__id=int_group_id,resource__id=resource_id)
 

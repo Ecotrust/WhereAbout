@@ -32,9 +32,8 @@ class Region(Model):
         # return unicode('%s' % (self.name))                    
         
 class Resource(Model):
-    id = models.AutoField( primary_key = True )
     name = CharField( max_length=100, unique=True )
-    code = CharField( max_length=10, unique=True )
+    code = CharField( max_length=10, default='' )
     select_description = CharField( max_length=300, default = '', blank=True) #Holds information on why you would/should select this resource
     shape_color = CharField( max_length=6, default = 'FFFF00', blank=True )
     
@@ -58,8 +57,8 @@ class Interview(Model):
     draw_shape_text = TextField( blank=True, default='' )
     interview_complete_text = TextField( blank=True, default='' )
     assign_groups_text = TextField( blank=True, default='' ) 
-    resource_name = CharField( max_length=20, default='species' )
-    resource_name_plural = CharField( max_length=20, default='species' )
+    resource_name = CharField( max_length=60, default='species' )
+    resource_name_plural = CharField( max_length=60, default='species' )
     resource_action = CharField( max_length=20, default='target' )
     shape_name = CharField( max_length=20, default='fishing ground' )
     shape_name_plural = CharField( max_length=20, default='fishing grounds' )

@@ -27,9 +27,18 @@ from the list, please notify us at <a href='mailto:fish@ecotrust.org'>fish@ecotr
         {% endif %}
         <p><div class="fieldWrapper">
             {{ field.errors }}
-            <b>{{ field.label_tag }}</b>: {{ field }}
+            <table>
+                <tr>
+                    <td style='width:{{ q_width }}px'>
+                        {{ field.label_tag }}:
+                    </td>
+                    <td>
+                        {{ field }}
+                    </td>
+                </tr>
+            </table>
         </div></p>
-    {% endfor %}   
+    {% endfor %}
    
    <p><input id="submit" type="submit" value="{{ value }}" />
    {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}

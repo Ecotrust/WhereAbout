@@ -62,7 +62,6 @@ class AnswerForm(forms.Form):
         else:
             resource_postfix = ''
         self.resource_postfix = resource_postfix
-        
         forms.Form.__init__(self, *args, **kwargs)            
         prev_question = None
         for i, question in enumerate(questions):
@@ -185,7 +184,6 @@ class AnswerForm(forms.Form):
                             
             self.fields['question_' + str(question.id) + resource_postfix].question = question
             self.fields['question_' + str(question.id) + resource_postfix].answer = answer
-            
             prev_question = question
 
     def clean(self):
@@ -307,6 +305,8 @@ class InterviewShapeAttributeForm(forms.ModelForm):
 
 class GroupMemberResourceForm(forms.Form):
     def __init__(self, interview, resources, *args, **kwargs):
+        new_res_1 = forms.CharField( max_length=100, label='Other ' + interview.resource_name + ' option', required=False, initial = '' ) 
+        new_res_2 = forms.CharField( max_length=100, label='Other ' + interview.resource_name + ' option', required=False, initial = '' )
         forms.Form.__init__(self, *args, **kwargs) 
         #choices = [(resource.id, resource.name+') for resource in resources]
         choices = []
@@ -316,10 +316,14 @@ class GroupMemberResourceForm(forms.Form):
             else:
                 choices.append((resource.id, unicode(resource.name)+': '+unicode(resource.select_description)))
         label = str(interview.resource_name).capitalize()+' groups'
-        self.fields['resources'] = forms.MultipleChoiceField(label=label, choices=choices, widget=forms.CheckboxSelectMultiple())
+        self.fields['resources'] = forms.MultipleChoiceField(label=label, choices=choices, widget=forms.CheckboxSelectMultiple(), required = False)
+        self.fields['new_field_1'] = new_res_1
+        self.fields['new_field_2'] = new_res_2
 
     def save(self, group_memb, profile_callback=None):
         resource_ids = self.cleaned_data['resources']
+        new_field_1 = self.cleaned_data['new_field_1']
+        new_field_2 = self.cleaned_data['new_field_2']
         try:
             resources = [Resource.objects.get(pk=r_id) for r_id in resource_ids]
         except Exception, e:
@@ -335,5 +339,31 @@ class GroupMemberResourceForm(forms.Form):
             gmr = GroupMemberResource()       
             gmr.resource = r                 
             gmr.group_membership = group_memb  
-            gmr.save()                         
-        return True                              
+            gmr.save()   
+        if new_field_1 != '':                                      
+            new_1 = self.add_new_resource(new_field_1, group_memb)
+        if new_field_2 != '':                                      
+            new_2 = self.add_new_resource(new_field_2, group_memb)
+            
+        return True     
+
+    def clean(self):
+
+        if self.cleaned_data['new_field_1'] == '' and self.cleaned_data['new_field_2'] == '' and self.cleaned_data['resources'] == []:
+            raise forms.ValidationError( 'You must select at least one option or give at least one alternative' )
+            
+        return self.cleaned_data        
+
+    def add_new_resource(self, new_resource, group_memb):
+        
+        #Create the resource
+        resource, created = Resource.objects.get_or_create(name=new_resource)
+        resource.save()
+        #Add new resource to the group
+        group_memb.int_group.resources.add(resource)
+        #Create the membership with the new resource
+        gmem_resource, created = GroupMemberResource.objects.get_or_create(resource = resource, group_membership = group_memb)
+        gmem_resource.save()
+        return True
+
+
