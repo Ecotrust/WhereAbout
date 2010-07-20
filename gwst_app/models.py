@@ -328,6 +328,7 @@ class InterviewShape(Model):
     boundary_s = CharField( max_length=100, blank=True, null=True )
     boundary_e = CharField( max_length=100, blank=True, null=True )
     boundary_w = CharField( max_length=100, blank=True, null=True )
+    note_text = CharField( max_length=1000, blank=True, null=True )
     creation_date = DateTimeField(default=datetime.datetime.now)
     objects = InterviewShapeManager()
     

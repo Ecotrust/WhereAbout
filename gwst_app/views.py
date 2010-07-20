@@ -1074,6 +1074,7 @@ def shapes(request, id=None):
                 boundary_s = feat.get('boundary_s'),
                 boundary_e = feat.get('boundary_e'),
                 boundary_w = feat.get('boundary_w'),
+                note_text = feat.get('note_text'),
                 int_group_id = feat.get('group_id'),
                 resource_id = feat.get('resource_id')                
             )                        

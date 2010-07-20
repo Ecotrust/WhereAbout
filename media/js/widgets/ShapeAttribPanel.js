@@ -36,6 +36,14 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
         });
         this.add(this.inner_text_panel);
+        
+        this.notes_area = new Ext.form.TextArea({
+            fieldLabel: 'More Information',
+            name: 'note_text',
+            autoHeight: false,
+            height: 120,
+            width: 155
+        });
     
 		this.inner_form_panel = new Ext.form.FormPanel({
             id: 'shape_attrib_form_panel',
@@ -55,7 +63,9 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             },{
                 fieldLabel: 'West Boundary',
                 name: 'boundary_w'
-            }]
+            },
+                this.notes_area
+            ]
 		});
         
         this.button_panel = new gwst.widgets.BackContButtons ({
