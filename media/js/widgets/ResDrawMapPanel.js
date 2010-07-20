@@ -123,6 +123,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		map.addControl(new OpenLayers.Control.Navigation());		
         map.addControl(new OpenLayers.Control.PanZoomBar());
 		map.addControl(new OpenLayers.Control.MousePosition());
+        map.addControl(new OpenLayers.Control.KeyboardDefaults());
         
 		this.drawResControl = new OpenLayers.Control.DrawFeature(
             this.vecLayer, 

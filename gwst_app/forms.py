@@ -145,6 +145,15 @@ class AnswerForm(forms.Form):
                     dynamic_args['initial']=question.val_default
 
                 self.fields['question_' + str(question.id) + resource_postfix] = forms.CharField( **dynamic_args )
+             
+            elif question.answer_type == 'textarea': #text area
+                dynamic_args['max_length'] = 1000
+                if answer.count() == 1:
+                    dynamic_args['initial']=answer[0].text_val
+                elif question.val_default != '':
+                    dynamic_args['initial']=question.val_default
+
+                self.fields['question_' + str(question.id) + resource_postfix] = forms.CharField( widget=forms.widgets.Textarea(), **dynamic_args )
             
             elif question.answer_type == 'phone':
                 if answer.count() == 1:
@@ -276,7 +285,7 @@ class AnswerForm(forms.Form):
             elif field.question.answer_type == 'other':
                 answer.option_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 answer.text_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix + '_other']
-            elif field.question.answer_type == 'text' or field.question.answer_type == 'phone':
+            elif field.question.answer_type == 'text' or field.question.answer_type == 'phone' or field.question.answer_type == 'textarea':
                 answer.text_val = str(self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix])
             answer.save()
             

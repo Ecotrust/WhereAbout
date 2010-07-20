@@ -205,7 +205,8 @@ class InterviewQuestion(Model):
         ( 'text', 'enter text' ),
         ( 'phone', 'phone number' ),
         ( 'money', 'dollar amount'),
-        ( 'percent', 'percentage' )
+        ( 'percent', 'percentage' ),
+        ( 'textarea', 'text area')
     )
     int_group = ForeignKey(InterviewGroup)
     answer_type = CharField( max_length=20, choices=AnswerTypeChoices )

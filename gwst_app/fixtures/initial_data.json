@@ -1,29 +1,5 @@
 [
   {
-    "pk": "4702df00-8ecb-11df-88de-001b210ee9bb", 
-    "model": "sites.site", 
-    "fields": {
-      "domain": "example.com", 
-      "name": "example.com"
-    }
-  }, 
-  {
-    "pk": "05a8ea8f-891c-11df-a2f5-001b210ee9bb", 
-    "model": "sites.site", 
-    "fields": {
-      "domain": "example.com", 
-      "name": "example.com"
-    }
-  }, 
-  {
-    "pk": "d0b1490f-861c-11df-bc01-001b210ee9bb", 
-    "model": "sites.site", 
-    "fields": {
-      "domain": "example.com", 
-      "name": "example.com"
-    }
-  }, 
-  {
     "pk": "a1", 
     "model": "sites.site", 
     "fields": {
@@ -148,6 +124,46 @@
     }
   }, 
   {
+    "pk": "066350b0-942f-11df-962d-001b210ee9bb", 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "cmb_w_mm_b", 
+      "name": "COMBO: whale + marine mammal + bird watching"
+    }
+  }, 
+  {
+    "pk": "1abcf88f-942f-11df-9ea0-001b210ee9bb", 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "cmb_mm_b", 
+      "name": "COMBO: marine mammal + bird watching"
+    }
+  }, 
+  {
+    "pk": "344b7b61-942f-11df-b16a-001b210ee9bb", 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "cmb_w_mm", 
+      "name": "COMBO: whale + marine mammal watching"
+    }
+  }, 
+  {
+    "pk": "41937200-942f-11df-b8d2-001b210ee9bb", 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "cmb_w_b", 
+      "name": "COMBO: whale + bird watching"
+    }
+  }, 
+  {
     "pk": 3, 
     "model": "gwst_app.interview", 
     "fields": {
@@ -163,7 +179,7 @@
       "active": true, 
       "organization": "Ecotrust", 
       "assign_groups_text": "", 
-      "group_status_text": "MAIN MENU: Each group of questions will be presented one at a time. Before moving on to the next group, you must finalize your current group. You may review or even reopen a 'finalized' group later if you change your mind.  You cannot complete the survey until all required groups are finalized.  You are free to skip any groups that give you the option.", 
+      "group_status_text": "MAIN MENU: There are several groups of questions. You are asked to complete these groups in order. Before moving on to a new group, you must complete and finalize the previous group of questions. You may review or even reopen a 'finalized' group later if you change your mind.  You cannot complete the survey until all required groups of questions are finalized.  You are free to skip any groups that give you the option.", 
       "interview_complete_text": "This survey is now complete.  I you have any questions or concerns, please feel free to contact us at <a href='mailto:fish@ecotrust.org'>fish@ecotrust.org</a>", 
       "description": "Non-Consumptive desktop survey (Intercept)"
     }
@@ -455,7 +471,7 @@
     "fields": {
       "all_resources": false, 
       "code": "mail_ad", 
-      "eng_text": "Mailing Address", 
+      "eng_text": "Operator's Mailing Address", 
       "int_group": 1, 
       "question_set": null, 
       "display_order": 40.0, 
@@ -641,7 +657,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_revpct0", 
-      "eng_text": "Percentage of gross revenue from WHALE WATCHING", 
+      "eng_text": "Average percentage of gross revenue from WHALE WATCHING", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 50.0, 
@@ -661,7 +677,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_revpct1", 
-      "eng_text": "Percentage of gross revenue from BIRD WATCHING", 
+      "eng_text": "Average percentage of gross revenue from BIRD WATCHING", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 51.0, 
@@ -681,7 +697,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_revpct2", 
-      "eng_text": "Percentage of gross revenue from MARINE MAMMAL VIEWING", 
+      "eng_text": "Average percentage of gross revenue from MARINE MAMMAL VIEWING", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 52.0, 
@@ -701,7 +717,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_revpct3", 
-      "eng_text": "Percentage of gross revenue from LEISURE CRUISING", 
+      "eng_text": "Average percentage of gross revenue from LEISURE CRUISING", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 53.0, 
@@ -721,7 +737,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_revpct4", 
-      "eng_text": "Percentage of annual gross revenue from GLASS BOTTOM BOATING", 
+      "eng_text": "Average percentage of annual gross revenue from GLASS BOTTOM BOATING", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 54.0, 
@@ -741,7 +757,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_revpct5", 
-      "eng_text": "Percentage of annual gross revenue from DIVING", 
+      "eng_text": "Average percentage of annual gross revenue from DIVING", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 55.0, 
@@ -761,7 +777,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_rev_c", 
-      "eng_text": "Percentage of gross revenue from FISHING", 
+      "eng_text": "Average percentage of gross revenue from FISHING", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 56.0, 
@@ -781,7 +797,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_revpct6", 
-      "eng_text": "Percentage of annual gross revenue from OTHER", 
+      "eng_text": "Average percentage of annual gross revenue from OTHER", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 57.0, 
@@ -801,7 +817,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_p_rev_t", 
-      "eng_text": "Percentage of gross revenue for total annual operating costs ", 
+      "eng_text": "Average percentage of gross revenue for total annual operating costs ", 
       "int_group": 2, 
       "question_set": 3, 
       "display_order": 60.0, 
@@ -821,7 +837,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_pctcst", 
-      "eng_text": "Percentage of total annual operating costs for non-consumptive trips", 
+      "eng_text": "Average percentage of total annual operating costs for non-consumptive trips", 
       "int_group": 2, 
       "question_set": 3, 
       "display_order": 70.0, 
@@ -841,7 +857,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_crew", 
-      "eng_text": "Percentage of total operating costs for: NON-CONSUMPTIVE trip crew/labor ", 
+      "eng_text": "Average percentage of total operating costs for: NON-CONSUMPTIVE trip crew/labor ", 
       "int_group": 2, 
       "question_set": 3, 
       "display_order": 80.0, 
@@ -861,7 +877,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_fuel", 
-      "eng_text": "Percentage of total operating costs that goes for: NON-CONSUMPTIVE trip fuel ", 
+      "eng_text": "Average percentage of total operating costs that goes for: NON-CONSUMPTIVE trip fuel ", 
       "int_group": 2, 
       "question_set": 3, 
       "display_order": 90.0, 
@@ -881,7 +897,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_crewnon", 
-      "eng_text": "Number of crew used for NON-CONSUMPTIVE trips", 
+      "eng_text": "Average number of crew used for NON-CONSUMPTIVE trips", 
       "int_group": 2, 
       "question_set": 3, 
       "display_order": 100.0, 
@@ -901,7 +917,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_crewcon", 
-      "eng_text": "Number of crew used for CONSUMPTIVE trips", 
+      "eng_text": "Average number of crew used for CONSUMPTIVE trips", 
       "int_group": 2, 
       "question_set": 3, 
       "display_order": 110.0, 
@@ -916,12 +932,32 @@
     }
   }, 
   {
+    "pk": 44, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_ncratio", 
+      "eng_text": "How has the ratio of your non-consumptive/consumptive income changed over the last 5 years", 
+      "int_group": 2, 
+      "question_set": 3, 
+      "display_order": 120.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "textarea", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 21, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
       "code": "op_inchrtr", 
-      "eng_text": "Percentage income from overall charter boat operations", 
+      "eng_text": "Percentage personal income from overall charter boat operations", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 10.0, 
@@ -981,7 +1017,7 @@
     "fields": {
       "all_resources": true, 
       "code": "ac_triplen", 
-      "eng_text": "Trip Length", 
+      "eng_text": "Trip length", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 20.0, 
@@ -1047,7 +1083,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_doc_num", 
-      "eng_text": "Vessel document number", 
+      "eng_text": "Vessel document number(s)", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 30.0, 
@@ -1067,7 +1103,7 @@
     "fields": {
       "all_resources": true, 
       "code": "ac_cost", 
-      "eng_text": "Cost to passenger", 
+      "eng_text": "Average cost to passenger per trip", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 30.0, 
@@ -1087,7 +1123,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_v_leng", 
-      "eng_text": "Vessel length (feet)", 
+      "eng_text": "Vessel length(s) (feet)", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 32.0, 
@@ -1127,7 +1163,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_yearsop", 
-      "eng_text": "Years of operating charter boats", 
+      "eng_text": "Years operating charter boats", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 80.0, 
@@ -1179,6 +1215,26 @@
       "answer_type": "integer", 
       "eng_tooltip": "Average number of passengers on the charter boat during each non-consumptive trip", 
       "val_max": 200.0
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "op_cap_max", 
+      "eng_text": "Maximum number of passengers on the boat", 
+      "int_group": 3, 
+      "question_set": null, 
+      "display_order": 110.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
     }
   }
 ]
