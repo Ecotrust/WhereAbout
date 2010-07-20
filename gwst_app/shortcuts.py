@@ -115,7 +115,6 @@ def render_to_geojson(query_set, geom_field=None, geom_attribute=None, extra_att
         
         #attempt to assign geom_field that was passed in
         if geom_field:
-            #import pdb;pdb.set_trace()
             geo_fieldnames = [x.name for x in geo_fields]
             try:
                 geo_field = geo_fields[geo_fieldnames.index(geom_field)]

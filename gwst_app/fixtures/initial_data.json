@@ -241,12 +241,16 @@
       "member_title": "charter boat operator", 
       "page_template": "base_form.html", 
       "resources": [
+        "066350b0-942f-11df-962d-001b210ee9bb", 
+        "1abcf88f-942f-11df-9ea0-001b210ee9bb", 
         "26", 
         "27", 
         "28", 
         "29", 
         "30", 
-        "31"
+        "31", 
+        "344b7b61-942f-11df-b16a-001b210ee9bb", 
+        "41937200-942f-11df-b8d2-001b210ee9bb"
       ], 
       "description": "Operator Questions"
     }
