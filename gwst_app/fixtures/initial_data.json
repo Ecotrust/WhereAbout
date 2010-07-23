@@ -124,46 +124,6 @@
     }
   }, 
   {
-    "pk": "066350b0-942f-11df-962d-001b210ee9bb", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "cmb_w_mm_b", 
-      "name": "COMBO: whale + marine mammal + bird watching"
-    }
-  }, 
-  {
-    "pk": "1abcf88f-942f-11df-9ea0-001b210ee9bb", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "cmb_mm_b", 
-      "name": "COMBO: marine mammal + bird watching"
-    }
-  }, 
-  {
-    "pk": "344b7b61-942f-11df-b16a-001b210ee9bb", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "cmb_w_mm", 
-      "name": "COMBO: whale + marine mammal watching"
-    }
-  }, 
-  {
-    "pk": "41937200-942f-11df-b8d2-001b210ee9bb", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "cmb_w_b", 
-      "name": "COMBO: whale + bird watching"
-    }
-  }, 
-  {
     "pk": 3, 
     "model": "gwst_app.interview", 
     "fields": {
@@ -241,16 +201,12 @@
       "member_title": "charter boat operator", 
       "page_template": "base_form.html", 
       "resources": [
-        "066350b0-942f-11df-962d-001b210ee9bb", 
-        "1abcf88f-942f-11df-9ea0-001b210ee9bb", 
         "26", 
         "27", 
         "28", 
         "29", 
         "30", 
-        "31", 
-        "344b7b61-942f-11df-b16a-001b210ee9bb", 
-        "41937200-942f-11df-b8d2-001b210ee9bb"
+        "31"
       ], 
       "description": "Operator Questions"
     }
@@ -660,7 +616,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "ow_revpct0", 
+      "code": "ow_rev00", 
       "eng_text": "Average percentage of gross revenue from WHALE WATCHING", 
       "int_group": 2, 
       "question_set": 2, 
@@ -680,7 +636,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "ow_revpct1", 
+      "code": "ow_rev01", 
       "eng_text": "Average percentage of gross revenue from BIRD WATCHING", 
       "int_group": 2, 
       "question_set": 2, 
@@ -700,7 +656,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "ow_revpct2", 
+      "code": "ow_rev02", 
       "eng_text": "Average percentage of gross revenue from MARINE MAMMAL VIEWING", 
       "int_group": 2, 
       "question_set": 2, 
@@ -720,7 +676,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "ow_revpct3", 
+      "code": "ow_rev03", 
       "eng_text": "Average percentage of gross revenue from LEISURE CRUISING", 
       "int_group": 2, 
       "question_set": 2, 
@@ -740,8 +696,8 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "ow_revpct4", 
-      "eng_text": "Average percentage of annual gross revenue from GLASS BOTTOM BOATING", 
+      "code": "ow_rev04", 
+      "eng_text": "Average percentage of gross revenue from GLASS BOTTOM BOATING", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 54.0, 
@@ -760,8 +716,8 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "ow_revpct5", 
-      "eng_text": "Average percentage of annual gross revenue from DIVING", 
+      "code": "ow_rev05", 
+      "eng_text": "Average percentage of gross revenue from DIVING", 
       "int_group": 2, 
       "question_set": 2, 
       "display_order": 55.0, 
@@ -780,7 +736,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "ow_rev_c", 
+      "code": "ow_rev06", 
       "eng_text": "Average percentage of gross revenue from FISHING", 
       "int_group": 2, 
       "question_set": 2, 
@@ -796,15 +752,95 @@
     }
   }, 
   {
-    "pk": 39, 
+    "pk": 45, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "ow_revpct6", 
-      "eng_text": "Average percentage of annual gross revenue from OTHER", 
+      "code": "ow_rev07", 
+      "eng_text": "Average percentage of gross revenue from COMBO: Whale Watching + Marine Mammal Viewing + Bird Watching", 
       "int_group": 2, 
       "question_set": 2, 
-      "display_order": 57.0, 
+      "display_order": 60.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from COMBO 1", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_rev08", 
+      "eng_text": "Average percentage of gross revenue from COMBO:  Marine Mammal Viewing + Bird Watching", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 70.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from COMBO 2", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_rev09", 
+      "eng_text": "Average percentage of gross revenue from COMBO: Whale Watching + Marine Mammal Viewing", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 80.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from COMBO 3", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_rev10", 
+      "eng_text": "Average percentage of gross revenue from COMBO: Whale Watching + Bird Watching", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 90.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from COMBO 4", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_revoth1", 
+      "eng_text": "Average percentage of gross revenue from OTHER 1", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 100.0, 
       "required": false, 
       "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
       "options": [], 
@@ -816,6 +852,106 @@
     }
   }, 
   {
+    "pk": 50, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_txtoth1", 
+      "eng_text": "Please specify what OTHER 1 is", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 105.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "If you draw revenue from something other than those sources listed above, what is it?", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_revoth2", 
+      "eng_text": "Average percentage of gross revenue from OTHER 2", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 110.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from other non-consumptive activities", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_txtoth2", 
+      "eng_text": "Please specify what OTHER 2 is", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 115.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "If you draw revenue from something other than those sources listed above, what is it?", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_revoth3", 
+      "eng_text": "Average percentage of gross revenue from OTHER 3", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 120.0, 
+      "required": false, 
+      "question_group": "c5d8e330-8087-11df-a673-001b210ee9bb", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from other non-consumptive activities", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ow_txtoth3", 
+      "eng_text": "Please specify what OTHER 3 is", 
+      "int_group": 2, 
+      "question_set": 2, 
+      "display_order": 125.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "If you draw revenue from something other than those sources listed above, what is it?", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 35, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -824,7 +960,7 @@
       "eng_text": "Average percentage of gross revenue for total annual operating costs ", 
       "int_group": 2, 
       "question_set": 3, 
-      "display_order": 60.0, 
+      "display_order": 150.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -844,7 +980,7 @@
       "eng_text": "Average percentage of total annual operating costs for non-consumptive trips", 
       "int_group": 2, 
       "question_set": 3, 
-      "display_order": 70.0, 
+      "display_order": 160.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -861,17 +997,17 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_crew", 
-      "eng_text": "Average percentage of total operating costs for: NON-CONSUMPTIVE trip crew/labor ", 
+      "eng_text": "Average percentage of NON-CONSUMPTIVE operating costs for: crew/labor", 
       "int_group": 2, 
       "question_set": 3, 
-      "display_order": 80.0, 
+      "display_order": 170.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": 0.0, 
       "val_default": "", 
       "answer_type": "decimal", 
-      "eng_tooltip": "What percent of total annual operating costs (consumptive and non-consumptive combined) goes towards crew/labor ", 
+      "eng_tooltip": "What percent of total non-consumptive annual operating costs goes towards crew/labor ", 
       "val_max": 100.0
     }
   }, 
@@ -881,17 +1017,17 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_fuel", 
-      "eng_text": "Average percentage of total operating costs that goes for: NON-CONSUMPTIVE trip fuel ", 
+      "eng_text": "Average percentage of NON-CONSUMPTIVE operating costs for: fuel", 
       "int_group": 2, 
       "question_set": 3, 
-      "display_order": 90.0, 
+      "display_order": 180.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
       "val_min": 0.0, 
       "val_default": "", 
       "answer_type": "decimal", 
-      "eng_tooltip": "What percent of total annual operating costs (consumptive and non-consumptive combined) goes towards fuel", 
+      "eng_tooltip": "What percent of total non-consumptive annual operating costs goes towards fuel", 
       "val_max": 100.0
     }
   }, 
@@ -904,7 +1040,7 @@
       "eng_text": "Average number of crew used for NON-CONSUMPTIVE trips", 
       "int_group": 2, 
       "question_set": 3, 
-      "display_order": 100.0, 
+      "display_order": 190.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -924,7 +1060,7 @@
       "eng_text": "Average number of crew used for CONSUMPTIVE trips", 
       "int_group": 2, 
       "question_set": 3, 
-      "display_order": 110.0, 
+      "display_order": 200.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -944,7 +1080,7 @@
       "eng_text": "How has the ratio of your non-consumptive/consumptive income changed over the last 5 years", 
       "int_group": 2, 
       "question_set": 3, 
-      "display_order": 120.0, 
+      "display_order": 210.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -1227,7 +1363,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_cap_max", 
-      "eng_text": "Maximum number of passengers on the boat", 
+      "eng_text": "Maximum capacity of passengers on the boat", 
       "int_group": 3, 
       "question_set": null, 
       "display_order": 110.0, 
