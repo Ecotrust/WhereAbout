@@ -73,9 +73,16 @@ class InnoScript:
         print >> ofi, r"SetupIconFile=" + curr_dir + "\desktop-packaging\Images\OCEAN_SMALL_INNO.ico"
         print >> ofi
 
+        print >> ofi, r"[Dirs]"
+        print >> ofi, r'Name: "{app}\"; Permissions: everyone-modify'
+        print >> ofi
+        
         print >> ofi, r"[Files]"
         for path in self.windows_exe_files + self.lib_files:
-            print >> ofi, r'Source: "%s"; DestDir: "{app}\%s"; Flags: ignoreversion' % (path, os.path.dirname(path))
+            if path == "database\db.sqlite":
+                print >> ofi, r'Source: "%s"; DestDir: "{app}\%s"; Flags: ignoreversion; Permissions: everyone-modify' % (path, os.path.dirname(path))
+            else:
+                print >> ofi, r'Source: "%s"; DestDir: "{app}\%s"; Flags: ignoreversion' % (path, os.path.dirname(path))
         
         #Additional libraries that may not be used but which the pre-build QGIS binary will look for and error if it can't find
         #print >> ofi, r'Source: lib\libgdal-1.dll; DestDir: {app}\lib; Flags: ignoreversion'
@@ -189,7 +196,6 @@ if django_admin_path:
     py2exe_data_files += add_path_tree( '', 'admin_utils/templates' )
     py2exe_data_files += add_path_tree( '', 'tiles' )
     py2exe_data_files += add_path_tree( '', 'gdal_data' )
-
 
     setup(
         options = {"py2exe": {"compressed": False,
