@@ -1,0 +1,60 @@
+This document will guide you through setting up the OR Noncon Charter Survey on a server.  This can be used for both taking surveys and collecting (importing) data from the field surveys
+
+create new project folder under /usr/local/apps
+    mkdir ./or-charter-survey
+
+check out the code with svn
+    sudo svn checkout http://svn.infodrizzle.org/gwst/trunk
+
+ceate local settings from template
+    Borrow settings from an existing project, if possible
+        change as necessary
+    IF DEVELOPMENT SERVER:
+        DEBUG = True
+            This will have Django list traceback and give more information should an error occur
+    IF PRODUCTION SERVER:
+        DEBUG = False
+        
+    TEMPLATE_DEBUG=DEBUG
+    
+    DESKTOP_BUILD = False
+        Currently this only affects which resource page gets loaded and whether login or admin-login is the default
+        
+    FULL_ADMIN = True
+        Provides access to all admin options available through admin interface
+        
+    DATABASE_NAME = 'or-charter-survey' 
+    DATABASE_ENGINE = 'django.contrib.gis.db.backends.postgis'
+        Since this is a server deploy, you want to use postgres/postgis, not spatialite
+    DATABASE_USER = 'webapp' 
+    DATABASE_PASSWORD = ""
+    
+    IF DEVELOPMENT:
+        DATABASE_HOST = 'ninkasi.ecotrust.org'
+    IF PRODUCTION:
+        DATABASE_HOST = 'dionysus.ecotrust.org'
+        
+    DATABASE_PORT = '5432'
+    
+    MEDIA_ROOT = '/usr/local/apps/or-charter-survey/site-media'
+    
+    SECRET_KEY = ''  #Make this up!
+    EMAIL_HOST_PASSWORD=''
+    
+create the database
+    cdb.sh
+
+If this is a development server: 
+    import test_users.json
+        python manage.py loaddata test_users.json
+        
+If this is a production server:
+    create superusers manually
+        python manage.py createsuperuser (then give username, email, and password when prompted)
+    
+Run the django server to test
+    python manage.py runserver
+    will use apache later (instead)
+
+Deploy with Apache
+    set up new apache virtual server

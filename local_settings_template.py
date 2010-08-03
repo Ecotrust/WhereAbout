@@ -6,7 +6,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
-DESKTOP_BUILD = False
+DESKTOP_BUILD = False 
 
 FULL_ADMIN = True
 
@@ -25,6 +25,8 @@ DATABASE_PORT = '' #no need if using spatialite
 MEDIA_ROOT = '' # like: /site-media - where the Django development server goes to look for your static files
 
 SECRET_KEY = ''
+
+GMAPS_API_KEY = ''
 
 EMAIL_HOST_PASSWORD=''
 

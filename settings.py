@@ -115,7 +115,7 @@ SERVER_SRID = 3310   #Google projection
 COMPRESS_CSS = {}
 
 COMPRESS_JS = {
-    'gwst_or_rec': {
+    'gwst_compressed': {
         'source_filenames':('third-party/GeoExt-0.6/widgets/MapPanel.js',	
             'third-party/GeoExt-0.6/data/LayerRecord.js',
             'third-party/GeoExt-0.6/data/LayerReader.js',
@@ -163,7 +163,7 @@ COMPRESS_JS = {
             'js/widgets/PennyWindow.js', 
             'js/widgets/YesNoButtons.js', 
             'js/widgets/QuitCheckWindow.js'), 
-        'output_filename': 'compressed/gwst_or_rec.js'
+        'output_filename': 'compressed/gwst_compressed.js'
     }
 }
 
