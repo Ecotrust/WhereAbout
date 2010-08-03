@@ -12,9 +12,17 @@ FULL_ADMIN = True
 
 DATABASE_NAME = '' 
 
-MEDIA_ROOT = '' # like: /site-media - where the Django development server goes to look for your static files
-
 DATABASE_ENGINE = '' # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+
+DATABASE_USER = '' #no need if using spatialite
+
+DATABASE_PASSWORD = "" #no need if using spatialite
+    
+DATABASE_HOST = '' #no need if using spatialite
+    
+DATABASE_PORT = '' #no need if using spatialite
+
+MEDIA_ROOT = '' # like: /site-media - where the Django development server goes to look for your static files
 
 SECRET_KEY = ''
 
