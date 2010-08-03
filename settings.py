@@ -31,6 +31,10 @@ SITE_ID = 'a1'
 # to load the internationalization machinery.
 USE_I18N = True
 
+SERVER_EMAIL='fish@ecotrust.org'
+
+SEND_BROKEN_LINK_EMAILS = False
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = 'set-in-local_settings'
@@ -46,7 +50,7 @@ MEDIA_URL = '/site-media/'
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'ox6_$0433w05!fzz_$ts5(xs1v3_q$!p@uw#wrzt=!6#kem2#9'
+SECRET_KEY = 'set-in-local_settings'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -65,7 +69,7 @@ ROOT_URLCONF = 'urls'
 
 import os, sys
 
-TILE_BASE = os.path.abspath(os.path.dirname(sys.argv[0])) + '/tiles/'
+TILE_BASE = 'set-in-local_settings' #os.path.abspath(os.path.dirname(sys.argv[0])) + '/tiles/'
 
 TEMPLATE_DIRS = ( # use os.path.abspath(os.path.dirname(sys.argv[0])) to get a directory root that will be correct for py2exe'd version
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_app/templates/',
@@ -96,8 +100,72 @@ INSTALLED_APPS = (
 SELF_REGISTRATION=False
 SELF_SURVEY_RESET=False
 
+DEFAULT_FROM_EMAIL='fish@ecotrust.org'
+BCC_EMAIL='fish@ecotrust.org' # Addresses to blind carbon copy on each automated registration (SurveyMonkey)
+EMAIL_HOST='mail.ecotrust.org'
+EMAIL_PORT=610
+EMAIL_HOST_USER='fish@ecotrust.org'
+EMAIL_HOST_PASSWORD='set-in-local_settings'
+EMAIL_USE_TLS = True
+SELF_REGISTRATION = False
+
 CLIENT_SRID = 900913    #Google projection
 SERVER_SRID = 3310   #Google projection
+
+COMPRESS_CSS = {}
+
+COMPRESS_JS = {
+    'gwst_or_rec': {
+        'source_filenames':('third-party/GeoExt-0.6/widgets/MapPanel.js',	
+            'third-party/GeoExt-0.6/data/LayerRecord.js',
+            'third-party/GeoExt-0.6/data/LayerReader.js',
+            'third-party/GeoExt-0.6/data/LayerStore.js',
+            'third-party/GeoExt-0.6/data/ProtocolProxy.js',	
+            'third-party/GeoExt-0.6/data/FeatureRecord.js',
+            'third-party/GeoExt-0.6/data/FeatureReader.js',
+            'third-party/GeoExt-0.6/data/FeatureStore.js',		
+            'third-party/GeoExt-0.6/widgets/grid/FeatureSelectionModel.js',
+            'third-party/ext-ux/multiselect/MultiSelect.js',
+            'third-party/ext-ux/multiselect/DDView.js',
+            'third-party/ext-ux/grid/RowActions.js',
+            'js/settings.js', 
+            'js/util.js', 
+            'js/ResDrawApp.js', 
+            'js/ResDrawManager.js',
+            'js/data/ResFeatureStore.js', 
+            'js/widgets/MainViewport.js', 
+            'js/widgets/ResDrawMapPanel.js', 
+            'js/widgets/WestPanel.js', 
+            'js/widgets/WaitWindow.js', 
+            'js/widgets/AllocPanel.js', 
+            'js/widgets/PennyPanel.js', 
+            'js/widgets/QuitWindow.js', 
+            'js/widgets/BackContButtons.js', 
+            'js/widgets/CustomButtons.js', 
+            'js/widgets/Draw2Panel.js', 
+            'js/widgets/DrawInstructionPanel.js', 
+            'js/widgets/DrawOrDropPanel.js', 
+            'js/widgets/SatisfiedShapePanel.js', 
+            'js/widgets/DrawPanel.js', 
+            'js/widgets/SelResPanel.js', 
+            'js/widgets/DrawToolWindow.js', 
+            'js/widgets/ShapeAttribPanel.js', 
+            'js/widgets/ErrorWindow.js', 
+            'js/widgets/SpeciesSelect.js', 
+            'js/widgets/FinishedResourceSelectedWindow.js', 
+            'js/widgets/SplashPanel.js', 
+            'js/widgets/FinishPanel.js', 
+            'js/widgets/SplashWindow.js', 
+            'js/widgets/InvalidShapePanel.js', 
+            'js/widgets/UnfinishedCheckWindow.js', 
+            'js/widgets/UnfinishedResourceStartPanel.js', 
+            'js/widgets/NavigatePanel.js', 
+            'js/widgets/PennyWindow.js', 
+            'js/widgets/YesNoButtons.js', 
+            'js/widgets/QuitCheckWindow.js'), 
+        'output_filename': 'compressed/gwst_or_rec.js'
+    }
+}
 
 try:
     from local_settings import *
