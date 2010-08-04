@@ -18,7 +18,7 @@ urlpatterns = patterns('',
         # 'backend': 'registration.backends.default.DefaultBackend'},
         # name='registration_register'),
     
-    (r'^accounts/', include('registration.backends.default.urls')),
+    # (r'^accounts/', include('registration.backends.default.urls')),
     
     (r'^draw_help/text/$', draw_help_text ),
 
