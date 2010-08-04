@@ -1,8 +1,8 @@
 from django.conf.urls.defaults import *
 from django.contrib.auth.views import *
 
-from registration.views import register
-from registration_custom.forms import RegistrationFormFull
+# from registration.views import register
+# from registration_custom.forms import RegistrationFormFull
 
 from views import *
 
@@ -12,11 +12,11 @@ urlpatterns = patterns('',
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout_then_login', {'login_url': '/accounts/login/'}),
 
     #Custom registration with extra profile fields
-    url(r'^accounts/register/$',
-        register, 
-        {'form_class': RegistrationFormFull,
-        'backend': 'registration.backends.default.DefaultBackend'},
-        name='registration_register'),
+    # url(r'^accounts/register/$',
+        # register, 
+        # {'form_class': RegistrationFormFull,
+        # 'backend': 'registration.backends.default.DefaultBackend'},
+        # name='registration_register'),
     
     (r'^accounts/', include('registration.backends.default.urls')),
     

@@ -1,10 +1,15 @@
 This document will guide you through setting up the OR Noncon Charter Survey on a server.  This can be used for both taking surveys and collecting (importing) data from the field surveys
 
-create new project folder under /usr/local/apps
-    mkdir ./or-charter-survey
-
+Install the following third-party applications:
+    django-extensions
+    django-registration
+        
+Make sure Django, any Django third-party apps, and the current application are on your python path:
+    run this directly or add it to your shell configuration:
+        `export PYTHONPATH=$PYTHONPATH:/path/to/django:.`
+        
 check out the code with svn
-    sudo svn checkout http://svn.infodrizzle.org/gwst/trunk
+    `sudo svn checkout http://svn.infodrizzle.org/gwst/trunk your-survey-folder`
     
 Copy over anything not kept in the repository
     Third Party folders under media
@@ -27,37 +32,35 @@ ceate local settings from template
     FULL_ADMIN = True
         Provides access to all admin options available through admin interface
         
-    DATABASE_NAME = 'or-charter-survey' 
+    DATABASE_NAME = 'your-database-name' 
     DATABASE_ENGINE = 'django.contrib.gis.db.backends.postgis'
         Since this is a server deploy, you want to use postgres/postgis, not spatialite
-    DATABASE_USER = 'webapp' 
+    DATABASE_USER = 'your-db-username' 
     DATABASE_PASSWORD = ""
     
-    IF DEVELOPMENT:
-        DATABASE_HOST = 'ninkasi.ecotrust.org'
-    IF PRODUCTION:
-        DATABASE_HOST = 'dionysus.ecotrust.org'
+    DATABASE_HOST = 'application-url'
         
     DATABASE_PORT = '5432'
     
-    MEDIA_ROOT = '/usr/local/apps/or-charter-survey/site-media'
+    MEDIA_ROOT = '/usr/local/apps/your-survey-folder/site-media'
     
     SECRET_KEY = ''  #Make this up!
     EMAIL_HOST_PASSWORD=''
     
 create the database
-    cdb.sh
+    This assumes that you have a database account with your same username
+    `./cdb.sh`
 
 If this is a development server: 
     import test_users.json
-        python manage.py loaddata test_users.json
+        `python manage.py loaddata test_users.json`
         
 If this is a production server:
     create superusers manually
-        python manage.py createsuperuser (then give username, email, and password when prompted)
+        `python manage.py createsuperuser` (then give username, email, and password when prompted)
     
 Run the django server to test
-    python manage.py runserver
+    `python manage.py runserver`
     will use apache later (instead)
 
 Deploy with Apache
