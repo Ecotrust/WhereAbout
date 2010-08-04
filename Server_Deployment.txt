@@ -5,6 +5,10 @@ create new project folder under /usr/local/apps
 
 check out the code with svn
     sudo svn checkout http://svn.infodrizzle.org/gwst/trunk
+    
+Copy over anything not kept in the repository
+    Third Party folders under media
+    tiles
 
 ceate local settings from template
     Borrow settings from an existing project, if possible

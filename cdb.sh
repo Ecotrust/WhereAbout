@@ -1,5 +1,5 @@
 #!/bin/bash
-DB="or-rec-survey"
+DB="or-charter-survey"
 
 export PYTHONPATH=$PYTHONPATH:/usr/local/django-trunk/:/usr/local/django-apps/:.
 
