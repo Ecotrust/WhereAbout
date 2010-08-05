@@ -25,7 +25,7 @@
         <p> {{ output }} </p>
         <p>The <b>{{ fixture }}</b> fixture was successfully loaded into the database.</p>
       {% else %}
-        <p>The <b>{{ fixture }}</b> fixture failed to load.</p>
+        <p>The <b>{{ fixture }}</b> fixture failed to load.</p><p>{{output}}</p>
       {% endif %}
     </div>
   </div>
