@@ -1,1 +1,1 @@
-dropdb -U postgres gwst
+dropdb -U postgres or-charter-survey

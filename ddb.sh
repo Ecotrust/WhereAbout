@@ -1,2 +1,2 @@
 #!/bin/bash
-dropdb or-rec-survey
+dropdb or-charter-survey
