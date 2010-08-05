@@ -172,4 +172,5 @@ try:
 except ImportError, exp:
     pass
     
+#TW - django-extensions UUID overrides.  Force use of UUID.
 import overrides
