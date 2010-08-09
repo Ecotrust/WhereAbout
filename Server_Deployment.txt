@@ -1,4 +1,4 @@
-This document will guide you through setting up the OR Noncon Charter Survey on a server.  This can be used for both taking surveys and collecting (importing) data from the field surveys
+This document will guide you through setting up the Survey Tool on a server.  This can be used for both taking surveys and collecting (importing) data from the field surveys
 
 Install the following third-party applications:
     django-extensions
@@ -60,7 +60,7 @@ If this is a production server:
         `python manage.py createsuperuser` (then give username, email, and password when prompted)
     
 Run the django server to test
-    `python manage.py runserver`
+    `./start_server.sh`
     will use apache later (instead)
 
 Deploy with Apache

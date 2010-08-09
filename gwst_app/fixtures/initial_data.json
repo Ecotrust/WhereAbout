@@ -165,26 +165,6 @@
     }
   }, 
   {
-    "pk": 2, 
-    "model": "gwst_app.interviewgroup", 
-    "fields": {
-      "shape_color": "FFFFFF", 
-      "code": "ch_own", 
-      "name": "Charter Boat Owner", 
-      "is_user_group": false, 
-      "required_group": false, 
-      "question_width": 425, 
-      "select_resource_text": "", 
-      "preselect": true, 
-      "user_draws_shapes": false, 
-      "interview": 3, 
-      "member_title": "charter boat owner", 
-      "page_template": "base_form.html", 
-      "resources": [], 
-      "description": "Owner Questions"
-    }
-  }, 
-  {
     "pk": 3, 
     "model": "gwst_app.interviewgroup", 
     "fields": {
@@ -209,6 +189,26 @@
         "31"
       ], 
       "description": "Operator Questions"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "code": "ch_own", 
+      "name": "Charter Boat Owner", 
+      "is_user_group": false, 
+      "required_group": false, 
+      "question_width": 425, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 3, 
+      "member_title": "charter boat owner", 
+      "page_template": "base_form.html", 
+      "resources": [], 
+      "description": "Owner Questions"
     }
   }, 
   {
@@ -626,7 +626,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Owner's percentage of annual gross revenue from non-consumptive charter whale watching", 
       "val_max": 100.0
     }
@@ -646,7 +646,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from bird watching", 
       "val_max": 100.0
     }
@@ -666,7 +666,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from marine mammal viewing", 
       "val_max": 100.0
     }
@@ -686,7 +686,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from leisure cruising", 
       "val_max": 100.0
     }
@@ -706,7 +706,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from glass bottom boat cruises", 
       "val_max": 100.0
     }
@@ -726,7 +726,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from diving", 
       "val_max": 100.0
     }
@@ -746,7 +746,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from consumptive charter activities like fishing", 
       "val_max": 100.0
     }
@@ -766,7 +766,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from COMBO 1", 
       "val_max": 100.0
     }
@@ -786,7 +786,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from COMBO 2", 
       "val_max": 100.0
     }
@@ -806,7 +806,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from COMBO 3", 
       "val_max": 100.0
     }
@@ -826,7 +826,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from COMBO 4", 
       "val_max": 100.0
     }
@@ -846,7 +846,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from other non-consumptive activities", 
       "val_max": 100.0
     }
@@ -886,7 +886,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from other non-consumptive activities", 
       "val_max": 100.0
     }
@@ -926,7 +926,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "0", 
-      "answer_type": "integer", 
+      "answer_type": "percent", 
       "eng_tooltip": "Operator\u2019s percentage of annual gross revenue from other non-consumptive activities", 
       "val_max": 100.0
     }
