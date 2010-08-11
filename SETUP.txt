@@ -1,48 +1,69 @@
-For Spatialite on Windows:
-=========================
-Get precompiled binaries at: http://www.gaia-gis.it/spatialite/binaries.html
-		-libspatialite
-		-proj (under libspatialite)
-		-spatialite-tools
-	Extract them somewhere and add them (individually) to your path.
+-------------------------
+INSTALL SPATIALITE
+-------------------------
 
-Install pysqlite2 at: http://code.google.com/p/pysqlite/downloads/list
+    For Spatialite on Windows:
+    =========================
+        Get precompiled binaries at: http://www.gaia-gis.it/spatialite/binaries.html
+                -libspatialite
+                -proj (under libspatialite)
+                -spatialite-tools
+            Extract them somewhere and add them (individually) to your path.
 
-Install the Python Imaging Library (PIL) : http://www.pythonware.com/products/pil/
+        Install pysqlite2 at: http://code.google.com/p/pysqlite/downloads/list
 
-Check that local_settings.py, cdb-spatialite.bat, and ddb-spatialite.bat all reference the right database name
-	and that local_settings has the correct DATABASE_ENGINE 
-		(like 'django.contrib.gis.db.backends.spatialite')
+    Install the Python Imaging Library (PIL) : http://www.pythonware.com/products/pil/
 
-provide NAME ONLY of libspatialite-1.dll in settings.py as SPATIALITE_LIBRARY_PATH
-- if you provide the path, some bits of django use fine, others think it's just a filename
+--------------------------
+CONFIGURE
+--------------------------    
+    Check that local_settings.py, cdb-spatialite.bat, and ddb-spatialite.bat all reference the right database name
+        and that local_settings has the correct DATABASE_ENGINE 
+            (like 'django.contrib.gis.db.backends.spatialite')
+            
+    update MEDIA_ROOT in local_settings to os.path.abspath(os.path.dirname(sys.argv[0])) + '/site-media';
 
-set DESKTOP_BUILD = True in settings.py - controls model def for clip region and local tile loading in client js
+    Set DEBUG = True in local_settings.py
 
-run cdb-spatialite.bat
+--------------------------
+CONFIGURE SETTINGS.PY
+--------------------------    
+    Set SPATIALITE_LIBRARY_PATH = libspatialite-1.dll
+    - if you provide the path, some bits of django use fine, others think it's just a filename
 
-NOTE: This assumes that init_spatialite-2.3.sql is available in the database folder.  
-	If not, it can be found at: http://www.gaia-gis.it/spatialite/resources.html under 'SQL scripts'
+    Set DESKTOP_BUILD = True 
+    - controls model def for clip region and local tile loading in client js
 
-install CherryPy
-install py2exe
-install simplejson (NOTE: MUST NOT be an .egg)
+--------------------------    
+CREATE THE DATABASE
+--------------------------    
+    run cdb-spatialite.bat
 
-for python 2.5:
-	get lib from: //daryl/gis/projects\SpatialWebSurveyTool\OR-Intercept-NonConSurvey\external-dependancies\lib25
-		
-rename media folder site-media to avoid conflict with admin media
-update MEDIA_ROOT in local_settings to os.path.abspath(os.path.dirname(sys.argv[0])) + '/site-media';
+    NOTE: This assumes that init_spatialite-2.3.sql is available in the database folder.  
+        If not, it can be found at: http://www.gaia-gis.it/spatialite/resources.html under 'SQL scripts'
 
-Check that DEBUG = True in local_settings.py
+--------------------------    
+MORE INSTALLS
+--------------------------        
+    install CherryPy
+        - Server
+    install py2exe
+        - creates a script for Inno to make an installer for the tool
+    install simplejson (NOTE: MUST NOT be an .egg)
 
-recompress javascript - manage.py synccompress
+--------------------------    
+MISC
+--------------------------            
+    for python 2.5:
+        get lib from: //daryl/gis/projects\SpatialWebSurveyTool\OR-Intercept-NonConSurvey\external-dependancies\lib25
+            
+    rename media folder site-media to avoid conflict with admin media
 
-setup.py py2exe
+--------------------------    
+RUN THE PROGRAM
+--------------------------        
+    recompress javascript - manage.py synccompress
 
-dist/run-desktop.bat to run
+    setup.py py2exe
 
-
-
-
-
+    dist/run-desktop.bat to run
