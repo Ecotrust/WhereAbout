@@ -134,8 +134,17 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         //Create the map and dump everything in
 	    map = new OpenLayers.Map('ol-map', map_options);
 		map.addControl(new OpenLayers.Control.Navigation());		
+	    
+	    var dmsOutput = function(lonLat) {
+		var digits = parseInt(this.numDigits);
+		var newHtml =
+		OpenLayers.Util.getFormattedLonLat(lonLat.lat,'lat','dms') + ' ' +
+		OpenLayers.Util.getFormattedLonLat(lonLat.lon,'lon','dms');
+		return newHtml;
+	    };
+
         map.addControl(new OpenLayers.Control.PanZoomBar());
-		map.addControl(new OpenLayers.Control.MousePosition());
+		map.addControl(new OpenLayers.Control.MousePosition({formatOutput:dmsOutput}));
         
 		this.drawResControl = new OpenLayers.Control.DrawFeature(
             this.vecLayer, 
