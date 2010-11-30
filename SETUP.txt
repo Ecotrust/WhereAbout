@@ -26,6 +26,18 @@ CONFIGURE
     Set DEBUG = True in local_settings.py
 
 --------------------------
+Get Python libraries
+--------------------------    
+    pip install django_extensions
+    In site-packages, get the compress repository:
+	http://django-compress.googlecode.com/svn/trunk/compress
+    Install registration (may be easier after CherryPy, to get turboGears)
+        pip install django-registration
+            this may require you to install turbogears:
+                get turbogears (pip install turbogears)
+                    will get CherryPy and a bunch of other stuff.
+
+--------------------------
 CONFIGURE SETTINGS.PY
 --------------------------    
     Set SPATIALITE_LIBRARY_PATH = libspatialite-1.dll
@@ -50,6 +62,12 @@ MORE INSTALLS
     install py2exe
         - creates a script for Inno to make an installer for the tool
     install simplejson (NOTE: MUST NOT be an .egg)
+
+--------------------------
+Third-party
+--------------------------    
+    Make sure you have all of the appropriate third-party folders, including 
+        extjs2, GeoExt-0.6, and OpenLayers-2.8
 
 --------------------------    
 MISC
