@@ -1,1 +1,1 @@
-del database\db.sqlite
+del database\dive_db.sqlite
