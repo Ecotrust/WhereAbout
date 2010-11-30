@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block js %}
+ function skip_group_verify(link) {
+            var agree=confirm("Are you sure you want to skip this group?  You won't be able to undo this action.");
+            if (agree) {
+                location.href=link;
+            }
+            else {
+                location.href="/group_qs/{{form.group_id}}/answer";
+            }
+        }
+
+{% endblock %}
+
+{% block content %}
+{% if instructions %}
+<div style='width:600px'>{{ instructions.main|safe }}</div>
+{% endif %}
+    <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+    {{ form.non_field_errors }}
+    
+    <p>This section is optional. If you wish, you may <a onclick="skip_group_verify('/skip_group/{{form.group_id}}/')">skip this section</a>.</p>   
+    
+    {% for question in form %}
+        {% if forloop.counter < 3 %}
+            <p><div class="fieldWrapper">
+                {{ question.errors }}
+                <table>
+                    <tr>
+                        <td style='width:400px'>
+                            {{ question.label_tag }}: 
+                        </td>
+                        <td style='vertical-align: bottom'>
+                            {{ question }}
+                        </td>
+                    </tr>
+                </table>
+            </div></p>
+        {% else %}    
+            {% ifequal forloop.counter 3 %}   
+                <br>
+                <p>
+                    We recognize that this next question may require some additional time and thought -- please do the best you can. <br />
+                    The percentages you supply do not have to be exact -- general values based on your best estimate are fine.
+                </p>
+                <p>
+                    Please estimate the <u>percentage</u> of your <b>total expenditures <u>last year</u> for consumptive diving/shore picking</b>  <br />
+                    used in each of the following categories - note that the sum should equal 100%. If you did not spend money or<br />
+                    make purchases in a category, <b>please put a zero for that category</b>.
+                <p>
+            {% endifequal %}
+            {{ question.errors }}
+        {% endif %}
+    {% endfor %}
+    {% for question in form %}
+        {% ifequal forloop.counter 3 %}  
+            <table border="0">
+            <tr>
+                <td style="padding-right: 0px;">
+                    <table style="margin-left: 60px" border="1">
+        {% endifequal %}
+        {% if forloop.counter > 2 %}
+            <tr>
+                <td>{{ question.label_tag }}</td>
+                <td style='width: 115px'>{{ question }} %</td>
+            </tr>
+        {% endif %}
+
+    {% endfor %}   
+    </table>
+    </td>
+    </tr>
+    </table>
+    <p><input id="submit" type="submit" value="{{ value }}" style="margin: 20px"/>
+    {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+    </p>
+    </form>
+{% endblock %}
