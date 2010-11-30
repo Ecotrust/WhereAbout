@@ -234,16 +234,6 @@
     }
   }, 
   {
-    "pk": "084c7830-fc1b-11df-9954-0016760580f0", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "other", 
-      "name": "Other"
-    }
-  }, 
-  {
     "pk": 3, 
     "model": "gwst_app.interview", 
     "fields": {
@@ -389,7 +379,6 @@
       "member_title": "harvester", 
       "page_template": "base_form.html", 
       "resources": [
-        "084c7830-fc1b-11df-9954-0016760580f0", 
         "08e88691-fc1a-11df-ab34-0016760580f0", 
         "1b03890f-fc1a-11df-8798-0016760580f0", 
         "4e853961-fc19-11df-8bf7-0016760580f0", 
