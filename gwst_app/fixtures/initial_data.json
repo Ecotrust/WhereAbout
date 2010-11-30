@@ -570,6 +570,190 @@
     }
   }, 
   {
+    "pk": "271706cf-fca8-11df-8030-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 10.0, 
+      "eng_text": "Size of species"
+    }
+  }, 
+  {
+    "pk": "2ead0340-fca8-11df-b1c8-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 20.0, 
+      "eng_text": "Abundance of species"
+    }
+  }, 
+  {
+    "pk": "33ddbf80-fca8-11df-8913-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 30.0, 
+      "eng_text": "Easy access/entry"
+    }
+  }, 
+  {
+    "pk": "39135dc0-fca8-11df-8e90-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 40.0, 
+      "eng_text": "Close to home"
+    }
+  }, 
+  {
+    "pk": "43288b00-fca8-11df-95e6-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 50.0, 
+      "eng_text": "Close to campground/hotel/vacation rental"
+    }
+  }, 
+  {
+    "pk": "4972f4a1-fca8-11df-9385-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 60.0, 
+      "eng_text": "Protected from weather"
+    }
+  }, 
+  {
+    "pk": "554b078f-fca8-11df-adae-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 70.0, 
+      "eng_text": "Close to facilities/store"
+    }
+  }, 
+  {
+    "pk": "5cf416cf-fca8-11df-a1c6-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 80.0, 
+      "eng_text": "Try a new place"
+    }
+  }, 
+  {
+    "pk": "62011e70-fca8-11df-9cf4-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 90.0, 
+      "eng_text": "Other"
+    }
+  }, 
+  {
+    "pk": "7f891600-fca8-11df-9ccc-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 10.0, 
+      "eng_text": "White"
+    }
+  }, 
+  {
+    "pk": "8560e7b0-fca8-11df-8679-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 20.0, 
+      "eng_text": "Black or African American"
+    }
+  }, 
+  {
+    "pk": "8e7e205e-fca8-11df-9c06-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 30.0, 
+      "eng_text": "Spanish, Hispanic, or Latino"
+    }
+  }, 
+  {
+    "pk": "95612080-fca8-11df-8d3c-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 40.0, 
+      "eng_text": "American Indian or Alaska Native"
+    }
+  }, 
+  {
+    "pk": "99b670e1-fca8-11df-aad3-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 50.0, 
+      "eng_text": "Asian/Pacific Islander"
+    }
+  }, 
+  {
+    "pk": "9e5a7d80-fca8-11df-9e09-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 60.0, 
+      "eng_text": "Other"
+    }
+  }, 
+  {
+    "pk": "a5829cf0-fca8-11df-ac4f-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 10.0, 
+      "eng_text": "Less than high school"
+    }
+  }, 
+  {
+    "pk": "ad11465e-fca8-11df-a964-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 20.0, 
+      "eng_text": "High school diploma or GED"
+    }
+  }, 
+  {
+    "pk": "b29ec89e-fca8-11df-acf7-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 30.0, 
+      "eng_text": "Some college"
+    }
+  }, 
+  {
+    "pk": "bb4f5ccf-fca8-11df-89c8-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 40.0, 
+      "eng_text": "Associate's degree"
+    }
+  }, 
+  {
+    "pk": "c1c3958f-fca8-11df-9330-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 50.0, 
+      "eng_text": "Bachelor's degree or higher"
+    }
+  }, 
+  {
+    "pk": "c8868a8f-fca8-11df-a410-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 10.0, 
+      "eng_text": "Less than $22,000"
+    }
+  }, 
+  {
+    "pk": "d1003040-fca8-11df-9522-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 20.0, 
+      "eng_text": "$22,000 - $57,000"
+    }
+  }, 
+  {
+    "pk": "d85245e1-fca8-11df-b9e9-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 30.0, 
+      "eng_text": "$57,000 or more"
+    }
+  }, 
+  {
     "pk": "a1", 
     "model": "gwst_app.questiongroupvalidator", 
     "fields": {
@@ -1831,6 +2015,127 @@
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 65, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "gender", 
+      "eng_text": "Gender", 
+      "int_group": 7, 
+      "question_set": null, 
+      "display_order": 10.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "a20", 
+        "a4", 
+        "a5"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 66, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "age", 
+      "eng_text": "Age", 
+      "int_group": 7, 
+      "question_set": null, 
+      "display_order": 20.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 67, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "race", 
+      "eng_text": "Race", 
+      "int_group": 7, 
+      "question_set": null, 
+      "display_order": 30.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "7f891600-fca8-11df-9ccc-0016760580f0", 
+        "8560e7b0-fca8-11df-8679-0016760580f0", 
+        "8e7e205e-fca8-11df-9c06-0016760580f0", 
+        "95612080-fca8-11df-8d3c-0016760580f0", 
+        "99b670e1-fca8-11df-aad3-0016760580f0", 
+        "9e5a7d80-fca8-11df-9e09-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 68, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "education", 
+      "eng_text": "Level of education", 
+      "int_group": 7, 
+      "question_set": null, 
+      "display_order": 40.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "a5829cf0-fca8-11df-ac4f-0016760580f0", 
+        "ad11465e-fca8-11df-a964-0016760580f0", 
+        "b29ec89e-fca8-11df-acf7-0016760580f0", 
+        "bb4f5ccf-fca8-11df-89c8-0016760580f0", 
+        "c1c3958f-fca8-11df-9330-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 69, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "income", 
+      "eng_text": "Total household income", 
+      "int_group": 7, 
+      "question_set": null, 
+      "display_order": 50.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "c8868a8f-fca8-11df-a410-0016760580f0", 
+        "d1003040-fca8-11df-9522-0016760580f0", 
+        "d85245e1-fca8-11df-b9e9-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
       "eng_tooltip": "", 
       "val_max": null
     }
