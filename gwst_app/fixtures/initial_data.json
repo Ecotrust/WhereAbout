@@ -418,13 +418,13 @@
       "name": "Socio-Economic Questions", 
       "is_user_group": false, 
       "required_group": true, 
-      "question_width": 275, 
+      "question_width": 565, 
       "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": false, 
       "interview": 4, 
       "member_title": "person", 
-      "page_template": "base_form.html", 
+      "page_template": "div_soc_econ_form.html", 
       "resources": [], 
       "description": "Socio-Economic Questions"
     }
@@ -782,6 +782,17 @@
     "fields": {
       "code": "co_pctrev", 
       "eng_text": "Charter owner's percentage of gross revenue", 
+      "validators": [
+        "a1"
+      ]
+    }
+  }, 
+  {
+    "pk": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+    "model": "gwst_app.questiongroup", 
+    "fields": {
+      "code": "soc_econ", 
+      "eng_text": "Socio-Economic Expenses", 
       "validators": [
         "a1"
       ]
@@ -2017,6 +2028,386 @@
       "answer_type": "text", 
       "eng_tooltip": "", 
       "val_max": null
+    }
+  }, 
+  {
+    "pk": 70, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "num_trips", 
+      "eng_text": "Please estimate how many recreational fishing dive/shore picking trips you took last year (2010)", 
+      "int_group": 6, 
+      "question_set": null, 
+      "display_order": 10.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "Number of times you went to the coast to dive or shore pick", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 71, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tot_expend", 
+      "eng_text": "Please estimate the amount of your <b>total expenditures <u>last year</u> from consumptive diving/shore picking</b>", 
+      "int_group": 6, 
+      "question_set": null, 
+      "display_order": 20.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "In US dollars", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 72, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_trans", 
+      "eng_text": "Private or public transportation (including gas and parking fees)", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 30.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 73, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_food_gr", 
+      "eng_text": "Food and beverages from a store", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 40.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 74, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_food_re", 
+      "eng_text": "Food and beverages at a restaurant or bar", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 50.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 75, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_lodging", 
+      "eng_text": "Lodging and camping (if you stayed overnight)", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 60.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 76, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_eq_rent", 
+      "eng_text": "Dive equipment rental and air fills", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 70.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 77, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_eq_purc", 
+      "eng_text": "Dive equipment purchase", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 80.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 78, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_b_rent", 
+      "eng_text": "Boat rental", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 90.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 79, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_b_purch", 
+      "eng_text": "Boat purchase", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 100.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 80, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_b_store", 
+      "eng_text": "Boat storage", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 110.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 81, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_b_maint", 
+      "eng_text": "Boat maintenance/expenses", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 120.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 82, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_b_fuel", 
+      "eng_text": "Boat fuel", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 130.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 83, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_k_rent", 
+      "eng_text": "Kayak rental", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 140.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 84, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_k_purch", 
+      "eng_text": "Kayak purchase", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 150.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 85, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_ramp", 
+      "eng_text": "Ramp/launch fees", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 160.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 86, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_charter", 
+      "eng_text": "Charter fees", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 170.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 87, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_license", 
+      "eng_text": "Fishing license fee", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 180.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 88, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "se_misc", 
+      "eng_text": "Miscellaneous (sundries, ice, etc.)", 
+      "int_group": 6, 
+      "question_set": 1, 
+      "display_order": 190.0, 
+      "required": false, 
+      "question_group": "9fa8d1a1-fcb7-11df-b8f8-0016760580f0", 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "0", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
     }
   }, 
   {

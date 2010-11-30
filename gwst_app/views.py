@@ -605,7 +605,7 @@ def answer_resource_questions(request, group_id, next_url=None):
             else:
                 return HttpResponseRedirect('/group_status#main_menu')
         
-    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':165}))   
+    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':520}))   
 
 @login_required
 def draw_group_resources(request, group_id):
