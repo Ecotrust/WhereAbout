@@ -201,6 +201,7 @@ class InterviewQuestion(Model):
         ( 'decimal', 'decimal value' ),
         ( 'boolean', 'boolean (true/false) value' ),
         ( 'select', 'select from list of values' ),
+        ( 'checkbox', 'check box' ),
         ( 'other', 'list of values w/"other" text' ),
         ( 'text', 'enter text' ),
         ( 'phone', 'phone number' ),
@@ -274,7 +275,8 @@ class InterviewAnswer(Model):
     int_question = ForeignKey(InterviewQuestion)
     user = ForeignKey(User)
     resource = ForeignKey(Resource, null=True, blank=True) # only used if question.all_resources is set
-    option_val = ForeignKey(InterviewAnswerOption, null=True, blank=True)
+    option = ForeignKey(InterviewAnswerOption, null=True, blank=True) # only used for questions with multiple answers
+    option_val = ForeignKey(InterviewAnswerOption, null=True, blank=True, related_name='opt_val')
     text_val = TextField(null=True, blank=True)
     integer_val = IntegerField(null=True, blank=True)
     decimal_val = FloatField(null=True, blank=True)
@@ -285,7 +287,7 @@ class InterviewAnswer(Model):
     
     class Meta:
         db_table = u'gwst_useranswer'
-        unique_together = (("int_question", "user", "resource"),)
+        unique_together = (("int_question", "user", "resource", "option"),)
         
     def __unicode__(self):
         return unicode('%s: %s' % (self.user, self.int_question))

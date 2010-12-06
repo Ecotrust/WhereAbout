@@ -575,7 +575,42 @@ def answer_resource_questions(request, group_id, next_url=None):
         
         # show questions for this group, with any existing user answers
         for sel_resource in sel_resources:
-            form = AnswerForm( questions, answers, group_id, sel_resource.resource.id )
+            form_args = {}
+            
+            for question in questions:
+                if question.answer_type == 'checkbox':
+                    check_ans = answers.filter(int_question=question.id, resource=sel_resource.resource)
+                    option_list = []
+                    for ans in check_ans:
+                        if ans.boolean_val:
+                            opt_id = ans.option_id
+                            option_list.append(opt_id)
+                    form_args['question_' + str(question.id)+ '_' + str(sel_resource.resource_id)] = option_list
+                else:
+                    answer = answers.get(int_question=question.id, resource=sel_resource.resource)
+                    if question.answer_type == 'integer':
+                        form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.integer_val
+                    elif question.answer_type == 'decimal':
+                        form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.decimal_val
+                    elif question.answer_type == 'boolean':
+                        form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.boolean_val
+                    elif question.answer_type == 'select':
+                        form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.option_val
+                    elif question.answer_type == 'other':
+                        #TODO: get this one working - test 'select' as well.
+                        form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.option_val
+                    elif question.answer_type == 'text':
+                        form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.text_val
+                    elif question.answer_type == 'textarea':
+                        form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.text_val
+                    elif question.answer_type == 'phone':
+                        form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.text_val
+                    elif question.answer_type == 'money':
+                        form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.text_val
+                    elif question.answer_type == 'percent':
+                        form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.percent_val            
+
+            form = AnswerForm( questions, answers, group_id, sel_resource.resource.id, form_args )
             forms[sel_resource.resource.name]=form
         
     else:

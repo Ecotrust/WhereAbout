@@ -121,6 +121,15 @@ class AnswerForm(forms.Form):
 
                 self.fields['question_' + str(question.id) + resource_postfix] = forms.ModelChoiceField( **dynamic_args )
                 
+            elif question.answer_type == 'checkbox': #checkbox list
+                option_values = question.options.values()
+                choices = []
+                for val in option_values:
+                    choices.append((val.get('id'), val.get('eng_text')))
+                dynamic_args['choices'] = choices
+                dynamic_args['widget'] = forms.CheckboxSelectMultiple()
+                self.fields['question_' + str(question.id) + resource_postfix] = forms.MultipleChoiceField( **dynamic_args )
+                
             elif question.answer_type == 'other': #choice w/enter text for other
                 dynamic_args['queryset'] = question.options
                 other_dynamic_args['label'] = 'Other value for '+question.eng_text
@@ -195,7 +204,7 @@ class AnswerForm(forms.Form):
             self.fields['question_' + str(question.id) + resource_postfix].answer = answer
             prev_question = question
 
-    def clean(self):
+    def clean(self): 
         # first loop through all answers and clean out unnecessary characters
         for question in self.questions:
             key = 'question_'+unicode(question.id)
@@ -206,7 +215,7 @@ class AnswerForm(forms.Form):
                 self.cleaned_data[key] = re.sub("%","",str(self.data[key]))
             if self.data.get(key) == "" and (question.answer_type == "money" or question.answer_type == "percent"):
                 self.cleaned_data[key] = 0
-         
+
         # now loop again running validation assuming all fields have been cleaned.
         for question in self.questions:        
             if question.question_group:
@@ -252,8 +261,7 @@ class AnswerForm(forms.Form):
         if sum != target:
             msg = 'Values must add up to '+unicode(int(target))+', currently at '+unicode(int(sum))
             self._errors[key] = ErrorList([msg])
-
-
+    
     def save(self, user):
         for field_name in self.fields:
             field = self.fields[field_name]
@@ -282,14 +290,33 @@ class AnswerForm(forms.Form):
                 answer.option_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 if answer.option_val:
                     answer.text_val = answer.option_val.eng_text # makes the db a little more human readable
+            elif field.question.answer_type == 'checkbox':
+                answer_ids = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
+                answers = [InterviewAnswerOption.objects.get(pk=opt_id) for opt_id in answer_ids]
+                all_options = [InterviewAnswerOption.objects.get(pk=opt['id']) for opt in InterviewQuestion.objects.get(id=field.question.id).options.values()]
+                resource = Resource.objects.get(id = self.resource_id)
+                for val in all_options:
+                    ia_qs = InterviewAnswer.objects.get_or_create(int_question = field.question, user = user, resource = resource, option = val)
+                    res_answer = ia_qs[0]
+                    if not ia_qs[1]:
+                        res_answer.num_times_saved = res_answer.num_times_saved + 1
+                    res_answer.last_modified = datetime.datetime.today()
+                    res_answer.text_val = str(val)
+                    if val in answers:
+                        res_answer.boolean_val = True
+                    else:
+                        res_answer.boolean_val = False
+                    res_answer.save()
+                        
+                        
+                        
             elif field.question.answer_type == 'other':
                 answer.option_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 answer.text_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix + '_other']
             elif field.question.answer_type == 'text' or field.question.answer_type == 'phone' or field.question.answer_type == 'textarea':
                 answer.text_val = str(self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix])
-            answer.save()
-            
-            #print "saved answer (res: %d, q: %d, user: %d)" % (answer.resource_id, answer.int_question.id, answer.user.id)
+            if field.question.answer_type != 'checkbox':
+                answer.save()
         
 
 class InterviewShapeAttributeForm(forms.ModelForm):

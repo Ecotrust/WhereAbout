@@ -2011,10 +2011,20 @@
       "display_order": 30.0, 
       "required": false, 
       "question_group": null, 
-      "options": [], 
+      "options": [
+        "271706cf-fca8-11df-8030-0016760580f0", 
+        "2ead0340-fca8-11df-b1c8-0016760580f0", 
+        "33ddbf80-fca8-11df-8913-0016760580f0", 
+        "39135dc0-fca8-11df-8e90-0016760580f0", 
+        "43288b00-fca8-11df-95e6-0016760580f0", 
+        "4972f4a1-fca8-11df-9385-0016760580f0", 
+        "554b078f-fca8-11df-adae-0016760580f0", 
+        "5cf416cf-fca8-11df-a1c6-0016760580f0", 
+        "62011e70-fca8-11df-9cf4-0016760580f0"
+      ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "text", 
+      "answer_type": "checkbox", 
       "eng_tooltip": "", 
       "val_max": null
     }
