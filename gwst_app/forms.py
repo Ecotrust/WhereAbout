@@ -121,15 +121,20 @@ class AnswerForm(forms.Form):
 
                 self.fields['question_' + str(question.id) + resource_postfix] = forms.ModelChoiceField( **dynamic_args )
                 
-            elif question.answer_type == 'checkbox': #checkbox list
+            elif question.answer_type == 'checkbox': #checkbox list 
                 option_values = question.options.values()
                 choices = []
                 for val in option_values:
                     choices.append((val.get('id'), val.get('eng_text')))
                 dynamic_args['choices'] = choices
                 dynamic_args['widget'] = forms.CheckboxSelectMultiple()
+                option_list = []
+                for ans in answer:
+                    if ans.boolean_val:
+                        option_list.append(ans.option_id) 
+                dynamic_args['initial']= option_list
                 self.fields['question_' + str(question.id) + resource_postfix] = forms.MultipleChoiceField( **dynamic_args )
-                
+
             elif question.answer_type == 'other': #choice w/enter text for other
                 dynamic_args['queryset'] = question.options
                 other_dynamic_args['label'] = 'Other value for '+question.eng_text

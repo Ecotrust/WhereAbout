@@ -23,16 +23,31 @@
         {% endif %}
         <p><div class="fieldWrapper">
             {{ field.errors }}
-            <table>
-                <tr>
-                    <td style='width:{{ q_width }}px'>
-                        {{ field.label_tag }}:
-                    </td>
-                    <td>
-                        {{ field }}
-                    </td>
-                </tr>
-            </table>
+            {% ifequal field.field.question.layout 'horizontal' %}
+                <table>
+                    <tr>
+                        <td style='width:{{ q_width }}px'>
+                            {{ field.label_tag }}:
+                        </td>
+                        <td>
+                            {{ field }}
+                        </td>
+                    </tr>
+                </table>
+            {% endifequal %}
+            {% ifequal field.field.question.layout 'vertical' %}
+                <table>
+                    <tr>
+                        <td>
+                            {{ field.label_tag }}:
+                        </td>
+                    </tr><tr>
+                        <td>
+                            {{ field }}
+                        </td>
+                    </tr>
+                </table>
+            {% endifequal %}
         </div></p>
     {% endfor %}   
    

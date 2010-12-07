@@ -472,7 +472,6 @@ def answer_questions(request,group_id):
     q_width = group.question_width
     return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue', 'q_width':q_width}))     
     
-
 @login_required
 def select_group_resources(request, group_id):
     # make sure the user has a valid session in-progress
@@ -570,53 +569,12 @@ def answer_resource_questions(request, group_id, next_url=None):
     answers = InterviewAnswer.objects.filter(user=request.session['interviewee'], int_question__in=questions)
     
     forms = {}
-        
+
     if request.method == 'GET':
         
         # show questions for this group, with any existing user answers
         for sel_resource in sel_resources:
-            form_args = {}
-            
-            if answers.filter(resource=sel_resource.resource).count() > 0:
-            
-                for question in questions:
-                    if question.answer_type == 'checkbox':
-                        check_ans = answers.filter(int_question=question.id, resource=sel_resource.resource)
-                        option_list = []
-                        for ans in check_ans:
-                            if ans.boolean_val:
-                                opt_id = ans.option_id
-                                option_list.append(opt_id)
-                        form_args['question_' + str(question.id)+ '_' + str(sel_resource.resource_id)] = option_list
-                    else:
-                        answer = answers.get(int_question=question.id, resource=sel_resource.resource)
-                        if question.answer_type == 'integer':
-                            form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.integer_val
-                        elif question.answer_type == 'decimal':
-                            form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.decimal_val
-                        elif question.answer_type == 'boolean':
-                            form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.boolean_val
-                        elif question.answer_type == 'select':
-                            form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.option_val
-                        elif question.answer_type == 'other':
-                            #TODO: get this one working - test 'select' as well.
-                            form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.option_val
-                        elif question.answer_type == 'text':
-                            form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.text_val
-                        elif question.answer_type == 'textarea':
-                            form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.text_val
-                        elif question.answer_type == 'phone':
-                            form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.text_val
-                        elif question.answer_type == 'money':
-                            form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.text_val
-                        elif question.answer_type == 'percent':
-                            form_args['question_'+str(question.id)+'_'+str(sel_resource.resource_id)]=answer.percent_val            
-
-                form = AnswerForm( questions, answers, group_id, sel_resource.resource.id, form_args )
-                
-            else:
-                form = AnswerForm( questions, answers, group_id, sel_resource.resource.id)
-        
+            form = AnswerForm( questions, answers, group_id, sel_resource.resource.id)
             forms[sel_resource.resource.name]=form
     else:
         # form validation
@@ -645,7 +603,7 @@ def answer_resource_questions(request, group_id, next_url=None):
             else:
                 return HttpResponseRedirect('/group_status#main_menu')
         
-    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':520}))   
+    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':520}))
 
 @login_required
 def draw_group_resources(request, group_id):

@@ -209,6 +209,12 @@ class InterviewQuestion(Model):
         ( 'percent', 'percentage' ),
         ( 'textarea', 'text area')
     )
+    
+    LayoutChoices = (
+        ('hoizontal', 'horizontal'),
+        ('vertical', 'vertical')
+    )
+    
     int_group = ForeignKey(InterviewGroup)
     answer_type = CharField( max_length=20, choices=AnswerTypeChoices )
     code = CharField( max_length=10, help_text='unique name for referencing this question directly', blank=True, null=True)
@@ -223,6 +229,7 @@ class InterviewQuestion(Model):
     display_order = FloatField( help_text='tab order of this question on its page' )
     required = BooleanField( help_text='require that this field be filled out', default=False)
     all_resources = BooleanField( help_text='is this a question to be asked once for each resource?', default=False)
+    layout = CharField( max_length=20, choices=LayoutChoices, default='horizontal' )
         
     class Meta:
         db_table = u'gwst_question'

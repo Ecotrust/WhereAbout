@@ -793,6 +793,7 @@
     "fields": {
       "all_resources": false, 
       "code": "int_name", 
+      "layout": "horizontal", 
       "eng_text": "Interviewer's Name(s)", 
       "int_group": 1, 
       "question_set": null, 
@@ -813,6 +814,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_f_name", 
+      "layout": "horizontal", 
       "eng_text": "Operator's First Name", 
       "int_group": 1, 
       "question_set": null, 
@@ -833,6 +835,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_l_name", 
+      "layout": "horizontal", 
       "eng_text": "Operator's Last Name", 
       "int_group": 1, 
       "question_set": null, 
@@ -853,6 +856,7 @@
     "fields": {
       "all_resources": false, 
       "code": "mail_ad", 
+      "layout": "horizontal", 
       "eng_text": "Operator's Mailing Address", 
       "int_group": 1, 
       "question_set": null, 
@@ -873,6 +877,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_phone", 
+      "layout": "horizontal", 
       "eng_text": "Operator's Phone Number", 
       "int_group": 1, 
       "question_set": null, 
@@ -893,6 +898,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_email", 
+      "layout": "horizontal", 
       "eng_text": "Operator's Email Address", 
       "int_group": 1, 
       "question_set": null, 
@@ -913,6 +919,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_age", 
+      "layout": "horizontal", 
       "eng_text": "Operator's Age", 
       "int_group": 1, 
       "question_set": null, 
@@ -933,6 +940,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_gender", 
+      "layout": "horizontal", 
       "eng_text": "Operator's Gender", 
       "int_group": 1, 
       "question_set": null, 
@@ -956,6 +964,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_op", 
+      "layout": "horizontal", 
       "eng_text": "Does the owner generally operate the vessel(s)", 
       "int_group": 2, 
       "question_set": 1, 
@@ -979,6 +988,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_numboat", 
+      "layout": "horizontal", 
       "eng_text": "Number of charter boats", 
       "int_group": 2, 
       "question_set": 1, 
@@ -999,6 +1009,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_yearown", 
+      "layout": "horizontal", 
       "eng_text": "Years of ownership", 
       "int_group": 2, 
       "question_set": 1, 
@@ -1019,6 +1030,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_grosrev", 
+      "layout": "horizontal", 
       "eng_text": "Average annual gross revenue from all charter trips", 
       "int_group": 2, 
       "question_set": 1, 
@@ -1039,6 +1051,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_rev00", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from WHALE WATCHING", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1059,6 +1072,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_rev01", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from BIRD WATCHING", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1079,6 +1093,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_rev02", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from MARINE MAMMAL VIEWING", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1099,6 +1114,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_rev03", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from LEISURE CRUISING", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1119,6 +1135,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_rev04", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from GLASS BOTTOM BOATING", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1139,6 +1156,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_rev05", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from DIVING", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1159,6 +1177,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_rev06", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from FISHING", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1179,6 +1198,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_rev07", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from COMBO: Whale Watching + Marine Mammal Viewing + Bird Watching", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1199,6 +1219,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_rev08", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from COMBO:  Marine Mammal Viewing + Bird Watching", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1219,6 +1240,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_rev09", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from COMBO: Whale Watching + Marine Mammal Viewing", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1239,6 +1261,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_rev10", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from COMBO: Whale Watching + Bird Watching", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1259,6 +1282,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_revoth1", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from OTHER 1", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1279,6 +1303,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_txtoth1", 
+      "layout": "horizontal", 
       "eng_text": "Please specify what OTHER 1 is", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1299,6 +1324,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_revoth2", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from OTHER 2", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1319,6 +1345,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_txtoth2", 
+      "layout": "horizontal", 
       "eng_text": "Please specify what OTHER 2 is", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1339,6 +1366,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_revoth3", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue from OTHER 3", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1359,6 +1387,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_txtoth3", 
+      "layout": "horizontal", 
       "eng_text": "Please specify what OTHER 3 is", 
       "int_group": 2, 
       "question_set": 2, 
@@ -1379,6 +1408,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_p_rev_t", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of gross revenue for total annual operating costs ", 
       "int_group": 2, 
       "question_set": 3, 
@@ -1399,6 +1429,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_pctcst", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of total annual operating costs for non-consumptive trips", 
       "int_group": 2, 
       "question_set": 3, 
@@ -1419,6 +1450,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_crew", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of NON-CONSUMPTIVE operating costs for: crew/labor", 
       "int_group": 2, 
       "question_set": 3, 
@@ -1439,6 +1471,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_fuel", 
+      "layout": "horizontal", 
       "eng_text": "Average percentage of NON-CONSUMPTIVE operating costs for: fuel", 
       "int_group": 2, 
       "question_set": 3, 
@@ -1459,6 +1492,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_crewnon", 
+      "layout": "horizontal", 
       "eng_text": "Average number of crew used for NON-CONSUMPTIVE trips", 
       "int_group": 2, 
       "question_set": 3, 
@@ -1479,6 +1513,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_crewcon", 
+      "layout": "horizontal", 
       "eng_text": "Average number of crew used for CONSUMPTIVE trips", 
       "int_group": 2, 
       "question_set": 3, 
@@ -1499,6 +1534,7 @@
     "fields": {
       "all_resources": false, 
       "code": "ow_ncratio", 
+      "layout": "horizontal", 
       "eng_text": "How has the ratio of your non-consumptive/consumptive income changed over the last 5 years", 
       "int_group": 2, 
       "question_set": 3, 
@@ -1519,6 +1555,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_inchrtr", 
+      "layout": "horizontal", 
       "eng_text": "Percentage personal income from overall charter boat operations", 
       "int_group": 3, 
       "question_set": null, 
@@ -1539,6 +1576,7 @@
     "fields": {
       "all_resources": true, 
       "code": "ac_pcttrip", 
+      "layout": "horizontal", 
       "eng_text": "Percentage of annual trips", 
       "int_group": 3, 
       "question_set": null, 
@@ -1559,6 +1597,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_inc_non", 
+      "layout": "horizontal", 
       "eng_text": "Percentage charter operation income from non-consumptive activities", 
       "int_group": 3, 
       "question_set": null, 
@@ -1579,6 +1618,7 @@
     "fields": {
       "all_resources": true, 
       "code": "ac_triplen", 
+      "layout": "horizontal", 
       "eng_text": "Trip length", 
       "int_group": 3, 
       "question_set": null, 
@@ -1605,6 +1645,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_numboat", 
+      "layout": "horizontal", 
       "eng_text": "Number of charter boats operated", 
       "int_group": 3, 
       "question_set": null, 
@@ -1625,6 +1666,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_v_name", 
+      "layout": "horizontal", 
       "eng_text": "Vessel name(s)", 
       "int_group": 3, 
       "question_set": null, 
@@ -1645,6 +1687,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_doc_num", 
+      "layout": "horizontal", 
       "eng_text": "Vessel document number(s)", 
       "int_group": 3, 
       "question_set": null, 
@@ -1665,6 +1708,7 @@
     "fields": {
       "all_resources": true, 
       "code": "ac_cost", 
+      "layout": "horizontal", 
       "eng_text": "Average cost to passenger per trip", 
       "int_group": 3, 
       "question_set": null, 
@@ -1685,6 +1729,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_v_leng", 
+      "layout": "horizontal", 
       "eng_text": "Vessel length(s) (feet)", 
       "int_group": 3, 
       "question_set": null, 
@@ -1705,6 +1750,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_hm_port", 
+      "layout": "horizontal", 
       "eng_text": "Home port", 
       "int_group": 3, 
       "question_set": null, 
@@ -1725,6 +1771,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_yearsop", 
+      "layout": "horizontal", 
       "eng_text": "Years operating charter boats", 
       "int_group": 3, 
       "question_set": null, 
@@ -1745,6 +1792,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_avgdays", 
+      "layout": "horizontal", 
       "eng_text": "Average number of days operating non-consumptive charter boat trips per year", 
       "int_group": 3, 
       "question_set": null, 
@@ -1765,6 +1813,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_numpass", 
+      "layout": "horizontal", 
       "eng_text": "Average number of passengers on a boat per NON-CONSUMPTIVE trip", 
       "int_group": 3, 
       "question_set": null, 
@@ -1785,6 +1834,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_cap_max", 
+      "layout": "horizontal", 
       "eng_text": "Maximum capacity of passengers on the boat", 
       "int_group": 3, 
       "question_set": null, 
@@ -1805,6 +1855,7 @@
     "fields": {
       "all_resources": false, 
       "code": "f_name", 
+      "layout": "horizontal", 
       "eng_text": "First Name", 
       "int_group": 4, 
       "question_set": null, 
@@ -1825,6 +1876,7 @@
     "fields": {
       "all_resources": false, 
       "code": "l_name", 
+      "layout": "horizontal", 
       "eng_text": "Last Name", 
       "int_group": 4, 
       "question_set": null, 
@@ -1845,6 +1897,7 @@
     "fields": {
       "all_resources": false, 
       "code": "address", 
+      "layout": "horizontal", 
       "eng_text": "Mailing Address", 
       "int_group": 4, 
       "question_set": null, 
@@ -1865,6 +1918,7 @@
     "fields": {
       "all_resources": false, 
       "code": "zip_code", 
+      "layout": "horizontal", 
       "eng_text": "Zip Code", 
       "int_group": 4, 
       "question_set": null, 
@@ -1885,6 +1939,7 @@
     "fields": {
       "all_resources": false, 
       "code": "email", 
+      "layout": "horizontal", 
       "eng_text": "Email Address", 
       "int_group": 4, 
       "question_set": null, 
@@ -1905,6 +1960,7 @@
     "fields": {
       "all_resources": false, 
       "code": "phone", 
+      "layout": "horizontal", 
       "eng_text": "Phone Number", 
       "int_group": 4, 
       "question_set": null, 
@@ -1925,6 +1981,7 @@
     "fields": {
       "all_resources": false, 
       "code": "yrs_dive", 
+      "layout": "horizontal", 
       "eng_text": "Number of years that you have been sport diving for fish/shellfish", 
       "int_group": 5, 
       "question_set": null, 
@@ -1945,6 +2002,7 @@
     "fields": {
       "all_resources": true, 
       "code": "day_specie", 
+      "layout": "horizontal", 
       "eng_text": "Number of days 'on average' spent diving/shore picking for this species last year (2010)", 
       "int_group": 5, 
       "question_set": null, 
@@ -1965,6 +2023,7 @@
     "fields": {
       "all_resources": false, 
       "code": "yrs_pick", 
+      "layout": "horizontal", 
       "eng_text": "Number of years that you have been shore picking for shellfish/marine life", 
       "int_group": 5, 
       "question_set": null, 
@@ -1985,6 +2044,7 @@
     "fields": {
       "all_resources": true, 
       "code": "yrs_specie", 
+      "layout": "horizontal", 
       "eng_text": "Number of years you have been diving/shore picking for this species", 
       "int_group": 5, 
       "question_set": null, 
@@ -2005,6 +2065,7 @@
     "fields": {
       "all_resources": true, 
       "code": "factor_spc", 
+      "layout": "vertical", 
       "eng_text": "Primary factor(s) considered when choosing where to dive/shore pick for this species in the last year (2010)", 
       "int_group": 5, 
       "question_set": null, 
@@ -2035,6 +2096,7 @@
     "fields": {
       "all_resources": false, 
       "code": "num_trips", 
+      "layout": "horizontal", 
       "eng_text": "Please estimate how many recreational fishing dive/shore picking trips you took last year (2010)", 
       "int_group": 6, 
       "question_set": null, 
@@ -2055,6 +2117,7 @@
     "fields": {
       "all_resources": false, 
       "code": "tot_expend", 
+      "layout": "horizontal", 
       "eng_text": "Please estimate the amount of your <b>total expenditures <u>last year</u> from consumptive diving/shore picking</b>", 
       "int_group": 6, 
       "question_set": null, 
@@ -2075,6 +2138,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_trans", 
+      "layout": "horizontal", 
       "eng_text": "Private or public transportation (including gas and parking fees)", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2095,6 +2159,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_food_gr", 
+      "layout": "horizontal", 
       "eng_text": "Food and beverages from a store", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2115,6 +2180,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_food_re", 
+      "layout": "horizontal", 
       "eng_text": "Food and beverages at a restaurant or bar", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2135,6 +2201,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_lodging", 
+      "layout": "horizontal", 
       "eng_text": "Lodging and camping (if you stayed overnight)", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2155,6 +2222,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_eq_rent", 
+      "layout": "horizontal", 
       "eng_text": "Dive equipment rental and air fills", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2175,6 +2243,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_eq_purc", 
+      "layout": "horizontal", 
       "eng_text": "Dive equipment purchase", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2195,6 +2264,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_b_rent", 
+      "layout": "horizontal", 
       "eng_text": "Boat rental", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2215,6 +2285,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_b_purch", 
+      "layout": "horizontal", 
       "eng_text": "Boat purchase", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2235,6 +2306,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_b_store", 
+      "layout": "horizontal", 
       "eng_text": "Boat storage", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2255,6 +2327,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_b_maint", 
+      "layout": "horizontal", 
       "eng_text": "Boat maintenance/expenses", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2275,6 +2348,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_b_fuel", 
+      "layout": "horizontal", 
       "eng_text": "Boat fuel", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2295,6 +2369,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_k_rent", 
+      "layout": "horizontal", 
       "eng_text": "Kayak rental", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2315,6 +2390,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_k_purch", 
+      "layout": "horizontal", 
       "eng_text": "Kayak purchase", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2335,6 +2411,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_ramp", 
+      "layout": "horizontal", 
       "eng_text": "Ramp/launch fees", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2355,6 +2432,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_charter", 
+      "layout": "horizontal", 
       "eng_text": "Charter fees", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2375,6 +2453,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_license", 
+      "layout": "horizontal", 
       "eng_text": "Fishing license fee", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2395,6 +2474,7 @@
     "fields": {
       "all_resources": false, 
       "code": "se_misc", 
+      "layout": "horizontal", 
       "eng_text": "Miscellaneous (sundries, ice, etc.)", 
       "int_group": 6, 
       "question_set": 1, 
@@ -2415,6 +2495,7 @@
     "fields": {
       "all_resources": false, 
       "code": "gender", 
+      "layout": "horizontal", 
       "eng_text": "Gender", 
       "int_group": 7, 
       "question_set": null, 
@@ -2439,6 +2520,7 @@
     "fields": {
       "all_resources": false, 
       "code": "age", 
+      "layout": "horizontal", 
       "eng_text": "Age", 
       "int_group": 7, 
       "question_set": null, 
@@ -2459,6 +2541,7 @@
     "fields": {
       "all_resources": false, 
       "code": "race", 
+      "layout": "horizontal", 
       "eng_text": "Race", 
       "int_group": 7, 
       "question_set": null, 
@@ -2486,6 +2569,7 @@
     "fields": {
       "all_resources": false, 
       "code": "education", 
+      "layout": "horizontal", 
       "eng_text": "Level of education", 
       "int_group": 7, 
       "question_set": null, 
@@ -2512,6 +2596,7 @@
     "fields": {
       "all_resources": false, 
       "code": "income", 
+      "layout": "horizontal", 
       "eng_text": "Total household income", 
       "int_group": 7, 
       "question_set": null, 
