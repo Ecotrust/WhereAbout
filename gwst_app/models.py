@@ -229,7 +229,7 @@ class InterviewQuestion(Model):
     display_order = FloatField( help_text='tab order of this question on its page' )
     required = BooleanField( help_text='require that this field be filled out', default=False)
     all_resources = BooleanField( help_text='is this a question to be asked once for each resource?', default=False)
-    layout = CharField( max_length=20, choices=LayoutChoices, default='horizontal' )
+    layout = CharField( max_length=20, choices=LayoutChoices, default=None, blank=True, null=True )
         
     class Meta:
         db_table = u'gwst_question'
