@@ -51,6 +51,10 @@ class InterviewAnswerAdmin(admin.ModelAdmin):
     list_display = ('user', 'code', 'interview_group')
     search_fields = ('user__username','int_question__code')    
 
+class InterviewAnswerOptionAdmin(admin.ModelAdmin):
+    list_display = ('__unicode__', 'display_order', 'id')
+    ordering = ('display_order','__unicode__')    
+    
 class InterviewShapeAdmin(GeoModelAdmin):
     list_display = ('user', 'int_group_name', 'resource','pennies')
 
@@ -90,7 +94,7 @@ if settings.FULL_ADMIN:
     admin.site.register(InterviewGroup,InterviewGroupAdmin)
     admin.site.register(InterviewGroupMembership,IntAdmin)
     admin.site.register(GroupMemberResource,GroupMemberResourceAdmin)
-    admin.site.register(InterviewAnswerOption,IntAdmin)
+    admin.site.register(InterviewAnswerOption,InterviewAnswerOptionAdmin)
     admin.site.register(InterviewAnswer,InterviewAnswerAdmin)
     admin.site.register(InterviewStatus,InterviewStatusAdmin)
     admin.site.register(InterviewShape,InterviewShapeAdmin)

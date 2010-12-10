@@ -280,6 +280,7 @@
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FFFFFF", 
+      "independent": false, 
       "code": "main", 
       "name": "Main Questions", 
       "is_user_group": false, 
@@ -300,6 +301,7 @@
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FFFFFF", 
+      "independent": false, 
       "code": "ch_own", 
       "name": "Charter Boat Owner", 
       "is_user_group": false, 
@@ -320,6 +322,7 @@
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FFFFFF", 
+      "independent": false, 
       "code": "ch_op", 
       "name": "Charter Boat Operator", 
       "is_user_group": false, 
@@ -347,6 +350,7 @@
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FFFFFF", 
+      "independent": false, 
       "code": "main", 
       "name": "Main Questions", 
       "is_user_group": false, 
@@ -367,6 +371,7 @@
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FFFFFF", 
+      "independent": false, 
       "code": "harvest", 
       "name": "Harvesting Questions", 
       "is_user_group": true, 
@@ -403,6 +408,7 @@
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FFFFFF", 
+      "independent": false, 
       "code": "soc", 
       "name": "Socio-Economic Questions", 
       "is_user_group": false, 
@@ -423,6 +429,7 @@
     "model": "gwst_app.interviewgroup", 
     "fields": {
       "shape_color": "FFFFFF", 
+      "independent": false, 
       "code": "dem", 
       "name": "Demographic Questions", 
       "is_user_group": false, 
@@ -436,6 +443,27 @@
       "page_template": "base_form.html", 
       "resources": [], 
       "description": "Demographic Questions"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "independent": true, 
+      "code": "map_q", 
+      "name": "Map Questions", 
+      "is_user_group": false, 
+      "required_group": true, 
+      "question_width": 275, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 4, 
+      "member_title": "person", 
+      "page_template": "base_form.html", 
+      "resources": [], 
+      "description": "Map Questions"
     }
   }, 
   {
@@ -458,7 +486,7 @@
     "pk": "a20", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 19.0, 
+      "display_order": 2.0, 
       "eng_text": "Other"
     }
   }, 
@@ -466,7 +494,7 @@
     "pk": "a21", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 1.0, 
+      "display_order": 101.0, 
       "eng_text": "Significantly higher"
     }
   }, 
@@ -474,7 +502,7 @@
     "pk": "a22", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 2.0, 
+      "display_order": 102.0, 
       "eng_text": "Somewhat higher"
     }
   }, 
@@ -482,7 +510,7 @@
     "pk": "a23", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 3.0, 
+      "display_order": 103.0, 
       "eng_text": "Average"
     }
   }, 
@@ -490,7 +518,7 @@
     "pk": "a24", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 4.0, 
+      "display_order": 104.0, 
       "eng_text": "Somewhat lower"
     }
   }, 
@@ -498,7 +526,7 @@
     "pk": "a25", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 5.0, 
+      "display_order": 105.0, 
       "eng_text": "Significantly lower"
     }
   }, 
@@ -522,7 +550,7 @@
     "pk": "347dac00-7b22-11df-94a8-001b210ee9bb", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 25.0, 
+      "display_order": 625.0, 
       "eng_text": "1/4 day"
     }
   }, 
@@ -530,7 +558,7 @@
     "pk": "39bbfccf-7b22-11df-9a97-001b210ee9bb", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 50.0, 
+      "display_order": 650.0, 
       "eng_text": "1/2 day"
     }
   }, 
@@ -538,7 +566,7 @@
     "pk": "40376180-7b22-11df-8ac7-001b210ee9bb", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 75.0, 
+      "display_order": 675.0, 
       "eng_text": "3/4 day"
     }
   }, 
@@ -546,7 +574,7 @@
     "pk": "4610b9cf-7b22-11df-856f-001b210ee9bb", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 100.0, 
+      "display_order": 680.0, 
       "eng_text": "full day"
     }
   }, 
@@ -554,7 +582,7 @@
     "pk": "50627ade-7b22-11df-b2b8-001b210ee9bb", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 101.0, 
+      "display_order": 690.0, 
       "eng_text": "> 1 day"
     }
   }, 
@@ -562,7 +590,7 @@
     "pk": "271706cf-fca8-11df-8030-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 10.0, 
+      "display_order": 2010.0, 
       "eng_text": "Size of species"
     }
   }, 
@@ -570,7 +598,7 @@
     "pk": "2ead0340-fca8-11df-b1c8-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 20.0, 
+      "display_order": 2020.0, 
       "eng_text": "Abundance of species"
     }
   }, 
@@ -578,7 +606,7 @@
     "pk": "33ddbf80-fca8-11df-8913-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 30.0, 
+      "display_order": 2030.0, 
       "eng_text": "Easy access/entry"
     }
   }, 
@@ -586,7 +614,7 @@
     "pk": "39135dc0-fca8-11df-8e90-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 40.0, 
+      "display_order": 2040.0, 
       "eng_text": "Close to home"
     }
   }, 
@@ -594,7 +622,7 @@
     "pk": "43288b00-fca8-11df-95e6-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 50.0, 
+      "display_order": 2050.0, 
       "eng_text": "Close to campground/hotel/vacation rental"
     }
   }, 
@@ -602,7 +630,7 @@
     "pk": "4972f4a1-fca8-11df-9385-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 60.0, 
+      "display_order": 2060.0, 
       "eng_text": "Protected from weather"
     }
   }, 
@@ -610,7 +638,7 @@
     "pk": "554b078f-fca8-11df-adae-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 70.0, 
+      "display_order": 2070.0, 
       "eng_text": "Close to facilities/store"
     }
   }, 
@@ -618,7 +646,7 @@
     "pk": "5cf416cf-fca8-11df-a1c6-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 80.0, 
+      "display_order": 2080.0, 
       "eng_text": "Try a new place"
     }
   }, 
@@ -626,7 +654,7 @@
     "pk": "62011e70-fca8-11df-9cf4-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 90.0, 
+      "display_order": 2090.0, 
       "eng_text": "Other"
     }
   }, 
@@ -682,7 +710,7 @@
     "pk": "a5829cf0-fca8-11df-ac4f-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 10.0, 
+      "display_order": 810.0, 
       "eng_text": "Less than high school"
     }
   }, 
@@ -690,7 +718,7 @@
     "pk": "ad11465e-fca8-11df-a964-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 20.0, 
+      "display_order": 820.0, 
       "eng_text": "High school diploma or GED"
     }
   }, 
@@ -698,7 +726,7 @@
     "pk": "b29ec89e-fca8-11df-acf7-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 30.0, 
+      "display_order": 830.0, 
       "eng_text": "Some college"
     }
   }, 
@@ -706,7 +734,7 @@
     "pk": "bb4f5ccf-fca8-11df-89c8-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 40.0, 
+      "display_order": 840.0, 
       "eng_text": "Associate's degree"
     }
   }, 
@@ -714,7 +742,7 @@
     "pk": "c1c3958f-fca8-11df-9330-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 50.0, 
+      "display_order": 850.0, 
       "eng_text": "Bachelor's degree or higher"
     }
   }, 
@@ -722,7 +750,7 @@
     "pk": "c8868a8f-fca8-11df-a410-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 10.0, 
+      "display_order": 510.0, 
       "eng_text": "Less than $22,000"
     }
   }, 
@@ -730,7 +758,7 @@
     "pk": "d1003040-fca8-11df-9522-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 20.0, 
+      "display_order": 520.0, 
       "eng_text": "$22,000 - $57,000"
     }
   }, 
@@ -738,8 +766,384 @@
     "pk": "d85245e1-fca8-11df-b9e9-0016760580f0", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 30.0, 
+      "display_order": 530.0, 
       "eng_text": "$57,000 or more"
+    }
+  }, 
+  {
+    "pk": "2357b061-02f4-11e0-8de6-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1001.0, 
+      "eng_text": "Point Arena State Marine Reserve"
+    }
+  }, 
+  {
+    "pk": "2d39718f-02f4-11e0-9eef-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1002.0, 
+      "eng_text": "Point Arena State Marine Conservation Area"
+    }
+  }, 
+  {
+    "pk": "3644a8e1-02f4-11e0-8ea5-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1003.0, 
+      "eng_text": "Sea Lion Cove State Marine Conservation Area"
+    }
+  }, 
+  {
+    "pk": "3f24ffa1-02f4-11e0-8e3c-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1004.0, 
+      "eng_text": "Saunders Reef State Marine Conservation Area"
+    }
+  }, 
+  {
+    "pk": "47fe035e-02f4-11e0-a18b-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1005.0, 
+      "eng_text": "Del Mar Landing State Marine Reserve"
+    }
+  }, 
+  {
+    "pk": "52192411-02f4-11e0-99e6-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1006.0, 
+      "eng_text": "Stewarts Point State Marine Conservation Area"
+    }
+  }, 
+  {
+    "pk": "5c40048f-02f4-11e0-9294-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1007.0, 
+      "eng_text": "Stewarts Point State Marine Reserve"
+    }
+  }, 
+  {
+    "pk": "61b543de-02f4-11e0-9663-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1008.0, 
+      "eng_text": "Salt Point State Marine Conservation Area"
+    }
+  }, 
+  {
+    "pk": "68606b1e-02f4-11e0-989a-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1009.0, 
+      "eng_text": "Gerstle Cove State Marine Reserve"
+    }
+  }, 
+  {
+    "pk": "701401b0-02f4-11e0-8676-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1010.0, 
+      "eng_text": "Russian River State Marine Recreational Management Area"
+    }
+  }, 
+  {
+    "pk": "76ba46f0-02f4-11e0-9764-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1011.0, 
+      "eng_text": "Russian River State Marine Conservation Area"
+    }
+  }, 
+  {
+    "pk": "7e53c5d1-02f4-11e0-a40f-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1012.0, 
+      "eng_text": "Bodega Head State Marine Reserve"
+    }
+  }, 
+  {
+    "pk": "8feb4070-02f4-11e0-af72-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1013.0, 
+      "eng_text": "Bodega Head State Marine Conservation Area"
+    }
+  }, 
+  {
+    "pk": "97bdf7c0-02f4-11e0-a7bf-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1014.0, 
+      "eng_text": "Estero Americano State Marine Recreational Management Area"
+    }
+  }, 
+  {
+    "pk": "9f360bee-02f4-11e0-8843-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1015.0, 
+      "eng_text": "Estero de San Antonio State Marine Recreational Management Area"
+    }
+  }, 
+  {
+    "pk": "a6289c70-02f4-11e0-91ab-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1016.0, 
+      "eng_text": "Point Reyes State Marine Reserve"
+    }
+  }, 
+  {
+    "pk": "b4362d00-02f4-11e0-8bd8-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1017.0, 
+      "eng_text": "Point Reyes State Marine Conservation Area"
+    }
+  }, 
+  {
+    "pk": "ba785940-02f4-11e0-8f0a-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1018.0, 
+      "eng_text": "Point Reyes Headlands Special Closure"
+    }
+  }, 
+  {
+    "pk": "c0078930-02f4-11e0-91ef-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1019.0, 
+      "eng_text": "Estero de Limantour State Marine Reserve"
+    }
+  }, 
+  {
+    "pk": "d393cef0-02f4-11e0-8eb1-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1020.0, 
+      "eng_text": "Drake's Estero State Marine Conservation Area"
+    }
+  }, 
+  {
+    "pk": "db9892c0-02f4-11e0-9dd5-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1021.0, 
+      "eng_text": "Point Resistance Rock Special Closure"
+    }
+  }, 
+  {
+    "pk": "e6877e30-02f4-11e0-acf4-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1022.0, 
+      "eng_text": "Double Point/Stormy Stack Special Closure"
+    }
+  }, 
+  {
+    "pk": "ede7c4a1-02f4-11e0-bcec-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1023.0, 
+      "eng_text": "Duxbury Reef State Marine Conservation Area"
+    }
+  }, 
+  {
+    "pk": "fe1c05c0-02f4-11e0-b00e-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1024.0, 
+      "eng_text": "Egg (Devil's Slide) Rock to Devil's Slide Special Closure"
+    }
+  }, 
+  {
+    "pk": "08db55ae-02f5-11e0-a724-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1025.0, 
+      "eng_text": "Montara State Marine Reserve"
+    }
+  }, 
+  {
+    "pk": "0ed136ae-02f5-11e0-b38a-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1026.0, 
+      "eng_text": "Pillar Point State Marine Conservation Area"
+    }
+  }, 
+  {
+    "pk": "17e0dacf-02f5-11e0-a471-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1027.0, 
+      "eng_text": "North Farallon Islands State Marine Reserve"
+    }
+  }, 
+  {
+    "pk": "224a90b0-02f5-11e0-ac67-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1028.0, 
+      "eng_text": "North Farallon Islands Special Closure"
+    }
+  }, 
+  {
+    "pk": "2d327740-02f5-11e0-98dc-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1029.0, 
+      "eng_text": "Southeast Farallon Island State Marine Reserve"
+    }
+  }, 
+  {
+    "pk": "32e338ee-02f5-11e0-8406-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1030.0, 
+      "eng_text": "Southeast Farallon Island Special Closure"
+    }
+  }, 
+  {
+    "pk": "38d45f00-02f5-11e0-8514-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1031.0, 
+      "eng_text": "Southeast Farallon island State Marine Conservation Area"
+    }
+  }, 
+  {
+    "pk": "1003e611-03c0-11e0-9ef0-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1110.0, 
+      "eng_text": "News source"
+    }
+  }, 
+  {
+    "pk": "1694ce91-03c0-11e0-bedd-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1120.0, 
+      "eng_text": "Television"
+    }
+  }, 
+  {
+    "pk": "1e299280-03c0-11e0-b8cf-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1130.0, 
+      "eng_text": "Newsletter/magazine"
+    }
+  }, 
+  {
+    "pk": "28496e21-03c0-11e0-850b-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1140.0, 
+      "eng_text": "Online social site"
+    }
+  }, 
+  {
+    "pk": "34117b80-03c0-11e0-8636-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1150.0, 
+      "eng_text": "Dive or fishing organization"
+    }
+  }, 
+  {
+    "pk": "4aa757c0-03c0-11e0-aab9-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1160.0, 
+      "eng_text": "Word of mouth/friends"
+    }
+  }, 
+  {
+    "pk": "5080b00f-03c0-11e0-9b66-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1170.0, 
+      "eng_text": "Signage"
+    }
+  }, 
+  {
+    "pk": "576759b0-03c0-11e0-892e-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1180.0, 
+      "eng_text": "Department of Fish and Game"
+    }
+  }, 
+  {
+    "pk": "61eb4e4f-03c0-11e0-a2b1-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1190.0, 
+      "eng_text": "Information booth/kiosk"
+    }
+  }, 
+  {
+    "pk": "698e6a1e-03c0-11e0-9493-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1200.0, 
+      "eng_text": "Local store"
+    }
+  }, 
+  {
+    "pk": "763b804f-03c0-11e0-9b06-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1210.0, 
+      "eng_text": "Campground"
+    }
+  }, 
+  {
+    "pk": "7b644d51-03c0-11e0-8b95-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1220.0, 
+      "eng_text": "Other"
+    }
+  }, 
+  {
+    "pk": "ed8e4921-0498-11e0-9120-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1510.0, 
+      "eng_text": "Yes, I was aware of the closures"
+    }
+  }, 
+  {
+    "pk": "fad3f5cf-0498-11e0-9dd9-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1511.0, 
+      "eng_text": "No, I had no prior knowledge of the closures"
+    }
+  }, 
+  {
+    "pk": "04811270-0499-11e0-91ba-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1515.0, 
+      "eng_text": "Yes, I am aware of specific MPAs"
+    }
+  }, 
+  {
+    "pk": "0e75e670-0499-11e0-8be9-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1516.0, 
+      "eng_text": "No, I am not aware of specific MPAs"
     }
   }, 
   {
@@ -793,7 +1197,7 @@
     "fields": {
       "all_resources": false, 
       "code": "int_name", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Interviewer's Name(s)", 
       "int_group": 1, 
       "question_set": null, 
@@ -814,7 +1218,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_f_name", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Operator's First Name", 
       "int_group": 1, 
       "question_set": null, 
@@ -835,7 +1239,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_l_name", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Operator's Last Name", 
       "int_group": 1, 
       "question_set": null, 
@@ -856,7 +1260,7 @@
     "fields": {
       "all_resources": false, 
       "code": "mail_ad", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Operator's Mailing Address", 
       "int_group": 1, 
       "question_set": null, 
@@ -877,7 +1281,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_phone", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Operator's Phone Number", 
       "int_group": 1, 
       "question_set": null, 
@@ -898,7 +1302,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_email", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Operator's Email Address", 
       "int_group": 1, 
       "question_set": null, 
@@ -919,7 +1323,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_age", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Operator's Age", 
       "int_group": 1, 
       "question_set": null, 
@@ -940,7 +1344,7 @@
     "fields": {
       "all_resources": false, 
       "code": "op_gender", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Operator's Gender", 
       "int_group": 1, 
       "question_set": null, 
@@ -1855,7 +2259,7 @@
     "fields": {
       "all_resources": false, 
       "code": "f_name", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "First Name", 
       "int_group": 4, 
       "question_set": null, 
@@ -1876,7 +2280,7 @@
     "fields": {
       "all_resources": false, 
       "code": "l_name", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Last Name", 
       "int_group": 4, 
       "question_set": null, 
@@ -1897,7 +2301,7 @@
     "fields": {
       "all_resources": false, 
       "code": "address", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Mailing Address", 
       "int_group": 4, 
       "question_set": null, 
@@ -1918,7 +2322,7 @@
     "fields": {
       "all_resources": false, 
       "code": "zip_code", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Zip Code", 
       "int_group": 4, 
       "question_set": null, 
@@ -1939,7 +2343,7 @@
     "fields": {
       "all_resources": false, 
       "code": "email", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Email Address", 
       "int_group": 4, 
       "question_set": null, 
@@ -1960,7 +2364,7 @@
     "fields": {
       "all_resources": false, 
       "code": "phone", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Phone Number", 
       "int_group": 4, 
       "question_set": null, 
@@ -1976,12 +2380,147 @@
     }
   }, 
   {
+    "pk": 93, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "mpa_aware", 
+      "layout": "vertical", 
+      "eng_text": "Marine protected area closures were recently implemented in the North Central Coast (Point Arena to Half Moon Bay). Please select the choice that applies to you", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 70.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [
+        "ed8e4921-0498-11e0-9120-0016760580f0", 
+        "fad3f5cf-0498-11e0-9dd9-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 94, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "mpa_inform", 
+      "layout": "vertical", 
+      "eng_text": "If you answered 'Yes' to Question 7, how were you informed about the closures", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 80.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "1003e611-03c0-11e0-9ef0-0016760580f0", 
+        "1694ce91-03c0-11e0-bedd-0016760580f0", 
+        "1e299280-03c0-11e0-b8cf-0016760580f0", 
+        "28496e21-03c0-11e0-850b-0016760580f0", 
+        "34117b80-03c0-11e0-8636-0016760580f0", 
+        "4aa757c0-03c0-11e0-aab9-0016760580f0", 
+        "5080b00f-03c0-11e0-9b66-0016760580f0", 
+        "576759b0-03c0-11e0-892e-0016760580f0", 
+        "61eb4e4f-03c0-11e0-a2b1-0016760580f0", 
+        "698e6a1e-03c0-11e0-9493-0016760580f0", 
+        "763b804f-03c0-11e0-9b06-0016760580f0", 
+        "7b644d51-03c0-11e0-8b95-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "checkbox", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 95, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "mpa_spec_b", 
+      "layout": "vertical", 
+      "eng_text": "If you answered 'Yes' to question 7, are you aware of specific closures in close proximity to where you typically dive/shore pick", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 90.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "04811270-0499-11e0-91ba-0016760580f0", 
+        "0e75e670-0499-11e0-8be9-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 96, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "mpa_list", 
+      "layout": "vertical", 
+      "eng_text": "If so, which specific MPAs are you aware of", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 100.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "08db55ae-02f5-11e0-a724-0016760580f0", 
+        "0ed136ae-02f5-11e0-b38a-0016760580f0", 
+        "17e0dacf-02f5-11e0-a471-0016760580f0", 
+        "224a90b0-02f5-11e0-ac67-0016760580f0", 
+        "2357b061-02f4-11e0-8de6-0016760580f0", 
+        "2d327740-02f5-11e0-98dc-0016760580f0", 
+        "2d39718f-02f4-11e0-9eef-0016760580f0", 
+        "32e338ee-02f5-11e0-8406-0016760580f0", 
+        "3644a8e1-02f4-11e0-8ea5-0016760580f0", 
+        "38d45f00-02f5-11e0-8514-0016760580f0", 
+        "3f24ffa1-02f4-11e0-8e3c-0016760580f0", 
+        "47fe035e-02f4-11e0-a18b-0016760580f0", 
+        "52192411-02f4-11e0-99e6-0016760580f0", 
+        "5c40048f-02f4-11e0-9294-0016760580f0", 
+        "61b543de-02f4-11e0-9663-0016760580f0", 
+        "68606b1e-02f4-11e0-989a-0016760580f0", 
+        "701401b0-02f4-11e0-8676-0016760580f0", 
+        "76ba46f0-02f4-11e0-9764-0016760580f0", 
+        "7e53c5d1-02f4-11e0-a40f-0016760580f0", 
+        "8feb4070-02f4-11e0-af72-0016760580f0", 
+        "97bdf7c0-02f4-11e0-a7bf-0016760580f0", 
+        "9f360bee-02f4-11e0-8843-0016760580f0", 
+        "a6289c70-02f4-11e0-91ab-0016760580f0", 
+        "b4362d00-02f4-11e0-8bd8-0016760580f0", 
+        "ba785940-02f4-11e0-8f0a-0016760580f0", 
+        "c0078930-02f4-11e0-91ef-0016760580f0", 
+        "d393cef0-02f4-11e0-8eb1-0016760580f0", 
+        "db9892c0-02f4-11e0-9dd5-0016760580f0", 
+        "e6877e30-02f4-11e0-acf4-0016760580f0", 
+        "ede7c4a1-02f4-11e0-bcec-0016760580f0", 
+        "fe1c05c0-02f4-11e0-b00e-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 60, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
       "code": "yrs_dive", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Number of years that you have been sport diving for fish/shellfish", 
       "int_group": 5, 
       "question_set": null, 
@@ -2002,7 +2541,7 @@
     "fields": {
       "all_resources": true, 
       "code": "day_specie", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Number of days 'on average' spent diving/shore picking for this species last year (2010)", 
       "int_group": 5, 
       "question_set": null, 
@@ -2023,7 +2562,7 @@
     "fields": {
       "all_resources": false, 
       "code": "yrs_pick", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Number of years that you have been shore picking for shellfish/marine life", 
       "int_group": 5, 
       "question_set": null, 
@@ -2044,7 +2583,7 @@
     "fields": {
       "all_resources": true, 
       "code": "yrs_specie", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Number of years you have been diving/shore picking for this species", 
       "int_group": 5, 
       "question_set": null, 
@@ -2611,6 +3150,135 @@
       "val_min": null, 
       "val_default": "", 
       "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 89, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "mpa_aware", 
+      "layout": null, 
+      "eng_text": "I was aware of the MPA closures", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 10.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "boolean", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 90, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "mpa_i_src", 
+      "layout": null, 
+      "eng_text": "How you were informed about the closures", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 20.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "1003e611-03c0-11e0-9ef0-0016760580f0", 
+        "1694ce91-03c0-11e0-bedd-0016760580f0", 
+        "1e299280-03c0-11e0-b8cf-0016760580f0", 
+        "28496e21-03c0-11e0-850b-0016760580f0", 
+        "34117b80-03c0-11e0-8636-0016760580f0", 
+        "4aa757c0-03c0-11e0-aab9-0016760580f0", 
+        "5080b00f-03c0-11e0-9b66-0016760580f0", 
+        "576759b0-03c0-11e0-892e-0016760580f0", 
+        "61eb4e4f-03c0-11e0-a2b1-0016760580f0", 
+        "698e6a1e-03c0-11e0-9493-0016760580f0", 
+        "763b804f-03c0-11e0-9b06-0016760580f0", 
+        "7b644d51-03c0-11e0-8b95-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "checkbox", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 91, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "mpa_specif", 
+      "layout": null, 
+      "eng_text": "I am aware of specific MPAs", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 30.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "boolean", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 92, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "mpa_sp_mpa", 
+      "layout": null, 
+      "eng_text": "I am aware of the following MPAs", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 40.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "08db55ae-02f5-11e0-a724-0016760580f0", 
+        "0ed136ae-02f5-11e0-b38a-0016760580f0", 
+        "17e0dacf-02f5-11e0-a471-0016760580f0", 
+        "224a90b0-02f5-11e0-ac67-0016760580f0", 
+        "2357b061-02f4-11e0-8de6-0016760580f0", 
+        "2d327740-02f5-11e0-98dc-0016760580f0", 
+        "2d39718f-02f4-11e0-9eef-0016760580f0", 
+        "32e338ee-02f5-11e0-8406-0016760580f0", 
+        "3644a8e1-02f4-11e0-8ea5-0016760580f0", 
+        "38d45f00-02f5-11e0-8514-0016760580f0", 
+        "3f24ffa1-02f4-11e0-8e3c-0016760580f0", 
+        "47fe035e-02f4-11e0-a18b-0016760580f0", 
+        "52192411-02f4-11e0-99e6-0016760580f0", 
+        "5c40048f-02f4-11e0-9294-0016760580f0", 
+        "61b543de-02f4-11e0-9663-0016760580f0", 
+        "68606b1e-02f4-11e0-989a-0016760580f0", 
+        "701401b0-02f4-11e0-8676-0016760580f0", 
+        "76ba46f0-02f4-11e0-9764-0016760580f0", 
+        "7e53c5d1-02f4-11e0-a40f-0016760580f0", 
+        "8feb4070-02f4-11e0-af72-0016760580f0", 
+        "97bdf7c0-02f4-11e0-a7bf-0016760580f0", 
+        "9f360bee-02f4-11e0-8843-0016760580f0", 
+        "a6289c70-02f4-11e0-91ab-0016760580f0", 
+        "b4362d00-02f4-11e0-8bd8-0016760580f0", 
+        "ba785940-02f4-11e0-8f0a-0016760580f0", 
+        "c0078930-02f4-11e0-91ef-0016760580f0", 
+        "d393cef0-02f4-11e0-8eb1-0016760580f0", 
+        "db9892c0-02f4-11e0-9dd5-0016760580f0", 
+        "e6877e30-02f4-11e0-acf4-0016760580f0", 
+        "ede7c4a1-02f4-11e0-bcec-0016760580f0", 
+        "fe1c05c0-02f4-11e0-b00e-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "checkbox", 
       "eng_tooltip": "", 
       "val_max": null
     }

@@ -80,6 +80,7 @@ class InterviewGroup(Model):
     required_group = BooleanField( default=False )
     is_user_group = BooleanField( default=False )
     user_draws_shapes = BooleanField( default=True )
+    independent = BooleanField( default=False, help_text="custom group type, will not show in main menu" )
     shape_color = CharField( max_length=6, blank=True, default="FFFFFF" )
     preselect = BooleanField( default=True ) #Allow user to select which resources they use before drawing? 
     member_title = CharField( max_length=50, default='' )

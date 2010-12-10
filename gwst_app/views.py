@@ -271,7 +271,7 @@ def group_status(request):
 
     # make sure the user has a valid session in-progress
     try:
-        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'], independent = False)
         
         status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
@@ -400,9 +400,87 @@ def view_answers(request,group_id):
     
     return render_to_response( 'view_answers.html', RequestContext(request,{'title':title, 'questions': questions, 'answers':answers, 'q_width':q_width}))        
         
+@login_required
+def answers(requestrequest, id=None):    
+    if request.method == 'GET':  
+        success = False
+        value = ''
+        answer_qs = InterviewAnswer.objects.filter(user=request.session['interviewee']).order_by('id')
+        if (request.GET.get('question_code')):
+            question = InterviewQuestion.objects.get(code=request.GET.get('question_code'))
+            if (request.GET.get('resource')):
+                if (question.all_resources):
+                    answer = answer_qs.filter(int_question=question, resource=request.GET.get('resource'))
+                    success = True
+                else:
+                    error_text = 'resource given for non-resource specific answer'
+            else:
+                if (not question.all_resources):
+                    answer = answer_qs.filter(int_question=question)
+                    success = True
+                else:
+                    error_text = 'no resource given for resource specific answer'
+                    
+            if success:
+                if ans_type == 'integer':
+                    value = answer.integer_val
+                elif ans_type == 'decimal':
+                    value = answer.decimal_val
+                elif ans_type == 'boolean':
+                    value = answer.boolean_val
+                elif ans_type == 'select':
+                    value = answer.option_val
+                elif ans_type == 'checkbox':
+                    value = answer.option
+                elif ans_type == 'other':
+                    value = answer.text_val
+                elif ans_type == 'text':
+                    value = answer.text_val
+                elif ans_type == 'phone':
+                    value = answer.text_val
+                elif ans_type == 'money':
+                    value = answer.text_val
+                elif ans_type == 'percent':
+                    value = answer.text_val
+                elif ans_type == 'textarea':
+                    value = answer.text_val
+                else: 
+                    value = answer.text_val
+        return render_to_geojson(
+            answer,
+            ans_type = question.answer_type,
+            value=value,
+            success = success
+        )
+    else:   #TODO: WRITE THIS PART - Right now it's stolen from answer_questions, and does forms, not single questions
+        # form validation
+        # form = AnswerForm(questions, answers, group_id, resource_id, request.POST )
+
+        if form.is_valid():
+            # update the group membership status, if necessary
+            group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__pk=group_id)
+            if group_memb.count()==1:
+                updated_group = group_memb[0]
+                if updated_group.status == 'not yet started':
+                    updated_group.date_started = datetime.datetime.now()
+                    if updated_group.int_group.user_draws_shapes:
+                        updated_group.status = 'selecting resources'
+                    else:
+                        updated_group.status = 'in-progress'
+                updated_group.save()
+            else: #404
+                return render_to_response( '404.html', RequestContext(request,{}))
+        
+            # create or update InterviewAnswer records
+            form.save(request.session['interviewee'])
+            
+            return HttpResponseRedirect('/group_status#main_menu')
+            
+    q_width = group.question_width
+    return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue', 'q_width':q_width}))    
+        
 @login_required    
 def answer_questions(request,group_id):
-
     # make sure the user has a valid session in-progress
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
@@ -980,7 +1058,7 @@ def draw_settings(request, id) :
         'code': interview.region.code
     }
     return HttpResponse(geojson_encode(result), mimetype='application/json')
-
+ 
 '''
 Shape web service - 
 GET: filter by interview group: 'group_id'
@@ -1003,7 +1081,7 @@ def shapes(request, id=None):
             pretty_print=True
         )
         
-    elif request.method == 'POST':        
+    elif request.method == 'POST':    
         #Get session and status
         try:
             int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])        

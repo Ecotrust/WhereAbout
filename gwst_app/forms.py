@@ -111,6 +111,10 @@ class AnswerForm(forms.Form):
                 
             elif question.answer_type == 'select': #choice list 
                 dynamic_args['queryset'] = question.options
+                
+                # import pdb
+                # pdb.set_trace()
+                
                 if answer.count() == 1:
                     if answer[0].option_val:
                         dynamic_args['initial']=answer[0].option_val.id
@@ -119,7 +123,9 @@ class AnswerForm(forms.Form):
                     if default_ans.count() == 1:
                         dynamic_args['initial']=default_ans[0].id
 
-                self.fields['question_' + str(question.id) + resource_postfix] = forms.ModelChoiceField( **dynamic_args )
+                select_form = forms.ModelChoiceField( **dynamic_args )
+                select_form.queryset = select_form.queryset.order_by('display_order')
+                self.fields['question_' + str(question.id) + resource_postfix] = select_form
                 
             elif question.answer_type == 'checkbox': #checkbox list 
                 option_values = question.options.values()
@@ -299,19 +305,34 @@ class AnswerForm(forms.Form):
                 answer_ids = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 answers = [InterviewAnswerOption.objects.get(pk=opt_id) for opt_id in answer_ids]
                 all_options = [InterviewAnswerOption.objects.get(pk=opt['id']) for opt in InterviewQuestion.objects.get(id=field.question.id).options.values()]
-                resource = Resource.objects.get(id = self.resource_id)
-                for val in all_options:
-                    ia_qs = InterviewAnswer.objects.get_or_create(int_question = field.question, user = user, resource = resource, option = val)
-                    res_answer = ia_qs[0]
-                    if not ia_qs[1]:
-                        res_answer.num_times_saved = res_answer.num_times_saved + 1
-                    res_answer.last_modified = datetime.datetime.today()
-                    res_answer.text_val = str(val)
-                    if val in answers:
-                        res_answer.boolean_val = True
-                    else:
-                        res_answer.boolean_val = False
-                    res_answer.save()
+                if (Resource.objects.filter(id = self.resource_id)):
+                    resource = Resource.objects.get(id = self.resource_id)
+                    for val in all_options:
+                        ia_qs = InterviewAnswer.objects.get_or_create(int_question = field.question, user = user, resource = resource, option = val)
+                        res_answer = ia_qs[0]
+                        if not ia_qs[1]:
+                            res_answer.num_times_saved = res_answer.num_times_saved + 1
+                        res_answer.last_modified = datetime.datetime.today()
+                        res_answer.text_val = str(val)
+                        if val in answers:
+                            res_answer.boolean_val = True
+                        else:
+                            res_answer.boolean_val = False
+                        res_answer.save()
+                else:
+                    for val in all_options:
+                        ia_qs = InterviewAnswer.objects.get_or_create(int_question = field.question, user = user,  option = val)
+                        answer = ia_qs[0]
+                        if not ia_qs[1]:
+                            answer.num_times_saved = answer.num_times_saved + 1
+                        answer.last_modified = datetime.datetime.today()
+                        answer.text_val = str(val)
+                        if val in answers:
+                            answer.boolean_val = True
+                        else:
+                            answer.boolean_val = False
+                        answer.save()
+                    
                         
                         
                         
