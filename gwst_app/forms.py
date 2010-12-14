@@ -111,10 +111,6 @@ class AnswerForm(forms.Form):
                 
             elif question.answer_type == 'select': #choice list 
                 dynamic_args['queryset'] = question.options
-                
-                # import pdb
-                # pdb.set_trace()
-                
                 if answer.count() == 1:
                     if answer[0].option_val:
                         dynamic_args['initial']=answer[0].option_val.id

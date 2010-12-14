@@ -12,6 +12,8 @@ from shortcuts import render_to_geojson
 from django.contrib.auth.models import User
 import datetime
 import string
+import simplejson
+import datetime
 
 #Pass extra settings around whether user can self-register
 def login(request, template_name='registration/login.html'):
@@ -401,7 +403,7 @@ def view_answers(request,group_id):
     return render_to_response( 'view_answers.html', RequestContext(request,{'title':title, 'questions': questions, 'answers':answers, 'q_width':q_width}))        
         
 @login_required
-def answers(requestrequest, id=None):    
+def answers(request, id=None):   
     if request.method == 'GET':  
         success = False
         value = ''
@@ -410,74 +412,114 @@ def answers(requestrequest, id=None):
             question = InterviewQuestion.objects.get(code=request.GET.get('question_code'))
             if (request.GET.get('resource')):
                 if (question.all_resources):
-                    answer = answer_qs.filter(int_question=question, resource=request.GET.get('resource'))
+                    answer = answer_qs.get(int_question=question, resource=request.GET.get('resource'))
                     success = True
                 else:
                     error_text = 'resource given for non-resource specific answer'
             else:
                 if (not question.all_resources):
-                    answer = answer_qs.filter(int_question=question)
+                    answer = answer_qs.get(int_question=question)
                     success = True
                 else:
                     error_text = 'no resource given for resource specific answer'
                     
             if success:
-                if ans_type == 'integer':
+                if question.answer_type == 'integer':
                     value = answer.integer_val
-                elif ans_type == 'decimal':
+                elif question.answer_type == 'decimal':
                     value = answer.decimal_val
-                elif ans_type == 'boolean':
+                elif question.answer_type == 'boolean':
                     value = answer.boolean_val
-                elif ans_type == 'select':
+                elif question.answer_type == 'select':
                     value = answer.option_val
-                elif ans_type == 'checkbox':
+                elif question.answer_type == 'checkbox':
                     value = answer.option
-                elif ans_type == 'other':
+                elif question.answer_type == 'other':
                     value = answer.text_val
-                elif ans_type == 'text':
+                elif question.answer_type == 'text':
                     value = answer.text_val
-                elif ans_type == 'phone':
+                elif question.answer_type == 'phone':
                     value = answer.text_val
-                elif ans_type == 'money':
+                elif question.answer_type == 'money':
                     value = answer.text_val
-                elif ans_type == 'percent':
+                elif question.answer_type == 'percent':
                     value = answer.text_val
-                elif ans_type == 'textarea':
+                elif question.answer_type == 'textarea':
                     value = answer.text_val
                 else: 
                     value = answer.text_val
-        return render_to_geojson(
-            answer,
-            ans_type = question.answer_type,
-            value=value,
-            success = success
-        )
-    else:   #TODO: WRITE THIS PART - Right now it's stolen from answer_questions, and does forms, not single questions
-        # form validation
-        # form = AnswerForm(questions, answers, group_id, resource_id, request.POST )
-
-        if form.is_valid():
-            # update the group membership status, if necessary
-            group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__pk=group_id)
-            if group_memb.count()==1:
-                updated_group = group_memb[0]
-                if updated_group.status == 'not yet started':
-                    updated_group.date_started = datetime.datetime.now()
-                    if updated_group.int_group.user_draws_shapes:
-                        updated_group.status = 'selecting resources'
-                    else:
-                        updated_group.status = 'in-progress'
-                updated_group.save()
-            else: #404
-                return render_to_response( '404.html', RequestContext(request,{}))
+                    
+        result = {}      
+        result['answer'] = {
+            'id':answer.id,
+            'type':question.answer_type,
+            'value':value,
+            'success':str(success)
+        }
+     
+        return HttpResponse(simplejson.dumps(result), mimetype='application/json')
+   
+    elif request.method == 'POST':
+        success = False
+        question = InterviewQuestion.objects.get(code = request.POST.get('question_code'))
+        if (request.POST.get('resource')):
+            if (question.all_resources):
+                answer_pair = InterviewAnswer.objects.get_or_create(user=request.session['interviewee'], int_question = question, resource=request.POST.get('resource'))
+                answer = answer_pair[0]
+                new = answer_pair[1]
+                success = True
+            else:
+                error_text = 'resource given for non-resource specific answer'
+        else:
+            if (not question.all_resources):
+                answer_pair = InterviewAnswer.objects.get_or_create(user=request.session['interviewee'], int_question = question)
+                answer = answer_pair[0]
+                new = answer_pair[1]
+                success = True
+            else:
+                error_text = 'no resource given for resource specific answer'
         
-            # create or update InterviewAnswer records
-            form.save(request.session['interviewee'])
+        if success:
+            if question.answer_type == 'integer':
+                answer.integer_val = request.POST.get('value')
+            elif question.answer_type == 'decimal':
+                answer.decimal_val = request.POST.get('value')
+            elif question.answer_type == 'boolean':
+                answer.boolean_val = request.POST.get('value')
+            elif question.answer_type == 'select':
+                answer.option_val = request.POST.get('value')
+            elif question.answer_type == 'checkbox':
+                answer.option = request.POST.get('value')
+            elif question.answer_type == 'other':
+                answer.text_val = request.POST.get('value')
+            elif question.answer_type == 'text':
+                answer.text_val = request.POST.get('value')
+            elif question.answer_type == 'phone':
+                answer.text_val = request.POST.get('value')
+            elif question.answer_type == 'money':
+                answer.text_val = request.POST.get('value')
+            elif question.answer_type == 'percent':
+                answer.text_val = request.POST.get('value')
+            elif question.answer_type == 'textarea':
+                answer.text_val = request.POST.get('value')
             
-            return HttpResponseRedirect('/group_status#main_menu')
+            answer.text_val = str(request.POST.get('value'))
+                
+            if new:
+                answer.creation_date = datetime.datetime.now()
+                answer.num_times_saved = 1
+            else:
+                answer.num_times_saved = answer.num_times_saved + 1
+            answer.last_modified = datetime.datetime.now()
+            answer.save()
             
-    q_width = group.question_width
-    return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue', 'q_width':q_width}))    
+        result = {}      
+        result['answer'] = {
+            'id':answer.id,
+            'success':str(success)
+        }
+     
+        return HttpResponse(simplejson.dumps(result), mimetype='application/json') 
         
 @login_required    
 def answer_questions(request,group_id):
@@ -1121,7 +1163,7 @@ def shapes(request, id=None):
         #Make sure we were passed a feature
         if not request.POST.has_key('feature'):
             return HttpResponse('{"status_code":"-1",  "success":"false",  "message":"Expected \'feature\'"}', status=403)
-        import simplejson
+        
         feat = simplejson.loads(request.POST.get('feature'))        
         
         #Check if it's an update

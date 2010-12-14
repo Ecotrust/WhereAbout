@@ -35,6 +35,7 @@ urlpatterns = patterns('',
 
     (r'^select_group_resources/([A-Za-z0-9_-]+)/$', select_group_resources ),
 	(r'^draw_group_resources/([A-Za-z0-9_-]+)/$', draw_group_resources ),
+	(r'^answers/$', answers ),
 	
     (r'^draw_overview/([A-Za-z0-9_-]+)/$', draw_overview ),
     (r'^penny_overview/([A-Za-z0-9_-]+)/$', penny_overview ),
