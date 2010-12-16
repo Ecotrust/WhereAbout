@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext, loader
+from django.template.loader import render_to_string
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from models import *
@@ -10,6 +11,8 @@ from gwst_app.utils.geojson_encode import *
 from django.db.models import Sum
 from shortcuts import render_to_geojson
 from django.contrib.auth.models import User
+from django_extjs.forms import ExtJsForm
+from django_extjs import utils
 import datetime
 import string
 import simplejson
@@ -563,8 +566,13 @@ def answer_questions(request,group_id):
             
     if request.method == 'GET':
         # show questions for this group, with any existing user answers
-        form = AnswerForm(questions, answers, group_id, resource_id)
-        
+        ansForm = AnswerForm
+        ExtJsForm.addto(ansForm)
+        form = ansForm(questions, answers, group_id, resource_id)
+        if request.GET.get('request_source') == 'Draw Manager':
+            dm_request = True
+        else:
+            dm_request = False
     else:
         # form validation
         form = AnswerForm(questions, answers, group_id, resource_id, request.POST )
@@ -586,11 +594,14 @@ def answer_questions(request,group_id):
         
             # create or update InterviewAnswer records
             form.save(request.session['interviewee'])
-            
             return HttpResponseRedirect('/group_status#main_menu')
             
     q_width = group.question_width
-    return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue', 'q_width':q_width}))     
+    if dm_request:
+        #Handle form requests from draw manager js panels
+        return utils.JsonResponse(form.as_extjs())   
+    else :
+        return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue', 'q_width':q_width}))     
     
 @login_required
 def select_group_resources(request, group_id):

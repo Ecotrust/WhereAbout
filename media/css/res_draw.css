@@ -160,3 +160,25 @@ p.x-panel-static{
 .x-btn-center {
     padding: 0 2px;
 }
+
+.x-form-cb-label {
+    display: block;
+    padding-left: 15px;
+    text-indent: 0;
+}
+
+.x-form-check-wrap input {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin: 6px 0 0 0;
+    vertical-align: bottom;
+    position: absolute;
+    top: -1px;
+    *overflow: hidden;
+}
+
+.x-form{
+    border: none;
+    margin: 3px 0 10px 6px;
+}

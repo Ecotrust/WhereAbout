@@ -21,6 +21,7 @@ import gwst_app.urls
 import gwst_app.views
 import registration_custom
 import map_layers
+import django_extjs
 
 import django.template.loaders.filesystem
 import django.template.loaders.app_directories

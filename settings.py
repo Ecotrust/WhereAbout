@@ -74,6 +74,7 @@ TILE_BASE = 'set-in-local_settings' #os.path.abspath(os.path.dirname(sys.argv[0]
 TEMPLATE_DIRS = ( # use os.path.abspath(os.path.dirname(sys.argv[0])) to get a directory root that will be correct for py2exe'd version
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_app/templates/',
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/registration_custom/templates/',
+    os.path.abspath(os.path.dirname(sys.argv[0])) +'/site-media/third-party/django_extjs/templates/',
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/admin_utils/templates/',
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/templates/', # for admin, in desktop configuration
     #os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_surveymonkey/templates/',
@@ -94,6 +95,7 @@ INSTALLED_APPS = (
     #'gwst_surveymonkey',
     'compress',
     'django_extensions',
+    'django_extjs',
     'admin_utils'
 )
 
@@ -159,6 +161,7 @@ COMPRESS_JS = {
             'js/widgets/InvalidShapePanel.js', 
             'js/widgets/UnfinishedCheckWindow.js', 
             'js/widgets/UnfinishedResourceStartPanel.js', 
+            'js/widgets/GroupQuestionsPanel.js', 
             'js/widgets/NavigatePanel.js', 
             'js/widgets/PennyWindow.js', 
             'js/widgets/YesNoButtons.js', 

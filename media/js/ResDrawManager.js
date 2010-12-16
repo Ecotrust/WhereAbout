@@ -63,7 +63,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     /* Finish splash and start resource selection */
     finSplashStep: function() {
-    	this.startResSelStep();
+        this.startMPAQuestionsStep();
     },
     
     /******************** Unfinished Resource Start Step *******************/
@@ -89,6 +89,20 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     /******************** Resource Selection Step *******************/
+    
+    /*
+     *  Setup MPA questions step 
+     */
+    startMPAQuestionsStep: function() {
+        this.getQuestionForm(8, this.finGetMPAQuestionForm);
+    },
+    
+    /*
+     *  cleanup MPA Questions and redirect to resource selection step 
+     */
+    finMPAQuestionsStep: function() {
+        this.startResSelStep();
+    },
     
     /*
      *  Setup resource selection step 
@@ -123,7 +137,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from resource selection to splash
      */
     backResSelStep: function(){
-         this.loadSplash();
+         this.startMPAQuestionsStep();
     },
     
     /******************** Navigation Step *******************/
@@ -508,7 +522,20 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.unfinResStartPanel); 
     },
-    
+
+    loadMPAQuestionPanel: function() {
+    	if (!this.MPAQuesitonPanel) {
+            this.MPAQuesitonPanel = new gwst.widgets.GroupQuestionsPanel({
+                xtype: 'gwst-group-questions-panel',
+                form: gwst.settings.question_form,
+                group_name: 'MPA Questions'
+            });
+            this.MPAQuesitonPanel.on('grp-qstn-cont', this.finMPAQuestionsStep, this);
+            this.MPAQuesitonPanel.on('grp-qstn-back', this.startSplashStep, this);
+        }
+        this.viewport.setWestPanel(this.MPAQuesitonPanel);    	
+    },
+
     loadResSelPanel: function() {
     	if (!this.resSelPanel) {
             this.resSelPanel = new gwst.widgets.SelResPanel({
@@ -1114,6 +1141,105 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	gwst.settings.shapeStore.commitChanges();
     },
     
+<<<<<<< .mine
+    //if not resource specific, use ''
+    getAnswer: function(question_code, resource) {
+        if (resource == "") {
+            this.params = {
+                question_code : question_code
+            };
+        } else {
+            this.params = {
+                question_code : question_code,
+                resource : resource
+            };
+        }
+        Ext.Ajax.request({
+        	url: gwst.settings.urls.answers,
+           	disableCachingParam: true,
+            method: 'GET',
+            params: this.params,
+           	scope: this,
+           	success: this.finGetAnswer,
+           	failure: function(response, opts) {
+        		// Change to error window
+              	alert('get answer request failed: ' + response.status);
+           	}
+        });		
+    },
+        
+    finGetAnswer: function(response, opts) {
+        this.answer_obj = Ext.decode(response.responseText);
+    },
+    
+    //if not resource specific, use ''
+    postAnswer: function(code, val, resource) {
+        if (resource == "") {
+            this.params = {
+                question_code : code,
+                value : val
+            };
+        } else {
+            this.params = {
+                question_code : code,
+                value : val,
+                resource : resource
+            };
+        }
+        Ext.Ajax.request({
+        	url: gwst.settings.urls.answers,
+           	disableCachingParam: true,
+            method: 'POST',
+            params: this.params,
+           	scope: this,
+           	success: this.finPostAnswer,
+           	failure: function(response, opts) {
+        		// Change to error window
+              	alert('post answer request failed: ' + response.status);
+           	}
+        });		
+    },
+        
+    finPostAnswer: function(response, opts) {
+        this.answer_obj = Ext.decode(response.responseText);
+    },
+    
+    getQuestionForm: function(group, func) {
+        this.params = {
+            group : group,
+            request_source : 'Draw Manager'
+        };
+        
+        this.loadWait('Gathering questions');
+
+        Ext.Ajax.request({
+        	url: gwst.settings.urls.questions + group + '/answer/',
+           	disableCachingParam: true,
+            method: 'GET',
+            params: this.params,
+           	scope: this,
+           	success: func,
+           	failure: function(response, opts) {
+        		// Change to error window
+                this.hideWait.defer(500, this);
+              	alert('get answer request failed: ' + response.status);
+           	}
+        });		
+    },
+    
+    finGetQuestionForm: function(response, opts){
+        this.hideWait.defer(500, this);
+        gwst.settings.question_form = Ext.decode(response.responseText);
+    },
+    
+    finGetMPAQuestionForm: function(response, opts){
+        this.hideWait.defer(500, this);
+        gwst.settings.question_form = Ext.decode(response.responseText);
+        this.loadMPAQuestionPanel()
+        
+    },
+    
+=======
     //if not resource specific, use ''
     getAnswer: function(question_code, resource) {
         if (resource == "") {
@@ -1178,6 +1304,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.answer_obj = Ext.decode(response.responseText);
     },
     
+>>>>>>> .r621
     /******************** Utility Methods ********************/
     
     loadResourceStore: function(resources) {
