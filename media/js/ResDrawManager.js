@@ -39,7 +39,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	this.on('shape-saved', this.startAnotherShapeStep, this);
         this.fetchSettings();
         this.loadWait('While the drawing tool loads');
-
     },               
 
     finInit: function() {
@@ -1141,7 +1140,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	gwst.settings.shapeStore.commitChanges();
     },
     
-<<<<<<< .mine
     //if not resource specific, use ''
     getAnswer: function(question_code, resource) {
         if (resource == "") {
@@ -1236,75 +1234,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.hideWait.defer(500, this);
         gwst.settings.question_form = Ext.decode(response.responseText);
         this.loadMPAQuestionPanel()
-        
     },
     
-=======
-    //if not resource specific, use ''
-    getAnswer: function(question_code, resource) {
-        if (resource == "") {
-            this.params = {
-                question_code : question_code
-            };
-        } else {
-            this.params = {
-                question_code : question_code,
-                resource : resource
-            };
-        }
-        Ext.Ajax.request({
-        	url: gwst.settings.urls.answers,
-           	disableCachingParam: true,
-            method: 'GET',
-            params: this.params,
-           	scope: this,
-           	success: this.finGetAnswer,
-           	failure: function(response, opts) {
-        		// Change to error window
-              	alert('get answer request failed: ' + response.status);
-           	}
-        });		
-    },
-        
-    finGetAnswer: function(response, opts) {
-        this.answer_obj = Ext.decode(response.responseText);
-        // alert('answer value: ' + this.answer_obj.answer.value);
-    },
-    
-    //if not resource specific, use ''
-    postAnswer: function(code, val, resource) {
-        if (resource == "") {
-            this.params = {
-                question_code : code,
-                value : val
-            };
-        } else {
-            this.params = {
-                question_code : code,
-                value : val,
-                resource : resource
-            };
-        }
-        Ext.Ajax.request({
-        	url: gwst.settings.urls.answers,
-           	disableCachingParam: true,
-            method: 'POST',
-            params: this.params,
-           	scope: this,
-           	success: this.finPostAnswer,
-           	failure: function(response, opts) {
-        		// Change to error window
-              	alert('post answer request failed: ' + response.status);
-           	}
-        });		
-    },
-        
-
-    finPostAnswer: function(response, opts) {
-        this.answer_obj = Ext.decode(response.responseText);
-    },
-    
->>>>>>> .r621
     /******************** Utility Methods ********************/
     
     loadResourceStore: function(resources) {
