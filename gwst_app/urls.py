@@ -5,6 +5,8 @@ from django.contrib.auth.views import *
 # from registration_custom.forms import RegistrationFormFull
 
 from views import *
+from django_extjs.example_views import *
+from django.views.generic.simple import direct_to_template
 
 urlpatterns = patterns('',                      
     (r'^accounts/login/$', login, {'template_name': 'login.html'}),
@@ -57,5 +59,13 @@ urlpatterns = patterns('',
 	
 	(r'^samples/(\S+)/$', sample),
     (r'^tiles/(\S+)$', tiles ),
+    
+    (r'^test', direct_to_template, {'template': 'example.html'}),
+    (r'^apps/django_extjs/example_email', example_email),
+    (r'^json/email$', example_email),
+    (r'^json/model$', example_model),
+    # (r'^json/grid$', test_grid),
+    # (r'^grid$', direct_to_template, {'template': 'grid.html'}),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'django_extjs/static'}),
     
 )

@@ -62,6 +62,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     /* Finish splash and start resource selection */
     finSplashStep: function() {
+    	this.startResSelStep();
         this.startMPAQuestionsStep();
     },
     
@@ -90,10 +91,14 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /******************** Resource Selection Step *******************/
     
     /*
+
+
+
      *  Setup MPA questions step 
      */
     startMPAQuestionsStep: function() {
-        this.getQuestionForm(8, this.finGetMPAQuestionForm);
+        // this.getQuestionForm(8, this.finGetMPAQuestionForm);
+        this.loadMPAQuestionPanel();
     },
     
     /*
@@ -136,6 +141,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from resource selection to splash
      */
     backResSelStep: function(){
+         this.loadSplash();
          this.startMPAQuestionsStep();
     },
     
@@ -521,13 +527,20 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.unfinResStartPanel); 
     },
+    
+
+
+
+
 
     loadMPAQuestionPanel: function() {
     	if (!this.MPAQuesitonPanel) {
             this.MPAQuesitonPanel = new gwst.widgets.GroupQuestionsPanel({
                 xtype: 'gwst-group-questions-panel',
-                form: gwst.settings.question_form,
-                group_name: 'MPA Questions'
+                // form: gwst.settings.question_form,
+                group_name: 'MPA Questions',
+                group_num: 8,
+                form_url: gwst.settings.urls.questions + '8/answer/'
             });
             this.MPAQuesitonPanel.on('grp-qstn-cont', this.finMPAQuestionsStep, this);
             this.MPAQuesitonPanel.on('grp-qstn-back', this.startSplashStep, this);

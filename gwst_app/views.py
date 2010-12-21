@@ -569,10 +569,14 @@ def answer_questions(request,group_id):
         ansForm = AnswerForm
         ExtJsForm.addto(ansForm)
         form = ansForm(questions, answers, group_id, resource_id)
-        if request.GET.get('request_source') == 'Draw Manager':
-            dm_request = True
+
+        q_width = group.question_width
+        # if request.GET.get('request_source') == 'Draw Manager' or request.GET.get('_dc'):
+        if group.independent:
+            #Handle form requests from draw manager js panels
+            return utils.JsonResponse(form.as_extjs())
         else:
-            dm_request = False
+            return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue', 'q_width':q_width}))
     else:
         # form validation
         form = AnswerForm(questions, answers, group_id, resource_id, request.POST )
@@ -594,14 +598,18 @@ def answer_questions(request,group_id):
         
             # create or update InterviewAnswer records
             form.save(request.session['interviewee'])
-            return HttpResponseRedirect('/group_status#main_menu')
+            if group.independent:
+                result = {"success":True, "message":"Answers saved successfully"}
+                return HttpResponse(simplejson.dumps(result), mimetype='application/json')
+            else:
+                return HttpResponseRedirect('/group_status#main_menu')
             
-    q_width = group.question_width
-    if dm_request:
-        #Handle form requests from draw manager js panels
-        return utils.JsonResponse(form.as_extjs())   
-    else :
-        return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue', 'q_width':q_width}))     
+    # q_width = group.question_width
+    # if dm_request:
+        # #Handle form requests from draw manager js panels
+        # return utils.JsonResponse(form.as_extjs())   
+        else :
+            return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))     
     
 @login_required
 def select_group_resources(request, group_id):
@@ -1184,7 +1192,7 @@ def shapes(request, id=None):
             if (shape.user == request.session['interviewee']):
                 shape.pennies = feat.get('pennies')
                 shape.save()
-                result = {"success":True, "message":"Update successfully"}
+                result = {"success":True, "message":"Updated successfully"}
                 return HttpResponse(geojson_encode(result)) 
             else:
                 result = {"success":False, "message":"None of users shapes have given ID"}

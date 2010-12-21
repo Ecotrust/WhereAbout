@@ -130,6 +130,7 @@ COMPRESS_JS = {
             'third-party/ext-ux/multiselect/MultiSelect.js',
             'third-party/ext-ux/multiselect/DDView.js',
             'third-party/ext-ux/grid/RowActions.js',
+            'third-party/django_extjs/static/js/Ext.ux.DjangoForms.js',
             'js/settings.js', 
             'js/util.js', 
             'js/ResDrawApp.js', 
