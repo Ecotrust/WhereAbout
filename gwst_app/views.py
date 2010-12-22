@@ -571,7 +571,6 @@ def answer_questions(request,group_id):
         form = ansForm(questions, answers, group_id, resource_id)
 
         q_width = group.question_width
-        # if request.GET.get('request_source') == 'Draw Manager' or request.GET.get('_dc'):
         if group.independent:
             #Handle form requests from draw manager js panels
             return utils.JsonResponse(form.as_extjs())
@@ -580,7 +579,6 @@ def answer_questions(request,group_id):
     else:
         # form validation
         form = AnswerForm(questions, answers, group_id, resource_id, request.POST )
-
         if form.is_valid():
             # update the group membership status, if necessary
             group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__pk=group_id)

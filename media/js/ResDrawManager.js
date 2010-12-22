@@ -102,6 +102,17 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     /*
+     *  If user knows of specific MPAs, ask them which.  Else, move on to resource select. 
+     */
+    contMPAQuestionsStep: function() {
+        if (this.MPAQuestionPanel.question_panel.getForm().getFieldValues().question_91) {
+            this.loadSpecificMPAQuestionPanel();
+        } else {
+            this.finMPAQuestionsStep();
+        }
+    },
+    
+    /*
      *  cleanup MPA Questions and redirect to resource selection step 
      */
     finMPAQuestionsStep: function() {
@@ -534,19 +545,35 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 
 
     loadMPAQuestionPanel: function() {
-    	if (!this.MPAQuesitonPanel) {
-            this.MPAQuesitonPanel = new gwst.widgets.GroupQuestionsPanel({
+    	if (!this.MPAQuestionPanel) {
+            this.MPAQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
                 xtype: 'gwst-group-questions-panel',
                 // form: gwst.settings.question_form,
                 group_name: 'MPA Questions',
                 group_num: 8,
                 form_url: gwst.settings.urls.questions + '8/answer/'
             });
-            this.MPAQuesitonPanel.on('grp-qstn-cont', this.finMPAQuestionsStep, this);
-            this.MPAQuesitonPanel.on('grp-qstn-back', this.startSplashStep, this);
+            this.MPAQuestionPanel.on('grp-qstn-cont', this.contMPAQuestionsStep, this);
+            this.MPAQuestionPanel.on('grp-qstn-back', this.startSplashStep, this);
         }
-        this.viewport.setWestPanel(this.MPAQuesitonPanel);    	
+        this.viewport.setWestPanel(this.MPAQuestionPanel);    	
     },
+    
+
+    loadSpecificMPAQuestionPanel: function() {
+    	if (!this.specMPAQuestionPanel) {
+            this.specMPAQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
+                xtype: 'gwst-group-questions-panel',
+                // form: gwst.settings.question_form,
+                group_name: 'Specific MPA Questions',
+                group_num: 9,
+                form_url: gwst.settings.urls.questions + '9/answer/'
+            });
+            this.specMPAQuestionPanel.on('grp-qstn-cont', this.finMPAQuestionsStep, this);
+            this.specMPAQuestionPanel.on('grp-qstn-back', this.startMPAQuestionsStep, this);
+        }
+        this.viewport.setWestPanel(this.specMPAQuestionPanel);    	
+    },    
 
     loadResSelPanel: function() {
     	if (!this.resSelPanel) {
