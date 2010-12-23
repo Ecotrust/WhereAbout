@@ -19,6 +19,7 @@ urlpatterns = patterns('',
 #Serve media through development server instead of web server (Apache)
 if settings.DEBUG is True:
     urlpatterns += patterns('',
-        (r'^site-media/(?P<path>.*)$','django.views.static.serve',{'document_root': settings.MEDIA_ROOT, 'show_indexes': True})
+        (r'^site-media/(?P<path>.*)$','django.views.static.serve',{'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+        (r'^install-media/(?P<path>.*)$','django.views.static.serve',{'document_root': settings.STATICFILES_ROOT, 'show_indexes': True})
     )
     

@@ -44,6 +44,11 @@ MEDIA_ROOT = 'set-in-local_settings'
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/site-media/'
 
+# Absolute path to the directory that holds media from multiple applications.
+STATICFILES_ROOT = 'set-in-local_settings'
+
+STATICFILES_URL = 'set-in-local-settings'
+
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
@@ -90,6 +95,7 @@ INSTALLED_APPS = (
     'django.contrib.databrowse',
     'django.contrib.humanize',
     'django.contrib.gis',
+    'django.contrib.staticfiles',
     'registration_custom',
     'gwst_app',
     #'gwst_surveymonkey',
@@ -130,7 +136,7 @@ COMPRESS_JS = {
             'third-party/ext-ux/multiselect/MultiSelect.js',
             'third-party/ext-ux/multiselect/DDView.js',
             'third-party/ext-ux/grid/RowActions.js',
-            'third-party/django_extjs/static/js/Ext.ux.DjangoForms.js',
+            '../install-media/js/ext.ux.djangoforms.js',
             'js/settings.js', 
             'js/util.js', 
             'js/ResDrawApp.js', 
