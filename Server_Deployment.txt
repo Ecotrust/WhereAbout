@@ -14,6 +14,7 @@ check out the code with svn
 Copy over anything not kept in the repository
     Third Party folders under media
     tiles
+    install-media (initially filled with `python manage.py collectstatic`)
 
 ceate local settings from template
     Borrow settings from an existing project, if possible

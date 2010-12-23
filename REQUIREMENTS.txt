@@ -3,6 +3,7 @@ Python modules needed:
 django_extensions (used for UUID's)
 django_compress (compresses JS files into one pack)
 django_registration
+django_extjs (https://github.com/rhodges/django-extjs, 12/23/2010)
 
 
 Additional build directories (hang off of trunk):
