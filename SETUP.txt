@@ -68,6 +68,12 @@ Third-party
 --------------------------    
     Make sure you have all of the appropriate third-party folders, including 
         extjs2, GeoExt-0.6, and OpenLayers-2.8
+    
+--------------------------
+Install-media
+--------------------------    
+    Run `python manage.py collectstatic` to populate the 'install-media' folder
+        Currently this will get the contents of django_extjs/static [see requirements]
 
 --------------------------    
 MISC
