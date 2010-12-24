@@ -1,18 +1,30 @@
-how to put a new clip region into place on a production server
-(test this out on your dev server first)
-- create a copy of the sql file holding your clip region, call it foo.sql
-- edit that file and search/replace gwst_clip_region with foo
-- load foo into your database, cat foo.sql | psql -d or-rec-survey
-- copy the geometry from foo to gwst_region_clip table
-update gwst_region_clip set geom = a.geom from foo a where a.id=1;
-- Test the app
+HOW TO PUT A NEW CLIP REGION INTO PLACE ON A PRODUCTION SERVER:
 
+    (test this out on your dev server first)
+    - create a copy of the sql file holding your clip region, call it foo.sql
+    - edit that file and search/replace gwst_clip_region with foo
+    - load foo into your database, cat foo.sql | psql -d or-rec-survey
+    - copy the geometry from foo to gwst_region_clip table
+    update gwst_region_clip set geom = a.geom from foo a where a.id=1;
+    - Test the app
 
-Spatialite:
-spatialite.exe database/db.sqlite < database/data/fake-or-coast.sql
+HOW TO ADD A SHAPEFILE TO A SPATIALITE DATABASE:
 
-database/data/fake-or-coast.sql:
-.loadshp database/data/fake-or-coast foo CP1252 3310 
-# where fake-or-coast is a shapefile, foo is the new table that is created, cp1252 is the string type, 3310 is srid)
-insert into gwst_region_clip (name, geom)
-select name, Geometry from foo;
+    Spatialite:
+    spatialite.exe database/db.sqlite < database/data/fake-or-coast.sql
+
+    database/data/fake-or-coast.sql:
+    spatialite.exe database/db.sqlite
+        --Opens spatialite command prompt with db.sqlite as the db
+    .loadshp database/data/fake-or-coast foo CP1252 3310    
+        # where 
+            fake-or-coast is a shapefile (do NOT give filetype, such as ".shp"), 
+            foo is the new table that is created, 
+            cp1252 is the string type (standard Latin, a safe choice), 
+            3310 is srid
+        
+MORE ON CLIPPING:        
+        
+    (continued from above)
+    insert into gwst_region_clip (name, geom)
+    select name, Geometry from foo;
