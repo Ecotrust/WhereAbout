@@ -467,6 +467,27 @@
     }
   }, 
   {
+    "pk": 9, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "independent": true, 
+      "code": "mpa_q", 
+      "name": "MPA Questions", 
+      "is_user_group": false, 
+      "required_group": false, 
+      "question_width": 275, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 4, 
+      "member_title": "person", 
+      "page_template": "base_form.html", 
+      "resources": [], 
+      "description": "MPA Questions"
+    }
+  }, 
+  {
     "pk": "a4", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
@@ -2380,141 +2401,6 @@
     }
   }, 
   {
-    "pk": 93, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "mpa_aware", 
-      "layout": "vertical", 
-      "eng_text": "Marine protected area closures were recently implemented in the North Central Coast (Point Arena to Half Moon Bay). Please select the choice that applies to you", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 70.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [
-        "ed8e4921-0498-11e0-9120-0016760580f0", 
-        "fad3f5cf-0498-11e0-9dd9-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 94, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "mpa_inform", 
-      "layout": "vertical", 
-      "eng_text": "If you answered 'Yes' to Question 7, how were you informed about the closures", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 80.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "1003e611-03c0-11e0-9ef0-0016760580f0", 
-        "1694ce91-03c0-11e0-bedd-0016760580f0", 
-        "1e299280-03c0-11e0-b8cf-0016760580f0", 
-        "28496e21-03c0-11e0-850b-0016760580f0", 
-        "34117b80-03c0-11e0-8636-0016760580f0", 
-        "4aa757c0-03c0-11e0-aab9-0016760580f0", 
-        "5080b00f-03c0-11e0-9b66-0016760580f0", 
-        "576759b0-03c0-11e0-892e-0016760580f0", 
-        "61eb4e4f-03c0-11e0-a2b1-0016760580f0", 
-        "698e6a1e-03c0-11e0-9493-0016760580f0", 
-        "763b804f-03c0-11e0-9b06-0016760580f0", 
-        "7b644d51-03c0-11e0-8b95-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "checkbox", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 95, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "mpa_spec_b", 
-      "layout": "vertical", 
-      "eng_text": "If you answered 'Yes' to question 7, are you aware of specific closures in close proximity to where you typically dive/shore pick", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 90.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "04811270-0499-11e0-91ba-0016760580f0", 
-        "0e75e670-0499-11e0-8be9-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 96, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "mpa_list", 
-      "layout": "vertical", 
-      "eng_text": "If so, which specific MPAs are you aware of", 
-      "int_group": 4, 
-      "question_set": null, 
-      "display_order": 100.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "08db55ae-02f5-11e0-a724-0016760580f0", 
-        "0ed136ae-02f5-11e0-b38a-0016760580f0", 
-        "17e0dacf-02f5-11e0-a471-0016760580f0", 
-        "224a90b0-02f5-11e0-ac67-0016760580f0", 
-        "2357b061-02f4-11e0-8de6-0016760580f0", 
-        "2d327740-02f5-11e0-98dc-0016760580f0", 
-        "2d39718f-02f4-11e0-9eef-0016760580f0", 
-        "32e338ee-02f5-11e0-8406-0016760580f0", 
-        "3644a8e1-02f4-11e0-8ea5-0016760580f0", 
-        "38d45f00-02f5-11e0-8514-0016760580f0", 
-        "3f24ffa1-02f4-11e0-8e3c-0016760580f0", 
-        "47fe035e-02f4-11e0-a18b-0016760580f0", 
-        "52192411-02f4-11e0-99e6-0016760580f0", 
-        "5c40048f-02f4-11e0-9294-0016760580f0", 
-        "61b543de-02f4-11e0-9663-0016760580f0", 
-        "68606b1e-02f4-11e0-989a-0016760580f0", 
-        "701401b0-02f4-11e0-8676-0016760580f0", 
-        "76ba46f0-02f4-11e0-9764-0016760580f0", 
-        "7e53c5d1-02f4-11e0-a40f-0016760580f0", 
-        "8feb4070-02f4-11e0-af72-0016760580f0", 
-        "97bdf7c0-02f4-11e0-a7bf-0016760580f0", 
-        "9f360bee-02f4-11e0-8843-0016760580f0", 
-        "a6289c70-02f4-11e0-91ab-0016760580f0", 
-        "b4362d00-02f4-11e0-8bd8-0016760580f0", 
-        "ba785940-02f4-11e0-8f0a-0016760580f0", 
-        "c0078930-02f4-11e0-91ef-0016760580f0", 
-        "d393cef0-02f4-11e0-8eb1-0016760580f0", 
-        "db9892c0-02f4-11e0-9dd5-0016760580f0", 
-        "e6877e30-02f4-11e0-acf4-0016760580f0", 
-        "ede7c4a1-02f4-11e0-bcec-0016760580f0", 
-        "fe1c05c0-02f4-11e0-b00e-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 60, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -3238,7 +3124,7 @@
       "code": "mpa_sp_mpa", 
       "layout": null, 
       "eng_text": "I am aware of the following MPAs", 
-      "int_group": 8, 
+      "int_group": 9, 
       "question_set": null, 
       "display_order": 40.0, 
       "required": false, 
