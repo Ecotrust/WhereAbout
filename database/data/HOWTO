@@ -25,22 +25,28 @@ HOW TO ADD A SHAPEFILE TO A SPATIALITE DATABASE:
             
 TROUBLES:
     On importing a shapefile of point data, the columns "lat" and "long" imported only NULL for the data.
-        When I tried to fix by making a CSV and editing in Excel, the geometry data was lost.
         
-    This resulted in a table with a Geometry column, and lat (adjust for Long) values:
+    SOLN 1 (EVIL WORKAROUND):
+        When I tried to fix by making a CSV and editing in Excel, the geometry data was lost.
+        This resulted in a table with a Geometry column, and lat (adjust for Long) values:
+            Open Shapefile in QGIS
+            Export a CSV
+            Delete the PK_UID column, as a new PK_UID will be assigned later.
+            Create new Spatialite table ("tmp_pts" below) from the CSV
+            Create new Spatialite table ("acc_pts" below) from Shapefile (either .loadshp or use GUI)
+            Execute SQL:
+                UPDATE acc_pts
+                SET Lat = ( SELECT t.Lat
+                            FROM tmp_pts t
+                            WHERE t.ID = acc_pts.ID
+                          )
+            *Using PK_UID instead of ID is bad because they will be off by 1. (One will be 0 indexed, the other: 1)
+    SOLN 2 (LESS-EVIL WORKAROUND?):
+        Drop the first shapefile-created table, it's broken
         Open Shapefile in QGIS
-        Export a CSV
-        Delete the PK_UID column, as a new PK_UID will be assigned later.
-        Create new Spatialite table ("tmp_pts" below) from the CSV
-        Create new Spatialite table ("acc_pts" below) from Shapefile (either .loadshp or use GUI)
-        Execute SQL:
-            UPDATE acc_pts
-            SET Lat = ( SELECT t.Lat
-                        FROM tmp_pts t
-                        WHERE t.ID = acc_pts.ID
-                      )
-        *Using PK_UID instead of ID is bad because they will be off by 1. (One will be 0 indexed, the other: 1)
-
+        Save the layer as a new shapefile
+        Import the new shapefile as a table in Spatialite
+            The Lat/Long values should now be preserved
         
         
 MORE ON CLIPPING:        

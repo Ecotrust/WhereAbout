@@ -32,14 +32,14 @@ class Region(Model):
         # return unicode('%s' % (self.name))   
 
 class CaCoastPlacemarks(Model):
-    gid = IntegerField(primary_key = True)
+    pk_uid = IntegerField(primary_key = True)
     name = CharField(max_length=25)
-    type = CharField(max_length=25)
+    featuretyp = CharField(max_length=25)
     county = CharField(max_length=25)
     lat = FloatField()
     long = FloatField()
     site_group = CharField(max_length=35)
-    the_geom = PointField(srid=4326)        
+    the_geom = PointField(srid=3310)        
     objects = GeoManager()
     class Meta:
         db_table = u'acc_pts'          

@@ -35,7 +35,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     startInit: function(){
         this.createError();
-    	this.on('settings-loaded', this.finInit, this);
+    	// this.on('settings-loaded', this.finInit, this);
+    	this.on('settings-loaded', this.loadCaCoastPlacemarks, this);
     	this.on('shape-saved', this.startAnotherShapeStep, this);
         this.fetchSettings();
         this.loadWait('While the drawing tool loads');
@@ -550,7 +551,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 xtype: 'gwst-group-questions-panel',
                 // form: gwst.settings.question_form,
                 group_name: 'MPA Questions',
-                group_num: 8,
                 form_url: gwst.settings.urls.questions + '8/answer/'
             });
             this.MPAQuestionPanel.on('grp-qstn-cont', this.contMPAQuestionsStep, this);
@@ -566,7 +566,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 xtype: 'gwst-group-questions-panel',
                 // form: gwst.settings.question_form,
                 group_name: 'Specific MPA Questions',
-                group_num: 9,
                 form_url: gwst.settings.urls.questions + '9/answer/'
             });
             this.specMPAQuestionPanel.on('grp-qstn-cont', this.finMPAQuestionsStep, this);
@@ -1366,6 +1365,48 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
 	    
     },
+    
+    loadCaCoastPlacemarks: function() {
+    	this.loadWait('Loading California North Central Coast Placemarks...');
+        gwst.settings.placemarkStore = new GeoExt.data.FeatureStore({
+            proxy:  new GeoExt.data.ProtocolProxy({
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: '/ca_coast_placemarks/json/',     
+                    format: new OpenLayers.Format.GeoJSON()
+                })
+            }),
+            fields: [{
+                name:'name',
+                type:'string',
+                defaultValue: null
+            }],	        
+            autoLoad: true  
+        });
+        gwst.settings.placemarkStore.on('load', this.loadAlphCaCoastPlacemarks, this);
+    },    
+    
+    loadAlphCaCoastPlacemarks: function() {
+        gwst.settings.alphPlacemarkStore = new GeoExt.data.FeatureStore({
+            proxy:  new GeoExt.data.ProtocolProxy({
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: '/alph_ca_coast_placemarks/json/',     
+                    format: new OpenLayers.Format.GeoJSON()
+                })
+            }),
+            fields: [{
+                name:'name',
+                type:'string',
+                defaultValue: null
+            }],	        
+            autoLoad: true  
+        });
+        gwst.settings.alphPlacemarkStore.on('load', this.afterPlacemarksLoaded, this);
+    },
+
+    afterPlacemarksLoaded: function() {
+        this.hideWait();
+    	this.finInit();
+    },        	
     
     //remove listener and zoom in - listener removed because 'load' is firing when a new shape is drawn and saved.
     afterShapesLoaded: function() {

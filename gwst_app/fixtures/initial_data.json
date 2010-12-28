@@ -24,6 +24,2047 @@
     }
   }, 
   {
+    "pk": 1, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Dillon Beach", 
+      "long": -122.96706140000001, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 38.250391, 
+      "the_geom": "POINT (-259291.9062500000000000 30073.2343750000000000)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Lawson's Landing", 
+      "long": -122.96835280000001, 
+      "featuretyp": "Water Feature", 
+      "county": "Marin", 
+      "lat": 38.232180999999997, 
+      "the_geom": "POINT (-259468.0937500000000000 28053.4257810000017344)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Walker Creek Delta", 
+      "long": -122.92726209999999, 
+      "featuretyp": "Water Feature", 
+      "county": "Marin", 
+      "lat": 38.212049999999998, 
+      "the_geom": "POINT (-255946.5312500000000000 25704.9902340000007825)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Keys Creek Public Fishing Access", 
+      "long": -122.9107156, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 38.234642000000001, 
+      "the_geom": "POINT (-254423.1406250000000000 28170.6718750000000000)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Pierce Point Ranch", 
+      "long": -122.95510539999999, 
+      "featuretyp": "Historic Feature", 
+      "county": "Marin", 
+      "lat": 38.190370999999999, 
+      "the_geom": "POINT (-258455.3437500000000000 23371.6972659999992175)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "McClures Beach", 
+      "long": -122.9651752, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 38.184171999999997, 
+      "the_geom": "POINT (-259357.3125000000000000 22710.4804689999982656)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Kehoe Marsh and Beach", 
+      "long": -122.9491927, 
+      "featuretyp": "Water Feature", 
+      "county": "Marin", 
+      "lat": 38.158937000000002, 
+      "the_geom": "POINT (-258047.0625000000000000 19862.9472659999992175)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Tomales Bay State Park", 
+      "long": -122.8898176, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Marin", 
+      "lat": 38.129972000000002, 
+      "the_geom": "POINT (-252951.6406250000000000 16484.5156250000000000)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Marconi Conference Center", 
+      "long": -122.87217819999999, 
+      "featuretyp": "Facility", 
+      "county": "Marin", 
+      "lat": 38.140838000000002, 
+      "the_geom": "POINT (-251371.5156250000000000 17644.9941409999992175)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Livermore Marsh", 
+      "long": -122.8912164, 
+      "featuretyp": "Water Feature", 
+      "county": "Marin", 
+      "lat": 38.163766000000003, 
+      "the_geom": "POINT (-252959.5000000000000000 20243.2910159999992175)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Sea Ranch Blufftop Trail", 
+      "long": -123.51227350000001, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Sonoma", 
+      "lat": 38.741270999999998, 
+      "the_geom": "POINT (-304896.9687500000000000 86229.9921880000038072)", 
+      "site_group": "Sea Ranch"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Sea Ranch Public Access Trails", 
+      "long": -123.48317299999999, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Sonoma", 
+      "lat": 38.727445000000003, 
+      "the_geom": "POINT (-302428.3750000000000000 84601.0468750000000000)", 
+      "site_group": "Sea Ranch"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Sea Ranch Public Access Trails", 
+      "long": -123.4595542, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Sonoma", 
+      "lat": 38.715564000000001, 
+      "the_geom": "POINT (-300426.7500000000000000 83206.1953119999961928)", 
+      "site_group": "Sea Ranch"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Sea Ranch Public Access Trails", 
+      "long": -123.4405625, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Sonoma", 
+      "lat": 38.699072000000001, 
+      "the_geom": "POINT (-298844.7500000000000000 81314.2734380000038072)", 
+      "site_group": "Sea Ranch"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Sea Ranch Public Access Trails", 
+      "long": -123.4309473, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Sonoma", 
+      "lat": 38.680511000000003, 
+      "the_geom": "POINT (-298084.5937500000000000 79222.2109380000038072)", 
+      "site_group": "Sea Ranch"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Salal Trail", 
+      "long": -123.51692869999999, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Sonoma", 
+      "lat": 38.745612000000001, 
+      "the_geom": "POINT (-305283.0000000000000000 86727.1718750000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Fort Funston", 
+      "long": -122.5026536, 
+      "featuretyp": "Architectural Feature", 
+      "county": "San Francisco", 
+      "lat": 37.712727999999998, 
+      "the_geom": "POINT (-220295.1093750000000000 -30846.7011720000009518)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Daisaku Ikeda Canyon", 
+      "long": -122.4944309, 
+      "featuretyp": "Land Feature", 
+      "county": "San Mateo", 
+      "lat": 37.680433000000001, 
+      "the_geom": "POINT (-219665.9218750000000000 -34454.6757809999980964)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Mussel Rock City Park (Daly City)", 
+      "long": -122.4944149, 
+      "featuretyp": "Facility", 
+      "county": "San Mateo", 
+      "lat": 37.665567000000003, 
+      "the_geom": "POINT (-219707.9843750000000000 -36106.6640629999965313)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Sharp Park Beach and Pacifica Pier", 
+      "long": -122.4938854, 
+      "featuretyp": "Waterfornt Feature and Ph", 
+      "county": "San Mateo", 
+      "lat": 37.629702999999999, 
+      "the_geom": "POINT (-219766.2187500000000000 -40093.4101559999980964)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Kirby Cove", 
+      "long": -122.48963070000001, 
+      "featuretyp": "Water Feature", 
+      "county": "Marin", 
+      "lat": 37.827288000000003, 
+      "the_geom": "POINT (-218814.6562500000000000 -18145.9843750000000000)", 
+      "site_group": "Golden Gate National Recreation Area"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Coastal Trail (San Francisco)", 
+      "long": -122.4791824, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "San Francisco", 
+      "lat": 37.798279000000001, 
+      "the_geom": "POINT (-217980.8750000000000000 -21393.7597659999992175)", 
+      "site_group": "Presidio of San Francisco"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Baker Beach", 
+      "long": -122.4848307, 
+      "featuretyp": "Physical Access", 
+      "county": "San Francisco", 
+      "lat": 37.790593000000001, 
+      "the_geom": "POINT (-218499.7812500000000000 -22234.9726560000017344)", 
+      "site_group": "Presidio of San Francisco"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "China Beach (San Francisco)", 
+      "long": -122.48939, 
+      "featuretyp": "Physical Access", 
+      "county": "San Francisco", 
+      "lat": 37.788127000000003, 
+      "the_geom": "POINT (-218907.7968750000000000 -22498.4824220000009518)", 
+      "site_group": "Presidio of San Francisco"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Ocean Beach (San Francisco)", 
+      "long": -122.5114008, 
+      "featuretyp": "Physical Access", 
+      "county": "San Francisco", 
+      "lat": 37.768414, 
+      "the_geom": "POINT (-220900.9375000000000000 -24638.0468750000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Fort Point", 
+      "long": -122.47691140000001, 
+      "featuretyp": "Land Feature", 
+      "county": "San Francisco", 
+      "lat": 37.808883000000002, 
+      "the_geom": "POINT (-217750.4531250000000000 -20220.6542970000009518)", 
+      "site_group": "Presidio of San Francisco"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Moat Creek Access", 
+      "long": -123.67511399999999, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Mendocino", 
+      "lat": 38.881053999999999, 
+      "the_geom": "POINT (-318423.9375000000000000 102291.3515619999961928)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Slide Ranch", 
+      "long": -122.5974454, 
+      "featuretyp": "Historic Feature", 
+      "county": "Marin", 
+      "lat": 37.874628000000001, 
+      "the_geom": "POINT (-228144.0468750000000000 -12631.1572269999996934)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Muir Overlook", 
+      "long": -122.58648909999999, 
+      "featuretyp": "Visual Access", 
+      "county": "Marin", 
+      "lat": 37.863965, 
+      "the_geom": "POINT (-227214.2812500000000000 -13842.3251949999994395)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Muir Beach", 
+      "long": -122.5776189, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 37.859755, 
+      "the_geom": "POINT (-226447.9843750000000000 -14331.3925780000008672)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Coastal Trail (Marin County)", 
+      "long": -122.5597353, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Marin", 
+      "lat": 37.849397000000003, 
+      "the_geom": "POINT (-224908.3437500000000000 -15524.9970699999994395)", 
+      "site_group": "Golden Gate National Recreation Area"
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Tennessee Valley", 
+      "long": -122.5457973, 
+      "featuretyp": "Land Feature", 
+      "county": "Marin", 
+      "lat": 37.849043999999999, 
+      "the_geom": "POINT (-223685.0468750000000000 -15597.2568360000004759)", 
+      "site_group": "Golden Gate National Recreation Area"
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Rodeo Beach", 
+      "long": -122.5363713, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 37.829630999999999, 
+      "the_geom": "POINT (-222914.7656250000000000 -17776.7167970000009518)", 
+      "site_group": "Golden Gate National Recreation Area"
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "YMCA Point Bonita Center", 
+      "long": -122.5302195, 
+      "featuretyp": "Facility", 
+      "county": "Marin", 
+      "lat": 37.820515, 
+      "the_geom": "POINT (-222401.2656250000000000 -18804.1914060000017344)", 
+      "site_group": "Golden Gate National Recreation Area"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Point Bonita Lighthouse", 
+      "long": -122.529602, 
+      "featuretyp": "Architectural Feature", 
+      "county": "Marin", 
+      "lat": 37.815570999999998, 
+      "the_geom": "POINT (-222361.6718750000000000 -19355.1191409999992175)", 
+      "site_group": "Golden Gate National Recreation Area"
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Lands End", 
+      "long": -122.50693080000001, 
+      "featuretyp": "Land Feature", 
+      "county": "San Francisco", 
+      "lat": 37.786436999999999, 
+      "the_geom": "POINT (-220454.8750000000000000 -22645.6152340000007825)", 
+      "site_group": "Presidio of San Francisco"
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Garcia River Access", 
+      "long": -123.7239692, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Mendocino", 
+      "lat": 38.945335, 
+      "the_geom": "POINT (-322374.1875000000000000 109595.7187500000000000)", 
+      "site_group": "Point Arena"
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Arena Cove", 
+      "long": -123.7101875, 
+      "featuretyp": "Water Feature", 
+      "county": "Mendocino", 
+      "lat": 38.914549999999998, 
+      "the_geom": "POINT (-321315.6250000000000000 106129.8281250000000000)", 
+      "site_group": "Point Arena"
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Overlooks (Schooner Gulch, Mendocino County)", 
+      "long": -123.696613, 
+      "featuretyp": "Visual Access", 
+      "county": "Mendocino", 
+      "lat": 38.899343999999999, 
+      "the_geom": "POINT (-320206.5000000000000000 104395.0468750000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Point Arena Lighthouse", 
+      "long": -123.74057430000001, 
+      "featuretyp": "Architectural Feature", 
+      "county": "Mendocino", 
+      "lat": 38.954687, 
+      "the_geom": "POINT (-323769.9062500000000000 110690.9531250000000000)", 
+      "site_group": "Point Arena"
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "North Horseshoe Cove", 
+      "long": -123.36586370000001, 
+      "featuretyp": "Water Feature", 
+      "county": "Sonoma", 
+      "lat": 38.614165, 
+      "the_geom": "POINT (-292694.2187500000000000 71649.3515630000038072)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Kruse Ranch", 
+      "long": -123.35895619999999, 
+      "featuretyp": "Historic Feature", 
+      "county": "Sonoma", 
+      "lat": 38.604723999999997, 
+      "the_geom": "POINT (-292130.9687500000000000 70579.2578130000038072)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Fisk Mill Cove", 
+      "long": -123.3464299, 
+      "featuretyp": "Water Feature", 
+      "county": "Sonoma", 
+      "lat": 38.595882000000003, 
+      "the_geom": "POINT (-291076.6875000000000000 69558.4609380000038072)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 44, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Kruse Rhododendron State Reserve", 
+      "long": -123.3310474, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Sonoma", 
+      "lat": 38.593198999999998, 
+      "the_geom": "POINT (-289749.7187500000000000 69213.3750000000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Ocean Cove Reserve", 
+      "long": -123.30330910000001, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Sonoma", 
+      "lat": 38.555700999999999, 
+      "the_geom": "POINT (-287483.0937500000000000 64963.2421879999965313)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Timber Cove Campground and Boat Landing", 
+      "long": -123.2725812, 
+      "featuretyp": "Facility and Waterfront F", 
+      "county": "Sonoma", 
+      "lat": 38.533237999999997, 
+      "the_geom": "POINT (-284896.1250000000000000 62374.9960940000019036)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Fort Ross State Historic Park", 
+      "long": -123.2415688, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Sonoma", 
+      "lat": 38.517501000000003, 
+      "the_geom": "POINT (-282257.1875000000000000 60533.9062500000000000)", 
+      "site_group": "Fort Ross"
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Mallo Pass Creek Vista Point", 
+      "long": -123.6882718, 
+      "featuretyp": "Visual Access", 
+      "county": "Mendocino", 
+      "lat": 39.033335999999998, 
+      "the_geom": "POINT (-318905.1250000000000000 119248.3359380000038072)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Manchester State Beach", 
+      "long": -123.71766460000001, 
+      "featuretyp": "Physical Access", 
+      "county": "Mendocino", 
+      "lat": 38.967506999999998, 
+      "the_geom": "POINT (-321732.0937500000000000 112036.6718750000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Tomales Bay State Park - Millerton Point", 
+      "long": -122.84991770000001, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Marin", 
+      "lat": 38.109141000000001, 
+      "the_geom": "POINT (-249529.7812500000000000 14064.2324219999991328)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Chicken Ranch Beach", 
+      "long": -122.8650945, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 38.109589, 
+      "the_geom": "POINT (-250856.7031250000000000 14154.0048829999996087)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Dana Marsh / Path to Beach", 
+      "long": -122.860944, 
+      "featuretyp": "Water Feature and Path", 
+      "county": "Marin", 
+      "lat": 38.103585000000002, 
+      "the_geom": "POINT (-250513.5468750000000000 13475.8984369999998307)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Martinelli Park", 
+      "long": -122.8498881, 
+      "featuretyp": "Facility", 
+      "county": "Marin", 
+      "lat": 38.094909999999999, 
+      "the_geom": "POINT (-249574.7343750000000000 12482.8583980000003066)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 54, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Shields Saltmarsh", 
+      "long": -122.8347322, 
+      "featuretyp": "Water Feature", 
+      "county": "Marin", 
+      "lat": 38.081502999999998, 
+      "the_geom": "POINT (-248292.4375000000000000 10953.2548829999996087)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 55, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Tomales Bay Trailhead", 
+      "long": -122.83860749999999, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Marin", 
+      "lat": 38.086075999999998, 
+      "the_geom": "POINT (-248616.5468750000000000 11471.5390630000001693)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 56, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Tomales Bay Ecological Reserve", 
+      "long": -122.82769949999999, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Marin", 
+      "lat": 38.079523000000002, 
+      "the_geom": "POINT (-247683.1875000000000000 10714.8759769999996934)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 57, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Point Reyes National Seashore", 
+      "long": -122.7987996, 
+      "featuretyp": "Facility and Physical Acc", 
+      "county": "Marin", 
+      "lat": 38.044209000000002, 
+      "the_geom": "POINT (-245268.4062500000000000 6715.7421869999998307)", 
+      "site_group": "Point Reyes"
+    }
+  }, 
+  {
+    "pk": 58, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Point Reyes Hostel", 
+      "long": -122.8613443, 
+      "featuretyp": "Facility", 
+      "county": "Marin", 
+      "lat": 38.042579000000003, 
+      "the_geom": "POINT (-250753.2343750000000000 6698.2309569999997620)", 
+      "site_group": "Point Reyes"
+    }
+  }, 
+  {
+    "pk": 59, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Coastside Trail (San Mateo County)", 
+      "long": -122.4489598, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "San Mateo", 
+      "lat": 37.476464, 
+      "the_geom": "POINT (-216248.1406250000000000 -57225.7031250000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 60, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Francis Beach", 
+      "long": -122.4454593, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.465128, 
+      "the_geom": "POINT (-215971.6093750000000000 -58493.4414059999980964)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 61, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Overlook (Francis Beach, San Mateo County)", 
+      "long": -122.4435592, 
+      "featuretyp": "Visual Access", 
+      "county": "San Mateo", 
+      "lat": 37.453215999999998, 
+      "the_geom": "POINT (-215837.9687500000000000 -59821.5546870000034687)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 62, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Pelican Point R.V. Park (San Mateo County)", 
+      "long": -122.4393646, 
+      "featuretyp": "Facility", 
+      "county": "San Mateo", 
+      "lat": 37.430473999999997, 
+      "the_geom": "POINT (-215532.5781250000000000 -62358.2929690000019036)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 63, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Martin's Beach", 
+      "long": -122.4065056, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.376176999999998, 
+      "the_geom": "POINT (-212783.1093750000000000 -68466.4296880000038072)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 64, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "East Breakwater", 
+      "long": -122.477542, 
+      "featuretyp": "Waterfront Features", 
+      "county": "San Mateo", 
+      "lat": 37.498218000000001, 
+      "the_geom": "POINT (-218708.2500000000000000 -54742.7460940000019036)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 65, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Fish Rock Beach", 
+      "long": -123.5816447, 
+      "featuretyp": "Physical Access", 
+      "county": "Mendocino", 
+      "lat": 38.803001000000002, 
+      "the_geom": "POINT (-310657.0312500000000000 93311.8828130000038072)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 66, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Collins Landing", 
+      "long": -123.56871769999999, 
+      "featuretyp": "Water Feature", 
+      "county": "Mendocino", 
+      "lat": 38.794500999999997, 
+      "the_geom": "POINT (-309571.8750000000000000 92325.4843750000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 67, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Gualala River", 
+      "long": -123.5332372, 
+      "featuretyp": "Water Feature", 
+      "county": "Mendocino", 
+      "lat": 38.769309, 
+      "the_geom": "POINT (-306599.8437500000000000 89412.0468750000000000)", 
+      "site_group": "Gualala"
+    }
+  }, 
+  {
+    "pk": 68, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Gualala Point Regional Park", 
+      "long": -123.52941149999999, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Sonoma", 
+      "lat": 38.758972999999997, 
+      "the_geom": "POINT (-306310.7812500000000000 88251.5312500000000000)", 
+      "site_group": "Gualala"
+    }
+  }, 
+  {
+    "pk": 69, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Rivers End", 
+      "long": -123.1256121, 
+      "featuretyp": "Water Feature", 
+      "county": "Sonoma", 
+      "lat": 38.451265999999997, 
+      "the_geom": "POINT (-272406.7500000000000000 52836.1679690000019036)", 
+      "site_group": "Russian River"
+    }
+  }, 
+  {
+    "pk": 70, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Jenner Visitor Center", 
+      "long": -123.1187379, 
+      "featuretyp": "Facility", 
+      "county": "Sonoma", 
+      "lat": 38.450518000000002, 
+      "the_geom": "POINT (-271810.5937500000000000 52733.3281250000000000)", 
+      "site_group": "Russian River"
+    }
+  }, 
+  {
+    "pk": 71, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Bridgehaven Campground", 
+      "long": -123.1063642, 
+      "featuretyp": "Facility", 
+      "county": "Sonoma", 
+      "lat": 38.431801999999998, 
+      "the_geom": "POINT (-270800.7187500000000000 50618.6132809999980964)", 
+      "site_group": "Russian River"
+    }
+  }, 
+  {
+    "pk": 72, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Wright's Beach", 
+      "long": -123.0953342, 
+      "featuretyp": "Physical Access", 
+      "county": "Sonoma", 
+      "lat": 38.405546999999999, 
+      "the_geom": "POINT (-269934.7812500000000000 47670.0937500000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 73, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Duncans Cove and Landing", 
+      "long": -123.09270530000001, 
+      "featuretyp": "Water Feature", 
+      "county": "Sonoma", 
+      "lat": 38.395617999999999, 
+      "the_geom": "POINT (-269741.5937500000000000 46559.5507809999980964)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 74, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Pomo Canyon Campground", 
+      "long": -123.091218, 
+      "featuretyp": "Facility", 
+      "county": "Sonoma", 
+      "lat": 38.441251000000001, 
+      "the_geom": "POINT (-269446.5625000000000000 51625.1679690000019036)", 
+      "site_group": "Russian River"
+    }
+  }, 
+  {
+    "pk": 75, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Duncans Mills Camping Club", 
+      "long": -123.0541391, 
+      "featuretyp": "Facility", 
+      "county": "Sonoma", 
+      "lat": 38.453212999999998, 
+      "the_geom": "POINT (-266172.8750000000000000 52849.4453129999965313)", 
+      "site_group": "Russian River"
+    }
+  }, 
+  {
+    "pk": 76, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Abbotts Lagoon", 
+      "long": -122.94730180000001, 
+      "featuretyp": "Water Feature", 
+      "county": "Marin", 
+      "lat": 38.117870000000003, 
+      "the_geom": "POINT (-258023.5625000000000000 15294.7900389999995241)", 
+      "site_group": "Point Reyes"
+    }
+  }, 
+  {
+    "pk": 77, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "North Beach (Point Reyes)", 
+      "long": -122.977881, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 38.069603999999998, 
+      "the_geom": "POINT (-260868.2656250000000000 10015.5429690000000846)", 
+      "site_group": "Point Reyes"
+    }
+  }, 
+  {
+    "pk": 78, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Point Reyes Headlands", 
+      "long": -122.9949925, 
+      "featuretyp": "Land Feature", 
+      "county": "Marin", 
+      "lat": 37.997987999999999, 
+      "the_geom": "POINT (-262618.2187500000000000 2105.4482419999999365)", 
+      "site_group": "Point Reyes"
+    }
+  }, 
+  {
+    "pk": 79, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Drakes Beach", 
+      "long": -122.96177470000001, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 38.027754000000002, 
+      "the_geom": "POINT (-259603.0937500000000000 5321.3100590000003649)", 
+      "site_group": "Point Reyes"
+    }
+  }, 
+  {
+    "pk": 80, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Limantour Beach", 
+      "long": -122.86692770000001, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 38.021839, 
+      "the_geom": "POINT (-251312.0937500000000000 4408.4858400000002803)", 
+      "site_group": "Point Reyes"
+    }
+  }, 
+  {
+    "pk": 81, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Limantour Estero Reserve", 
+      "long": -122.9108275, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Marin", 
+      "lat": 38.033177000000002, 
+      "the_geom": "POINT (-255120.4218750000000000 5785.5610349999997197)", 
+      "site_group": "Point Reyes"
+    }
+  }, 
+  {
+    "pk": 82, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Drakes Estero", 
+      "long": -122.9416337, 
+      "featuretyp": "Water Feature", 
+      "county": "Marin", 
+      "lat": 38.055323000000001, 
+      "the_geom": "POINT (-257743.2031250000000000 8329.5781250000000000)", 
+      "site_group": "Point Reyes"
+    }
+  }, 
+  {
+    "pk": 83, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Palomarin Trailhead", 
+      "long": -122.73347870000001, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Marin", 
+      "lat": 37.928527000000003, 
+      "the_geom": "POINT (-239916.4375000000000000 -6305.8955079999996087)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 84, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Point Reyes Bird Observatory", 
+      "long": -122.7361788, 
+      "featuretyp": "Facility", 
+      "county": "Marin", 
+      "lat": 37.929814, 
+      "the_geom": "POINT (-240149.2343750000000000 -6156.0317379999996774)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 85, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Duxbury Reef Marine Reserve", 
+      "long": -122.6993907, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Marin", 
+      "lat": 37.889118000000003, 
+      "the_geom": "POINT (-237050.0781250000000000 -10770.8027340000007825)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 86, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Agate Beach (Marin County)", 
+      "long": -122.70886640000001, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 37.897193999999999, 
+      "the_geom": "POINT (-237856.3281250000000000 -9849.7119139999995241)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 87, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Bolinas Overlook", 
+      "long": -122.6936602, 
+      "featuretyp": "Visual Access", 
+      "county": "Marin", 
+      "lat": 37.902194000000001, 
+      "the_geom": "POINT (-236505.6875000000000000 -9332.0546869999998307)", 
+      "site_group": "Bolinas"
+    }
+  }, 
+  {
+    "pk": 88, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Bolinas Beach", 
+      "long": -122.6856112, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 37.905051999999998, 
+      "the_geom": "POINT (-235790.1718750000000000 -9034.5117190000000846)", 
+      "site_group": "Bolinas"
+    }
+  }, 
+  {
+    "pk": 89, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Seadrift Beach", 
+      "long": -122.6692549, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 37.906652999999999, 
+      "the_geom": "POINT (-234349.5000000000000000 -8897.1923829999996087)", 
+      "site_group": "Bolinas"
+    }
+  }, 
+  {
+    "pk": 90, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Stinson Beach", 
+      "long": -122.6366146, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 37.893313999999997, 
+      "the_geom": "POINT (-231525.7968750000000000 -10459.6367190000000846)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 91, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Red Rock Beach (Marin County)", 
+      "long": -122.6332106, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 37.890653999999998, 
+      "the_geom": "POINT (-231235.1718750000000000 -10763.5341800000005605)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 92, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Steep Ravine Beach", 
+      "long": -122.6263381, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 37.886474, 
+      "the_geom": "POINT (-230644.6875000000000000 -11244.8505860000004759)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 93, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Audubon Canyon Ranch", 
+      "long": -122.6809872, 
+      "featuretyp": "Historic Feature", 
+      "county": "Marin", 
+      "lat": 37.930228999999997, 
+      "the_geom": "POINT (-235305.1718750000000000 -6248.2744140000004336)", 
+      "site_group": "Bolinas"
+    }
+  }, 
+  {
+    "pk": 94, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Bolinas Lagoon Nature Preserve", 
+      "long": -122.6822487, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Marin", 
+      "lat": 37.921858, 
+      "the_geom": "POINT (-235442.1875000000000000 -7175.3999020000001110)", 
+      "site_group": "Bolinas"
+    }
+  }, 
+  {
+    "pk": 95, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Salmon Creek Beach", 
+      "long": -123.0668148, 
+      "featuretyp": "Physical Access", 
+      "county": "Sonoma", 
+      "lat": 38.356071, 
+      "the_geom": "POINT (-267626.4375000000000000 42092.3320309999980964)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 96, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Bodega Head", 
+      "long": -123.05976029999999, 
+      "featuretyp": "Land Feature", 
+      "county": "Sonoma", 
+      "lat": 38.300139999999999, 
+      "the_geom": "POINT (-267211.6562500000000000 35858.1835940000019036)", 
+      "site_group": "Bodega Bay"
+    }
+  }, 
+  {
+    "pk": 97, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Campbell Cove", 
+      "long": -123.0577186, 
+      "featuretyp": "Water Feature", 
+      "county": "Sonoma", 
+      "lat": 38.302976999999998, 
+      "the_geom": "POINT (-267023.2500000000000000 36167.5625000000000000)", 
+      "site_group": "Bodega Bay"
+    }
+  }, 
+  {
+    "pk": 98, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Doran Beach Regional Park", 
+      "long": -123.0412972, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Sonoma", 
+      "lat": 38.314715999999997, 
+      "the_geom": "POINT (-265547.8437500000000000 37425.7226559999980964)", 
+      "site_group": "Bodega Bay"
+    }
+  }, 
+  {
+    "pk": 99, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Pinnacle Gulch Trail", 
+      "long": -123.01133160000001, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Sonoma", 
+      "lat": 38.316885999999997, 
+      "the_geom": "POINT (-262924.6562500000000000 37583.3437500000000000)", 
+      "site_group": "Bodega Bay"
+    }
+  }, 
+  {
+    "pk": 100, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Fort Ross Reef Campground", 
+      "long": -123.2134171, 
+      "featuretyp": "Facility", 
+      "county": "Sonoma", 
+      "lat": 38.501139000000002, 
+      "the_geom": "POINT (-279868.4687500000000000 58632.7070309999980964)", 
+      "site_group": "Fort Ross"
+    }
+  }, 
+  {
+    "pk": 101, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Vista Trail (Sonoma County)", 
+      "long": -123.1618237, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Sonoma", 
+      "lat": 38.478223999999997, 
+      "the_geom": "POINT (-275461.6250000000000000 55935.8007809999980964)", 
+      "site_group": "Russian River"
+    }
+  }, 
+  {
+    "pk": 102, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Russian Gulch (Sonoma County)", 
+      "long": -123.1533864, 
+      "featuretyp": "Water Feature", 
+      "county": "Sonoma", 
+      "lat": 38.467449999999999, 
+      "the_geom": "POINT (-274766.6562500000000000 54714.3476559999980964)", 
+      "site_group": "Russian River"
+    }
+  }, 
+  {
+    "pk": 103, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "North Jenner Beaches", 
+      "long": -123.1402889, 
+      "featuretyp": "Physical Access", 
+      "county": "Sonoma", 
+      "lat": 38.457652000000003, 
+      "the_geom": "POINT (-273661.9062500000000000 53587.9804690000019036)", 
+      "site_group": "Russian River"
+    }
+  }, 
+  {
+    "pk": 104, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Vista Points (Jenner to Bridgehaven, Sonoma County)", 
+      "long": -123.10657209999999, 
+      "featuretyp": "Visual Access", 
+      "county": "Sonoma", 
+      "lat": 38.437840000000001, 
+      "the_geom": "POINT (-270796.8437500000000000 51289.9960940000019036)", 
+      "site_group": "Russian River"
+    }
+  }, 
+  {
+    "pk": 105, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Montara State Beach", 
+      "long": -122.51408979999999, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.545529999999999, 
+      "the_geom": "POINT (-221794.3593750000000000 -49400.2187500000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 106, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Gray Whale Cove State Beach", 
+      "long": -122.51323669999999, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.565556000000001, 
+      "the_geom": "POINT (-221660.1093750000000000 -47176.8125000000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 107, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Montara Lighthouse Hostel", 
+      "long": -122.51788809999999, 
+      "featuretyp": "Facility", 
+      "county": "San Mateo", 
+      "lat": 37.535755000000002, 
+      "the_geom": "POINT (-222158.2187500000000000 -50477.5625000000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 108, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "West Beach Trail", 
+      "long": -122.496332, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "San Mateo", 
+      "lat": 37.497115000000001, 
+      "the_geom": "POINT (-220369.8125000000000000 -54821.7578129999965313)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 109, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Rockaway Beach", 
+      "long": -122.4969318, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.609848, 
+      "the_geom": "POINT (-220092.7343750000000000 -42292.7578120000034687)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 110, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "San Pedro Beach", 
+      "long": -122.5028405, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.596742999999996, 
+      "the_geom": "POINT (-220651.8906250000000000 -43735.3007809999980964)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 111, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Schooner Gulch", 
+      "long": -123.6543204, 
+      "featuretyp": "Water Feature", 
+      "county": "Mendocino", 
+      "lat": 38.865810000000003, 
+      "the_geom": "POINT (-316688.5000000000000000 100528.5625000000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 112, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Bowling Ball Beach", 
+      "long": -123.6874385, 
+      "featuretyp": "Physical Access", 
+      "county": "Mendocino", 
+      "lat": 38.894364000000003, 
+      "the_geom": "POINT (-319433.7187500000000000 103811.0625000000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 113, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Sea Ranch Public Access Trails", 
+      "long": -123.4369078, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Sonoma", 
+      "lat": 38.692520000000002, 
+      "the_geom": "POINT (-298553.8437500000000000 80574.8984380000038072)", 
+      "site_group": "Sea Ranch"
+    }
+  }, 
+  {
+    "pk": 114, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Sea Ranch Public Access Trails", 
+      "long": -123.4459057, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Sonoma", 
+      "lat": 38.703558000000001, 
+      "the_geom": "POINT (-299290.5312500000000000 81829.4375000000000000)", 
+      "site_group": "Sea Ranch"
+    }
+  }, 
+  {
+    "pk": 115, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Stump Beach", 
+      "long": -123.3331675, 
+      "featuretyp": "Physical Access", 
+      "county": "Sonoma", 
+      "lat": 38.582009999999997, 
+      "the_geom": "POINT (-289977.7812500000000000 67976.8437500000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 116, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Salt Point State Park", 
+      "long": -123.33366220000001, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Sonoma", 
+      "lat": 38.574897999999997, 
+      "the_geom": "POINT (-290048.5937500000000000 67188.2656250000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 117, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Stillwater Cove Regional Park (Sonoma County)", 
+      "long": -123.2875011, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Sonoma", 
+      "lat": 38.541564000000001, 
+      "the_geom": "POINT (-286162.3750000000000000 63344.8945309999980964)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 118, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Casini Ranch Family Campground", 
+      "long": -123.04548339999999, 
+      "featuretyp": "Facility", 
+      "county": "Sonoma", 
+      "lat": 38.463469000000003, 
+      "the_geom": "POINT (-265382.1562500000000000 53964.6992190000019036)", 
+      "site_group": "Russian River"
+    }
+  }, 
+  {
+    "pk": 119, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Goat Rock", 
+      "long": -123.1260348, 
+      "featuretyp": "Land Feature", 
+      "county": "Sonoma", 
+      "lat": 38.440756, 
+      "the_geom": "POINT (-272482.0937500000000000 51669.6875000000000000)", 
+      "site_group": "Russian River"
+    }
+  }, 
+  {
+    "pk": 120, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Shell Beach (Sonoma Coast State Beaches)", 
+      "long": -123.101102, 
+      "featuretyp": "Physical Access", 
+      "county": "Sonoma", 
+      "lat": 38.417658000000003, 
+      "the_geom": "POINT (-270393.5625000000000000 49032.0781250000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 121, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Porto Bodega", 
+      "long": -123.0503611, 
+      "featuretyp": "Waterfront Features", 
+      "county": "Sonoma", 
+      "lat": 38.334355000000002, 
+      "the_geom": "POINT (-266268.7500000000000000 39633.1601559999980964)", 
+      "site_group": "Bodega Bay"
+    }
+  }, 
+  {
+    "pk": 122, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Spud Point Marina", 
+      "long": -123.05756409999999, 
+      "featuretyp": "Waterfront Features", 
+      "county": "Sonoma", 
+      "lat": 38.327399999999997, 
+      "the_geom": "POINT (-266922.2187500000000000 38880.7070309999980964)", 
+      "site_group": "Bodega Bay"
+    }
+  }, 
+  {
+    "pk": 123, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Mason's Marina", 
+      "long": -123.0600148, 
+      "featuretyp": "Waterfront Features", 
+      "county": "Sonoma", 
+      "lat": 38.333478999999997, 
+      "the_geom": "POINT (-267114.2812500000000000 39562.9843750000000000)", 
+      "site_group": "Bodega Bay"
+    }
+  }, 
+  {
+    "pk": 124, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Bodega Bay Harbor", 
+      "long": -123.0492173, 
+      "featuretyp": "Waterfront Features", 
+      "county": "Sonoma", 
+      "lat": 38.327326999999997, 
+      "the_geom": "POINT (-266194.0625000000000000 38849.1601559999980964)", 
+      "site_group": "Bodega Bay"
+    }
+  }, 
+  {
+    "pk": 125, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Bodega Marine Laboratory", 
+      "long": -123.07265169999999, 
+      "featuretyp": "Facility", 
+      "county": "Sonoma", 
+      "lat": 38.317852999999999, 
+      "the_geom": "POINT (-268273.2812500000000000 37862.5976559999980964)", 
+      "site_group": "Bodega Bay"
+    }
+  }, 
+  {
+    "pk": 126, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Westside Regional Park", 
+      "long": -123.0557427, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Sonoma", 
+      "lat": 38.323523000000002, 
+      "the_geom": "POINT (-266777.1562500000000000 38444.8710940000019036)", 
+      "site_group": "Bodega Bay"
+    }
+  }, 
+  {
+    "pk": 127, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Miller Park Launching Facility", 
+      "long": -122.9205642, 
+      "featuretyp": "Waterfront Features", 
+      "county": "Marin", 
+      "lat": 38.199551999999997, 
+      "the_geom": "POINT (-255403.8750000000000000 24298.2617189999982656)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 128, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Tomales Bay State Park - Marshall", 
+      "long": -122.9090935, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Marin", 
+      "lat": 38.182879999999997, 
+      "the_geom": "POINT (-254457.9375000000000000 22414.8925779999990482)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 129, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Marshall Beach", 
+      "long": -122.91631630000001, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 38.163291999999998, 
+      "the_geom": "POINT (-255156.4843750000000000 20257.8242189999982656)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 130, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Tomales Bay State Park- Inverness Ridge", 
+      "long": -122.8433495, 
+      "featuretyp": "Park/Reserve", 
+      "county": "Marin", 
+      "lat": 38.088157000000002, 
+      "the_geom": "POINT (-249024.8125000000000000 11715.2265630000001693)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 131, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "South Beach (Point Reyes)", 
+      "long": -122.9942234, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 38.034950000000002, 
+      "the_geom": "POINT (-262421.0625000000000000 6210.1914059999999154)", 
+      "site_group": "Point Reyes"
+    }
+  }, 
+  {
+    "pk": 132, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "White House Pool", 
+      "long": -122.81782629999999, 
+      "featuretyp": "Water Feature", 
+      "county": "Marin", 
+      "lat": 38.060515000000002, 
+      "the_geom": "POINT (-246881.4218750000000000 8577.0566409999992175)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 133, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Olema Marsh", 
+      "long": -122.8166219, 
+      "featuretyp": "Water Feature", 
+      "county": "Marin", 
+      "lat": 38.060898000000002, 
+      "the_geom": "POINT (-246774.6718750000000000 8616.3974610000004759)", 
+      "site_group": "Tomales Bay"
+    }
+  }, 
+  {
+    "pk": 134, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Walkway (Stinson Beach)", 
+      "long": -122.65268349999999, 
+      "featuretyp": "Physical Access", 
+      "county": "Marin", 
+      "lat": 37.904246000000001, 
+      "the_geom": "POINT (-232902.4687500000000000 -9205.5156250000000000)", 
+      "site_group": "Bolinas"
+    }
+  }, 
+  {
+    "pk": 135, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Phillip Burton Memorial Beach", 
+      "long": -122.5027681, 
+      "featuretyp": "Physical Access", 
+      "county": "San Francisco", 
+      "lat": 37.708855999999997, 
+      "the_geom": "POINT (-220316.5468750000000000 -31276.7265630000001693)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 136, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Thornton State Beach", 
+      "long": -122.497068, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.694305999999997, 
+      "the_geom": "POINT (-219857.4843750000000000 -32906.8671870000034687)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 137, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Palisades Park (San Mateo County)", 
+      "long": -122.4946565, 
+      "featuretyp": "Facility", 
+      "county": "San Mateo", 
+      "lat": 37.687629999999999, 
+      "the_geom": "POINT (-219664.7343750000000000 -33654.3085940000019036)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 138, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Northridge City Park", 
+      "long": -122.49385530000001, 
+      "featuretyp": "Facility", 
+      "county": "San Mateo", 
+      "lat": 37.679037999999998, 
+      "the_geom": "POINT (-219619.3281250000000000 -34611.0351559999980964)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 139, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "James V. Fitzgerald Marine Reserve", 
+      "long": -122.5157057, 
+      "featuretyp": "Park/Reserve", 
+      "county": "San Mateo", 
+      "lat": 37.523667000000003, 
+      "the_geom": "POINT (-222001.3593750000000000 -51825.9453129999965313)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 140, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Pillar Point Harbor", 
+      "long": -122.4923403, 
+      "featuretyp": "Waterfront Features", 
+      "county": "San Mateo", 
+      "lat": 37.502409, 
+      "the_geom": "POINT (-220002.0468750000000000 -54242.8046879999965313)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 141, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "El Granada Beach", 
+      "long": -122.4694805, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.499943000000002, 
+      "the_geom": "POINT (-217991.7812500000000000 -54569.5625000000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 142, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Venice Beach (San Mateo County)", 
+      "long": -122.4494579, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.479056, 
+      "the_geom": "POINT (-216284.6718750000000000 -56936.5195309999980964)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 143, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Dunes Beach (San Mateo County)", 
+      "long": -122.4528767, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.484800999999997, 
+      "the_geom": "POINT (-216569.9687500000000000 -56290.3867190000019036)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 144, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Cowell Ranch Beach", 
+      "long": -122.4332045, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.419929000000003, 
+      "the_geom": "POINT (-215018.5000000000000000 -63544.1484379999965313)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 145, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "San Gregorio State Beach", 
+      "long": -122.3998484, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.324539000000001, 
+      "the_geom": "POINT (-212339.8906250000000000 -74219.6406250000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 146, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "San Gregorio Private Beach", 
+      "long": -122.40076120000001, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.337062000000003, 
+      "the_geom": "POINT (-212385.3906250000000000 -72825.9453130000038072)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 147, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Pomponio State Beach", 
+      "long": -122.4057538, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.291544999999999, 
+      "the_geom": "POINT (-212955.3437500000000000 -77872.9296880000038072)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 148, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Pescadero State Beach (San Mateo County)", 
+      "long": -122.4134717, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.261293999999999, 
+      "the_geom": "POINT (-213723.9687500000000000 -81217.1562500000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 149, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Pescadero Marsh Natural Preserve", 
+      "long": -122.40118219999999, 
+      "featuretyp": "Park/Reserve", 
+      "county": "San Mateo", 
+      "lat": 37.255152000000002, 
+      "the_geom": "POINT (-212653.2031250000000000 -81927.3750000000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 150, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Pebble Beach (San Mateo County)", 
+      "long": -122.4152024, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.235042, 
+      "the_geom": "POINT (-213951.5312500000000000 -84130.4765630000038072)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 151, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Bean Hollow State Beach", 
+      "long": -122.408953, 
+      "featuretyp": "Physical Access", 
+      "county": "San Mateo", 
+      "lat": 37.224072, 
+      "the_geom": "POINT (-213429.0312500000000000 -85363.6093750000000000)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 152, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Pigeon Point Lighthouse Hostel", 
+      "long": -122.3939001, 
+      "featuretyp": "Facility", 
+      "county": "San Mateo", 
+      "lat": 37.183031, 
+      "the_geom": "POINT (-212210.8281250000000000 -89958.0390630000038072)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 153, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Overlooks (Pigeon Pt. Rd., San Mateo County)", 
+      "long": -122.3739083, 
+      "featuretyp": "Visual Access", 
+      "county": "San Mateo", 
+      "lat": 37.178466, 
+      "the_geom": "POINT (-210451.7031250000000000 -90509.8359369999961928)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 154, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Bird Walk Trail", 
+      "long": -123.04214690000001, 
+      "featuretyp": "Path/Trail/Drive", 
+      "county": "Sonoma", 
+      "lat": 38.327573999999998, 
+      "the_geom": "POINT (-265576.1562500000000000 38856.7031250000000000)", 
+      "site_group": "Bodega Bay"
+    }
+  }, 
+  {
+    "pk": 155, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Presidio of San Francisco", 
+      "long": -122.47749760000001, 
+      "featuretyp": "  ", 
+      "county": "San Francisco", 
+      "lat": 37.805135, 
+      "the_geom": "POINT (-217812.8593750000000000 -20635.7207029999990482)", 
+      "site_group": "Presidio of San Francisco"
+    }
+  }, 
+  {
+    "pk": 156, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Pedro Point Headlands", 
+      "long": -122.5192459, 
+      "featuretyp": "Land Feature", 
+      "county": "San Mateo", 
+      "lat": 37.594126000000003, 
+      "the_geom": "POINT (-222105.5937500000000000 -43987.8164059999980964)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
+    "pk": 157, 
+    "model": "gwst_app.cacoastplacemarks", 
+    "fields": {
+      "name": "Mori Point", 
+      "long": -122.4978405, 
+      "featuretyp": "  ", 
+      "county": "San Mateo", 
+      "lat": 37.619999, 
+      "the_geom": "POINT (-220143.0937500000000000 -41162.6289059999980964)", 
+      "site_group": "-1"
+    }
+  }, 
+  {
     "pk": "26", 
     "model": "gwst_app.resource", 
     "fields": {

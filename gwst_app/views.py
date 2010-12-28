@@ -793,11 +793,12 @@ California coast placemark geojson service
 '''
 def ca_coast_placemarks(request):    
     """Coast placemarks web service"""    
-    qs = CaCoastPlacemarks.objects.filter().order_by('-lat').exclude(type='Cemetery').exclude(type='Airport').exclude(type='Building').exclude(type='Canal').exclude(type='Census').exclude(type='Church').exclude(type='Channel').exclude(type='Civil').exclude(type='Gut').exclude(type='Mine').exclude(type='Populated Place').exclude(type='Post Office').exclude(type='School').exclude(type='Tower').exclude(type='Civil').exclude(type='Dam').exclude(type='Hospital').exclude(type='Military').exclude(type='Military (Historical)').exclude(type='Spring').exclude(type='Swamp').exclude(type='Valley').distinct()
+    qs = CaCoastPlacemarks.objects.filter().order_by('-lat').exclude(featuretyp='Cemetery').exclude(featuretyp='Airport').exclude(featuretyp='Building').exclude(featuretyp='Canal').exclude(featuretyp='Census').exclude(featuretyp='Church').exclude(featuretyp='Channel').exclude(featuretyp='Civil').exclude(featuretyp='Gut').exclude(featuretyp='Mine').exclude(featuretyp='Populated Place').exclude(featuretyp='Post Office').exclude(featuretyp='School').exclude(featuretyp='Tower').exclude(featuretyp='Civil').exclude(featuretyp='Dam').exclude(featuretyp='Hospital').exclude(featuretyp='Military').exclude(featuretyp='Military (Historical)').exclude(featuretyp='Spring').exclude(featuretyp='Swamp').exclude(featuretyp='Valley').distinct()
+
     return render_to_geojson(
         qs,
         geom_attribute='the_geom',
-        excluded_fields=['gid','long','lat','type','county'],
+        excluded_fields=['pk_uid','long','lat','featuretyp','county'],
         mimetype = 'text/plain',
         proj_transform=900913,
         pretty_print=True
@@ -808,11 +809,11 @@ Alphabetical California coast placemark geojson service
 '''
 def alph_ca_coast_placemarks(request):    
     """Coast placemarks web service"""    
-    qs = CaCoastPlacemarks.objects.filter().order_by('name').exclude(type='Cemetery').exclude(type='Airport').exclude(type='Building').exclude(type='Canal').exclude(type='Census').exclude(type='Church').exclude(type='Channel').exclude(type='Civil').exclude(type='Gut').exclude(type='Mine').exclude(type='Populated Place').exclude(type='Post Office').exclude(type='School').exclude(type='Tower').exclude(type='Civil').exclude(type='Dam').exclude(type='Hospital').exclude(type='Military').exclude(type='Military (Historical)').exclude(type='Spring').exclude(type='Swamp').exclude(type='Valley').distinct()
+    qs = CaCoastPlacemarks.objects.filter().order_by('name').exclude(featuretyp='Cemetery').exclude(featuretyp='Airport').exclude(featuretyp='Building').exclude(featuretyp='Canal').exclude(featuretyp='Census').exclude(featuretyp='Church').exclude(featuretyp='Channel').exclude(featuretyp='Civil').exclude(featuretyp='Gut').exclude(featuretyp='Mine').exclude(featuretyp='Populated Place').exclude(featuretyp='Post Office').exclude(featuretyp='School').exclude(featuretyp='Tower').exclude(featuretyp='Civil').exclude(featuretyp='Dam').exclude(featuretyp='Hospital').exclude(featuretyp='Military').exclude(featuretyp='Military (Historical)').exclude(featuretyp='Spring').exclude(featuretyp='Swamp').exclude(featuretyp='Valley').distinct()
     return render_to_geojson(
         qs,
         geom_attribute='the_geom',
-        excluded_fields=['gid','long','lat','type','county'],
+        excluded_fields=['pk_uid','long','lat','featuretyp','county'],
         mimetype = 'text/plain',
         proj_transform=900913,
         pretty_print=True

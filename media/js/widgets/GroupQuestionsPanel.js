@@ -9,14 +9,12 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
           this, arguments);                     
     },
     
-    // form: 'unknown',
     group_name: 'unknown',
-    group_num: 'unknown',
     form_url: 'unknown',
 
     onRender: function(){
         this.header_panel = new Ext.Panel({  
-            id: 'basic_qs_header_panel',
+            id: 'basic_qs_header_panel'+this.group_name,
             // html: '<img src="/media/img/9_ActivityQuestions2_header.png">',
             html: '<h3>' + this.group_name + '</h3>',
 			border: 'north',
@@ -58,29 +56,8 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     contBtnClicked: function() {
-        // this.items = this.question_panel.form.items.items;
-        // this.result = {};
-        // for(this.i = 0; this.i < this.items.length; this.i++) {
-            // this.result[this.items[i].name] = this.items[i].value;
-        // }
         
         if (this.question_panel.getForm().isValid()) {
-            // this.params = {};
-            // for(this.i = 0; this.i < this.question_panel.form.items.length; this.i++) {
-                // this.question = this.question_panel.form.items.itemAt(this.i);
-                // if (this.question.xtype == "checkboxgroup") {
-                    // this.ans_list = []
-                    // for (this.j = 0; this.j < this.question.items.length; this.j++) {
-                        // if (this.question.items.itemAt(this.j).checked) {
-                            // this.ans_list.push(this.question.items.itemAt(this.j).name);
-                        // }
-                    // }
-                    // this.params[this.question.name] = this.ans_list;
-                // } else {
-                    // this.params[this.question.name] = this.question.value;
-                // }
-            // }
-        
             this.question_panel.getForm().submit({
                 scope:this.question_panel,
                 source: 'Draw Manager'
