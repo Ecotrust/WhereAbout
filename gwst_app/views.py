@@ -787,7 +787,38 @@ def draw_group_resources(request, group_id):
             return render_to_response( 'draw_group_resources_desktop.html', RequestContext(request, {'title':title, 'group_id':group_id,  'group_name':group.name, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
         else:
             return render_to_response( 'draw_group_resources.html', RequestContext(request, {'title':title, 'group_id':group_id,  'group_name':group.name, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
-            
+  
+'''
+California coast placemark geojson service
+'''
+def ca_coast_placemarks(request):    
+    """Coast placemarks web service"""    
+    qs = CaCoastPlacemarks.objects.filter().order_by('-lat').exclude(type='Cemetery').exclude(type='Airport').exclude(type='Building').exclude(type='Canal').exclude(type='Census').exclude(type='Church').exclude(type='Channel').exclude(type='Civil').exclude(type='Gut').exclude(type='Mine').exclude(type='Populated Place').exclude(type='Post Office').exclude(type='School').exclude(type='Tower').exclude(type='Civil').exclude(type='Dam').exclude(type='Hospital').exclude(type='Military').exclude(type='Military (Historical)').exclude(type='Spring').exclude(type='Swamp').exclude(type='Valley').distinct()
+    return render_to_geojson(
+        qs,
+        geom_attribute='the_geom',
+        excluded_fields=['gid','long','lat','type','county'],
+        mimetype = 'text/plain',
+        proj_transform=900913,
+        pretty_print=True
+    )
+    
+'''
+Alphabetical California coast placemark geojson service
+'''
+def alph_ca_coast_placemarks(request):    
+    """Coast placemarks web service"""    
+    qs = CaCoastPlacemarks.objects.filter().order_by('name').exclude(type='Cemetery').exclude(type='Airport').exclude(type='Building').exclude(type='Canal').exclude(type='Census').exclude(type='Church').exclude(type='Channel').exclude(type='Civil').exclude(type='Gut').exclude(type='Mine').exclude(type='Populated Place').exclude(type='Post Office').exclude(type='School').exclude(type='Tower').exclude(type='Civil').exclude(type='Dam').exclude(type='Hospital').exclude(type='Military').exclude(type='Military (Historical)').exclude(type='Spring').exclude(type='Swamp').exclude(type='Valley').distinct()
+    return render_to_geojson(
+        qs,
+        geom_attribute='the_geom',
+        excluded_fields=['gid','long','lat','type','county'],
+        mimetype = 'text/plain',
+        proj_transform=900913,
+        pretty_print=True
+    )
+
+  
 # start draw shapes quick tutorial   
 @login_required
 def draw_overview(request, group_id):

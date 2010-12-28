@@ -29,7 +29,20 @@ class Region(Model):
         # db_table = u'gwst_region_clip'
         
     # def __unicode__(self):
-        # return unicode('%s' % (self.name))                    
+        # return unicode('%s' % (self.name))   
+
+class CaCoastPlacemarks(Model):
+    gid = IntegerField(primary_key = True)
+    name = CharField(max_length=25)
+    type = CharField(max_length=25)
+    county = CharField(max_length=25)
+    lat = FloatField()
+    long = FloatField()
+    site_group = CharField(max_length=35)
+    the_geom = PointField(srid=4326)        
+    objects = GeoManager()
+    class Meta:
+        db_table = u'acc_pts'          
         
 class Resource(Model):
     name = CharField( max_length=100, unique=True )

@@ -7,6 +7,7 @@ from django.contrib.auth.views import *
 from views import *
 from django_extjs.example_views import *
 from django.views.generic.simple import direct_to_template
+from django.views.decorators.cache import cache_page
 
 urlpatterns = patterns('',                      
     (r'^accounts/login/$', login, {'template_name': 'login.html'}),
@@ -53,6 +54,9 @@ urlpatterns = patterns('',
     (r'^shapes/([A-Za-z0-9_-]*)$', shapes),
     (r'^shape/validate/$', validate_shape),
     url(r'^video/(\w+)$', video, name="video"),
+    
+    (r'^ca_coast_placemarks/json/$', cache_page(ca_coast_placemarks, 60*15)),
+    (r'^alph_ca_coast_placemarks/json/$', cache_page(alph_ca_coast_placemarks, 60*15)),
 
     #(r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
     (r'^faq', faq),
