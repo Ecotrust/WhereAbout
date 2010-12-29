@@ -114,6 +114,18 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     /*
+     *  If user knows of specific MPAs, ask them which.  Else, move on to resource select. 
+     */
+    contResourceQuestionStep: function() {
+        this.yes_val = "a28"
+        if (this.ResourceQuestionPanel.question_panel.getForm().getFieldValues().question_93 == this.yes_val) {
+            this.loadPrimaryLocationQuestionPanel();
+        } else {
+            this.finResourceQuestionStep();
+        }
+    },
+    
+    /*
      *  cleanup MPA Questions and redirect to resource selection step 
      */
     finMPAQuestionsStep: function() {
@@ -135,7 +147,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         if (this.curResource.get('finished') == true) {
             this.loadFinishedResourceSelectedWindow();
         } else {    
-            this.startNavStep();
+            this.startResourceQuestionStep();
         }
     },
     
@@ -146,7 +158,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.curResource.set('finished', false);   
         this.loadShapeStore(this.mapPanel.getShapeLayer());
         this.finResSelWin.hide();
-        this.startNavStep();
+        this.startResourceQuestionStep();
     },
     
     /*
@@ -155,6 +167,33 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     backResSelStep: function(){
          this.loadSplash();
          this.startMPAQuestionsStep();
+    },
+    
+    /******************** Resource Question Step *******************/
+        
+    /*
+     *  Go back from the resource selection step 
+     */
+    backResourceQuestionStep: function() {
+        if (gwst.settings.shapeStore.getCount() == 0) {
+            this.loadResSelPanel();
+        } else {
+            this.loadUnfinishedCheck();
+        }
+    },
+        
+    /*
+     *  Setup resource selection step 
+     */
+    startResourceQuestionStep: function() {
+        this.loadResourceQuestionPanel();
+    },
+    
+    /* 
+     * Process resource selection and go to Navigation instructions 
+     */
+    finResourceQuestionStep: function() {
+        this.startNavStep();
     },
     
     /******************** Navigation Step *******************/
@@ -178,14 +217,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	},
 	
 	/*
-	 * Go back from the navigation step to resource selection
+	 * Go back from the navigation step to resource questions
 	 */
     backNavStep: function() {
-        if (gwst.settings.shapeStore.getCount() == 0) {
-            this.loadResSelPanel();
-        } else {
-            this.loadUnfinishedCheck();
-        }
+        this.startResourceQuestionStep();
 	},    
     
     /******************** Draw Step *******************/
@@ -539,11 +574,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.unfinResStartPanel); 
     },
-    
-
-
-
-
 
     loadMPAQuestionPanel: function() {
     	if (!this.MPAQuestionPanel) {
@@ -559,7 +589,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.viewport.setWestPanel(this.MPAQuestionPanel);    	
     },
     
-
     loadSpecificMPAQuestionPanel: function() {
     	if (!this.specMPAQuestionPanel) {
             this.specMPAQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
@@ -620,7 +649,37 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.finResSelWin.show();
     },
+    
+    loadResourceQuestionPanel: function() {
+        if (!this.ResourceQuestionPanel) {
+            this.ResourceQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
+                xtype: 'gwst-group-questions-panel',
+                // form: gwst.settings.question_form,
+                group_name: 'Resource Questions',
+                form_url: gwst.settings.urls.resource_questions + '8/',
+                resource_id: this.curResource.get('id')
+            });
+            this.ResourceQuestionPanel.on('grp-qstn-cont', this.contResourceQuestionStep, this);
+            this.ResourceQuestionPanel.on('grp-qstn-back', this.backResourceQuestionStep, this);
+        }
+        this.viewport.setWestPanel(this.ResourceQuestionPanel);    	
+    },
 	
+    loadPrimaryLocationQuestionPanel: function() {
+        if (!this.PrimaryLocationQuestionPanel) {
+            this.PrimaryLocationQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
+                xtype: 'gwst-group-questions-panel',
+                // form: gwst.settings.question_form,
+                group_name: 'Primary Location Question',
+                form_url: gwst.settings.urls.resource_questions + '10/',
+                resource_id: this.curResource.get('id')
+            });
+            this.PrimaryLocationQuestionPanel.on('grp-qstn-cont', this.finResourceQuestionStep, this);
+            this.PrimaryLocationQuestionPanel.on('grp-qstn-back', this.loadResourceQuestionPanel, this);
+        }
+        this.viewport.setWestPanel(this.PrimaryLocationQuestionPanel);    	
+    },
+    
     loadNavPanel: function() {
         if (!this.navPanel) {
             this.navPanel = new gwst.widgets.NavigatePanel({

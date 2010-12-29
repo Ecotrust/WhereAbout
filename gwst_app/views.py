@@ -676,16 +676,15 @@ def answer_resource_questions(request, group_id, next_url=None):
         
     try:
         group = InterviewGroup.objects.get(pk=group_id)
-        group_memb = InterviewGroupMembership.objects.get(user=request.session['interviewee'], int_group__pk=group_id )
-        sel_resources = GroupMemberResource.objects.filter(group_membership=group_memb)
+        if not group.independent:
+            group_memb = InterviewGroupMembership.objects.get(user=request.session['interviewee'], int_group__pk=group_id )
+            sel_resources = GroupMemberResource.objects.filter(group_membership=group_memb)
         
     except ObjectDoesNotExist:
         return render_to_response( '404.html', RequestContext(request,{}))
         
-        
     # error checks done, get on with it
     title = group.name + ' Resource Questions'
-    
     instructions_qs = InterviewInstructions.objects.filter(int_group__pk=group_id).order_by('-question_set')
     
     instructions = {}
@@ -704,23 +703,36 @@ def answer_resource_questions(request, group_id, next_url=None):
             return HttpResponseRedirect('/group_status#main_menu')
             
     answers = InterviewAnswer.objects.filter(user=request.session['interviewee'], int_question__in=questions)
-    
     forms = {}
 
     if request.method == 'GET':
-        
-        # show questions for this group, with any existing user answers
-        for sel_resource in sel_resources:
-            form = AnswerForm( questions, answers, group_id, sel_resource.resource.id)
-            forms[sel_resource.resource.name]=form
+        if group.independent:
+            resource_id = request.GET.get('resource_id')
+            ansForm = AnswerForm
+            ExtJsForm.addto(ansForm)
+            form = ansForm( questions, answers, group_id, resource_id)
+            return utils.JsonResponse(form.as_extjs())
+        else:
+            # show questions for this group, with any existing user answers
+            for sel_resource in sel_resources:
+                form = AnswerForm( questions, answers, group_id, sel_resource.resource.id)
+                forms[sel_resource.resource.name]=form
     else:
         # form validation
         forms_valid = True
-        for sel_resource in sel_resources:
-            form = AnswerForm(questions, answers, group_id, sel_resource.resource.id, request.POST)
+        if group.independent:
+            resource_id = request.POST.get('resource_id')
+            ansForm = AnswerForm
+            ExtJsForm.addto(ansForm)
+            form = ansForm(questions, answers, group_id, resource_id, request.POST)
             if not form.is_valid():
-                forms_valid = False
-            forms[sel_resource.resource.name]=form
+                    forms_valid = False
+        else:
+            for sel_resource in sel_resources:
+                form = AnswerForm(questions, answers, group_id, sel_resource.resource.id, request.POST)
+                if not form.is_valid():
+                    forms_valid = False
+                forms[sel_resource.resource.name]=form
         
         if forms_valid:
             group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__pk=group_id)
@@ -732,13 +744,18 @@ def answer_resource_questions(request, group_id, next_url=None):
                 updated_group.save()
             else: #404
                 return render_to_response( '404.html', RequestContext(request,{}))
-            for name, form in forms.items():
+            if group.independent:
                 form.save(request.session['interviewee'])
-                
-            if next_url:
-                return HttpResponseRedirect(next_url)
+                result = {"success":True, "message":"Answers saved successfully"}
+                return HttpResponse(simplejson.dumps(result), mimetype='application/json')
             else:
-                return HttpResponseRedirect('/group_status#main_menu')
+                for name, form in forms.items():
+                    form.save(request.session['interviewee'])
+                
+                if next_url:
+                    return HttpResponseRedirect(next_url)
+                else:
+                    return HttpResponseRedirect('/group_status#main_menu')
         
     return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':520}))
 

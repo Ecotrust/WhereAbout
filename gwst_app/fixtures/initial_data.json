@@ -2503,7 +2503,23 @@
       "interview": 4, 
       "member_title": "person", 
       "page_template": "base_form.html", 
-      "resources": [], 
+      "resources": [
+        "08e88691-fc1a-11df-ab34-0016760580f0", 
+        "1b03890f-fc1a-11df-8798-0016760580f0", 
+        "4e853961-fc19-11df-8bf7-0016760580f0", 
+        "68e2f30f-fc19-11df-a0c1-0016760580f0", 
+        "7e80b3b0-fc19-11df-8746-0016760580f0", 
+        "8bc6394f-fc19-11df-8c65-0016760580f0", 
+        "9741fb70-fc19-11df-bf8d-0016760580f0", 
+        "a75c4bf0-fc19-11df-8610-0016760580f0", 
+        "bdb8c8ae-fc19-11df-9cd1-0016760580f0", 
+        "c0f316b0-fc1a-11df-8ea4-0016760580f0", 
+        "d685f74f-fc19-11df-a420-0016760580f0", 
+        "dc6eea8f-fc1a-11df-8c05-0016760580f0", 
+        "ebf1ab70-fc19-11df-864b-0016760580f0", 
+        "ec67d05e-fc1a-11df-8852-0016760580f0", 
+        "f9eb4961-fc1a-11df-8f56-0016760580f0"
+      ], 
       "description": "Map Questions"
     }
   }, 
@@ -2526,6 +2542,43 @@
       "page_template": "base_form.html", 
       "resources": [], 
       "description": "MPA Questions"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "independent": true, 
+      "code": "map_access", 
+      "name": "Access Points", 
+      "is_user_group": false, 
+      "required_group": false, 
+      "question_width": 275, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 4, 
+      "member_title": "person", 
+      "page_template": "base_form.html", 
+      "resources": [
+        "08e88691-fc1a-11df-ab34-0016760580f0", 
+        "1b03890f-fc1a-11df-8798-0016760580f0", 
+        "4e853961-fc19-11df-8bf7-0016760580f0", 
+        "68e2f30f-fc19-11df-a0c1-0016760580f0", 
+        "7e80b3b0-fc19-11df-8746-0016760580f0", 
+        "8bc6394f-fc19-11df-8c65-0016760580f0", 
+        "9741fb70-fc19-11df-bf8d-0016760580f0", 
+        "a75c4bf0-fc19-11df-8610-0016760580f0", 
+        "bdb8c8ae-fc19-11df-9cd1-0016760580f0", 
+        "c0f316b0-fc1a-11df-8ea4-0016760580f0", 
+        "d685f74f-fc19-11df-a420-0016760580f0", 
+        "dc6eea8f-fc1a-11df-8c05-0016760580f0", 
+        "ebf1ab70-fc19-11df-864b-0016760580f0", 
+        "ec67d05e-fc1a-11df-8852-0016760580f0", 
+        "f9eb4961-fc1a-11df-8f56-0016760580f0"
+      ], 
+      "description": "Specify old access point"
     }
   }, 
   {
@@ -3206,6 +3259,70 @@
     "fields": {
       "display_order": 1516.0, 
       "eng_text": "No, I am not aware of specific MPAs"
+    }
+  }, 
+  {
+    "pk": "4eb1b170-12df-11e0-9804-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 2100.0, 
+      "eng_text": "Change in size of species"
+    }
+  }, 
+  {
+    "pk": "652fbff0-12df-11e0-bac9-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 2110.0, 
+      "eng_text": "Change in abundance of species"
+    }
+  }, 
+  {
+    "pk": "6cf1d570-12df-11e0-a378-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 2120.0, 
+      "eng_text": "More people around"
+    }
+  }, 
+  {
+    "pk": "7b0de4f0-12df-11e0-9bf9-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 2130.0, 
+      "eng_text": "Area closed as marine protected area"
+    }
+  }, 
+  {
+    "pk": "832a9d8f-12df-11e0-8278-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 2140.0, 
+      "eng_text": "Loss of coastal access"
+    }
+  }, 
+  {
+    "pk": "8c48c0a1-12df-11e0-af6d-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 2150.0, 
+      "eng_text": "Wanted to check out new locations"
+    }
+  }, 
+  {
+    "pk": "9eb27f61-12df-11e0-9645-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 2160.0, 
+      "eng_text": "I do not have a primary dive location"
+    }
+  }, 
+  {
+    "pk": "a35f659e-12df-11e0-aa68-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 2170.0, 
+      "eng_text": "Other"
     }
   }, 
   {
@@ -5158,6 +5275,81 @@
     }
   }, 
   {
+    "pk": 93, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_change", 
+      "layout": null, 
+      "eng_text": "Have you changed your primary location to target this species in the last year", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 40.0, 
+      "required": true, 
+      "question_group": null, 
+      "options": [
+        "a28", 
+        "a29"
+      ], 
+      "val_min": null, 
+      "val_default": "No", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 94, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_why_ch", 
+      "layout": null, 
+      "eng_text": "If yes, why did you change your primary location", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 50.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "4eb1b170-12df-11e0-9804-0016760580f0", 
+        "652fbff0-12df-11e0-bac9-0016760580f0", 
+        "6cf1d570-12df-11e0-a378-0016760580f0", 
+        "7b0de4f0-12df-11e0-9bf9-0016760580f0", 
+        "832a9d8f-12df-11e0-8278-0016760580f0", 
+        "8c48c0a1-12df-11e0-af6d-0016760580f0", 
+        "9eb27f61-12df-11e0-9645-0016760580f0", 
+        "a35f659e-12df-11e0-aa68-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 95, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_other", 
+      "layout": null, 
+      "eng_text": "If 'Other', please specify", 
+      "int_group": 8, 
+      "question_set": null, 
+      "display_order": 60.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 92, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -5206,6 +5398,27 @@
       "val_min": null, 
       "val_default": "", 
       "answer_type": "checkbox", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 96, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_old", 
+      "layout": null, 
+      "eng_text": "Before you changed your primary diving location, where did you dive", 
+      "int_group": 10, 
+      "question_set": null, 
+      "display_order": 10.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
       "eng_tooltip": "", 
       "val_max": null
     }

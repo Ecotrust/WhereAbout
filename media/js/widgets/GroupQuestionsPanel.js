@@ -11,10 +11,12 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     group_name: 'unknown',
     form_url: 'unknown',
+    resource_id: '',
 
     onRender: function(){
+    
         this.header_panel = new Ext.Panel({  
-            id: 'basic_qs_header_panel'+this.group_name,
+            id: 'basic_qs_header_panel'+this.group_name+this.resource_id,
             // html: '<img src="/media/img/9_ActivityQuestions2_header.png">',
             html: '<h3>' + this.group_name + '</h3>',
 			border: 'north',
@@ -45,6 +47,7 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
     fill_question_panel: function(form) {
         var a = new Ext.ux.DjangoForm({
             url:this.form_url, 
+            resource_id: this.resource_id,
             callback:this.loadQuestionPanel.createDelegate(this),
             showButtons: false
         });
@@ -60,6 +63,7 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
         if (this.question_panel.getForm().isValid()) {
             this.question_panel.getForm().submit({
                 scope:this.question_panel,
+                resource_id: this.resource_id,
                 source: 'Draw Manager'
             });
         } else {
