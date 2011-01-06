@@ -9,6 +9,7 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
           this, arguments);                     
     },
     
+    instructions: 'unknown',
     group_name: 'unknown',
     form_url: 'unknown',
     resource_id: '',
@@ -24,6 +25,12 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
                 cls: 'action-panel-header'
             }
         });
+        
+        this.instruction_panel = new Ext.Panel({
+            id: 'basic_qs_instruciton_panel_'+this.group_name+this.resource_id,
+            html: this.instructions,
+            border: false
+        });
 
         this.question_panel = this.fill_question_panel();
 
@@ -33,6 +40,9 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
         });
 
         this.add(this.header_panel);
+        if (this.instructions != 'unknown'){
+            this.add(this.instruction_panel);
+        }
 		this.add(this.question_panel);
         this.add(this.button_panel);
         

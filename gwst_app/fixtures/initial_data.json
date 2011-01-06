@@ -2441,7 +2441,7 @@
         "ec67d05e-fc1a-11df-8852-0016760580f0", 
         "f9eb4961-fc1a-11df-8f56-0016760580f0"
       ], 
-      "description": "Harvesting Questions"
+      "description": "dive or shore picking"
     }
   }, 
   {
@@ -5205,7 +5205,7 @@
       "all_resources": false, 
       "code": "mpa_aware", 
       "layout": null, 
-      "eng_text": "I was aware of the MPA closures", 
+      "eng_text": "You are aware of the MPA closures", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 10.0, 
@@ -5226,7 +5226,7 @@
       "all_resources": false, 
       "code": "mpa_i_src", 
       "layout": null, 
-      "eng_text": "How you were informed about the closures", 
+      "eng_text": "How were you informed about the closures", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 20.0, 
@@ -5260,7 +5260,7 @@
       "all_resources": false, 
       "code": "mpa_specif", 
       "layout": null, 
-      "eng_text": "I am aware of specific MPAs", 
+      "eng_text": "You are aware of specific closures in close proximity to where you typically dive/shore pick", 
       "int_group": 8, 
       "question_set": null, 
       "display_order": 30.0, 
@@ -5323,7 +5323,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "checkbox", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -5356,7 +5356,7 @@
       "all_resources": false, 
       "code": "mpa_sp_mpa", 
       "layout": null, 
-      "eng_text": "I am aware of the following MPAs", 
+      "eng_text": "Which specific MPAs are you aware of", 
       "int_group": 9, 
       "question_set": null, 
       "display_order": 40.0, 

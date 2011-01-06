@@ -598,6 +598,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.MPAQuestionPanel) {
             this.MPAQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
                 xtype: 'gwst-group-questions-panel',
+                instructions: '<p>Marine protected area closures were recently implemented in the North Central Coast (Point Arena to Half Moon Bay).</p>',
                 group_name: 'MPA Questions',
                 form_url: gwst.settings.urls.questions + '8/answer/'
             });

@@ -25,7 +25,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<h2>Instructions</h2><p>Please provide more detailed boundary information for this '+ this.shape_name +'.</p> <p>For example, your North boundary might be the mouth of the Nehalem River and your West boundary 30 fathoms.</p>';
+        var html_text = '<h2>Instructions</h2>';
         return html_text;
     },
     
@@ -115,7 +115,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         });
         
         this.days_visited = new Ext.form.NumberField({
-            fieldLabel: 'Number of days this site was visited',
+            fieldLabel: 'Number of days this site was visited in 2010',
             name: 'days_visited',
             maxValue: this.days_max
         });
@@ -160,10 +160,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             this.primary_acc_method,
             this.days_visited,
             {
-                // fieldLabel: 'Number of days this site was visited',
-                // name: 'days_visited',
-                // maxValue
-            // },{
                 fieldLabel: 'North Boundary',
                 name: 'boundary_n'
             },{
