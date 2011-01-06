@@ -7,6 +7,8 @@ shapes and pennies.  Extends Ext.Observable providing event handling
 gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     user:null,    		//The current user object
     curResource: null,  //Current resource user has selected
+    lastShapeSaved: true,   //tracks whether old shape should be removed before adding a new shape
+    validateEdit: false,    //Was validation called on a feature being edited?
     curSaveRecord: null,   //Current feature getting saved
     curDeleteRecord: null, //Current feature getting deleted
     curUpdateRecord: null, //Current feature getting updated
@@ -24,8 +26,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.addEvents('res-shapes-loaded');
         this.addEvents('shape-saved');
         this.mapPanelListeners = {
-        		'render': this.mapPanelCreated.createDelegate(this),
-        		'resize': this.mapResized.createDelegate(this)
+            'render': this.mapPanelCreated.createDelegate(this),
+            'resize': this.mapResized.createDelegate(this)
         };
         this.wktParser = new OpenLayers.Format.WKT();
     },
@@ -55,6 +57,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /*load unfinished resource tool if there is one */
     startSplashStep: function() {
         if (this.curResource) {
+            gwst.settings.resource_days = this.getAnswer('day_specie', this.curResource.get('id'), this.getResDays);
             this.startUnfinishedResourceStartStep();
         } else {
             this.loadSplash();
@@ -144,6 +147,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     finResSelStep: function(obj, resource_id) {
         this.curResource = gwst.settings.resourceStore.getById(resource_id);
+        gwst.settings.resource_days = this.getAnswer('day_specie', this.curResource.get('id'), this.getResDays);
         if (this.curResource.get('finished') == true) {
             this.loadFinishedResourceSelectedWindow();
         } else {    
@@ -209,11 +213,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	 * Finish navigation and go to Draw Step
 	 */
     finNavStep: function() {
-        if (gwst.settings.shapeStore.getCount() <= 0) {    
-            this.startDrawStep();        
-        } else {
-            this.startDraw2Step();
-        }
+        this.startDraw2Step();
 	},
 	
 	/*
@@ -260,6 +260,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Setup UI for shape grid drawing step 
      */
     startDraw2Step: function() {
+        this.validateEdit = false;
         if (gwst.settings.shapeStore.getCount() > 0) {
             this.loadDraw2Panel();        
             this.mapPanel.enableResDraw(); //Turn on drawing   
@@ -290,6 +291,25 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.startNavStep();         
     },
     
+    /******************** Edit Shape Step *******************/
+    
+    /* 
+     * Setup UI for edit shape step 
+     */
+    startEditShapeStep: function(feature) {
+        this.enableFeatureEdit();
+        this.loadEditShapePanel();        
+    },
+       
+    /*
+     * Process and finish Edit Shape step
+     */
+    finEditShapeStep: function() {
+        this.disableFeatureEdit();
+        this.validateEdit = true;
+        this.resShapeComplete(this.curSaveRecord.get('feature'));
+    },
+    
     /******************** Invalid Shape Step *******************/
     
     /* 
@@ -307,10 +327,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process and finish Invalid Shape step
      */
     finInvalidShapeStep: function() {
-        if (gwst.settings.shapeStore.getCount() > 0) {
-            this.startAnotherShapeStep();
+        if (this.validateEdit) {
+            this.startEditShapeStep();
         } else {
-            this.startDrawStep();
+            this.startDraw2Step();
         }
     },
     
@@ -319,8 +339,12 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /* 
      * Setup UI for satisfied with shape step 
      */
-    startSatisfiedShapeStep: function(shape_obj) {
+    startSatisfiedShapeStep: function(shape_obj) { 
+        if (!this.lastShapeSaved) {
+            this.mapPanel.removeLastShape();
+        }
     	this.addValidatedShape(shape_obj.geom);
+        this.lastShapeSaved = false;
         this.mapPanel.disableResDraw(); //Turn off drawing    	
         this.loadSatisfiedShapePanel();        
         if (this.drawToolWin) {
@@ -368,9 +392,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
        
     /*
      * Check if any valid shapes exist
-     * 
-     * TODO: Should they be able to get here (click to allocate) without any shapes?
-     * Maybe a check should be done just before this panel gets loaded
      */
     penniesStepSelected: function() {
         if (gwst.settings.shapeStore.getCount() > 0) {
@@ -382,8 +403,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     /*
      * Move on to drop pennies
-     * 
-     * TODO: Can we just call startPennyInstrStep directly? Is this needed?
      */
     moveToDropPenniesStep: function() {
         this.startPennyInstrStep();
@@ -579,7 +598,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.MPAQuestionPanel) {
             this.MPAQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
                 xtype: 'gwst-group-questions-panel',
-                // form: gwst.settings.question_form,
                 group_name: 'MPA Questions',
                 form_url: gwst.settings.urls.questions + '8/answer/'
             });
@@ -593,7 +611,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.specMPAQuestionPanel) {
             this.specMPAQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
                 xtype: 'gwst-group-questions-panel',
-                // form: gwst.settings.question_form,
                 group_name: 'Specific MPA Questions',
                 form_url: gwst.settings.urls.questions + '9/answer/'
             });
@@ -784,6 +801,17 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.draw2Panel.updateGrid();
     },
     
+    /* Load the shape grid draw west panel */
+    loadEditShapePanel: function() {
+    	if (!this.editShapePanel) {
+            this.editShapePanel = new gwst.widgets.EditShapePanel();
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.editShapePanel.on('redraw-edit-act', this.redrawEditShape, this);
+            this.editShapePanel.on('save-edit-act', this.finEditShapeStep, this);
+        }
+        this.viewport.setWestPanel(this.editShapePanel); 
+    },
+    
     /* Create draw tool window and connect events to the map panel */
     loadDrawToolWin: function() {
     	if (!this.drawToolWin) {
@@ -830,7 +858,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 shape_name: gwst.settings.interview.shape_name
             });
             //When panel fires event saying it's all done, we want to process it and move on 
-            this.satisfiedShapePanel.on('satisfied', this.finSatisfiedShapeStep, this);            
+            this.satisfiedShapePanel.on('satisfied', this.finSatisfiedShapeStep, this);
+            this.satisfiedShapePanel.on('edit-shape', this.startEditShapeStep, this);
         } else {
             this.satisfiedShapePanel.updateText({
                 resource: this.curResource.get('name'),
@@ -847,18 +876,22 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.shapeAttribPanel) {
             this.shapeAttribPanel = new gwst.widgets.ShapeAttribPanel({
                 xtype: 'gwst-shape-attrib-panel',
-                shape_name: gwst.settings.interview.shape_name
+                shape_name: gwst.settings.interview.shape_name,
+                days_max: gwst.settings.resource_days,
+                resource: this.curResource.get('name')
             });
             //When panel fires event saying it's all done, we want to process it and move on 
-            this.shapeAttribPanel.on('shape-attrib-cont', this.finAttribStep, this);            
+            this.shapeAttribPanel.on('shape-attrib-cont', this.finAttribStep, this);
+    		this.shapeAttribPanel.on('place-selected', this.zoomToPlacemark, this);
         } else {
-            this.shapeAttribPanel.updateText({
-                shape_name: gwst.settings.interview.shape_name
+            this.shapeAttribPanel.update({
+                shape_name: gwst.settings.interview.shape_name,
+                resource: this.curResource.get('name'),
+                days_max: gwst.settings.resource_days
             });
         }
         this.viewport.setWestPanel(this.shapeAttribPanel);    	
     },
-    
     
     /* Load the draw another shape or drop pennies question west panel */
     loadAnotherShapePanel: function() {
@@ -972,6 +1005,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	this.mapPanel.on('res-shape-started', this.resShapeStarted, this);
     	this.mapPanel.on('res-shape-complete', this.resShapeComplete, this);
     },
+    
+    zoomToPlacemark: function(place_rec) {
+    	this.mapPanel.zoomToPoint(place_rec.get('feature'));
+    },
 
     /*
      * Listen for map resizing and update the map layer window position each time
@@ -1006,7 +1043,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             geometry: feature.geometry,
             resource: gwst.settings.survey_group_id+'-'+this.curResource.id
          });
-    },     
+    },
     
     /*
      * Handler for user deleting a shape
@@ -1033,6 +1070,26 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 			lyr.setVisibility(false);
 		}
 	},
+    
+    /******************** Feature Handlers ********************/
+
+    enableFeatureEdit: function() {
+        this.mapPanel.modifyShape(this.curSaveRecord.get('feature'));
+    },
+    
+    disableFeatureEdit: function() {
+        this.mapPanel.finModifyShape();
+    },
+    
+    redrawActivity: function() {
+        this.mapPanel.removeLastShape();
+    	this.startDraw2Step();
+    },    
+    
+    redrawEditShape: function() {
+        this.disableFeatureEdit();
+        this.redrawActivity();
+    },
     
     /******************** Server Operations ********************/
 
@@ -1135,6 +1192,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },     
     
     finSaveNewShape: function(response) {
+        this.lastShapeSaved = true;
     	var new_feat = Ext.decode(response.responseText);
     	//Update the new record with its unique id assigned on the server
     	//This will let us update it later
@@ -1239,7 +1297,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     //if not resource specific, use ''
-    getAnswer: function(question_code, resource) {
+    getAnswer: function(question_code, resource, func) {
         if (resource == "") {
             this.params = {
                 question_code : question_code
@@ -1256,16 +1314,22 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             method: 'GET',
             params: this.params,
            	scope: this,
-           	success: this.finGetAnswer,
+           	success: func,
            	failure: function(response, opts) {
         		// Change to error window
               	alert('get answer request failed: ' + response.status);
            	}
         });		
+        
     },
         
     finGetAnswer: function(response, opts) {
         this.answer_obj = Ext.decode(response.responseText);
+    },
+    
+    getResDays: function(response, opts) {
+        this.answer_obj = Ext.decode(response.responseText).answer;
+        gwst.settings.resource_days = this.answer_obj.value;
     },
     
     //if not resource specific, use ''
@@ -1481,7 +1545,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     //Add a freshly validated shape to the map
-    //TODO: See if just adding it to the feature store will trigger the add to the layer
     addValidatedShape: function(wkt) {
     	var vec = this.wktParser.read(wkt);
     	this.mapPanel.addShape(vec);

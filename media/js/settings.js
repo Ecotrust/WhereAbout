@@ -24,7 +24,14 @@ gwst.settings = {
     survey_group_name: null,
     
     resourceStore: null,	//Ext JsonStore of available resources
-    shapeStore: null		//GeoExt FeatureStore of user-drawn shapes
+    shapeStore: null,		//GeoExt FeatureStore of user-drawn shapes
+    
+    resource_days: null,    //number of days user targeted specific resource
+    
+    cityComboText: 'California coast towns',
+    placeComboText: 'Access Points (north to south)',
+    alphPlaceComboText: 'Access Points (alphabetical)',
+    primaryPtText: '<b style="panel_instruct">Select from one of the lists below the location of your PRIMARY access point for this diving/fishing area.</b>'
 };
 
 gwst.settings.urls = {

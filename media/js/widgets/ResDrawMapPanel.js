@@ -4,7 +4,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     //Default properties can defined here and overriden by config object passed to contructor
 	
     defaultZoom: 7,
-    maxZoom: 12,
+    maxZoom: 13,
     minZoom: 6,
     autoZoom: false,
     
@@ -35,43 +35,76 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                 scope: this
             }
         };        
+        
+        //------------------------------------ ISSUE -------------------------------------------------------//
+        // The style used for 'default' is applied to both the features that the user draws as well as
+            // the circles created for vertices in edit mode. With the 'label' attribute set, this leads to 
+            // 'undefined' being printed on every vertex and virtual vertex.  This was overcome with a rule
+            // borrowed mostly from some forum postings between Alex Dean and Arnd Wippermann:
+            // http://osgeo-org.1803224.n2.nabble.com/undefined-at-vertices-while-editing-vector-layer-td5478330.html
 
         //Map vector style
-        var styleMap = new OpenLayers.StyleMap({
-            'default': new OpenLayers.Style({
-                fillColor: '#ff8c00',
-                fillOpacity: 0.4,
-                strokeColor: '#ff8c00',
-                strokeOpacity: 1,
-                strokeWidth: 1,
-                cursor: 'pointer',
-                pointerEvents: "visiblePainted",
-                label : "${pennies}",
-                fontColor: "black",
-                fontSize: "12px",
-                labelAlign: "cm"
+        var defaultStyle = new OpenLayers.Style(OpenLayers.Util.applyDefaults({
+            fillColor: '#ff8c00',
+            fillOpacity: 0.4,
+            strokeColor: '#ff8c00',
+            strokeOpacity: 1,
+            strokeWidth: 1,
+            cursor: 'pointer',
+            pointerEvents: "visiblePainted",
+            // label : "${pennies}",
+            fontColor: "black",
+            fontSize: "12px",
+            labelAlign: "cm"            
+        }, OpenLayers.Feature.Vector.style["default"]));
+        
+        var selectStyle = new OpenLayers.Style(OpenLayers.Util.applyDefaults({ 
+            strokeWidth: 3,
+            fillColor: '#ff8c00',
+            strokeColor: 'yellow',
+            strokeOpacity: 1,
+            fillOpacity: 0.4,
+            cursor: 'default',
+            pointerEvents: "visiblePainted",
+            label : "${pennies}",
+            fontColor: "black",
+            fontSize: "12px",
+            labelAlign: "cm"
+        }, OpenLayers.Feature.Vector.style["select"]));
+
+        var tempStyle = new OpenLayers.Style(OpenLayers.Util.applyDefaults({
+            fillColor: '#ff8c00',
+            fillOpacity: 0.4,
+            strokeWidth: 2,
+            strokeColor: '#ff8c00',
+            strokeOpacity: 1
+        }, OpenLayers.Feature.Vector.style["temporary"]));
+        
+        var labelRules = [
+            new OpenLayers.Rule({
+                filter: new OpenLayers.Filter.Comparison({
+                    type: OpenLayers.Filter.Comparison.NOT_EQUAL_TO,
+                    property: "pennies",
+                    value: undefined
+                }),
+                symbolizer: {
+                    label: "${pennies}"
+                },
+                elseFilter: false
             }),
-            'select': new OpenLayers.Style({
-                strokeWidth: 3,
-                fillColor: '#ff8c00',
-                strokeColor: 'yellow',
-                strokeOpacity: 1,
-                fillOpacity: 0.4,
-                cursor: 'default',
-                pointerEvents: "visiblePainted",
-                label : "${pennies}",
-                fontColor: "black",
-                fontSize: "12px",
-                labelAlign: "cm"
-            }),
-            'temporary': new OpenLayers.Style({
-                fillColor: '#ff8c00',
-                fillOpacity: 0.4,
-                strokeWidth: 2,
-                strokeColor: '#ff8c00',
-                strokeOpacity: 1
+            new OpenLayers.Rule({
+                symbolizer: {},
+                elseFilter: true
             })
-        });	    
+        ]; 
+        
+        defaultStyle.addRules(labelRules);
+
+        var myStyle = new OpenLayers.StyleMap({
+            'default': defaultStyle,
+            'select': selectStyle,
+            'temporary': tempStyle
+        }); 
 	    
         var baseLayer = new OpenLayers.Layer.TMS(
             "Oregon Nautical Charts", 
@@ -102,10 +135,11 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         );
         
         this.vecLayer = new OpenLayers.Layer.Vector('Fishing Grounds',{
-            styleMap: styleMap
+            styleMap: myStyle
         });                      
         this.vecLayer.events.on({
             "sketchstarted": this.resShapeStarted,
+            "skethmodified": this.resShapeModified,
             "sketchcomplete": this.resShapeComplete,
             scope: this
         });        
@@ -125,6 +159,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		map.addControl(new OpenLayers.Control.MousePosition());
         map.addControl(new OpenLayers.Control.KeyboardDefaults());
         
+        
 		this.drawResControl = new OpenLayers.Control.DrawFeature(
             this.vecLayer, 
             OpenLayers.Handler.Polygon
@@ -133,6 +168,9 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         this.selectControl = new OpenLayers.Control.SelectFeature(this.vecLayer);        
         map.addControl(this.selectControl);
         this.selectControl.activate();
+        
+        this.modifyControl = new OpenLayers.Control.ModifyFeature(this.vecLayer);
+        map.addControl(this.modifyControl);
 
         map.addLayers([baseLayer, this.vecLayer]);
         
@@ -203,6 +241,11 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     	this.map.zoomToExtent(this.vecLayer.getDataExtent());    	
     },
     
+    zoomToPoint: function(pnt) {
+    	var lonlat = new OpenLayers.LonLat(pnt.geometry.x, pnt.geometry.y);
+    	this.map.setCenter(lonlat, this.maxZoom);
+    },
+    
     getShapeLayer: function() {
         this.autoZoom = true
     	return this.vecLayer;
@@ -221,9 +264,22 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     	this.fireEvent('res-shape-started');
     },
     
+    resShapeModified: function(evt) {
+    	this.fireEvent('res-shape-modified', evt);
+    },
+    
     resShapeComplete: function(evt) {
     	this.fireEvent('res-shape-complete', evt.feature);
     	return false;
+    },
+    
+    modifyShape: function(feature) {
+        this.modifyControl.activate();
+        this.modifyControl.selectControl.select(feature);
+    },
+    
+    finModifyShape: function() {
+        this.modifyControl.deactivate();
     },
     
     removeLastShape: function() {

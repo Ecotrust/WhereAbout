@@ -815,7 +815,7 @@ def ca_coast_placemarks(request):
     return render_to_geojson(
         qs,
         geom_attribute='the_geom',
-        excluded_fields=['pk_uid','long','lat','featuretyp','county'],
+        excluded_fields=['long','lat','featuretyp','county'],
         mimetype = 'text/plain',
         proj_transform=900913,
         pretty_print=True
@@ -1173,7 +1173,7 @@ GET: filter by interview group: 'group_id'
 POST - expects {'feature':{geometry, group_id, resource_id, boundary_n, boundary_s, boundary_e, boundary_w}}
 DELETE - expects a shape id /shapes/id or resource_id param
 '''
-def shapes(request, id=None):    
+def shapes(request, id=None):  
     if request.method == 'GET':  
         shape_qs = InterviewShape.objects.filter(user=request.session['interviewee']).order_by('id')
         if (request.GET.get('group_id')):
@@ -1260,7 +1260,10 @@ def shapes(request, id=None):
                 boundary_w = feat.get('boundary_w'),
                 note_text = feat.get('note_text'),
                 int_group_id = feat.get('group_id'),
-                resource_id = feat.get('resource_id')                
+                resource_id = feat.get('resource_id'),
+                primary_acc_point_id = feat.get('primary_acc_point'),
+                primary_acc_method = feat.get('primary_acc_method'),
+                days_visited = feat.get('days_visited')
             )                        
             new_shape.save() 
             

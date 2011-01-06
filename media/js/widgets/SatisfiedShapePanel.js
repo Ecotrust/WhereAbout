@@ -11,6 +11,7 @@ gwst.widgets.SatisfiedShapePanel = Ext.extend(gwst.widgets.WestPanel, {
         // be created and added/overridden here: Ext.apply(this, {});
 		
 		this.addEvents('satisfied');
+		this.addEvents('edit-shape');
 		
         // Call parent (required)
         gwst.widgets.SatisfiedShapePanel.superclass.initComponent.apply(
@@ -35,9 +36,28 @@ gwst.widgets.SatisfiedShapePanel = Ext.extend(gwst.widgets.WestPanel, {
 			border: false
 		});
         
-        this.button_panel = new gwst.widgets.YesNoButtons ({
-            yes_handler: this.yesClicked.createDelegate(this),
-            no_handler: this.noClicked.createDelegate(this)
+        this.button_panel = new gwst.widgets.CustomButtons ({
+            element_list: [
+                {
+                    elem: this.yesClicked.createDelegate(this),
+                    type: 'handler'
+                },{
+                    elem: 'Yes',
+                    type: 'text'
+                },{
+                    elem: this.noClicked.createDelegate(this),
+                    type: 'handler'
+                },{
+                    elem: 'No',
+                    type: 'text'
+                },{
+                    elem: this.editClicked.createDelegate(this),
+                    type: 'handler'
+                },{
+                    elem: 'Edit shape',
+                    type: 'text'
+                }
+            ]
         });
         
 		this.add(this.inner_panel);
@@ -46,6 +66,10 @@ gwst.widgets.SatisfiedShapePanel = Ext.extend(gwst.widgets.WestPanel, {
         // Call parent (required)
         gwst.widgets.SatisfiedShapePanel.superclass.onRender.apply(this, arguments); 
 	},
+    
+    editClicked: function() {
+        this.fireEvent('edit-shape',this);
+    },
     
     yesClicked: function() {
         this.fireEvent('satisfied',{satisfied:true});

@@ -228,7 +228,7 @@
       "county": "Sonoma", 
       "lat": 38.745612000000001, 
       "the_geom": "POINT (-305283.0000000000000000 86727.1718750000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -241,7 +241,7 @@
       "county": "San Francisco", 
       "lat": 37.712727999999998, 
       "the_geom": "POINT (-220295.1093750000000000 -30846.7011720000009518)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -254,7 +254,7 @@
       "county": "San Mateo", 
       "lat": 37.680433000000001, 
       "the_geom": "POINT (-219665.9218750000000000 -34454.6757809999980964)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -267,7 +267,7 @@
       "county": "San Mateo", 
       "lat": 37.665567000000003, 
       "the_geom": "POINT (-219707.9843750000000000 -36106.6640629999965313)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -280,7 +280,7 @@
       "county": "San Mateo", 
       "lat": 37.629702999999999, 
       "the_geom": "POINT (-219766.2187500000000000 -40093.4101559999980964)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -345,7 +345,7 @@
       "county": "San Francisco", 
       "lat": 37.768414, 
       "the_geom": "POINT (-220900.9375000000000000 -24638.0468750000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -371,7 +371,7 @@
       "county": "Mendocino", 
       "lat": 38.881053999999999, 
       "the_geom": "POINT (-318423.9375000000000000 102291.3515619999961928)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -384,7 +384,7 @@
       "county": "Marin", 
       "lat": 37.874628000000001, 
       "the_geom": "POINT (-228144.0468750000000000 -12631.1572269999996934)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -397,7 +397,7 @@
       "county": "Marin", 
       "lat": 37.863965, 
       "the_geom": "POINT (-227214.2812500000000000 -13842.3251949999994395)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -410,7 +410,7 @@
       "county": "Marin", 
       "lat": 37.859755, 
       "the_geom": "POINT (-226447.9843750000000000 -14331.3925780000008672)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -527,7 +527,7 @@
       "county": "Mendocino", 
       "lat": 38.899343999999999, 
       "the_geom": "POINT (-320206.5000000000000000 104395.0468750000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -553,7 +553,7 @@
       "county": "Sonoma", 
       "lat": 38.614165, 
       "the_geom": "POINT (-292694.2187500000000000 71649.3515630000038072)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -566,7 +566,7 @@
       "county": "Sonoma", 
       "lat": 38.604723999999997, 
       "the_geom": "POINT (-292130.9687500000000000 70579.2578130000038072)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -579,7 +579,7 @@
       "county": "Sonoma", 
       "lat": 38.595882000000003, 
       "the_geom": "POINT (-291076.6875000000000000 69558.4609380000038072)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -592,7 +592,7 @@
       "county": "Sonoma", 
       "lat": 38.593198999999998, 
       "the_geom": "POINT (-289749.7187500000000000 69213.3750000000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -605,7 +605,7 @@
       "county": "Sonoma", 
       "lat": 38.555700999999999, 
       "the_geom": "POINT (-287483.0937500000000000 64963.2421879999965313)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -618,7 +618,7 @@
       "county": "Sonoma", 
       "lat": 38.533237999999997, 
       "the_geom": "POINT (-284896.1250000000000000 62374.9960940000019036)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -644,7 +644,7 @@
       "county": "Mendocino", 
       "lat": 39.033335999999998, 
       "the_geom": "POINT (-318905.1250000000000000 119248.3359380000038072)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -657,7 +657,7 @@
       "county": "Mendocino", 
       "lat": 38.967506999999998, 
       "the_geom": "POINT (-321732.0937500000000000 112036.6718750000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -787,7 +787,7 @@
       "county": "San Mateo", 
       "lat": 37.476464, 
       "the_geom": "POINT (-216248.1406250000000000 -57225.7031250000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -800,7 +800,7 @@
       "county": "San Mateo", 
       "lat": 37.465128, 
       "the_geom": "POINT (-215971.6093750000000000 -58493.4414059999980964)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -813,7 +813,7 @@
       "county": "San Mateo", 
       "lat": 37.453215999999998, 
       "the_geom": "POINT (-215837.9687500000000000 -59821.5546870000034687)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -826,7 +826,7 @@
       "county": "San Mateo", 
       "lat": 37.430473999999997, 
       "the_geom": "POINT (-215532.5781250000000000 -62358.2929690000019036)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -839,7 +839,7 @@
       "county": "San Mateo", 
       "lat": 37.376176999999998, 
       "the_geom": "POINT (-212783.1093750000000000 -68466.4296880000038072)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -852,7 +852,7 @@
       "county": "San Mateo", 
       "lat": 37.498218000000001, 
       "the_geom": "POINT (-218708.2500000000000000 -54742.7460940000019036)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -865,7 +865,7 @@
       "county": "Mendocino", 
       "lat": 38.803001000000002, 
       "the_geom": "POINT (-310657.0312500000000000 93311.8828130000038072)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -878,7 +878,7 @@
       "county": "Mendocino", 
       "lat": 38.794500999999997, 
       "the_geom": "POINT (-309571.8750000000000000 92325.4843750000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -956,7 +956,7 @@
       "county": "Sonoma", 
       "lat": 38.405546999999999, 
       "the_geom": "POINT (-269934.7812500000000000 47670.0937500000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -969,7 +969,7 @@
       "county": "Sonoma", 
       "lat": 38.395617999999999, 
       "the_geom": "POINT (-269741.5937500000000000 46559.5507809999980964)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1099,7 +1099,7 @@
       "county": "Marin", 
       "lat": 37.928527000000003, 
       "the_geom": "POINT (-239916.4375000000000000 -6305.8955079999996087)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1112,7 +1112,7 @@
       "county": "Marin", 
       "lat": 37.929814, 
       "the_geom": "POINT (-240149.2343750000000000 -6156.0317379999996774)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1125,7 +1125,7 @@
       "county": "Marin", 
       "lat": 37.889118000000003, 
       "the_geom": "POINT (-237050.0781250000000000 -10770.8027340000007825)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1138,7 +1138,7 @@
       "county": "Marin", 
       "lat": 37.897193999999999, 
       "the_geom": "POINT (-237856.3281250000000000 -9849.7119139999995241)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1190,7 +1190,7 @@
       "county": "Marin", 
       "lat": 37.893313999999997, 
       "the_geom": "POINT (-231525.7968750000000000 -10459.6367190000000846)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1203,7 +1203,7 @@
       "county": "Marin", 
       "lat": 37.890653999999998, 
       "the_geom": "POINT (-231235.1718750000000000 -10763.5341800000005605)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1216,7 +1216,7 @@
       "county": "Marin", 
       "lat": 37.886474, 
       "the_geom": "POINT (-230644.6875000000000000 -11244.8505860000004759)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1255,7 +1255,7 @@
       "county": "Sonoma", 
       "lat": 38.356071, 
       "the_geom": "POINT (-267626.4375000000000000 42092.3320309999980964)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1385,7 +1385,7 @@
       "county": "San Mateo", 
       "lat": 37.545529999999999, 
       "the_geom": "POINT (-221794.3593750000000000 -49400.2187500000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1398,7 +1398,7 @@
       "county": "San Mateo", 
       "lat": 37.565556000000001, 
       "the_geom": "POINT (-221660.1093750000000000 -47176.8125000000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1411,7 +1411,7 @@
       "county": "San Mateo", 
       "lat": 37.535755000000002, 
       "the_geom": "POINT (-222158.2187500000000000 -50477.5625000000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1424,7 +1424,7 @@
       "county": "San Mateo", 
       "lat": 37.497115000000001, 
       "the_geom": "POINT (-220369.8125000000000000 -54821.7578129999965313)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1437,7 +1437,7 @@
       "county": "San Mateo", 
       "lat": 37.609848, 
       "the_geom": "POINT (-220092.7343750000000000 -42292.7578120000034687)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1450,7 +1450,7 @@
       "county": "San Mateo", 
       "lat": 37.596742999999996, 
       "the_geom": "POINT (-220651.8906250000000000 -43735.3007809999980964)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1463,7 +1463,7 @@
       "county": "Mendocino", 
       "lat": 38.865810000000003, 
       "the_geom": "POINT (-316688.5000000000000000 100528.5625000000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1476,7 +1476,7 @@
       "county": "Mendocino", 
       "lat": 38.894364000000003, 
       "the_geom": "POINT (-319433.7187500000000000 103811.0625000000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1515,7 +1515,7 @@
       "county": "Sonoma", 
       "lat": 38.582009999999997, 
       "the_geom": "POINT (-289977.7812500000000000 67976.8437500000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1528,7 +1528,7 @@
       "county": "Sonoma", 
       "lat": 38.574897999999997, 
       "the_geom": "POINT (-290048.5937500000000000 67188.2656250000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1541,7 +1541,7 @@
       "county": "Sonoma", 
       "lat": 38.541564000000001, 
       "the_geom": "POINT (-286162.3750000000000000 63344.8945309999980964)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1580,7 +1580,7 @@
       "county": "Sonoma", 
       "lat": 38.417658000000003, 
       "the_geom": "POINT (-270393.5625000000000000 49032.0781250000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1775,7 +1775,7 @@
       "county": "San Francisco", 
       "lat": 37.708855999999997, 
       "the_geom": "POINT (-220316.5468750000000000 -31276.7265630000001693)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1788,7 +1788,7 @@
       "county": "San Mateo", 
       "lat": 37.694305999999997, 
       "the_geom": "POINT (-219857.4843750000000000 -32906.8671870000034687)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1801,7 +1801,7 @@
       "county": "San Mateo", 
       "lat": 37.687629999999999, 
       "the_geom": "POINT (-219664.7343750000000000 -33654.3085940000019036)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1814,7 +1814,7 @@
       "county": "San Mateo", 
       "lat": 37.679037999999998, 
       "the_geom": "POINT (-219619.3281250000000000 -34611.0351559999980964)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1827,7 +1827,7 @@
       "county": "San Mateo", 
       "lat": 37.523667000000003, 
       "the_geom": "POINT (-222001.3593750000000000 -51825.9453129999965313)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1840,7 +1840,7 @@
       "county": "San Mateo", 
       "lat": 37.502409, 
       "the_geom": "POINT (-220002.0468750000000000 -54242.8046879999965313)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1853,7 +1853,7 @@
       "county": "San Mateo", 
       "lat": 37.499943000000002, 
       "the_geom": "POINT (-217991.7812500000000000 -54569.5625000000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1866,7 +1866,7 @@
       "county": "San Mateo", 
       "lat": 37.479056, 
       "the_geom": "POINT (-216284.6718750000000000 -56936.5195309999980964)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1879,7 +1879,7 @@
       "county": "San Mateo", 
       "lat": 37.484800999999997, 
       "the_geom": "POINT (-216569.9687500000000000 -56290.3867190000019036)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1892,7 +1892,7 @@
       "county": "San Mateo", 
       "lat": 37.419929000000003, 
       "the_geom": "POINT (-215018.5000000000000000 -63544.1484379999965313)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1905,7 +1905,7 @@
       "county": "San Mateo", 
       "lat": 37.324539000000001, 
       "the_geom": "POINT (-212339.8906250000000000 -74219.6406250000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1918,7 +1918,7 @@
       "county": "San Mateo", 
       "lat": 37.337062000000003, 
       "the_geom": "POINT (-212385.3906250000000000 -72825.9453130000038072)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1931,7 +1931,7 @@
       "county": "San Mateo", 
       "lat": 37.291544999999999, 
       "the_geom": "POINT (-212955.3437500000000000 -77872.9296880000038072)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1944,7 +1944,7 @@
       "county": "San Mateo", 
       "lat": 37.261293999999999, 
       "the_geom": "POINT (-213723.9687500000000000 -81217.1562500000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1957,7 +1957,7 @@
       "county": "San Mateo", 
       "lat": 37.255152000000002, 
       "the_geom": "POINT (-212653.2031250000000000 -81927.3750000000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1970,7 +1970,7 @@
       "county": "San Mateo", 
       "lat": 37.235042, 
       "the_geom": "POINT (-213951.5312500000000000 -84130.4765630000038072)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1983,7 +1983,7 @@
       "county": "San Mateo", 
       "lat": 37.224072, 
       "the_geom": "POINT (-213429.0312500000000000 -85363.6093750000000000)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -1996,7 +1996,7 @@
       "county": "San Mateo", 
       "lat": 37.183031, 
       "the_geom": "POINT (-212210.8281250000000000 -89958.0390630000038072)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -2009,7 +2009,7 @@
       "county": "San Mateo", 
       "lat": 37.178466, 
       "the_geom": "POINT (-210451.7031250000000000 -90509.8359369999961928)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -2048,7 +2048,7 @@
       "county": "San Mateo", 
       "lat": 37.594126000000003, 
       "the_geom": "POINT (-222105.5937500000000000 -43987.8164059999980964)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -2061,7 +2061,7 @@
       "county": "San Mateo", 
       "lat": 37.619999, 
       "the_geom": "POINT (-220143.0937500000000000 -41162.6289059999980964)", 
-      "site_group": "-1"
+      "site_group": null
     }
   }, 
   {
@@ -4586,7 +4586,7 @@
       "all_resources": true, 
       "code": "day_specie", 
       "layout": null, 
-      "eng_text": "Number of days 'on average' spent diving/shore picking for this species last year (2010)", 
+      "eng_text": "Number of days spent diving/shore picking for this species last year (2010)", 
       "int_group": 5, 
       "question_set": null, 
       "display_order": 10.0, 

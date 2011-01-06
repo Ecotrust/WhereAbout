@@ -38,7 +38,7 @@ class CaCoastPlacemarks(Model):
     county = CharField(max_length=25)
     lat = FloatField()
     long = FloatField()
-    site_group = CharField(max_length=35)
+    site_group = CharField(max_length=35, blank = True, null=True)
     the_geom = PointField(srid=3310)        
     objects = GeoManager()
     class Meta:
@@ -343,6 +343,28 @@ class InterviewStatus(Model):
 
 
 class InterviewShape(Model):
+    AccessMethodChoices = (
+        ('swimming', 'Swimming'),
+        ('kayak', 'Kayak'),
+        ('sport', 'Sport boat'),
+        ('charter', 'Charter boat'),
+        ('paddleboard', 'Paddleboard')
+    )
+    
+    AbaloneHarvestChoices = (
+        ('first', 'the first available abalone'),
+        ('size', 'target abalone for size')
+    )
+    
+    AbaloneTimeChoices = (
+        ('much more', 'Significantly more time'),
+        ('some more', 'Somewhat more time'),
+        ('same', 'The same amount of time'),
+        ('some less', 'Somewhat less time'),
+        ('much less', 'Significantly less time'),
+        ('unknown', 'Don\'t know (didn\'t dive last year)')
+    )
+
     user = ForeignKey(User)
     int_group = ForeignKey(InterviewGroup)
     resource = ForeignKey(Resource)
@@ -353,6 +375,11 @@ class InterviewShape(Model):
     boundary_e = CharField( max_length=100, blank=True, null=True )
     boundary_w = CharField( max_length=100, blank=True, null=True )
     note_text = CharField( max_length=1000, blank=True, null=True )
+    days_visited = IntegerField( blank=True, null=True )
+    primary_acc_point = ForeignKey(CaCoastPlacemarks)
+    primary_acc_method = CharField( max_length=20, choices=AccessMethodChoices, default=None, blank=True, null=True )
+    abalone_harvest = CharField( max_length=20, choices=AbaloneHarvestChoices, default=None, blank=True, null=True )
+    abalone_time = CharField( max_length=20, choices=AbaloneTimeChoices, default=None, blank=True, null=True )
     creation_date = DateTimeField(default=datetime.datetime.now)
     objects = InterviewShapeManager()
     
