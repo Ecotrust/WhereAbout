@@ -34,6 +34,7 @@ urlpatterns = patterns('',
     (r'^group_qs/([A-Za-z0-9_-]+)/answer/$', answer_questions ),
     (r'^group_qs/([A-Za-z0-9_-]+)/view/$', view_answers ),
     (r'^answer_resource_questions/([A-Za-z0-9_-]+)/$', answer_resource_questions ),
+    (r'^answer_resource_questions/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/$', answer_resource_questions ),
     (r'^review_resource_questions/([A-Za-z0-9_-]+)/$', answer_resource_questions, {'next_url': '/group_status#main_menu'} ),
 
     (r'^select_group_resources/([A-Za-z0-9_-]+)/$', select_group_resources ),

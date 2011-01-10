@@ -656,7 +656,7 @@ def select_group_resources(request, group_id):
     return render_to_response( 'select_group_resources.html', RequestContext(request,{'group':group, 'form': form, 'value':'Continue','interview':request.session['interview']}))     
     
 @login_required
-def answer_resource_questions(request, group_id, next_url=None):
+def answer_resource_questions(request, group_id, next_url=None, resource=None):
 
     # make sure the user has a valid session in-progress
     try:
@@ -707,7 +707,7 @@ def answer_resource_questions(request, group_id, next_url=None):
 
     if request.method == 'GET':
         if group.independent:
-            resource_id = request.GET.get('resource_id')
+            resource_id = resource
             ansForm = AnswerForm
             ExtJsForm.addto(ansForm)
             form = ansForm( questions, answers, group_id, resource_id)
@@ -721,12 +721,12 @@ def answer_resource_questions(request, group_id, next_url=None):
         # form validation
         forms_valid = True
         if group.independent:
-            resource_id = request.POST.get('resource_id')
+            resource_id = resource
             ansForm = AnswerForm
             ExtJsForm.addto(ansForm)
             form = ansForm(questions, answers, group_id, resource_id, request.POST)
             if not form.is_valid():
-                    forms_valid = False
+                forms_valid = False
         else:
             for sel_resource in sel_resources:
                 form = AnswerForm(questions, answers, group_id, sel_resource.resource.id, request.POST)
@@ -1263,6 +1263,8 @@ def shapes(request, id=None):
                 resource_id = feat.get('resource_id'),
                 primary_acc_point_id = feat.get('primary_acc_point'),
                 primary_acc_method = feat.get('primary_acc_method'),
+                abalone_harvest = feat.get('abalone_criteria'),
+                abalone_time = feat.get('abalone_time'),
                 days_visited = feat.get('days_visited')
             )                        
             new_shape.save() 

@@ -51,29 +51,45 @@
                     used in each of the following categories - note that the sum should equal 100%. If you did not spend money or<br />
                     make purchases in a category, <b>please put a zero for that category</b>.
                 <p>
+                {% for question in form %}  <!-- inner loop to stack errors from % questions in one place -->
+                    {% if forloop.counter > 2 %}
+                        {% if forloop.counter < 20 %}
+                            {{ question.errors }}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                <table border="0">
+                <tr>
+                    <td style="padding-right: 0px;">
+                        <table style="margin-left: 60px" border="1">
             {% endifequal %}
-            {{ question.errors }}
+            {% if forloop.counter < 20 %}
+                <tr>
+                    <td>{{ question.label_tag }}</td>
+                    <td style='width: 115px'>{{ question }} %</td>
+                </tr>
+            {% endif %}
+            {% ifequal forloop.counter 20 %}
+                </table>
+                </td>
+                </tr>
+                </table>
+                <p><div class="fieldWrapper">
+                    {{ question.errors }}
+                    <table>
+                        <tr>
+                            <td style='width:400px'>
+                                {{ question.label_tag }}: 
+                            </td>
+                            <td style='vertical-align: bottom'>
+                                {{ question }}
+                            </td>
+                        </tr>
+                    </table>
+                </div></p>
+            {% endifequal %}
         {% endif %}
-    {% endfor %}
-    {% for question in form %}
-        {% ifequal forloop.counter 3 %}  
-            <table border="0">
-            <tr>
-                <td style="padding-right: 0px;">
-                    <table style="margin-left: 60px" border="1">
-        {% endifequal %}
-        {% if forloop.counter > 2 %}
-            <tr>
-                <td>{{ question.label_tag }}</td>
-                <td style='width: 115px'>{{ question }} %</td>
-            </tr>
-        {% endif %}
-
     {% endfor %}   
-    </table>
-    </td>
-    </tr>
-    </table>
     <p><input id="submit" type="submit" value="{{ value }}" style="margin: 20px"/>
     {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
     </p>

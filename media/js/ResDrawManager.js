@@ -120,8 +120,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      *  If user knows of specific MPAs, ask them which.  Else, move on to resource select. 
      */
     contResourceQuestionStep: function() {
-        this.yes_val = "a28"
-        if (this.ResourceQuestionPanel.question_panel.getForm().getFieldValues().question_93 == this.yes_val) {
+        this.yes_val = "a28"; //the id for option value of "yes"
+        this.val_93 = this.ResourceQuestionPanel.question_panel.getForm().getFieldValues()['question_93_'+this.curResource.id];
+        if (this.val_93 == this.yes_val) {
             this.loadPrimaryLocationQuestionPanel();
         } else {
             this.finResourceQuestionStep();
@@ -669,17 +670,19 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     loadResourceQuestionPanel: function() {
-        if (!this.ResourceQuestionPanel) {
-            this.ResourceQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
-                xtype: 'gwst-group-questions-panel',
-                // form: gwst.settings.question_form,
-                group_name: 'Resource Questions',
-                form_url: gwst.settings.urls.resource_questions + '8/',
-                resource_id: this.curResource.get('id')
-            });
-            this.ResourceQuestionPanel.on('grp-qstn-cont', this.contResourceQuestionStep, this);
-            this.ResourceQuestionPanel.on('grp-qstn-back', this.backResourceQuestionStep, this);
+        if (this.ResourceQuestionPanel) {
+            this.ResourceQuestionPanel.destroy();
         }
+        this.ResourceQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
+            xtype: 'gwst-group-questions-panel',
+            // form: gwst.settings.question_form,
+            group_name: 'Resource Questions',
+            form_url: gwst.settings.urls.resource_questions + '8/None/' + this.curResource.get('id') + '/',
+            // form_url: gwst.settings.urls.resource_questions + '8/None/'+ this.curResource.id +'/',
+            resource_id: this.curResource.get('id')
+        });
+        this.ResourceQuestionPanel.on('grp-qstn-cont', this.contResourceQuestionStep, this);
+        this.ResourceQuestionPanel.on('grp-qstn-back', this.backResourceQuestionStep, this);
         this.viewport.setWestPanel(this.ResourceQuestionPanel);    	
     },
 	

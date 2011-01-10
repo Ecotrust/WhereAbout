@@ -18,11 +18,12 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
           this, arguments);                     
     },
 	
-    updateText: function(text_config) {
-        Ext.apply(this, text_config);
-        this.inner_text_panel.getEl().update(this.getHtmlText());
-        this.inner_form_panel.getForm().reset();
-    },
+    // updateText: function(text_config) {
+    // updateText: function() {
+        // Ext.apply(this, text_config);
+        // this.inner_text_panel.getEl().update(this.getHtmlText());
+        // this.inner_form_panel.getForm().reset();
+    // },
     
     getHtmlText: function() {
         var html_text = '<h2>Instructions</h2>';
@@ -114,10 +115,50 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             width: 120
         });
         
+        this.abalone_criteria = new Ext.form.ComboBox({
+            id: 'ab-criteria',
+            name: 'abalone_criteria',
+            fieldLabel: 'In this '+this.shape_name+' do you primarily harvest',
+            store: [
+                'The first available abalone',
+                'Abalone based on size'
+            ],
+            emptyText:'Select a citeria',
+            editable: false,
+            listWidth: 150,
+            triggerAction: 'all',
+            style: 'margin: 0px 0px 10px 10px',
+			border: false,
+            // boxMaxWidth: 148,
+            width: 120
+        });
+        
+        this.abalone_time = new Ext.form.ComboBox({
+            id: 'abalone-time',
+            name: 'abalone_time',
+            fieldLabel: 'Based on your previously mentioned harvest method, compared to other years, how much time did it take you, on average, to make your daily harvest limit in this area',
+            store: [
+                'Significantly more time',
+                'Somewhat more time',
+                'The same amount of time',
+                'Somewhat less time',
+                'Significantly less time',
+                'Didn\'t target last year'
+            ],
+            emptyText:'Select a choice',
+            editable: false,
+            triggerAction: 'all',
+            style: 'margin: 0px 0px 10px 10px',
+			border: false,
+            listWidth: 155,
+            width: 120
+        });
+        
         this.days_visited = new Ext.form.NumberField({
             fieldLabel: 'Number of days this site was visited in 2010',
             name: 'days_visited',
-            maxValue: this.days_max
+            maxValue: this.days_max,
+            minValue: 1
         });
 
         this.select_panel = new Ext.Panel({
@@ -158,6 +199,8 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
                 hidden: true
             },
             this.primary_acc_method,
+            this.abalone_criteria,
+            this.abalone_time,
             this.days_visited,
             {
                 fieldLabel: 'North Boundary',
@@ -193,6 +236,13 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
     selectPlacemarkSelected: function(rec_id) {
         if (gwst.settings.actualSelection) {
             this.inner_form_panel.show();
+            if (this.resource.indexOf('Dive') == -1) {
+                this.primary_acc_method.hide();
+            }
+            if (this.resource.indexOf('Abalone') == -1) {
+                this.abalone_criteria.hide();
+                this.abalone_time.hide();
+            }
             Ext.getDom('alph-select').selectedIndex=0;
             this.rec = gwst.settings.placemarkStore.getById(rec_id);
             this.fireEvent('place-selected', this.rec);
@@ -214,11 +264,16 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         }
 	},
     
-    update: function() {
-        this.updateText();
+    update: function(config) {
+        Ext.apply(this, config);
+        this.days_visited.applyState({maxValue: this.days_max});
+        this.inner_form_panel.getForm().reset();
         Ext.getDom('northsouth-select').selectedIndex=0;
         Ext.getDom('alph-select').selectedIndex=0;
         this.inner_form_panel.getForm().reset();
+        this.primary_acc_method.show();
+        this.abalone_criteria.show();
+        this.abalone_time.show();
         this.inner_form_panel.hide();
         this.button_panel.disableCont();
     },
@@ -227,8 +282,12 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.form_values = this.inner_form_panel.getForm('shape_attrib_form_panel').getValues();
         if ( this.form_values.primary_acc_point == '') {
             gwst.error.load('Please select a primary access point for this '+this.shape_name+'.');
-        } else if (this.form_values.primary_acc_method == 'Select a method') {
+        } else if (this.form_values.primary_acc_method == 'Select a method' && this.resource.indexOf('Dive') != -1) {
             gwst.error.load('Please select a primary access method for this '+this.shape_name+'.');
+        } else if (this.form_values.abalone_criteria == 'Select a criteria' && this.resource.indexOf('Abalone') != -1) {
+            gwst.error.load('Please select a targeting criteria for this '+this.shape_name+'.');
+        } else if (this.form_values.abalone_time == 'Select a choice' && this.resource.indexOf('Abalone') != -1) {
+            gwst.error.load('Please select a relative time spent choice for this '+this.shape_name+'.');
         } else if (this.form_values.days_visited == '' || isNaN(this.form_values.days_visited) ) {
             gwst.error.load('Please enter the number of days that you visited this '+this.shape_name+'.');
         } else if (this.form_values.days_visited > this.days_max ) {

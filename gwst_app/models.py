@@ -352,8 +352,8 @@ class InterviewShape(Model):
     )
     
     AbaloneHarvestChoices = (
-        ('first', 'the first available abalone'),
-        ('size', 'target abalone for size')
+        ('first', 'The first available abalone'),
+        ('size', 'Abalone based on size')
     )
     
     AbaloneTimeChoices = (
@@ -362,7 +362,7 @@ class InterviewShape(Model):
         ('same', 'The same amount of time'),
         ('some less', 'Somewhat less time'),
         ('much less', 'Significantly less time'),
-        ('unknown', 'Don\'t know (didn\'t dive last year)')
+        ('unknown', 'Didn\'t target last year')
     )
 
     user = ForeignKey(User)

@@ -54,10 +54,9 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.add(form);
     },
     
-    fill_question_panel: function(form) {
+    fill_question_panel: function() {
         var a = new Ext.ux.DjangoForm({
             url:this.form_url, 
-            resource_id: this.resource_id,
             callback:this.loadQuestionPanel.createDelegate(this),
             showButtons: false
         });
@@ -69,18 +68,32 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     contBtnClicked: function() {
-        
         if (this.question_panel.getForm().isValid()) {
             this.question_panel.getForm().submit({
                 scope:this.question_panel,
-                resource_id: this.resource_id,
                 source: 'Draw Manager'
             });
         } else {
             this.invalid()
         }
-        
         this.fireEvent('grp-qstn-cont', this.result, this);
+    },
+    
+    update: function(context) {
+        Ext.apply(context);
+        this.header_panel.applyState({  
+            id: 'basic_qs_header_panel'+this.group_name+this.resource_id
+        });
+        this.instruction_panel.applyState({
+            id: 'basic_qs_instruciton_panel_'+this.group_name+this.resource_id
+        });
+        this.remove(this.button_panel);
+        this.remove(this.question_panel);
+        this.question_panel.destroy();
+        this.question_panel = this.fill_question_panel();
+        this.add(this.question_panel);
+        this.add(this.button_panel);
+        this.doLayout();
     }
 	
 });
