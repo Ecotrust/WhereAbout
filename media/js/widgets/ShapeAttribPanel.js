@@ -17,13 +17,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         gwst.widgets.ShapeAttribPanel.superclass.initComponent.apply(
           this, arguments);                     
     },
-	
-    // updateText: function(text_config) {
-    // updateText: function() {
-        // Ext.apply(this, text_config);
-        // this.inner_text_panel.getEl().update(this.getHtmlText());
-        // this.inner_form_panel.getForm().reset();
-    // },
     
     getHtmlText: function() {
         var html_text = '<h2>Instructions</h2>';
@@ -58,7 +51,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         },
         
         makeAlphSelect: function() {
-            // if (navigator.appName == "Netscape" && navigator.appVersion.indexOf("Safari") == -1){
             if (Ext.isGecko || Ext.isGecko2 || Ext.isGecko3){
                 this.select_action = ' onchange="eval(this.value);" onmouseover="gwst.settings.alphActualSelection = true;" onmouseout="gwst.settings.alphActualSelection = false;" ';
             } else {
@@ -129,7 +121,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             triggerAction: 'all',
             style: 'margin: 0px 0px 10px 10px',
 			border: false,
-            // boxMaxWidth: 148,
             width: 120
         });
         
@@ -246,7 +237,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             Ext.getDom('alph-select').selectedIndex=0;
             this.rec = gwst.settings.placemarkStore.getById(rec_id);
             this.fireEvent('place-selected', this.rec);
-            // Ext.getDom('prim-acc-point').value = rec_id;
             this.inner_form_panel.get('prim-acc-point').setValue(this.rec.get('feature').data.pk_uid);
             this.button_panel.enableCont();
         }
@@ -258,7 +248,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             Ext.getDom('northsouth-select').selectedIndex=0;
             this.rec = gwst.settings.alphPlacemarkStore.getById(rec_id);
             this.fireEvent('place-selected', this.rec);
-            // Ext.getDom('prim-acc-point').value = rec_id;
             this.inner_form_panel.get('prim-acc-point').setValue(this.rec.get('feature').data.pk_uid);
             this.button_panel.enableCont();
         }

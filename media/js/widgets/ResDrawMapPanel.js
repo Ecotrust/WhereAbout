@@ -58,6 +58,20 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             labelAlign: "cm"            
         }, OpenLayers.Feature.Vector.style["default"]));
         
+        var otherDefaultStyle = new OpenLayers.Style(OpenLayers.Util.applyDefaults({
+            fillColor: 'blue',
+            fillOpacity: 0.4,
+            strokeColor: 'blue',
+            strokeOpacity: 1,
+            strokeWidth: 1,
+            cursor: 'pointer',
+            pointerEvents: "visiblePainted",
+            // label : "${resource}",
+            fontColor: "black",
+            fontSize: "12px",
+            labelAlign: "cm"            
+        }, OpenLayers.Feature.Vector.style["default"]));
+        
         var selectStyle = new OpenLayers.Style(OpenLayers.Util.applyDefaults({ 
             strokeWidth: 3,
             fillColor: '#ff8c00',
@@ -67,6 +81,20 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             cursor: 'default',
             pointerEvents: "visiblePainted",
             label : "${pennies}",
+            fontColor: "black",
+            fontSize: "12px",
+            labelAlign: "cm"
+        }, OpenLayers.Feature.Vector.style["select"]));
+        
+        var otherSelectStyle = new OpenLayers.Style(OpenLayers.Util.applyDefaults({ 
+            strokeWidth: 3,
+            fillColor: 'blue',
+            strokeColor: 'lightgreen',
+            strokeOpacity: 1,
+            fillOpacity: 0.4,
+            cursor: 'default',
+            pointerEvents: "visiblePainted",
+            // label : "${Resource}",
             fontColor: "black",
             fontSize: "12px",
             labelAlign: "cm"
@@ -105,6 +133,12 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             'select': selectStyle,
             'temporary': tempStyle
         }); 
+        
+        var myOtherStyle = new OpenLayers.StyleMap({
+            'default': otherDefaultStyle,
+            'select': otherSelectStyle,
+            'temporary': tempStyle
+        });
 	    
         var baseLayer = new OpenLayers.Layer.TMS(
             "Oregon Nautical Charts", 
@@ -125,9 +159,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                         var limit = Math.pow(2, z);
                         var path = z + "/" + x + "/" + y + ".png";
                     }
-                    // if (url instanceof Array) {
-                        // url = this.selectUrl(path, url);    //TODO: Does this exist?
-                    // }
                     tilepath = url + path;
                     return url + path;
                 }
@@ -136,7 +167,12 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         
         this.vecLayer = new OpenLayers.Layer.Vector('Fishing Grounds',{
             styleMap: myStyle
-        });                      
+        });       
+
+        this.vecOtherLayer = new OpenLayers.Layer.Vector('Other Fishing Grounds',{
+            styleMap: myOtherStyle
+        });
+        
         this.vecLayer.events.on({
             "sketchstarted": this.resShapeStarted,
             "skethmodified": this.resShapeModified,
@@ -169,10 +205,14 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         map.addControl(this.selectControl);
         this.selectControl.activate();
         
+        this.selectOtherControl = new OpenLayers.Control.SelectFeature(this.vecOtherLayer);        
+        map.addControl(this.selectOtherControl);
+        this.selectOtherControl.activate();
+        
         this.modifyControl = new OpenLayers.Control.ModifyFeature(this.vecLayer);
         map.addControl(this.modifyControl);
 
-        map.addLayers([baseLayer, this.vecLayer]);
+        map.addLayers([baseLayer, this.vecLayer, this.vecOtherLayer]);
         
         var layerStore = new GeoExt.data.LayerStore({
             layers: [baseLayer],
@@ -236,9 +276,21 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     	this.selectControl.select(feature);
     },
     
+    zoomToOtherResShape: function(feature) {
+        this.autoZoom = true
+        this.map.zoomToExtent(feature.geometry.bounds);
+        this.selectOtherControl.unselectAll();
+    	this.selectOtherControl.select(feature);
+    },
+    
     zoomToAllShapes: function() {
         this.autoZoom = true
     	this.map.zoomToExtent(this.vecLayer.getDataExtent());    	
+    },
+    
+    zoomToAllOtherShapes: function() {
+        this.autoZoom = true
+    	this.map.zoomToExtent(this.vecOtherLayer.getDataExtent());    	
     },
     
     zoomToPoint: function(pnt) {
@@ -249,6 +301,11 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     getShapeLayer: function() {
         this.autoZoom = true
     	return this.vecLayer;
+    },
+    
+    getOtherShapeLayer: function() {
+        this.autoZoom = true
+    	return this.vecOtherLayer;
     },
     
     enableResDraw: function() {

@@ -25,6 +25,7 @@ gwst.settings = {
     
     resourceStore: null,	//Ext JsonStore of available resources
     shapeStore: null,		//GeoExt FeatureStore of user-drawn shapes
+    otherResourceShapeStore: null,		//GeoExt FeatureStore of user-drawn shapes for non-current resource
     
     resource_days: null,    //number of days user targeted specific resource
     

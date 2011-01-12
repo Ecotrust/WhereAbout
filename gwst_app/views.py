@@ -1179,7 +1179,10 @@ def shapes(request, id=None):
         if (request.GET.get('group_id')):
             shape_qs = shape_qs.filter(int_group__id=request.GET.get('group_id'))
         if (request.GET.get('resource_id')):
-            shape_qs = shape_qs.filter(resource__id =request.GET.get('resource_id'))
+            if (request.GET.get('all_other_resources')):
+                shape_qs = shape_qs.all().exclude(resource__id = request.GET.get('resource_id'))
+            else:
+                shape_qs = shape_qs.filter(resource__id = request.GET.get('resource_id'))
         return render_to_geojson(
             shape_qs,
             geom_attribute='geometry',

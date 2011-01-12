@@ -148,7 +148,9 @@ COMPRESS_JS = {
             'js/widgets/WaitWindow.js', 
             'js/widgets/AllocPanel.js', 
             'js/widgets/PennyPanel.js', 
+            'js/widgets/CopyPanel.js', 
             'js/widgets/QuitWindow.js', 
+            'js/widgets/CopyButtonWindow.js', 
             'js/widgets/BackContButtons.js', 
             'js/widgets/CustomButtons.js', 
             'js/widgets/Draw2Panel.js', 
@@ -172,6 +174,7 @@ COMPRESS_JS = {
             'js/widgets/GroupQuestionsPanel.js', 
             'js/widgets/NavigatePanel.js', 
             'js/widgets/PennyWindow.js', 
+            'js/widgets/CopyWindow.js', 
             'js/widgets/YesNoButtons.js', 
             'js/widgets/QuitCheckWindow.js'), 
         'output_filename': 'compressed/gwst_compressed.js'

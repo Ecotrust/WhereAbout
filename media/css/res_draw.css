@@ -103,6 +103,10 @@ p.x-panel-static{
     background-image: url(/site-media/images/house.png) !important;
 }
 
+.copy-button{
+    background-image: url(/site-media/images/layers.png) !important;
+}
+
 .begin-draw {
 	background-image: url(/site-media/images/pencil_go.png) !important;
 }
@@ -132,6 +136,14 @@ p.x-panel-static{
 }
 
 .pennies-zoom {
+	background-image: url(/site-media/images/zoom.png) ! important;
+}
+
+.copy-shape{
+    background-image: url(/site-media/images/layers.png) ! important;
+}
+
+.copy-zoom {
 	background-image: url(/site-media/images/zoom.png) ! important;
 }
 

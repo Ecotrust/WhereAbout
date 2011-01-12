@@ -18,7 +18,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     layerWin: null,		//Map layers window
     layerWinOffset: [-8, 8],	//Offset from top right to render
     quitWinOffset: [308, 8],	//Offset from top left to render
-    drawToolWinOffset: [450, 8],	//Offset from top left to render
+    copyWinOffset: [450, 8],	//Offset from top left to render
+    drawToolWinOffset: [537, 8],	//Offset from top left to render
 
     constructor: function(){
         gwst.ResDrawManager.superclass.constructor.call(this);
@@ -238,6 +239,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process and finish draw step
      */
     finDrawStep: function() {
+        this.copyWin.hide();
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -248,6 +250,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from draw step to resource selection
      */
     backDrawStep: function() {
+    this.copyWin.hide();
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -261,6 +264,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Setup UI for shape grid drawing step 
      */
     startDraw2Step: function() {
+        this.loadCopyWin();
         this.validateEdit = false;
         if (gwst.settings.shapeStore.getCount() > 0) {
             this.loadDraw2Panel();        
@@ -274,6 +278,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process and finish draw step
      */
     finDraw2Step: function() {
+        this.copyWin.hide();
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -285,11 +290,34 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from draw step to resource selection
      */
     backDraw2Step: function() {
+        this.copyWin.hide();
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
         this.mapPanel.disableResDraw();  
         this.startNavStep();         
+    },
+    
+    /******************** Copy Shape Step *******************/
+    
+    /*
+     * Load up store for shapes for other resources
+     */
+    startCopyStep: function(){
+        this.finDrawStep();
+        this.loadOtherResouceShapeStore(this.mapPanel.getOtherShapeLayer());
+    },
+    
+    finCopyStep: function(record) {
+        // this.mapPanel.vecOtherLayer.display(false);
+        gwst.settings.otherResourceShapeStore.removeAll();
+        this.resShapeComplete(record.get('feature'));
+    },
+    
+    backCopyStep: function() {
+        // this.mapPanel.vecOtherLayer.display(false);
+        gwst.settings.otherResourceShapeStore.removeAll();
+        this.startDraw2Step();
     },
     
     /******************** Edit Shape Step *******************/
@@ -548,6 +576,17 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.quitCheckWin.show();
     },
     
+    /* Create Copy Feature window*/
+    loadCopyWin: function() {
+    	if (!this.copyWin) {
+			this.copyWin = new gwst.widgets.CopyButtonWindow();
+			// this.copyWin.on('copy-button', this.loadCopyPanel, this);
+			this.copyWin.on('copy-button', this.startCopyStep, this);
+		}
+		this.copyWin.show();		
+		this.copyWin.alignTo(document.body, "tl-tl", this.copyWinOffset);    	
+    },
+    
     /* Load the initial splash screen for the user */
     loadSplash: function() {  
     	if (!this.splashPanel) {
@@ -675,10 +714,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.ResourceQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
             xtype: 'gwst-group-questions-panel',
-            // form: gwst.settings.question_form,
             group_name: 'Resource Questions',
             form_url: gwst.settings.urls.resource_questions + '8/None/' + this.curResource.get('id') + '/',
-            // form_url: gwst.settings.urls.resource_questions + '8/None/'+ this.curResource.id +'/',
             resource_id: this.curResource.get('id')
         });
         this.ResourceQuestionPanel.on('grp-qstn-cont', this.contResourceQuestionStep, this);
@@ -803,6 +840,31 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.draw2Panel); 
         this.draw2Panel.updateGrid();
+    },
+    
+     /* Load the copy feature west panel */
+    loadCopyPanel: function() {
+        this.copyWin.hide();
+    	if (!this.copyPanel) {
+            this.copyPanel = new gwst.widgets.CopyPanel({
+                xtype: 'gwst-copy-panel',
+                resource: this.curResource.get('name'),
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
+                shape_name: gwst.settings.interview.shape_name
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.copyPanel.on('copy-cont', this.finCopyStep, this);
+            this.copyPanel.on('copy-back', this.backCopyStep, this);
+            this.copyPanel.on('copy-zoom-shape', this.zoomMapToOtherResourceShape, this);
+            this.copyPanel.on('copy-zoom-all', this.zoomToAllOtherShapes, this);
+        } else {
+            this.copyPanel.updateText({
+                resource: this.curResource.get('name'),
+                shape_name_plural: gwst.settings.interview.shape_name_plural,
+                shape_name: gwst.settings.interview.shape_name
+            });
+        }
+        this.viewport.setWestPanel(this.copyPanel);    	
     },
     
     /* Load the shape grid draw west panel */
@@ -1026,10 +1088,18 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     zoomMapToShape: function(record) {
         this.mapPanel.zoomToResShape(record.get('feature'));
     },
+    
+    zoomMapToOtherResourceShape: function(record) {
+        this.mapPanel.zoomToOtherResShape(record.get('feature'));
+    },
 
     zoomToAllShapes: function(record) {
         this.mapPanel.zoomToAllShapes();
-    },    
+    },   
+
+    zoomToAllOtherShapes: function(record) {
+        this.mapPanel.zoomToAllOtherShapes();
+    },
     
     /*
      * Handler for user starting a shape
@@ -1043,6 +1113,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     resShapeComplete: function(feature) {
     	//Validate the feature
+        this.copyWin.hide();
         this.validateShape({
             geometry: feature.geometry,
             resource: gwst.settings.survey_group_id+'-'+this.curResource.id
@@ -1422,18 +1493,21 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         gwst.settings.resourceStore.loadData(resources);
     },
 
-    _getResourceUrl: function() {
+    _getResourceUrl: function(otherResources) {
     	var service_url = gwst.settings.urls.shapes+'?group_id='+gwst.settings.survey_group_id;
     	if (this.curResource && this.curResource.id) {
     		service_url += '&resource_id='+this.curResource.id;
+            if (otherResources) {
+                service_url += '&all_other_resources=true';
+            }
     	}
         return service_url;
     },
     
-    _createResourceProxy: function() {
+    _createResourceProxy: function(otherResources) {
         var prxy = new GeoExt.data.ProtocolProxy({
             protocol: new OpenLayers.Protocol.HTTP({
-                url: this._getResourceUrl(),
+                url: this._getResourceUrl(otherResources),
                 format: new OpenLayers.Format.GeoJSON()
             })
         })
@@ -1493,6 +1567,59 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	    
     },
     
+    loadOtherResouceShapeStore: function(shapeLayer) {
+	    if (!gwst.settings.otherResourceShapeStore) {
+            var autoLoad = false;
+            if (this.curResource && this.curResource.id) {
+                autoLoad = true;
+            }
+            gwst.settings.otherResourceShapeStore = new gwst.data.ResFeatureStore({
+                layer: shapeLayer, 	        
+                proxy:  this._createResourceProxy(true),
+                fields: [{
+                    name:'id',
+                    type: 'string',
+                    defaultValue: ''
+                },{
+                    name:'pennies',
+                    type:'int',
+                    defaultValue: 0
+                },{
+                    name: 'boundary_n',
+                    type: 'string',
+                    defaultValue: ''
+                },{
+                    name: 'boundary_s',
+                    type: 'string',
+                    defaultValue: ''
+                },{
+                    name: 'boundary_e',
+                    type: 'string',
+                    defaultValue: ''
+                },{
+                    name: 'boundary_w',
+                    type: 'string',
+                    defaultValue: ''
+                }],	        
+                autoLoad: autoLoad  
+            });
+            
+            //If we're autoloading, don't listen for load event until after its preloaded, otherwise start listening now
+            if (autoLoad) {
+                // Zoom to all on load
+                gwst.settings.otherResourceShapeStore.on('load', this.afterOtherResourceShapesLoaded, this);
+                gwst.settings.otherResourceShapeStore.on('load', this.configOtherResourceShapeStore, this);
+            } else {
+                this.configOtherResourceShapeStore();
+            }
+        } else {
+            gwst.settings.otherResourceShapeStore.on('load', this.afterOtherResourceShapesLoaded, this);
+            gwst.settings.otherResourceShapeStore.proxy = this._createResourceProxy(true);
+            gwst.settings.otherResourceShapeStore.reload();
+        }
+	    
+    },
+    
     loadCaCoastPlacemarks: function() {
     	this.loadWait('Loading California North Central Coast Placemarks...');
         gwst.settings.placemarkStore = new GeoExt.data.FeatureStore({
@@ -1541,11 +1668,29 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         gwst.settings.shapeStore.removeListener('load', this.afterShapesLoaded, this);
     },
     
+    //remove listener and zoom in - listener removed because 'load' is firing when a new shape is drawn and saved.
+    afterOtherResourceShapesLoaded: function() {
+        if (gwst.settings.otherResourceShapeStore.getCount() > 0) {
+            this.zoomToAllOtherShapes();
+            gwst.settings.otherResourceShapeStore.removeListener('load', this.afterOtherResourceShapesLoaded, this);
+            this.loadCopyPanel();
+        } else {
+            gwst.error.load('You have no other '+gwst.settings.interview.shape_name_plural+' drawn.');
+        }
+    },
+    
     //Once store has been initially loaded, add events to handle adding and updating of records.
     configShapeStore: function() {
         gwst.settings.shapeStore.removeListener('load', this.configShapeStore, this);
     	gwst.settings.shapeStore.on('add', this.trackNewShape, this);
     	gwst.settings.shapeStore.on('update', this.updateSavedShape, this);    	
+    },
+    
+    //Once Other Resources store has been initially loaded, add events to handle selecting of records.
+    configOtherResourceShapeStore: function() {
+        gwst.settings.otherResourceShapeStore.removeListener('load', this.configOtherResourceShapeStore, this);
+    	gwst.settings.otherResourceShapeStore.on('add', this.trackNewShape, this);
+    	gwst.settings.otherResourceShapeStore.on('update', this.updateSavedShape, this);    	
     },
     
     //Add a freshly validated shape to the map
