@@ -45,9 +45,13 @@ MEDIA_ROOT = 'set-in-local_settings'
 MEDIA_URL = '/site-media/'
 
 # Absolute path to the directory that holds media from multiple applications.
+# Both sets (with and without 'FILES') seem to be necessary to work on newer versions of Django
+    # This would be a good thing to investigate when there is time
 STATICFILES_ROOT = 'set-in-local_settings'
+STATIC_ROOT = 'set-in-local_settings'
 
 STATICFILES_URL = 'set-in-local-settings'
+STATIC_URL = 'set-in-local-settings'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
