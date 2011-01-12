@@ -31,7 +31,7 @@
                 <table>
                     <tr>
                         <td style='width:400px'>
-                            {{ question.label_tag }}: 
+                            {{ question.label|safe }} : 
                         </td>
                         <td style='vertical-align: bottom'>
                             {{ question }}
@@ -65,7 +65,7 @@
             {% endifequal %}
             {% if forloop.counter < 20 %}
                 <tr>
-                    <td>{{ question.label_tag }}</td>
+                    <td>{{ question.label|safe }}</td>
                     <td style='width: 115px'>{{ question }} %</td>
                 </tr>
             {% endif %}
@@ -79,7 +79,7 @@
                     <table>
                         <tr>
                             <td style='width:400px'>
-                                {{ question.label_tag }}: 
+                                {{ question.label|safe }}: 
                             </td>
                             <td style='vertical-align: bottom'>
                                 {{ question }}

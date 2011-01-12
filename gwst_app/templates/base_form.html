@@ -27,7 +27,7 @@
                 <table>
                     <tr>
                         <td>
-                            {{ field.label_tag }}:
+                            {{ field.label|safe }}:
                         </td>
                     </tr><tr>
                         <td>
@@ -39,7 +39,7 @@
                 <table>
                     <tr>
                         <td style='width:{{ q_width }}px'>
-                            {{ field.label_tag }}:
+                            {{ field.label|safe }}:
                         </td>
                         <td>
                             {{ field }}
