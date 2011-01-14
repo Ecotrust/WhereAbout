@@ -4627,7 +4627,7 @@
       "int_group": 4, 
       "question_set": null, 
       "display_order": 60.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": null, 
@@ -4648,7 +4648,7 @@
       "int_group": 5, 
       "question_set": null, 
       "display_order": 10.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": 0.0, 
@@ -4711,7 +4711,7 @@
       "int_group": 5, 
       "question_set": null, 
       "display_order": 20.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": 0.0, 
@@ -4753,6 +4753,27 @@
     }
   }, 
   {
+    "pk": 103, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "factor_oth", 
+      "layout": "vertical", 
+      "eng_text": "If you selected 'other' for a primary factor, place specify", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 40.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "textarea", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 70, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -4763,7 +4784,7 @@
       "int_group": 6, 
       "question_set": null, 
       "display_order": 10.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": 0.0, 
@@ -4784,7 +4805,7 @@
       "int_group": 6, 
       "question_set": null, 
       "display_order": 20.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": 0.0, 
@@ -5162,7 +5183,7 @@
       "int_group": 6, 
       "question_set": 2, 
       "display_order": 200.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [
         "a21", 
@@ -5184,7 +5205,7 @@
     "fields": {
       "all_resources": false, 
       "code": "gender", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Gender", 
       "int_group": 7, 
       "question_set": null, 
@@ -5209,7 +5230,7 @@
     "fields": {
       "all_resources": false, 
       "code": "age", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Age", 
       "int_group": 7, 
       "question_set": null, 
@@ -5230,7 +5251,7 @@
     "fields": {
       "all_resources": false, 
       "code": "race", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Race", 
       "int_group": 7, 
       "question_set": null, 
@@ -5258,7 +5279,7 @@
     "fields": {
       "all_resources": false, 
       "code": "education", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Level of education", 
       "int_group": 7, 
       "question_set": null, 
@@ -5285,7 +5306,7 @@
     "fields": {
       "all_resources": false, 
       "code": "income", 
-      "layout": "horizontal", 
+      "layout": null, 
       "eng_text": "Total household income", 
       "int_group": 7, 
       "question_set": null, 
@@ -5391,7 +5412,7 @@
       "int_group": 8, 
       "question_set": null, 
       "display_order": 40.0, 
-      "required": true, 
+      "required": false, 
       "question_group": null, 
       "options": [
         "a28", 

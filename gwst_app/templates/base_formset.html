@@ -6,6 +6,10 @@
 {% if instructions %}
 <div style='width:600px'>{{ instructions.main|safe }}</div>
 {% endif %}
+<div style='width:600px'>
+<h4>Note to interviewer:</h4>
+<p>Please be <u>extra clear</u> about the distinction between <b>'diving'</b> for dive activities and <b>'shore picking'</b> for others. We do not want answers to be about combined methods for the same species.</p>
+</div>
    <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
    {% for name, form in forms.items %}
    {{ form.non_field_errors }}
