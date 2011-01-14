@@ -4495,9 +4495,9 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "address", 
+      "code": "address1", 
       "layout": null, 
-      "eng_text": "Mailing Address", 
+      "eng_text": "Mailing Address Line 1", 
       "int_group": 4, 
       "question_set": null, 
       "display_order": 30.0, 
@@ -4507,7 +4507,70 @@
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
-      "eng_tooltip": "Interviewee's mailing address", 
+      "eng_tooltip": "Interviewee's mailing address1", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 100, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "address2", 
+      "layout": null, 
+      "eng_text": "Mailing Address Line 2", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 31.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 101, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "city", 
+      "layout": null, 
+      "eng_text": "City", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 32.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 102, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "state", 
+      "layout": null, 
+      "eng_text": "State", 
+      "int_group": 4, 
+      "question_set": null, 
+      "display_order": 33.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
       "val_max": null
     }
   }, 
