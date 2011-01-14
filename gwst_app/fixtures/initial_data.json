@@ -33,7 +33,7 @@
       "county": "Marin", 
       "lat": 38.250391, 
       "the_geom": "POINT (-259291.9062500000000000 30073.2343750000000000)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -46,7 +46,7 @@
       "county": "Marin", 
       "lat": 38.232180999999997, 
       "the_geom": "POINT (-259468.0937500000000000 28053.4257810000017344)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -59,7 +59,7 @@
       "county": "Marin", 
       "lat": 38.212049999999998, 
       "the_geom": "POINT (-255946.5312500000000000 25704.9902340000007825)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -72,7 +72,7 @@
       "county": "Marin", 
       "lat": 38.234642000000001, 
       "the_geom": "POINT (-254423.1406250000000000 28170.6718750000000000)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -85,7 +85,7 @@
       "county": "Marin", 
       "lat": 38.190370999999999, 
       "the_geom": "POINT (-258455.3437500000000000 23371.6972659999992175)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -98,7 +98,7 @@
       "county": "Marin", 
       "lat": 38.184171999999997, 
       "the_geom": "POINT (-259357.3125000000000000 22710.4804689999982656)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -111,7 +111,7 @@
       "county": "Marin", 
       "lat": 38.158937000000002, 
       "the_geom": "POINT (-258047.0625000000000000 19862.9472659999992175)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -124,7 +124,7 @@
       "county": "Marin", 
       "lat": 38.129972000000002, 
       "the_geom": "POINT (-252951.6406250000000000 16484.5156250000000000)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -137,7 +137,7 @@
       "county": "Marin", 
       "lat": 38.140838000000002, 
       "the_geom": "POINT (-251371.5156250000000000 17644.9941409999992175)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -150,7 +150,7 @@
       "county": "Marin", 
       "lat": 38.163766000000003, 
       "the_geom": "POINT (-252959.5000000000000000 20243.2910159999992175)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -170,7 +170,7 @@
     "pk": 12, 
     "model": "gwst_app.cacoastplacemarks", 
     "fields": {
-      "name": "Sea Ranch Public Access Trails", 
+      "name": "Sea Ranch Public Access Trails 1", 
       "long": -123.48317299999999, 
       "featuretyp": "Path/Trail/Drive", 
       "county": "Sonoma", 
@@ -183,7 +183,7 @@
     "pk": 13, 
     "model": "gwst_app.cacoastplacemarks", 
     "fields": {
-      "name": "Sea Ranch Public Access Trails", 
+      "name": "Sea Ranch Public Access Trails 2", 
       "long": -123.4595542, 
       "featuretyp": "Path/Trail/Drive", 
       "county": "Sonoma", 
@@ -196,7 +196,7 @@
     "pk": 14, 
     "model": "gwst_app.cacoastplacemarks", 
     "fields": {
-      "name": "Sea Ranch Public Access Trails", 
+      "name": "Sea Ranch Public Access Trails 4", 
       "long": -123.4405625, 
       "featuretyp": "Path/Trail/Drive", 
       "county": "Sonoma", 
@@ -209,7 +209,7 @@
     "pk": 15, 
     "model": "gwst_app.cacoastplacemarks", 
     "fields": {
-      "name": "Sea Ranch Public Access Trails", 
+      "name": "Sea Ranch Public Access Trails 6", 
       "long": -123.4309473, 
       "featuretyp": "Path/Trail/Drive", 
       "county": "Sonoma", 
@@ -670,7 +670,7 @@
       "county": "Marin", 
       "lat": 38.109141000000001, 
       "the_geom": "POINT (-249529.7812500000000000 14064.2324219999991328)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -683,7 +683,7 @@
       "county": "Marin", 
       "lat": 38.109589, 
       "the_geom": "POINT (-250856.7031250000000000 14154.0048829999996087)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -696,7 +696,7 @@
       "county": "Marin", 
       "lat": 38.103585000000002, 
       "the_geom": "POINT (-250513.5468750000000000 13475.8984369999998307)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -709,7 +709,7 @@
       "county": "Marin", 
       "lat": 38.094909999999999, 
       "the_geom": "POINT (-249574.7343750000000000 12482.8583980000003066)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -722,7 +722,7 @@
       "county": "Marin", 
       "lat": 38.081502999999998, 
       "the_geom": "POINT (-248292.4375000000000000 10953.2548829999996087)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -735,7 +735,7 @@
       "county": "Marin", 
       "lat": 38.086075999999998, 
       "the_geom": "POINT (-248616.5468750000000000 11471.5390630000001693)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -748,7 +748,7 @@
       "county": "Marin", 
       "lat": 38.079523000000002, 
       "the_geom": "POINT (-247683.1875000000000000 10714.8759769999996934)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -761,7 +761,7 @@
       "county": "Marin", 
       "lat": 38.044209000000002, 
       "the_geom": "POINT (-245268.4062500000000000 6715.7421869999998307)", 
-      "site_group": "Point Reyes"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -774,7 +774,7 @@
       "county": "Marin", 
       "lat": 38.042579000000003, 
       "the_geom": "POINT (-250753.2343750000000000 6698.2309569999997620)", 
-      "site_group": "Point Reyes"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1008,7 +1008,7 @@
       "county": "Marin", 
       "lat": 38.117870000000003, 
       "the_geom": "POINT (-258023.5625000000000000 15294.7900389999995241)", 
-      "site_group": "Point Reyes"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1021,7 +1021,7 @@
       "county": "Marin", 
       "lat": 38.069603999999998, 
       "the_geom": "POINT (-260868.2656250000000000 10015.5429690000000846)", 
-      "site_group": "Point Reyes"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1034,7 +1034,7 @@
       "county": "Marin", 
       "lat": 37.997987999999999, 
       "the_geom": "POINT (-262618.2187500000000000 2105.4482419999999365)", 
-      "site_group": "Point Reyes"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1047,7 +1047,7 @@
       "county": "Marin", 
       "lat": 38.027754000000002, 
       "the_geom": "POINT (-259603.0937500000000000 5321.3100590000003649)", 
-      "site_group": "Point Reyes"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1060,7 +1060,7 @@
       "county": "Marin", 
       "lat": 38.021839, 
       "the_geom": "POINT (-251312.0937500000000000 4408.4858400000002803)", 
-      "site_group": "Point Reyes"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1073,7 +1073,7 @@
       "county": "Marin", 
       "lat": 38.033177000000002, 
       "the_geom": "POINT (-255120.4218750000000000 5785.5610349999997197)", 
-      "site_group": "Point Reyes"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1086,7 +1086,7 @@
       "county": "Marin", 
       "lat": 38.055323000000001, 
       "the_geom": "POINT (-257743.2031250000000000 8329.5781250000000000)", 
-      "site_group": "Point Reyes"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1483,7 +1483,7 @@
     "pk": 113, 
     "model": "gwst_app.cacoastplacemarks", 
     "fields": {
-      "name": "Sea Ranch Public Access Trails", 
+      "name": "Sea Ranch Public Access Trails 5", 
       "long": -123.4369078, 
       "featuretyp": "Path/Trail/Drive", 
       "county": "Sonoma", 
@@ -1496,7 +1496,7 @@
     "pk": 114, 
     "model": "gwst_app.cacoastplacemarks", 
     "fields": {
-      "name": "Sea Ranch Public Access Trails", 
+      "name": "Sea Ranch Public Access Trails 3", 
       "long": -123.4459057, 
       "featuretyp": "Path/Trail/Drive", 
       "county": "Sonoma", 
@@ -1671,7 +1671,7 @@
       "county": "Marin", 
       "lat": 38.199551999999997, 
       "the_geom": "POINT (-255403.8750000000000000 24298.2617189999982656)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1684,7 +1684,7 @@
       "county": "Marin", 
       "lat": 38.182879999999997, 
       "the_geom": "POINT (-254457.9375000000000000 22414.8925779999990482)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1697,7 +1697,7 @@
       "county": "Marin", 
       "lat": 38.163291999999998, 
       "the_geom": "POINT (-255156.4843750000000000 20257.8242189999982656)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1710,7 +1710,7 @@
       "county": "Marin", 
       "lat": 38.088157000000002, 
       "the_geom": "POINT (-249024.8125000000000000 11715.2265630000001693)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1723,7 +1723,7 @@
       "county": "Marin", 
       "lat": 38.034950000000002, 
       "the_geom": "POINT (-262421.0625000000000000 6210.1914059999999154)", 
-      "site_group": "Point Reyes"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1736,7 +1736,7 @@
       "county": "Marin", 
       "lat": 38.060515000000002, 
       "the_geom": "POINT (-246881.4218750000000000 8577.0566409999992175)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
@@ -1749,7 +1749,7 @@
       "county": "Marin", 
       "lat": 38.060898000000002, 
       "the_geom": "POINT (-246774.6718750000000000 8616.3974610000004759)", 
-      "site_group": "Tomales Bay"
+      "site_group": "Tomales Bay / Point Reyes"
     }
   }, 
   {
