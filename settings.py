@@ -176,6 +176,7 @@ COMPRESS_JS = {
             'js/widgets/UnfinishedCheckWindow.js', 
             'js/widgets/UnfinishedResourceStartPanel.js', 
             'js/widgets/GroupQuestionsPanel.js', 
+            'js/widgets/AccessQuestionsPanel.js', 
             'js/widgets/NavigatePanel.js', 
             'js/widgets/PennyWindow.js', 
             'js/widgets/CopyWindow.js', 

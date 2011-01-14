@@ -3326,6 +3326,22 @@
     }
   }, 
   {
+    "pk": "73fc340f-1f5e-11e0-80d4-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 6.0, 
+      "eng_text": "North"
+    }
+  }, 
+  {
+    "pk": "89bdd05e-1f5e-11e0-9cf3-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 7.0, 
+      "eng_text": "South"
+    }
+  }, 
+  {
     "pk": "a1", 
     "model": "gwst_app.questiongroupvalidator", 
     "fields": {
@@ -5445,7 +5461,53 @@
       "options": [], 
       "val_min": null, 
       "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 98, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_outsid", 
+      "layout": null, 
+      "eng_text": "If you did not dive/shore pick in this region previously, did you do it north or south of here", 
+      "int_group": 10, 
+      "question_set": null, 
+      "display_order": 20.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "73fc340f-1f5e-11e0-80d4-0016760580f0", 
+        "89bdd05e-1f5e-11e0-9cf3-0016760580f0", 
+        "a35f659e-12df-11e0-aa68-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
       "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 99, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_specif", 
+      "layout": null, 
+      "eng_text": "If you did not dive/shore pick in this region previously, specifically where did you do it", 
+      "int_group": 10, 
+      "question_set": null, 
+      "display_order": 30.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
       "eng_tooltip": "", 
       "val_max": null
     }

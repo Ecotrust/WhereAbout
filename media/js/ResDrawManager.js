@@ -725,7 +725,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	
     loadPrimaryLocationQuestionPanel: function() {
         if (!this.PrimaryLocationQuestionPanel) {
-            this.PrimaryLocationQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
+            this.PrimaryLocationQuestionPanel = new gwst.widgets.AccessQuestionsPanel({
                 xtype: 'gwst-group-questions-panel',
                 // form: gwst.settings.question_form,
                 group_name: 'Primary Location Question',
@@ -734,6 +734,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             });
             this.PrimaryLocationQuestionPanel.on('grp-qstn-cont', this.finResourceQuestionStep, this);
             this.PrimaryLocationQuestionPanel.on('grp-qstn-back', this.loadResourceQuestionPanel, this);
+            this.PrimaryLocationQuestionPanel.on('place-selected', this.zoomToPlacemark, this);
         }
         this.viewport.setWestPanel(this.PrimaryLocationQuestionPanel);    	
     },
