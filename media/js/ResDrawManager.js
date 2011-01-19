@@ -1641,24 +1641,23 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },    
     
     loadAlphCaCoastPlacemarks: function() {
+        this.features = [];
+        for (this.i = 0; this.i < gwst.settings.placemarkStore.getCount(); this.i++) {
+            this.features[this.i] = gwst.settings.placemarkStore.getAt(this.i).get('feature');
+        }
+        
         gwst.settings.alphPlacemarkStore = new GeoExt.data.FeatureStore({
-            proxy:  new GeoExt.data.ProtocolProxy({
-                protocol: new OpenLayers.Protocol.HTTP({
-                    url: '/alph_ca_coast_placemarks/json/',     
-                    format: new OpenLayers.Format.GeoJSON()
-                })
-            }),
+            layer: gwst.settings.placemarkStore.layer,
+            features: this.features,
             fields: [{
                 name:'name',
                 type:'string',
                 defaultValue: null
             }],	        
-            autoLoad: true  
+            autoLoad: true
         });
-        gwst.settings.alphPlacemarkStore.on('load', this.afterPlacemarksLoaded, this);
-    },
 
-    afterPlacemarksLoaded: function() {
+        gwst.settings.alphPlacemarkStore.sort('name');
         this.hideWait();
     	this.finInit();
     },        	

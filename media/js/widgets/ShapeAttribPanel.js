@@ -43,7 +43,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
                 }
                 this.html_text = this.html_text + '<option value = "app.draw_manager.shapeAttribPanel.selectPlacemarkSelected(\'' +
                     gwst.settings.placemarkStore.getAt(this.i).id +
-                    '\')">' + gwst.settings.placemarkStore.getAt(this.i).data.name +
+                    '\', \'ns\')">' + gwst.settings.placemarkStore.getAt(this.i).data.name +
                     '</option>';
             }
             this.html_text = this.html_text+'</select>';
@@ -52,17 +52,17 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         makeAlphSelect: function() {
             if (Ext.isGecko || Ext.isGecko2 || Ext.isGecko3){
-                this.select_action = ' onchange="eval(this.value);" onmouseover="gwst.settings.alphActualSelection = true;" onmouseout="gwst.settings.alphActualSelection = false;" ';
+                this.select_action = ' onchange="eval(this.value);" onmouseover="gwst.settings.actualSelection = true;" onmouseout="gwst.settings.actualSelection = false;" ';
             } else {
-                gwst.settings.alphActualSelection = true;
+                gwst.settings.actualSelection = true;
                 this.select_action = ' onchange="eval(this.value);" ';
             }
             this.html_text = '<select id="alph-select"' + this.select_action + 'style="width: 265px"><option selected disabled>'+gwst.settings.alphPlaceComboText+'</option>';
             for (this.i = 0; this.i < gwst.settings.alphPlacemarkStore.data.length; this.i++) {
                 this.site_group = gwst.settings.alphPlacemarkStore.getAt(this.i).get('feature').attributes.site_group;
-                this.html_text = this.html_text + '<option value = "app.draw_manager.shapeAttribPanel.selectAlphPlacemarkSelected(\'' +
+                this.html_text = this.html_text + '<option value = "app.draw_manager.shapeAttribPanel.selectPlacemarkSelected(\'' +
                     gwst.settings.alphPlacemarkStore.getAt(this.i).id +
-                    '\')">' + gwst.settings.alphPlacemarkStore.getAt(this.i).data.name +
+                    '\', \'alph\')">' + gwst.settings.alphPlacemarkStore.getAt(this.i).data.name +
                     '</option>';
             }
             this.html_text = this.html_text+'</select>';
@@ -224,7 +224,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         gwst.widgets.ShapeAttribPanel.superclass.onRender.apply(this, arguments);     
 	},
     
-    selectPlacemarkSelected: function(rec_id) {
+    selectPlacemarkSelected: function(rec_id, list) {
         if (gwst.settings.actualSelection) {
             this.inner_form_panel.show();
             if (this.resource.indexOf('Dive') == -1) {
@@ -234,19 +234,12 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
                 this.abalone_criteria.hide();
                 this.abalone_time.hide();
             }
-            Ext.getDom('alph-select').selectedIndex=0;
+            if (list == 'ns') {
+                Ext.getDom('alph-select').selectedIndex=0;
+            } else if (list == 'alph') {
+                Ext.getDom('northsouth-select').selectedIndex=0;            
+            }
             this.rec = gwst.settings.placemarkStore.getById(rec_id);
-            this.fireEvent('place-selected', this.rec);
-            this.inner_form_panel.get('prim-acc-point').setValue(this.rec.get('feature').data.pk_uid);
-            this.button_panel.enableCont();
-        }
-	},
-    
-    selectAlphPlacemarkSelected: function(rec_id) {
-        if (gwst.settings.alphActualSelection) {
-            this.inner_form_panel.show();
-            Ext.getDom('northsouth-select').selectedIndex=0;
-            this.rec = gwst.settings.alphPlacemarkStore.getById(rec_id);
             this.fireEvent('place-selected', this.rec);
             this.inner_form_panel.get('prim-acc-point').setValue(this.rec.get('feature').data.pk_uid);
             this.button_panel.enableCont();
