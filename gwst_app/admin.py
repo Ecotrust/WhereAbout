@@ -63,8 +63,8 @@ class FaqAdmin(admin.ModelAdmin):
     list_display = ('question','importance','faq_group')   
 
 class ResourceAdmin(admin.ModelAdmin):
-    list_display = ('name','code','select_description','shape_color')
-    ordering = ('name','code')
+    list_display = ('name','verbose_name','method','code','select_description','shape_color')
+    ordering = ('name','method','code')
 
 class FaqGroupAdmin(admin.ModelAdmin):
     pass

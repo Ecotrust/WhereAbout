@@ -11,14 +11,14 @@
 <p>Please be <u>extra clear</u> about the distinction between <b>'diving'</b> for dive activities and <b>'shore picking'</b> for others. We do not want answers to be about combined methods for the same species.</p>
 </div>
    <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
-   {% for name, form in forms.items %}
+   {% for verbose_name, form in forms.items %}
    {{ form.non_field_errors }}
    
     {% for field in form %}
         {% if field.field.question_set %}
             {% with field.field.question_set as index %}
                 <p><div class="question_set"></div>
-                <h3>{{ name }}</h3>
+                <h3>{{ verbose_name }}</h3>
                 {% for key, val in instructions.items %}
                     {% ifequal key index %}
                         {{ val|safe }}

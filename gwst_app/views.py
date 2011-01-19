@@ -716,7 +716,7 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
             # show questions for this group, with any existing user answers
             for sel_resource in sel_resources:
                 form = AnswerForm( questions, answers, group_id, sel_resource.resource.id)
-                forms[sel_resource.resource.name]=form
+                forms[sel_resource.resource.verbose_name]=form
     else:
         # form validation
         forms_valid = True
@@ -756,7 +756,6 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
                     return HttpResponseRedirect(next_url)
                 else:
                     return HttpResponseRedirect('/group_status#main_menu')
-        
     return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':520}))
 
 @login_required
@@ -1116,7 +1115,7 @@ def draw_settings(request, id) :
     for res in resources:
         res_item = {}
         res_item['id'] = res.id
-        res_item['name'] = res.name
+        res_item['name'] = res.verbose_name
 
         res_item['started'] = False
         res_item['finished'] = False

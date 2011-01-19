@@ -2065,73 +2065,15 @@
     }
   }, 
   {
-    "pk": "26", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "chr_div", 
-      "name": "diving"
-    }
-  }, 
-  {
-    "pk": "27", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "chr_wha", 
-      "name": "whale watching"
-    }
-  }, 
-  {
-    "pk": "28", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "bird_watch", 
-      "name": "bird watching"
-    }
-  }, 
-  {
-    "pk": "29", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "mammal_vie", 
-      "name": "marine mammal viewing"
-    }
-  }, 
-  {
-    "pk": "30", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "leisure", 
-      "name": "leisure cruise"
-    }
-  }, 
-  {
-    "pk": "31", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "glass_bott", 
-      "name": "glass bottom boat"
-    }
-  }, 
-  {
     "pk": "4e853961-fc19-11df-8bf7-0016760580f0", 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "div_abalon", 
-      "name": "Abalone - Dive"
+      "name": "Abalone", 
+      "verbose_name": "Abalone - Dive", 
+      "method": "Dive"
     }
   }, 
   {
@@ -2141,7 +2083,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "shr_abalon", 
-      "name": "Abalone - Shore Picking"
+      "name": "Abalone", 
+      "verbose_name": "Abalone - Shore picking", 
+      "method": "Shore picking"
     }
   }, 
   {
@@ -2151,7 +2095,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "spr_rckfsh", 
-      "name": "Rockfish - Spearfish"
+      "name": "Rockfish", 
+      "verbose_name": "Rockfish - Spearfish", 
+      "method": "Spearfish"
     }
   }, 
   {
@@ -2161,7 +2107,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "spr_lngcod", 
-      "name": "Lingcod - Spearfish"
+      "name": "Lingcod", 
+      "verbose_name": "Lingcod - Spearfish", 
+      "method": "Spearfish"
     }
   }, 
   {
@@ -2171,7 +2119,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "spr_fltfsh", 
-      "name": "Flatfish - Spearfish"
+      "name": "Flatfish", 
+      "verbose_name": "Flatfish - Spearfish", 
+      "method": "Spearfish"
     }
   }, 
   {
@@ -2181,7 +2131,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "spr_calhal", 
-      "name": "California Halibut - Spearfish"
+      "name": "California Halibut", 
+      "verbose_name": "California Halibut - Spearfish", 
+      "method": "Spearfish"
     }
   }, 
   {
@@ -2191,7 +2143,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "spr_seabas", 
-      "name": "Seabass - Spearfish"
+      "name": "Seabass", 
+      "verbose_name": "Seabass - Spearfish", 
+      "method": "Spearfish"
     }
   }, 
   {
@@ -2201,7 +2155,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "spr_perch", 
-      "name": "Surf/Seaperch - Spearfish"
+      "name": "Surf/Seaperch", 
+      "verbose_name": "Surf/Seaperch - Spearfish", 
+      "method": "Spearfish"
     }
   }, 
   {
@@ -2211,7 +2167,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "div_dcrab", 
-      "name": "Dungeness Crab - Dive"
+      "name": "Dungeness Crab", 
+      "verbose_name": "Dungeness Crab - Dive", 
+      "method": "Dive"
     }
   }, 
   {
@@ -2221,7 +2179,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "shr_dcrab", 
-      "name": "Dungeness Crab - Shore picking"
+      "name": "Dungeness Crab", 
+      "verbose_name": "Dungeness Crab - Shore picking", 
+      "method": "Shore picking"
     }
   }, 
   {
@@ -2231,7 +2191,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "div_scalop", 
-      "name": "Scallops - Dive"
+      "name": "Scallops", 
+      "verbose_name": "Scallops - Dive", 
+      "method": "Dive"
     }
   }, 
   {
@@ -2241,7 +2203,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "div_urchin", 
-      "name": "Sea Urchin - Dive"
+      "name": "Sea Urchin", 
+      "verbose_name": "Sea Urchin - Dive", 
+      "method": "Dive"
     }
   }, 
   {
@@ -2251,7 +2215,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "shr_seweed", 
-      "name": "Kelp/Seaweed - Shore picking"
+      "name": "Kelp/Seaweed", 
+      "verbose_name": "Kelp/Seaweed - Shore picking", 
+      "method": "Shore picking"
     }
   }, 
   {
@@ -2261,7 +2227,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "shr_clams", 
-      "name": "Clams - Shore picking"
+      "name": "Clams", 
+      "verbose_name": "Clams - Shore picking", 
+      "method": "Shore picking"
     }
   }, 
   {
@@ -2271,7 +2239,9 @@
       "shape_color": "FFFF00", 
       "select_description": "", 
       "code": "shr_mussls", 
-      "name": "Mussels - Shore picking"
+      "name": "Mussels", 
+      "verbose_name": "Mussels - Shore picking", 
+      "method": "Shore picking"
     }
   }, 
   {
@@ -2287,7 +2257,7 @@
       "resource_action": "do", 
       "resource_name": "activity", 
       "shape_name": "activity area", 
-      "active": true, 
+      "active": false, 
       "organization": "Ecotrust", 
       "assign_groups_text": "", 
       "group_status_text": "MAIN MENU: There are several groups of questions. You are asked to complete these groups in order. Before moving on to a new group, you must complete and finalize the previous group of questions. You may review or even reopen a 'finalized' group later if you change your mind.  You cannot complete the survey until all required groups of questions are finalized.  You are free to skip any groups that give you the option.", 
@@ -2375,14 +2345,7 @@
       "interview": 3, 
       "member_title": "charter boat operator", 
       "page_template": "base_form.html", 
-      "resources": [
-        "26", 
-        "27", 
-        "28", 
-        "29", 
-        "30", 
-        "31"
-      ], 
+      "resources": [], 
       "description": "Operator Questions"
     }
   }, 
@@ -3339,6 +3302,30 @@
     "fields": {
       "display_order": 7.0, 
       "eng_text": "South"
+    }
+  }, 
+  {
+    "pk": "346a8f70-2366-11e0-83b6-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 210.0, 
+      "eng_text": "Dive"
+    }
+  }, 
+  {
+    "pk": "3b136cc0-2366-11e0-9177-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 220.0, 
+      "eng_text": "Shore picking"
+    }
+  }, 
+  {
+    "pk": "43c894cf-2366-11e0-bd2c-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 230.0, 
+      "eng_text": "Spearfish"
     }
   }, 
   {

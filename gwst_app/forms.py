@@ -363,25 +363,32 @@ class InterviewShapeAttributeForm(forms.ModelForm):
 
 class GroupMemberResourceForm(forms.Form):
     def __init__(self, interview, resources, *args, **kwargs):
+        method_options = InterviewAnswerOption.objects.filter(display_order__in=[210, 220, 230])
         new_res_1 = forms.CharField( max_length=100, label='Other ' + interview.resource_name + ' option', required=False, initial = '' ) 
+        new_method_1 = forms.ModelChoiceField( label='Method', queryset=method_options, required = False);
         new_res_2 = forms.CharField( max_length=100, label='Other ' + interview.resource_name + ' option', required=False, initial = '' )
+        new_method_2 = forms.ModelChoiceField( label='Method', queryset=method_options, required = False);
         forms.Form.__init__(self, *args, **kwargs) 
         #choices = [(resource.id, resource.name+') for resource in resources]
         choices = []
         for resource in resources:
             if not resource.select_description:
-                choices.append((resource.id, resource.name))
+                choices.append((resource.id, resource.verbose_name))
             else:
-                choices.append((resource.id, unicode(resource.name)+': '+unicode(resource.select_description)))
+                choices.append((resource.id, unicode(resource.verbose_name)+': '+unicode(resource.select_description)))
         label = str(interview.resource_name).capitalize()+' groups'
         self.fields['resources'] = forms.MultipleChoiceField(label=label, choices=choices, widget=forms.CheckboxSelectMultiple(), required = False)
         self.fields['new_field_1'] = new_res_1
+        self.fields['new_method_1'] = new_method_1
         self.fields['new_field_2'] = new_res_2
+        self.fields['new_method_2'] = new_method_2
 
     def save(self, group_memb, profile_callback=None):
         resource_ids = self.cleaned_data['resources']
         new_field_1 = self.cleaned_data['new_field_1']
+        new_method_1 = self.cleaned_data['new_method_1']
         new_field_2 = self.cleaned_data['new_field_2']
+        new_method_2 = self.cleaned_data['new_method_2']
         try:
             resources = [Resource.objects.get(pk=r_id) for r_id in resource_ids]
         except Exception, e:
@@ -399,9 +406,11 @@ class GroupMemberResourceForm(forms.Form):
             gmr.group_membership = group_memb  
             gmr.save()   
         if new_field_1 != '':                                      
-            new_1 = self.add_new_resource(new_field_1, group_memb)
-        if new_field_2 != '':                                      
-            new_2 = self.add_new_resource(new_field_2, group_memb)
+            if new_method_1 != None:
+                new_1 = self.add_new_resource(new_field_1, new_method_1.eng_text, group_memb)
+        if new_field_2 != '':  
+            if new_method_2 != None:
+                new_2 = self.add_new_resource(new_field_2, new_method_2.eng_text, group_memb)
             
         return True     
 
@@ -409,13 +418,30 @@ class GroupMemberResourceForm(forms.Form):
 
         if self.cleaned_data['new_field_1'] == '' and self.cleaned_data['new_field_2'] == '' and self.cleaned_data['resources'] == []:
             raise forms.ValidationError( 'You must select at least one option or give at least one alternative' )
+
+        if self.cleaned_data['new_field_1'] != '' and self.cleaned_data['new_method_1'] == None:
+            raise forms.ValidationError( 'You must select a method for each new '+Interview.objects.get(active=True).resource_name+'.')
             
+        if self.cleaned_data['new_field_2'] != '' and self.cleaned_data['new_method_2'] == None:
+            raise forms.ValidationError( 'You must select a method for each new '+Interview.objects.get(active=True).resource_name+'.')
+        
         return self.cleaned_data        
 
-    def add_new_resource(self, new_resource, group_memb):
+    def add_new_resource(self, new_resource, new_method, group_memb):
         
         #Create the resource
-        resource, created = Resource.objects.get_or_create(name=new_resource)
+        resource, created = Resource.objects.get_or_create(name=new_resource, method=new_method)
+
+        resource.verbose_name = new_resource.capitalize() + ' - ' + new_method.capitalize()
+        
+        if (created):
+            #create the code
+                #This is done after the get_or_create so we don't have the same resource + same method in twice with different codes
+            custom_count = Resource.objects.filter(code__contains = 'cust').count()
+            while (Resource.objects.filter(code='cust'+str(custom_count)).count() > 0):
+                custom_count = custom_count + 1
+            resource.code = 'cust'+str(custom_count)
+
         resource.save()
         #Add new resource to the group
         group_memb.int_group.resources.add(resource)

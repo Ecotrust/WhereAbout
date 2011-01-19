@@ -45,7 +45,15 @@ class CaCoastPlacemarks(Model):
         db_table = u'acc_pts'          
         
 class Resource(Model):
-    name = CharField( max_length=100, unique=True )
+
+    MethodChoices = (
+        ('Dive', 'Dive'),
+        ('Shore picking', 'Shore picking'),
+        ('Spearfish', 'Spearfish')
+    )    
+    name = CharField( max_length=100 )
+    verbose_name = CharField( max_length=133, unique=True ) #Should be name - method
+    method = CharField( max_length=30, choices = MethodChoices, blank = True, default = 'diving' )
     code = CharField( max_length=10, default='' )
     select_description = CharField( max_length=300, default = '', blank=True) #Holds information on why you would/should select this resource
     shape_color = CharField( max_length=6, default = 'FFFF00', blank=True )
@@ -54,7 +62,7 @@ class Resource(Model):
         db_table = u'gwst_resource'
         
     def __unicode__(self):
-        return unicode('%s: %s' % (self.code, self.name))
+        return unicode('%s: %s - %s' % (self.code, self.name, self.method))
         
         
 class Interview(Model):
@@ -81,7 +89,6 @@ class Interview(Model):
     def __unicode__(self):
         return unicode('%s-%s' % (self.region.code, self.code))
     
-    
 class InterviewGroup(Model):
     id = models.AutoField( primary_key = True )
     interview = ForeignKey(Interview)
@@ -106,7 +113,6 @@ class InterviewGroup(Model):
     def __unicode__(self):
         return unicode('%s-%s' % (self.interview, self.code))
 
-        
 class InterviewGroupMembership(Model):
 
     InterviewGroupStatusChoices = (
