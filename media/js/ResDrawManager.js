@@ -1658,9 +1658,36 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         });
 
         gwst.settings.alphPlacemarkStore.sort('name');
+        this.getAbalonePunchCardSites();
+    },     
+
+    getAbalonePunchCardSites: function() {
+        Ext.Ajax.request({
+        	url: gwst.settings.urls.abalone_card_sites,
+           	disableCachingParam: true,
+            method: 'GET',
+            // params: this.params,
+           	scope: this,
+           	success: this.loadAbalonePunchCardSites,
+           	failure: function(response, opts) {
+        		// Change to error window
+              	alert('get abalone sites request failed: ' + response.status);
+           	}
+        });
+    },
+    
+    loadAbalonePunchCardSites: function(response, opts) {
+        this.sites_obj = Ext.decode(response.responseText);
+        gwst.settings.abaloneSiteList = this.sites_obj;
+        this.finLoadStores();
+        
+    },
+    
+    
+    finLoadStores: function() {
         this.hideWait();
     	this.finInit();
-    },        	
+    },
     
     //remove listener and zoom in - listener removed because 'load' is firing when a new shape is drawn and saved.
     afterShapesLoaded: function() {

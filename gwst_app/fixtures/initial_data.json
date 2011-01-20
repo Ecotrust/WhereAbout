@@ -2065,6 +2065,454 @@
     }
   }, 
   {
+    "pk": 0, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Del Norte", 
+      "site": "Crescent City"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Del Norte", 
+      "site": "Other Del Norte County"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Humboldt", 
+      "site": "Patrick\u2019s Point"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Humboldt", 
+      "site": "Trinidad"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Humboldt", 
+      "site": "Punta Gorda"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Humboldt", 
+      "site": "Shelter Cove"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Humboldt", 
+      "site": "Other Humboldt County"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Bear Harbor"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Usal"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Hardy Creek"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Abalone Point"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Westport"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Kibesillah"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "MacKerricher State Park"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Glass Beach"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Georgia Pacific Mill"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Todd\u2019s Point"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Hare Creek"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Mitchell Creek"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Jughandle State Reserve"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Caspar Cove"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Russian Gulch State Park"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Jack Peters Gulch"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Mendocino Headlands"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Gordon Lane (Spring Ranch)"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Van Damme State Park"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Dark Gulch"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Albion Cove"
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Salmon Creek"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Navarro River"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Elk"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Point Arena Lighthouse"
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Point Arena Cove"
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Moat Creek"
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Schooner Gulch"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Saunders Landing"
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Anchor Bay"
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Mendocino", 
+      "site": "Robinson Point"
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Gualala Point"
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Sea Ranch"
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Black Point"
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Stewarts Point"
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Rocky Point"
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Horseshoe Cove"
+    }
+  }, 
+  {
+    "pk": 44, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Fisk Mill Cove"
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Salt Point State Park"
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Ocean Cove"
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Stillwater Cove"
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Timber Cove"
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Fort Ross"
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Reef Campground (Pedotti)"
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Jenner"
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Sonoma", 
+      "site": "Bodega Head"
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Marin", 
+      "site": "Tomales Point"
+    }
+  }, 
+  {
+    "pk": 54, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Marin", 
+      "site": "Point Reyes"
+    }
+  }, 
+  {
+    "pk": 55, 
+    "model": "gwst_app.abalonepunchcardsites", 
+    "fields": {
+      "county": "Marin", 
+      "site": "Other Marin County"
+    }
+  }, 
+  {
     "pk": "4e853961-fc19-11df-8bf7-0016760580f0", 
     "model": "gwst_app.resource", 
     "fields": {

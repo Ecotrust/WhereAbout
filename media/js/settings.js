@@ -44,7 +44,8 @@ gwst.settings.urls = {
     group_draw_settings: '/draw_settings/',   //URL to fetch runtime settings
     answers: '/answers/',    //retrieve or post 1 answer to db
     questions: '/group_qs/',
-    resource_questions: '/answer_resource_questions/'
+    resource_questions: '/answer_resource_questions/',
+    abalone_card_sites: '/abalone_card_sites/json/'
     // nav_help: '/video/navigation',
     // draw_help: '/video/starting_drawing',
     // draw_2_help: '/video/drawing',

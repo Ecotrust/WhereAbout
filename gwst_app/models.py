@@ -42,7 +42,17 @@ class CaCoastPlacemarks(Model):
     the_geom = PointField(srid=3310)        
     objects = GeoManager()
     class Meta:
-        db_table = u'acc_pts'          
+        db_table = u'acc_pts'
+        
+class AbalonePunchCardSites(Model):
+    pk_uid = IntegerField(primary_key = True)
+    site = CharField(max_length=40)
+    county = CharField(max_length=25)
+    class Meta:
+        db_table = u'abalone_sites'
+        
+    def __unicode__(self):
+        return unicode('%s - %s' % (self.site, self.county))
         
 class Resource(Model):
 
@@ -63,7 +73,6 @@ class Resource(Model):
         
     def __unicode__(self):
         return unicode('%s: %s - %s' % (self.code, self.name, self.method))
-        
         
 class Interview(Model):
     id = models.AutoField( primary_key = True )
@@ -270,7 +279,6 @@ class InterviewInstructions(Model):
     def __unicode__(self):
         return unicode('%s-%s' % (self.int_group, self.question_set))
     
-        
 # localization tables, for future use
 class InterviewQuestionText(Model):
     int_question = ForeignKey(InterviewQuestion)
@@ -284,7 +292,6 @@ class InterviewQuestionText(Model):
     def __unicode__(self):
         return unicode('%s' % (self.text[0:100]))
         
-  
 # localization tables, for future use  
 class InterviewAnswerOptionText(Model):
     int_answer = ForeignKey(InterviewAnswerOption)
@@ -296,7 +303,6 @@ class InterviewAnswerOptionText(Model):
         
     def __unicode__(self):
         return unicode('%s' % (self.text[0:100]))
-        
         
 class InterviewAnswer(Model):
     int_question = ForeignKey(InterviewQuestion)
@@ -347,28 +353,27 @@ class InterviewStatus(Model):
     def __unicode__(self):
         return unicode('%s: %s' % (self.user, self.interview))
 
-
 class InterviewShape(Model):
     AccessMethodChoices = (
-        ('swimming', 'Swimming'),
-        ('kayak', 'Kayak'),
-        ('sport', 'Sport boat'),
-        ('charter', 'Charter boat'),
-        ('paddleboard', 'Paddleboard')
+        ('Swimming', 'Swimming'),
+        ('Kayak', 'Kayak'),
+        ('Sport boat', 'Sport boat'),
+        ('Charter boat', 'Charter boat'),
+        ('Paddleboard', 'Paddleboard')
     )
     
     AbaloneHarvestChoices = (
-        ('first', 'The first available abalone'),
-        ('size', 'Abalone based on size')
+        ('The first available abalone', 'The first available abalone'),
+        ('Abalone based on size', 'Abalone based on size')
     )
     
     AbaloneTimeChoices = (
-        ('much more', 'Significantly more time'),
-        ('some more', 'Somewhat more time'),
-        ('same', 'The same amount of time'),
-        ('some less', 'Somewhat less time'),
-        ('much less', 'Significantly less time'),
-        ('unknown', 'Didn\'t target last year')
+        ('Significantly more time', 'Significantly more time'),
+        ('Somewhat more time', 'Somewhat more time'),
+        ('The same amount of time', 'The same amount of time'),
+        ('Somewhat less time', 'Somewhat less time'),
+        ('Significantly less time', 'Significantly less time'),
+        ('Didn\'t target last year', 'Didn\'t target last year')
     )
 
     user = ForeignKey(User)
@@ -384,8 +389,9 @@ class InterviewShape(Model):
     days_visited = IntegerField( blank=True, null=True )
     primary_acc_point = ForeignKey(CaCoastPlacemarks)
     primary_acc_method = CharField( max_length=20, choices=AccessMethodChoices, default=None, blank=True, null=True )
-    abalone_harvest = CharField( max_length=20, choices=AbaloneHarvestChoices, default=None, blank=True, null=True )
-    abalone_time = CharField( max_length=20, choices=AbaloneTimeChoices, default=None, blank=True, null=True )
+    abalone_harvest = CharField( max_length=30, choices=AbaloneHarvestChoices, default=None, blank=True, null=True )
+    abalone_time = CharField( max_length=30, choices=AbaloneTimeChoices, default=None, blank=True, null=True )
+    abalone_site = CharField(max_length=40, default=None, null=True, blank=True)
     creation_date = DateTimeField(default=datetime.datetime.now)
     objects = InterviewShapeManager()
     
@@ -398,52 +404,6 @@ class InterviewShape(Model):
     def int_group_name(self):
         return unicode('%s' % self.int_group.name)        
         
-    #def json(self):
-    #    return self.geojson(attributes=True)
-    #
-    #def geojson(self, srid=settings.CLIENT_SRID, attributes=False):
-    #    
-    #        try:
-    #            geo = self.geometry_clipped.simplify(20, preserve_topology=True)
-    #            geo.transform(srid) 
-    #        except Exception, E:
-    #            raise Exception('%s: geometry was: "%s" ' % (E, self.geometry_clipped.wkt)) 
-    #        
-    #        attr = {}
-    #        
-    #        # regen this shape's folder name to update the UI with current penny count
-    #        resource_shapes = InterviewShape.objects.filter(user=self.user,int_group=self.int_group,resource=self.resource)
-    #        resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
-    #        if resource_pennies == None:
-    #            resource_pennies = 0
-    #        if resource_pennies == 100:
-    #            folderName = self.resource.name+' (complete)'
-    #        else:
-    #            folderName = self.resource.name+' ('+str(100-resource_pennies)+' pennies left)'
-    #            
-    #        if attributes:
-    #            attr = self.client_object()
-    #            attr['folder'] = 'folder_'+str(self.int_group.id)+'-'+str(self.resource.id)
-    #            attr['folderID'] = 'folder_'+str(self.int_group.id)+'-'+str(self.resource.id)
-    #            attr['folderName'] = folderName
-    #        attr['fillColor'] = '#' + self.resource.shape_color # alternatively self.int_group.shape_color
-    #        attr['strokeColor'] = "white"
-    #        attr['fillOpacity'] = "0.4"
-    #        attr['shape_label'] = str(self.pennies)+ ' p'
-    #        self.geometry.transform(srid)
-    #        attr['original_geometry'] = self.geometry.wkt
-    #        return '{"id": "mpa_%s", "type": "Feature", "geometry": %s, "properties": %s}' % (self.pk, geo.geojson, geojson_encode(attr))
-    #
-    #    def copy(self):
-    #        m = self
-    #        shape_id = self.id
-    #        m.id = None
-    #        m.creation_date = datetime.datetime.now()
-    #        m.last_modified = datetime.datetime.now()
-    #        m.num_times_saved = 1
-    #        m.save() #This save generates the new mpa_id
-    #        return m
-
 class FaqGroup(models.Model):
     class Meta:
         db_table = u'gwst_faqgroup'
@@ -478,14 +438,12 @@ class Faq(models.Model):
     importance = models.IntegerField(choices=IMPORTANCE_CHOICES)
     faq_group = models.ForeignKey(FaqGroup)    
 
-    
 class UserProfile(models.Model):
     class Meta:
         db_table = u'gwst_userprofile'
         
     user = models.ForeignKey(User, unique=True)
     created_by = models.ForeignKey(User, related_name="user_creator_fk", null=True)
-    
     
 def user_post_save(sender, instance, **kwargs):
     qs = User.objects.filter(is_staff=True).order_by('-last_login')

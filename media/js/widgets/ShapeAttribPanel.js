@@ -127,7 +127,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.abalone_time = new Ext.form.ComboBox({
             id: 'abalone-time',
             name: 'abalone_time',
-            fieldLabel: 'Based on your previously mentioned harvest method, compared to other years, how much time did it take you, on average, to make your daily harvest limit in this area',
+            fieldLabel: 'Based on your previously mentioned harvest method, compared to other years, how much time did it take you, on average, to make your daily harvest limit in this '+ this.shape_name,
             store: [
                 'Significantly more time',
                 'Somewhat more time',
@@ -144,6 +144,21 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             listWidth: 155,
             width: 120
         });
+        
+        this.abalone_site = new Ext.form.ComboBox({
+            id: 'abalone-site',
+            name: 'abalone_site',
+            fieldLabel: 'Which Abalone Punch Card Site do you visit for this '+ this.shape_name,
+            store: gwst.settings.abaloneSiteList,
+            emptyText:'Select a site',
+            editable: false,
+            triggerAction: 'all',
+            style: 'margin: 0px 0px 10px 10px',
+            border: false,
+            listWidth: 155,
+            width: 120
+        });
+            
         
         this.days_visited = new Ext.form.NumberField({
             fieldLabel: 'Number of days this site was visited in 2010',
@@ -192,6 +207,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             this.primary_acc_method,
             this.abalone_criteria,
             this.abalone_time,
+            this.abalone_site,
             this.days_visited,
             {
                 fieldLabel: 'North Boundary',
@@ -233,6 +249,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             if (this.resource.indexOf('Abalone') == -1) {
                 this.abalone_criteria.hide();
                 this.abalone_time.hide();
+                this.abalone_site.hide();
             }
             if (list == 'ns') {
                 Ext.getDom('alph-select').selectedIndex=0;
@@ -256,6 +273,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.primary_acc_method.show();
         this.abalone_criteria.show();
         this.abalone_time.show();
+        this.abalone_site.show();
         this.inner_form_panel.hide();
         this.button_panel.disableCont();
     },
@@ -270,6 +288,8 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             gwst.error.load('Please select a targeting criteria for this '+this.shape_name+'.');
         } else if (this.form_values.abalone_time == 'Select a choice' && this.resource.indexOf('Abalone') != -1) {
             gwst.error.load('Please select a relative time spent choice for this '+this.shape_name+'.');
+        } else if (this.form_values.abalone_site == 'Select a site' && this.resource.indexOf('Abalone') != -1) {
+            gwst.error.load('Please select a punch card site for this '+this.shape_name+'.');
         } else if (this.form_values.days_visited == '' || isNaN(this.form_values.days_visited) ) {
             gwst.error.load('Please enter the number of days that you visited this '+this.shape_name+'.');
         } else if (this.form_values.days_visited > this.days_max ) {

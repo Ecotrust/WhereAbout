@@ -28,7 +28,6 @@ def login(request, template_name='registration/login.html'):
     from django.contrib.auth.views import login as default_login
     return default_login(request, template_name)
     
-   
 ''' 
 Admin tool allowing staff user to set the interviewee user and proceed with interview with their credentials 
 '''
@@ -43,7 +42,6 @@ def login_as(request):
 			
     return HttpResponseRedirect('/accounts/login/')
 
-    
 def handleSelectInterview(request,selected_interview):
     request.session['interview'] = selected_interview
     
@@ -111,7 +109,6 @@ def handleSelectInterview(request,selected_interview):
          
         # redirect to interview_group_status
         return HttpResponseRedirect('/group_status/')
-                
 
 # @login_required
 def select_interview(request):
@@ -162,7 +159,6 @@ def select_interview(request):
                 
         # validation errors
         return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'form': form, 'value':'Continue'}))        
-    
     
 # on first entrance to a new interview, user selects which groups they belong to  
 @login_required  
@@ -268,7 +264,6 @@ def assign_groups(request):
         
         # validation errors        
         return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': SelectInterviewGroupsForm( InterviewGroup.objects.filter(interview=interview,is_user_group=True), request.POST ), 'value':'Continue', 'q_width':265}))
-    
     
 # show a list of user's groups and current status of each
 @login_required
@@ -732,7 +727,7 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
                 form = AnswerForm(questions, answers, group_id, sel_resource.resource.id, request.POST)
                 if not form.is_valid():
                     forms_valid = False
-                forms[sel_resource.resource.name]=form
+                forms[sel_resource.resource.verbose_name]=form
         
         if forms_valid:
             group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__pk=group_id)
@@ -821,20 +816,27 @@ def ca_coast_placemarks(request):
     )
     
 '''
-Alphabetical California coast placemark geojson service
+Load the Abalone Punch Card Sites
 '''
-def alph_ca_coast_placemarks(request):    
+def abalone_card_sites(request):    
     """Coast placemarks web service"""    
-    qs = CaCoastPlacemarks.objects.filter().order_by('name').exclude(featuretyp='Cemetery').exclude(featuretyp='Airport').exclude(featuretyp='Building').exclude(featuretyp='Canal').exclude(featuretyp='Census').exclude(featuretyp='Church').exclude(featuretyp='Channel').exclude(featuretyp='Civil').exclude(featuretyp='Gut').exclude(featuretyp='Mine').exclude(featuretyp='Populated Place').exclude(featuretyp='Post Office').exclude(featuretyp='School').exclude(featuretyp='Tower').exclude(featuretyp='Civil').exclude(featuretyp='Dam').exclude(featuretyp='Hospital').exclude(featuretyp='Military').exclude(featuretyp='Military (Historical)').exclude(featuretyp='Spring').exclude(featuretyp='Swamp').exclude(featuretyp='Valley').distinct()
-    return render_to_geojson(
-        qs,
-        geom_attribute='the_geom',
-        excluded_fields=['pk_uid','long','lat','featuretyp','county'],
-        mimetype = 'text/plain',
-        proj_transform=900913,
-        pretty_print=True
-    )
-
+    abalone_sites_qs = AbalonePunchCardSites.objects.filter()
+    abalone_list = [];
+    for site in abalone_sites_qs:
+        # site_item = {}
+        # site_item['id'] = site.pk_uid
+        # site_item['site'] = site.site
+        # site_item['county'] = site.county
+        # abalone_list.append(site_item)
+        abalone_list.append(site.site)
+        
+    # result = {}
+    # result['sites'] = {
+        # 'abalone_sites': abalone_list
+    # }    
+    
+    # return HttpResponse(simplejson.dumps(result), mimetype='application/json')
+    return HttpResponse(simplejson.dumps(abalone_list), mimetype='application/json')
   
 # start draw shapes quick tutorial   
 @login_required
@@ -1078,7 +1080,6 @@ def finalize_interview(request,id):
         # redirect to finished page
         return HttpResponseRedirect('/interview_complete/')
     
-   
 @login_required
 def interview_complete(request):
 
@@ -1191,7 +1192,7 @@ def shapes(request, id=None):
             pretty_print=True
         )
         
-    elif request.method == 'POST':    
+    elif request.method == 'POST':   
         #Get session and status
         try:
             int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])        
@@ -1252,7 +1253,7 @@ def shapes(request, id=None):
         try:
             geom = GEOSGeometry(feat.get('geometry'), srid=settings.CLIENT_SRID)
             geom.transform(settings.SERVER_SRID)                        
-             
+
             new_shape = InterviewShape(
                 user = request.session['interviewee'],
                 geometry = geom,
@@ -1267,6 +1268,7 @@ def shapes(request, id=None):
                 primary_acc_method = feat.get('primary_acc_method'),
                 abalone_harvest = feat.get('abalone_criteria'),
                 abalone_time = feat.get('abalone_time'),
+                abalone_site = feat.get('abalone_site'),
                 days_visited = feat.get('days_visited')
             )                        
             new_shape.save() 
@@ -1399,7 +1401,6 @@ def gen_validate_response(code, message, geom):
         'geom':geom
     }
     return HttpResponse(geojson_encode(result))
-
 
 # Save a user-drawn shape.  Shape should already have been validated 
 @login_required

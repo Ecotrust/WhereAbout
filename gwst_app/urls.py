@@ -57,7 +57,7 @@ urlpatterns = patterns('',
     url(r'^video/(\w+)$', video, name="video"),
     
     (r'^ca_coast_placemarks/json/$', cache_page(ca_coast_placemarks, 60*15)),
-    (r'^alph_ca_coast_placemarks/json/$', cache_page(alph_ca_coast_placemarks, 60*15)),
+    (r'^abalone_card_sites/json/$', cache_page(abalone_card_sites, 60*15)),
 
     #(r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
     (r'^faq', faq),
