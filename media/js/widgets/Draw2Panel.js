@@ -89,7 +89,8 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 
     onRender: function(){
         this.header_panel = new Ext.Panel({  
-			html: '<img src="/site-media/images/3_2_DrawExtended_header.png">',
+			// html: '<img src="/site-media/images/3_2_DrawExtended_header.png">',
+            html: '<h3>Draw '+ this.shape_name_plural + ' - '+ this.resource +'</h3>',
             id: 'draw_extended_header_panel',
 			border: 'north',
             bodyCfg: {

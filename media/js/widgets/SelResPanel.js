@@ -68,7 +68,8 @@ gwst.widgets.SelResPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     onRender: function(){
         this.header_panel = new Ext.Panel({  
-			html: '<img src="/site-media/images/1_PickResource_header.png">',
+			// html: '<img src="/site-media/images/1_PickResource_header.png">',
+            html: '<h3>Select '+ this.res_group_name + '</h3>',
             id: 'sel_res_header_panel',
 			border: false,
             bodyCfg: {

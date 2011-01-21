@@ -19,7 +19,7 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.header_panel = new Ext.Panel({  
             id: 'basic_qs_header_panel'+this.group_name+this.resource_id,
             // html: '<img src="/media/img/9_ActivityQuestions2_header.png">',
-            html: '<h3>' + this.group_name + '</h3>',
+            html: '<h3>' + this.group_name + ' Questions</h3>',
 			border: 'north',
             bodyCfg: {            
                 cls: 'action-panel-header'

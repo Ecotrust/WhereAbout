@@ -202,7 +202,7 @@ if django_admin_path:
                               "optimize": 2,
                               "ascii": 1,
                               "bundle_files": 3,
-                              "packages":["encodings","django","gwst_app","simplejson","registration"],
+                              "packages":["encodings","django","gwst_app","simplejson","registration","django_extjs","sataticfiles"],
                                "excludes" : ["pywin", "pywin.debugger", "pywin.debugger.dbgcon","pywin.dialogs",
                                            "pywin.dialogs.list","Tkconstants","Tkinter","tcl"],
 

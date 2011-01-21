@@ -67,7 +67,8 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
                 
     onRender: function(){        
         this.header_panel = new Ext.Panel({  
-			html: '<img src="/site-media/images/4b_PennyAllocation_header.png">',
+			// html: '<img src="/site-media/images/4b_PennyAllocation_header.png">',
+            html: '<h3>Penny Allocation - '+ this.resource +'</h3>',
             id: 'penny_header_panel',
 			border: 'north',
             bodyCfg: {

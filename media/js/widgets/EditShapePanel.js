@@ -29,7 +29,8 @@ gwst.widgets.EditShapePanel = Ext.extend(gwst.widgets.WestPanel, {
     
         this.header_panel = new Ext.Panel({  
             id: 'edit_activity_header_panel',
-            html: '<img src="/media/img/7a_EditArea_header.png">',
+            // html: '<img src="/media/img/7a_EditArea_header.png">',
+            html: '<h3>Edit</h3>',
             border: 'north',
             bodyCfg: {            
                 cls: 'action-panel-header'

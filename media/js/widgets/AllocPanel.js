@@ -32,7 +32,8 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
     onRender: function(){
     
         this.header_panel = new Ext.Panel({  
-			html: '<img src="/site-media/images/4a_PennyInstructions_header.png">',
+			// html: '<img src="/site-media/images/4a_PennyInstructions_header.png">',
+			html: '<h3>Penny Instructions - '+ this.resource +'</h3>',
             id: 'alloc_header_panel',
 			border: 'north',
             bodyCfg: {

@@ -33,7 +33,8 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     onRender: function(){
     
         this.header_panel = new Ext.Panel({  
-			html: '<img src="/site-media/images/2_Navigate_header.png">',
+			// html: '<img src="/site-media/images/2_Navigate_header.png">',
+            html: '<h3>Navigate - '+ this.resource +'</h3>',
             id: 'nav_header_panel',
 			border: 'north',
             bodyCfg: {
