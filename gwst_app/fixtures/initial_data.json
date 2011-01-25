@@ -5136,6 +5136,48 @@
     }
   }, 
   {
+    "pk": 64, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "days_n_spc", 
+      "layout": "hoizontal", 
+      "eng_text": "Number of days spent diving/shore picking for this species north of the study region last year (2010)", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 20.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "checkbox", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
+    }
+  }, 
+  {
+    "pk": 103, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "days_s_spc", 
+      "layout": "hoizontal", 
+      "eng_text": "Number of days spent diving/shore picking for this species south of the study region last year (2010)", 
+      "int_group": 5, 
+      "question_set": null, 
+      "display_order": 30.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "textarea", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
+    }
+  }, 
+  {
     "pk": 63, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -5145,7 +5187,7 @@
       "eng_text": "Number of years you have been diving/shore picking for this species", 
       "int_group": 5, 
       "question_set": null, 
-      "display_order": 20.0, 
+      "display_order": 40.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
@@ -5154,58 +5196,6 @@
       "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": 100.0
-    }
-  }, 
-  {
-    "pk": 64, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "factor_spc", 
-      "layout": "vertical", 
-      "eng_text": "Primary factor(s) considered when choosing where to dive/shore pick for this species in the last year (2010)", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 30.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "271706cf-fca8-11df-8030-0016760580f0", 
-        "2ead0340-fca8-11df-b1c8-0016760580f0", 
-        "33ddbf80-fca8-11df-8913-0016760580f0", 
-        "39135dc0-fca8-11df-8e90-0016760580f0", 
-        "43288b00-fca8-11df-95e6-0016760580f0", 
-        "4972f4a1-fca8-11df-9385-0016760580f0", 
-        "554b078f-fca8-11df-adae-0016760580f0", 
-        "5cf416cf-fca8-11df-a1c6-0016760580f0", 
-        "62011e70-fca8-11df-9cf4-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "checkbox", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 103, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": true, 
-      "code": "factor_oth", 
-      "layout": "vertical", 
-      "eng_text": "If you selected 'other' for a primary factor, place specify", 
-      "int_group": 5, 
-      "question_set": null, 
-      "display_order": 40.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "textarea", 
-      "eng_tooltip": "", 
-      "val_max": null
     }
   }, 
   {
@@ -5965,16 +5955,40 @@
     }
   }, 
   {
+    "pk": 104, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_yes_no", 
+      "layout": null, 
+      "eng_text": "In 2009, did you target this species in locations you did not return to in 2010", 
+      "int_group": 10, 
+      "question_set": null, 
+      "display_order": 10.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "a28", 
+        "a29"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
     "pk": 96, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": true, 
-      "code": "loc_old", 
+      "code": "loc_old1", 
       "layout": null, 
-      "eng_text": "Before you changed your primary diving location, where did you dive/shore pick", 
+      "eng_text": "If yes, where did you previously target this species in 2009", 
       "int_group": 10, 
       "question_set": null, 
-      "display_order": 10.0, 
+      "display_order": 20.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
@@ -5990,17 +6004,22 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": true, 
-      "code": "loc_outsid", 
+      "code": "loc_why1", 
       "layout": null, 
-      "eng_text": "If you did not dive/shore pick in this region previously, did you do it north or south of here", 
+      "eng_text": "Why did you not return to this location in 2010 to target this species", 
       "int_group": 10, 
       "question_set": null, 
-      "display_order": 20.0, 
+      "display_order": 30.0, 
       "required": false, 
       "question_group": null, 
       "options": [
-        "73fc340f-1f5e-11e0-80d4-0016760580f0", 
-        "89bdd05e-1f5e-11e0-9cf3-0016760580f0", 
+        "4eb1b170-12df-11e0-9804-0016760580f0", 
+        "652fbff0-12df-11e0-bac9-0016760580f0", 
+        "6cf1d570-12df-11e0-a378-0016760580f0", 
+        "7b0de4f0-12df-11e0-9bf9-0016760580f0", 
+        "832a9d8f-12df-11e0-8278-0016760580f0", 
+        "8c48c0a1-12df-11e0-af6d-0016760580f0", 
+        "9eb27f61-12df-11e0-9645-0016760580f0", 
         "a35f659e-12df-11e0-aa68-0016760580f0"
       ], 
       "val_min": null, 
@@ -6015,12 +6034,156 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": true, 
-      "code": "loc_specif", 
+      "code": "loc_oth1", 
       "layout": null, 
-      "eng_text": "If you did not dive/shore pick in this region previously, specifically where did you do it", 
+      "eng_text": "If 'Other', please specify", 
       "int_group": 10, 
       "question_set": null, 
-      "display_order": 30.0, 
+      "display_order": 40.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 105, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_old2", 
+      "layout": null, 
+      "eng_text": "If yes, where did you previously target this species in 2009", 
+      "int_group": 10, 
+      "question_set": null, 
+      "display_order": 50.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 107, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_why2", 
+      "layout": null, 
+      "eng_text": "Why did you not return to this location in 2010 to target this species", 
+      "int_group": 10, 
+      "question_set": null, 
+      "display_order": 60.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "4eb1b170-12df-11e0-9804-0016760580f0", 
+        "652fbff0-12df-11e0-bac9-0016760580f0", 
+        "6cf1d570-12df-11e0-a378-0016760580f0", 
+        "7b0de4f0-12df-11e0-9bf9-0016760580f0", 
+        "832a9d8f-12df-11e0-8278-0016760580f0", 
+        "8c48c0a1-12df-11e0-af6d-0016760580f0", 
+        "9eb27f61-12df-11e0-9645-0016760580f0", 
+        "a35f659e-12df-11e0-aa68-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 109, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_oth2", 
+      "layout": null, 
+      "eng_text": "If 'Other', please specify", 
+      "int_group": 10, 
+      "question_set": null, 
+      "display_order": 70.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 106, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_old3", 
+      "layout": null, 
+      "eng_text": "If yes, where did you previously target this species in 2009", 
+      "int_group": 10, 
+      "question_set": null, 
+      "display_order": 80.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 108, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_why3", 
+      "layout": null, 
+      "eng_text": "Why did you not return to this location in 2010 to target this species", 
+      "int_group": 10, 
+      "question_set": null, 
+      "display_order": 90.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "4eb1b170-12df-11e0-9804-0016760580f0", 
+        "652fbff0-12df-11e0-bac9-0016760580f0", 
+        "6cf1d570-12df-11e0-a378-0016760580f0", 
+        "7b0de4f0-12df-11e0-9bf9-0016760580f0", 
+        "832a9d8f-12df-11e0-8278-0016760580f0", 
+        "8c48c0a1-12df-11e0-af6d-0016760580f0", 
+        "9eb27f61-12df-11e0-9645-0016760580f0", 
+        "a35f659e-12df-11e0-aa68-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 110, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "loc_oth3", 
+      "layout": null, 
+      "eng_text": "If 'Other', please specify", 
+      "int_group": 10, 
+      "question_set": null, 
+      "display_order": 100.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
