@@ -58,15 +58,21 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
                 this.select_action = ' onchange="eval(this.value);" ';
             }
             this.html_text = '<select id="alph-select"' + this.select_action + 'style="width: 265px"><option selected disabled>'+gwst.settings.alphPlaceComboText+'</option>';
-            for (this.i = 0; this.i < gwst.settings.alphPlacemarkStore.data.length; this.i++) {
-                this.site_group = gwst.settings.alphPlacemarkStore.getAt(this.i).get('feature').attributes.site_group;
+            this.alphPlacemarkStore = gwst.settings.placemarkStore.query('name','');
+            this.alphPlacemarkStore.sort('ASC', this.sortByName);
+            for (this.i = 0; this.i < this.alphPlacemarkStore.getCount(); this.i++) {
+                this.site_group = this.alphPlacemarkStore.itemAt(this.i).get('feature').attributes.site_group;
                 this.html_text = this.html_text + '<option value = "app.draw_manager.shapeAttribPanel.selectPlacemarkSelected(\'' +
-                    gwst.settings.alphPlacemarkStore.getAt(this.i).id +
-                    '\', \'alph\')">' + gwst.settings.alphPlacemarkStore.getAt(this.i).data.name +
+                    this.alphPlacemarkStore.itemAt(this.i).id +
+                    '\', \'alph\')">' + this.alphPlacemarkStore.itemAt(this.i).data.name +
                     '</option>';
             }
             this.html_text = this.html_text+'</select>';
             return this.html_text;
+        },
+        
+        sortByName: function(obj1, obj2) {
+            return obj1.get('name')>obj2.get('name');
         },
             
     onRender: function(){

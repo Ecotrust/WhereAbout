@@ -1637,29 +1637,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             }],	        
             autoLoad: true  
         });
-        gwst.settings.placemarkStore.on('load', this.loadAlphCaCoastPlacemarks, this);
+        gwst.settings.placemarkStore.on('load', this.getAbalonePunchCardSites, this);
     },    
-    
-    loadAlphCaCoastPlacemarks: function() {
-        this.features = [];
-        for (this.i = 0; this.i < gwst.settings.placemarkStore.getCount(); this.i++) {
-            this.features[this.i] = gwst.settings.placemarkStore.getAt(this.i).get('feature');
-        }
-        
-        gwst.settings.alphPlacemarkStore = new GeoExt.data.FeatureStore({
-            layer: gwst.settings.placemarkStore.layer,
-            features: this.features,
-            fields: [{
-                name:'name',
-                type:'string',
-                defaultValue: null
-            }],	        
-            autoLoad: true
-        });
-
-        gwst.settings.alphPlacemarkStore.sort('name');
-        this.getAbalonePunchCardSites();
-    },     
 
     getAbalonePunchCardSites: function() {
         Ext.Ajax.request({

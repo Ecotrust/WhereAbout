@@ -27,7 +27,7 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
             gwst.settings.actualSelection = true;
             this.select_action = ' onchange="eval(this.value);" ';
         }
-        this.html_text = '<select id="northsouth-select"' + this.select_action + 'style="width: 265px"><option selected disabled>'+gwst.settings.placeComboText+'</option>';
+        this.html_text = '<select id="northsouth-select-primary"' + this.select_action + 'style="width: 265px"><option selected disabled>'+gwst.settings.placeComboText+'</option>';
         for (this.i = 0; this.i < gwst.settings.placemarkStore.data.length; this.i++) {
             this.site_group = gwst.settings.placemarkStore.getAt(this.i).get('feature').attributes.site_group;
             if (this.site_group) {
@@ -55,16 +55,22 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
             gwst.settings.alphActualSelection = true;
             this.select_action = ' onchange="eval(this.value);" ';
         }
-        this.html_text = '<select id="alph-select"' + this.select_action + 'style="width: 265px"><option selected disabled>'+gwst.settings.alphPlaceComboText+'</option>';
-        for (this.i = 0; this.i < gwst.settings.alphPlacemarkStore.data.length; this.i++) {
-            this.site_group = gwst.settings.alphPlacemarkStore.getAt(this.i).get('feature').attributes.site_group;
+        this.html_text = '<select id="alph-select-primary"' + this.select_action + 'style="width: 265px"><option selected disabled>'+gwst.settings.alphPlaceComboText+'</option>';
+        this.alphPlacemarkStore = gwst.settings.placemarkStore.query('name','');
+        this.alphPlacemarkStore.sort('ASC', this.sortByName);
+        for (this.i = 0; this.i < this.alphPlacemarkStore.getCount(); this.i++) {
+            this.site_group = this.alphPlacemarkStore.itemAt(this.i).get('feature').attributes.site_group;
             this.html_text = this.html_text + '<option value = "app.draw_manager.PrimaryLocationQuestionPanel.selectAlphPlacemarkSelected(\'' +
-                gwst.settings.alphPlacemarkStore.getAt(this.i).id +
-                '\')">' + gwst.settings.alphPlacemarkStore.getAt(this.i).data.name +
+                this.alphPlacemarkStore.itemAt(this.i).id +
+                '\')">' + this.alphPlacemarkStore.itemAt(this.i).data.name +
                 '</option>';
         }
         this.html_text = this.html_text+'</select>';
         return this.html_text;
+    },
+    
+    sortByName: function(obj1, obj2) {
+        return obj1.get('name')>obj2.get('name');
     },
 
     onRender: function(){
@@ -112,7 +118,7 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
     
     selectPlacemarkSelected: function(rec_id) {
         if (gwst.settings.actualSelection) {
-            Ext.getDom('alph-select').selectedIndex=0;
+            Ext.getDom('alph-select-primary').selectedIndex=0;
             this.rec = gwst.settings.placemarkStore.getById(rec_id);
             this.fireEvent('place-selected', this.rec);
             this.question_panel.get(this.hidden_q_id).setValue(this.rec.get('name'));
@@ -121,8 +127,8 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
     
     selectAlphPlacemarkSelected: function(rec_id) {
         if (gwst.settings.alphActualSelection) {
-            Ext.getDom('northsouth-select').selectedIndex=0;
-            this.rec = gwst.settings.alphPlacemarkStore.getById(rec_id);
+            Ext.getDom('northsouth-select-primary').selectedIndex=0;
+            this.rec = gwst.settings.placemarkStore.getById(rec_id);
             this.fireEvent('place-selected', this.rec);
             this.question_panel.get(this.hidden_q_id).setValue(this.rec.get('name'));
         }
@@ -130,8 +136,8 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
     
     update: function(context) {
         Ext.apply(context);
-        Ext.getDom('northsouth-select').selectedIndex=0;
-        Ext.getDom('alph-select').selectedIndex=0;
+        Ext.getDom('northsouth-select-primary').selectedIndex=0;
+        Ext.getDom('alph-select-primary').selectedIndex=0;
     }
 	
 });
