@@ -32,10 +32,6 @@
 			<th><a href="/admin/utils/port_surveys/">{% trans 'Export/Import surveys' %}</a></th>
 			<td>&nbsp;</td>
 		</tr>
-        <!--<tr>
-			<th><a href="../admin/auth/user/">{% trans 'Continue a survey' %}</a></th>
-			<td>&nbsp;</td>
-		</tr>-->
         <tr>
 			<th><a href="logout/">{% trans 'Logout' %}</a></th>
 			<td>&nbsp;</td>
@@ -50,17 +46,19 @@
                 <th>First name</th>
                 <th>Last name</th>
                 <th>Interviewer</th>
+                <th>Completed</th>
                 <th>Continue</a></th>
                 <th>Delete</a></th>
             </tr>
             {% for survey in survey_list %}
             <tr>
-                <td>{{ survey.user.username }}</td>
-                <td>{{ survey.user.first_name }}</td>
-                <td>{{ survey.user.last_name }}</td>
-                <td>{{ survey.created_by.username }}</td>
-                <td><a href="/accounts/login_as/?next_user={{ survey.user.id }}">Continue survey for {{ survey.user.username }}</a></td>
-                <td><a href="/admin/auth/user/{{ survey.user.id }}/delete/">Delete survey for {{ survey.user.username }}</a></td>
+                <td>{{ survey.profile.user.username }}</td>
+                <td>{{ survey.profile.user.first_name }}</td>
+                <td>{{ survey.profile.user.last_name }}</td>
+                <td>{{ survey.profile.created_by.username }}</td>
+                <td>{{ survey.status.completed }}</td>
+                <td><a href="/accounts/login_as/?next_user={{ survey.profile.user.id }}">Continue survey for {{ survey.profile.user.username }}</a></td>
+                <td><a href="/admin/auth/user/{{ survey.profile.user.id }}/delete/">Delete survey for {{ survey.profile.user.username }}</a></td>
             </tr>
             {% endfor %}
         </table>

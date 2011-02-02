@@ -85,11 +85,19 @@ def login_as_admin(request, username, redirect_field_name=REDIRECT_FIELD_NAME):
     return HttpResponseRedirect(redirect_to)
 
 def survey_management(request):
-    survey_list = UserProfile.objects.filter(user__is_staff = False)
+    status_list = InterviewStatus.objects.filter(user__is_staff = False)
+    survey_list = []
+
+    for status in status_list:
+        survey = {}
+        survey['status'] = status
+        survey['profile'] = UserProfile.objects.get(user = status.user)
+        survey_list.append(survey)
+
     context = {
         'survey_list': survey_list
     }
-    # return HttpResponseRedirect('manage-surveys.html'), context, context_instance=context_instance
+
     return render_to_response( 'admin/manage-surveys.html', context)
     
 ''' 
