@@ -49,16 +49,18 @@
                 <th>Username</th>
                 <th>First name</th>
                 <th>Last name</th>
+                <th>Interviewer</th>
                 <th>Continue</a></th>
                 <th>Delete</a></th>
             </tr>
             {% for survey in survey_list %}
             <tr>
-                <td>{{ survey.username }}</td>
-                <td>{{ survey.first_name }}</td>
-                <td>{{ survey.last_name }}</td>
-                <td><a href="/accounts/login_as/?next_user={{ survey.id }}">Continue survey for {{ survey.username }}</a></td>
-                <td><a href="/admin/auth/user/{{ survey.id }}/delete/">Delete survey for {{ survey.username }}</a></td>
+                <td>{{ survey.user.username }}</td>
+                <td>{{ survey.user.first_name }}</td>
+                <td>{{ survey.user.last_name }}</td>
+                <td>{{ survey.created_by.username }}</td>
+                <td><a href="/accounts/login_as/?next_user={{ survey.user.id }}">Continue survey for {{ survey.user.username }}</a></td>
+                <td><a href="/admin/auth/user/{{ survey.user.id }}/delete/">Delete survey for {{ survey.user.username }}</a></td>
             </tr>
             {% endfor %}
         </table>

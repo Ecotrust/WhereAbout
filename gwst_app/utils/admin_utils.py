@@ -27,7 +27,8 @@ def create_user():
     
         new_user, created = User.objects.get_or_create(username = user_count, is_staff = False, is_active = True, is_superuser = False )
         if created:
-            new_user.set_password(settings.PASSWORD);
-            new_user.save();
+            new_user.set_password(settings.PASSWORD)
+            new_user.save()
+
             return new_user.id
     return -1

@@ -85,7 +85,7 @@ def login_as_admin(request, username, redirect_field_name=REDIRECT_FIELD_NAME):
     return HttpResponseRedirect(redirect_to)
 
 def survey_management(request):
-    survey_list = User.objects.filter(is_staff = False)
+    survey_list = UserProfile.objects.filter(user__is_staff = False)
     context = {
         'survey_list': survey_list
     }
@@ -904,19 +904,9 @@ def abalone_card_sites(request):
     abalone_sites_qs = AbalonePunchCardSites.objects.filter()
     abalone_list = [];
     for site in abalone_sites_qs:
-        # site_item = {}
-        # site_item['id'] = site.pk_uid
-        # site_item['site'] = site.site
-        # site_item['county'] = site.county
-        # abalone_list.append(site_item)
+
         abalone_list.append(site.site)
-        
-    # result = {}
-    # result['sites'] = {
-        # 'abalone_sites': abalone_list
-    # }    
-    
-    # return HttpResponse(simplejson.dumps(result), mimetype='application/json')
+
     return HttpResponse(simplejson.dumps(abalone_list), mimetype='application/json')
   
 # start draw shapes quick tutorial   
