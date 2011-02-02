@@ -1,3 +1,4 @@
+from django import template
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
@@ -11,8 +12,11 @@ from gwst_app.utils.geojson_encode import *
 from django.db.models import Sum
 from shortcuts import render_to_geojson
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, REDIRECT_FIELD_NAME, login as auth_login
 from django_extjs.forms import ExtJsForm
 from django_extjs import utils
+from django.contrib.auth.views import login as default_login, logout as default_logout
+from gwst_app.utils import admin_utils
 import datetime
 import string
 import simplejson
@@ -23,25 +27,102 @@ def login(request, template_name='registration/login.html'):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/select_interview/')
     if settings.DESKTOP_BUILD:   #For Desktop, we want to force user to log in through admin.
-        return HttpResponseRedirect('/admin/')
+        return HttpResponseRedirect('/admin-lite-login/')
     request.user.SELF_REGISTRATION = settings.SELF_REGISTRATION
-    from django.contrib.auth.views import login as default_login
     return default_login(request, template_name)
+
+def logout(request, template_name='admin/logged_out.html'):
+    if settings.DESKTOP_BUILD:
+        "Logs out the user and displays 'You are logged out' message."
+        from django.contrib.auth import logout
+        logout(request)
+        return HttpResponseRedirect('/admin-lite-login/')
+    else: 
+        return default_logout(response)
     
 ''' 
 Admin tool allowing staff user to set the interviewee user and proceed with interview with their credentials 
 '''
-@login_required
-def login_as(request):
+# @login_required
+def login_as(request, next_user_str = None):
     if request.user.is_authenticated() and request.user.is_staff:
-        next_user_str = request.REQUEST.get('next_user', '')
+        if not next_user_str:
+            next_user_str = request.REQUEST.get('next_user', '')
         if next_user_str:
             next_user_obj = get_object_or_404(User,pk=next_user_str)
             request.session['interviewee'] = next_user_obj
             return HttpResponseRedirect('/select_interview/')
 			
     return HttpResponseRedirect('/accounts/login/')
+    
+''' 
+Express login for administrators on desktop installs. No password necessary. 
+'''
+def login_as_admin(request, username, redirect_field_name=REDIRECT_FIELD_NAME):
 
+    redirect_to = request.REQUEST.get(redirect_field_name, '')
+    
+    if not redirect_to or ' ' in redirect_to:
+        redirect_to = settings.LOGIN_REDIRECT_URL
+    
+    # Heavier security check -- redirects to http://example.com should 
+    # not be allowed, but things like /view/?param=http://example.com 
+    # should be allowed. This regex checks if there is a '//' *before* a
+    # question mark.
+    elif '//' in redirect_to and re.match(r'[^\?]*//', redirect_to):
+            redirect_to = settings.LOGIN_REDIRECT_URL
+    
+    user = authenticate(username=username, password=settings.PASSWORD)
+    
+    if user == None:
+        return admin_lite_login(request, 'There user account you tried to log in to is corrupt. Please try or create another.')
+    
+    # Okay, security checks complete. Log the user in.
+    auth_login(request, user)
+    if request.session.test_cookie_worked():
+        request.session.delete_test_cookie()
+
+    return HttpResponseRedirect(redirect_to)
+
+def survey_management(request):
+    survey_list = User.objects.filter(is_staff = False)
+    context = {
+        'survey_list': survey_list
+    }
+    # return HttpResponseRedirect('manage-surveys.html'), context, context_instance=context_instance
+    return render_to_response( 'admin/manage-surveys.html', context)
+    
+''' 
+Loads the express login page for administrators on desktop installs. 
+'''
+def admin_lite_login(request, error_message='', extra_context=None):
+    admins = User.objects.filter(is_superuser = True)
+    admin_logins = []
+    for admin in admins:
+        admin_logins.append(admin.username)
+
+    request.session.set_test_cookie()
+    context = {
+        'title': 'Log in',
+        'app_path': request.get_full_path(),
+        'error_message': error_message
+    }
+    context.update(extra_context or {})
+    context_instance = template.RequestContext(request, {'admin_logins': admin_logins})
+    
+    if request.method == 'POST':
+        admin_utils.create_superuser(request.POST.get('username'))
+        return login_as_admin(request, request.POST.get('username'))
+    
+    return render_to_response( 'admin/admin-lite-login.html', context, context_instance=context_instance)
+
+def start_new_survey(request):
+    new_user_id = admin_utils.create_user()
+    if new_user_id != -1:
+        return login_as(request, str(new_user_id))
+    else:
+        return HttpResponseRedirect('/auth/user/')
+    
 def handleSelectInterview(request,selected_interview):
     request.session['interview'] = selected_interview
     
@@ -866,6 +947,10 @@ def penny_overview(request, group_id):
 @login_required
 def finalize_group(request,id):
 
+    main_group_id = '4'
+    f_name_id = 54
+    l_name_id = 55
+
     # make sure the user has a valid session in-progress
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
@@ -919,6 +1004,30 @@ def finalize_group(request,id):
             update_memb.status = 'finalized'
             update_memb.date_completed = datetime.datetime.now()
             update_memb.save()
+
+            if id == main_group_id:
+                update_user = User.objects.get(username = request.session['interviewee'])
+                first_name = InterviewAnswer.objects.get(user = request.session['interviewee'], int_question = f_name_id).text_val.capitalize()
+                last_name = InterviewAnswer.objects.get(user = request.session['interviewee'], int_question = l_name_id).text_val.capitalize()
+                update_user.first_name = first_name
+                update_user.last_name = last_name
+                update_user.username = first_name + last_name
+                unique_username = False
+                suffix = 1
+                temp_name = update_user.username
+                while not unique_username:
+                    name_count = User.objects.filter(username = temp_name).count()
+                    if name_count == 0:
+                        unique_username = True
+                    else:
+                        temp_name = update_user.username + str(suffix)
+                        suffix = suffix + 1
+                update_user.username = temp_name
+                update_user.save()
+
+                request.session['interviewee'].first_name = update_user.first_name
+                request.session['interviewee'].last_name = update_user.last_name
+                request.session['interviewee'].username = update_user.username
             
         else: #404
             return render_to_response( '404.html', RequestContext(request,{}))
@@ -1079,6 +1188,35 @@ def finalize_interview(request,id):
         
         # redirect to finished page
         return HttpResponseRedirect('/interview_complete/')
+        
+# user reopens interview
+@login_required
+def reopen_interview(request, id):
+
+    # make sure the user has a valid session in-progress
+    try:
+    
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
+
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
+    if request.method == 'GET':
+
+        # make sure this interview is the current one for this user session
+        if str(id) == str(request.session['interview'].id):
+            # get the interviewstatus object
+            int_status = InterviewStatus.objects.get(user=request.session['interviewee'],interview=id)
+            int_status.completed = False
+            int_status.complete_date = None
+            int_status.save()
+        
+    #redirect to group status page
+    return HttpResponseRedirect('/group_status#main_menu')    
     
 @login_required
 def interview_complete(request):

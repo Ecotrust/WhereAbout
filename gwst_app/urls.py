@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     (r'^accounts/login/$', login, {'template_name': 'login.html'}),
     (r'^accounts/login_as/$', login_as ),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout_then_login', {'login_url': '/accounts/login/'}),
-
+    
     #Custom registration with extra profile fields
     # url(r'^accounts/register/$',
         # register, 
@@ -50,6 +50,7 @@ urlpatterns = patterns('',
     (r'^skip_group/([A-Za-z0-9_-]+)/$', skip_group ),
     (r'^finalize_interview/([A-Za-z0-9_-]+)/$', finalize_interview ),
     (r'^reset_interview/([A-Za-z0-9_-]+)/$', reset_interview ),
+    (r'^reopen_interview/([A-Za-z0-9_-]+)/$', reopen_interview ),
     
     (r'^draw_settings/([A-Za-z0-9_-]+)/json/$', draw_settings),
     (r'^shapes/([A-Za-z0-9_-]*)$', shapes),
@@ -74,3 +75,16 @@ urlpatterns = patterns('',
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'django_extjs/static'}),
     
 )
+
+if settings.DESKTOP_BUILD:
+    urlpatterns += patterns ( '',
+        (r'^accounts/login_as/([A-Za-z0-9_-]+)$', login_as_admin ),
+        (r'^admin/logout/$', logout ),
+        (r'^admin/auth/user/$', survey_management ),
+        (r'^admin/$', survey_management ),
+        (r'^management/start_new_survey/$', start_new_survey ),
+        (r'^admin-lite-login/accounts/login_as/([A-Za-z0-9_-]+)$', login_as_admin ),
+        (r'^admin-lite-login/', admin_lite_login),
+        (r'^management/', survey_management),
+    )
+    

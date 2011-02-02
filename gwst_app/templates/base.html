@@ -36,13 +36,15 @@
       <div id='user-tools'>      
       {% if user.is_staff %}
         <a href="/admin/">Site Admin</a> |
-        <a href="/modelviz/">Site Database Diagram</a> |
-        <a href="/databrowse/">Databrowse</a> |
+        <!--<a href="/modelviz/">Site Database Diagram</a> |
+        <a href="/databrowse/">Databrowse</a> |-->
+        <a href="/admin/">Sign out</a> |
+      {% else %}
+        <a href="/accounts/logout/">Sign out</a> |
       {% endif %}    
       
-      <a href="/">Main Menu</a> | 
+      <a href="/">Main Menu</a> 
       <!--<a href="/faq" onClick="return faq_popup()">FAQ</a> |-->
-      <a href="/accounts/logout/">Sign out</a>
     </div>
     </div>
     {% endif %}

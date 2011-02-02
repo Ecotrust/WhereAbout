@@ -6,6 +6,7 @@
 
 {{ interview.interview_complete_text|safe }}
 
+<p><a href='/reopen_interview/{{interview.id}}'>Reopen Survey</a></p>
 {% if SELF_SURVEY_RESET %}
 <a href='/reset_interview/{{interview.id}}'>Restart Survey</a>
 {% else %}
