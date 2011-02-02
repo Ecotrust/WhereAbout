@@ -1,7 +1,7 @@
 {% extends "admin/base.html" %}
 {% load i18n %}
 
-{% block title %}{{ title }} | {% trans 'Survey Management' %}{% endblock %}
+{% block title %}{% trans 'Survey Management' %}{% endblock %}
 
 {% block branding %}
 <h1 id="site-name">{% trans 'Survey management' %}</h1>
@@ -23,7 +23,7 @@
 		
 		<div class="module">
         <table>
-        <caption>{% trans 'Survey management' %}</caption>
+        <caption>{% trans 'Survey tools' %}</caption>
 		<tr>
 			<th><a href="/management/start_new_survey/">{% trans 'Start a survey' %}</a></th>
 			<td>&nbsp;</td>
@@ -40,28 +40,29 @@
 			<th><a href="logout/">{% trans 'Logout' %}</a></th>
 			<td>&nbsp;</td>
 		</tr>
-        <tr>
-            <table>
-                <tr>
-                    <th>Username</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Continue</a></th>
-                    <th>Delete</a></th>
-                </tr>
-                {% for survey in survey_list %}
-                <tr>
-                    <td>{{ survey.username }}</td>
-                    <td>{{ survey.first_name }}</td>
-                    <td>{{ survey.last_name }}</td>
-                    <td><a href="/accounts/login_as/?next_user={{ survey.id }}">Continue survey for {{ survey.username }}</a></td>
-                    <td><a href="/admin/auth/user/{{ survey.id }}/delete/">Delete survey for {{ survey.username }}</a></td>
-                </tr>
-                {% endfor %}
-            </table>
-        </tr>
         </table>
         </div>
+
+        <table class="module">
+        <caption>{% trans 'Survey management' %}</caption>
+            <tr>
+                <th>Username</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Continue</a></th>
+                <th>Delete</a></th>
+            </tr>
+            {% for survey in survey_list %}
+            <tr>
+                <td>{{ survey.username }}</td>
+                <td>{{ survey.first_name }}</td>
+                <td>{{ survey.last_name }}</td>
+                <td><a href="/accounts/login_as/?next_user={{ survey.id }}">Continue survey for {{ survey.username }}</a></td>
+                <td><a href="/admin/auth/user/{{ survey.id }}/delete/">Delete survey for {{ survey.username }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
 
 </div>
 {% endblock %}
