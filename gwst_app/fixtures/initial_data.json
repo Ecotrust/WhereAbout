@@ -2085,7 +2085,7 @@
     "model": "gwst_app.abalonepunchcardsites", 
     "fields": {
       "county": "Humboldt", 
-      "site": "Patrick\u2019s Point"
+      "site": "Patrick's Point"
     }
   }, 
   {
@@ -2197,7 +2197,7 @@
     "model": "gwst_app.abalonepunchcardsites", 
     "fields": {
       "county": "Mendocino", 
-      "site": "Todd\u2019s Point"
+      "site": "Todd's Point"
     }
   }, 
   {
@@ -5151,7 +5151,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "", 
-      "answer_type": "checkbox", 
+      "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": 365.0
     }
@@ -5172,7 +5172,7 @@
       "options": [], 
       "val_min": 0.0, 
       "val_default": "", 
-      "answer_type": "textarea", 
+      "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": 365.0
     }

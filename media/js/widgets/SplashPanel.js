@@ -28,7 +28,7 @@ gwst.widgets.SplashPanel = Ext.extend(gwst.widgets.WestPanel, {
         //header image
         this.header_panel = new Ext.Panel({  
 			// html: '<img src="/site-media/images/0_Introduction_header.png">',
-            html: '<h3>Introduction</h3>',
+            html: '<h1>Introduction</h1>',
             id: 'intro_header_panel',
 			border: false,
             bodyCfg: {

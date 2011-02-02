@@ -48,7 +48,7 @@ class InterviewQuestionAdmin(admin.ModelAdmin):
     ordering = ('int_group','question_set','display_order')
 
 class InterviewAnswerAdmin(admin.ModelAdmin):
-    list_display = ('user', 'code', 'interview_group')
+    list_display = ('user', 'code', 'interview_group', 'resource', 'text_val', 'boolean_val')
     search_fields = ('user__username','int_question__code')    
 
 class InterviewAnswerOptionAdmin(admin.ModelAdmin):
