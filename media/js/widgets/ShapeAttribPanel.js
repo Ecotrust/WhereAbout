@@ -113,6 +113,48 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             width: 120
         });
         
+        this.other_box = new Ext.form.Checkbox ({
+            boxLabel: 'Other',
+            name: 'other_factor'
+        });
+        
+        this.check_factors = new Ext.form.CheckboxGroup ({
+            id: 'check-factors',
+            xtype: 'checkboxgroup',
+            fieldLabel: 'Primary factor(s) considered then choosing this site to dive/shore pick for this species in the last year (2010)',
+            itemCls: 'x-check-group-alt',
+            style: 'margin: 0px 0px 10px 5px',
+            columns: 1,
+            items: [
+                {boxLabel: 'Size of species', name: 'species_size_factor'},
+                {boxLabel: 'Abundance of species', name: 'species_abundance_factor'},
+                {boxLabel: 'Easy access/entry', name: 'ease_of_access_factor'},
+                {boxLabel: 'Close to home', name: 'close_to_home_factor'},
+                {boxLabel: 'Close to campground/hotel/vacation rental', name: 'close_to_base_factor'},
+                {boxLabel: 'Protected from weather', name: 'weather_protection_factor'},
+                {boxLabel: 'Close to facilities/store', name: 'close_to_facilities_factor'},
+                {boxLabel: 'Try a new place', name: 'new_place_factor'},
+                this.other_box
+            ]
+        });
+        
+        // this.other_text_check = new Ext.Panel({
+            // html: 'If \'other\' please specify:',
+            // style: 'margin: 0px 0px 10px 10px',
+            // border: false
+        // });
+        
+        this.other_check = new Ext.form.TextField({
+            id: 'other-reason',
+            fieldLabel: 'If \'other\' please specify:',
+            style: 'margin: 0px 0px 10px 0px',
+            width: '120px',
+            maxLength: 150,
+            maxLengthText: 'Your entry is too long'
+        });
+        
+        this.other_box.on('check', this.boxChecked, this);
+
         this.abalone_criteria = new Ext.form.ComboBox({
             id: 'ab-criteria',
             name: 'abalone_criteria',
@@ -161,7 +203,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             triggerAction: 'all',
             style: 'margin: 0px 0px 10px 10px',
             border: false,
-            listWidth: 155,
+            listWidth: 190,
             width: 120
         });
             
@@ -210,11 +252,14 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
                 name: 'primary_acc_point',
                 hidden: true
             },
+            this.days_visited,
+            this.check_factors,
+            // this.other_text_check,
+            this.other_check,
             this.primary_acc_method,
             this.abalone_criteria,
             this.abalone_time,
             this.abalone_site,
-            this.days_visited,
             {
                 fieldLabel: 'North Boundary',
                 name: 'boundary_n'
@@ -239,6 +284,8 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
 
 		this.add(this.select_panel);
 		this.add(this.inner_form_panel);
+        // this.other_text_check.hide();
+        this.other_check.hide();
         this.inner_form_panel.hide();
         this.add(this.button_panel);
         
@@ -269,6 +316,16 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         }
 	},
     
+    boxChecked: function() {
+        if (this.check_factors.items.item(8).checked) {
+            // this.other_text_check.show();
+            this.other_check.show();
+        } else {
+            // this.other_text_check.hide();
+            this.other_check.hide();
+        }
+    },
+    
     update: function(config) {
         Ext.apply(this, config);
         this.days_visited.applyState({maxValue: this.days_max});
@@ -282,6 +339,9 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.abalone_site.show();
         this.inner_form_panel.hide();
         this.button_panel.disableCont();
+        this.check_factors.reset();
+        this.other_check.reset();
+        // this.other_text_check.hide();
     },
 
     contBtnClicked: function() {

@@ -22,25 +22,30 @@ gwst.widgets.AllocPanel = Ext.extend(gwst.widgets.WestPanel, {
     updateText: function(text_config) {
         Ext.apply(this, text_config);
         this.inner_panel.getEl().update(this.getHtmlText());
+        Ext.get('alloc_header_html').update(this.getHeaderText());
+        this.header_panel.applyState({  
+            html: this.getHeaderText()
+        });
     },
     
     getHtmlText: function() {
         var html_text = '<h2>Instructions</h2> <p>Now imagine you have <b>100 pennies</b>. You\'re going to allocate those pennies over the <i>'+ this.resource +'</i> '+ this.shape_name_plural +' you just drew. The more pennies you place on a '+ this.shape_name +', the more value or importance it has to you.</p> <p>Look over your '+this.resource+' '+ this.shape_name_plural +' on the map and think about which are the most important to you. Those are the ones on which you will allocate the most pennies.</p> <p>Click the \'Continue\' button to begin allocating pennies.</p> <img src="/site-media/images/penny_overview.gif" style="margin-left: 40px">';
         return html_text;
     },
+    
+    getHeaderText: function() {
+        var header_text = '<h3>Penny Instructions - '+ this.resource +'</h3>';
+        return header_text;
+    },
             
     onRender: function(){
-    
-        this.header_panel = new Ext.Panel({  
-			// html: '<img src="/site-media/images/4a_PennyInstructions_header.png">',
-			html: '<h3>Penny Instructions - '+ this.resource +'</h3>',
+        this.header_panel = new Ext.Container({  
+			autoEl: {tag:'div', cls:'action-panel-header', id:'alloc_header_html', html:this.getHeaderText()},
+			style: 'padding:5px',
             id: 'alloc_header_panel',
-			border: 'north',
-            bodyCfg: {
-                cls: 'action-panel-header'
-            }
+			border: false   
         });
-    
+
 		this.inner_panel = new Ext.Panel({
 			html: this.getHtmlText(),
             id: 'alloc_inner_panel',

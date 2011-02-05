@@ -1390,6 +1390,39 @@ def shapes(request, id=None):
             geom = GEOSGeometry(feat.get('geometry'), srid=settings.CLIENT_SRID)
             geom.transform(settings.SERVER_SRID)                        
 
+            if feat.get('species_size_factor') == None:
+                species_size_factor = False
+            else:
+                species_size_factor = True
+            if feat.get('species_abundance_factor') == None:
+                species_abundance_factor = False
+            else:
+                species_abundance_factor = True
+            if feat.get('ease_of_access_factor') == None:
+                ease_of_access_factor = False
+            else:
+                ease_of_access_factor = True
+            if feat.get('close_to_home_factor') == None:
+                close_to_home_factor = False
+            else:
+                close_to_home_factor = True
+            if feat.get('close_to_base_factor') == None:
+                close_to_base_factor = False
+            else:
+                close_to_base_factor = True
+            if feat.get('weather_protection_factor') == None:
+                weather_protection_factor = False
+            else:
+                weather_protection_factor = True
+            if feat.get('close_to_facilities_factor') == None:
+                close_to_facilities_factor = False
+            else:
+                close_to_facilities_factor = True
+            if feat.get('new_place_factor') == None:
+                new_place_factor = False
+            else:
+                new_place_factor = True
+
             new_shape = InterviewShape(
                 user = request.session['interviewee'],
                 geometry = geom,
@@ -1405,7 +1438,16 @@ def shapes(request, id=None):
                 abalone_harvest = feat.get('abalone_criteria'),
                 abalone_time = feat.get('abalone_time'),
                 abalone_site = feat.get('abalone_site'),
-                days_visited = feat.get('days_visited')
+                days_visited = feat.get('days_visited'),
+                species_size_factor = species_size_factor,
+                species_abundance_factor = species_abundance_factor,
+                ease_of_access_factor = ease_of_access_factor,
+                close_to_home_factor = close_to_home_factor,
+                close_to_base_factor = close_to_base_factor,
+                weather_protection_factor = weather_protection_factor,
+                close_to_facilities_factor = close_to_facilities_factor,
+                new_place_factor = new_place_factor,
+                other_factor = feat.get('other-reason')
             )                        
             new_shape.save() 
             

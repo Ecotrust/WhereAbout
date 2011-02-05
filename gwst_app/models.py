@@ -394,6 +394,15 @@ class InterviewShape(Model):
     abalone_site = CharField(max_length=40, default=None, null=True, blank=True)
     creation_date = DateTimeField(default=datetime.datetime.now)
     objects = InterviewShapeManager()
+    species_size_factor = BooleanField(default=False)
+    species_abundance_factor = BooleanField(default=False)
+    ease_of_access_factor = BooleanField(default=False)
+    close_to_home_factor = BooleanField(default=False)
+    close_to_base_factor = BooleanField(default=False)
+    weather_protection_factor = BooleanField(default=False)
+    close_to_facilities_factor = BooleanField(default=False)
+    new_place_factor = BooleanField(default=False)
+    other_factor = CharField( max_length=150, blank=True, null=True )
     
     class Meta:
         db_table = u'gwst_usershape'

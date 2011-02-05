@@ -1007,11 +1007,19 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 xtype: 'gwst-group-questions-panel',
                 group_name: 'Primary Location',
                 form_url: gwst.settings.urls.resource_questions + '10/None/' + this.curResource.get('id') + '/',
+                resource_id: this.curResource.get('id'),
                 resource: this.curResource.get('name')
             });
             this.OldLocationQuestionPanel.on('grp-qstn-cont', this.finResourceQuestionStep, this);
             this.OldLocationQuestionPanel.on('grp-qstn-back', this.backResourceQuestionStep, this);
             this.OldLocationQuestionPanel.on('place-selected', this.zoomToPlacemark, this);
+        } else {
+            context = {
+                form_url: gwst.settings.urls.resource_questions + '10/None/' + this.curResource.get('id') + '/',
+                resource_id: this.curResource.get('id'),
+                resource: this.curResource.get('name')
+            };
+            this.OldLocationQuestionPanel.update(context);
         }
         this.viewport.setWestPanel(this.OldLocationQuestionPanel);    	
     },

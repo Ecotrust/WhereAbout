@@ -25,6 +25,7 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
     updateText: function(text_config) {
         Ext.apply(this, text_config);
         this.inner_panel.getEl().update(this.getHtmlText());
+        Ext.get('draw_header_html').update(this.getHeaderText());
     },
     
     getHtmlText: function() {
@@ -32,20 +33,17 @@ gwst.widgets.DrawPanel = Ext.extend(gwst.widgets.WestPanel, {
         return html_text;
     },
     
-    // getHtmlText2: function() {
-        // var html_text_2 = '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a></p>';
-        // return html_text_2;
-    // },
-    onRender: function(){
+    getHeaderText: function() {
+        var header_text = '<h3>Draw a '+ this.shape_name + ' - '+ this.resource +'</h3>';
+        return header_text;
+    },
     
-        this.header_panel = new Ext.Panel({  
-			// html: '<img src="/site-media/images/3_DrawGrounds_header.png">',
-            html: '<h3>Draw a '+ this.shape_name + ' - '+ this.resource +'</h3>',
+    onRender: function(){
+        this.header_panel = new Ext.Container({  
+			autoEl: {tag:'div', cls:'action-panel-header', id:'draw_header_html', html:this.getHeaderText()},
+			style: 'padding:5px',
             id: 'draw_header_panel',
-			border: 'north',
-            bodyCfg: {
-                cls: 'action-panel-header'
-            }
+			border: false   
         });
 
 		this.inner_panel = new Ext.Panel({

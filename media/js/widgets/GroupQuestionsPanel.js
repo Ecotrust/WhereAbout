@@ -13,19 +13,20 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
     group_name: 'unknown',
     form_url: 'unknown',
     resource_id: '',
+    
+    getHeaderText: function() {
+        return '<h3>' + this.group_name + ' Questions</h3>';
+    },
 
     onRender: function(){
-    
-        this.header_panel = new Ext.Panel({  
-            id: 'basic_qs_header_panel'+this.group_name+this.resource_id,
-            // html: '<img src="/media/img/9_ActivityQuestions2_header.png">',
-            html: '<h3>' + this.group_name + ' Questions</h3>',
-			border: 'north',
-            bodyCfg: {            
-                cls: 'action-panel-header'
-            }
+        this.header_panel = new Ext.Container({  
+			autoEl: {tag:'div', cls:'action-panel-header', id:'basic_qs_header_html'+this.group_name, html:this.getHeaderText()},
+			style: 'padding:5px',
+            id: 'basic_qs_header_panel'+this.resource_id,
+            autoDestroy: false,
+			border: false   
         });
-        
+
         this.instruction_panel = new Ext.Panel({
             id: 'basic_qs_instruciton_panel_'+this.group_name+this.resource_id,
             html: this.instructions,
@@ -51,6 +52,8 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     loadQuestionPanel: function(form){
+        // this.question_panel = form;
+        // this.doLayout();
         this.add(form);
     },
     
@@ -58,7 +61,9 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
         var a = new Ext.ux.DjangoForm({
             url:this.form_url, 
             callback:this.loadQuestionPanel.createDelegate(this),
-            showButtons: false
+            showButtons: false,
+            style: 'margin-left: 6px'
+            // autoDestroy: false
         });
         return a;
     },
@@ -80,10 +85,8 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     update: function(context) {
-        Ext.apply(context);
-        this.header_panel.applyState({  
-            id: 'basic_qs_header_panel'+this.group_name+this.resource_id
-        });
+        Ext.apply(this, context);
+        Ext.get('basic_qs_header_html'+this.group_name).update(this.getHeaderText());
         this.instruction_panel.applyState({
             id: 'basic_qs_instruciton_panel_'+this.group_name+this.resource_id
         });

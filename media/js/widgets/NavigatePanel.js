@@ -23,23 +23,25 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     updateText: function(text_config) {
         Ext.apply(this, text_config);
         this.inner_panel.getEl().update(this.getHtmlText());
+        Ext.get('nav_header_html').update(this.getHeaderText());
     },
     
     getHtmlText: function() {
         var html_text = '<h2>Instructions</h2><p>First, navigate the map to the general area of your primary <i>'+ this.resource +'</i> '+ this.shape_name +' as a <i>'+ this.user_group +'</i>.</p>';
         return html_text;
     },
+    
+    getHeaderText: function() {
+        var header_text = '<h3>Navigate - '+ this.resource +'</h3>';
+        return header_text;
+    },
 	
     onRender: function(){
-    
-        this.header_panel = new Ext.Panel({  
-			// html: '<img src="/site-media/images/2_Navigate_header.png">',
-            html: '<h3>Navigate - '+ this.resource +'</h3>',
+        this.header_panel = new Ext.Container({  
+			autoEl: {tag:'div', cls:'action-panel-header', id:'nav_header_html', html:this.getHeaderText()},
+			style: 'padding:5px',
             id: 'nav_header_panel',
-			border: 'north',
-            bodyCfg: {
-                cls: 'action-panel-header'
-            }
+			border: false   
         });
 
 		this.inner_panel = new Ext.Panel({

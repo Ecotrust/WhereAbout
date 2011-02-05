@@ -29,11 +29,17 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     updateText: function(text_config) {
         Ext.apply(this, text_config);
         this.inner_panel.getEl().update(this.getHtmlText());
+        Ext.get('penny_header_html').update(this.getHeaderText());
     },
 	
     getHtmlText: function() {
         var html_text = '<h2>Instructions</h2><p>a. Click \'Edit Pennies\' below and give each of your '+this.shape_name_plural+' a penny value.  You must use all 100 pennies.</p> <p>b. Click \'Go Back\' if you need to change your '+this.shape_name_plural+'.</p> <p>c. Click \'Continue\' after you have allocated 100 pennies.</p>'/* <p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a></p>'*/;
         return html_text;
+    },
+    
+    getHeaderText: function() {
+        var header_text = '<h3>Penny Allocation - '+ this.resource +'</h3>';
+        return header_text;
     },
     
     gridActionClicked: function(grid, record, action, row, col) {
@@ -66,14 +72,11 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
                 
     onRender: function(){        
-        this.header_panel = new Ext.Panel({  
-			// html: '<img src="/site-media/images/4b_PennyAllocation_header.png">',
-            html: '<h3>Penny Allocation - '+ this.resource +'</h3>',
+        this.header_panel = new Ext.Container({  
+			autoEl: {tag:'div', cls:'action-panel-header', id:'penny_header_html', html:this.getHeaderText()},
+			style: 'padding:5px',
             id: 'penny_header_panel',
-			border: 'north',
-            bodyCfg: {
-                cls: 'action-panel-header'
-            }
+			border: false   
         });
 
 		this.inner_panel = new Ext.Panel({

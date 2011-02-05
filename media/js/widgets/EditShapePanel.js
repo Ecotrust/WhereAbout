@@ -58,25 +58,25 @@ gwst.widgets.EditShapePanel = Ext.extend(gwst.widgets.WestPanel, {
             items: [{
                 html: '<p>The <i>dark orange</i> circles you see on your area are the points you added.</p>'
             },{
-                html: '<img src="/media/img/edit_area_1.png" />'
+                html: '<img src="/site-media/images/edit_area_1.png" />'
             },{
                 html: '<p>The <i>light orange</i> circles between your points are \'ghost\' points and are used to create new points.</p>'
             },{
-                html: '<img src="/media/img/edit_area_2.png" />'
+                html: '<img src="/site-media/images/edit_area_2.png" />'
             },{
                 html: '<p><b>Moving.</b> To move a point, click the mouse and drag it where you want, then release.</p>'
             }, {
-                html: '<img src="/media/img/edit_area_3.png" />'
+                html: '<img src="/site-media/images/edit_area_3.png" />'
             },{
                 html: '<p><b>Adding.</b> To add a point, click a \'ghost\' point and drag it where you want, then release.</p>'
             },{
-                html: '<img src="/media/img/edit_area_4.png" />'
+                html: '<img src="/site-media/images/edit_area_4.png" />'
             },{
                 html: '<p><b>Removing.</b> To remove a point, hover your mouse over it and press the \'Delete\' key on your keyboard.</p>'
             },{
-                html: '<img src="/media/img/edit_area_5.png" />'
-            },{
-                html: '<p class="video-link"><img class="video-img" src="/media/img/film_go.png"/> <a href="'+ gwst.settings.urls.demo +'" target="_blank">Watch Demonstration</a>'
+                html: '<img src="/site-media/images/edit_area_5.png" />'
+            // },{
+                // html: '<p class="video-link"><img class="video-img" src="/media/img/film_go.png"/> <a href="'+ gwst.settings.urls.demo +'" target="_blank">Watch Demonstration</a>'
             }]
         });       
 

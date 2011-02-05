@@ -13,6 +13,7 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
     group_name: 'unknown',
     form_url: 'unknown',
     resource: 'unknown',
+    resource_id: '',
     hidden_q_id: '',    //The id for the form question that we had to hide on this panel
 
     makeSelect: function(order) {
@@ -24,7 +25,7 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
             gwst.settings.actualSelection = true;
             this.select_action = ' onchange="eval(this.value);" ';
         }
-        this.html_text = '<select id="northsouth-select-'+order+'"' + this.select_action + ' class="x-form-field-wrap x-form-field-trigger-wrap" style="width: 269px"><option selected disabled>'+gwst.settings.placeComboText+'</option>';
+        this.html_text = '<select id="northsouth-select-'+order+'"' + this.select_action + ' class="x-form-field-wrap x-form-field-trigger-wrap" style="width: 237px"><option selected disabled>'+gwst.settings.placeComboText+'</option>';
         for (this.i = 0; this.i < gwst.settings.placemarkStore.data.length; this.i++) {
             this.site_group = gwst.settings.placemarkStore.getAt(this.i).get('feature').attributes.site_group;
             if (this.site_group) {
@@ -46,30 +47,38 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
         return obj1.get('name')>obj2.get('name');
     },
     
-    buildSelectPanel: function(order){
-        this.new_id = 'drop-down-panel'+order;
+    fill_question_panel: function() {
+        var a = new Ext.ux.DjangoForm({
+            url:this.form_url, 
+            callback:this.loadQuestionPanel.createDelegate(this),
+            showButtons: false,
+            autoDestroy: false
+        });
+        return a;
+    },
+    
+    buildSelectPanel: function(order, outside_box, abalone_box){
         this.select_panel = new Ext.Panel({
-            id: this.new_id,
+            id: 'drop-down-panel'+order,
             border: false,
-            width: 269,
-            style: 'margin: 5px 15px 0px 0px',
+            width: 250,
+            style: 'margin: 5px 15px 5px 0px',
             items: [{
         		html:'If yes, where did you previously target this species in 2009?',
         		border: false,
         		style:'padding: 6px 3px 3px 3px'
             },
-                this.makeNSSelect(order)
-            ,{
+            outside_box,
+            {
                 html: this.makeSelect(order),
                 border: false,
-                id: 'select-point-ns',
+                id: 'select-point-ns'+order,
                 style: 'margin: 5px auto 5px auto'
-            }]        	        
+            },
+            abalone_box
+            ]        	        
         });
-        
-        if (this.resource.indexOf('Abalone') != -1) {
-            this.select_panel.add(this.buildAbaloneCombobox(order))
-        }
+
         return this.select_panel;
     },
         
@@ -89,11 +98,10 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
             triggerAction: 'all',
             style: 'margin: 0px auto 0px auto',
 			border: false,
-            width: 269
+            width: 237
         });
         
-        // this.nsSelect.on('select', this.selectPlacemarkSelected(this.nsSelect.record, 'outside', order));
-        this.nsSelect.on('select', this.comboSelect, this, order, 'outside');
+        this.nsSelect.on('select', this.comboSelect, this);
         
         return this.nsSelect;
     },
@@ -108,66 +116,342 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
             emptyText:'Punch card site',
             editable: false,
             triggerAction: 'all',
-            style: 'margin: 0px 0px 10px 0px',
+            style: 'margin: 0px 0px 0px 0px',
             border: false,
             listWidth: 269,
-            width: 269
+            width: 237
         });
         
-        // this.abalone_site.on('select', this.selectPlacemarkSelected(this.abalone_site.record, 'abalone', order));
         this.abalone_site.on('select', this.comboSelect, this);
 
         return this.abalone_site;
     },
     
     comboSelect: function(combo, rec, index) {
-        // alert( combo.order + ', ' + rec.get('field1') + ', ' + index);
         this.selectPlacemarkSelected(rec, combo.name, combo.order, true);
+    },
+    
+    buildFacade: function() {
+        this.facade = new Ext.FormPanel({
+            frame: true,
+            title: '2009 Questions',
+            style:'padding:5px 5px 5px 0; margin:5px auto 10px auto',
+            autoDestroy: false,
+            width: 281,
+            items: [{
+                    xtype: 'fieldset',
+                    id: 'facade_block_1',
+                    checkboxToggle: true,
+                    title: 'In 2009, did you target this species in <br />locations you did not return to in 2010?',
+                    autoHeight: true,
+                    width: 260,
+                    defaultType: 'textfield',
+                    collapsed: true,
+                    items: [
+                        this.select_panel1,
+                        new Ext.form.ComboBox({
+                            id: 'reason_combo_1',
+                            name: 'reason_combo_1',
+                            emptyText: 'Select a reason',
+                            fieldLabel: ' Why did you not return to this location in 2010 to target this species?',
+                            editable: false,
+                            triggerAction: 'all',
+                            border: false,
+                            listWidth: 250,
+                            width: 132,
+                            store: [
+                                'Change in size of species',
+                                'Change in abundance of species',
+                                'More people around',
+                                'Area closed as marine protected area',
+                                'Loss of coastal access',
+                                'Wanted to check out new/other locations',
+                                'Other'
+                            ]
+                        }),{
+                            fieldLabel: 'If \'other\', please specify',
+                            name: 'other-1'
+                        }
+                    ]
+                },{
+                    xtype: 'fieldset',
+                    id: 'facade_block_2',
+                    checkboxToggle: true,
+                    title: 'Any others?',
+                    autoHeight: true,
+                    width: 260,
+                    defaultType: 'textfield',
+                    collapsed: true,
+                    items:[
+                        this.select_panel2,
+                        new Ext.form.ComboBox({
+                            id: 'reason_combo_2',
+                            name: 'reason_combo_2',
+                            emptyText: 'Select a reason',
+                            fieldLabel: ' Why did you not return to this location in 2010 to target this species?',
+                            editable: false,
+                            triggerAction: 'all',
+                            border: false,
+                            listWidth: 250,
+                            width: 132,
+                            store: [
+                                'Change in size of species',
+                                'Change in abundance of species',
+                                'More people around',
+                                'Area closed as marine protected area',
+                                'Loss of coastal access',
+                                'Wanted to check out new/other locations',
+                                'Other'
+                            ]
+                        }),{
+                            fieldLabel: 'If \'other\', please specify',
+                            name: 'other-2'
+                        }
+                    ]
+                },{
+                    xtype: 'fieldset',
+                    id: 'facade_block_3',
+                    checkboxToggle: true,
+                    title: 'Any others?',
+                    autoHeight: true,
+                    width: 260,
+                    defaultType: 'textfield',
+                    collapsed: true,
+                    items:[
+                        this.select_panel3,
+                        new Ext.form.ComboBox({
+                            id: 'reason_combo_3',
+                            name: 'reason_combo_3',
+                            emptyText: 'Select a reason',
+                            fieldLabel: ' Why did you not return to this location in 2010 to target this species?',
+                            editable: false,
+                            triggerAction: 'all',
+                            border: false,
+                            listWidth: 250,
+                            width: 132,
+                            store: [
+                                'Change in size of species',
+                                'Change in abundance of species',
+                                'More people around',
+                                'Area closed as marine protected area',
+                                'Loss of coastal access',
+                                'Wanted to check out new/other locations',
+                                'Other'
+                            ]
+                        }),{
+                            fieldLabel: 'If \'other\', please specify',
+                            name: 'other-3'
+                        }
+                    ]
+                }
+            ]
+        });
+        return this.facade;
+    },
+    
+    getReasonUuid: function(index) {
+        switch (index) {
+            case 0: 
+                return "4eb1b170-12df-11e0-9804-0016760580f0";
+                break;
+            case 1:
+                return "652fbff0-12df-11e0-bac9-0016760580f0";
+                break;
+            case 2:
+                return "6cf1d570-12df-11e0-a378-0016760580f0";
+                break;
+            case 3:
+                return "7b0de4f0-12df-11e0-9bf9-0016760580f0";
+                break;
+            case 4:
+                return "832a9d8f-12df-11e0-8278-0016760580f0";
+                break;
+            case 5:
+                return "8c48c0a1-12df-11e0-af6d-0016760580f0";
+                break;
+            case 6:
+                return "a35f659e-12df-11e0-aa68-0016760580f0";
+                break;
+            default:
+                return '';
+                break;
+        }
+    },
+
+    setReasonName: function(combo, uuid) {
+        switch (uuid) {
+            case "4eb1b170-12df-11e0-9804-0016760580f0": 
+                combo.setValue('Change in size of species');
+                break;
+            case "652fbff0-12df-11e0-bac9-0016760580f0":
+                combo.setValue('Change in abundance of species')
+                break;
+            case "6cf1d570-12df-11e0-a378-0016760580f0":
+                combo.setValue('More people around');
+                break;
+            case "7b0de4f0-12df-11e0-9bf9-0016760580f0":
+                combo.setValue('Area closed as marine protected area');
+                break;
+            case "832a9d8f-12df-11e0-8278-0016760580f0":
+                combo.setValue('Loss of coastal access');
+                break;
+            case "8c48c0a1-12df-11e0-af6d-0016760580f0":
+                combo.setValue('Wanted to check out new/other locations');
+                break;
+            case "a35f659e-12df-11e0-aa68-0016760580f0":
+                combo.setValue('Other');
+                break;
+            default:
+                combo.clearValue();
+                break;
+        }
+    },
+    
+    fillForm: function() {
+        if (!this.facade_question_panel.get('facade_block_1').collapsed || !this.facade_question_panel.get('facade_block_2').collapsed || !this.facade_question_panel.get('facade_block_3').collapsed) {
+            this.question_panel.items.itemAt(0).setValue("a28");
+        } else {
+            this.question_panel.items.itemAt(0).setValue("a29");
+        }
+        if (!this.facade_question_panel.get('facade_block_1').collapsed) {
+            this.question_panel.form.items.itemAt(2).setValue(this.getReasonUuid(this.facade_question_panel.form.items.itemAt(2).selectedIndex));
+            this.question_panel.form.items.itemAt(3).setValue(this.facade_question_panel.form.items.itemAt(3).getValue());
+        } else {
+            this.question_panel.form.items.itemAt(1).setValue('');
+            this.question_panel.form.items.itemAt(2).clearValue();
+            this.question_panel.form.items.itemAt(3).setValue('');
+        }
+        if (!this.facade_question_panel.get('facade_block_2').collapsed) {
+            this.question_panel.form.items.itemAt(5).setValue(this.getReasonUuid(this.facade_question_panel.form.items.itemAt(6).selectedIndex));
+            this.question_panel.form.items.itemAt(6).setValue(this.facade_question_panel.form.items.itemAt(7).getValue());
+        } else {
+            this.question_panel.form.items.itemAt(4).setValue('');
+            this.question_panel.form.items.itemAt(5).clearValue();
+            this.question_panel.form.items.itemAt(6).setValue('');
+        }
+        if (!this.facade_question_panel.get('facade_block_3').collapsed) {
+            this.question_panel.form.items.itemAt(8).setValue(this.getReasonUuid(this.facade_question_panel.form.items.itemAt(10).selectedIndex));
+            this.question_panel.form.items.itemAt(9).setValue(this.facade_question_panel.form.items.itemAt(11).getValue());
+        } else {
+            this.question_panel.form.items.itemAt(7).setValue('');
+            this.question_panel.form.items.itemAt(8).clearValue();
+            this.question_panel.form.items.itemAt(9).setValue('');
+        }
+    },
+    
+    fillFacade: function() {
+        if (this.question_panel.form.items.itemAt(1).getValue() != '') {
+            this.facade_question_panel.form.items.itemAt(0).setValue(this.question_panel.form.items.itemAt(1).getValue());
+            if(Ext.getDom('northsouth-select-1')){
+                Ext.getDom('northsouth-select-1').selectedIndex=0;
+            }
+            this.setReasonName(this.facade_question_panel.form.items.itemAt(2), this.question_panel.form.items.itemAt(2).getValue())
+            this.facade_question_panel.form.items.itemAt(3).setValue(this.question_panel.form.items.itemAt(3).getValue());
+            if (this.facade_question_panel.items.itemAt(0).collapsed) {
+                this.facade_question_panel.items.itemAt(0).toggleCollapse();
+            }
+        } else {
+            this.facade_question_panel.form.items.itemAt(0).clearValue();
+            if(Ext.getDom('northsouth-select-1')){
+                Ext.getDom('northsouth-select-1').selectedIndex=0;
+            }
+            this.facade_question_panel.form.items.itemAt(1).clearValue();
+            this.facade_question_panel.form.items.itemAt(2).clearValue();
+            this.facade_question_panel.form.items.itemAt(3).setValue('');
+            if (!this.facade_question_panel.items.itemAt(0).collapsed) {
+                this.facade_question_panel.items.itemAt(0).toggleCollapse();
+            }
+        }
+        if (this.question_panel.form.items.itemAt(4).getValue() != '') {
+            this.facade_question_panel.form.items.itemAt(4).setValue(this.question_panel.form.items.itemAt(4).getValue());
+            if(Ext.getDom('northsouth-select-2')){
+                Ext.getDom('northsouth-select-2').selectedIndex=0;
+            }
+            this.setReasonName(this.facade_question_panel.form.items.itemAt(6), this.question_panel.form.items.itemAt(5).getValue())
+            this.facade_question_panel.form.items.itemAt(7).setValue(this.question_panel.form.items.itemAt(6).getValue());
+            if (this.facade_question_panel.items.itemAt(1).collapsed) {
+                this.facade_question_panel.items.itemAt(1).toggleCollapse();
+            }
+        } else {
+            this.facade_question_panel.form.items.itemAt(4).clearValue();
+            if(Ext.getDom('northsouth-select-2')){
+                Ext.getDom('northsouth-select-2').selectedIndex=0;
+            }
+            this.facade_question_panel.form.items.itemAt(5).clearValue();
+            this.facade_question_panel.form.items.itemAt(6).clearValue();
+            this.facade_question_panel.form.items.itemAt(7).setValue('');
+            if (!this.facade_question_panel.items.itemAt(1).collapsed) {
+                this.facade_question_panel.items.itemAt(1).toggleCollapse();
+            }
+        }
+        if (this.question_panel.form.items.itemAt(7).getValue() != '') {
+            this.facade_question_panel.form.items.itemAt(8).setValue(this.question_panel.form.items.itemAt(7).getValue());
+            if(Ext.getDom('northsouth-select-3')){
+                Ext.getDom('northsouth-select-3').selectedIndex=0;
+            }
+            this.setReasonName(this.facade_question_panel.form.items.itemAt(10), this.question_panel.form.items.itemAt(8).getValue())
+            this.facade_question_panel.form.items.itemAt(11).setValue(this.question_panel.form.items.itemAt(9).getValue());
+            if (this.facade_question_panel.items.itemAt(2).collapsed) {
+                this.facade_question_panel.items.itemAt(2).toggleCollapse();
+            }
+        } else {
+            this.facade_question_panel.form.items.itemAt(8).clearValue();
+            if(Ext.getDom('northsouth-select-3')){
+                Ext.getDom('northsouth-select-3').selectedIndex=0;
+            }
+            this.facade_question_panel.form.items.itemAt(9).clearValue();
+            this.facade_question_panel.form.items.itemAt(10).clearValue();
+            this.facade_question_panel.form.items.itemAt(11).setValue('');
+            if (!this.facade_question_panel.items.itemAt(2).collapsed) {
+                this.facade_question_panel.items.itemAt(2).toggleCollapse();
+            }
+        }
+        if (this.resource.indexOf('Abalone') != -1) {
+            this.abalone_box1.show();
+            this.abalone_box2.show();
+            this.abalone_box3.show();
+        } else {
+            this.abalone_box1.hide();
+            this.abalone_box2.hide();
+            this.abalone_box3.hide();
+        }
+    },
+
+    getHeaderText: function() {
+        return '<h3>' + this.group_name + ' Questions - ' + this.resource + '</h3>';
     },
 
     onRender: function(){
-    
-        this.select_panel1 = this.buildSelectPanel(1);
-        this.select_panel2 = this.buildSelectPanel(2);
-        this.select_panel3 = this.buildSelectPanel(3);
+        this.outside_box1 = this.makeNSSelect(1);
+        this.abalone_box1 = this.buildAbaloneCombobox(1);
+        this.select_panel1 = this.buildSelectPanel(1, this.outside_box1, this.abalone_box1);
+        this.outside_box2 = this.makeNSSelect(2);
+        this.abalone_box2 = this.buildAbaloneCombobox(2);
+        this.select_panel2 = this.buildSelectPanel(2, this.outside_box2, this.abalone_box2);
+        this.outside_box3 = this.makeNSSelect(3);
+        this.abalone_box3 = this.buildAbaloneCombobox(3);
+        this.select_panel3 = this.buildSelectPanel(3, this.outside_box3, this.abalone_box3);
 
         // // Call parent (required)
         gwst.widgets.AccessQuestionsPanel.superclass.onRender.apply(this, arguments); 
-       
-        this.add(this.header_panel);
-		this.add(this.question_panel);
-		this.remove(this.button_panel);
-       
-        this.question_panel.on('loaded', this.organizeDisplay.createDelegate(this));
         
-    },loadQuestionPanel: function(form){
-        // this.add(form);
+        this.remove(this.header_panel);
+		this.add(this.question_panel);
+        this.add(this.header_panel);
+        this.facade_question_panel = this.buildFacade();        
+        this.add(this.facade_question_panel)
+        this.add(this.button_panel);
+    },
+    
+    loadQuestionPanel: function(form){
         this.organizeDisplay();
     },
-    
+
     organizeDisplay: function() {
         this.question_panel.hide();
-        
-        this.question_panel.insert(2,this.select_panel1);  //fit the custom panel into the form panel
-        this.question_panel.insert(6,this.select_panel2);  //fit the custom panel into the form panel
-        this.question_panel.insert(10,this.select_panel3);  //fit the custom panel into the form panel
+        this.fillFacade();
+    },
 
-        this.question_panel.show();
-        this.add(this.button_panel);
-        this.hideDuplicates();
-        this.doLayout();
-    },
-    
-    // Hide the question that we've replaced with the custom drop-downs, collect it's ID for future use
-    hideDuplicates: function() {
-        this.hidden_q_id1 = this.question_panel.items.get(1).id;
-        this.question_panel.get(this.hidden_q_id1).hide();
-        this.hidden_q_id2 = this.question_panel.items.get(5).id;
-        this.question_panel.get(this.hidden_q_id2).hide();
-        this.hidden_q_id3 = this.question_panel.items.get(9).id;
-        this.question_panel.get(this.hidden_q_id3).hide();
-    },
-    
     selectPlacemarkSelected: function(selected_rec, list, order, combo_selection) {
         if (gwst.settings.actualSelection || combo_selection) {
             if (!combo_selection){
@@ -191,7 +475,7 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
                     }
                     break;
                 case 2:
-                    this.question_panel.get(this.question_panel.items.get(5).id).setValue(this.rec_name);
+                    this.question_panel.get(this.question_panel.items.get(4).id).setValue(this.rec_name);
                     if (list != 'ns'){
                         Ext.getDom('northsouth-select-2').selectedIndex=0;
                     }
@@ -203,7 +487,7 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
                     }
                     break;
                 case 3:
-                    this.question_panel.get(this.question_panel.items.get(9).id).setValue(this.rec_name);
+                    this.question_panel.get(this.question_panel.items.get(7).id).setValue(this.rec_name);
                     if (list != 'ns'){
                         Ext.getDom('northsouth-select-3').selectedIndex=0;
                     }
@@ -220,10 +504,26 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
         }
 	},
     
+    contBtnClicked: function() {
+        this.fillForm();
+        if (this.question_panel.getForm().isValid()) {
+            this.question_panel.getForm().submit({
+                scope:this.question_panel,
+                source: 'Draw Manager'
+            });
+        } else {
+            this.invalid()
+        }
+        this.fireEvent('grp-qstn-cont', this.result, this);
+    },
+    
     update: function(context) {
-        Ext.apply(context);
-        Ext.getDom('northsouth-select-primary').selectedIndex=0;
-        Ext.getDom('alph-select-primary').selectedIndex=0;
+        Ext.apply(this, context);
+        this.remove(this.question_panel);
+        this.question_panel.destroy();
+        Ext.get('basic_qs_header_html'+this.group_name).update(this.getHeaderText());
+        this.question_panel = this.fill_question_panel();
+        this.add(this.question_panel);
     }
 	
 });

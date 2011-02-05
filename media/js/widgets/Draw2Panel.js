@@ -35,11 +35,17 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     updateText: function(text_config) {
         Ext.apply(this, text_config);
         this.inner_panel.getEl().update(this.getHtmlText());
+        Ext.get('draw_extended_header_html').update(this.getHeaderText());
     },
     
     getHtmlText: function() {
         var html_text = '<h2>Instructions</h2><p>a. <b>At this time</b>, finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name_plural +' you '+ this.action +' as a '+ this.user_group +'.</i> Draw them the same way you drew your first.</p> <p>b. Each of the '+this.resource+' '+this.shape_name+'s you draw can be found in the table below. Click any table row to highlight, remove or zoom to that '+ this.shape_name +'.</p> <p>c. Click the \'Continue\' button when you are satisfied with the '+ this.shape_name +'s you\'ve drawn.</p>';
         return html_text;
+    },
+    
+    getHeaderText: function() {
+        var header_text = '<h3>Draw '+ this.shape_name_plural + ' - '+ this.resource +'</h3>';
+        return header_text;
     },
     
     // getDrawVideoHtml: function() {
@@ -88,14 +94,11 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     },
 
     onRender: function(){
-        this.header_panel = new Ext.Panel({  
-			// html: '<img src="/site-media/images/3_2_DrawExtended_header.png">',
-            html: '<h3>Draw '+ this.shape_name_plural + ' - '+ this.resource +'</h3>',
+        this.header_panel = new Ext.Container({  
+			autoEl: {tag:'div', cls:'action-panel-header', id:'draw_extended_header_html', html:this.getHeaderText()},
+			style: 'padding:5px',
             id: 'draw_extended_header_panel',
-			border: 'north',
-            bodyCfg: {
-                cls: 'action-panel-header'
-            }
+			border: false   
         });
     
 		this.inner_panel = new Ext.Panel({
