@@ -24,59 +24,59 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     makeSelect: function() {
-            this.prev_site_group = '';
-            // if (navigator.appName == "Netscape" && navigator.appVersion.indexOf("Safari") == -1){
-            if (Ext.isGecko || Ext.isGecko2 || Ext.isGecko3){
-                this.select_action = ' onchange="eval(this.value);" onmouseover="gwst.settings.actualSelection = true;" onmouseout="gwst.settings.actualSelection = false;" ';
-            } else {
-                gwst.settings.actualSelection = true;
-                this.select_action = ' onchange="eval(this.value);" ';
-            }
-            this.html_text = '<select id="northsouth-select"' + this.select_action + 'style="width: 265px"><option selected disabled>'+gwst.settings.placeComboText+'</option>';
-            for (this.i = 0; this.i < gwst.settings.placemarkStore.data.length; this.i++) {
-                this.site_group = gwst.settings.placemarkStore.getAt(this.i).get('feature').attributes.site_group;
-                if (this.site_group) {
-                    if (this.prev_site_group != this.site_group) {
-                        this.html_text = this.html_text + '<optgroup label="'+this.site_group+'"></optgroup>';
-                        this.prev_site_group = this.site_group;
-                    }
+        this.prev_site_group = '';
+        // if (navigator.appName == "Netscape" && navigator.appVersion.indexOf("Safari") == -1){
+        if (Ext.isGecko || Ext.isGecko2 || Ext.isGecko3){
+            this.select_action = ' onchange="eval(this.value);" onmouseover="gwst.settings.actualSelection = true;" onmouseout="gwst.settings.actualSelection = false;" ';
+        } else {
+            gwst.settings.actualSelection = true;
+            this.select_action = ' onchange="eval(this.value);" ';
+        }
+        this.html_text = '<select id="northsouth-select"' + this.select_action + 'style="width: 265px"><option selected disabled>'+gwst.settings.placeComboText+'</option>';
+        for (this.i = 0; this.i < gwst.settings.placemarkStore.data.length; this.i++) {
+            this.site_group = gwst.settings.placemarkStore.getAt(this.i).get('feature').attributes.site_group;
+            if (this.site_group) {
+                if (this.prev_site_group != this.site_group) {
+                    this.html_text = this.html_text + '<optgroup label="'+this.site_group+'"></optgroup>';
+                    this.prev_site_group = this.site_group;
                 }
-                this.html_text = this.html_text + '<option value = "app.draw_manager.shapeAttribPanel.selectPlacemarkSelected(\'' +
-                    gwst.settings.placemarkStore.getAt(this.i).id +
-                    '\', \'ns\')">' + gwst.settings.placemarkStore.getAt(this.i).data.name +
-                    '</option>';
             }
-            this.html_text = this.html_text+'</select>';
-            return this.html_text;
-        },
+            this.html_text = this.html_text + '<option value = "app.draw_manager.shapeAttribPanel.selectPlacemarkSelected(\'' +
+                gwst.settings.placemarkStore.getAt(this.i).id +
+                '\', \'ns\')">' + gwst.settings.placemarkStore.getAt(this.i).data.name +
+                '</option>';
+        }
+        this.html_text = this.html_text+'</select>';
+        return this.html_text;
+    },
         
-        makeAlphSelect: function() {
-            if (Ext.isGecko || Ext.isGecko2 || Ext.isGecko3){
-                this.select_action = ' onchange="eval(this.value);" onmouseover="gwst.settings.actualSelection = true;" onmouseout="gwst.settings.actualSelection = false;" ';
-            } else {
-                gwst.settings.actualSelection = true;
-                this.select_action = ' onchange="eval(this.value);" ';
-            }
-            this.html_text = '<select id="alph-select"' + this.select_action + 'style="width: 265px"><option selected disabled>'+gwst.settings.alphPlaceComboText+'</option>';
-            this.alphPlacemarkStore = gwst.settings.placemarkStore.query('name','');
-            this.alphPlacemarkStore.sort('ASC', this.sortByName);
-            for (this.i = 0; this.i < this.alphPlacemarkStore.getCount(); this.i++) {
-                this.site_group = this.alphPlacemarkStore.itemAt(this.i).get('feature').attributes.site_group;
-                this.html_text = this.html_text + '<option value = "app.draw_manager.shapeAttribPanel.selectPlacemarkSelected(\'' +
-                    this.alphPlacemarkStore.itemAt(this.i).id +
-                    '\', \'alph\')">' + this.alphPlacemarkStore.itemAt(this.i).data.name +
-                    '</option>';
-            }
-            this.html_text = this.html_text+'</select>';
-            return this.html_text;
-        },
+    makeAlphSelect: function() {
+        if (Ext.isGecko || Ext.isGecko2 || Ext.isGecko3){
+            this.select_action = ' onchange="eval(this.value);" onmouseover="gwst.settings.actualSelection = true;" onmouseout="gwst.settings.actualSelection = false;" ';
+        } else {
+            gwst.settings.actualSelection = true;
+            this.select_action = ' onchange="eval(this.value);" ';
+        }
+        this.html_text = '<select id="alph-select"' + this.select_action + 'style="width: 265px"><option selected disabled>'+gwst.settings.alphPlaceComboText+'</option>';
+        this.alphPlacemarkStore = gwst.settings.placemarkStore.query('name','');
+        this.alphPlacemarkStore.sort('ASC', this.sortByName);
+        for (this.i = 0; this.i < this.alphPlacemarkStore.getCount(); this.i++) {
+            this.site_group = this.alphPlacemarkStore.itemAt(this.i).get('feature').attributes.site_group;
+            this.html_text = this.html_text + '<option value = "app.draw_manager.shapeAttribPanel.selectPlacemarkSelected(\'' +
+                this.alphPlacemarkStore.itemAt(this.i).id +
+                '\', \'alph\')">' + this.alphPlacemarkStore.itemAt(this.i).data.name +
+                '</option>';
+        }
+        this.html_text = this.html_text+'</select>';
+        return this.html_text;
+    },
         
-        sortByName: function(obj1, obj2) {
-            return obj1.get('name')>obj2.get('name');
-        },
+    sortByName: function(obj1, obj2) {
+        return obj1.get('name')>obj2.get('name');
+    },
             
     onRender: function(){
-    
+
 		this.inner_text_panel = new Ext.Panel({
 			html: this.getHtmlText(),
             id: 'shape_attrib_text_panel',
@@ -137,12 +137,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
                 this.other_box
             ]
         });
-        
-        // this.other_text_check = new Ext.Panel({
-            // html: 'If \'other\' please specify:',
-            // style: 'margin: 0px 0px 10px 10px',
-            // border: false
-        // });
         
         this.other_check = new Ext.form.TextField({
             id: 'other-reason',
@@ -241,6 +235,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             id: 'shape_attrib_form_panel',
 			style: 'margin: 10px',
 			border: false,
+            autoScroll: false,
             width: 265,
             url:'save-form.php',
             defaultType: 'textfield',
@@ -290,7 +285,10 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.add(this.button_panel);
         
         // Call parent (required)
-        gwst.widgets.ShapeAttribPanel.superclass.onRender.apply(this, arguments);     
+        gwst.widgets.ShapeAttribPanel.superclass.onRender.apply(this, arguments);   
+
+        this.setAutoScroll(false);
+        
 	},
     
     selectPlacemarkSelected: function(rec_id, list) {
