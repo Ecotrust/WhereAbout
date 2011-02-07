@@ -1671,6 +1671,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.loadCopyPanel();
         } else {
             gwst.error.load('You have no other '+gwst.settings.interview.shape_name_plural+' drawn.');
+            this.mapPanel.enableResDraw();
         }
     },
     
