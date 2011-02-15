@@ -140,7 +140,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         this.other_check = new Ext.form.TextField({
             id: 'other-reason',
-            fieldLabel: 'If \'other\' please specify:',
+            fieldLabel: 'If \'other\' please specify',
             style: 'margin: 0px 0px 10px 0px',
             width: '120px',
             maxLength: 150,
@@ -249,7 +249,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             },
             this.days_visited,
             this.check_factors,
-            // this.other_text_check,
             this.other_check,
             this.primary_acc_method,
             this.abalone_criteria,
@@ -279,7 +278,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
 
 		this.add(this.select_panel);
 		this.add(this.inner_form_panel);
-        // this.other_text_check.hide();
         this.other_check.hide();
         this.inner_form_panel.hide();
         this.add(this.button_panel);
@@ -316,10 +314,8 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     boxChecked: function() {
         if (this.check_factors.items.item(8).checked) {
-            // this.other_text_check.show();
             this.other_check.show();
         } else {
-            // this.other_text_check.hide();
             this.other_check.hide();
         }
     },
@@ -339,7 +335,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.button_panel.disableCont();
         this.check_factors.reset();
         this.other_check.reset();
-        // this.other_text_check.hide();
     },
 
     contBtnClicked: function() {

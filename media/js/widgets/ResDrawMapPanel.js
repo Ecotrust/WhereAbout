@@ -141,8 +141,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         });
 	    
         var baseLayer = new OpenLayers.Layer.TMS(
-            "Oregon Nautical Charts", 
-            ["/tiles/OregonCharts/"], 
+            "NCC California Nautical Charts", 
+            ["/tiles/Cali_Nautical_Charts/Charts/"], 
             {              
                 buffer: 1,
                 'isBaseLayer': true,
