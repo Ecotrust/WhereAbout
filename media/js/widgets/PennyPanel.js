@@ -127,7 +127,7 @@ gwst.widgets.PennyPanel = Ext.extend(gwst.widgets.WestPanel, {
             sm: new GeoExt.grid.FeatureSelectionModel(),
             stripeRows: true,
             height: 200,
-            width: 275,
+            width: 272,
             title: 'Your '+this.resource+' '+capWords(this.shape_name)+'s',
             style: 'margin: 10px;',
             stateful: true,

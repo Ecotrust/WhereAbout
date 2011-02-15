@@ -30,7 +30,7 @@ gwst.widgets.InvalidShapePanel = Ext.extend(gwst.widgets.WestPanel, {
         if (this.status_code == 2) {
             html_text += '<p>Your '+this.shape_name+' is not valid because it overlaps itself (example below).</p> <img class="invalid-image" src="/site-media/images/invalid_bowtie.gif">';
         } else if (this.status_code == 3) {
-            html_text += '<p>Your '+this.shape_name+' falls completely outside the area of interest which is the Pacific Ocean off the Oregon Coast. Rivers and lakes are excluded from this survey.</p> <p>In the example below the '+this.shape_name+' falls within Woahink Lake which is not valid.  Any Oregon estuary, bay, or ocean would be.</p><img class="invalid-image" src="/site-media/images/invalid_bounds.gif">';
+            html_text += '<p>Your '+this.shape_name+' falls completely outside the area of interest which is the Pacific Ocean off the North Central California Coast. Rivers and lakes are excluded from this survey.</p> <p>In the example below the '+this.shape_name+' falls within a lake, which is not valid.  Any estuary, bay, or ocean would be.</p><img class="invalid-image" src="/site-media/images/invalid_bounds.gif">';
         } else if (this.status_code == 4) {
             html_text += '<p>Your new '+this.shape_name+' overlaps one of your other '+this.resource+' '+this.shape_name_plural+'. They are not allowed to do this.</p>  <p>If you have two that border each other, just draw the second one along the edge of the first as best as you can and tell us in your boundary notes that it should border the other. We will take care of the rest.</p><img class="invalid-image" src="/site-media/images/invalid_overlap.gif">';
         } else if (this.status_code == 5) {
