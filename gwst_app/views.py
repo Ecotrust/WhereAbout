@@ -1542,12 +1542,17 @@ def validate_shape(request):
 
         #Clip the shape to the region
         if settings.CLIP_FEATURES:
-        
-            #TODO: change this to handle two different clip regions (ocean and shore), switching based on activity
-        
-            # if ClipRegion.objects.filter(region = interview.clip_region).count() > 1:
-            if ClipRegion.objects.filter().count() > 1:
-                regions = ClipRegion.objects.filter()
+
+            method = Resource.objects.get(id = resource_id).method
+
+            if method == 'Shore picking':
+                regions = ClipRegion.objects.filter(feature = 'Shore')
+            else:
+                regions = ClipRegion.objects.filter(feature = 'Sea')
+            if regions.count() < 1:
+                regions = interview.clip_region
+
+            if regions.count() > 1:
                 clipped_shape = False
                 for region in regions:
                     if new_shape.intersects(region.Geometry):
@@ -1557,8 +1562,7 @@ def validate_shape(request):
                             clipped_shape = new_shape.intersection(region.Geometry)
 
             else:
-                clipped_shape = new_shape.intersection( interview.clip_region.Geometry )          
-            # clipped_shape = new_shape.difference( interview.clip_region.Geometry )          
+                clipped_shape = new_shape.intersection( regions.Geometry )
                 
             #Error if no area and shape was completely clipped away by clip region, 
             if not clipped_shape or clipped_shape.area == 0:

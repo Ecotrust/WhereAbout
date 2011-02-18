@@ -3,7 +3,7 @@ Ext.namespace('gwst', 'gwst.widgets');
 gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     //Default properties can defined here and overriden by config object passed to contructor
 	
-    defaultZoom: 7,
+    defaultZoom: 8,
     maxZoom: 13,
     minZoom: 6,
     autoZoom: false,
@@ -139,6 +139,21 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             'select': otherSelectStyle,
             'temporary': tempStyle
         });
+        
+        var accessPointStyle = new OpenLayers.StyleMap({
+            'default':{
+                label : "${name}",
+                externalGraphic : "/site-media/images/access_marker.png",
+                fontColor: "black",
+                fontSize: "9px",
+                labelAlign: "l",
+                pointRadius: 5,
+                labelXOffset : "5"
+            },
+            'select':{
+                externalGraphic : "/site-media/images/selected_marker.png"
+            }
+        });
 	    
         var baseLayer = new OpenLayers.Layer.TMS(
             "NCC California Nautical Charts", 
@@ -165,18 +180,129 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             }
         );
         
-        this.vecLayer = new OpenLayers.Layer.Vector('Fishing Grounds',{
+        this.vecLayer = new OpenLayers.Layer.Vector('Target Areas',{
             styleMap: myStyle
         });       
 
-        this.vecOtherLayer = new OpenLayers.Layer.Vector('Other Fishing Grounds',{
+        this.vecOtherLayer = new OpenLayers.Layer.Vector('Other Target Areas',{
             styleMap: myOtherStyle
+        });
+        
+        this.acc_pt_vector = new OpenLayers.Layer.Vector("Access Points", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/ncc_access_points.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: false, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            }),
+            styleMap: accessPointStyle
+        });
+        
+        this.acc_pt_vector.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.mpa_all = new OpenLayers.Layer.Vector("All MPAs", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/ncc_mpa_existing_all.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.mpa_all.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.mpa_smr = new OpenLayers.Layer.Vector("State Marine Reserves", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/ncc_mpa_existing_smr.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.mpa_smr.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.mpa_smca = new OpenLayers.Layer.Vector("State Marine Conservation Areas", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/ncc_mpa_existing_smca.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.mpa_smca.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.mpa_smrma = new OpenLayers.Layer.Vector("State Marine Recreational Management Area", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/ncc_mpa_existing_smrma.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.mpa_smrma.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.mpa_specialclosures = new OpenLayers.Layer.Vector("Special Closures", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/ncc_mpa_existing_specialclosure.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.mpa_specialclosures.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
         });
         
         this.vecLayer.events.on({
             "sketchstarted": this.resShapeStarted,
             "skethmodified": this.resShapeModified,
             "sketchcomplete": this.resShapeComplete,
+            // "featureselected": this.onAreaSelect,
+            // "featureunselected": this.onFeatureUnselect,
             scope: this
         });        
 
@@ -200,19 +326,18 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             this.vecLayer, 
             OpenLayers.Handler.Polygon
         );
+        
        	map.addControl(this.drawResControl);
-        this.selectControl = new OpenLayers.Control.SelectFeature(this.vecLayer);        
+        map.addLayers([baseLayer, this.vecLayer, this.vecOtherLayer, this.mpa_smr, this.mpa_smca, this.mpa_smrma, this.mpa_specialclosures, this.acc_pt_vector]);
+        
+        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.acc_pt_vector ,this.mpa_smr, this.mpa_smca, this.mpa_smrma, this.mpa_specialclosures]);
         map.addControl(this.selectControl);
         this.selectControl.activate();
-        
-        this.selectOtherControl = new OpenLayers.Control.SelectFeature(this.vecOtherLayer);        
-        map.addControl(this.selectOtherControl);
-        this.selectOtherControl.activate();
-        
+
         this.modifyControl = new OpenLayers.Control.ModifyFeature(this.vecLayer);
         map.addControl(this.modifyControl);
-
-        map.addLayers([baseLayer, this.vecLayer, this.vecOtherLayer]);
+        
+        map.addControl(new OpenLayers.Control.LayerSwitcher());
         
         var layerStore = new GeoExt.data.LayerStore({
             layers: [baseLayer],
@@ -226,11 +351,77 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		    extent: map_extent,
 	        center: region_extent.getCenterLonLat(),
 	        zoom: this.defaultZoom
-		});    		
+		});   
+
+        this.acc_pt_vector.setVisibility(false);
 		
         // Call parent (required)
 		gwst.widgets.ResDrawMapPanel.superclass.initComponent.call(this);
     },
+    
+    
+    onPopupClose: function(evt) {
+        this.select_all.unselectAll();
+        this.select_smr.unselectAll();
+        this.select_smca.unselectAll();
+        this.select_smrma.unselectAll();
+        this.select_specialclosures.unselectAll();
+    },
+    
+    onFeatureSelect: function(event) {
+        var feature = event.feature;
+        var popup = new OpenLayers.Popup.FramedCloud(
+            "MPA-popup",                                        //id
+            feature.geometry.getBounds().getCenterLonLat(),     //lon-lat
+            new OpenLayers.Size(100,100),                       //size
+            "<h2>"+feature.attributes.name + "</h2>",           //html
+            null,                                               //anchor
+            true,                                               //closeBox
+            this.onPopupClose                                   //closeBoxCallback
+        );
+        feature.popup = popup;
+        map.addPopup(popup);
+    },
+    
+    // onAreaSelect: function(event) {
+        // var area = event.feature;
+        // var popup = new OpenLayers.Popup.FramedCloud(
+            // "Area-popup",                                       //id
+            // area.geometry.getBounds().getCenterLonLat(),        //lon-lat
+            // new OpenLayers.Size(100,100),                       //size
+            // "<h2>"+area.attributes.resource + "</h2> Pennies: "+area.attributes.pennies,           //html
+            // null,                                               //anchor
+            // true,                                               //closeBox
+            // this.onPopupClose                                   //closeBoxCallback
+        // );
+        // area.popup = popup;
+        // map.addPopup(popup);
+    // },
+    
+    // onOtherAreaSelect: function(event) {
+        // var other_area = event.feature;
+        // var popup = new OpenLayers.Popup.FramedCloud(
+            // "other-area-popup",                                 //id
+            // other_area.geometry.getBounds().getCenterLonLat(),  //lon-lat
+            // new OpenLayers.Size(100,100),                       //size
+            // "<h2>"+other_area.attributes.resource + "</h2>",    //html
+            // null,                                               //anchor
+            // true,                                               //closeBox
+            // this.onPopupClose                                   //closeBoxCallback
+        // );
+        // feature.popup = popup;
+        // map.addPopup(popup);
+    // },
+    
+    onFeatureUnselect: function(event) {
+        var feature = event.feature;
+        if(feature.popup) {
+            map.removePopup(feature.popup);
+            feature.popup.destroy();
+            delete feature.popup;
+        }
+    },
+
     
     zoomHandler: function() {
         var zoomLvl = this.map.getZoom();
@@ -279,8 +470,10 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     zoomToOtherResShape: function(feature) {
         this.autoZoom = true
         this.map.zoomToExtent(feature.geometry.bounds);
-        this.selectOtherControl.unselectAll();
-    	this.selectOtherControl.select(feature);
+        // this.selectOtherControl.unselectAll();
+        this.selectControl.unselectAll();
+    	// this.selectOtherControl.select(feature);
+    	this.selectControl.select(feature);
     },
     
     zoomToAllShapes: function() {
@@ -295,7 +488,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     
     zoomToPoint: function(pnt) {
     	var lonlat = new OpenLayers.LonLat(pnt.geometry.x, pnt.geometry.y);
-    	this.map.setCenter(lonlat, this.maxZoom);
+    	this.map.setCenter(lonlat, this.maxZoom-1);
     },
     
     getShapeLayer: function() {

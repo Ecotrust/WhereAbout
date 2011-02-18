@@ -23,6 +23,7 @@ class Region(Model):
 class ClipRegion(Model): 
     pk_uid = IntegerField(primary_key = True)
     name = models.TextField()
+    feature = CharField( max_length=50 )
     Geometry = PolygonField(srid=settings.SERVER_SRID) # for spatialite testing
     # geom = MultiPolygonField(srid=settings.SERVER_SRID)
     objects = GeoManager()
