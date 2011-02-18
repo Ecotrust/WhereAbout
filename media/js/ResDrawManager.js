@@ -18,8 +18,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     layerWin: null,		//Map layers window
     layerWinOffset: [-8, 8],	//Offset from top right to render
     quitWinOffset: [308, 8],	//Offset from top left to render
-    copyWinOffset: [450, 8],	//Offset from top left to render
-    drawToolWinOffset: [537, 8],	//Offset from top left to render
+    drawWinOffset: [450, 8],
+    copyWinOffset: [606, 8],	//Offset from top left to render
+    drawToolWinOffset: [693, 8],	//Offset from top left to render
 
     constructor: function(){
         gwst.ResDrawManager.superclass.constructor.call(this);
@@ -229,7 +230,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     startDrawStep: function() {  
         this.loadDrawPanel();        
-        this.mapPanel.enableResDraw(); //Turn on drawing
     },
        
     /*
@@ -237,6 +237,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     finDrawStep: function() {
         this.copyWin.hide();
+        this.drawWin.hide();
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -247,7 +248,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from draw step to resource selection
      */
     backDrawStep: function() {
-    this.copyWin.hide();
+        this.copyWin.hide();
+        this.drawWin.hide();
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -261,11 +263,11 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Setup UI for shape grid drawing step 
      */
     startDraw2Step: function() {
+        this.loadDrawWin();
         this.loadCopyWin();
         this.validateEdit = false;
         if (gwst.settings.shapeStore.getCount() > 0) {
             this.loadDraw2Panel();        
-            this.mapPanel.enableResDraw(); //Turn on drawing   
         } else {
             this.startDrawStep();
         }
@@ -276,6 +278,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     finDraw2Step: function() {
         this.copyWin.hide();
+        this.drawWin.hide();
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -288,6 +291,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     backDraw2Step: function() {
         this.copyWin.hide();
+        this.drawWin.hide();
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -573,11 +577,20 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.quitCheckWin.show();
     },
     
+    /* Create Draw New Feature window*/
+    loadDrawWin: function() {
+    	if (!this.drawWin) {
+			this.drawWin = new gwst.widgets.DrawPolyWindow();
+			this.drawWin.on('draw-poly-clicked', this.mapPanel.enableResDraw, this.mapPanel);   //enable drawing
+		}
+		this.drawWin.show();		
+		this.drawWin.alignTo(document.body, "tl-tl", this.drawWinOffset);    	
+    },
+
     /* Create Copy Feature window*/
     loadCopyWin: function() {
     	if (!this.copyWin) {
 			this.copyWin = new gwst.widgets.CopyButtonWindow();
-			// this.copyWin.on('copy-button', this.loadCopyPanel, this);
 			this.copyWin.on('copy-button', this.startCopyStep, this);
 		}
 		this.copyWin.show();		
@@ -812,6 +825,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      /* Load the copy feature west panel */
     loadCopyPanel: function() {
         this.copyWin.hide();
+        this.drawWin.hide();
     	if (!this.copyPanel) {
             this.copyPanel = new gwst.widgets.CopyPanel({
                 xtype: 'gwst-copy-panel',
@@ -1104,6 +1118,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     resShapeComplete: function(feature) {
     	//Validate the feature
         this.copyWin.hide();
+        this.drawWin.hide();
         this.validateShape({
             geometry: feature.geometry,
             resource: gwst.settings.survey_group_id+'-'+this.curResource.id
@@ -1671,7 +1686,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.loadCopyPanel();
         } else {
             gwst.error.load('You have no other '+gwst.settings.interview.shape_name_plural+' drawn.');
-            this.mapPanel.enableResDraw();
         }
     },
     

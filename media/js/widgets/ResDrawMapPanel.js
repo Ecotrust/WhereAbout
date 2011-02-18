@@ -538,12 +538,10 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 
     cancelResShape: function() {
     	this.disableResDraw();
-        this.enableResDraw();
     },
     
     redoResShape: function() {
     	this.disableResDraw();
-        this.enableResDraw();
     },
     
     addShape: function(vec) {

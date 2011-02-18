@@ -159,6 +159,7 @@ COMPRESS_JS = {
             'js/widgets/CustomButtons.js', 
             'js/widgets/Draw2Panel.js', 
             'js/widgets/DrawInstructionPanel.js', 
+            'js/widgets/DrawPolyWindow.js', 
             'js/widgets/DrawOrDropPanel.js', 
             'js/widgets/SatisfiedShapePanel.js', 
             'js/widgets/DrawPanel.js', 

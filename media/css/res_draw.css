@@ -141,6 +141,10 @@ p.x-panel-static{
 	background-image: url(/site-media/images/zoom.png) ! important;
 }
 
+.poly-icon {
+    background-image: url(/site-media/images/pencil_add.png) !important;
+}
+
 .copy-shape{
     background-image: url(/site-media/images/layers.png) ! important;
 }
