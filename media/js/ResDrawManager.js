@@ -305,7 +305,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Load up store for shapes for other resources
      */
     startCopyStep: function(){
-        this.finDrawStep();
         this.loadOtherResouceShapeStore(this.mapPanel.getOtherShapeLayer());
     },
     
@@ -824,8 +823,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
      /* Load the copy feature west panel */
     loadCopyPanel: function() {
-        this.copyWin.hide();
-        this.drawWin.hide();
+        this.finDrawStep();
     	if (!this.copyPanel) {
             this.copyPanel = new gwst.widgets.CopyPanel({
                 xtype: 'gwst-copy-panel',

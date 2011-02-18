@@ -101,7 +101,7 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
     prepPennyForm: function() {
         this.pennies_field.setRawValue(null);
         this.pennies_field.reset();
-        this.pennies_field.focus(true, true);
+        // this.pennies_field.focus(true, false);
     },
     
     saveBtnClicked: function() {

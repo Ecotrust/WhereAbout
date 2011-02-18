@@ -130,7 +130,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
                 {boxLabel: 'Abundance of species', name: 'species_abundance_factor'},
                 {boxLabel: 'Easy access/entry', name: 'ease_of_access_factor'},
                 {boxLabel: 'Close to home', name: 'close_to_home_factor'},
-                {boxLabel: 'Close to campground/hotel/vacation rental', name: 'close_to_base_factor'},
+                {boxLabel: 'Close to campground / hotel / vacation rental', name: 'close_to_base_factor'},
                 {boxLabel: 'Protected from weather', name: 'weather_protection_factor'},
                 {boxLabel: 'Close to facilities/store', name: 'close_to_facilities_factor'},
                 {boxLabel: 'Try a new place', name: 'new_place_factor'},
