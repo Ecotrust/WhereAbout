@@ -524,12 +524,14 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     },
     
     modifyShape: function(feature) {
+        this.selectControl.deactivate();
         this.modifyControl.activate();
         this.modifyControl.selectControl.select(feature);
     },
     
     finModifyShape: function() {
         this.modifyControl.deactivate();
+        this.selectControl.activate();
     },
     
     removeLastShape: function() {
