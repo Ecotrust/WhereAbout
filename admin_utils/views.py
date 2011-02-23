@@ -31,7 +31,13 @@ def export_surveys(request):
         return HttpResponse('You do not have permission to view this feature', status=401)
     if request.method != 'POST':
         return HttpResponse('Action not permitted', status=403)
-    form = ExportSurveysForm(request.POST)
+    try:
+        form = ExportSurveysForm(request.POST)
+    except Exception, e:
+        form = ExportSurveysForm(request.POST)
+    # form = ExportSurveysForm(request.POST)
+    # TODO: see why the first attempt sometimes chokes
+        
     if not form.is_valid():
         return render_to_response( template, RequestContext( request, {'export_form':form} ) )
     #compile a fixture from all the completed surveys
@@ -50,11 +56,13 @@ def compile_survey_fixture():
     interviews = InterviewStatus.objects.filter(completed=True)
     survey_objects = []
     survey_objects.extend(res for res in Resource.objects.all())
+    survey_objects.extend(User.objects.filter(is_staff = True))
+
     for interview in interviews:
         #compile survey entries into one list
         user = User.objects.get(pk=interview.user_id)
-        survey_objects.extend([user])
         survey_objects.extend(UserProfile.objects.filter(user=user))
+        survey_objects.extend([user])
         survey_objects.extend(InterviewStatus.objects.filter(user=user))
         survey_objects.extend(InterviewGroupMembership.objects.filter(user=user))
         #survey_objects.extend(GroupMemberResource.objects.all()) #not sure this is what we want...
@@ -63,7 +71,6 @@ def compile_survey_fixture():
         survey_objects.extend(InterviewAnswer.objects.filter(user=user))
         survey_objects.extend(InterviewShape.objects.filter(user=user))
         
-    survey_objects.extend(User.objects.filter(is_staff = True))
 
     #serialize the survey objects into json 
     fixture_text = serializers.serialize('json', survey_objects, indent=2)

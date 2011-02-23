@@ -464,7 +464,8 @@ def user_post_save(sender, instance, **kwargs):
         creator = qs[0]
 
     try:
-        profile = UserProfile.objects.get(user=instance)
+        if not instance.is_staff:
+            profile = UserProfile.objects.get(user=instance)
     except ObjectDoesNotExist:
         profile = UserProfile()
         profile.user = instance
