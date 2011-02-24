@@ -5,6 +5,7 @@ gwst.widgets.CopyPanel = Ext.extend(gwst.widgets.WestPanel, {
     shape_name: 'unknown',
     record: null,
     resource_type: 'unknown',
+    resource_name: 'unknown',
     shape_name_plural: 'unknown',
     
     // Constructor Defaults, can be overridden by user's config object

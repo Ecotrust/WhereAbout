@@ -67,9 +67,9 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
             },{
                 html: '<img src="/site-media/images/nav_2.png">'
             },{
-                html: '<p>b. To turn on \'Nautical Charts\' use the selection window on the top right. Click the checkbox to turn them on or off.</p>'
+                html: '<p>b. To turn on/off nautical charts, aerial imagery, MPA, or access point layers, use the \'+\' icon in the top right corner to open a layer selection window.</p>'
             },{
-                html: '<img src="/site-media/images/nav_1.png">'
+                html: '<img src="/site-media/images/layers_1.png">'
             },{
                 html: '<p>c. Get as close as you can to your '+ this.shape_name +', then press the continue button.</p>'
             }, {

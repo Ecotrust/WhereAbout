@@ -18,8 +18,7 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
 
     makeSelect: function(order) {
         this.prev_site_group = '';
-        // if (navigator.appName == "Netscape" && navigator.appVersion.indexOf("Safari") == -1){
-        if (Ext.isGecko || Ext.isGecko2 || Ext.isGecko3){
+        if (Ext.isGecko || Ext.isGecko2 || Ext.isGecko3){   //if browser is Firefox...
             this.select_action = ' onchange="eval(this.value);" onmouseover="gwst.settings.actualSelection = true;" onmouseout="gwst.settings.actualSelection = false;" ';
         } else {
             gwst.settings.actualSelection = true;
@@ -57,14 +56,14 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
         return a;
     },
     
-    buildSelectPanel: function(order, outside_box, abalone_box){
+    buildSelectPanel: function(order, outside_box, abalone_text, abalone_box){
         this.select_panel = new Ext.Panel({
             id: 'drop-down-panel'+order,
             border: false,
             width: 250,
             style: 'margin: 5px 15px 5px 0px',
             items: [{
-        		html:'If yes, where did you previously target this species in 2009?',
+        		html:'Where did you previously target this species in 2009?',
         		border: false,
         		style:'padding: 6px 3px 3px 3px'
             },
@@ -75,6 +74,7 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
                 id: 'select-point-ns'+order,
                 style: 'margin: 5px auto 5px auto'
             },
+            abalone_text,
             abalone_box
             ]        	        
         });
@@ -92,7 +92,7 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
                 'North of the region',
                 'South of the region'
             ],
-            emptyText:'Outside of the region',
+            emptyText:'If outside of the region',
             editable: false,
             listWidth: 269,
             triggerAction: 'all',
@@ -105,7 +105,17 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
         
         return this.nsSelect;
     },
-    
+
+    buildAbaloneText: function(order) {
+        this.abalone_text = new Ext.Panel({
+            id: 'abalone-text-'+order,
+            border: false,
+            html: 'Which Abalone Punch Card Site did you use?'
+        });
+        
+        return this.abalone_text;
+    },
+        
     buildAbaloneCombobox: function(order) {
         this.new_id = 'abalone-site'+order;
         this.abalone_site = new Ext.form.ComboBox({
@@ -122,13 +132,17 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
             width: 237
         });
         
-        this.abalone_site.on('select', this.comboSelect, this);
+        this.abalone_site.on('select', this.punchSelect, this);
 
         return this.abalone_site;
     },
     
     comboSelect: function(combo, rec, index) {
         this.selectPlacemarkSelected(rec, combo.name, combo.order, true);
+    },
+    
+    punchSelect: function(combo, rec, index) {
+        this.abalonePunchSiteSelected(rec, combo.name, combo.order, true);
     },
     
     buildFacade: function() {
@@ -177,7 +191,7 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
                     xtype: 'fieldset',
                     id: 'facade_block_2',
                     checkboxToggle: true,
-                    title: 'Any others?',
+                    title: 'Any other sites?',
                     autoHeight: true,
                     width: 260,
                     defaultType: 'textfield',
@@ -212,7 +226,7 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
                     xtype: 'fieldset',
                     id: 'facade_block_3',
                     checkboxToggle: true,
-                    title: 'Any others?',
+                    title: 'Any other sites?',
                     autoHeight: true,
                     width: 260,
                     defaultType: 'textfield',
@@ -314,28 +328,31 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
             this.question_panel.items.itemAt(0).setValue("a29");
         }
         if (!this.facade_question_panel.get('facade_block_1').collapsed) {
-            this.question_panel.form.items.itemAt(2).setValue(this.getReasonUuid(this.facade_question_panel.form.items.itemAt(2).selectedIndex));
-            this.question_panel.form.items.itemAt(3).setValue(this.facade_question_panel.form.items.itemAt(3).getValue());
+            this.question_panel.form.items.itemAt(3).setValue(this.getReasonUuid(this.facade_question_panel.form.items.itemAt(2).selectedIndex));
+            this.question_panel.form.items.itemAt(4).setValue(this.facade_question_panel.form.items.itemAt(3).getValue());
         } else {
             this.question_panel.form.items.itemAt(1).setValue('');
-            this.question_panel.form.items.itemAt(2).clearValue();
-            this.question_panel.form.items.itemAt(3).setValue('');
+            this.question_panel.form.items.itemAt(2).setValue('');
+            this.question_panel.form.items.itemAt(3).clearValue();
+            this.question_panel.form.items.itemAt(4).setValue('');
         }
         if (!this.facade_question_panel.get('facade_block_2').collapsed) {
-            this.question_panel.form.items.itemAt(5).setValue(this.getReasonUuid(this.facade_question_panel.form.items.itemAt(6).selectedIndex));
-            this.question_panel.form.items.itemAt(6).setValue(this.facade_question_panel.form.items.itemAt(7).getValue());
+            this.question_panel.form.items.itemAt(7).setValue(this.getReasonUuid(this.facade_question_panel.form.items.itemAt(6).selectedIndex));
+            this.question_panel.form.items.itemAt(8).setValue(this.facade_question_panel.form.items.itemAt(7).getValue());
         } else {
-            this.question_panel.form.items.itemAt(4).setValue('');
-            this.question_panel.form.items.itemAt(5).clearValue();
+            this.question_panel.form.items.itemAt(5).setValue('');
             this.question_panel.form.items.itemAt(6).setValue('');
+            this.question_panel.form.items.itemAt(7).clearValue();
+            this.question_panel.form.items.itemAt(8).setValue('');
         }
         if (!this.facade_question_panel.get('facade_block_3').collapsed) {
-            this.question_panel.form.items.itemAt(8).setValue(this.getReasonUuid(this.facade_question_panel.form.items.itemAt(10).selectedIndex));
-            this.question_panel.form.items.itemAt(9).setValue(this.facade_question_panel.form.items.itemAt(11).getValue());
+            this.question_panel.form.items.itemAt(11).setValue(this.getReasonUuid(this.facade_question_panel.form.items.itemAt(10).selectedIndex));
+            this.question_panel.form.items.itemAt(12).setValue(this.facade_question_panel.form.items.itemAt(11).getValue());
         } else {
-            this.question_panel.form.items.itemAt(7).setValue('');
-            this.question_panel.form.items.itemAt(8).clearValue();
             this.question_panel.form.items.itemAt(9).setValue('');
+            this.question_panel.form.items.itemAt(10).setValue('');
+            this.question_panel.form.items.itemAt(11).clearValue();
+            this.question_panel.form.items.itemAt(12).setValue('');
         }
     },
     
@@ -345,8 +362,9 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
             if(Ext.getDom('northsouth-select-1')){
                 Ext.getDom('northsouth-select-1').selectedIndex=0;
             }
-            this.setReasonName(this.facade_question_panel.form.items.itemAt(2), this.question_panel.form.items.itemAt(2).getValue())
-            this.facade_question_panel.form.items.itemAt(3).setValue(this.question_panel.form.items.itemAt(3).getValue());
+            this.facade_question_panel.form.items.itemAt(1).setValue(this.question_panel.form.items.itemAt(2).getValue());
+            this.setReasonName(this.facade_question_panel.form.items.itemAt(2), this.question_panel.form.items.itemAt(3).getValue())
+            this.facade_question_panel.form.items.itemAt(3).setValue(this.question_panel.form.items.itemAt(4).getValue());
             if (this.facade_question_panel.items.itemAt(0).collapsed) {
                 this.facade_question_panel.items.itemAt(0).toggleCollapse();
             }
@@ -362,13 +380,14 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
                 this.facade_question_panel.items.itemAt(0).toggleCollapse();
             }
         }
-        if (this.question_panel.form.items.itemAt(4).getValue() != '') {
-            this.facade_question_panel.form.items.itemAt(4).setValue(this.question_panel.form.items.itemAt(4).getValue());
+        if (this.question_panel.form.items.itemAt(5).getValue() != '') {
+            this.facade_question_panel.form.items.itemAt(4).setValue(this.question_panel.form.items.itemAt(5).getValue());
             if(Ext.getDom('northsouth-select-2')){
                 Ext.getDom('northsouth-select-2').selectedIndex=0;
             }
-            this.setReasonName(this.facade_question_panel.form.items.itemAt(6), this.question_panel.form.items.itemAt(5).getValue())
-            this.facade_question_panel.form.items.itemAt(7).setValue(this.question_panel.form.items.itemAt(6).getValue());
+            this.facade_question_panel.form.items.itemAt(5).setValue(this.question_panel.form.items.itemAt(6).getValue());
+            this.setReasonName(this.facade_question_panel.form.items.itemAt(6), this.question_panel.form.items.itemAt(7).getValue())
+            this.facade_question_panel.form.items.itemAt(7).setValue(this.question_panel.form.items.itemAt(8).getValue());
             if (this.facade_question_panel.items.itemAt(1).collapsed) {
                 this.facade_question_panel.items.itemAt(1).toggleCollapse();
             }
@@ -384,13 +403,14 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
                 this.facade_question_panel.items.itemAt(1).toggleCollapse();
             }
         }
-        if (this.question_panel.form.items.itemAt(7).getValue() != '') {
-            this.facade_question_panel.form.items.itemAt(8).setValue(this.question_panel.form.items.itemAt(7).getValue());
+        if (this.question_panel.form.items.itemAt(9).getValue() != '') {
+            this.facade_question_panel.form.items.itemAt(8).setValue(this.question_panel.form.items.itemAt(9).getValue());
             if(Ext.getDom('northsouth-select-3')){
                 Ext.getDom('northsouth-select-3').selectedIndex=0;
             }
-            this.setReasonName(this.facade_question_panel.form.items.itemAt(10), this.question_panel.form.items.itemAt(8).getValue())
-            this.facade_question_panel.form.items.itemAt(11).setValue(this.question_panel.form.items.itemAt(9).getValue());
+            this.facade_question_panel.form.items.itemAt(9).setValue(this.question_panel.form.items.itemAt(10).getValue());
+            this.setReasonName(this.facade_question_panel.form.items.itemAt(10), this.question_panel.form.items.itemAt(11).getValue())
+            this.facade_question_panel.form.items.itemAt(11).setValue(this.question_panel.form.items.itemAt(12).getValue());
             if (this.facade_question_panel.items.itemAt(2).collapsed) {
                 this.facade_question_panel.items.itemAt(2).toggleCollapse();
             }
@@ -407,12 +427,18 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
             }
         }
         if (this.resource.indexOf('Abalone') != -1) {
+            this.abalone_text1.show();
             this.abalone_box1.show();
+            this.abalone_text2.show();
             this.abalone_box2.show();
+            this.abalone_text3.show();
             this.abalone_box3.show();
         } else {
+            this.abalone_text1.hide();
             this.abalone_box1.hide();
+            this.abalone_text2.hide();
             this.abalone_box2.hide();
+            this.abalone_text3.hide();
             this.abalone_box3.hide();
         }
     },
@@ -423,16 +449,19 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
 
     onRender: function(){
         this.outside_box1 = this.makeNSSelect(1);
+        this.abalone_text1 = this.buildAbaloneText(1);
         this.abalone_box1 = this.buildAbaloneCombobox(1);
-        this.select_panel1 = this.buildSelectPanel(1, this.outside_box1, this.abalone_box1);
+        this.select_panel1 = this.buildSelectPanel(1, this.outside_box1, this.abalone_text1, this.abalone_box1);
         this.outside_box2 = this.makeNSSelect(2);
+        this.abalone_text2 = this.buildAbaloneText(2);
         this.abalone_box2 = this.buildAbaloneCombobox(2);
-        this.select_panel2 = this.buildSelectPanel(2, this.outside_box2, this.abalone_box2);
+        this.select_panel2 = this.buildSelectPanel(2, this.outside_box2, this.abalone_text2, this.abalone_box2);
         this.outside_box3 = this.makeNSSelect(3);
+        this.abalone_text3 = this.buildAbaloneText(3);
         this.abalone_box3 = this.buildAbaloneCombobox(3);
-        this.select_panel3 = this.buildSelectPanel(3, this.outside_box3, this.abalone_box3);
+        this.select_panel3 = this.buildSelectPanel(3, this.outside_box3, this.abalone_text3, this.abalone_box3);
 
-        // // Call parent (required)
+        // Call parent (required)
         gwst.widgets.AccessQuestionsPanel.superclass.onRender.apply(this, arguments); 
         
         this.remove(this.header_panel);
@@ -470,37 +499,49 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
                     if (list != 'outside'){
                         this.select_panel1.items.itemAt(1).clearValue();
                     }
-                    if (list != 'abalone' && this.resource.indexOf('Abalone') != -1){
-                        this.select_panel1.items.itemAt(3).clearValue();
-                    }
                     break;
                 case 2:
-                    this.question_panel.get(this.question_panel.items.get(4).id).setValue(this.rec_name);
+                    this.question_panel.get(this.question_panel.items.get(5).id).setValue(this.rec_name);
                     if (list != 'ns'){
                         Ext.getDom('northsouth-select-2').selectedIndex=0;
                     }
                     if (list != 'outside'){
                         this.select_panel2.items.itemAt(1).clearValue();
                     }
-                    if (list != 'abalone' && this.resource.indexOf('Abalone') != -1){
-                        this.select_panel2.items.itemAt(3).clearValue();
-                    }
                     break;
                 case 3:
-                    this.question_panel.get(this.question_panel.items.get(7).id).setValue(this.rec_name);
+                    this.question_panel.get(this.question_panel.items.get(9).id).setValue(this.rec_name);
                     if (list != 'ns'){
                         Ext.getDom('northsouth-select-3').selectedIndex=0;
                     }
                     if (list != 'outside'){
                         this.select_panel3.items.itemAt(1).clearValue();
                     }
-                    if (list != 'abalone' && this.resource.indexOf('Abalone') != -1){
-                        this.select_panel3.items.itemAt(3).clearValue();
-                    }
                     break;
                 default:
                     break;
             }
+        }
+	},
+    
+    abalonePunchSiteSelected: function(selected_rec, list, order, combo_selection) {            
+        this.rec_name = selected_rec.get('field1');
+
+        switch (order) {
+            case 1:
+                this.question_panel.get(this.question_panel.items.get(2).id).setValue(this.rec_name);
+
+                break;
+            case 2:
+                this.question_panel.get(this.question_panel.items.get(6).id).setValue(this.rec_name);
+
+                break;
+            case 3:
+                this.question_panel.get(this.question_panel.items.get(10).id).setValue(this.rec_name);
+
+                break;
+            default:
+                break;
         }
 	},
     

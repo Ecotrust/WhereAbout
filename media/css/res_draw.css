@@ -175,6 +175,15 @@ p.x-panel-static{
     float:right;
 }
 
+.custom-table-cell {
+    margin: 5px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .x-btn-center {
     padding: 0 2px;
 }

@@ -30,34 +30,42 @@ gwst.widgets.BackContButtons = Ext.extend(Ext.Panel, {
             // action for the button in the button panel
             this.backBtn = new Ext.Button({
                 text: '<< Go Back',
-                handler: this.back_handler
+                handler: this.back_handler,
+                width: 100
             });
             if (!this.back_enabled) {
             	this.backBtn.disable();
             }            
             this.add({
                 items: [this.backBtn],
-                width: 85,
-                style: 'margin-left: 40px'
+                width: 110,
+                style: 'margin-left: auto; margin-right: auto'
             });
         } else {
             this.add({
                 html: '',
-                width: 105
+                width: 110
             })
-        };
+        }
         if (this.cont_handler) {
             this.contBtn = new Ext.Button({
                 text: 'Continue >>',
-                handler: this.cont_handler
+                handler: this.cont_handler,
+                width: 100
             });
             if (!this.cont_enabled) {
             	this.contBtn.disable();
             }
             this.add({
                 items: [this.contBtn],
-                width: 120
+                width: 110,
+                style: 'margin-left: auto; margin-right: auto'
             });
+        } else {
+            this.add({
+                html: '',
+                width: 110
+            })
         }
         // Call parent (required)
         gwst.widgets.BackContButtons.superclass.onRender.apply(this, arguments); 

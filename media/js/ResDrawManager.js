@@ -828,6 +828,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.copyPanel = new gwst.widgets.CopyPanel({
                 xtype: 'gwst-copy-panel',
                 resource: this.curResource.get('name'),
+                resource_name: gwst.settings.interview.resource_name,
                 shape_name_plural: gwst.settings.interview.shape_name_plural,
                 shape_name: gwst.settings.interview.shape_name
             });
@@ -1017,7 +1018,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         if (!this.OldLocationQuestionPanel) {
             this.OldLocationQuestionPanel = new gwst.widgets.AccessQuestionsPanel({
                 xtype: 'gwst-group-questions-panel',
-                group_name: 'Primary Location',
+                group_name: 'Previous Location',
                 form_url: gwst.settings.urls.resource_questions + '10/None/' + this.curResource.get('id') + '/',
                 resource_id: this.curResource.get('id'),
                 resource: this.curResource.get('name')

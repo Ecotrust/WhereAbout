@@ -43,21 +43,25 @@ gwst.widgets.SatisfiedShapePanel = Ext.extend(gwst.widgets.WestPanel, {
                     type: 'handler'
                 },{
                     elem: 'Yes',
-                    type: 'text'
+                    type: 'text',
+                    style: 'width: 100px'
                 },{
                     elem: this.noClicked.createDelegate(this),
                     type: 'handler'
                 },{
                     elem: 'No',
-                    type: 'text'
+                    type: 'text',
+                    style: 'width: 100'
                 },{
                     elem: this.editClicked.createDelegate(this),
                     type: 'handler'
                 },{
                     elem: 'Edit shape',
-                    type: 'text'
+                    type: 'text',
+                    style: 'width: 100px; float: right'
                 }
-            ]
+            ],
+            style: 'margin: auto'
         });
         
 		this.add(this.inner_panel);
