@@ -124,7 +124,7 @@ class AnswerForm(forms.Form):
                 self.fields['question_' + str(question.id) + resource_postfix] = select_form
                 
             elif question.answer_type == 'checkbox': #checkbox list 
-                option_values = question.options.values()
+                option_values = question.options.values().order_by('display_order')
                 choices = []
                 for val in option_values:
                     choices.append((val.get('id'), val.get('eng_text')))

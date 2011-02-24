@@ -58,11 +58,11 @@
       <scale>0.000000</scale>
     </LabelStyle>
     <LineStyle>
-      <color>00c8d0d4</color>
+      <color>7f000000</color>
       <width>0.400000</width>
     </LineStyle>
     <PolyStyle>
-      <color>7f00e64c</color>
+      <color>7f00a838</color>
       <outline>1</outline>
     </PolyStyle>
   </Style>

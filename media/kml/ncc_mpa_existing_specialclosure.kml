@@ -162,11 +162,11 @@
       <scale>0.000000</scale>
     </LabelStyle>
     <LineStyle>
-      <color>00c8d0d4</color>
+      <color>7f000000</color>
       <width>0.400000</width>
     </LineStyle>
     <PolyStyle>
-      <color>7fdf73ff</color>
+      <color>7f00ffff</color>
       <outline>1</outline>
     </PolyStyle>
   </Style>
