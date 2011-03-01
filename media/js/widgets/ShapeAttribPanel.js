@@ -213,7 +213,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             id:'drop-down-panel',
             border: false,
             width: 265,
-            style: 'margin: 5px 15px 0px 15px',
+            style: 'margin: 5px 15px 0px 10px',
             items: [{
         		html:gwst.settings.primaryPtText,
         		border: false,

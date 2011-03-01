@@ -61,7 +61,7 @@ import django.contrib.admin.templatetags.adminmedia
 import django.contrib.admin.templatetags.admin_list
 import django.contrib.admin.templatetags.admin_modify
 import django.contrib.admin.templatetags.log
-import django.contrib.admin.views.template
+# import django.contrib.admin.views.template
 import django.contrib.admin.sites
 import django.conf.urls.shortcut
 import django.views.defaults
@@ -122,7 +122,7 @@ if __name__ == "__main__":
     try:
         sys.path.insert(0,"..")
         #2nd param to AdminMediaHandler should be absolute path to the admin media files
-        cherrypy.tree.graft(AdminMediaHandler(WSGIHandler(),media_dir=os.path.dirname(os.path.abspath(sys.argv[0])) + settings.ADMIN_MEDIA_PREFIX), '/')
+        cherrypy.tree.graft(AdminMediaHandler(WSGIHandler(), os.path.dirname(os.path.abspath(sys.argv[0])) + settings.ADMIN_MEDIA_PREFIX), '/')
         cherrypy.server.socket_port = 8001
         cherrypy.server.threading = 0
         cherrypy.engine.start_with_callback( webbrowser.open, ( 'http://127.0.0.1:8001/', ), )

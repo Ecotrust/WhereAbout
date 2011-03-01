@@ -4,8 +4,10 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     //Default properties can defined here and overriden by config object passed to contructor
 	
     defaultZoom: 8,
-    maxZoom: 13,
-    minZoom: 6,
+    maxZoom: 16,
+    minZoom: 8,
+    maxGoogleZoom: 13,
+    minGoogleZoom: 5,
     autoZoom: false,
     
     initComponent: function(){
@@ -27,7 +29,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             projection: new OpenLayers.Projection("EPSG:900913"),
             displayProjection: new OpenLayers.Projection("EPSG:4326"),
             units: "m",
-            numZoomLevels: 18,
+            numZoomLevels: 21,
             maxResolution: 156543.0339,
             maxExtent: map_extent,
             eventListeners: {
@@ -180,32 +182,37 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             }
         );
         
+        try {
+            // if (G_HYBRID_MAP) {
+            if (google.maps.MapTypeId.HYBRID) {
+                var googleLayer = new OpenLayers.Layer.Google(
+                    "Satellite Imagery",
+                    {
+                        // type: G_HYBRID_MAP, 
+                        type: google.maps.MapTypeId.HYBRID, 
+                        sphericalMercator: true
+                    }
+                );
+            }
+            this.layer_array = [baseLayer, googleLayer]
+            this.mapLayer_array = [baseLayer, googleLayer]
+        } 
+        catch (e) {
+            this.layer_array = [baseLayer]
+            this.mapLayer_array = [baseLayer]
+        }
+        
         this.vecLayer = new OpenLayers.Layer.Vector('Target Areas',{
             styleMap: myStyle
-        });       
+        });     
+
+        this.layer_array[this.layer_array.length] = this.vecLayer;
 
         this.vecOtherLayer = new OpenLayers.Layer.Vector('Other Target Areas',{
             styleMap: myOtherStyle
         });
         
-        this.acc_pt_vector = new OpenLayers.Layer.Vector("Access Points", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/ncc_access_points.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: false, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            }),
-            styleMap: accessPointStyle
-        });
-        
-        this.acc_pt_vector.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
+        this.layer_array[this.layer_array.length] = this.vecOtherLayer;
         
         this.mpa_all = new OpenLayers.Layer.Vector("All MPAs", {
             strategies: [new OpenLayers.Strategy.Fixed()],
@@ -243,6 +250,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             "featureunselected": this.onFeatureUnselect
         });
         
+        this.layer_array[this.layer_array.length] = this.mpa_smr;
+        
         this.mpa_smca = new OpenLayers.Layer.Vector("State Marine Conservation Areas", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
@@ -260,6 +269,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             "featureselected": this.onFeatureSelect,
             "featureunselected": this.onFeatureUnselect
         });
+        
+        this.layer_array[this.layer_array.length] = this.mpa_smca;
         
         this.mpa_smrma = new OpenLayers.Layer.Vector("State Marine Recreational Management Area", {
             strategies: [new OpenLayers.Strategy.Fixed()],
@@ -279,6 +290,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             "featureunselected": this.onFeatureUnselect
         });
         
+        this.layer_array[this.layer_array.length] = this.mpa_smrma;
+        
         this.mpa_specialclosures = new OpenLayers.Layer.Vector("Special Closures", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
@@ -297,15 +310,36 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             "featureunselected": this.onFeatureUnselect
         });
         
+        this.layer_array[this.layer_array.length] = this.mpa_specialclosures;
+        
         this.vecLayer.events.on({
             "sketchstarted": this.resShapeStarted,
             "skethmodified": this.resShapeModified,
             "sketchcomplete": this.resShapeComplete,
-            // "featureselected": this.onAreaSelect,
-            // "featureunselected": this.onFeatureUnselect,
             scope: this
-        });        
-
+        });    
+        
+        this.acc_pt_vector = new OpenLayers.Layer.Vector("Access Points", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/ncc_access_points.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: false, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            }),
+            styleMap: accessPointStyle
+        });
+        
+        this.acc_pt_vector.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.layer_array[this.layer_array.length] = this.acc_pt_vector;
+        
 		//Required: Create div element for OL map before constructing it.  OL really wants you to tell
         //it what it's div is in the constructor.  If you let Ext create it's own div element at render time
         //OL won't know where it is.  This is fine usually except the Google base map doesn't work properly in
@@ -317,7 +351,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         //Create the map and dump everything in
 	    map = new OpenLayers.Map('ol-map', map_options);
 		map.addControl(new OpenLayers.Control.Navigation());		
-        map.addControl(new OpenLayers.Control.PanZoomBar());
+        map.addControl(new OpenLayers.Control.PanZoomBar({zoomStopHeight: 6}));
 		map.addControl(new OpenLayers.Control.MousePosition());
         map.addControl(new OpenLayers.Control.KeyboardDefaults());
         
@@ -328,7 +362,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         );
         
        	map.addControl(this.drawResControl);
-        map.addLayers([baseLayer, this.vecLayer, this.vecOtherLayer, this.mpa_smr, this.mpa_smca, this.mpa_smrma, this.mpa_specialclosures, this.acc_pt_vector]);
+        map.addLayers(this.layer_array);
         
         this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.acc_pt_vector ,this.mpa_smr, this.mpa_smca, this.mpa_smrma, this.mpa_specialclosures]);
         map.addControl(this.selectControl);
@@ -340,7 +374,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         map.addControl(new OpenLayers.Control.LayerSwitcher());
         
         var layerStore = new GeoExt.data.LayerStore({
-            layers: [baseLayer],
+            layers: this.mapLayer_array,
             map: this.map
         });
         
@@ -383,36 +417,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         map.addPopup(popup);
     },
     
-    // onAreaSelect: function(event) {
-        // var area = event.feature;
-        // var popup = new OpenLayers.Popup.FramedCloud(
-            // "Area-popup",                                       //id
-            // area.geometry.getBounds().getCenterLonLat(),        //lon-lat
-            // new OpenLayers.Size(100,100),                       //size
-            // "<h2>"+area.attributes.resource + "</h2> Pennies: "+area.attributes.pennies,           //html
-            // null,                                               //anchor
-            // true,                                               //closeBox
-            // this.onPopupClose                                   //closeBoxCallback
-        // );
-        // area.popup = popup;
-        // map.addPopup(popup);
-    // },
-    
-    // onOtherAreaSelect: function(event) {
-        // var other_area = event.feature;
-        // var popup = new OpenLayers.Popup.FramedCloud(
-            // "other-area-popup",                                 //id
-            // other_area.geometry.getBounds().getCenterLonLat(),  //lon-lat
-            // new OpenLayers.Size(100,100),                       //size
-            // "<h2>"+other_area.attributes.resource + "</h2>",    //html
-            // null,                                               //anchor
-            // true,                                               //closeBox
-            // this.onPopupClose                                   //closeBoxCallback
-        // );
-        // feature.popup = popup;
-        // map.addPopup(popup);
-    // },
-    
     onFeatureUnselect: function(event) {
         var feature = event.feature;
         if(feature.popup) {
@@ -425,16 +429,23 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     
     zoomHandler: function() {
         var zoomLvl = this.map.getZoom();
-        if (zoomLvl > this.maxZoom){
+        // if (this.map.baseLayer.CLASS_NAME == "OpenLayers.Layer.TMS") {
+            this.layerMaxZoom = this.maxZoom;
+            this.layerMinZoom = this.minZoom;
+        // } else if (this.map.baseLayer.CLASS_NAME == "OpenLayers.Layer.Google") {
+            // this.layerMaxZoom = this.maxGoogleZoom;
+            // this.layerMinZoom = this.minGoogleZoom;
+        // }
+        if (zoomLvl > this.layerMaxZoom){
             if (!this.autoZoom) {
                 gwst.error.load('You are already at the maximum zoom level available.');
             }
-            this.map.zoomTo(this.maxZoom);
-        } else if (zoomLvl < this.minZoom){
+            this.map.zoomTo(this.layerMaxZoom);
+        } else if (zoomLvl < this.layerMinZoom){
             if (!this.autoZoom) {
                 gwst.error.load('You are already at the minimum zoom level available.');
             }
-            this.map.zoomTo(this.minZoom);
+            this.map.zoomTo(this.layerMinZoom);
         }
         this.autoZoom = false;
     },

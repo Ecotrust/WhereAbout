@@ -80,6 +80,7 @@ if settings.DESKTOP_BUILD:
     urlpatterns += patterns ( '',
         (r'^accounts/login_as/([A-Za-z0-9_-]+)$', login_as_admin ),
         (r'^admin/logout/$', logout ),
+        (r'^management/logout/$', logout ),
         (r'^admin/auth/user/$', survey_management ),
         (r'^admin/$', survey_management ),
         (r'^management/start_new_survey/$', start_new_survey ),

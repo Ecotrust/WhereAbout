@@ -12,11 +12,19 @@
 
 .x-form-item {
     width: 250px !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+
+.olLayerGoogleCopyright {
+    right: auto !important;
+    left: 70px !important;
 }
 
 .olControlPanZoomBar {
-	right: 50px !important;
-	top: 60px !important;
+    right: 50px !important;
+    top: 60px !important;
+    left: auto !important;
 }
 
 .x-form-check-wrap {
