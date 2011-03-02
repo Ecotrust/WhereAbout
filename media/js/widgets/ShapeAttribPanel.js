@@ -97,7 +97,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.primary_acc_method = new Ext.form.ComboBox({
             id: 'prim-acc-method',
             name: 'primary_acc_method',
-            fieldLabel: 'Primary access method to this harvesting location last year (2010) for this species',
+            fieldLabel: 'Primary access method to this harvesting location last year (2010) for this fishery',
             store: [
                 'swimming',
                 'kayak',
@@ -122,7 +122,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.check_factors = new Ext.form.CheckboxGroup ({
             id: 'check-factors',
             xtype: 'checkboxgroup',
-            fieldLabel: 'Primary factor(s) considered then choosing this site to dive/shore pick for this species in the last year (2010)',
+            fieldLabel: 'Primary factor(s) considered then choosing this site to target pick for this fishery in the last year (2010)',
             itemCls: 'x-check-group-alt',
             style: 'margin: 0px 0px 10px 5px',
             columns: 1,
