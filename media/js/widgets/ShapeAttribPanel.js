@@ -12,6 +12,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         // be created and added/overridden here: Ext.apply(this, {});
         
         this.addEvents('shape-attrib-cont');
+        this.addEvents('shape-attrib-back');
 
         // Call parent (required)
         gwst.widgets.ShapeAttribPanel.superclass.initComponent.apply(
@@ -247,13 +248,13 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
                 name: 'primary_acc_point',
                 hidden: true
             },
+            this.abalone_site,
             this.days_visited,
             this.check_factors,
             this.other_check,
             this.primary_acc_method,
             this.abalone_criteria,
             this.abalone_time,
-            this.abalone_site,
             {
                 fieldLabel: 'North Boundary',
                 name: 'boundary_n'
@@ -273,13 +274,14 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         this.button_panel = new gwst.widgets.BackContButtons ({
             cont_handler: this.contBtnClicked.createDelegate(this),
-            cont_enabled: false
+            back_handler: this.backBtnClicked.createDelegate(this)
+            // cont_enabled: false
         });
 
 		this.add(this.select_panel);
 		this.add(this.inner_form_panel);
         this.other_check.hide();
-        this.inner_form_panel.hide();
+        // this.inner_form_panel.hide();
         this.add(this.button_panel);
         
         // Call parent (required)
@@ -291,7 +293,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
     
     selectPlacemarkSelected: function(rec_id, list) {
         if (gwst.settings.actualSelection) {
-            this.inner_form_panel.show();
+            // this.inner_form_panel.show();
             if (this.resource.indexOf('Dive') == -1) {
                 this.primary_acc_method.hide();
             }
@@ -308,7 +310,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             this.rec = gwst.settings.placemarkStore.getById(rec_id);
             this.fireEvent('place-selected', this.rec);
             this.inner_form_panel.get('prim-acc-point').setValue(this.rec.get('feature').data.pk_uid);
-            this.button_panel.enableCont();
+            // this.button_panel.enableCont();
         }
 	},
     
@@ -331,8 +333,8 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         this.abalone_criteria.show();
         this.abalone_time.show();
         this.abalone_site.show();
-        this.inner_form_panel.hide();
-        this.button_panel.disableCont();
+        // this.inner_form_panel.hide();
+        // this.button_panel.disableCont();
         this.check_factors.reset();
         this.other_check.reset();
     },
@@ -356,6 +358,10 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         } else {
             this.fireEvent('shape-attrib-cont',this.form_values);
         }
+    },
+    
+    backBtnClicked: function () {
+        this.fireEvent('shape-attrib-back');
     }
 });
  

@@ -474,6 +474,7 @@ gwst.widgets.AccessQuestionsPanel = Ext.extend(gwst.widgets.GroupQuestionsPanel,
     
     loadQuestionPanel: function(form){
         this.organizeDisplay();
+        this.button_panel.enableCont();
     },
 
     organizeDisplay: function() {

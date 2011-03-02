@@ -108,7 +108,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      *  If user knows of specific MPAs, ask them which.  Else, move on to resource select. 
      */
     contMPAQuestionsStep: function() {
-        if (this.MPAQuestionPanel.question_panel.getForm().getFieldValues().question_91) {
+        if (this.MPAQuestionPanel.question_panel.getForm().getFieldValues().question_91.length != 0 ) {
             this.loadSpecificMPAQuestionPanel();
         } else {
             this.finMPAQuestionsStep();
@@ -408,6 +408,11 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     finAttribStep: function(boundary_values_obj) {
         this.saveNewShape(boundary_values_obj);    
     },    
+    
+    backAttribStep: function() {
+        this.mapPanel.removeLastShape();
+        this.startDraw2Step();
+    },
     
     
     /******************** draw another shape / drop penny steps *******************/
@@ -928,7 +933,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.shapeAttribPanel.on('shape-attrib-cont', this.finAttribStep, this);
-    		this.shapeAttribPanel.on('place-selected', this.zoomToPlacemark, this);
+            this.shapeAttribPanel.on('shape-attrib-back', this.backAttribStep, this);
+    		// this.shapeAttribPanel.on('place-selected', this.zoomToPlacemark, this);
         } else {
             this.shapeAttribPanel.update({
                 shape_name: gwst.settings.interview.shape_name,

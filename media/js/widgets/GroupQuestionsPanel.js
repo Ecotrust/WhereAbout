@@ -37,6 +37,7 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
 
         this.button_panel = new gwst.widgets.BackContButtons ({
             cont_handler: this.contBtnClicked.createDelegate(this),
+            cont_enabled: false,
             back_handler: this.backBtnClicked.createDelegate(this)
         });
 
@@ -55,6 +56,7 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
         // this.question_panel = form;
         // this.doLayout();
         this.add(form);
+        this.button_panel.enableCont();
     },
     
     fill_question_panel: function() {
