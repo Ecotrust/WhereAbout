@@ -3,15 +3,23 @@
 {% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
 
 {% block js %}
- function skip_group_verify(link) {
-            var agree=confirm("Are you sure you want to skip this group?");
-            if (agree) {
-                location.href=link;
-            }
-            else {
-                location.href="/group_qs/{{form.group_id}}/answer";
-            }
+    function skip_group_verify(link) {
+        var agree=confirm("Are you sure you want to skip this group?");
+        if (agree) {
+            location.href=link;
         }
+        else {
+            location.href="/group_qs/{{form.group_id}}/answer";
+        }
+    };
+    
+    function sum_all(form) {
+        this.sum = 0;
+        for(this.i = 72; this.i < 89; this.i++){
+            this.sum += parseFloat(form['question_'+this.i].value);
+        }
+        alert('Total: $ '+this.sum.toFixed(2));
+    };
 
 {% endblock %}
 
@@ -44,12 +52,12 @@
                 <br>
                 <p>
                     We recognize that this next question may require some additional time and thought -- please do the best you can. <br />
-                    The percentages you supply do not have to be exact -- general values based on your best estimate are fine.
+                    The values you supply do not have to be exact -- general values based on your best estimate are fine.
                 </p>
                 <p>
-                    Please estimate the <u>percentage</u> of your <b>total expenditures <u>last year</u> for sport diving (consumptive), spear fishing, or shore picking</b>  <br />
-                    used in each of the following categories - note that the sum should equal 100%. If you did not spend money or<br />
-                    make purchases in a category, <b>please put a zero for that category</b>.
+                    Please enter the <u>dollar value</u> of your <b>expenditures <u>last year</u> for sport diving (consumptive), spear fishing, or <br />
+                    shore picking</b> spent on each of the following categories - note that the sum should be near your estimated<br />
+                    total expenditures.
                 <p>
                 {% for question in form %}  <!-- inner loop to stack errors from % questions in one place -->
                     {% if forloop.counter > 2 %}
@@ -66,13 +74,14 @@
             {% if forloop.counter < 20 %}
                 <tr>
                     <td>{{ question.label|safe }}</td>
-                    <td style='width: 115px'>{{ question }} %</td>
+                    <td style='width: 115px'> $ {{ question }}</td>
                 </tr>
             {% endif %}
             {% ifequal forloop.counter 20 %}
                 </table>
                 </td>
                 </tr>
+                <tr><td><button type="button" onclick='sum_all(document.forms[0])' style="float: right">Sum Total</button></td></tr>
                 </table>
                 <p><div class="fieldWrapper">
                     {{ question.errors }}
