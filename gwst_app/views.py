@@ -1097,6 +1097,44 @@ def skip_res_finalize_group(request,id):
         # redirect to interview_group_status
         return HttpResponseRedirect('/group_status#main_menu')        
         
+# user unskips group
+@login_required
+def unskip_group(request,id):
+
+    # make sure the user has a valid session in-progress
+    try:
+        int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
+        status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
+        status = status_object_qs[0]
+        
+    except Exception, e:
+        return HttpResponseRedirect('/select_interview/')
+
+    # see if the interview has been marked complete
+    if status.completed:
+        # redirect to interview_complete
+        return HttpResponseRedirect('/interview_complete/')
+        
+    if request.method == 'GET':
+        # update InterviewGroupMembership record
+        try:
+            int_group = InterviewGroup.objects.get(pk=id)
+        except ObjectDoesNotExist:
+            return render_to_response( '404.html', RequestContext(request,{}))            
+        group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group=int_group)
+        
+        if group_memb.count() == 1:
+        
+            update_memb = group_memb[0]
+            update_memb.status = 'Not yet started'
+            update_memb.save()
+            
+        else: #404
+            return render_to_response( '404.html', RequestContext(request,{}))
+        
+        # redirect to interview_group_status
+        return HttpResponseRedirect('/group_status#main_menu')
+        
 # user unfinalizes group
 @login_required
 def unfinalize_group(request,id):
@@ -1104,20 +1142,16 @@ def unfinalize_group(request,id):
     # make sure the user has a valid session in-progress
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
-        
         status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
-
         status = status_object_qs[0]
         
     except Exception, e:
         return HttpResponseRedirect('/select_interview/')
 
- 
     # see if the interview has been marked complete
     if status.completed:
         # redirect to interview_complete
         return HttpResponseRedirect('/interview_complete/')
-        
         
     if request.method == 'GET':
         # update InterviewGroupMembership record
