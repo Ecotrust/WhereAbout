@@ -28,8 +28,10 @@ def login(request, template_name='registration/login.html'):
         return HttpResponseRedirect('/select_interview/')
     if settings.DESKTOP_BUILD:   #For Desktop, we want to force user to log in through admin.
         return HttpResponseRedirect('/admin-lite-login/')
-    request.user.SELF_REGISTRATION = settings.SELF_REGISTRATION
-    return default_login(request, template_name)
+    else:
+        return HttpResponseRedirect('/admin/')
+    # request.user.SELF_REGISTRATION = settings.SELF_REGISTRATION
+    # return default_login(request, template_name)
 
 def logout(request, template_name='admin/logged_out.html'):
     if settings.DESKTOP_BUILD:
