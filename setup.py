@@ -35,7 +35,7 @@ class InnoScript:
                  dist_dir,
                  windows_exe_files = [],
                  lib_files = [],
-                 version = "0.01"):
+                 version = "0.05"):
         self.lib_dir = lib_dir
         self.dist_dir = dist_dir
         if not self.dist_dir[-1] in "\\/":
@@ -62,7 +62,7 @@ class InnoScript:
         print >> ofi, r"DefaultGroupName=%s" % self.name
         print >> ofi, r"VersionInfoVersion=%s" % self.version
         print >> ofi, r"VersionInfoCompany=Ecotrust"
-        print >> ofi, r"VersionInfoDescription=CA North Central Coast Monitoring 2011 v0.01"
+        print >> ofi, r"VersionInfoDescription=CA North Central Coast Monitoring 2011 v0.05"
         print >> ofi, r"VersionInfoCopyright=Ecotrust"
         print >> ofi, r"AppCopyright=Ecotrust"
         print >> ofi, r"InfoAfterFile=" + curr_dir + "\desktop-packaging\README.TXT"
@@ -202,7 +202,7 @@ if django_admin_path:
                               "optimize": 2,
                               "ascii": 1,
                               "bundle_files": 3,
-                              "packages":["encodings","django","gwst_app","simplejson","registration","django_extjs","staticfiles"],
+                              "packages":["encodings","django","gwst_app","simplejson","registration","django_extjs"],
                                "excludes" : ["pywin", "pywin.debugger", "pywin.debugger.dbgcon","pywin.dialogs",
                                            "pywin.dialogs.list","Tkconstants","Tkinter","tcl"],
 

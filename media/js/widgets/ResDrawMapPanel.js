@@ -182,6 +182,20 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             }
         );
         
+        var ncc = new OpenLayers.Layer.TileCache(
+            "Aerial Imagery",
+            "/tiles/",
+            "ncc-imagery",
+            {
+                sphericalMercator: true,
+                // 'visibility': false,
+                isBaseLayer: false
+            }
+        );
+        
+        this.layer_array = [baseLayer, ncc]
+        this.mapLayer_array = [baseLayer, ncc]
+        
         try {
             // if (G_HYBRID_MAP) {
             if (google.maps.MapTypeId.HYBRID) {
@@ -193,13 +207,12 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                         sphericalMercator: true
                     }
                 );
+                this.layer_array[this.layer_array.length] = googleLayer;
+                this.mapLayer_array[this.mapLayer_array.length] = googleLayer;
             }
-            this.layer_array = [baseLayer, googleLayer]
-            this.mapLayer_array = [baseLayer, googleLayer]
         } 
         catch (e) {
-            this.layer_array = [baseLayer]
-            this.mapLayer_array = [baseLayer]
+            
         }
         
         this.vecLayer = new OpenLayers.Layer.Vector('Target Areas',{

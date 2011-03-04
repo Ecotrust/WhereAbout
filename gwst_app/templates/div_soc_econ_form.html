@@ -16,7 +16,10 @@
     function sum_all(form) {
         this.sum = 0;
         for(this.i = 72; this.i < 89; this.i++){
-            this.sum += parseFloat(form['question_'+this.i].value);
+            this.newVal = parseFloat(form['question_'+this.i].value);
+            if (!isNaN(this.newVal)) {
+                this.sum += this.newVal;
+            }
         }
         alert('Total: $ '+this.sum.toFixed(2));
     };

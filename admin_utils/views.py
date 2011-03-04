@@ -27,16 +27,13 @@ Creates a fixture from all the completed surveys
 Returns a response that contains the fixture as a .json file
 '''
 def export_surveys(request):
+
     if not request.user.is_staff:
         return HttpResponse('You do not have permission to view this feature', status=401)
     if request.method != 'POST':
         return HttpResponse('Action not permitted', status=403)
-    try:
-        form = ExportSurveysForm(request.POST)
-    except Exception, e:
-        form = ExportSurveysForm(request.POST)
-    # form = ExportSurveysForm(request.POST)
-    # TODO: see why the first attempt sometimes chokes
+
+    form = ExportSurveysForm(request.POST)
         
     if not form.is_valid():
         return render_to_response( template, RequestContext( request, {'export_form':form} ) )

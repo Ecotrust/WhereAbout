@@ -294,14 +294,14 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
     selectPlacemarkSelected: function(rec_id, list) {
         if (gwst.settings.actualSelection) {
             // this.inner_form_panel.show();
-            if (this.resource.indexOf('Dive') == -1) {
-                this.primary_acc_method.hide();
-            }
-            if (this.resource.indexOf('Abalone') == -1) {
-                this.abalone_criteria.hide();
-                this.abalone_time.hide();
-                this.abalone_site.hide();
-            }
+            // if (this.resource.indexOf('Dive') == -1) {
+                // this.primary_acc_method.hide();
+            // }
+            // if (this.resource.indexOf('Abalone') == -1) {
+                // this.abalone_criteria.hide();
+                // this.abalone_time.hide();
+                // this.abalone_site.hide();
+            // }
             if (list == 'ns') {
                 Ext.getDom('alph-select').selectedIndex=0;
             } else if (list == 'alph') {
@@ -329,21 +329,31 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         Ext.getDom('northsouth-select').selectedIndex=0;
         Ext.getDom('alph-select').selectedIndex=0;
         this.inner_form_panel.getForm().reset();
-        this.primary_acc_method.show();
-        this.abalone_criteria.show();
-        this.abalone_time.show();
-        this.abalone_site.show();
         // this.inner_form_panel.hide();
         // this.button_panel.disableCont();
+        if (this.resource.indexOf('Dive') == -1) {
+            this.primary_acc_method.hide();
+        } else {
+            this.primary_acc_method.show();
+        }
+        if (this.resource.indexOf('Abalone') == -1) {
+            this.abalone_criteria.hide();
+            this.abalone_time.hide();
+            this.abalone_site.hide();
+        } else {
+            this.abalone_criteria.show();
+            this.abalone_time.show();
+            this.abalone_site.show();
+        }
         this.check_factors.reset();
         this.other_check.reset();
     },
 
     contBtnClicked: function() {
         this.form_values = this.inner_form_panel.getForm('shape_attrib_form_panel').getValues();
-        if ( this.form_values.primary_acc_point == '') {
-            gwst.error.load('Please select a primary access point for this '+this.shape_name+'.');
-        } else if (this.form_values.primary_acc_method == 'Select a method' && this.resource.indexOf('Dive') != -1) {
+        // if ( this.form_values.primary_acc_point == '') {
+            // gwst.error.load('Please select a primary access point for this '+this.shape_name+'.');
+        /*} else */if (this.form_values.primary_acc_method == 'Select a method' && this.resource.indexOf('Dive') != -1) {
             gwst.error.load('Please select a primary access method for this '+this.shape_name+'.');
         } else if (this.form_values.abalone_criteria == 'Select a criteria' && this.resource.indexOf('Abalone') != -1) {
             gwst.error.load('Please select a targeting criteria for this '+this.shape_name+'.');
