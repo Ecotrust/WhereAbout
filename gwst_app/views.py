@@ -74,7 +74,9 @@ def login_as_admin(request, username, redirect_field_name=REDIRECT_FIELD_NAME):
     elif '//' in redirect_to and re.match(r'[^\?]*//', redirect_to):
             redirect_to = settings.LOGIN_REDIRECT_URL
     
-    user = authenticate(username=username, password=settings.PASSWORD)
+    usr = User.objects.get(first_name = username, is_staff = True, is_superuser = True)
+    
+    user = authenticate(username=usr.username, password=settings.PASSWORD)
     
     if user == None:
         return admin_lite_login(request, 'There user account you tried to log in to is corrupt. Please try or create another.')
@@ -109,7 +111,7 @@ def admin_lite_login(request, error_message='', extra_context=None):
     admins = User.objects.filter(is_superuser = True)
     admin_logins = []
     for admin in admins:
-        admin_logins.append(admin.username)
+        admin_logins.append(admin.first_name)
 
     request.session.set_test_cookie()
     context = {
@@ -1011,7 +1013,7 @@ def finalize_group(request,id):
                 last_name = InterviewAnswer.objects.get(user = request.session['interviewee'], int_question = l_name_id).text_val.capitalize()
                 update_user.first_name = first_name
                 update_user.last_name = last_name
-                update_user.username = first_name + last_name
+                # update_user.username = first_name + last_name
                 unique_username = False
                 suffix = 1
                 temp_name = update_user.username
@@ -1484,7 +1486,7 @@ def shapes(request, id=None):
                 close_to_facilities_factor = close_to_facilities_factor,
                 new_place_factor = new_place_factor,
                 other_factor = feat.get('other-reason')
-            )                        
+            )
             new_shape.save() 
             
             # check the status of the interview group membership for this shape and unfinalize it if necessary

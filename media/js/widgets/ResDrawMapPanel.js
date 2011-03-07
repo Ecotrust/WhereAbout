@@ -18,6 +18,9 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		this.addEvents('res-shape-started');
 		this.addEvents('res-shape-complete');
 	
+        // Set blank tiles to be transparent
+        OpenLayers.Util.onImageLoadError = "transparent";
+    
 		//Map region
 		var region = gwst.settings.region;
 		var map_extent = new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34);

@@ -41,7 +41,8 @@ def export_surveys(request):
     fixture_text = compile_survey_fixture()
     response = HttpResponse(fixture_text, mimetype='application/json')
     #return fixture with <staff_username>_<today's date>.json convention
-    response['Content-Disposition'] = 'filename=%s_%s.json' % (request.user, datetime.date.today())
+    username = User.objects.get(username = request.user).first_name
+    response['Content-Disposition'] = 'filename=%s_%s.json' % (username, datetime.date.today())
     return response
   
 '''

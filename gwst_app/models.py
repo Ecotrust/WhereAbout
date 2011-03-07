@@ -389,7 +389,7 @@ class InterviewShape(Model):
     boundary_w = CharField( max_length=100, blank=True, null=True )
     note_text = CharField( max_length=1000, blank=True, null=True )
     days_visited = IntegerField( blank=True, null=True )
-    primary_acc_point = ForeignKey(CaCoastPlacemarks)
+    primary_acc_point = ForeignKey(CaCoastPlacemarks, blank=True, null=True)
     primary_acc_method = CharField( max_length=20, choices=AccessMethodChoices, default=None, blank=True, null=True )
     abalone_harvest = CharField( max_length=30, choices=AbaloneHarvestChoices, default=None, blank=True, null=True )
     abalone_time = CharField( max_length=30, choices=AbaloneTimeChoices, default=None, blank=True, null=True )

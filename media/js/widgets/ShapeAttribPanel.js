@@ -288,20 +288,12 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         gwst.widgets.ShapeAttribPanel.superclass.onRender.apply(this, arguments);   
 
         this.setAutoScroll(false);
+        this.displayQuestions();
         
 	},
     
     selectPlacemarkSelected: function(rec_id, list) {
         if (gwst.settings.actualSelection) {
-            // this.inner_form_panel.show();
-            // if (this.resource.indexOf('Dive') == -1) {
-                // this.primary_acc_method.hide();
-            // }
-            // if (this.resource.indexOf('Abalone') == -1) {
-                // this.abalone_criteria.hide();
-                // this.abalone_time.hide();
-                // this.abalone_site.hide();
-            // }
             if (list == 'ns') {
                 Ext.getDom('alph-select').selectedIndex=0;
             } else if (list == 'alph') {
@@ -310,7 +302,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             this.rec = gwst.settings.placemarkStore.getById(rec_id);
             this.fireEvent('place-selected', this.rec);
             this.inner_form_panel.get('prim-acc-point').setValue(this.rec.get('feature').data.pk_uid);
-            // this.button_panel.enableCont();
         }
 	},
     
@@ -329,8 +320,12 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         Ext.getDom('northsouth-select').selectedIndex=0;
         Ext.getDom('alph-select').selectedIndex=0;
         this.inner_form_panel.getForm().reset();
-        // this.inner_form_panel.hide();
-        // this.button_panel.disableCont();
+        this.displayQuestions();
+        this.check_factors.reset();
+        this.other_check.reset();
+    },
+    
+    displayQuestions: function() {
         if (this.resource.indexOf('Dive') == -1) {
             this.primary_acc_method.hide();
         } else {
@@ -345,8 +340,6 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             this.abalone_time.show();
             this.abalone_site.show();
         }
-        this.check_factors.reset();
-        this.other_check.reset();
     },
 
     contBtnClicked: function() {
