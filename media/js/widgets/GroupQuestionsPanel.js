@@ -62,7 +62,7 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
             url:this.form_url, 
             callback:this.loadQuestionPanel.createDelegate(this),
             showButtons: false,
-            style: 'margin-left: 6px'
+            style: 'margin-left: 6px; padding-bottomg: 3px'
         });
         return a;
     },

@@ -29,8 +29,10 @@
 <h2>Create an account:</h2>
 <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
   <div class="form-row">
-    <label for="id_username">{% trans 'username:' %}</label> <div style="float: bottom"> <input type="text" name="username" id="id_username" /> </div>
-    <label for="email">{% trans 'email:' %}</label> <div style="float: bottom"> <input type="text" name="email" id="email" /> </div>
+    <label for="id_username">{% trans 'username:' %}</label><input type="text" name="username" style="width: 150px; float: left" id="id_username" /> 
+  </div>
+  <div class="form-row">
+    <label for="email">{% trans 'email:' %}</label><input type="text" size="50px" name="email" style="width: 150px; float: left" id="email" />
   </div>
   
   <div class="submit-row">
