@@ -19,7 +19,9 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		this.addEvents('res-shape-complete');
 	
         // Set blank tiles to be transparent
-        OpenLayers.Util.onImageLoadError = "transparent";
+        if (!(Ext.isGecko || Ext.isGecko2 || Ext.isGecko3)){
+            OpenLayers.Util.onImageLoadError = "transparent";
+        }
     
 		//Map region
 		var region = gwst.settings.region;
@@ -149,8 +151,10 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             'default':{
                 label : "${name}",
                 externalGraphic : "/site-media/images/access_marker.png",
-                fontColor: "black",
-                fontSize: "9px",
+                // fontColor: "darkorange",
+                fontColor: "lime",
+                fontWeight: "bold",
+                fontSize: "13px",
                 labelAlign: "l",
                 pointRadius: 5,
                 labelXOffset : "5"

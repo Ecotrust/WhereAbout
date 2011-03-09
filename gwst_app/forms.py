@@ -430,19 +430,8 @@ class GroupMemberResourceForm(forms.Form):
     def add_new_resource(self, new_resource, new_method, group_memb):
         
         #Create the resource
-        resource, created = Resource.objects.get_or_create(name=new_resource, method=new_method)
+        resource, created = Resource.objects.get_or_create(name=new_resource, method=new_method, id=new_resource.capitalize() + ' - ' + new_method.capitalize(), code = new_resource + new_method, verbose_name = new_resource.capitalize() + ' - ' + new_method.capitalize())
 
-        resource.verbose_name = new_resource.capitalize() + ' - ' + new_method.capitalize()
-        
-        if (created):
-            #create the code
-                #This is done after the get_or_create so we don't have the same resource + same method in twice with different codes
-            custom_count = Resource.objects.filter(code__contains = 'cust').count()
-            while (Resource.objects.filter(code='cust'+str(custom_count)).count() > 0):
-                custom_count = custom_count + 1
-            resource.code = 'cust'+str(custom_count)
-
-        resource.save()
         #Add new resource to the group
         group_memb.int_group.resources.add(resource)
         #Create the membership with the new resource

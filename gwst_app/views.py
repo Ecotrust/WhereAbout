@@ -60,7 +60,7 @@ def login_as(request, next_user_str = None):
 ''' 
 Express login for administrators on desktop installs. No password necessary. 
 '''
-def login_as_admin(request, username, redirect_field_name=REDIRECT_FIELD_NAME):
+def login_as_admin(request, admin_id, redirect_field_name=REDIRECT_FIELD_NAME):
 
     redirect_to = request.REQUEST.get(redirect_field_name, '')
     
@@ -73,8 +73,8 @@ def login_as_admin(request, username, redirect_field_name=REDIRECT_FIELD_NAME):
     # question mark.
     elif '//' in redirect_to and re.match(r'[^\?]*//', redirect_to):
             redirect_to = settings.LOGIN_REDIRECT_URL
-    
-    usr = User.objects.get(first_name = username, is_staff = True, is_superuser = True)
+
+    usr = User.objects.get(id = admin_id, is_staff = True, is_superuser = True)
     
     user = authenticate(username=usr.username, password=settings.PASSWORD)
     
@@ -111,7 +111,7 @@ def admin_lite_login(request, error_message='', extra_context=None):
     admins = User.objects.filter(is_superuser = True)
     admin_logins = []
     for admin in admins:
-        admin_logins.append(admin.first_name)
+        admin_logins.append(admin)
 
     request.session.set_test_cookie()
     context = {
@@ -123,8 +123,9 @@ def admin_lite_login(request, error_message='', extra_context=None):
     context_instance = template.RequestContext(request, {'admin_logins': admin_logins})
     
     if request.method == 'POST':
-        admin_utils.create_superuser(request.POST.get('username'))
-        return login_as_admin(request, request.POST.get('username'))
+        admin_id = admin_utils.create_superuser(request.POST.get('username'), request.POST.get('email'))
+
+        return login_as_admin(request, admin_id)
     
     return render_to_response( 'admin/admin-lite-login.html', context, context_instance=context_instance)
 

@@ -53,8 +53,6 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     loadQuestionPanel: function(form){
-        // this.question_panel = form;
-        // this.doLayout();
         this.add(form);
         this.button_panel.enableCont();
     },
@@ -65,7 +63,6 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
             callback:this.loadQuestionPanel.createDelegate(this),
             showButtons: false,
             style: 'margin-left: 6px'
-            // autoDestroy: false
         });
         return a;
     },

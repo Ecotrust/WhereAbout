@@ -6,15 +6,16 @@ from django.contrib.auth.models import User
 Tools to be used for admin-lite. Desktop installs can use these shortcuts to make the tool simpler
 and easier to use.
 """
-def create_superuser(username):
+def create_superuser(username, email):
     if settings.DESKTOP_BUILD:
-        new_admin, created = User.objects.get_or_create(first_name = username, is_staff = True, is_active = True, is_superuser = True )
+        new_admin, created = User.objects.get_or_create(first_name = username, email = email, is_staff = True, is_active = True, is_superuser = True )
         if created:
             new_admin.username = new_admin.id
             new_admin.set_password(settings.PASSWORD)
             new_admin.save()
-
-        return created
+        
+        return new_admin.id
+            
     return False
             
 def create_user():

@@ -23,13 +23,14 @@
 
 {% for admin in admin_logins %}
     
-    <p><a href="/accounts/login_as/{{admin}}">Login as {{admin}}</a></p>
+    <p><a href="/accounts/login_as/{{admin.id}}">Login as {{admin.first_name}}</a> ( {{admin.email}} )</p>
 
 {% endfor %}
-
+<h2>Create an account:</h2>
 <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
   <div class="form-row">
-    <label for="id_username">{% trans 'Create account:' %}</label> <input type="text" name="username" id="id_username" />
+    <label for="id_username">{% trans 'username:' %}</label> <div style="float: bottom"> <input type="text" name="username" id="id_username" /> </div>
+    <label for="email">{% trans 'email:' %}</label> <div style="float: bottom"> <input type="text" name="email" id="email" /> </div>
   </div>
   
   <div class="submit-row">
