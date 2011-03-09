@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block styles %}
+    <link href="/site-media/css/base.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="/site-media/css/res_sel.css" rel="stylesheet" type="text/css" media="screen" />
+{% endblock %}
+
 {% block title %}{{ group.name }} Group {{interview.resource_name|capfirst}} Selection{% endblock %}
 
 {% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
