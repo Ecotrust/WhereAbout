@@ -29,6 +29,7 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
 
         this.instruction_panel = new Ext.Panel({
             id: 'basic_qs_instruciton_panel_'+this.group_name+this.resource_id,
+            style: 'margin: 10px 10px 0 10px',
             html: this.instructions,
             border: false
         });
@@ -62,7 +63,7 @@ gwst.widgets.GroupQuestionsPanel = Ext.extend(gwst.widgets.WestPanel, {
             url:this.form_url, 
             callback:this.loadQuestionPanel.createDelegate(this),
             showButtons: false,
-            style: 'margin-left: 6px; padding-bottomg: 3px'
+            style: 'margin-left: 16px; padding-bottom: 3px'
         });
         return a;
     },

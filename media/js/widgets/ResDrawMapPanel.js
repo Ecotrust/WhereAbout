@@ -19,9 +19,10 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 		this.addEvents('res-shape-complete');
 	
         // Set blank tiles to be transparent
-        if (!(Ext.isGecko || Ext.isGecko2 || Ext.isGecko3)){
-            OpenLayers.Util.onImageLoadError = "transparent";
-        }
+        OpenLayers.Util.onImageLoadError = function() {
+            this.src = '/tiles/blank.png';
+        };
+        OpenLayers.Util.onImageLoadErrorColor = "transparent";
     
 		//Map region
 		var region = gwst.settings.region;
@@ -221,19 +222,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         catch (e) {
             
         }
-        
-        this.vecLayer = new OpenLayers.Layer.Vector('Target Areas',{
-            styleMap: myStyle
-        });     
 
-        this.layer_array[this.layer_array.length] = this.vecLayer;
-
-        this.vecOtherLayer = new OpenLayers.Layer.Vector('Other Target Areas',{
-            styleMap: myOtherStyle
-        });
-        
-        this.layer_array[this.layer_array.length] = this.vecOtherLayer;
-        
         this.mpa_all = new OpenLayers.Layer.Vector("All MPAs", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
@@ -331,14 +320,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         });
         
         this.layer_array[this.layer_array.length] = this.mpa_specialclosures;
-        
-        this.vecLayer.events.on({
-            "sketchstarted": this.resShapeStarted,
-            "skethmodified": this.resShapeModified,
-            "sketchcomplete": this.resShapeComplete,
-            scope: this
-        });    
-        
+
         this.acc_pt_vector = new OpenLayers.Layer.Vector("Access Points", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
@@ -360,6 +342,26 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         
         this.layer_array[this.layer_array.length] = this.acc_pt_vector;
         
+                
+        this.vecLayer = new OpenLayers.Layer.Vector('Target Areas',{
+            styleMap: myStyle
+        });     
+
+        this.layer_array[this.layer_array.length] = this.vecLayer;
+
+        this.vecOtherLayer = new OpenLayers.Layer.Vector('Other Target Areas',{
+            styleMap: myOtherStyle
+        });
+        
+        this.layer_array[this.layer_array.length] = this.vecOtherLayer;
+
+        this.vecLayer.events.on({
+            "sketchstarted": this.resShapeStarted,
+            "skethmodified": this.resShapeModified,
+            "sketchcomplete": this.resShapeComplete,
+            scope: this
+        });    
+
 		//Required: Create div element for OL map before constructing it.  OL really wants you to tell
         //it what it's div is in the constructor.  If you let Ext create it's own div element at render time
         //OL won't know where it is.  This is fine usually except the Google base map doesn't work properly in
