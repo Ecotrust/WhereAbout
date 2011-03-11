@@ -405,10 +405,10 @@ class GroupMemberResourceForm(forms.Form):
             gmr.resource = r                 
             gmr.group_membership = group_memb  
             gmr.save()   
-        if new_field_1 != '':                                      
+        if self.clean_resource_id(new_field_1) != '':                                      
             if new_method_1 != None:
                 new_1 = self.add_new_resource(new_field_1, new_method_1.eng_text, group_memb)
-        if new_field_2 != '':  
+        if self.clean_resource_id(new_field_2) != '':  
             if new_method_2 != None:
                 new_2 = self.add_new_resource(new_field_2, new_method_2.eng_text, group_memb)
             
