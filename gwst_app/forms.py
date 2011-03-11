@@ -429,14 +429,33 @@ class GroupMemberResourceForm(forms.Form):
 
     def add_new_resource(self, new_resource, new_method, group_memb):
         
-        #Create the resource
-        resource, created = Resource.objects.get_or_create(name=new_resource, method=new_method, id=new_resource.capitalize() + ' - ' + new_method.capitalize(), code = new_resource + new_method, verbose_name = new_resource.capitalize() + ' - ' + new_method.capitalize())
+        clean_resource = self.clean_resource_id(new_resource)
+        clean_method = self.clean_resource_id(new_method)
+        created = False
+        
+        if Resource.objects.filter(name=new_resource, method=new_method).count < 1 and Resource.objects.filter(name=clean_resource.capitalize(), method=clean_method.capitalize()):
+            #Create the resource
+            resource, created = Resource.objects.get_or_create(name=new_resource, method=new_method, id=clean_resource.capitalize() + '-' + clean_method.capitalize(), code = new_resource + new_method, verbose_name = new_resource.capitalize() + ' - ' + new_method.capitalize())
 
-        #Add new resource to the group
-        group_memb.int_group.resources.add(resource)
-        #Create the membership with the new resource
-        gmem_resource, created = GroupMemberResource.objects.get_or_create(resource = resource, group_membership = group_memb)
-        gmem_resource.save()
-        return True
+            #Add new resource to the group
+            group_memb.int_group.resources.add(resource)
+            #Create the membership with the new resource
+            gmem_resource, created = GroupMemberResource.objects.get_or_create(resource = resource, group_membership = group_memb)
+            gmem_resource.save()
+        return created
 
-
+        
+    #User input may contain spaces or special characters. Since the id is used in URLs for access questions, these must be removed.
+    def clean_resource_id(self, res_str):
+        for char in res_str:
+            if not (char.isalnum() or char == '-' or char == '_'):
+                bad_index = res_str.find(char)
+                clean_str = self.clean_resource_id(res_str[0:bad_index]+res_str[bad_index+1:])
+                return clean_str
+        return res_str
+        
+            
+            
+            
+            
+            
