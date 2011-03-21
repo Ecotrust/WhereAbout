@@ -35,7 +35,7 @@ class InnoScript:
                  dist_dir,
                  windows_exe_files = [],
                  lib_files = [],
-                 version = "1.01"):
+                 version = "1.03"):
         self.lib_dir = lib_dir
         self.dist_dir = dist_dir
         if not self.dist_dir[-1] in "\\/":
@@ -62,7 +62,7 @@ class InnoScript:
         print >> ofi, r"DefaultGroupName=%s" % self.name
         print >> ofi, r"VersionInfoVersion=%s" % self.version
         print >> ofi, r"VersionInfoCompany=Ecotrust"
-        print >> ofi, r"VersionInfoDescription=CA North Central Coast Monitoring 2011 v1.01"
+        print >> ofi, r"VersionInfoDescription=CA North Central Coast Monitoring 2011 v1.03"
         print >> ofi, r"VersionInfoCopyright=Ecotrust"
         print >> ofi, r"AppCopyright=Ecotrust"
         print >> ofi, r"InfoAfterFile=" + curr_dir + "\desktop-packaging\README.TXT"

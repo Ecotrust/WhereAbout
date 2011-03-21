@@ -32,7 +32,6 @@ def export_surveys(request):
         return HttpResponse('You do not have permission to view this feature', status=401)
     if request.method != 'POST':
         return HttpResponse('Action not permitted', status=403)
-
     form = ExportSurveysForm(request.POST)
         
     if not form.is_valid():
@@ -41,10 +40,20 @@ def export_surveys(request):
     fixture_text = compile_survey_fixture()
     response = HttpResponse(fixture_text, mimetype='application/json')
     #return fixture with <staff_username>_<today's date>.json convention
-    username = User.objects.get(username = request.user).first_name
+    username = clean_username(User.objects.get(username = request.user).first_name)
     response['Content-Disposition'] = 'filename=%s_%s.json' % (username, datetime.date.today())
     return response
-  
+
+#User input may contain spaces or special characters.
+def clean_username(ugly_str):
+    for char in ugly_str:
+        if not (char.isalnum() or char == '-' or char == '_'):
+            bad_index = ugly_str.find(char)
+            clean_str = clean_username(ugly_str[0:bad_index]+ugly_str[bad_index+1:])
+            return clean_str
+    return ugly_str
+
+    
 '''
 Called from export_survey
 Compiles and returns the text of a fixture that embodies all the completed surveys in the database
@@ -65,7 +74,7 @@ def compile_survey_fixture():
         survey_objects.extend(InterviewGroupMembership.objects.filter(user=user))
         #survey_objects.extend(GroupMemberResource.objects.all()) #not sure this is what we want...
         #how about the following??
-        survey_objects.extend([gmres for gmres in GroupMemberResource.objects.all() if gmres.user()==user.username])
+        survey_objects.extend([gmres for gmres in GroupMemberResource.objects.all() if gmres.user()==user.id])
         survey_objects.extend(InterviewAnswer.objects.filter(user=user))
         survey_objects.extend(InterviewShape.objects.filter(user=user))
         

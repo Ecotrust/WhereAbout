@@ -1014,18 +1014,6 @@ def finalize_group(request,id):
                 last_name = InterviewAnswer.objects.get(user = request.session['interviewee'], int_question = l_name_id).text_val.capitalize()
                 update_user.first_name = first_name
                 update_user.last_name = last_name
-                # update_user.username = first_name + last_name
-                unique_username = False
-                suffix = 1
-                temp_name = update_user.username
-                while not unique_username:
-                    name_count = User.objects.filter(username = temp_name).count()
-                    if name_count == 0:
-                        unique_username = True
-                    else:
-                        temp_name = update_user.username + str(suffix)
-                        suffix = suffix + 1
-                update_user.username = temp_name
                 update_user.save()
 
                 request.session['interviewee'].first_name = update_user.first_name

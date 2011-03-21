@@ -405,10 +405,11 @@ class GroupMemberResourceForm(forms.Form):
             gmr.resource = r                 
             gmr.group_membership = group_memb  
             gmr.save()   
-        if self.clean_resource_id(new_field_1) != '':                                      
+
+        if self.clean_resource_val(new_field_1) != '':                                      
             if new_method_1 != None:
                 new_1 = self.add_new_resource(new_field_1, new_method_1.eng_text, group_memb)
-        if self.clean_resource_id(new_field_2) != '':  
+        if self.clean_resource_val(new_field_2) != '':  
             if new_method_2 != None:
                 new_2 = self.add_new_resource(new_field_2, new_method_2.eng_text, group_memb)
             
@@ -429,28 +430,42 @@ class GroupMemberResourceForm(forms.Form):
 
     def add_new_resource(self, new_resource, new_method, group_memb):
         
-        clean_resource = self.clean_resource_id(new_resource)
-        clean_method = self.clean_resource_id(new_method)
+        clean_resource = self.clean_resource_val(new_resource)
+        clean_method = self.clean_resource_val(new_method)
         created = False
+        new_id = clean_resource.capitalize() + '-' + clean_method.capitalize()
+        new_code = clean_resource + new_method
+        new_verbose_name = new_resource.capitalize() + ' - ' + new_method.capitalize()
         
-        if Resource.objects.filter(name=new_resource, method=new_method).count < 1 and Resource.objects.filter(name=clean_resource.capitalize(), method=clean_method.capitalize()):
-            #Create the resource
-            resource, created = Resource.objects.get_or_create(name=new_resource, method=new_method, id=clean_resource.capitalize() + '-' + clean_method.capitalize(), code = new_resource + new_method, verbose_name = new_resource.capitalize() + ' - ' + new_method.capitalize())
+        #Prevent duplication
+        all_resources = Resource.objects.all()
+        for res in all_resources:
+            if self.clean_resource_val(res.name).lower() == clean_resource.lower():
+                new_resource = res.name
+                if res.method == new_method:
+                    new_id = res.id
+                    new_code = res.code
+                    new_verbose_name = res.verbose_name
+                    break
+            
+        #Create the resource
+        resource, created = Resource.objects.get_or_create(name=new_resource, method=new_method, id=new_id, code=new_code, verbose_name=new_verbose_name)
 
-            #Add new resource to the group
-            group_memb.int_group.resources.add(resource)
-            #Create the membership with the new resource
-            gmem_resource, created = GroupMemberResource.objects.get_or_create(resource = resource, group_membership = group_memb)
-            gmem_resource.save()
+        #Add new resource to the group
+        group_memb.int_group.resources.add(resource)
+        #Create the membership with the new resource
+        gmem_resource, created = GroupMemberResource.objects.get_or_create(resource = resource, group_membership = group_memb)
+        gmem_resource.save()
+            
         return created
 
         
     #User input may contain spaces or special characters. Since the id is used in URLs for access questions, these must be removed.
-    def clean_resource_id(self, res_str):
+    def clean_resource_val(self, res_str):
         for char in res_str:
             if not (char.isalnum() or char == '-' or char == '_'):
                 bad_index = res_str.find(char)
-                clean_str = self.clean_resource_id(res_str[0:bad_index]+res_str[bad_index+1:])
+                clean_str = self.clean_resource_val(res_str[0:bad_index]+res_str[bad_index+1:])
                 return clean_str
         return res_str
         

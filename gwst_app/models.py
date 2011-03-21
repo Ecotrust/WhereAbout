@@ -177,7 +177,7 @@ class GroupMemberResource(Model):
         return unicode('%s - %s' % (self.group_membership, self.resource))
 
     def user(self):
-        return unicode('%s' % self.group_membership.user)
+        return unicode('%s' % self.group_membership.user_id)
        
 class InterviewAnswerOption(Model):
     eng_text = CharField( max_length=200 )
