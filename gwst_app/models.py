@@ -61,7 +61,18 @@ class Resource(Model):
     MethodChoices = (
         ('Dive', 'Dive'),
         ('Shore picking', 'Shore picking'),
-        ('Spearfish', 'Spearfish')
+        ('Spearfish', 'Spearfish'),
+        ('Hook and line', 'Hook and line'),
+        ('Fixed gear', 'Fixed gear'),
+        ('Trap', 'Trap'),
+        ('Troll', 'Troll'),
+        ('Brail or dip net', 'Brail or dip net'),
+        ('Net', 'Net'),
+        ('Handpicking', 'Handpicking'),
+        ('Dip net', 'Dip net'),
+        ('Handgear/Longline', 'Handgear/Longline'),
+        ('Longline', 'Longline'),
+        ('Trawl', 'Trawl')
     )    
     name = CharField( max_length=100 )
     verbose_name = CharField( max_length=133, unique=True ) #Should be name - method
