@@ -214,7 +214,7 @@ class AnswerForm(forms.Form):
     def clean(self): 
         # first loop through all answers and clean out unnecessary characters
         for question in self.questions:
-            key = 'question_'+unicode(question.id)
+            key = 'question_'+ unicode(question.id) + self.resource_postfix
             # Due to new custom types (percent & money) proper values aren't populated in cleaned_data.
             if question.answer_type == "money":
                 self.cleaned_data[key] = re.sub("\$","",str(self.data[key]))
@@ -240,7 +240,7 @@ class AnswerForm(forms.Form):
             #Get answers to these questions from the form
             answers = {}           
             for q in qs:
-                key = 'question_'+unicode(q.id)
+                key = 'question_'+unicode(q.id) + self.resource_postfix
                 
                 #If any individual fields in the group already have errors, 
                 #skip the group validation until they're fixed
@@ -262,6 +262,7 @@ class AnswerForm(forms.Form):
 
     def validate_sum(self, target, answers):
         sum = 0
+        key = ''
         for key, value in answers.iteritems():
             if str(value) != "":
                 sum += float(value)
