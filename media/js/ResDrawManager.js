@@ -59,7 +59,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /*load unfinished resource tool if there is one */
     startSplashStep: function() {
         if (this.curResource) {
-            gwst.settings.resource_days = this.getAnswer('day_specie', this.curResource.get('id'), this.getResDays);
             this.startUnfinishedResourceStartStep();
         } else {
             this.loadSplash();
@@ -69,7 +68,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /* Finish splash and start resource selection */
     finSplashStep: function() {
     	this.startResSelStep();
-        this.startMPAQuestionsStep();
     },
     
     /******************** Unfinished Resource Start Step *******************/
@@ -95,33 +93,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     /******************** Resource Selection Step *******************/
-    
-    /*
-     *  Setup MPA questions step 
-     */
-    startMPAQuestionsStep: function() {
-        // this.getQuestionForm(8, this.finGetMPAQuestionForm);
-        this.loadMPAQuestionPanel();
-    },
-    
-    /*
-     *  If user knows of specific MPAs, ask them which.  Else, move on to resource select. 
-     */
-    contMPAQuestionsStep: function() {
-        if (this.MPAQuestionPanel.question_panel.getForm().getFieldValues().question_91.length != 0 ) {
-            this.loadSpecificMPAQuestionPanel();
-        } else {
-            this.finMPAQuestionsStep();
-        }
-    },
-    
-    /*
-     *  cleanup MPA Questions and redirect to resource selection step 
-     */
-    finMPAQuestionsStep: function() {
-        this.startResSelStep();
-    },
-    
+
     /*
      *  Setup resource selection step 
      */
@@ -134,7 +106,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     finResSelStep: function(obj, resource_id) {
         this.curResource = gwst.settings.resourceStore.getById(resource_id);
-        gwst.settings.resource_days = this.getAnswer('day_specie', this.curResource.get('id'), this.getResDays);
         if (this.curResource.get('finished') == true) {
             this.loadFinishedResourceSelectedWindow();
         } else {    
@@ -158,42 +129,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     backResSelStep: function(){
          this.loadSplash();
          this.startMPAQuestionsStep();
-    },
-    
-    /******************** Resource Question Step *******************/
-        
-    /*
-     *  Go back from the resource selection step 
-     */
-    backResourceQuestionStep: function() {
-        this.startPennyStep()
-    },
-        
-    /*
-     *  Setup resource selection step 
-     */
-    startResourceQuestionStep: function() {
-        this.load2009LocationQuestionPanel();
-    },
-    
-    /*
-     *  If user knows of specific MPAs, ask them which.  Else, move on to resource select. 
-     */
-    contResourceQuestionStep: function() {
-        this.yes_val = "a28"; //the id for option value of "yes"
-        this.val_93 = this.ResourceQuestionPanel.question_panel.getForm().getFieldValues()['question_93_'+this.curResource.id];
-        if (this.val_93 == this.yes_val) {
-            this.load2009LocationQuestionPanel();
-        } else {
-            this.finResourceQuestionStep();
-        }
-    },
-    
-    /* 
-     * Process resource selection and go to Navigation instructions 
-     */
-    finResourceQuestionStep: function() {
-        this.startFinishStep();
     },
     
     /******************** Navigation Step *******************/
@@ -478,7 +413,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process penny allocation step
      */
     finPennyStep: function() {
-        this.startResourceQuestionStep();
+        this.startFinishStep();
     },
     
     /*
@@ -647,33 +582,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.unfinResStartPanel); 
     },
-
-    loadMPAQuestionPanel: function() {
-    	if (!this.MPAQuestionPanel) {
-            this.MPAQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
-                xtype: 'gwst-group-questions-panel',
-                instructions: '<p>Marine protected area closures were recently implemented in the North Central Coast (Point Arena to Half Moon Bay).</p>',
-                group_name: 'MPA',
-                form_url: gwst.settings.urls.questions + '8/answer/'
-            });
-            this.MPAQuestionPanel.on('grp-qstn-cont', this.contMPAQuestionsStep, this);
-            this.MPAQuestionPanel.on('grp-qstn-back', this.startSplashStep, this);
-        }
-        this.viewport.setWestPanel(this.MPAQuestionPanel);    	
-    },
-    
-    loadSpecificMPAQuestionPanel: function() {
-    	if (!this.specMPAQuestionPanel) {
-            this.specMPAQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
-                xtype: 'gwst-group-questions-panel',
-                group_name: 'Specific MPA',
-                form_url: gwst.settings.urls.questions + '9/answer/'
-            });
-            this.specMPAQuestionPanel.on('grp-qstn-cont', this.finMPAQuestionsStep, this);
-            this.specMPAQuestionPanel.on('grp-qstn-back', this.startMPAQuestionsStep, this);
-        }
-        this.viewport.setWestPanel(this.specMPAQuestionPanel);    	
-    },    
 
     loadResSelPanel: function() {
     	if (!this.resSelPanel) {
@@ -928,7 +836,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.shapeAttribPanel = new gwst.widgets.ShapeAttribPanel({
                 xtype: 'gwst-shape-attrib-panel',
                 shape_name: gwst.settings.interview.shape_name,
-                days_max: gwst.settings.resource_days,
                 resource: this.curResource.get('name')
             });
             //When panel fires event saying it's all done, we want to process it and move on 
@@ -938,8 +845,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         } else {
             this.shapeAttribPanel.update({
                 shape_name: gwst.settings.interview.shape_name,
-                resource: this.curResource.get('name'),
-                days_max: gwst.settings.resource_days
+                resource: this.curResource.get('name')
             });
         }
         this.viewport.setWestPanel(this.shapeAttribPanel);    	
@@ -1019,30 +925,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.pennyPanel);    	
     },
-        
-    load2009LocationQuestionPanel: function() {
-        if (!this.OldLocationQuestionPanel) {
-            this.OldLocationQuestionPanel = new gwst.widgets.AccessQuestionsPanel({
-                xtype: 'gwst-group-questions-panel',
-                group_name: 'Previous Location',
-                form_url: gwst.settings.urls.resource_questions + '10/None/' + this.curResource.get('id') + '/',
-                resource_id: this.curResource.get('id'),
-                resource: this.curResource.get('name')
-            });
-            this.OldLocationQuestionPanel.on('grp-qstn-cont', this.finResourceQuestionStep, this);
-            this.OldLocationQuestionPanel.on('grp-qstn-back', this.backResourceQuestionStep, this);
-            this.OldLocationQuestionPanel.on('place-selected', this.zoomToPlacemark, this);
-        } else {
-            context = {
-                form_url: gwst.settings.urls.resource_questions + '10/None/' + this.curResource.get('id') + '/',
-                resource_id: this.curResource.get('id'),
-                resource: this.curResource.get('name')
-            };
-            this.OldLocationQuestionPanel.update(context);
-        }
-        this.viewport.setWestPanel(this.OldLocationQuestionPanel);    	
-    },
-        
+ 
     /* Load the finish/finish later/select another resource west panel */
     loadFinishPanel: function() {
     	if (!this.finishPanel) {
@@ -1412,11 +1295,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.answer_obj = Ext.decode(response.responseText);
     },
     
-    getResDays: function(response, opts) {
-        this.answer_obj = Ext.decode(response.responseText).answer;
-        gwst.settings.resource_days = this.answer_obj.value;
-    },
-    
     //if not resource specific, use ''
     postAnswer: function(code, val, resource) {
         if (resource == "") {
@@ -1476,13 +1354,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.hideWait.defer(500, this);
         gwst.settings.question_form = Ext.decode(response.responseText);
     },
-    
-    finGetMPAQuestionForm: function(response, opts){
-        this.hideWait.defer(500, this);
-        gwst.settings.question_form = Ext.decode(response.responseText);
-        this.loadMPAQuestionPanel()
-    },
-    
+
     /******************** Utility Methods ********************/
     
     loadResourceStore: function(resources) {
@@ -1646,32 +1518,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             }],	        
             autoLoad: true  
         });
-        gwst.settings.placemarkStore.on('load', this.getAbalonePunchCardSites, this);
+        gwst.settings.placemarkStore.on('load', this.finLoadStores, this);
     },    
 
-    getAbalonePunchCardSites: function() {
-        Ext.Ajax.request({
-        	url: gwst.settings.urls.abalone_card_sites,
-           	disableCachingParam: true,
-            method: 'GET',
-            // params: this.params,
-           	scope: this,
-           	success: this.loadAbalonePunchCardSites,
-           	failure: function(response, opts) {
-        		// Change to error window
-              	alert('get abalone sites request failed: ' + response.status);
-           	}
-        });
-    },
-    
-    loadAbalonePunchCardSites: function(response, opts) {
-        this.sites_obj = Ext.decode(response.responseText);
-        gwst.settings.abaloneSiteList = this.sites_obj;
-        this.finLoadStores();
-        
-    },
-    
-    
     finLoadStores: function() {
         this.hideWait();
     	this.finInit();

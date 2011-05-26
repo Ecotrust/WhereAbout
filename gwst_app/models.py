@@ -370,28 +370,6 @@ class InterviewStatus(Model):
         return unicode('%s: %s' % (self.user, self.interview))
 
 class InterviewShape(Model):
-    AccessMethodChoices = (
-        ('Swimming', 'Swimming'),
-        ('Kayak', 'Kayak'),
-        ('Sport boat', 'Sport boat'),
-        ('Charter boat', 'Charter boat'),
-        ('Paddleboard', 'Paddleboard')
-    )
-    
-    AbaloneHarvestChoices = (
-        ('The first available abalone', 'The first available abalone'),
-        ('Abalone based on size', 'Abalone based on size')
-    )
-    
-    AbaloneTimeChoices = (
-        ('Significantly more time', 'Significantly more time'),
-        ('Somewhat more time', 'Somewhat more time'),
-        ('The same amount of time', 'The same amount of time'),
-        ('Somewhat less time', 'Somewhat less time'),
-        ('Significantly less time', 'Significantly less time'),
-        ('Didn\'t target last year', 'Didn\'t target last year')
-    )
-
     user = ForeignKey(User)
     int_group = ForeignKey(InterviewGroup)
     resource = ForeignKey(Resource)
@@ -403,22 +381,8 @@ class InterviewShape(Model):
     boundary_w = CharField( max_length=100, blank=True, null=True )
     note_text = CharField( max_length=1000, blank=True, null=True )
     days_visited = IntegerField( blank=True, null=True )
-    primary_acc_point = ForeignKey(CaCoastPlacemarks, blank=True, null=True)
-    primary_acc_method = CharField( max_length=20, choices=AccessMethodChoices, default=None, blank=True, null=True )
-    abalone_harvest = CharField( max_length=30, choices=AbaloneHarvestChoices, default=None, blank=True, null=True )
-    abalone_time = CharField( max_length=30, choices=AbaloneTimeChoices, default=None, blank=True, null=True )
-    abalone_site = CharField(max_length=40, default=None, null=True, blank=True)
     creation_date = DateTimeField(default=datetime.datetime.now)
     objects = InterviewShapeManager()
-    species_size_factor = BooleanField(default=False)
-    species_abundance_factor = BooleanField(default=False)
-    ease_of_access_factor = BooleanField(default=False)
-    close_to_home_factor = BooleanField(default=False)
-    close_to_base_factor = BooleanField(default=False)
-    weather_protection_factor = BooleanField(default=False)
-    close_to_facilities_factor = BooleanField(default=False)
-    new_place_factor = BooleanField(default=False)
-    other_factor = CharField( max_length=150, blank=True, null=True )
     
     class Meta:
         db_table = u'gwst_usershape'
