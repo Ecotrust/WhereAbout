@@ -72,7 +72,9 @@ class Resource(Model):
         ('Dip net', 'Dip net'),
         ('Handgear/Longline', 'Handgear/Longline'),
         ('Longline', 'Longline'),
-        ('Trawl', 'Trawl')
+        ('Trawl', 'Trawl'),
+        ('Fishery', 'Fishery'),
+        ('Activity', 'Activity')
     )    
     name = CharField( max_length=100 )
     verbose_name = CharField( max_length=133, unique=True ) #Should be name - method
