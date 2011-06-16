@@ -54,3 +54,12 @@ MORE ON CLIPPING:
     (continued from above)
     insert into gwst_region_clip (name, geom)
     select name, Geometry from foo;
+
+    
+=========================================================
+6/16/2011
+=========================================================
+dropped gwst_region_clip table from cc_db.sqlite (via sqlite_gui)
+spatialite.exe database/cc_db.sqlite
+.loadshp database/data/NCC_Coastline_30mi_Buffer/Ncc_Coastline_30mi_
+Buffer gwst_region_clip CP1252 3310
