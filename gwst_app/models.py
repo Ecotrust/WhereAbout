@@ -79,7 +79,7 @@ class Resource(Model):
     name = CharField( max_length=100 )
     verbose_name = CharField( max_length=133, unique=True ) #Should be name - method
     id = CharField( max_length=133, primary_key=True ) #Should be name - method
-    method = CharField( max_length=30, choices = MethodChoices, blank = True, default = 'diving' )
+    method = CharField( max_length=30, choices = MethodChoices, blank = True, default = 'Dive' )
     code = CharField( max_length=133, default='' )
     select_description = CharField( max_length=300, default = '', blank=True) #Holds information on why you would/should select this resource
     shape_color = CharField( max_length=6, default = 'FFFF00', blank=True )

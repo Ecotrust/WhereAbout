@@ -1521,13 +1521,7 @@ def validate_shape(request):
 
         #Clip the shape to the region
         if settings.CLIP_FEATURES:
-
-            method = Resource.objects.get(id = resource_id).method
-
-            if method == 'Shore picking':
-                regions = ClipRegion.objects.filter(feature = 'Shore')
-            else:
-                regions = ClipRegion.objects.filter(feature = 'Sea')
+            regions = ClipRegion.objects.filter(feature = 'Sea')
             if regions.count() < 1:
                 regions = interview.clip_region
 

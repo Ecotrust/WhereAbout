@@ -384,6 +384,10 @@ input {
     margin-bottom:1em; 
 }
 
+textarea {
+    height: 80px;
+}
+
 /* FORM BUTTONS */
 
 button, input.button {
