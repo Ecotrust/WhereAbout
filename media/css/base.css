@@ -386,6 +386,7 @@ input {
 
 textarea {
     height: 80px;
+    width: 220px;
 }
 
 /* FORM BUTTONS */
