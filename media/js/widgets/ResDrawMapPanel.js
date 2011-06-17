@@ -189,20 +189,9 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                 }
             }
         );
-        
-        var ncc = new OpenLayers.Layer.TileCache(
-            "Aerial Imagery",
-            "/tiles/",
-            "ncc-imagery",
-            {
-                sphericalMercator: true,
-                // 'visibility': false,
-                isBaseLayer: false
-            }
-        );
-        
-        this.layer_array = [baseLayer, ncc]
-        this.mapLayer_array = [baseLayer, ncc]
+
+        this.layer_array = [baseLayer]
+        this.mapLayer_array = [baseLayer]
         
         try {
             // if (G_HYBRID_MAP) {
