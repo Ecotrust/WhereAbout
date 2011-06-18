@@ -888,22 +888,6 @@ def draw_group_resources(request, group_id):
             return render_to_response( 'draw_group_resources.html', RequestContext(request, {'title':title, 'group_id':group_id,  'group_name':group.name, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
   
 '''
-California coast placemark geojson service
-'''
-def ca_coast_placemarks(request):    
-    """Coast placemarks web service"""    
-    qs = CaCoastPlacemarks.objects.filter().order_by('-lat').exclude(featuretyp='Cemetery').exclude(featuretyp='Airport').exclude(featuretyp='Building').exclude(featuretyp='Canal').exclude(featuretyp='Census').exclude(featuretyp='Church').exclude(featuretyp='Channel').exclude(featuretyp='Civil').exclude(featuretyp='Gut').exclude(featuretyp='Mine').exclude(featuretyp='Populated Place').exclude(featuretyp='Post Office').exclude(featuretyp='School').exclude(featuretyp='Tower').exclude(featuretyp='Civil').exclude(featuretyp='Dam').exclude(featuretyp='Hospital').exclude(featuretyp='Military').exclude(featuretyp='Military (Historical)').exclude(featuretyp='Spring').exclude(featuretyp='Swamp').exclude(featuretyp='Valley').distinct()
-
-    return render_to_geojson(
-        qs,
-        geom_attribute='the_geom',
-        excluded_fields=['long','lat','featuretyp','county'],
-        mimetype = 'text/plain',
-        proj_transform=900913,
-        pretty_print=True
-    )
-    
-'''
 Load the Abalone Punch Card Sites
 '''
 def abalone_card_sites(request):    

@@ -310,28 +310,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         
         this.layer_array[this.layer_array.length] = this.mpa_specialclosures;
 
-        this.acc_pt_vector = new OpenLayers.Layer.Vector("Access Points", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/ncc_access_points.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: false, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            }),
-            styleMap: accessPointStyle
-        });
-        
-        this.acc_pt_vector.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.layer_array[this.layer_array.length] = this.acc_pt_vector;
-        
-                
         this.vecLayer = new OpenLayers.Layer.Vector('Target Areas',{
             styleMap: myStyle
         });     
@@ -375,7 +353,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
        	map.addControl(this.drawResControl);
         map.addLayers(this.layer_array);
         
-        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.acc_pt_vector ,this.mpa_smr, this.mpa_smca, this.mpa_smrma, this.mpa_specialclosures]);
+        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.mpa_smr, this.mpa_smca, this.mpa_smrma, this.mpa_specialclosures]);
         map.addControl(this.selectControl);
         this.selectControl.activate();
 
@@ -398,8 +376,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 	        zoom: this.defaultZoom
 		});   
 
-        this.acc_pt_vector.setVisibility(false);
-		
         // Call parent (required)
 		gwst.widgets.ResDrawMapPanel.superclass.initComponent.call(this);
     },

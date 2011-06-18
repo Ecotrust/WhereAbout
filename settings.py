@@ -102,7 +102,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'registration_custom',
     'gwst_app',
-    #'gwst_surveymonkey',
     'compress',
     'django_extensions',
     'django_extjs',

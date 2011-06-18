@@ -1,9 +1,6 @@
 from django.conf.urls.defaults import *
 from django.contrib.auth.views import *
 
-# from registration.views import register
-# from registration_custom.forms import RegistrationFormFull
-
 from views import *
 from django_extjs.example_views import *
 from django.views.generic.simple import direct_to_template
@@ -13,16 +10,7 @@ urlpatterns = patterns('',
     (r'^accounts/login/$', login, {'template_name': 'login.html'}),
     (r'^accounts/login_as/$', login_as ),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout_then_login', {'login_url': '/accounts/login/'}),
-    
-    #Custom registration with extra profile fields
-    # url(r'^accounts/register/$',
-        # register, 
-        # {'form_class': RegistrationFormFull,
-        # 'backend': 'registration.backends.default.DefaultBackend'},
-        # name='registration_register'),
-    
-    # (r'^accounts/', include('registration.backends.default.urls')),
-    
+
     (r'^draw_help/text/$', draw_help_text ),
 
     (r'^$', select_interview ),
@@ -58,10 +46,8 @@ urlpatterns = patterns('',
     (r'^shape/validate/$', validate_shape),
     url(r'^video/(\w+)$', video, name="video"),
     
-    (r'^ca_coast_placemarks/json/$', cache_page(ca_coast_placemarks, 60*15)),
     (r'^abalone_card_sites/json/$', cache_page(abalone_card_sites, 60*15)),
 
-    #(r'^admin/surveymonkey/', include('gwst_surveymonkey.urls')),   
     (r'^faq', faq),
 	
 	(r'^samples/(\S+)/$', sample),
@@ -71,8 +57,6 @@ urlpatterns = patterns('',
     (r'^apps/django_extjs/example_email', example_email),
     (r'^json/email$', example_email),
     (r'^json/model$', example_model),
-    # (r'^json/grid$', test_grid),
-    # (r'^grid$', direct_to_template, {'template': 'grid.html'}),
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'django_extjs/static'}),
     
 )

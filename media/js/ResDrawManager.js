@@ -39,8 +39,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     startInit: function(){
         this.createError();
-    	// this.on('settings-loaded', this.finInit, this);
-    	this.on('settings-loaded', this.loadCaCoastPlacemarks, this);
+    	this.on('settings-loaded', this.finInit, this);
     	this.on('shape-saved', this.startAnotherShapeStep, this);
         this.fetchSettings();
         this.loadWait('While the drawing tool loads');
@@ -1501,31 +1500,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
 	    
     },
-    
-    loadCaCoastPlacemarks: function() {
-    	this.loadWait('Loading California North Central Coast Placemarks...');
-        gwst.settings.placemarkStore = new GeoExt.data.FeatureStore({
-            proxy:  new GeoExt.data.ProtocolProxy({
-                protocol: new OpenLayers.Protocol.HTTP({
-                    url: '/ca_coast_placemarks/json/',     
-                    format: new OpenLayers.Format.GeoJSON()
-                })
-            }),
-            fields: [{
-                name:'name',
-                type:'string',
-                defaultValue: null
-            }],	        
-            autoLoad: true  
-        });
-        gwst.settings.placemarkStore.on('load', this.finLoadStores, this);
-    },    
 
-    finLoadStores: function() {
-        this.hideWait();
-    	this.finInit();
-    },
-    
     //remove listener and zoom in - listener removed because 'load' is firing when a new shape is drawn and saved.
     afterShapesLoaded: function() {
         this.zoomToAllShapes();

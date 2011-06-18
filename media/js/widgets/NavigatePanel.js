@@ -67,15 +67,13 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
             },{
                 html: '<img src="/site-media/images/nav_2.png">'
             },{
-                html: '<p>b. To turn on/off nautical charts, aerial imagery, MPA, or access point layers, use the \'+\' icon in the top right corner to open a layer selection window.</p>'
+                html: '<p>b. To turn on/off nautical charts, MPA, or access point layers, use the \'+\' icon in the top right corner to open a layer selection window.</p>'
             },{
                 html: '<img src="/site-media/images/layers_1.png">'
             },{
                 html: '<p>c. Get as close as you can to your '+ this.shape_name +', then press the continue button.</p>'
             }, {
                 html: ''
-            // },{
-                // html: '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a>'
             }]
         });
         
