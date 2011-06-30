@@ -928,9 +928,16 @@ def penny_overview(request, group_id):
 @login_required
 def finalize_group(request,id):
 
-    main_group_id = '4'
-    f_name_id = 54
-    l_name_id = 55
+    cur_interview = request.session['interview']
+    
+    if (cur_interview.id == 5):     #commercial survey
+        main_group_id = '11'
+        f_name_id = 115
+        l_name_id = 116
+    if (cur_interview.id == 6):     #charter survey
+        main_group_id = '14'
+        f_name_id = 219
+        l_name_id = 220
 
     # make sure the user has a valid session in-progress
     try:
