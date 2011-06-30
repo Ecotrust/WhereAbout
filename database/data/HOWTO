@@ -61,5 +61,4 @@ MORE ON CLIPPING:
 =========================================================
 dropped gwst_region_clip table from cc_db.sqlite (via sqlite_gui)
 spatialite.exe database/cc_db.sqlite
-.loadshp database/data/NCC_Coastline_30mi_Buffer/Ncc_Coastline_30mi_
-Buffer gwst_region_clip CP1252 3310
+.loadshp database/data/Clip_regions/COM_CHAR_clip_regions2 gwst_region_clip CP1252 3310
