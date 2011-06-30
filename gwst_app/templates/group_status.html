@@ -80,7 +80,7 @@ function skip_res_verify(link) {
     
         {% if r.current %}
             {% if not r.group_memb.int_group.required_group %}      {#  NOT REQUIRED  #}
-                <li><a href='#main_menu' onclick="skip_group_verify('/skip_group/{{r.group_memb.int_group.id}}/')">Skip this group</a></li>
+                <!--<li><a href='#main_menu' onclick="skip_group_verify('/skip_group/{{r.group_memb.int_group.id}}/')">Skip this group</a></li>-->
             {% endif %}
             {% ifequal r.group_memb.status "in-progress" %}   
                 <li>Done. <a href="/group_qs/{{r.group_memb.int_group.id}}/answer/">Edit answers</a></li>

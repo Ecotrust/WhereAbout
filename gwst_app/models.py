@@ -106,6 +106,7 @@ class Interview(Model):
     resource_name = CharField( max_length=60, default='species' )
     resource_name_plural = CharField( max_length=60, default='species' )
     resource_action = CharField( max_length=20, default='target' )
+    resource_action_past_tense = CharField( max_length=20, default='targeted' )
     shape_name = CharField( max_length=20, default='fishing ground' )
     shape_name_plural = CharField( max_length=20, default='fishing grounds' )
     class Meta:

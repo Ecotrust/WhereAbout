@@ -1287,6 +1287,7 @@ def draw_settings(request, id) :
 		'resource_name': interview.resource_name,
 	    'resource_name_plural': interview.resource_name_plural,
     	'resource_action': interview.resource_action,
+    	'resource_action_past_tense': interview.resource_action_past_tense,
         'shape_name_plural': interview.shape_name_plural,
         'shape_name': interview.shape_name
     }    
