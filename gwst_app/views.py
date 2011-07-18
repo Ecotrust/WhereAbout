@@ -278,80 +278,118 @@ def assign_groups(request):
         # let user select which groups they are in
         groups = InterviewGroup.objects.filter(interview=interview,is_user_group=True)
         
-        form = SelectInterviewGroupsForm( groups)
+        if interview.multiple_user_groups:
         
-        if groups.count() == 1:
-            group = groups[0]
-                    
-            membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=group)
-            membership.user = request.session['interviewee']
-            membership.int_group = group
-            membership.percent_involvement = 100 #form.cleaned_data['group_%s_pc' % field.group.id]
-            membership.order = 5
-            membership.save()
-                
-            qs = InterviewGroupMembership.objects.all()
-            for q in qs:
-                if q.int_group_id == 9:
-                    q.order = 1000 
-                    q.save()
-                else:
-                    q.order = 0
-                    q.save()
-                
-            # redirect to interview_group_status
-            return HttpResponseRedirect('/group_status/')
+            form = SelectInterviewGroupsForm( groups)
             
-        if groups.count() == 0:
-            qs = InterviewGroupMembership.objects.all()
-            for q in qs:
-                if q.int_group_id == 9:
-                    q.order = 1000 
-                    q.save()
-                else:
-                    q.order = 0
-                    q.save()
+            if groups.count() == 1:
+                group = groups[0]
+                        
+                membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=group)
+                membership.user = request.session['interviewee']
+                membership.int_group = group
+                membership.percent_involvement = 100 #form.cleaned_data['group_%s_pc' % field.group.id]
+                membership.order = 5
+                membership.save()
+                    
+                qs = InterviewGroupMembership.objects.filter(int_group__is_user_group=False, user=request.session['interviewee'])
+                for q in qs:
+                    if q.int_group.name == 'Socio-Economic Questions':
+                        q.order = 1000 
+                        q.save()
+                    else:
+                        q.order = 0
+                        q.save()
+                    
+                # redirect to interview_group_status
+                return HttpResponseRedirect('/group_status/')
                 
-            # redirect to interview_group_status
-            return HttpResponseRedirect('/group_status/')
+            if groups.count() == 0:
+                qs = InterviewGroupMembership.objects.filter(int_group__is_user_group=False, user=request.session['interviewee'])
+                for q in qs:
+                    if q.int_group.name == 'Socio-Economic Questions':
+                        q.order = 1000 
+                        q.save()
+                    else:
+                        q.order = 0
+                        q.save()
+                    
+                # redirect to interview_group_status
+                return HttpResponseRedirect('/group_status/')
         
+        else:
+            form = SelectInterviewGroupForm()
+            
+            form.fields['group'].queryset = groups
+
         
         return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'form': form, 'instructions':instructions, 'value':'Continue', 'q_width':265}))
         
     else:
         groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
 
-        form = SelectInterviewGroupsForm( groups, request.POST )
+        if interview.multiple_user_groups:
         
-        if form.is_valid():       
-            # save InterviewGroupMembership records
-            for field_name in form.fields:
-                field = form.fields[field_name]
+            form = SelectInterviewGroupsForm( groups, request.POST )
+
+            if form.is_valid():       
+                # save InterviewGroupMembership records
+                for field_name in form.fields:
+                    field = form.fields[field_name]
+                    
+                    if field.group and (form.cleaned_data['group_%s_pc' % field.group.id] > 0 or field.group.is_user_group == False):
+                        if (field.group.name != 'Socio-Economic Questions'):
+                            membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=field.group)
+                            membership.user = request.session['interviewee']
+                            membership.int_group = field.group
+                            membership.percent_involvement = form.cleaned_data['group_%s_pc' % field.group.id]
+                            membership.order = 5
+                            membership.save()
                 
-                if field.group and (form.cleaned_data['group_%s_pc' % field.group.id] > 0 or field.group.is_user_group == False):
-                    if (field.group.name != 'Socio-Economic Questions'):
-                        membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=field.group)
-                        membership.user = request.session['interviewee']
-                        membership.int_group = field.group
-                        membership.percent_involvement = form.cleaned_data['group_%s_pc' % field.group.id]
-                        membership.order = 5
-                        membership.save()
+                qs = InterviewGroupMembership.objects.filter(int_group__is_user_group=False, user=request.session['interviewee'])
+                for q in qs:
+                    if q.int_group.name == 'Socio-Economic Questions':
+                        q.order = 1000 
+                        q.save()
+                    else:
+                        q.order = 0
+                        q.save()
+                    
+                # redirect to interview_group_status
+                return HttpResponseRedirect('/group_status/')
+                
+            # validation errors        
+            return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': SelectInterviewGroupsForm( InterviewGroup.objects.filter(interview=interview,is_user_group=True), request.POST ), 'value':'Continue', 'q_width':265}))
+                
+        else:
+            form = SelectInterviewGroupForm( request.POST )
             
-            qs = InterviewGroupMembership.objects.all()
-            for q in qs:
-                if q.int_group_id == 9:
-                    q.order = 1000 
-                    q.save()
-                else:
-                    q.order = 0
-                    q.save()
+            form.fields['group'].queryset = groups
+            
+            if form.is_valid():
+     
+                selected_group = form.cleaned_data['group']
                 
-            # redirect to interview_group_status
-            return HttpResponseRedirect('/group_status/')
+                membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=selected_group)
+                membership.user = request.session['interviewee']
+                membership.int_group = selected_group
+                membership.percent_involvement = 100
+                membership.order = 5
+                membership.save()
+
+                qs = InterviewGroupMembership.objects.filter(int_group__is_user_group=False, user=request.session['interviewee'])
+                for q in qs:
+                    if q.int_group.name == 'Socio-Economic Questions':
+                        q.order = 1000 
+                        q.save()
+                    else:
+                        q.order = 0
+                        q.save()
+                
+                return HttpResponseRedirect('/group_status/')
         
-        
-        # validation errors        
-        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': SelectInterviewGroupsForm( InterviewGroup.objects.filter(interview=interview,is_user_group=True), request.POST ), 'value':'Continue', 'q_width':265}))
+            # validation errors        
+            return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': SelectInterviewGroupForm( InterviewGroup.objects.filter(interview=interview,is_user_group=True), request.POST ), 'value':'Continue', 'q_width':265}))
     
 # show a list of user's groups and current status of each
 @login_required

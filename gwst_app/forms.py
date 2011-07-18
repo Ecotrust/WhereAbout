@@ -18,6 +18,9 @@ class NameModelMultipleChoiceField(forms.ModelMultipleChoiceField):
 class SelectInterviewForm( forms.Form ):
     interview = NameModelChoiceField(label='Select the interview',queryset=None,required=True)
     
+class SelectInterviewGroupForm( forms.Form ):
+    group = NameModelChoiceField(label='Select the groups you belong to',queryset=None,required=True)
+    
 class SelectInterviewGroupsForm( forms.Form ):
     #groups = NameModelMultipleChoiceField(label='Select the groups you belong to',queryset=None,required=True)
     def __init__(self, groups, *args, **kwargs):

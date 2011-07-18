@@ -109,6 +109,7 @@ class Interview(Model):
     resource_action_past_tense = CharField( max_length=20, default='targeted' )
     shape_name = CharField( max_length=20, default='fishing ground' )
     shape_name_plural = CharField( max_length=20, default='fishing grounds' )
+    multiple_user_groups = BooleanField( default=True )
     class Meta:
         db_table = u'gwst_interview'
         
