@@ -19,7 +19,7 @@ class SelectInterviewForm( forms.Form ):
     interview = NameModelChoiceField(label='Select the interview',queryset=None,required=True)
     
 class SelectInterviewGroupForm( forms.Form ):
-    group = NameModelChoiceField(label='Select the groups you belong to',queryset=None,required=True)
+    group = NameModelChoiceField(label='Select the group you belong to',queryset=None,required=True)
     
 class SelectInterviewGroupsForm( forms.Form ):
     #groups = NameModelMultipleChoiceField(label='Select the groups you belong to',queryset=None,required=True)
