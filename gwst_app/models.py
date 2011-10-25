@@ -59,20 +59,18 @@ class AbalonePunchCardSites(Model):
 class Resource(Model):
 
     MethodChoices = (
+        ('Dip Net', 'Dip Net'),
         ('Dive', 'Dive'),
-        ('Shore picking', 'Shore picking'),
-        ('Spearfish', 'Spearfish'),
-        ('Hook and line', 'Hook and line'),
-        ('Fixed gear', 'Fixed gear'),
-        ('Trap', 'Trap'),
-        ('Troll', 'Troll'),
-        ('Brail or dip net', 'Brail or dip net'),
-        ('Net', 'Net'),
-        ('Handpicking', 'Handpicking'),
-        ('Dip net', 'Dip net'),
+        ('Fixed Gear', 'Fixed Gear'),
         ('Handgear/Longline', 'Handgear/Longline'),
+        ('Handpicking', 'Handpicking'),
+        ('Hook and Line', 'Hook and Line'),
         ('Longline', 'Longline'),
+        ('Net', 'Net'),
+        ('Seine or Dip Net', 'Seine or Dip Net'),
+        ('Trap', 'Trap'),
         ('Trawl', 'Trawl'),
+        ('Troll', 'Troll'),
         ('Fishery', 'Fishery'),
         ('Activity', 'Activity')
     )    

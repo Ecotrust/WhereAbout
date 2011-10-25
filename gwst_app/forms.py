@@ -367,10 +367,11 @@ class InterviewShapeAttributeForm(forms.ModelForm):
 class GroupMemberResourceForm(forms.Form):
     def __init__(self, interview, resources, *args, **kwargs):
 
-        if interview.name == 'North Central CA Commercial Monitoring':
+        if interview.name == 'Central CA Commercial Monitoring':
             method_options = InterviewAnswerOption.objects.filter(display_order__in=[2000, 2010, 2020, 2030, 2040, 2050, 2060, 2070, 2080, 2090, 2100, 2110])
         else :
             method_options = InterviewAnswerOption.objects.filter(display_order__in=[2200, 2210])
+        method_options = method_options.order_by('display_order')
     
         new_res_1 = forms.CharField( max_length=100, label='Other ' + interview.resource_name + ' option', required=False, initial = '' ) 
         new_method_1 = forms.ModelChoiceField( label='Method', queryset=method_options, required = False);
