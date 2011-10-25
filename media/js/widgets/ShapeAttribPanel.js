@@ -43,7 +43,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         });
         
         this.days_visited = new Ext.form.NumberField({
-            fieldLabel: 'Number of days this site was visited in 2010',
+            fieldLabel: 'Number of days this site was visited in 2011',
             name: 'days_visited',
             maxValue: this.days_max,
             minValue: 1
