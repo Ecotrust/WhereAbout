@@ -53,7 +53,7 @@ class InterviewAnswerAdmin(admin.ModelAdmin):
 
 class InterviewAnswerOptionAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'display_order', 'id')
-    ordering = ('display_order','__unicode__')    
+    ordering = ('display_order','eng_text')    
     
 class InterviewShapeAdmin(GeoModelAdmin):
     list_display = ('user', 'int_group_name', 'resource','pennies')

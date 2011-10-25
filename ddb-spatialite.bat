@@ -1,1 +1,1 @@
-del database\cc_db.sqlite
+del database\ccac_db.sqlite
