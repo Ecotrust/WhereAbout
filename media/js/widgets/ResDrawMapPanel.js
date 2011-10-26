@@ -234,7 +234,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/ncc_mpa_existing_smr.kml",
+                url: "/site-media/kml/CC_existing_SMR_mpas.kml",
                 format: new OpenLayers.Format.KML({
                     extractStyles: true, 
                     extractAttributes: true,
@@ -254,7 +254,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/ncc_mpa_existing_smca.kml",
+                url: "/site-media/kml/CC_existing_SMCA_mpas.kml",
                 format: new OpenLayers.Format.KML({
                     extractStyles: true, 
                     extractAttributes: true,
@@ -274,7 +274,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/ncc_mpa_existing_smrma.kml",
+                url: "/site-media/kml/CC_existing_SMRMA_mpas.kml",
                 format: new OpenLayers.Format.KML({
                     extractStyles: true, 
                     extractAttributes: true,
@@ -289,26 +289,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         });
         
         this.layer_array[this.layer_array.length] = this.mpa_smrma;
-        
-        this.mpa_specialclosures = new OpenLayers.Layer.Vector("Special Closures", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/ncc_mpa_existing_specialclosure.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            })
-        });
-        
-        this.mpa_specialclosures.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.layer_array[this.layer_array.length] = this.mpa_specialclosures;
 
         this.vecLayer = new OpenLayers.Layer.Vector('Target Areas',{
             styleMap: myStyle
@@ -353,7 +333,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
        	map.addControl(this.drawResControl);
         map.addLayers(this.layer_array);
         
-        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.mpa_smr, this.mpa_smca, this.mpa_smrma, this.mpa_specialclosures]);
+        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.mpa_smr, this.mpa_smca, this.mpa_smrma]);
         map.addControl(this.selectControl);
         this.selectControl.activate();
 
