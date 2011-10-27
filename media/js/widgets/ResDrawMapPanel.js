@@ -177,7 +177,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     var z = map.getZoom();
                     var url = this.url;
                     var path = 'blank.png' ;
-                    if ( z <= 12 && z >= 6 ) {
+                    if ( z <= 13 && z >= 6 ) {
                         var res = map.getResolution();
                         var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
                         var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
