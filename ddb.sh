@@ -1,3 +1,3 @@
 #!/bin/bash
 
-dropdb nccm-comm-charter-survey
+dropdb ccac-comm-charter-survey
