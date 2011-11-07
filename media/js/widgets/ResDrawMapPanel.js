@@ -166,7 +166,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         });
 	    
         var baseLayer = new OpenLayers.Layer.TMS(
-            "NCC California Nautical Charts", 
+            "California Nautical Charts", 
             ["/tiles/Cali_Nautical_Charts/Charts/"], 
             {              
                 buffer: 1,
@@ -212,7 +212,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             
         }
 
-        this.mpa_all = new OpenLayers.Layer.Vector("All MPAs", {
+        this.mpa_ncc = new OpenLayers.Layer.Vector("NCC MPAs", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
@@ -225,10 +225,12 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             })
         });
         
-        this.mpa_all.events.on({
+        this.mpa_ncc.events.on({
             "featureselected": this.onFeatureSelect,
             "featureunselected": this.onFeatureUnselect
         });
+        
+        this.layer_array[this.layer_array.length] = this.mpa_ncc;
         
         this.mpa_smr = new OpenLayers.Layer.Vector("State Marine Reserves", {
             strategies: [new OpenLayers.Strategy.Fixed()],
