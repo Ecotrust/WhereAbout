@@ -1,5 +1,13 @@
 [
   {
+    "pk": "5f585dc0-1217-11e1-9933-0016760580f0", 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  }, 
+  {
     "pk": "1", 
     "model": "sites.site", 
     "fields": {

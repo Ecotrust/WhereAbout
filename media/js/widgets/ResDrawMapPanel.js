@@ -223,6 +223,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         //Create the map and dump everything in
 	    map = new OpenLayers.Map('ol-map', map_options);
 		map.addControl(new OpenLayers.Control.Navigation());		
+        map.addControl(new OpenLayers.Control.TouchNavigation());
         map.addControl(new OpenLayers.Control.PanZoomBar({zoomStopHeight: 6}));
 		map.addControl(new OpenLayers.Control.MousePosition());
         map.addControl(new OpenLayers.Control.KeyboardDefaults());

@@ -386,6 +386,16 @@ class GroupMemberResourceForm(forms.Form):
         for res_membership in GroupMemberResource.objects.filter(group_membership=group_memb):
             if str(res_membership.resource.id) not in resource_ids:
                 res_membership.delete()
+        for r in resources:
+            #Check if resource has already been added to group membership
+            cur_resource = GroupMemberResource.objects.filter(group_membership=group_memb, resource=r)
+            if len(cur_resource) > 0:              
+                continue                          
+            gmr = GroupMemberResource()       
+            gmr.resource = r                 
+            gmr.group_membership = group_memb  
+            gmr.save()
+            
         return True     
 
     def clean(self):
