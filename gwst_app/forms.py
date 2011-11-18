@@ -367,18 +367,7 @@ class InterviewShapeAttributeForm(forms.ModelForm):
 class GroupMemberResourceForm(forms.Form):
     def __init__(self, interview, resources, *args, **kwargs):
 
-        if interview.name == 'Central CA Commercial Monitoring':
-            method_options = InterviewAnswerOption.objects.filter(display_order__in=[2000, 2010, 2020, 2030, 2040, 2050, 2060, 2070, 2080, 2090, 2100, 2110])
-        else :
-            method_options = InterviewAnswerOption.objects.filter(display_order__in=[2200, 2210])
-        method_options = method_options.order_by('display_order')
-    
-        new_res_1 = forms.CharField( max_length=100, label='Other ' + interview.resource_name + ' option', required=False, initial = '' ) 
-        new_method_1 = forms.ModelChoiceField( label='Method', queryset=method_options, required = False);
-        new_res_2 = forms.CharField( max_length=100, label='Other ' + interview.resource_name + ' option', required=False, initial = '' )
-        new_method_2 = forms.ModelChoiceField( label='Method', queryset=method_options, required = False);
         forms.Form.__init__(self, *args, **kwargs) 
-        #choices = [(resource.id, resource.name+') for resource in resources]
         choices = []
         for resource in resources:
             if not resource.select_description:
@@ -387,17 +376,9 @@ class GroupMemberResourceForm(forms.Form):
                 choices.append((resource.id, unicode(resource.verbose_name)+': '+unicode(resource.select_description)))
         label = str(interview.resource_name).capitalize()+' groups'
         self.fields['resources'] = forms.MultipleChoiceField(label=label, choices=choices, widget=forms.CheckboxSelectMultiple(), required = False)
-        self.fields['new_field_1'] = new_res_1
-        self.fields['new_method_1'] = new_method_1
-        self.fields['new_field_2'] = new_res_2
-        self.fields['new_method_2'] = new_method_2
 
     def save(self, group_memb, profile_callback=None):
         resource_ids = self.cleaned_data['resources']
-        new_field_1 = self.cleaned_data['new_field_1']
-        new_method_1 = self.cleaned_data['new_method_1']
-        new_field_2 = self.cleaned_data['new_field_2']
-        new_method_2 = self.cleaned_data['new_method_2']
         try:
             resources = [Resource.objects.get(pk=r_id) for r_id in resource_ids]
         except Exception, e:
@@ -405,81 +386,7 @@ class GroupMemberResourceForm(forms.Form):
         for res_membership in GroupMemberResource.objects.filter(group_membership=group_memb):
             if str(res_membership.resource.id) not in resource_ids:
                 res_membership.delete()
-        for r in resources:
-            #Check if resource has already been added to group membership
-            cur_resource = GroupMemberResource.objects.filter(group_membership=group_memb, resource=r)
-            if len(cur_resource) > 0:              
-                continue                          
-            gmr = GroupMemberResource()       
-            gmr.resource = r                 
-            gmr.group_membership = group_memb  
-            gmr.save()   
-
-        if self.clean_resource_val(new_field_1) != '':                                      
-            if new_method_1 != None:
-                new_1 = self.add_new_resource(new_field_1, new_method_1.eng_text, group_memb)
-        if self.clean_resource_val(new_field_2) != '':  
-            if new_method_2 != None:
-                new_2 = self.add_new_resource(new_field_2, new_method_2.eng_text, group_memb)
-            
         return True     
 
     def clean(self):
-
-        if self.cleaned_data['new_field_1'] == '' and self.cleaned_data['new_field_2'] == '' and self.cleaned_data['resources'] == []:
-            raise forms.ValidationError( 'You must select at least one option or give at least one alternative' )
-
-        if self.cleaned_data['new_field_1'] != '' and self.cleaned_data['new_method_1'] == None:
-            raise forms.ValidationError( 'You must select a method for each new '+Interview.objects.get(active=True).resource_name+'.')
-            
-        if self.cleaned_data['new_field_2'] != '' and self.cleaned_data['new_method_2'] == None:
-            raise forms.ValidationError( 'You must select a method for each new '+Interview.objects.get(active=True).resource_name+'.')
-        
         return self.cleaned_data        
-
-    def add_new_resource(self, new_resource, new_method, group_memb):
-        
-        clean_resource = self.clean_resource_val(new_resource)
-        clean_method = self.clean_resource_val(new_method)
-        created = False
-        new_id = clean_resource.capitalize() + '-' + clean_method.capitalize()
-        new_code = clean_resource + new_method
-        new_verbose_name = new_resource.capitalize() + ' - ' + new_method.capitalize()
-        
-        #Prevent duplication
-        all_resources = Resource.objects.all()
-        for res in all_resources:
-            if self.clean_resource_val(res.name).lower() == clean_resource.lower():
-                new_resource = res.name
-                if res.method == new_method:
-                    new_id = res.id
-                    new_code = res.code
-                    new_verbose_name = res.verbose_name
-                    break
-            
-        #Create the resource
-        resource, created = Resource.objects.get_or_create(name=new_resource, method=new_method, id=new_id, code=new_code, verbose_name=new_verbose_name)
-
-        #Add new resource to the group
-        group_memb.int_group.resources.add(resource)
-        #Create the membership with the new resource
-        gmem_resource, created = GroupMemberResource.objects.get_or_create(resource = resource, group_membership = group_memb)
-        gmem_resource.save()
-            
-        return created
-
-        
-    #User input may contain spaces or special characters. Since the id is used in URLs for access questions, these must be removed.
-    def clean_resource_val(self, res_str):
-        for char in res_str:
-            if not (char.isalnum() or char == '-' or char == '_'):
-                bad_index = res_str.find(char)
-                clean_str = self.clean_resource_val(res_str[0:bad_index]+res_str[bad_index+1:])
-                return clean_str
-        return res_str
-        
-            
-            
-            
-            
-            

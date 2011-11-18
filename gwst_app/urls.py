@@ -45,8 +45,6 @@ urlpatterns = patterns('',
     (r'^shapes/([A-Za-z0-9_-]*)$', shapes),
     (r'^shape/validate/$', validate_shape),
     url(r'^video/(\w+)$', video, name="video"),
-    
-    (r'^abalone_card_sites/json/$', cache_page(abalone_card_sites, 60*15)),
 
     (r'^faq', faq),
 	

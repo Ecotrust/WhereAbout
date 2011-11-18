@@ -165,30 +165,11 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             }
         });
 	    
-        var baseLayer = new OpenLayers.Layer.TMS(
-            "California Nautical Charts", 
-            ["/tiles/Cali_Nautical_Charts/Charts/"], 
-            {              
-                buffer: 1,
-                'isBaseLayer': true,
-                visibility: false,
-                'sphericalMercator': true,
-                getURL: function (bounds) {
-                    var z = map.getZoom();
-                    var url = this.url;
-                    var path = 'blank.png' ;
-                    if ( z <= 13 && z >= 6 ) {
-                        var res = map.getResolution();
-                        var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
-                        var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
-                        var limit = Math.pow(2, z);
-                        var path = z + "/" + x + "/" + y + ".png";
-                    }
-                    tilepath = url + path;
-                    return url + path;
-                }
-            }
-        );
+        var baseLayer = new OpenLayers.Layer.GeoWebCache({
+            url: "http://c1753222.cdn.cloudfiles.rackspacecloud.com/RBSW-DEV_NOAA_Layer_Group/",
+            name: 'Nautical Charts',
+            isBaseLayer: true
+        });
 
         this.layer_array = [baseLayer]
         this.mapLayer_array = [baseLayer]
@@ -211,86 +192,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         catch (e) {
             
         }
-
-        this.mpa_ncc = new OpenLayers.Layer.Vector("NCC MPAs", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/ncc_mpa_existing_all.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            })
-        });
-        
-        this.mpa_ncc.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.layer_array[this.layer_array.length] = this.mpa_ncc;
-        
-        this.mpa_smr = new OpenLayers.Layer.Vector("State Marine Reserves", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/CC_existing_SMR_mpas.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            })
-        });
-        
-        this.mpa_smr.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.layer_array[this.layer_array.length] = this.mpa_smr;
-        
-        this.mpa_smca = new OpenLayers.Layer.Vector("State Marine Conservation Areas", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/CC_existing_SMCA_mpas.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            })
-        });
-        
-        this.mpa_smca.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.layer_array[this.layer_array.length] = this.mpa_smca;
-        
-        this.mpa_smrma = new OpenLayers.Layer.Vector("State Marine Recreational Management Area", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/CC_existing_SMRMA_mpas.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            })
-        });
-        
-        this.mpa_smrma.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.layer_array[this.layer_array.length] = this.mpa_smrma;
 
         this.vecLayer = new OpenLayers.Layer.Vector('Target Areas',{
             styleMap: myStyle
@@ -335,7 +236,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
        	map.addControl(this.drawResControl);
         map.addLayers(this.layer_array);
         
-        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.mpa_smr, this.mpa_smca, this.mpa_smrma]);
+        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer]);
         map.addControl(this.selectControl);
         this.selectControl.activate();
 
@@ -361,38 +262,13 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         // Call parent (required)
 		gwst.widgets.ResDrawMapPanel.superclass.initComponent.call(this);
     },
-    
-    
-    onPopupClose: function(evt) {
-        this.select_all.unselectAll();
-        this.select_smr.unselectAll();
-        this.select_smca.unselectAll();
-        this.select_smrma.unselectAll();
-        this.select_specialclosures.unselectAll();
-    },
-    
+
     onFeatureSelect: function(event) {
         var feature = event.feature;
-        var popup = new OpenLayers.Popup.FramedCloud(
-            "MPA-popup",                                        //id
-            feature.geometry.getBounds().getCenterLonLat(),     //lon-lat
-            new OpenLayers.Size(100,100),                       //size
-            "<h2>"+feature.attributes.name + "</h2>",           //html
-            null,                                               //anchor
-            true,                                               //closeBox
-            this.onPopupClose                                   //closeBoxCallback
-        );
-        feature.popup = popup;
-        map.addPopup(popup);
     },
     
     onFeatureUnselect: function(event) {
         var feature = event.feature;
-        if(feature.popup) {
-            map.removePopup(feature.popup);
-            feature.popup.destroy();
-            delete feature.popup;
-        }
     },
 
     

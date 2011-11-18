@@ -1,3 +1,3 @@
 #!/bin/bash
 
-dropdb ccac-comm-charter-survey
+dropdb new-england-boater-survey

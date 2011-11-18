@@ -925,19 +925,6 @@ def draw_group_resources(request, group_id):
         else:
             return render_to_response( 'draw_group_resources.html', RequestContext(request, {'title':title, 'group_id':group_id,  'group_name':group.name, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
   
-'''
-Load the Abalone Punch Card Sites
-'''
-def abalone_card_sites(request):    
-    """Coast placemarks web service"""    
-    abalone_sites_qs = AbalonePunchCardSites.objects.filter()
-    abalone_list = [];
-    for site in abalone_sites_qs:
-
-        abalone_list.append(site.site)
-
-    return HttpResponse(simplejson.dumps(abalone_list), mimetype='application/json')
-  
 # start draw shapes quick tutorial   
 @login_required
 def draw_overview(request, group_id):
@@ -967,15 +954,11 @@ def penny_overview(request, group_id):
 def finalize_group(request,id):
 
     cur_interview = request.session['interview']
-    
-    if (cur_interview.id == 5):     #commercial survey
-        main_group_id = '11'
-        f_name_id = 115
-        l_name_id = 116
-    if (cur_interview.id == 6):     #charter survey
-        main_group_id = '14'
-        f_name_id = 219
-        l_name_id = 220
+
+    if (cur_interview.id == 7):     #commercial survey
+        main_group_id = '17'
+        f_name_id = 291
+        l_name_id = 292
 
     # make sure the user has a valid session in-progress
     try:
