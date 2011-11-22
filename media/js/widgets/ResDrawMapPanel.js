@@ -4,7 +4,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     //Default properties can defined here and overriden by config object passed to contructor
 	
     defaultZoom: 8,
-    maxZoom: 16,
+    maxZoom: 13,
     minZoom: 8,
     maxGoogleZoom: 13,
     minGoogleZoom: 5,
@@ -166,7 +166,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         });
 	    
         var baseLayer = new OpenLayers.Layer.GeoWebCache({
-            url: "http://c1753222.cdn.cloudfiles.rackspacecloud.com/RBSW-DEV_NOAA_Layer_Group/",
+            // url: "http://c1753222.cdn.cloudfiles.rackspacecloud.com/RBSW-DEV_NOAA_Layer_Group/",
+            url: "/tiles/_final_layers/NOAA/",
             name: 'Nautical Charts',
             isBaseLayer: true
         });
