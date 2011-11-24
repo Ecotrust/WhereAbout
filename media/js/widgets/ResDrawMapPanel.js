@@ -31,7 +31,14 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 	    
 	    //Map base options
         var map_options = {
-			controls: [],
+			controls: [
+                new OpenLayers.Control.TouchNavigation({
+                    dragPanOptions: {
+                        enableKinetic: true
+                    }
+                }),
+                new OpenLayers.Control.ZoomPanel()
+            ],
             projection: new OpenLayers.Projection("EPSG:900913"),
             displayProjection: new OpenLayers.Projection("EPSG:4326"),
             units: "m",
@@ -223,11 +230,12 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         
         //Create the map and dump everything in
 	    map = new OpenLayers.Map('ol-map', map_options);
-		map.addControl(new OpenLayers.Control.Navigation());		
-        map.addControl(new OpenLayers.Control.TouchNavigation());
-        map.addControl(new OpenLayers.Control.PanZoomBar({zoomStopHeight: 6}));
-		map.addControl(new OpenLayers.Control.MousePosition());
-        map.addControl(new OpenLayers.Control.KeyboardDefaults());
+		// map.addControl(new OpenLayers.Control.Navigation());		
+        // map.addControl(new OpenLayers.Control.TouchNavigation());
+        // map.addControl(new OpenLayers.Control.PanZoomBar({zoomStopHeight: 6}));
+		// map.addControl(new OpenLayers.Control.MousePosition());
+        // map.addControl(new OpenLayers.Control.KeyboardDefaults());
+        map.addControl(new OpenLayers.Control.ZoomPanel());
         
         
 		this.drawResControl = new OpenLayers.Control.DrawFeature(
@@ -245,7 +253,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         this.modifyControl = new OpenLayers.Control.ModifyFeature(this.vecLayer);
         map.addControl(this.modifyControl);
         
-        map.addControl(new OpenLayers.Control.LayerSwitcher());
+        // map.addControl(new OpenLayers.Control.LayerSwitcher());
         
         var layerStore = new GeoExt.data.LayerStore({
             layers: this.mapLayer_array,
@@ -301,14 +309,20 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     	return this.layers;
     },
     
-    hidePanZoomBar: function() {
-    	Ext.query(".olControlPanZoomBar")[0].style.display = 'none';
+    // hidePanZoomBar: function() {
+    hideZoomPanel: function() {
+    	// Ext.query(".olControlPanZoomBar")[0].style.display = 'none';
+    	Ext.query(".olControlZoomPanel")[0].style.display = 'none';
     },
     
-    showPanZoomBar: function() {
-        Ext.query(".olControlPanZoomBar")[0].style.display = 'none';
-    	Ext.query(".olControlPanZoomBar")[0].style.display = 'block';
-        Ext.query(".olControlPanZoomBar")[0].style.left = '';
+    // showPanZoomBar: function() {
+    showZoomPanel: function() {
+        // Ext.query(".olControlPanZoomBar")[0].style.display = 'none';
+    	// Ext.query(".olControlPanZoomBar")[0].style.display = 'block';
+        // Ext.query(".olControlPanZoomBar")[0].style.left = '';
+        Ext.query(".olControlZoomPanel")[0].style.display = 'none';
+    	Ext.query(".olControlZoomPanel")[0].style.display = 'block';
+        Ext.query(".olControlZoomPanel")[0].style.left = '';
     },
     
     zoomToMapRegion: function(region) {

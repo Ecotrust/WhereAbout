@@ -8,16 +8,20 @@ gwst.widgets.QuitWindow = Ext.extend(Ext.Window, {
 		
 		Ext.apply(this, {          
             height: 25,
-            width:135,
+            width:165,
             layout:'fit',
             html:'blort',
             closable: false,
             resizable: false,
             tbar: [{
+                cls: 'map-button',
 				text: 'Go To Main Menu',
 				iconCls: 'quit-main',
 				handler: this.goToMain,
-				scope: this
+				scope: this,
+                height: 50,
+                width: 148,
+                font: 14
             }]                   
         });
 		gwst.widgets.QuitWindow.superclass.initComponent.call(this);		

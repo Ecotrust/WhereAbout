@@ -8,7 +8,7 @@ gwst.widgets.DrawToolWindow = Ext.extend(Ext.Window, {
 		
 		Ext.apply(this, {          
             height: 25,
-            width: 110,
+            width: 140,
             layout:'fit',
             html:'blort',
             resizable: false,
@@ -16,10 +16,14 @@ gwst.widgets.DrawToolWindow = Ext.extend(Ext.Window, {
             collapsible: false,
             draggable: false,
             tbar: [{
+                cls: 'map-button',
 				text: 'Cancel Area',
 				iconCls: 'cancel-draw',
 				handler: this.cancelShape,
-				scope: this
+				scope: this,
+                height: 50,
+                width: 123,
+                font: 14
             }]                   
         });
 		gwst.widgets.DrawToolWindow.superclass.initComponent.call(this);		

@@ -8,16 +8,20 @@ gwst.widgets.CopyButtonWindow = Ext.extend(Ext.Window, {
 		
 		Ext.apply(this, {          
             height: 25,
-            width:80,
+            width: 110,
             layout:'fit',
             html:'loading...',
             closable: false,
             resizable: false,
             tbar: [{
+                cls: 'map-button',
 				text: 'Copy',
 				iconCls: 'copy-button',
 				handler: this.copyFeature,
-				scope: this
+				scope: this,
+                height: 50,
+                width: 93,
+                font: 14
             }]                   
         });
 		gwst.widgets.CopyButtonWindow.superclass.initComponent.call(this);		

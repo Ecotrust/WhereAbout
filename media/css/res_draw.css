@@ -27,6 +27,35 @@
     left: auto !important;
 }
 
+.olControlZoomPanel {
+    right: 50px !important;
+    left: auto !important;
+}
+
+div.olControlZoomPanel div {
+    width: 50px;
+    height: 50px;
+    background-image: url(/site-media/images/mobile-zoombar-large.png);
+}
+
+.olControlZoomToMaxExtentItemInactive {
+    height: 0 !important;
+    width: 0 !important;
+}
+
+.olControlZoomOutItemInactive {
+    background-position: 0 -100px !important;
+    top: 54px !important;
+}
+
+.maximizeDiv {
+    background-image: url(/site-media/images/layer_switcher_maximizer.png) !important;
+    height: 36px !important;
+    width: 36px !important;
+    img: url(/site-media/images/layer_switcher_maximizer.png) !important;
+    innerImage: url(/site-media/images/layer_switcher_maximizer.png) !important;
+}
+
 .x-form-check-wrap {
     width: 170px !important;
 }
@@ -127,6 +156,18 @@ p.x-panel-static{
     padding: 10px;
 }
 
+.map-button .quit-main, 
+.map-button .copy-button,
+.map-button .begin-draw,
+.map-button .poly-icon,
+.map-button .cancel-draw,
+.map-button .redo-draw {
+    background-size: 24px !important;
+    height: 28px !important;
+    padding-left: 27px !important;
+    font-size: 14px !important;
+}
+
 .quit-main{
     background-image: url(/site-media/images/house.png) !important;
 }
@@ -136,6 +177,10 @@ p.x-panel-static{
 }
 
 .begin-draw {
+	background-image: url(/site-media/images/pencil_go.png) !important;
+}
+
+.poly-icon {
 	background-image: url(/site-media/images/pencil_go.png) !important;
 }
 

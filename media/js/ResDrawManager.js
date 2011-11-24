@@ -18,9 +18,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     layerWin: null,		//Map layers window
     layerWinOffset: [-8, 8],	//Offset from top right to render
     quitWinOffset: [308, 8],	//Offset from top left to render
-    drawWinOffset: [450, 8],
-    copyWinOffset: [606, 8],	//Offset from top left to render
-    drawToolWinOffset: [693, 8],	//Offset from top left to render
+    drawWinOffset: [480, 8],
+    copyWinOffset: [666, 8],	//Offset from top left to render
+    drawToolWinOffset: [783, 8],	//Offset from top left to render
 
     constructor: function(){
         gwst.ResDrawManager.superclass.constructor.call(this);
@@ -50,7 +50,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.loadViewport();
         this.startSplashStep();  
         this.loadQuitWin();
-        this.mapPanel.showPanZoomBar();
+        this.mapPanel.showZoomPanel();
     },
         
     /******************** Top-level survey step handlers *******************/

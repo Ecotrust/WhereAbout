@@ -8,7 +8,7 @@ gwst.widgets.DrawPolyWindow = Ext.extend(Ext.Window, {
 		
 		Ext.apply(this, {          
             height: 25,
-            width: 149,
+            width: 179,
             layout:'fit',
             html:'blort',
             resizable: false,
@@ -16,10 +16,14 @@ gwst.widgets.DrawPolyWindow = Ext.extend(Ext.Window, {
             collapsible: false,
             draggable: false,
             tbar: [{
+                cls: 'map-button',
 				text: 'Draw New Area',
 				iconCls: 'poly-icon',
 				handler: this.drawClicked,
-				scope: this
+				scope: this,
+                height: 50,
+                width: 163,
+                font: 14
             }]                   
         });
 		gwst.widgets.DrawPolyWindow.superclass.initComponent.call(this);		
