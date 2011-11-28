@@ -21,7 +21,7 @@ gwst.widgets.DrawToolWindow = Ext.extend(Ext.Window, {
 				iconCls: 'cancel-draw',
 				handler: this.cancelShape,
 				scope: this,
-                height: 50,
+                height: 30,
                 width: 123,
                 font: 14
             }]                   

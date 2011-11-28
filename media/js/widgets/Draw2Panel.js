@@ -27,11 +27,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
         gwst.widgets.Draw2Panel.superclass.initComponent.apply(
           this, arguments);                     
     },
-    
-    updateGrid: function() {
-        this.hidePennyColumn();
-    },
-    
+
     updateText: function(text_config) {
         Ext.apply(this, text_config);
         this.inner_panel.getEl().update(this.getHtmlText());
@@ -47,17 +43,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
         var header_text = '<h3>Draw '+ this.shape_name_plural + ' - '+ this.resource +'</h3>';
         return header_text;
     },
-    
-    // getDrawVideoHtml: function() {
-        // var html_text_2 = '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.draw_help_url +'" target="_blank">View Video Demonstration</a></p>';
-        // return html_text_2;
-    // },
-    
-    // getDraw2VideoHtml: function() {
-        // var html_text_3 = '<p class="video-link"><img class="video-img" src="/site-media/images/film_go.png"/> <a href="'+ this.help_url +'" target="_blank">View Video Demonstration</a></p>';
-        // return html_text_3;
-    // },
-    
+
     deleteCheck: function(btn, text) {
         if(btn == 'yes') {
             this.fireEvent('draw-two-delete', this.cur_action_record);
@@ -77,19 +63,6 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             });
         } else if(action == 'shape-zoom') {
             this.fireEvent('draw-two-zoom-shape', record);
-        }
-    },
-    
-    hidePennyColumn: function() {
-        var pennies_exist = false;
-        for (var i = 0; i < gwst.settings.shapeStore.getCount(); i++) {
-            if (gwst.settings.shapeStore.getAt(0).get('pennies') > 0) {
-                pennies_exist = true;
-            }
-        }
-        this.d2_inner_grid_panel.getColumnModel().setHidden(2, !pennies_exist);
-        if (pennies_exist) {
-            this.d2_inner_grid_panel.getColumnModel().setColumnWidth(2, 50);
         }
     },
 
@@ -137,13 +110,6 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             	width: 30,
             	sortable: false,
             	renderer: function() {return '<img src="/site-media/images/control_play.png"/>';}
-            },
-            new Ext.grid.RowNumberer(),{
-                header:'Pennies',
-                width: 50,
-                sortable: false,
-                dataIndex: 'pennies',
-                align: 'center'
             }, this.grid_actions
             ],
             viewConfig: {
@@ -180,22 +146,6 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             xtype: 'gwst-draw-instruction-panel'
         });
         
-        // this.lower_instruction_panel = new Ext.Panel({
-			// html: this.getDrawVideoHtml(),
-            // id: 'draw_extended_lower_instruction_panel',
-			// style: 'margin: 10px',
-			// border: false
-		// });
-        
-        // this.instruction_panel.add(this.lower_instruction_panel);
-        
-        // this.lower_panel = new Ext.Panel({
-			// html: this.getDraw2VideoHtml(),
-            // id: 'draw_extended_lower_panel',
-			// style: 'margin: 10px',
-			// border: false
-		// });
-        
         gwst.settings.shapeStore.on('update', this.updateStatus, this);
         gwst.settings.shapeStore.on('remove', this.updateStatus, this);
         
@@ -207,10 +157,8 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 
         this.add(this.header_panel);
 		this.add(this.inner_panel);
-        // this.add(this.lower_panel);
         this.add(this.instruction_panel);
         this.add(this.d2_inner_grid_panel); 
-        this.hidePennyColumn();
         this.add(this.button_panel);
         
         // Call parent (required)

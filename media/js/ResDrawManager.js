@@ -217,7 +217,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         	this.drawToolWin.hide();
         }
         this.mapPanel.disableResDraw();
-        this.startPennyInstrStep();
+        this.startFinishStep();
     },    
     
     /*
@@ -355,73 +355,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Setup UI for draw another shape or drop penny step 
      */
     startAnotherShapeStep: function() {    
-        this.loadAnotherShapePanel();
-    },
-       
-    /*
-     * Check if any valid shapes exist
-     */
-    penniesStepSelected: function() {
-        if (gwst.settings.shapeStore.getCount() > 0) {
-            this.moveToDropPenniesStep();
-        } else {
-            this.startFinishStep();
-        }
-    },
-    
-    /*
-     * Move on to drop pennies
-     */
-    moveToDropPenniesStep: function() {
-        this.startPennyInstrStep();
-    },   
-        
-    /******************** Penny Allocation Instruction Step *******************/
-
-    /*
-     * show basic instructions for penny use
-     */
-    startPennyInstrStep: function() {
-        this.loadAllocPanel();
-    },
-    
-    /*
-     * Cleanup allocation help step
-     */
-    finPennyInstrStep: function() {
-        this.startPennyStep();
-    },
-    
-    /*
-     * Go back from allocation to resource drawing
-     */
-    backPennyInstrStep: function() {
         this.startDraw2Step();
     },
-    
-    /******************** Penny Allocation Step *******************/
-    
-    /*
-     * Setup UI for penny allocation step
-     */
-    startPennyStep: function() {
-        this.loadPennyPanel();
-    },
-    
-    /*
-     * Process penny allocation step
-     */
-    finPennyStep: function() {
-        this.startFinishStep();
-    },
-    
-    /*
-     * Go back from penny allocation to resource drawing
-     */
-    backPennyStep: function() {
-        this.startPennyInstrStep();
-    },
-    
+       
     /******************** Finish Step *******************/
     
     /*
@@ -730,7 +666,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             });
         }
         this.viewport.setWestPanel(this.draw2Panel); 
-        this.draw2Panel.updateGrid();
     },
     
      /* Load the copy feature west panel */
@@ -850,81 +785,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.viewport.setWestPanel(this.shapeAttribPanel);    	
     },
     
-    /* Load the draw another shape or drop pennies question west panel */
-    loadAnotherShapePanel: function() {
-    	if (!this.drawOrDropPanel) {
-            this.drawOrDropPanel = new gwst.widgets.DrawOrDropPanel({
-                xtype: 'gwst-draw-or-drop-panel',
-                resource: this.curResource.get('name'),
-                action: gwst.settings.interview.resource_action,
-                user_group: gwst.settings.group.member_title,
-                res_group_name: gwst.settings.interview.resource_name,
-                shape_name_plural: gwst.settings.interview.shape_name_plural,
-                shape_name: gwst.settings.interview.shape_name
-            });
-            //When panel fires event saying it's all done, we want to process it and move on 
-            this.drawOrDropPanel.on('drop-pennies', this.penniesStepSelected, this);
-            this.drawOrDropPanel.on('draw-another', this.startDraw2Step, this);            
-        } else {
-            this.drawOrDropPanel.updateText({
-                resource: this.curResource.get('name'),
-                action: gwst.settings.interview.resource_action,
-                user_group: gwst.settings.group.member_title,
-                res_group_name: gwst.settings.interview.resource_name,
-                shape_name_plural: gwst.settings.interview.shape_name_plural,
-                shape_name: gwst.settings.interview.shape_name
-            });
-        }
-        this.viewport.setWestPanel(this.drawOrDropPanel);    	
-    },
-    
-     /* Load the alloc west panel */
-    loadAllocPanel: function() {
-    	if (!this.allocPanel) {
-            this.allocPanel = new gwst.widgets.AllocPanel({
-                xtype: 'gwst-alloc-panel',
-                resource: this.curResource.get('name'),
-                shape_name_plural: gwst.settings.interview.shape_name_plural,
-                shape_name: gwst.settings.interview.shape_name
-            });
-            //When panel fires event saying it's all done, we want to process it and move on 
-            this.allocPanel.on('alloc-cont', this.finPennyInstrStep, this);
-            this.allocPanel.on('alloc-back', this.backPennyInstrStep, this);
-        } else {
-            this.allocPanel.updateText({
-                resource: this.curResource.get('name'),
-                shape_name_plural: gwst.settings.interview.shape_name_plural,
-                shape_name: gwst.settings.interview.shape_name
-            });
-        }
-        this.viewport.setWestPanel(this.allocPanel); 
-        this.zoomToAllShapes();
-    },
-    
-    /* Load the penny allocation west panel */
-    loadPennyPanel: function() {
-    	if (!this.pennyPanel) {
-            this.pennyPanel = new gwst.widgets.PennyPanel({
-                xtype: 'gwst-penny-panel',
-                resource: this.curResource.get('name'),
-                shape_name_plural: gwst.settings.interview.shape_name_plural,
-                shape_name: gwst.settings.interview.shape_name
-            });
-            //When panel fires event saying it's all done, we want to process it and move on 
-            this.pennyPanel.on('penny-cont', this.finPennyStep, this);
-            this.pennyPanel.on('penny-back', this.backPennyStep, this);
-            this.pennyPanel.on('penny-zoom-shape', this.zoomMapToShape, this);
-            this.pennyPanel.on('penny-zoom-all', this.zoomToAllShapes, this);
-        } else {
-            this.pennyPanel.updateText({
-                resource: this.curResource.get('name'),
-                shape_name_plural: gwst.settings.interview.shape_name_plural,
-                shape_name: gwst.settings.interview.shape_name
-            });
-        }
-        this.viewport.setWestPanel(this.pennyPanel);    	
-    },
- 
     /* Load the finish/finish later/select another resource west panel */
     loadFinishPanel: function() {
     	if (!this.finishPanel) {
@@ -1136,7 +996,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 
         var data = {
             geometry: this.curSaveRecord.get('feature').geometry.toString(),
-            pennies: this.curSaveRecord.get('pennies'),
             group_id: gwst.settings.survey_group_id,
             resource_id: this.curResource.id
         };
@@ -1199,9 +1058,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         if (this.draw2Panel) {
     		this.draw2Panel.refresh();
     	}
-    	if (this.pennyPanel) {
-    		this.pennyPanel.refresh();
-    	}
     },
     
     deleteSavedShapes: function(delete_config){   
@@ -1224,43 +1080,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     finDeleteSavedShapes: function(id_obj) {
     	this.hideWait.defer(500, this);
-    },
-    
-    //Update a shape already saved on the server
-    updateSavedShape: function(store, record, operation) {
-    	//if the pennies weren't modified, ignore it
-    	if (record.modified == null || record.modified.pennies == 'undefined' || record.modified.pennies == null) {
-    		return;
-    	}
-    	var data = {
-            pennies: parseInt(record.get('pennies')),
-            group_id: gwst.settings.survey_group_id,
-            resource_id: this.curResource.id
-        };
-    	this.loadWait('Updating');
-        this.curUpdateRecord = record;
-        
-        Ext.Ajax.request({
-            url: gwst.settings.urls.shapes+record.get('id'),
-            method: 'POST',
-            disableCachingParam: true,
-            params: {feature: Ext.util.JSON.encode(data)},
-            success: this.finUpdateSavedShape,
-         	failure: function(response, opts) {
-        		//Change to error window
-              	this.hideWait.defer(500, this);
-              	gwst.error.load('An unknown error has occurred while trying to update your '+gwst.settings.interview.shape_name+'.  Please try again and notify us if this keeps happening.');
-           	},
-            scope: this
-	    });    	
-    }, 
-    
-    finUpdateSavedShape: function(response) {
-    	this.hideWait.defer(500, this);
-    	this.curUpdateRecord = null;
-    	//We've already saved the change, but telling the store to commit 
-    	//will remove any cell edit styling
-    	gwst.settings.shapeStore.commitChanges();
     },
     
     //if not resource specific, use ''
@@ -1409,10 +1228,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                     type: 'string',
                     defaultValue: ''
                 },{
-                    name:'pennies',
-                    type:'int',
-                    defaultValue: 0
-                },{
                     name: 'boundary_n',
                     type: 'string',
                     defaultValue: ''
@@ -1461,10 +1276,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                     name:'id',
                     type: 'string',
                     defaultValue: ''
-                },{
-                    name:'pennies',
-                    type:'int',
-                    defaultValue: 0
                 },{
                     name: 'boundary_n',
                     type: 'string',
@@ -1522,14 +1333,14 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     configShapeStore: function() {
         gwst.settings.shapeStore.removeListener('load', this.configShapeStore, this);
     	gwst.settings.shapeStore.on('add', this.trackNewShape, this);
-    	gwst.settings.shapeStore.on('update', this.updateSavedShape, this);    	
+    	// gwst.settings.shapeStore.on('update', this.updateSavedShape, this);    	
     },
     
     //Once Other Resources store has been initially loaded, add events to handle selecting of records.
     configOtherResourceShapeStore: function() {
         gwst.settings.otherResourceShapeStore.removeListener('load', this.configOtherResourceShapeStore, this);
     	gwst.settings.otherResourceShapeStore.on('add', this.trackNewShape, this);
-    	gwst.settings.otherResourceShapeStore.on('update', this.updateSavedShape, this);    	
+    	// gwst.settings.otherResourceShapeStore.on('update', this.updateSavedShape, this);    	
     },
     
     //Add a freshly validated shape to the map

@@ -14,15 +14,6 @@ gwst.data.ResFeatureStore = Ext.extend(GeoExt.data.FeatureStore, {
         
         // Call parent (required)
         gwst.data.ResFeatureStore.superclass.initComponent.apply(this, arguments);                     
-    },
-    
-    //Get the total number of pennies allocated so far
-    getPennyCount: function() {
-    	this.pennyCount = 0;
-    	this.each(function(r) {
-    		this.pennyCount = this.pennyCount + parseInt(r.get('pennies'));
-    	}, this);
-    	return this.pennyCount;
     }
 });
  

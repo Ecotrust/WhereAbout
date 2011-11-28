@@ -21,7 +21,7 @@ gwst.widgets.DrawPolyWindow = Ext.extend(Ext.Window, {
 				iconCls: 'poly-icon',
 				handler: this.drawClicked,
 				scope: this,
-                height: 50,
+                height: 30,
                 width: 163,
                 font: 14
             }]                   

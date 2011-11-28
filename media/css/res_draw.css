@@ -35,7 +35,7 @@
 div.olControlZoomPanel div {
     width: 50px;
     height: 50px;
-    background-image: url(/site-media/images/mobile-zoombar-large.png);
+    background-image: url(/site-media/images/mobile-zoombar-large-blue.png);
 }
 
 .olControlZoomToMaxExtentItemInactive {
@@ -43,7 +43,19 @@ div.olControlZoomPanel div {
     width: 0 !important;
 }
 
+.olControlZoomToMaxExtentItemInactive hover {
+    background-image: url(/site-media/images/mobile-zoombar-large.png);
+    height: 0 !important;
+    width: 0 !important;
+}
+
 .olControlZoomOutItemInactive {
+    background-position: 0 -100px !important;
+    top: 54px !important;
+}
+
+.olControlZoomOutItemActive {
+    background-image: url(/site-media/images/mobile-zoombar.png);
     background-position: 0 -100px !important;
     top: 54px !important;
 }
@@ -163,9 +175,19 @@ p.x-panel-static{
 .map-button .cancel-draw,
 .map-button .redo-draw {
     background-size: 24px !important;
-    height: 28px !important;
+    height: 30px !important;
     padding-left: 27px !important;
     font-size: 14px !important;
+}
+
+.x-toolbar {
+    padding: 0 !important;
+}
+
+.x-toolbar-left table {
+    margin: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .quit-main{

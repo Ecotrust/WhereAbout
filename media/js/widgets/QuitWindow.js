@@ -19,7 +19,7 @@ gwst.widgets.QuitWindow = Ext.extend(Ext.Window, {
 				iconCls: 'quit-main',
 				handler: this.goToMain,
 				scope: this,
-                height: 50,
+                height: 30,
                 width: 148,
                 font: 14
             }]                   

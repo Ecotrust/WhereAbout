@@ -30,7 +30,6 @@ urlpatterns = patterns('',
 	(r'^answers/$', answers ),
 	
     (r'^draw_overview/([A-Za-z0-9_-]+)/$', draw_overview ),
-    (r'^penny_overview/([A-Za-z0-9_-]+)/$', penny_overview ),
         
     (r'^finalize_group/([A-Za-z0-9_-]+)/$', finalize_group ),
     (r'^skip_res_finalize_group/([A-Za-z0-9_-]+)/$', skip_res_finalize_group ),

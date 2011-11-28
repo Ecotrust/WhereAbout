@@ -19,7 +19,7 @@ gwst.widgets.CopyButtonWindow = Ext.extend(Ext.Window, {
 				iconCls: 'copy-button',
 				handler: this.copyFeature,
 				scope: this,
-                height: 50,
+                height: 30,
                 width: 93,
                 font: 14
             }]                   

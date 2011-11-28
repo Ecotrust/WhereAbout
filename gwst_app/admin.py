@@ -56,7 +56,7 @@ class InterviewAnswerOptionAdmin(admin.ModelAdmin):
     ordering = ('display_order','eng_text')    
     
 class InterviewShapeAdmin(GeoModelAdmin):
-    list_display = ('user', 'int_group_name', 'resource','pennies')
+    list_display = ('user', 'int_group_name', 'resource')
 
 class FaqAdmin(admin.ModelAdmin):
     search_fields = ('question', 'answer')

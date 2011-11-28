@@ -67,7 +67,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             strokeWidth: 1,
             cursor: 'pointer',
             pointerEvents: "visiblePainted",
-            // label : "${pennies}",
             fontColor: "black",
             fontSize: "12px",
             labelAlign: "cm"            
@@ -81,7 +80,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             strokeWidth: 1,
             cursor: 'pointer',
             pointerEvents: "visiblePainted",
-            // label : "${resource}",
             fontColor: "black",
             fontSize: "12px",
             labelAlign: "cm"            
@@ -95,7 +93,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             fillOpacity: 0.4,
             cursor: 'default',
             pointerEvents: "visiblePainted",
-            label : "${pennies}",
             fontColor: "black",
             fontSize: "12px",
             labelAlign: "cm"
@@ -109,7 +106,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             fillOpacity: 0.4,
             cursor: 'default',
             pointerEvents: "visiblePainted",
-            // label : "${Resource}",
             fontColor: "black",
             fontSize: "12px",
             labelAlign: "cm"
@@ -124,17 +120,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         }, OpenLayers.Feature.Vector.style["temporary"]));
         
         var labelRules = [
-            new OpenLayers.Rule({
-                filter: new OpenLayers.Filter.Comparison({
-                    type: OpenLayers.Filter.Comparison.NOT_EQUAL_TO,
-                    property: "pennies",
-                    value: undefined
-                }),
-                symbolizer: {
-                    label: "${pennies}"
-                },
-                elseFilter: false
-            }),
             new OpenLayers.Rule({
                 symbolizer: {},
                 elseFilter: true
@@ -159,7 +144,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             'default':{
                 label : "${name}",
                 externalGraphic : "/site-media/images/access_marker.png",
-                // fontColor: "darkorange",
                 fontColor: "lime",
                 fontWeight: "bold",
                 fontSize: "13px",
@@ -173,7 +157,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         });
 	    
         var baseLayer = new OpenLayers.Layer.GeoWebCache({
-            // url: "http://c1753222.cdn.cloudfiles.rackspacecloud.com/RBSW-DEV_NOAA_Layer_Group/",
             url: "/tiles/_final_layers/NOAA/",
             name: 'Nautical Charts',
             isBaseLayer: true
@@ -230,11 +213,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         
         //Create the map and dump everything in
 	    map = new OpenLayers.Map('ol-map', map_options);
-		// map.addControl(new OpenLayers.Control.Navigation());		
-        // map.addControl(new OpenLayers.Control.TouchNavigation());
-        // map.addControl(new OpenLayers.Control.PanZoomBar({zoomStopHeight: 6}));
-		// map.addControl(new OpenLayers.Control.MousePosition());
-        // map.addControl(new OpenLayers.Control.KeyboardDefaults());
         map.addControl(new OpenLayers.Control.ZoomPanel());
         
         
@@ -284,13 +262,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     
     zoomHandler: function() {
         var zoomLvl = this.map.getZoom();
-        // if (this.map.baseLayer.CLASS_NAME == "OpenLayers.Layer.TMS") {
-            this.layerMaxZoom = this.maxZoom;
-            this.layerMinZoom = this.minZoom;
-        // } else if (this.map.baseLayer.CLASS_NAME == "OpenLayers.Layer.Google") {
-            // this.layerMaxZoom = this.maxGoogleZoom;
-            // this.layerMinZoom = this.minGoogleZoom;
-        // }
+        this.layerMaxZoom = this.maxZoom;
+        this.layerMinZoom = this.minZoom;
         if (zoomLvl > this.layerMaxZoom){
             if (!this.autoZoom) {
                 gwst.error.load('You are already at the maximum zoom level available.');
@@ -311,15 +284,11 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     
     // hidePanZoomBar: function() {
     hideZoomPanel: function() {
-    	// Ext.query(".olControlPanZoomBar")[0].style.display = 'none';
     	Ext.query(".olControlZoomPanel")[0].style.display = 'none';
     },
     
     // showPanZoomBar: function() {
     showZoomPanel: function() {
-        // Ext.query(".olControlPanZoomBar")[0].style.display = 'none';
-    	// Ext.query(".olControlPanZoomBar")[0].style.display = 'block';
-        // Ext.query(".olControlPanZoomBar")[0].style.left = '';
         Ext.query(".olControlZoomPanel")[0].style.display = 'none';
     	Ext.query(".olControlZoomPanel")[0].style.display = 'block';
         Ext.query(".olControlZoomPanel")[0].style.left = '';
@@ -420,7 +389,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     
     addShape: function(vec) {
     	//Initialize the feature so that the label is accurate
-    	Ext.apply(vec.attributes,{'pennies':0});
     	this.vecLayer.addFeatures([vec]);
     	this.selectControl.select(vec);
     	this.curShape = vec;

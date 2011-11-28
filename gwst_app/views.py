@@ -445,40 +445,20 @@ def group_status(request):
                 # tally complete and incomplete resource groups
                 num_complete_resources = 0
                 num_incomplete_resources = 0
-                bZeroPennyShapes = False
                 # iterate through all resources currently checked
                 for resource in GroupMemberResource.objects.filter(group_membership=group_memb.id):
                     #find shapes for each
                     res_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=group_memb.int_group,resource=resource.resource)
-                    zero_penny_shapes = res_shapes.filter(pennies=0)
-                        
-                    #find any shapes with no pennies and count resource as incomplete
-                    if zero_penny_shapes.count() > 0:
-                        num_incomplete_resources = num_incomplete_resources + 1
-                        bZeroPennyShapes = True
+                    res_count = res_shapes.count()
+                    #In this survey, if a resource has ANY shapes, it is complete.
+                    if res_count > 0:
+                        num_complete_resources = num_complete_resources + 1
                     else:
-                        # all shapes have pennies
-                        res_count = res_shapes.count()
-                        if res_count > 0:
-                            # existing shapes found for selected resource
-                            res_pennies = res_shapes.aggregate(Sum('pennies'))['pennies__sum']
-                            if res_pennies == 100:
-                                # 100/100 pennies alotted, count 1 resource complete
-                                num_complete_resources = num_complete_resources + 1
-                            else:
-                                # <100 pennies alotted, resource incomplete
-                                num_incomplete_resources = num_incomplete_resources + 1
-                        else:
-                            # No shapes drawn for selected resource
-                            num_incomplete_resources = num_incomplete_resources + 1
+                        num_incomplete_resources = num_incomplete_resources + 1
                 
                 # calculate completion of total resources selected
                 num_resources = num_incomplete_resources+num_complete_resources
                 group_memb.user_status_msg = '%s/%s %s group(s) complete' % (num_complete_resources,num_resources,resource_name)
-
-                if bZeroPennyShapes:
-                    group_memb.user_status_msg = group_memb.user_status_msg + ', you have '+shape_name_plural+' with 0 pennies, please allocate or remove them to move on'
-                        
                 group_memb.num_complete_resources = num_complete_resources
                 group_memb.num_incomplete_resources = num_incomplete_resources
                 
@@ -930,25 +910,12 @@ def draw_group_resources(request, group_id):
 def draw_overview(request, group_id):
 
     if request.method == 'POST':
-        # return HttpResponseRedirect('/penny_overview/'+str(group_id)+'/')
         interview = InterviewStatus.objects.get(user=request.session['interviewee'], interview=request.session['interview'])
         interview.overview_completed = True
         interview.save()
         return HttpResponseRedirect('/draw_group_resources/'+str(group_id)+'/')
     return render_to_response( 'draw_overview.html', RequestContext(request,{'interview':request.session['interview']})) 
     
-# start drop penny quick tutorial 
-@login_required
-def penny_overview(request, group_id):
-
-    if request.method == 'POST':
-        #update status to reflect that this overview has been seen
-        interview = InterviewStatus.objects.get(user=request.session['interviewee'], interview=request.session['interview'])
-        interview.overview_completed = True
-        interview.save()
-        return HttpResponseRedirect('/draw_group_resources/'+str(group_id)+'/')
-    return render_to_response( 'penny_overview.html', RequestContext(request))   
-
 # user finalizes group
 @login_required
 def finalize_group(request,id):
@@ -988,7 +955,6 @@ def finalize_group(request,id):
         group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group=int_group)
         if group_memb.count() == 1:
         
-            # validation based on number of pennies assigned by user
             if int_group.user_draws_shapes:
             
                 total_shape_count = 0
@@ -997,12 +963,6 @@ def finalize_group(request,id):
                     resource_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=resource)
                     shape_count = resource_shapes.count()
                     if shape_count > 0:
-                        shape_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
-                    
-                        # check if user drew shapes but didn't get pennies to 100
-                        if shape_count > 0 and shape_pennies != 100:
-                            return HttpResponseRedirect('/group_status#main_menu')
-                        
                         total_shape_count = total_shape_count + shape_count
                     
                 # check if user failed to draw any shapes
@@ -1063,23 +1023,13 @@ def skip_res_finalize_group(request,id):
             
         group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group=int_group)
         if group_memb.count() == 1:
-        
-            # validation based on number of pennies assigned by user
             if int_group.user_draws_shapes:
-            
                 total_shape_count = 0
-                
                 for resource in int_group.resources.all():
                     resource_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=resource)
                     shape_count = resource_shapes.count()
                     if shape_count > 0:
-                        shape_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
-                    
-                        # check if user drew shapes but didn't get pennies to 100
-                        if shape_count > 0 and shape_pennies != 100:
-                            resource_shapes.delete()
-                        else: 
-                            total_shape_count = total_shape_count + shape_count
+                        total_shape_count = total_shape_count + shape_count
                     
                 # check if user failed to draw any shapes
                 if total_shape_count == 0:
@@ -1293,12 +1243,7 @@ def draw_settings(request, id) :
         resource_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=int_group,resource=res)        
         if resource_shapes and len(resource_shapes) > 0:
             res_item['started'] = True
-        
-        if res_item['started'] == True:
-            resource_pennies = resource_shapes.aggregate(Sum('pennies'))['pennies__sum']
-            zero_penny_shapes = resource_shapes.filter(pennies=0)                        
-            if resource_pennies == 100 and zero_penny_shapes.count() == 0 and resource_shapes.filter(pennies=0).count() == 0:
-                res_item['finished'] = True        
+            res_item['finished'] = True        
             
         res_list.append(res_item)
 
@@ -1410,7 +1355,6 @@ def shapes(request, id=None):
             shape = InterviewShape.objects.get(pk=id)
             
             if (shape.user == request.session['interviewee']):
-                shape.pennies = feat.get('pennies')
                 shape.save()
                 result = {"success":True, "message":"Updated successfully"}
                 return HttpResponse(geojson_encode(result)) 

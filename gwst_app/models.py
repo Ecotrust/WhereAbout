@@ -339,7 +339,6 @@ class InterviewShape(Model):
     int_group = ForeignKey(InterviewGroup)
     resource = ForeignKey(Resource)
     geometry = PolygonField(srid=settings.SERVER_SRID)#, blank=True, null=True)
-    pennies = IntegerField( default=0 )
     boundary_n = CharField( max_length=100, blank=True, null=True ) 
     boundary_s = CharField( max_length=100, blank=True, null=True )
     boundary_e = CharField( max_length=100, blank=True, null=True )

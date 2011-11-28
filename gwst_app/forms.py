@@ -345,21 +345,11 @@ class AnswerForm(forms.Form):
         
 
 class InterviewShapeAttributeForm(forms.ModelForm):
-    pennies = forms.IntegerField( min_value=1, max_value=100, required=True )
     boundary_n = forms.CharField( max_length=100, label='Northern boundary', required=False ) 
     boundary_s = forms.CharField( max_length=100, label='Southern boundary', required=False )
     boundary_e = forms.CharField( max_length=100, label='Eastern boundary', required=False )
     boundary_w = forms.CharField( max_length=100, label='Western boundary', required=False )
     
-    def clean_pennies(self):
-        new_pennies = self.cleaned_data['pennies']
-        total_pennies = new_pennies + self.group_pennies
-
-        if total_pennies > 100:
-            raise ValidationError('The total number of pennies across all shapes in this group cannot exceed 100. (current: %s)' % (total_pennies,)) 
-            
-        return self.cleaned_data['pennies']
-        
     class Meta:
         model = InterviewShape
         exclude = ('user','int_group','resource','geometry','geometry_clipped','geometry_edited','edit_notes','edit_status','creation_date','last_modified','num_times_saved')
