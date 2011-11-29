@@ -889,12 +889,6 @@ def draw_group_resources(request, group_id):
     if status.completed:
         # redirect to interview_complete
         return HttpResponseRedirect('/interview_complete/')
-        
-    # see if the drawing overview has been shown
-    
-    if not status.overview_completed:
-        # redirect to overview
-        return HttpResponseRedirect('/draw_overview/'+str(group_id)+'/')
 
     group = InterviewGroup.objects.get(pk=group_id)
     group_memb = InterviewGroupMembership.objects.get(user=request.session['interviewee'], int_group__pk=group_id)
@@ -916,18 +910,7 @@ def draw_group_resources(request, group_id):
             return render_to_response( 'draw_group_resources_desktop.html', RequestContext(request, {'title':title, 'group_id':group_id,  'group_name':group.name, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
         else:
             return render_to_response( 'draw_group_resources.html', RequestContext(request, {'title':title, 'group_id':group_id,  'group_name':group.name, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
-  
-# start draw shapes quick tutorial   
-@login_required
-def draw_overview(request, group_id):
 
-    if request.method == 'POST':
-        interview = InterviewStatus.objects.get(user=request.session['interviewee'], interview=request.session['interview'])
-        interview.overview_completed = True
-        interview.save()
-        return HttpResponseRedirect('/draw_group_resources/'+str(group_id)+'/')
-    return render_to_response( 'draw_overview.html', RequestContext(request,{'interview':request.session['interview']})) 
-    
 # user finalizes group
 @login_required
 def finalize_group(request,id):
@@ -1388,10 +1371,10 @@ def shapes(request, id=None):
             new_shape = InterviewShape(
                 user = request.session['interviewee'],
                 geometry = geom,
-                boundary_n = feat.get('boundary_n'),
-                boundary_s = feat.get('boundary_s'),
-                boundary_e = feat.get('boundary_e'),
-                boundary_w = feat.get('boundary_w'),
+                # boundary_n = feat.get('boundary_n'),
+                # boundary_s = feat.get('boundary_s'),
+                # boundary_e = feat.get('boundary_e'),
+                # boundary_w = feat.get('boundary_w'),
                 note_text = feat.get('note_text'),
                 int_group_id = feat.get('group_id'),
                 resource_id = feat.get('resource_id'),

@@ -28,9 +28,6 @@ urlpatterns = patterns('',
     (r'^select_group_resources/([A-Za-z0-9_-]+)/$', select_group_resources ),
 	(r'^draw_group_resources/([A-Za-z0-9_-]+)/$', draw_group_resources ),
 	(r'^answers/$', answers ),
-	
-    (r'^draw_overview/([A-Za-z0-9_-]+)/$', draw_overview ),
-        
     (r'^finalize_group/([A-Za-z0-9_-]+)/$', finalize_group ),
     (r'^skip_res_finalize_group/([A-Za-z0-9_-]+)/$', skip_res_finalize_group ),
     (r'^unfinalize_group/([A-Za-z0-9_-]+)/$', unfinalize_group ),

@@ -10,6 +10,7 @@
 SPATIALITE_LIBRARY_PATH = 'libspatialite-1.dll'
 DESKTOP_BUILD = True
 FULL_ADMIN = False
+MOBILE = False
 
 AUTH_PROFILE_MODULE = 'gwst_app.userprofile'
 

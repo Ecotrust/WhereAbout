@@ -194,7 +194,7 @@
       "code": "ttfs-discd", 
       "name": "Discard", 
       "is_user_group": false, 
-      "required_group": false, 
+      "required_group": true, 
       "question_width": 275, 
       "select_resource_text": "", 
       "preselect": true, 
@@ -216,7 +216,7 @@
       "code": "ttfs-socec", 
       "name": "Socio-Economic", 
       "is_user_group": false, 
-      "required_group": false, 
+      "required_group": true, 
       "question_width": 275, 
       "select_resource_text": "", 
       "preselect": true, 
@@ -297,7 +297,7 @@
     "pk": "a28", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 0.0, 
+      "display_order": 1.0, 
       "eng_text": "Yes"
     }
   }, 
@@ -305,7 +305,7 @@
     "pk": "a29", 
     "model": "gwst_app.interviewansweroption", 
     "fields": {
-      "display_order": 1.0, 
+      "display_order": 2.0, 
       "eng_text": "No"
     }
   }, 
@@ -886,6 +886,54 @@
     }
   }, 
   {
+    "pk": "bc2cff0f-1aaf-11e1-9de4-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 130.0, 
+      "eng_text": "Maine"
+    }
+  }, 
+  {
+    "pk": "c51df7a1-1aaf-11e1-9b53-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 140.0, 
+      "eng_text": "New Hampshire"
+    }
+  }, 
+  {
+    "pk": "ceb36d91-1aaf-11e1-b8a5-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 150.0, 
+      "eng_text": "Massachusetts"
+    }
+  }, 
+  {
+    "pk": "db0a9b91-1aaf-11e1-8293-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 160.0, 
+      "eng_text": "Rhode Island"
+    }
+  }, 
+  {
+    "pk": "e4398780-1aaf-11e1-8d94-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 170.0, 
+      "eng_text": "Connecticut"
+    }
+  }, 
+  {
+    "pk": "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 0.0, 
+      "eng_text": "Unanswered"
+    }
+  }, 
+  {
     "pk": "a1", 
     "model": "gwst_app.questiongroupvalidator", 
     "fields": {
@@ -932,8 +980,12 @@
       "required": false, 
       "question_group": null, 
       "options": [
-        "a4", 
-        "a5"
+        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
+        "bc2cff0f-1aaf-11e1-9de4-0016760580f0", 
+        "c51df7a1-1aaf-11e1-9b53-0016760580f0", 
+        "ceb36d91-1aaf-11e1-b8a5-0016760580f0", 
+        "db0a9b91-1aaf-11e1-8293-0016760580f0", 
+        "e4398780-1aaf-11e1-8d94-0016760580f0"
       ], 
       "val_min": null, 
       "val_default": "", 
@@ -1011,7 +1063,7 @@
     "fields": {
       "all_resources": false, 
       "code": "tf-venue", 
-      "layout": "vertical", 
+      "layout": "hoizontal", 
       "eng_text": "Would you say you were fishing from", 
       "int_group": 18, 
       "question_set": 1, 
@@ -1075,6 +1127,7 @@
         "05581d1e-1a1d-11e1-98e8-0016760580f0", 
         "100bad40-1a1d-11e1-96d5-0016760580f0", 
         "1f07e38f-1a1d-11e1-9301-0016760580f0", 
+        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
         "712f5780-1a1c-11e1-8d6d-0016760580f0", 
         "86c13140-1a1c-11e1-b769-0016760580f0", 
         "948c619e-1a1c-11e1-a209-0016760580f0", 
@@ -1130,7 +1183,8 @@
       "options": [
         "3342b8cf-1a1d-11e1-8a76-0016760580f0", 
         "3c31405e-1a1d-11e1-b04c-0016760580f0", 
-        "47df0f00-1a1d-11e1-aef6-0016760580f0"
+        "47df0f00-1a1d-11e1-aef6-0016760580f0", 
+        "5f3a5780-1ab4-11e1-a7aa-0016760580f0"
       ], 
       "val_min": null, 
       "val_default": "", 
@@ -1154,6 +1208,7 @@
       "question_group": null, 
       "options": [
         "55d06500-1a1d-11e1-93f9-0016760580f0", 
+        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
         "635d7af0-1a1d-11e1-b218-0016760580f0", 
         "6d1b8780-1a1d-11e1-82f0-0016760580f0", 
         "78608230-1a1d-11e1-a8af-0016760580f0", 
@@ -1334,6 +1389,7 @@
       "required": false, 
       "question_group": null, 
       "options": [
+        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
         "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
         "c86ea121-1a1e-11e1-b833-0016760580f0"
       ], 
@@ -1379,6 +1435,7 @@
       "required": false, 
       "question_group": null, 
       "options": [
+        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
         "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
         "c86ea121-1a1e-11e1-b833-0016760580f0"
       ], 
@@ -1467,6 +1524,7 @@
       "question_group": null, 
       "options": [
         "4889634f-1a1e-11e1-8a69-0016760580f0", 
+        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
         "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
         "c86ea121-1a1e-11e1-b833-0016760580f0"
       ], 
@@ -1492,6 +1550,7 @@
       "question_group": null, 
       "options": [
         "5624d11e-1a1e-11e1-9603-0016760580f0", 
+        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
         "6fe0a580-1a1e-11e1-80dd-0016760580f0", 
         "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
         "c86ea121-1a1e-11e1-b833-0016760580f0"
@@ -1517,6 +1576,7 @@
       "required": false, 
       "question_group": null, 
       "options": [
+        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
         "a28", 
         "a29", 
         "bdf1ff80-1a1e-11e1-85af-0016760580f0", 

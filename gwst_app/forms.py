@@ -114,6 +114,11 @@ class AnswerForm(forms.Form):
                 
             elif question.answer_type == 'select': #choice list 
                 dynamic_args['queryset'] = question.options
+                if settings.MOBILE:
+                    dynamic_args['widget'] = forms.RadioSelect()
+                    dynamic_args['required'] = True
+                    dynamic_args['initial'] = question.options.values().order_by('display_order')[0]['id']
+
                 if answer.count() == 1:
                     if answer[0].option_val:
                         dynamic_args['initial']=answer[0].option_val.id

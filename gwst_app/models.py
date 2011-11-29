@@ -326,7 +326,6 @@ class InterviewStatus(Model):
     num_logins = IntegerField(default=0)
     complete_date = DateTimeField(null=True)
     notes = TextField(null=True)
-    overview_completed = BooleanField(default=False)
     
     class Meta:
         db_table = u'gwst_userstatus'
@@ -340,10 +339,10 @@ class InterviewShape(Model):
     int_group = ForeignKey(InterviewGroup)
     resource = ForeignKey(Resource)
     geometry = PolygonField(srid=settings.SERVER_SRID)#, blank=True, null=True)
-    boundary_n = CharField( max_length=100, blank=True, null=True ) 
-    boundary_s = CharField( max_length=100, blank=True, null=True )
-    boundary_e = CharField( max_length=100, blank=True, null=True )
-    boundary_w = CharField( max_length=100, blank=True, null=True )
+    # boundary_n = CharField( max_length=100, blank=True, null=True ) 
+    # boundary_s = CharField( max_length=100, blank=True, null=True )
+    # boundary_e = CharField( max_length=100, blank=True, null=True )
+    # boundary_w = CharField( max_length=100, blank=True, null=True )
     note_text = CharField( max_length=1000, blank=True, null=True )
     days_visited = IntegerField( blank=True, null=True )
     creation_date = DateTimeField(default=datetime.datetime.now)

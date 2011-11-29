@@ -59,19 +59,19 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             defaultType: 'textfield',
             items: [
             this.days_visited,
-            {
-                fieldLabel: 'North Boundary',
-                name: 'boundary_n'
-            },{
-                fieldLabel: 'East Boundary',
-                name: 'boundary_e'
-            },{
-                fieldLabel: 'South Boundary',
-                name: 'boundary_s'
-            },{
-                fieldLabel: 'West Boundary',
-                name: 'boundary_w'
-            },
+            // {
+                // fieldLabel: 'North Boundary',
+                // name: 'boundary_n'
+            // },{
+                // fieldLabel: 'East Boundary',
+                // name: 'boundary_e'
+            // },{
+                // fieldLabel: 'South Boundary',
+                // name: 'boundary_s'
+            // },{
+                // fieldLabel: 'West Boundary',
+                // name: 'boundary_w'
+            // },
             this.notes_area 
             ]
 		});
@@ -96,7 +96,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         Ext.apply(this, config);
         this.days_visited.applyState({maxValue: this.days_max});
         this.inner_form_panel.getForm().reset();
-        this.inner_form_panel.getForm().reset();
+        // this.inner_form_panel.getForm().reset();
     },
 
     contBtnClicked: function() {
