@@ -8,7 +8,7 @@ gwst.widgets.WaitWindow = Ext.extend(Ext.Window, {
             title: 'Please Wait',
         	layout:'fit',
             width:250,
-            html: {tag: 'div', id: 'msg_panel', html: 'Crock'},  //Ext.DomHelper object
+            html: {tag: 'div', id: 'msg_panel', html: 'Please Wait...'},  //Ext.DomHelper object
             height:75,
             plain: true,
             bodyStyle: 'padding: 8px; font-weight: bold',
