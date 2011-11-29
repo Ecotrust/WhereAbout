@@ -159,7 +159,7 @@ def handleSelectInterview(request,selected_interview):
             membership.user = request.session['interviewee']
             membership.int_group = group
             if (group.name != 'Main Questions'):
-                membership.percent_involvement = 0
+                membership.percent_involvement = group.default_pct_involvement
             else :
                 membership.percent_involvement = 101
             membership.save()
@@ -416,8 +416,8 @@ def group_status(request):
     # show list of interview groups with current status (including global interview questions)
     
     title = request.session['interview'].name + ' Status'
-       
-    qs = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__in=int_groups).order_by('order','-percent_involvement','int_group')
+    res_q_count = 0;
+    qs = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__in=int_groups).order_by('-percent_involvement','int_group')
     
     num_shapes = None
     # update the user status message for each in-progress group
@@ -428,6 +428,9 @@ def group_status(request):
     for group_memb in qs.all(): 
         if current_group and (group_memb.int_group == current_group.int_group):
             result.append({'current':True, 'group_memb':group_memb})
+
+            res_q_count = InterviewQuestion.objects.filter(int_group=current_group.int_group, all_resources=True).count()
+            
         else:
             result.append({'current':False, 'group_memb':group_memb})
             
@@ -468,7 +471,7 @@ def group_status(request):
     finalized_groups = InterviewGroupMembership.objects.filter(Q(status='finalized') | Q(status='skipped')).filter(user=request.session['interviewee'], int_group__in=int_groups)
     allow_finalize = qs.count() == finalized_groups.count()
 
-    return render_to_response( 'group_status.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'result':result, 'allow_finalize':allow_finalize, 'num_shapes':num_shapes}))
+    return render_to_response( 'group_status.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'result':result, 'allow_finalize':allow_finalize, 'num_shapes':num_shapes, 'res_q_count':res_q_count}))
     
 @login_required    
 def view_answers(request,group_id):
@@ -798,6 +801,15 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
     questions = InterviewQuestion.objects.filter(int_group__pk=group_id,all_resources=True).order_by('question_set', 'display_order')
     
     if questions.count() == 0:
+        group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__pk=group_id)
+        if group_memb.count()==1:
+            updated_group = group_memb[0]
+            if updated_group.status == 'selecting resources':
+                updated_group.date_started = datetime.datetime.now()
+                updated_group.status = 'in-progress'
+            updated_group.save()
+        else: #404
+            return render_to_response( '404.html', RequestContext(request,{}))
         if next_url:
             return HttpResponseRedirect(next_url)
         else:
@@ -925,7 +937,7 @@ def finalize_group(request,id):
     if (cur_interview.id == 7):     #commercial survey
         main_group_id = '17'
         f_name_id = 291
-        l_name_id = 292
+        # l_name_id = 292
 
     # make sure the user has a valid session in-progress
     try:
@@ -977,9 +989,9 @@ def finalize_group(request,id):
             if id == main_group_id:
                 update_user = User.objects.get(username = request.session['interviewee'])
                 first_name = InterviewAnswer.objects.get(user = request.session['interviewee'], int_question = f_name_id).text_val.capitalize()
-                last_name = InterviewAnswer.objects.get(user = request.session['interviewee'], int_question = l_name_id).text_val.capitalize()
+                # last_name = InterviewAnswer.objects.get(user = request.session['interviewee'], int_question = l_name_id).text_val.capitalize()
                 update_user.first_name = first_name
-                update_user.last_name = last_name
+                update_user.last_name = first_name
                 update_user.save()
 
                 request.session['interviewee'].first_name = update_user.first_name

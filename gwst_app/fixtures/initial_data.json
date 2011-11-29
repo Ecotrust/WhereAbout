@@ -1,21 +1,5 @@
 [
   {
-    "pk": "9758a00f-1481-11e1-a63a-0016760580f0", 
-    "model": "sites.site", 
-    "fields": {
-      "domain": "example.com", 
-      "name": "example.com"
-    }
-  }, 
-  {
-    "pk": "5f585dc0-1217-11e1-9933-0016760580f0", 
-    "model": "sites.site", 
-    "fields": {
-      "domain": "example.com", 
-      "name": "example.com"
-    }
-  }, 
-  {
     "pk": "1", 
     "model": "sites.site", 
     "fields": {
@@ -120,12 +104,24 @@
     }
   }, 
   {
+    "pk": "recfishing_act", 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "act_recfishing", 
+      "name": "Recreational Fishing", 
+      "verbose_name": "Recreational Fishing - Activity", 
+      "method": "Activity"
+    }
+  }, 
+  {
     "pk": 7, 
     "model": "gwst_app.interview", 
     "fields": {
       "multiple_user_groups": true, 
-      "code": "ttbs", 
-      "description": "Tablet Test Boating Survey", 
+      "code": "ttrfs", 
+      "description": "Tablet Test Rec Fishing Survey", 
       "shape_name_plural": "activity areas", 
       "region": "ade73fb0-1168-11e1-beac-0016760580f0", 
       "resource_name_plural": "activities", 
@@ -140,7 +136,7 @@
       "resource_action_past_tense": "done", 
       "clip_region": null, 
       "interview_complete_text": "Interview Complete text defined in Interview", 
-      "name": "New England Boating Survey"
+      "name": "New England Recreational Fishing Survey"
     }
   }, 
   {
@@ -149,16 +145,16 @@
     "fields": {
       "shape_color": "FFFFFF", 
       "independent": false, 
-      "code": "ttbs-main", 
+      "code": "ttfs-main", 
       "name": "Main", 
       "is_user_group": false, 
       "required_group": true, 
       "question_width": 275, 
-      "select_resource_text": "Select Resource Text defined in Group (Main)", 
+      "select_resource_text": "", 
       "preselect": true, 
       "user_draws_shapes": false, 
       "interview": 7, 
-      "member_title": "Boater", 
+      "member_title": "Angler", 
       "page_template": "base_form.html", 
       "resources": [], 
       "description": "Main Questions"
@@ -170,7 +166,7 @@
     "fields": {
       "shape_color": "FFFFFF", 
       "independent": false, 
-      "code": "ttbs-boat", 
+      "code": "ttfs-rfish", 
       "name": "Map", 
       "is_user_group": true, 
       "required_group": false, 
@@ -179,12 +175,54 @@
       "preselect": true, 
       "user_draws_shapes": true, 
       "interview": 7, 
-      "member_title": "Boater", 
+      "member_title": "Angler", 
       "page_template": "base_form.html", 
       "resources": [
-        "Boating"
+        "recfishing_act"
       ], 
-      "description": "Recreational Boating"
+      "description": "Recreational Fishing"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "independent": false, 
+      "code": "ttfs-discd", 
+      "name": "Discard", 
+      "is_user_group": false, 
+      "required_group": true, 
+      "question_width": 275, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 7, 
+      "member_title": "Angler", 
+      "page_template": "base_form.html", 
+      "resources": [], 
+      "description": "Discard"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "independent": false, 
+      "code": "ttfs-socec", 
+      "name": "Soc_Econ", 
+      "is_user_group": false, 
+      "required_group": true, 
+      "question_width": 275, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "user_draws_shapes": false, 
+      "interview": 7, 
+      "member_title": "Angler", 
+      "page_template": "base_form.html", 
+      "resources": [], 
+      "description": "Socio-Economic"
     }
   }, 
   {
@@ -476,6 +514,374 @@
     }
   }, 
   {
+    "pk": "9b91fa61-1a1b-11e1-bcad-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 210.0, 
+      "eng_text": "Pier"
+    }
+  }, 
+  {
+    "pk": "a7147340-1a1b-11e1-9755-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 220.0, 
+      "eng_text": "Dock"
+    }
+  }, 
+  {
+    "pk": "b1e1f400-1a1b-11e1-a0e2-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 230.0, 
+      "eng_text": "Jetty, Breakwater, Breachway"
+    }
+  }, 
+  {
+    "pk": "c9dd2ca1-1a1b-11e1-bc28-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 240.0, 
+      "eng_text": "Bridge, Causeway"
+    }
+  }, 
+  {
+    "pk": "e2996b4f-1a1b-11e1-a8b9-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 310.0, 
+      "eng_text": "Other Man-made Structure"
+    }
+  }, 
+  {
+    "pk": "f35aaa30-1a1b-11e1-8f3f-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 260.0, 
+      "eng_text": "Beach or Bank"
+    }
+  }, 
+  {
+    "pk": "fca5f7c0-1a1b-11e1-a68a-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 270.0, 
+      "eng_text": "Head Boat"
+    }
+  }, 
+  {
+    "pk": "0c78b7ee-1a1c-11e1-acbe-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 280.0, 
+      "eng_text": "Charter Boat"
+    }
+  }, 
+  {
+    "pk": "1b98a2de-1a1c-11e1-a930-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 290.0, 
+      "eng_text": "Private Boat"
+    }
+  }, 
+  {
+    "pk": "2361bd40-1a1c-11e1-a570-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 300.0, 
+      "eng_text": "Rental Boat"
+    }
+  }, 
+  {
+    "pk": "712f5780-1a1c-11e1-8d6d-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 710.0, 
+      "eng_text": "Ocean/gulf"
+    }
+  }, 
+  {
+    "pk": "86c13140-1a1c-11e1-b769-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 720.0, 
+      "eng_text": "Sound (Other than those specified)"
+    }
+  }, 
+  {
+    "pk": "948c619e-1a1c-11e1-a209-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 730.0, 
+      "eng_text": "River (Other than those specified)"
+    }
+  }, 
+  {
+    "pk": "a037bf40-1a1c-11e1-9d68-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 740.0, 
+      "eng_text": "Bay (Other than those specified)"
+    }
+  }, 
+  {
+    "pk": "b4130f61-1a1c-11e1-8e8b-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 850.0, 
+      "eng_text": "Other (Specify)"
+    }
+  }, 
+  {
+    "pk": "bffef870-1a1c-11e1-8515-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 760.0, 
+      "eng_text": "Cape Cod Bay"
+    }
+  }, 
+  {
+    "pk": "d0442980-1a1c-11e1-9b56-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 770.0, 
+      "eng_text": "Narragansett Estuary"
+    }
+  }, 
+  {
+    "pk": "e1627c80-1a1c-11e1-b056-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 780.0, 
+      "eng_text": "Buzzards Bay Estuary"
+    }
+  }, 
+  {
+    "pk": "ed9f6bc0-1a1c-11e1-9898-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 790.0, 
+      "eng_text": "Long Island Estuary"
+    }
+  }, 
+  {
+    "pk": "fc2ba22e-1a1c-11e1-82ed-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 800.0, 
+      "eng_text": "Hudson/Raritan Estuary"
+    }
+  }, 
+  {
+    "pk": "05581d1e-1a1d-11e1-98e8-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 810.0, 
+      "eng_text": "Delaware Estuary"
+    }
+  }, 
+  {
+    "pk": "100bad40-1a1d-11e1-96d5-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 820.0, 
+      "eng_text": "Chesapeake Estuary"
+    }
+  }, 
+  {
+    "pk": "1f07e38f-1a1d-11e1-9301-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 830.0, 
+      "eng_text": "Albemarle/Pamlico Estuary"
+    }
+  }, 
+  {
+    "pk": "3342b8cf-1a1d-11e1-8a76-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 910.0, 
+      "eng_text": "Three Miles or Less from Shore"
+    }
+  }, 
+  {
+    "pk": "3c31405e-1a1d-11e1-b04c-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 920.0, 
+      "eng_text": "More than Three Miles"
+    }
+  }, 
+  {
+    "pk": "47df0f00-1a1d-11e1-aef6-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 930.0, 
+      "eng_text": "Does not apply"
+    }
+  }, 
+  {
+    "pk": "55d06500-1a1d-11e1-93f9-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 950.0, 
+      "eng_text": "Hook and Line"
+    }
+  }, 
+  {
+    "pk": "635d7af0-1a1d-11e1-b218-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 960.0, 
+      "eng_text": "Dip Net, A-frame"
+    }
+  }, 
+  {
+    "pk": "6d1b8780-1a1d-11e1-82f0-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 970.0, 
+      "eng_text": "Cast Net"
+    }
+  }, 
+  {
+    "pk": "78608230-1a1d-11e1-a8af-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 980.0, 
+      "eng_text": "Gill Net"
+    }
+  }, 
+  {
+    "pk": "82c7c70f-1a1d-11e1-b9b1-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 990.0, 
+      "eng_text": "Seine"
+    }
+  }, 
+  {
+    "pk": "8a06c9e1-1a1d-11e1-b81f-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1000.0, 
+      "eng_text": "Trawl"
+    }
+  }, 
+  {
+    "pk": "919b8dd1-1a1d-11e1-a6dd-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1010.0, 
+      "eng_text": "Trap"
+    }
+  }, 
+  {
+    "pk": "9ee38470-1a1d-11e1-89b9-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1020.0, 
+      "eng_text": "Spear"
+    }
+  }, 
+  {
+    "pk": "ac244f21-1a1d-11e1-a6f4-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1030.0, 
+      "eng_text": "Hand"
+    }
+  }, 
+  {
+    "pk": "bc4d1e8f-1a1d-11e1-9962-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1070.0, 
+      "eng_text": "Other (Specify)"
+    }
+  }, 
+  {
+    "pk": "c6339ab0-1a1d-11e1-aa20-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1050.0, 
+      "eng_text": "Unknown"
+    }
+  }, 
+  {
+    "pk": "d0583140-1a1d-11e1-a63e-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1060.0, 
+      "eng_text": "Refused"
+    }
+  }, 
+  {
+    "pk": "4889634f-1a1e-11e1-8a69-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1100.0, 
+      "eng_text": "Foreign Country"
+    }
+  }, 
+  {
+    "pk": "5624d11e-1a1e-11e1-9603-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1210.0, 
+      "eng_text": "Private Residence"
+    }
+  }, 
+  {
+    "pk": "6fe0a580-1a1e-11e1-80dd-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1220.0, 
+      "eng_text": "Institutional Housing"
+    }
+  }, 
+  {
+    "pk": "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 9910.0, 
+      "eng_text": "Don't Know"
+    }
+  }, 
+  {
+    "pk": "bdf1ff80-1a1e-11e1-85af-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 9920.0, 
+      "eng_text": "Don't Know/Not Applicable"
+    }
+  }, 
+  {
+    "pk": "c86ea121-1a1e-11e1-b833-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 9930.0, 
+      "eng_text": "Refused"
+    }
+  }, 
+  {
+    "pk": "1d42f021-1a1f-11e1-b5fd-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 110.0, 
+      "eng_text": "Name and/or phone number not given"
+    }
+  }, 
+  {
+    "pk": "33d41170-1a1f-11e1-a57a-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 120.0, 
+      "eng_text": "Angler aged 16 years or younger (check both boxes)"
+    }
+  }, 
+  {
     "pk": "a1", 
     "model": "gwst_app.questiongroupvalidator", 
     "fields": {
@@ -492,33 +898,12 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "tt-fname", 
+      "code": "tt-survid", 
       "layout": "hoizontal", 
-      "eng_text": "First Name", 
+      "eng_text": "Survey ID", 
       "int_group": 17, 
       "question_set": 1, 
       "display_order": 10.0, 
-      "required": true, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 292, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tt-lname", 
-      "layout": null, 
-      "eng_text": "Last Name", 
-      "int_group": 17, 
-      "question_set": 1, 
-      "display_order": 20.0, 
       "required": true, 
       "question_group": null, 
       "options": [], 
@@ -596,13 +981,13 @@
     }
   }, 
   {
-    "pk": 297, 
+    "pk": 327, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "tt-venue", 
-      "layout": "vertical", 
-      "eng_text": "Would you say you were fishing from", 
+      "code": "tt-vesname", 
+      "layout": null, 
+      "eng_text": "Vessel Name (if applicable)", 
       "int_group": 17, 
       "question_set": 1, 
       "display_order": 60.0, 
@@ -611,29 +996,35 @@
       "options": [], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "text", 
       "eng_tooltip": "", 
       "val_max": null
     }
   }, 
   {
-    "pk": 293, 
+    "pk": 297, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "bt-type", 
-      "layout": "hoizontal", 
-      "eng_text": "What type of vessel", 
+      "code": "tf-venue", 
+      "layout": "vertical", 
+      "eng_text": "Would you say you were fishing from", 
       "int_group": 18, 
       "question_set": 1, 
       "display_order": 10.0, 
       "required": false, 
       "question_group": null, 
       "options": [
-        "b7ef8261-116d-11e1-8fdf-0016760580f0", 
-        "c06138d1-116d-11e1-b55e-0016760580f0", 
-        "c6dec061-116d-11e1-a4ee-0016760580f0", 
-        "cc759170-116d-11e1-aeb7-0016760580f0"
+        "0c78b7ee-1a1c-11e1-acbe-0016760580f0", 
+        "1b98a2de-1a1c-11e1-a930-0016760580f0", 
+        "2361bd40-1a1c-11e1-a570-0016760580f0", 
+        "9b91fa61-1a1b-11e1-bcad-0016760580f0", 
+        "a7147340-1a1b-11e1-9755-0016760580f0", 
+        "b1e1f400-1a1b-11e1-a0e2-0016760580f0", 
+        "c9dd2ca1-1a1b-11e1-bc28-0016760580f0", 
+        "e2996b4f-1a1b-11e1-a8b9-0016760580f0", 
+        "f35aaa30-1a1b-11e1-8f3f-0016760580f0", 
+        "fca5f7c0-1a1b-11e1-a68a-0016760580f0"
       ], 
       "val_min": null, 
       "val_default": "", 
@@ -643,16 +1034,278 @@
     }
   }, 
   {
-    "pk": 294, 
+    "pk": 298, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
-      "all_resources": true, 
-      "code": "bt-daysbt", 
+      "all_resources": false, 
+      "code": "tf-venoth", 
       "layout": null, 
-      "eng_text": "Days per year boated on average", 
+      "eng_text": "If \"Other Man-mad Structure\" please specify", 
       "int_group": 18, 
-      "question_set": 10, 
-      "display_order": 10.0, 
+      "question_set": 1, 
+      "display_order": 20.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 299, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-wbody", 
+      "layout": null, 
+      "eng_text": "Was most of your (specify mode) fishing effort today in the", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 30.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "05581d1e-1a1d-11e1-98e8-0016760580f0", 
+        "100bad40-1a1d-11e1-96d5-0016760580f0", 
+        "1f07e38f-1a1d-11e1-9301-0016760580f0", 
+        "712f5780-1a1c-11e1-8d6d-0016760580f0", 
+        "86c13140-1a1c-11e1-b769-0016760580f0", 
+        "948c619e-1a1c-11e1-a209-0016760580f0", 
+        "a037bf40-1a1c-11e1-9d68-0016760580f0", 
+        "b4130f61-1a1c-11e1-8e8b-0016760580f0", 
+        "bffef870-1a1c-11e1-8515-0016760580f0", 
+        "d0442980-1a1c-11e1-9b56-0016760580f0", 
+        "e1627c80-1a1c-11e1-b056-0016760580f0", 
+        "ed9f6bc0-1a1c-11e1-9898-0016760580f0", 
+        "fc2ba22e-1a1c-11e1-82ed-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 301, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-othbody", 
+      "layout": null, 
+      "eng_text": "If \"Other\" please specify", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 40.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 300, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-dist", 
+      "layout": null, 
+      "eng_text": "Was that", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 50.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "3342b8cf-1a1d-11e1-8a76-0016760580f0", 
+        "3c31405e-1a1d-11e1-b04c-0016760580f0", 
+        "47df0f00-1a1d-11e1-aef6-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 302, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-geartyp", 
+      "layout": null, 
+      "eng_text": "What type of gear was primarily used", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 60.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "55d06500-1a1d-11e1-93f9-0016760580f0", 
+        "635d7af0-1a1d-11e1-b218-0016760580f0", 
+        "6d1b8780-1a1d-11e1-82f0-0016760580f0", 
+        "78608230-1a1d-11e1-a8af-0016760580f0", 
+        "82c7c70f-1a1d-11e1-b9b1-0016760580f0", 
+        "8a06c9e1-1a1d-11e1-b81f-0016760580f0", 
+        "919b8dd1-1a1d-11e1-a6dd-0016760580f0", 
+        "9ee38470-1a1d-11e1-89b9-0016760580f0", 
+        "ac244f21-1a1d-11e1-a6f4-0016760580f0", 
+        "bc4d1e8f-1a1d-11e1-9962-0016760580f0", 
+        "c6339ab0-1a1d-11e1-aa20-0016760580f0", 
+        "d0583140-1a1d-11e1-a63e-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 303, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf_othgear", 
+      "layout": null, 
+      "eng_text": "If \"Other\" please specify", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 70.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 304, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-hrtoday", 
+      "layout": null, 
+      "eng_text": "To the nearest half-hour, how many hours have you spent (specify mode) fishing today? That is, how many hours have you actually spent with your gear in the water", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 80.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": 24.0
+    }
+  }, 
+  {
+    "pk": 305, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-hrseato", 
+      "layout": null, 
+      "eng_text": "To the nearest half-hour, how many hours have you spent on the boat, away from the dock, today", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 90.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "If NOT a shore-only angler", 
+      "val_max": 24.0
+    }
+  }, 
+  {
+    "pk": 306, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-hrshore", 
+      "layout": null, 
+      "eng_text": "How many additional hours do you expect to fish from shore today? That is, how many more will you actually have your gear in the water", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 100.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": 24.0
+    }
+  }, 
+  {
+    "pk": 307, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-sptgt1", 
+      "layout": null, 
+      "eng_text": "If you were fishing for a particular kind of fish today, what was your primary target", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 110.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 308, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-sptgt2", 
+      "layout": null, 
+      "eng_text": "If you were particularly fishing for multiple species of fish today, what was your secondary target", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 120.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 309, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-daysyr", 
+      "layout": null, 
+      "eng_text": "Not counting today, within the past 12 months, this is since (insert month) of last year, how many days have you gone saltwater sport fin fishing in this state or from a boat launched in this state", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 130.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
@@ -661,6 +1314,383 @@
       "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": 365.0
+    }
+  }, 
+  {
+    "pk": 310, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-dayyrbl", 
+      "layout": null, 
+      "eng_text": "If the previous question was not answered, why not", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 140.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 311, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-days2mo", 
+      "layout": null, 
+      "eng_text": "Not counting today, within the past 2 months, how many days", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 150.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 62.0
+    }
+  }, 
+  {
+    "pk": 312, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-day2mbl", 
+      "layout": null, 
+      "eng_text": "If the previous question was not answered, why not", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 160.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 313, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-statres", 
+      "layout": null, 
+      "eng_text": "What is your state of residence", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 170.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 314, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-counres", 
+      "layout": null, 
+      "eng_text": "What is your county of residence", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 180.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "take city/town name if county unknown", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 315, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-zipknow", 
+      "layout": null, 
+      "eng_text": "What is the ZIP code of your residence", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 190.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "If they know/have one", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 316, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-zipblnk", 
+      "layout": null, 
+      "eng_text": "If ZIP code was not given, why not", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 200.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "4889634f-1a1e-11e1-8a69-0016760580f0", 
+        "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 317, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-house", 
+      "layout": null, 
+      "eng_text": "Do you live in a private residence, or in some type of housing such as dorm, barracks, nursing home or rooming house", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 210.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "5624d11e-1a1e-11e1-9603-0016760580f0", 
+        "6fe0a580-1a1e-11e1-80dd-0016760580f0", 
+        "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 318, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "tf-landlin", 
+      "layout": null, 
+      "eng_text": "Does your home have a <u>landline</u> telephone? That is, a telephone other than a cellular phone", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 220.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "a28", 
+        "a29", 
+        "bdf1ff80-1a1e-11e1-85af-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 319, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "td-alive", 
+      "layout": null, 
+      "eng_text": "How many fish did you throw back alive", 
+      "int_group": 19, 
+      "question_set": 1, 
+      "display_order": 10.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 320, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "td-dead", 
+      "layout": null, 
+      "eng_text": "How many fish did you throw back dead or plan to throw away", 
+      "int_group": 19, 
+      "question_set": 1, 
+      "display_order": 20.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 321, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "td-total", 
+      "layout": null, 
+      "eng_text": "How many fish did you catch total", 
+      "int_group": 19, 
+      "question_set": 1, 
+      "display_order": 30.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 322, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "td-speclst", 
+      "layout": null, 
+      "eng_text": "Names of the species discarded", 
+      "int_group": 19, 
+      "question_set": 2, 
+      "display_order": 110.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Separate by DASHES", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 323, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "td-spccode", 
+      "layout": null, 
+      "eng_text": "Codes of the species discarded", 
+      "int_group": 19, 
+      "question_set": 2, 
+      "display_order": 120.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "Maintain order, separate with DASHES", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 324, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "td-lngths", 
+      "layout": null, 
+      "eng_text": "Lengths of the species discarded", 
+      "int_group": 19, 
+      "question_set": 2, 
+      "display_order": 130.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "maintain order, separate with DASHES", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 325, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "td-comment", 
+      "layout": "vertical", 
+      "eng_text": "Comments", 
+      "int_group": 19, 
+      "question_set": 3, 
+      "display_order": 210.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "textarea", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 326, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-income", 
+      "layout": null, 
+      "eng_text": "What is your total annual household income", 
+      "int_group": 20, 
+      "question_set": 1, 
+      "display_order": 10.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
     }
   }
 ]

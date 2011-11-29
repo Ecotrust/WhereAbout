@@ -96,6 +96,7 @@ class InterviewGroup(Model):
     member_title = CharField( max_length=50, default='' )
     page_template = CharField( max_length=60, default="base_form.html" )
     question_width = IntegerField( default = 275 )
+    default_pct_involvement = IntegerField(blank=True, null=True)
     class Meta:
         db_table = u'gwst_group'
         unique_together = (("interview", "code"),("interview", "name"))
