@@ -114,10 +114,23 @@ class AnswerForm(forms.Form):
                 
             elif question.answer_type == 'select': #choice list 
                 dynamic_args['queryset'] = question.options
-                if settings.MOBILE:
-                    dynamic_args['widget'] = forms.RadioSelect()
-                    dynamic_args['required'] = True
-                    dynamic_args['initial'] = question.options.values().order_by('display_order')[0]['id']
+                if answer.count() == 1:
+                    if answer[0].option_val:
+                        dynamic_args['initial']=answer[0].option_val.id
+                elif question.val_default != '':
+                    default_ans = question.options.filter(eng_text__istartswith=question.val_default)
+                    if default_ans.count() == 1:
+                        dynamic_args['initial']=default_ans[0].id
+
+                select_form = forms.ModelChoiceField( **dynamic_args )
+                select_form.queryset = select_form.queryset.order_by('display_order')
+                self.fields['question_' + str(question.id) + resource_postfix] = select_form
+                
+            elif question.answer_type == 'radio': #radio button list
+                dynamic_args['queryset'] = question.options
+                dynamic_args['widget'] = forms.RadioSelect()
+                dynamic_args['required'] = True
+                dynamic_args['initial'] = question.options.values().order_by('display_order')[0]['id']
 
                 if answer.count() == 1:
                     if answer[0].option_val:
@@ -301,7 +314,7 @@ class AnswerForm(forms.Form):
             elif field.question.answer_type == 'boolean':
                 answer.boolean_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 answer.text_val = str(answer.boolean_val) # makes the db a little more human readable
-            elif field.question.answer_type == 'select':
+            elif field.question.answer_type == 'select' or field.question.answer_type == 'radio':
                 answer.option_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 if answer.option_val:
                     answer.text_val = answer.option_val.eng_text # makes the db a little more human readable

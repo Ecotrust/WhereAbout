@@ -5,16 +5,31 @@
 {% for question in questions %}
     {% for answer in answers %}
         {% ifequal question answer.int_question %}
-            <table>
-                <tr>
-                    <td style='width:{{ q_width }}px; padding-right:20px'>
-                        {{ question.eng_text }}:
-                    </td>
-                    <td style='width:150px; vertical-align:bottom' >
-                        {{ answer.text_val }}
-                    </td>
-                </tr>
-            </table>
+            {% ifnotequal question.answer_type 'checkbox' %}
+                <table>
+                    <tr>
+                        <td style='width:{{ q_width }}px; padding-right:20px'>
+                            {{ question.eng_text }}:
+                        </td>
+                        <td style='width:150px; vertical-align:bottom' >
+                            {{ answer.text_val }}
+                        </td>
+                    </tr>
+                </table>
+            {% else %}
+                {% if answer.boolean_val %}
+                    <table>
+                        <tr>
+                            <td style='width:{{ q_width }}px; padding-right:20px'>
+                                {{ question.eng_text }}:
+                            </td>
+                            <td style='width:150px; vertical-align:bottom' >
+                                {{ answer.text_val }}
+                            </td>
+                        </tr>
+                    </table>
+                {% endif %}
+            {% endifnotequal %}
         {% endifequal %}
     {% endfor %}
 {% endfor %}

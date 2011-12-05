@@ -212,6 +212,7 @@ class InterviewQuestion(Model):
         ( 'decimal', 'decimal value' ),
         ( 'boolean', 'boolean (true/false) value' ),
         ( 'select', 'select from list of values' ),
+        ( 'radio', 'radio buttons'),
         ( 'checkbox', 'check box' ),
         ( 'other', 'list of values w/"other" text' ),
         ( 'text', 'enter text' ),

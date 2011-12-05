@@ -989,7 +989,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1188,7 +1188,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1395,7 +1395,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1441,7 +1441,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1530,7 +1530,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1557,7 +1557,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1584,7 +1584,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }
