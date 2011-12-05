@@ -173,6 +173,7 @@ COMPRESS_JS = {
             'js/widgets/FinishedResourceSelectedWindow.js', 
             'js/widgets/SplashPanel.js', 
             'js/widgets/FinishPanel.js', 
+            'js/widgets/SingleResFinishPanel.js', 
             'js/widgets/SplashWindow.js', 
             'js/widgets/InvalidShapePanel.js', 
             'js/widgets/UnfinishedCheckWindow.js', 

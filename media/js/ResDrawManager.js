@@ -66,7 +66,13 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     /* Finish splash and start resource selection */
     finSplashStep: function() {
-    	this.startResSelStep();
+        //If there is only one resource selected, why make them choose?
+        if (gwst.settings.resourceStore.getTotalCount() == 1) {
+            var species_id = gwst.settings.resourceStore.getAt(0).get('id');
+            this.finResSelStep(this, species_id);
+        } else {
+            this.startResSelStep();
+        }
     },
     
     /******************** Unfinished Resource Start Step *******************/
@@ -127,7 +133,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     backResSelStep: function(){
          this.loadSplash();
-         this.startMPAQuestionsStep();
+         this.startSplashStep();
     },
     
     /******************** Navigation Step *******************/
@@ -150,10 +156,16 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	 * Go back from the navigation step to resource questions
 	 */
     backNavStep: function() {
-        if (gwst.settings.shapeStore.getCount() == 0) {
-            this.loadResSelPanel();
+        //If there is only one resource selected, why make them choose?
+        if (gwst.settings.resourceStore.getTotalCount() == 1) {
+            var species_id = gwst.settings.resourceStore.getAt(0).get('id');
+            this.loadSplash();
         } else {
-            this.loadUnfinishedCheck();
+            if (gwst.settings.shapeStore.getCount() == 0) {
+                this.startResSelStep();
+            } else {
+                this.loadUnfinishedCheck();
+            }
         }
 	},    
     
@@ -365,7 +377,12 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     startFinishStep: function() {
         this.curResource.set('finished', true);
-        this.loadFinishPanel();
+        if (gwst.settings.resourceStore.getTotalCount() == 1) {
+            var species_id = gwst.settings.resourceStore.getAt(0).get('id');
+            this.loadSingleResFinishPanel();
+        } else {
+            this.loadFinishPanel();
+        }
     },
     
     /*
@@ -383,7 +400,13 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         if (this.resSelPanel) {
             this.resSelPanel.resetSelect();
         }
-        this.startResSelStep();
+        //If there is only one resource selected, why make them choose?
+        if (gwst.settings.resourceStore.getTotalCount() == 1) {
+            var species_id = gwst.settings.resourceStore.getAt(0).get('id');
+            this.finResSelStep(this, species_id);
+        } else {
+            this.startResSelStep();
+        }
         if (this.unfinishedCheckWin) {
             this.unfinishedCheckWin.hide();
         }
@@ -807,6 +830,30 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             });
         }
         this.viewport.setWestPanel(this.finishPanel);    	
+    },
+    
+    /* Load the finish/continue mapping west panel */
+    loadSingleResFinishPanel: function() {
+    	if (!this.singleResFinishPanel) {
+            this.singleResFinishPanel = new gwst.widgets.SingleResFinishPanel({
+                xtype: 'gwst-finish-panel',
+                res_group_name: gwst.settings.interview.resource_name,
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+            //When panel fires event saying it's all done, we want to process it and move on 
+            this.singleResFinishPanel.on('finish-map', this.finFinishStep, this);
+            this.singleResFinishPanel.on('continue-mapping', this.selNewResStep, this);            //TODO
+        } else {
+            this.singleResFinishPanel.updateText({
+                res_group_name: gwst.settings.interview.resource_name,
+                action: gwst.settings.interview.resource_action,
+                user_group: gwst.settings.group.member_title,
+                shape_name: gwst.settings.interview.shape_name
+            });
+        }
+        this.viewport.setWestPanel(this.singleResFinishPanel);    	
     },
         
     /******************** Event Handlers ********************/
