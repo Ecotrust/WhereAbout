@@ -17,7 +17,7 @@ gwst.widgets.DrawToolWindow = Ext.extend(Ext.Window, {
             draggable: false,
             tbar: [{
                 cls: 'map-button',
-				text: 'Cancel Area',
+				text: 'Cancel Draw',
 				iconCls: 'cancel-draw',
 				handler: this.cancelShape,
 				scope: this,

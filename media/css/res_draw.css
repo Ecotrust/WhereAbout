@@ -172,6 +172,8 @@ p.x-panel-static{
 .map-button .copy-button,
 .map-button .begin-draw,
 .map-button .poly-icon,
+.map-button .line-icon,
+.map-button .point-icon,
 .map-button .cancel-draw,
 .map-button .redo-draw {
     background-size: 24px !important;
@@ -199,10 +201,6 @@ p.x-panel-static{
 }
 
 .begin-draw {
-	background-image: url(/site-media/images/pencil_go.png) !important;
-}
-
-.poly-icon {
 	background-image: url(/site-media/images/pencil_go.png) !important;
 }
 
@@ -235,6 +233,14 @@ p.x-panel-static{
 }
 
 .poly-icon {
+    background-image: url(/site-media/images/map_edit.png) !important;
+}
+
+.line-icon {
+    background-image: url(/site-media/images/chart_line_edit.png) !important;
+}
+
+.point-icon {
     background-image: url(/site-media/images/pencil_add.png) !important;
 }
 

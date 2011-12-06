@@ -1,10 +1,10 @@
 Ext.namespace('gwst', 'gwst.widgets');
 
-gwst.widgets.DrawPolyWindow = Ext.extend(Ext.Window, {
+gwst.widgets.DrawPointWindow = Ext.extend(Ext.Window, {
     
     // Constructor Defaults, can be overridden by user's config object
     initComponent: function(){		
-		this.addEvents('draw-poly-clicked');
+		this.addEvents('draw-point-clicked');
 		
 		Ext.apply(this, {          
             height: 25,
@@ -17,9 +17,9 @@ gwst.widgets.DrawPolyWindow = Ext.extend(Ext.Window, {
             draggable: false,
             tbar: [{
                 cls: 'map-button',
-				text: 'Draw New Area',
-				iconCls: 'poly-icon',
-				handler: this.drawClicked,
+				text: 'Draw New Point',
+				iconCls: 'point-icon',
+				handler: this.drawPointClicked,
 				scope: this,
                 height: 30,
                 width: 133,
@@ -29,10 +29,10 @@ gwst.widgets.DrawPolyWindow = Ext.extend(Ext.Window, {
 		gwst.widgets.DrawPolyWindow.superclass.initComponent.call(this);		
 	},
 	
-	drawClicked: function() {
-		this.fireEvent('draw-poly-clicked');
-	}	
+	drawPointClicked: function() {
+		this.fireEvent('draw-point-clicked');
+	}
 });
 
 //register xtype to allow for lazy initialization
-Ext.reg('gwst-draw-poly-window', gwst.widgets.DrawPolyWindow);
+Ext.reg('gwst-draw-point-window', gwst.widgets.DrawPointWindow);

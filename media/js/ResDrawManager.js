@@ -20,7 +20,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     quitWinOffset: [308, 8],	//Offset from top left to render
     drawWinOffset: [480, 8],
     copyWinOffset: [666, 8],	//Offset from top left to render
-    drawToolWinOffset: [783, 8],	//Offset from top left to render
+    drawLineWinOffset: [636, 8],	//Offset from top left to render
+    drawPointWinOffset: [793, 8],	//Offset from top left to render
+    drawToolWinOffset: [950, 8],	//Offset from top left to render
 
     constructor: function(){
         gwst.ResDrawManager.superclass.constructor.call(this);
@@ -182,8 +184,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process and finish draw step
      */
     finDrawStep: function() {
-        this.copyWin.hide();
         this.drawWin.hide();
+        this.drawLineWin.hide();
+        this.drawPointWin.hide();
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -194,8 +197,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from draw step to resource selection
      */
     backDrawStep: function() {
-        this.copyWin.hide();
         this.drawWin.hide();
+        this.drawLineWin.hide();
+        this.drawPointWin.hide();
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -210,7 +214,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     startDraw2Step: function() {
         this.loadDrawWin();
-        this.loadCopyWin();
+        this.loadDrawLineWin();
+        this.loadDrawPointWin();
         this.validateEdit = false;
         if (gwst.settings.shapeStore.getCount() > 0) {
             this.loadDraw2Panel();        
@@ -223,8 +228,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process and finish draw step
      */
     finDraw2Step: function() {
-        this.copyWin.hide();
         this.drawWin.hide();
+        this.drawLineWin.hide();
+        this.drawPointWin.hide();
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -236,8 +242,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Go back from draw step to resource selection
      */
     backDraw2Step: function() {
-        this.copyWin.hide();
         this.drawWin.hide();
+        this.drawLineWin.hide();
+        this.drawPointWin.hide();
         if (this.drawToolWin) {
         	this.drawToolWin.hide();
         }
@@ -482,6 +489,26 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 		}
 		this.drawWin.show();		
 		this.drawWin.alignTo(document.body, "tl-tl", this.drawWinOffset);    	
+    },  
+    
+    /* Create Draw New Line window*/
+    loadDrawLineWin: function() {
+    	if (!this.drawLineWin) {
+			this.drawLineWin = new gwst.widgets.DrawLineWindow();
+			this.drawLineWin.on('draw-line-clicked', this.mapPanel.enableLineResDraw, this.mapPanel);   //enable line drawing
+		}
+		this.drawLineWin.show();		
+		this.drawLineWin.alignTo(document.body, "tl-tl", this.drawLineWinOffset);    	
+    },
+    
+    /* Create Draw New Point window*/
+    loadDrawPointWin: function() {
+    	if (!this.drawPointWin) {
+			this.drawPointWin = new gwst.widgets.DrawPointWindow();
+			this.drawPointWin.on('draw-point-clicked', this.mapPanel.enablePointResDraw, this.mapPanel);   //enable point drawing
+		}
+		this.drawPointWin.show();		
+		this.drawPointWin.alignTo(document.body, "tl-tl", this.drawPointWinOffset);    	
     },
 
     /* Create Copy Feature window*/
@@ -844,7 +871,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.singleResFinishPanel.on('finish-map', this.finFinishStep, this);
-            this.singleResFinishPanel.on('continue-mapping', this.selNewResStep, this);            //TODO
+            this.singleResFinishPanel.on('continue-mapping', this.selNewResStep, this);
         } else {
             this.singleResFinishPanel.updateText({
                 res_group_name: gwst.settings.interview.resource_name,
@@ -911,8 +938,9 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     resShapeComplete: function(feature) {
     	//Validate the feature
-        this.copyWin.hide();
         this.drawWin.hide();
+        this.drawLineWin.hide();
+        this.drawPointWin.hide();
         this.validateShape({
             geometry: feature.geometry,
             resource: gwst.settings.survey_group_id+'-'+this.curResource.id

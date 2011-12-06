@@ -221,7 +221,19 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             OpenLayers.Handler.Polygon
         );
         
+		this.drawLineResControl = new OpenLayers.Control.DrawFeature(
+            this.vecLayer, 
+            OpenLayers.Handler.Path
+        );
+        
+		this.drawPointResControl = new OpenLayers.Control.DrawFeature(
+            this.vecLayer, 
+            OpenLayers.Handler.Point
+        );
+        
        	map.addControl(this.drawResControl);
+       	map.addControl(this.drawLineResControl);
+       	map.addControl(this.drawPointResControl);
         map.addLayers(this.layer_array);
         
         this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer]);
@@ -349,8 +361,20 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     
     disableResDraw: function() {
         this.drawResControl.deactivate();
+        this.drawLineResControl.deactivate();
+        this.drawPointResControl.deactivate();
     },
     
+    enableLineResDraw: function() {
+    	this.drawLineResControl.activate();
+        this.selectControl.unselectAll();
+    },
+    
+    enablePointResDraw: function() {
+    	this.drawPointResControl.activate();
+        this.selectControl.unselectAll();
+    },
+
     resShapeStarted: function(evt) {
     	this.fireEvent('res-shape-started');
     },

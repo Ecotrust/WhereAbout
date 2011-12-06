@@ -161,6 +161,8 @@ COMPRESS_JS = {
             'js/widgets/Draw2Panel.js', 
             'js/widgets/DrawInstructionPanel.js', 
             'js/widgets/DrawPolyWindow.js', 
+            'js/widgets/DrawLineWindow.js', 
+            'js/widgets/DrawPointWindow.js', 
             'js/widgets/DrawOrDropPanel.js', 
             'js/widgets/SatisfiedShapePanel.js', 
             'js/widgets/DrawPanel.js', 
