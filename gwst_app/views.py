@@ -1462,58 +1462,60 @@ def validate_shape(request):
         if request.REQUEST.get("orig_shape_id"):
             other_shapes = other_shapes.exclude(pk=request.REQUEST["orig_shape_id"])
 
-        #Error if new shape intersects
-        for i, shape in enumerate( other_shapes.all() ):
-            if new_shape.intersects( shape.geometry ):
-                return gen_validate_response(4, 'New geometry overlaps existing shapes', None)
-    
         #Error if shape is not valid
         if not new_shape.valid:
             return gen_validate_response(2, 'Shape is not valid', new_shape)
+      
+        if new_shape.geom_type == 'Polygon':
 
-        #Clip the shape to the region
-        if settings.CLIP_FEATURES:
-            regions = ClipRegion.objects.filter(feature = 'Sea')
-            if regions.count() < 1:
-                regions = interview.clip_region
-
-            if regions.count() > 1:
-                clipped_shape = False
-                for region in regions:
-                    if new_shape.intersects(region.Geometry):
-                        if clipped_shape:
-                            clipped_shape = clipped_shape.union(new_shape.intersection(region.Geometry))
-                        else:
-                            clipped_shape = new_shape.intersection(region.Geometry)
-
-            else:
-                clipped_shape = new_shape.intersection( regions.Geometry )
-                
-            #Error if no area and shape was completely clipped away by clip region, 
-            if not clipped_shape or clipped_shape.area == 0:
-                return gen_validate_response(3, 'Zero area after clipping', clipped_shape)
-            #Error if area is too large (set by maxArea) 
-            if clipped_shape.area > maxArea:
-                return gen_validate_response(6, 'Shape is too large', new_shape)
-            #If clipped into more than one polygon, return the largest
-            if clipped_shape.num_geom > 1:
-                largest_area = 0.0
-                for g in clipped_shape: # find the largest polygon in the multi polygon 
-                    if g.area > largest_area:
-                        largest_geom = g
-                        largest_area = g.area
-                return gen_validate_response(1, 'Shape clipped to shoreline', largest_geom)            
-            return gen_validate_response(0, 'Shape clipped to shoreline', clipped_shape)
-        else:
-            #Error if feature has no area
-            if new_shape.area == 0:
-                return gen_validate_response(3, 'Zero area', new_shape)
-             
-            #Error if area is too large (set by maxArea) 
-            if new_shape.area > maxArea:
-                return gen_validate_response(6, 'Shape is too large', new_shape)
+            #Error if new shape intersects
+            for i, shape in enumerate( other_shapes.all() ):
+                if shape.geometry.geom_type == 'Polygon' and new_shape.intersects( shape.geometry ):
+                    return gen_validate_response(4, 'New geometry overlaps existing shapes', None)
         
-            return gen_validate_response(0, 'Shape is valid', new_shape)                   
+            #Clip the shape to the region
+            if settings.CLIP_FEATURES:
+                regions = ClipRegion.objects.filter(feature = 'Sea')
+                if regions.count() < 1:
+                    regions = interview.clip_region
+
+                if regions.count() > 1:
+                    clipped_shape = False
+                    for region in regions:
+                        if new_shape.intersects(region.Geometry):
+                            if clipped_shape:
+                                clipped_shape = clipped_shape.union(new_shape.intersection(region.Geometry))
+                            else:
+                                clipped_shape = new_shape.intersection(region.Geometry)
+
+                else:
+                    clipped_shape = new_shape.intersection( regions.Geometry )
+                    
+                #Error if no area and shape was completely clipped away by clip region, 
+                if not clipped_shape or clipped_shape.area == 0:
+                    return gen_validate_response(3, 'Zero area after clipping', clipped_shape)
+                #Error if area is too large (set by maxArea) 
+                if clipped_shape.area > maxArea:
+                    return gen_validate_response(6, 'Shape is too large', new_shape)
+                #If clipped into more than one polygon, return the largest
+                if clipped_shape.num_geom > 1:
+                    largest_area = 0.0
+                    for g in clipped_shape: # find the largest polygon in the multi polygon 
+                        if g.area > largest_area:
+                            largest_geom = g
+                            largest_area = g.area
+                    return gen_validate_response(1, 'Shape clipped to shoreline', largest_geom)            
+                return gen_validate_response(0, 'Shape clipped to shoreline', clipped_shape)
+            else:
+                #Error if feature has no area
+                if new_shape.area == 0:
+                    return gen_validate_response(3, 'Zero area', new_shape)
+                 
+                #Error if area is too large (set by maxArea) 
+                if new_shape.area > maxArea:
+                    return gen_validate_response(6, 'Shape is too large', new_shape)
+            
+        return gen_validate_response(0, 'Shape is valid', new_shape)                   
 
     except Exception, e:
         return HttpResponse(result + e.message, status=500)
