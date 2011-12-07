@@ -27,7 +27,7 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<h2>Instructions</h2><p>First, navigate the map to the general area of your primary <i>'+ this.resource +'</i> '+ this.shape_name +' as a <i>'+ this.user_group +'</i>.</p>';
+        var html_text = '<h2>Instructions</h2><p>First, navigate the map to the general area of <i>'+ this.resource +'</i> that you participated in today.</p>';
         return html_text;
     },
     
@@ -63,15 +63,11 @@ gwst.widgets.NavigatePanel = Ext.extend(gwst.widgets.WestPanel, {
             },
             id: 'nav_table_panel',
             items: [{
-                html: '<p>a. To move the map, use the blue arrow buttons. To zoom the map in and out, use the blue \'+\' and \'-\' buttons. You may also use your keyboard\'s arrow keys and \'+\' and \'-\' keys.</p>'
+                html: '<p>a. To move the map, touch and drag across the screen. To zoom the map in and out, use the blue \'+\' and \'-\' buttons.</p>'
             },{
-                html: '<img src="/site-media/images/nav_2.png">'
+                html: '<img src="/site-media/images/nav_2_touch.png">'
             },{
-                html: '<p>b. To turn on/off nautical charts, MPA, or access point layers, use the \'+\' icon in the top right corner to open a layer selection window.</p>'
-            },{
-                html: '<img src="/site-media/images/layers_1.png">'
-            },{
-                html: '<p>c. Get as close as you can to your '+ this.shape_name +', then press the continue button.</p>'
+                html: '<p>b. Get as close as you can to your '+ this.shape_name +', then press the continue button.</p>'
             }, {
                 html: ''
             }]

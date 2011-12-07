@@ -20,90 +20,6 @@
     }
   }, 
   {
-    "pk": "ntrtrp_act", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "act_naturetrip", 
-      "name": "Nature Trip", 
-      "verbose_name": "Nature Trip - Activity", 
-      "method": "Activity"
-    }
-  }, 
-  {
-    "pk": "whlwtch_act", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "act_whalewatch", 
-      "name": "Whale Watching", 
-      "verbose_name": "Whale Watching - Activity", 
-      "method": "Activity"
-    }
-  }, 
-  {
-    "pk": "brdwtch_act", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "act_birdwatch", 
-      "name": "Bird Watching", 
-      "verbose_name": "Bird Watching - Activity", 
-      "method": "Activity"
-    }
-  }, 
-  {
-    "pk": "marmamvw_act", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "act_marmammalview", 
-      "name": "Marine Mammal Viewing", 
-      "verbose_name": "Marine Mammal Viewing - Activity", 
-      "method": "Activity"
-    }
-  }, 
-  {
-    "pk": "leisure_act", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "act_leisurecr", 
-      "name": "Leisure Cruise", 
-      "verbose_name": "Leisure Cruise - Activity", 
-      "method": "Activity"
-    }
-  }, 
-  {
-    "pk": "rcrtnldiv_act", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "act_recdiving", 
-      "name": "Recreational Diving", 
-      "verbose_name": "Recreational Diving - Activity", 
-      "method": "Activity"
-    }
-  }, 
-  {
-    "pk": "Boating", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "boating-act", 
-      "name": "Boating", 
-      "verbose_name": "Recreational Boating", 
-      "method": "Activity"
-    }
-  }, 
-  {
     "pk": "recfishing_act", 
     "model": "gwst_app.resource", 
     "fields": {
@@ -111,7 +27,7 @@
       "select_description": "", 
       "code": "act_recfishing", 
       "name": "Recreational Fishing", 
-      "verbose_name": "Recreational Fishing - Activity", 
+      "verbose_name": "Recreational Fishing", 
       "method": "Activity"
     }
   }, 
@@ -122,14 +38,14 @@
       "multiple_user_groups": true, 
       "code": "ttrfs", 
       "description": "Tablet Test Rec Fishing Survey", 
-      "shape_name_plural": "activity areas", 
+      "shape_name_plural": "sites/routes", 
       "region": "ade73fb0-1168-11e1-beac-0016760580f0", 
       "resource_name_plural": "activities", 
       "draw_shape_text": "Draw Shape Text defined in Interview", 
       "resource_action": "do", 
       "group_status_text": "Group Status Text defined in Interview", 
       "resource_name": "activity", 
-      "shape_name": "activity area", 
+      "shape_name": "site/route", 
       "active": true, 
       "organization": "SeaPlan", 
       "assign_groups_text": "Assign Groups text defined in Interview", 

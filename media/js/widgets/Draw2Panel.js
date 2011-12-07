@@ -35,7 +35,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
     },
     
     getHtmlText: function() {
-        var html_text = '<h2>Instructions</h2><p>a. <b>At this time</b>, finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name_plural +' you '+ this.action +' as a '+ this.user_group +'.</i> Draw them the same way you drew your first.</p> <p>b. Each of the '+this.resource+' '+this.shape_name+'s you draw can be found in the table below. Click any table row to highlight, remove or zoom to that '+ this.shape_name +'.</p> <p>c. Click the \'Continue\' button when you are satisfied with the '+ this.shape_name +'s you\'ve drawn.</p>';
+        var html_text = '<h2>Instructions</h2><p>a. <b>At this time</b>, finish drawing all of your <i>'+ this.resource +'</i> '+ this.shape_name_plural +'.</i> Draw them the same way you drew your first.</p> <p>b. Each of the '+this.resource+' '+this.shape_name_plural +' you draw can be found in the table below. Click any table row to highlight, remove or zoom to that '+ this.shape_name +'.</p> <p>c. Click the \'Continue\' button when you are satisfied with the '+ this.shape_name +'s you\'ve drawn.</p>';
         return html_text;
     },
     

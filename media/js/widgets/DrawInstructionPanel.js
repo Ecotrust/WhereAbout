@@ -21,11 +21,11 @@ gwst.widgets.DrawInstructionPanel = Ext.extend(Ext.Panel, {
                 columns: 2
             },    
             items: [{
-                html: '<p>a. Click on the "Draw New Area" button.</p>'
+                html: '<p>a. Click on the preferred "Draw New Area/Line/Point" button.</p>'
             },{
                 html: '<img src="/site-media/images/area_1.png">'
             },{
-                html: '<p>b. Click once on the map to create the first point.</p>'
+                html: '<p>b. Click/touch once on the map to create the first point. If only drawing a point, disregard remaining steps.</p>'
             },{
                 html: '<img src="/site-media/images/draw_1.png">'
             },{
@@ -44,10 +44,6 @@ gwst.widgets.DrawInstructionPanel = Ext.extend(Ext.Panel, {
                 html: '<p>f. If you make a mistake, click the \'Cancel\' button at the top.</p>'
             },{
                 html: '<img src="/site-media/images/draw_5.png">'
-            },{
-                html: '<p>g. You can control the map while you\'re drawing.</p>'
-            },{
-                html: '<img src="/site-media/images/draw_6.png">'
             }]
         });
             
