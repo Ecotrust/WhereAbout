@@ -152,8 +152,8 @@ def handleSelectInterview(request,selected_interview):
         status.save()
         
         # create group records for any required groups
-        required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
-        for group in required_groups:
+        enforced_groups = InterviewGroup.objects.filter(interview=selected_interview, is_user_group=False)
+        for group in enforced_groups:
             
             membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=group)
             membership.user = request.session['interviewee']
@@ -182,7 +182,7 @@ def handleSelectInterview(request,selected_interview):
     
         # see if there are any group memberships
         int_groups = InterviewGroup.objects.filter(interview=selected_interview)
-        req_groups = int_groups.filter(required_group=True)
+        enforced_groups = int_groups.filter(is_user_group=False)
         num_group_membs = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__in=int_groups).count()
         
         # if there are no group memberships, a user may have aborted before selecting them before, give them another chance now
@@ -191,7 +191,7 @@ def handleSelectInterview(request,selected_interview):
             return HttpResponseRedirect('/assign_groups/')
            
         # if the user has only the required groups, they may have aborted before selecting optional groups
-        if num_group_membs == req_groups.count() and req_groups.count() != int_groups.count():
+        if num_group_membs == enforced_groups.count() and enforced_groups.count() != int_groups.count():
             # redirect to assign_groups
             return HttpResponseRedirect('/assign_groups/')
          
@@ -326,7 +326,7 @@ def assign_groups(request):
         return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'form': form, 'instructions':instructions, 'value':'Continue', 'q_width':265}))
         
     else:
-        groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
+        groups = InterviewGroup.objects.filter(interview=request.session['interview'], is_user_group=True)
 
         if interview.multiple_user_groups:
         
@@ -336,25 +336,7 @@ def assign_groups(request):
                 # save InterviewGroupMembership records
                 for field_name in form.fields:
                     field = form.fields[field_name]
-                    
-                    if field.group and (form.cleaned_data['group_%s_pc' % field.group.id] > 0 or field.group.is_user_group == False):
-                        if (field.group.name != 'Socio-Economic Questions'):
-                            membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=field.group)
-                            membership.user = request.session['interviewee']
-                            membership.int_group = field.group
-                            membership.percent_involvement = form.cleaned_data['group_%s_pc' % field.group.id]
-                            membership.order = 5
-                            membership.save()
-                
-                qs = InterviewGroupMembership.objects.filter(int_group__is_user_group=False, user=request.session['interviewee'])
-                for q in qs:
-                    if q.int_group.name == 'Socio-Economic Questions':
-                        q.order = 1000 
-                        q.save()
-                    else:
-                        q.order = 0
-                        q.save()
-                    
+
                 # redirect to interview_group_status
                 return HttpResponseRedirect('/group_status/')
                 
@@ -416,6 +398,7 @@ def group_status(request):
     # show list of interview groups with current status (including global interview questions)
     
     title = request.session['interview'].name + ' Status'
+    draw_res_count = 0;
     res_q_count = 0;
     qs = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__in=int_groups).order_by('-percent_involvement','int_group')
     
@@ -428,7 +411,9 @@ def group_status(request):
     for group_memb in qs.all(): 
         if current_group and (group_memb.int_group == current_group.int_group):
             result.append({'current':True, 'group_memb':group_memb})
-
+            
+            resources = current_group.int_group.resources.all().order_by('name')
+            draw_res_count = resources.count()
             res_q_count = InterviewQuestion.objects.filter(int_group=current_group.int_group, all_resources=True).count()
             
         else:
@@ -471,7 +456,7 @@ def group_status(request):
     finalized_groups = InterviewGroupMembership.objects.filter(Q(status='finalized') | Q(status='skipped')).filter(user=request.session['interviewee'], int_group__in=int_groups)
     allow_finalize = qs.count() == finalized_groups.count()
 
-    return render_to_response( 'group_status.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'result':result, 'allow_finalize':allow_finalize, 'num_shapes':num_shapes, 'res_q_count':res_q_count}))
+    return render_to_response( 'group_status.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'result':result, 'allow_finalize':allow_finalize, 'num_shapes':num_shapes, 'res_q_count':res_q_count, 'draw_res_count':draw_res_count}))
     
 @login_required    
 def view_answers(request,group_id):
@@ -691,7 +676,19 @@ def answer_questions(request,group_id):
                 if updated_group.status == 'not yet started':
                     updated_group.date_started = datetime.datetime.now()
                     if updated_group.int_group.user_draws_shapes:
-                        updated_group.status = 'selecting resources'
+                        #determine how many resource options are available, skip if only 1.
+                        resources = group.resources.all().order_by('name')
+                        if resources.count() == 1:
+                            updated_group.status = 'in-progress'
+                            res = resources[0]
+                            cur_resource = GroupMemberResource.objects.filter(group_membership=group_memb, resource=res)
+                            if len(cur_resource) == 0:              
+                                gmr = GroupMemberResource()       
+                                gmr.resource = res
+                                gmr.group_membership = updated_group  
+                                gmr.save()
+                        else:
+                            updated_group.status = 'selecting resources'
                     else:
                         updated_group.status = 'in-progress'
                 updated_group.save()
@@ -1070,7 +1067,7 @@ def unskip_group(request,id):
         if group_memb.count() == 1:
         
             update_memb = group_memb[0]
-            update_memb.status = 'Not yet started'
+            update_memb.status = 'not yet started'
             update_memb.save()
             
         else: #404

@@ -80,7 +80,7 @@ function skip_res_verify(link) {
     
         {% if r.current %}
             {% if not r.group_memb.int_group.required_group %}      {#  NOT REQUIRED  #}
-                <!--<li><a href='#main_menu' onclick="skip_group_verify('/skip_group/{{r.group_memb.int_group.id}}/')">Skip this group</a></li>-->
+                <li><a href='#main_menu' onclick="skip_group_verify('/skip_group/{{r.group_memb.int_group.id}}/')">Skip this group</a></li>
             {% endif %}
             {% ifequal r.group_memb.status "in-progress" %}   
                 <li>Done. <a href="/group_qs/{{r.group_memb.int_group.id}}/answer/">Edit answers</a></li>
@@ -92,11 +92,15 @@ function skip_res_verify(link) {
                 {% endifequal %}
             {% endifequal %} 
             {% ifequal r.group_memb.status "selecting resources" %}
-                <li class='current-item'><a href="/select_group_resources/{{r.group_memb.int_group.id}}/">Select {{interview.resource_name}}</a></li>
+                {% ifnotequal draw_res_count 1 %}
+                    <li class='current-item'><a href="/select_group_resources/{{r.group_memb.int_group.id}}/">Select {{interview.resource_name}}</a></li>
+                {% endifnotequal %}
             {% endifequal %}
             {% ifequal r.group_memb.status "in-progress" %}
                 {% if r.group_memb.int_group.user_draws_shapes %}
-                    <li>Done. <a href="/select_group_resources/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}</a></li>
+                    {% ifnotequal draw_res_count 1 %}
+                        <li>Done. <a href="/select_group_resources/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}</a></li>
+                    {% endifnotequal %}    
                     {% ifnotequal res_q_count 0 %}
                         <li>Done. <a href="/review_resource_questions/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
                     {% endifnotequal %}
