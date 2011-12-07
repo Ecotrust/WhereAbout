@@ -86,7 +86,7 @@
       "code": "ttfs-rfish", 
       "name": "Fishing", 
       "is_user_group": true, 
-      "required_group": false, 
+      "required_group": true, 
       "question_width": 275, 
       "select_resource_text": "", 
       "preselect": true, 
