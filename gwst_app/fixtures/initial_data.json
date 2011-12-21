@@ -32,6 +32,66 @@
     }
   }, 
   {
+    "pk": "fis-spc1", 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "fis_spc1", 
+      "name": "Species 1", 
+      "verbose_name": "Species 1 - 00001", 
+      "method": "Fishery"
+    }
+  }, 
+  {
+    "pk": "fis-spc2", 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "fis_spc2", 
+      "name": "Species 2", 
+      "verbose_name": "Species 2 - 00002", 
+      "method": "Fishery"
+    }
+  }, 
+  {
+    "pk": "fis-spc3", 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "fis_spc3", 
+      "name": "Species 3", 
+      "verbose_name": "Species 3 - 00003", 
+      "method": "Fishery"
+    }
+  }, 
+  {
+    "pk": "fis-spc4", 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "fis_spc4", 
+      "name": "Species 4", 
+      "verbose_name": "Species 4 - 00004", 
+      "method": "Fishery"
+    }
+  }, 
+  {
+    "pk": "fis-spc5", 
+    "model": "gwst_app.resource", 
+    "fields": {
+      "shape_color": "FFFF00", 
+      "select_description": "", 
+      "code": "fis_spc5", 
+      "name": "Species 5", 
+      "verbose_name": "Species 5 - 00005", 
+      "method": "Fishery"
+    }
+  }, 
+  {
     "pk": 7, 
     "model": "gwst_app.interview", 
     "fields": {
@@ -68,7 +128,7 @@
       "question_width": 275, 
       "select_resource_text": "", 
       "preselect": true, 
-      "default_pct_involvement": 101, 
+      "default_pct_involvement": 200, 
       "user_draws_shapes": false, 
       "interview": 7, 
       "member_title": "Angler", 
@@ -91,13 +151,11 @@
       "select_resource_text": "", 
       "preselect": true, 
       "default_pct_involvement": 100, 
-      "user_draws_shapes": true, 
+      "user_draws_shapes": false, 
       "interview": 7, 
       "member_title": "Angler", 
       "page_template": "base_form.html", 
-      "resources": [
-        "recfishing_act"
-      ], 
+      "resources": [], 
       "description": "Recreational Fishing"
     }
   }, 
@@ -119,7 +177,13 @@
       "interview": 7, 
       "member_title": "Angler", 
       "page_template": "base_form.html", 
-      "resources": [], 
+      "resources": [
+        "fis-spc1", 
+        "fis-spc2", 
+        "fis-spc3", 
+        "fis-spc4", 
+        "fis-spc5"
+      ], 
       "description": "Discard"
     }
   }, 
@@ -143,6 +207,86 @@
       "page_template": "base_form.html", 
       "resources": [], 
       "description": "Socio-Economic"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "independent": false, 
+      "code": "ttfs-avcat", 
+      "name": "Available Catch", 
+      "is_user_group": false, 
+      "required_group": false, 
+      "question_width": 275, 
+      "select_resource_text": "Select each species found in the catch:", 
+      "preselect": true, 
+      "default_pct_involvement": 90, 
+      "user_draws_shapes": false, 
+      "interview": 7, 
+      "member_title": "Angler", 
+      "page_template": "base_form.html", 
+      "resources": [
+        "fis-spc1", 
+        "fis-spc2", 
+        "fis-spc3", 
+        "fis-spc4", 
+        "fis-spc5"
+      ], 
+      "description": "Available Catch"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "independent": false, 
+      "code": "ttfs-uncat", 
+      "name": "Unavailable Catch", 
+      "is_user_group": false, 
+      "required_group": false, 
+      "question_width": 275, 
+      "select_resource_text": "Select the species that you landed that are not here for me to look at", 
+      "preselect": true, 
+      "default_pct_involvement": 95, 
+      "user_draws_shapes": false, 
+      "interview": 7, 
+      "member_title": "Angler", 
+      "page_template": "base_form.html", 
+      "resources": [
+        "fis-spc1", 
+        "fis-spc2", 
+        "fis-spc3", 
+        "fis-spc4", 
+        "fis-spc5"
+      ], 
+      "description": "Unavailable Catch"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "gwst_app.interviewgroup", 
+    "fields": {
+      "shape_color": "FFFFFF", 
+      "independent": false, 
+      "code": "ttfs-map", 
+      "name": "Map Areas", 
+      "is_user_group": false, 
+      "required_group": false, 
+      "question_width": 275, 
+      "select_resource_text": "", 
+      "preselect": true, 
+      "default_pct_involvement": 85, 
+      "user_draws_shapes": true, 
+      "interview": 7, 
+      "member_title": "Angler", 
+      "page_template": "base_form.html", 
+      "resources": [
+        "recfishing_act"
+      ], 
+      "description": "Map Areas"
     }
   }, 
   {
@@ -850,6 +994,110 @@
     }
   }, 
   {
+    "pk": "9401bfb0-2bf5-11e1-ba39-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1300.0, 
+      "eng_text": "Yes, BUT fish on another angler's form"
+    }
+  }, 
+  {
+    "pk": "aa0ac540-2bf5-11e1-b9bd-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 9940.0, 
+      "eng_text": "Not Applicable"
+    }
+  }, 
+  {
+    "pk": "e3355291-2bf5-11e1-987b-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1400.0, 
+      "eng_text": "All Caught by Angler"
+    }
+  }, 
+  {
+    "pk": "382ce100-2bf6-11e1-bf62-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1410.0, 
+      "eng_text": "Other Contributors"
+    }
+  }, 
+  {
+    "pk": "43b48a00-2bf6-11e1-9068-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1500.0, 
+      "eng_text": "Eaten / Plan to eat"
+    }
+  }, 
+  {
+    "pk": "4e78bbf0-2bf6-11e1-a5b8-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1510.0, 
+      "eng_text": "Used / Plan to use for bait"
+    }
+  }, 
+  {
+    "pk": "54fdbd8f-2bf6-11e1-a326-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1520.0, 
+      "eng_text": "Sold / Plan to sell"
+    }
+  }, 
+  {
+    "pk": "653707c0-2bf6-11e1-9955-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1530.0, 
+      "eng_text": "Thrown back dead/ Plan to throw away"
+    }
+  }, 
+  {
+    "pk": "6cdede80-2bf6-11e1-99b3-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1540.0, 
+      "eng_text": "Some other purpose"
+    }
+  }, 
+  {
+    "pk": "7a3c31de-2bf6-11e1-94a5-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 9921.0, 
+      "eng_text": "Don't know / Didn't ask"
+    }
+  }, 
+  {
+    "pk": "de6ba011-2bf6-11e1-85fa-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1480.0, 
+      "eng_text": "Thrown back alive"
+    }
+  }, 
+  {
+    "pk": "d1220ab0-2c15-11e1-a1dd-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1600.0, 
+      "eng_text": "One day"
+    }
+  }, 
+  {
+    "pk": "da76f52e-2c15-11e1-8ec4-0016760580f0", 
+    "model": "gwst_app.interviewansweroption", 
+    "fields": {
+      "display_order": 1610.0, 
+      "eng_text": "Longer"
+    }
+  }, 
+  {
     "pk": "a1", 
     "model": "gwst_app.questiongroupvalidator", 
     "fields": {
@@ -866,9 +1114,9 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "tt-survid", 
+      "code": "tt-assnum", 
       "layout": "hoizontal", 
-      "eng_text": "Survey ID", 
+      "eng_text": "Assignment No.", 
       "int_group": 17, 
       "question_set": 1, 
       "display_order": 10.0, 
@@ -877,7 +1125,7 @@
       "options": [], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "text", 
+      "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -957,9 +1205,9 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "tt-vesname", 
+      "code": "tt-intcept", 
       "layout": null, 
-      "eng_text": "Vessel Name (if applicable)", 
+      "eng_text": "Intercept No.", 
       "int_group": 17, 
       "question_set": 1, 
       "display_order": 60.0, 
@@ -968,7 +1216,7 @@
       "options": [], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "text", 
+      "answer_type": "integer", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1031,29 +1279,21 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "tf-wbody", 
+      "code": "tf-resstat", 
       "layout": null, 
-      "eng_text": "Was most of your (specify mode) fishing effort today in the", 
+      "eng_text": "What is your state of residence", 
       "int_group": 18, 
       "question_set": 1, 
       "display_order": 30.0, 
       "required": false, 
       "question_group": null, 
       "options": [
-        "05581d1e-1a1d-11e1-98e8-0016760580f0", 
-        "100bad40-1a1d-11e1-96d5-0016760580f0", 
-        "1f07e38f-1a1d-11e1-9301-0016760580f0", 
-        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
-        "712f5780-1a1c-11e1-8d6d-0016760580f0", 
-        "86c13140-1a1c-11e1-b769-0016760580f0", 
-        "948c619e-1a1c-11e1-a209-0016760580f0", 
-        "a037bf40-1a1c-11e1-9d68-0016760580f0", 
-        "b4130f61-1a1c-11e1-8e8b-0016760580f0", 
-        "bffef870-1a1c-11e1-8515-0016760580f0", 
-        "d0442980-1a1c-11e1-9b56-0016760580f0", 
-        "e1627c80-1a1c-11e1-b056-0016760580f0", 
-        "ed9f6bc0-1a1c-11e1-9898-0016760580f0", 
-        "fc2ba22e-1a1c-11e1-82ed-0016760580f0"
+        "bc2cff0f-1aaf-11e1-9de4-0016760580f0", 
+        "bc4d1e8f-1a1d-11e1-9962-0016760580f0", 
+        "c51df7a1-1aaf-11e1-9b53-0016760580f0", 
+        "ceb36d91-1aaf-11e1-b8a5-0016760580f0", 
+        "db0a9b91-1aaf-11e1-8293-0016760580f0", 
+        "e4398780-1aaf-11e1-8d94-0016760580f0"
       ], 
       "val_min": null, 
       "val_default": "", 
@@ -1067,7 +1307,7 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "tf-othbody", 
+      "code": "tf-othstat", 
       "layout": null, 
       "eng_text": "If \"Other\" please specify", 
       "int_group": 18, 
@@ -1090,417 +1330,16 @@
       "all_resources": false, 
       "code": "tf-dist", 
       "layout": null, 
-      "eng_text": "Was that", 
+      "eng_text": "What is your county of residence (city if unknown)", 
       "int_group": 18, 
       "question_set": 1, 
       "display_order": 50.0, 
       "required": false, 
       "question_group": null, 
-      "options": [
-        "3342b8cf-1a1d-11e1-8a76-0016760580f0", 
-        "3c31405e-1a1d-11e1-b04c-0016760580f0", 
-        "47df0f00-1a1d-11e1-aef6-0016760580f0", 
-        "5f3a5780-1ab4-11e1-a7aa-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "radio", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 302, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-geartyp", 
-      "layout": null, 
-      "eng_text": "What type of gear was primarily used", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 60.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "55d06500-1a1d-11e1-93f9-0016760580f0", 
-        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
-        "635d7af0-1a1d-11e1-b218-0016760580f0", 
-        "6d1b8780-1a1d-11e1-82f0-0016760580f0", 
-        "78608230-1a1d-11e1-a8af-0016760580f0", 
-        "82c7c70f-1a1d-11e1-b9b1-0016760580f0", 
-        "8a06c9e1-1a1d-11e1-b81f-0016760580f0", 
-        "919b8dd1-1a1d-11e1-a6dd-0016760580f0", 
-        "9ee38470-1a1d-11e1-89b9-0016760580f0", 
-        "ac244f21-1a1d-11e1-a6f4-0016760580f0", 
-        "bc4d1e8f-1a1d-11e1-9962-0016760580f0", 
-        "c6339ab0-1a1d-11e1-aa20-0016760580f0", 
-        "d0583140-1a1d-11e1-a63e-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 303, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf_othgear", 
-      "layout": null, 
-      "eng_text": "If \"Other\" please specify", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 70.0, 
-      "required": false, 
-      "question_group": null, 
       "options": [], 
       "val_min": null, 
       "val_default": "", 
       "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 304, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-hrtoday", 
-      "layout": null, 
-      "eng_text": "To the nearest half-hour, how many hours have you spent (specify mode) fishing today? That is, how many hours have you actually spent with your gear in the water", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 80.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": 24.0
-    }
-  }, 
-  {
-    "pk": 305, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-hrseato", 
-      "layout": null, 
-      "eng_text": "To the nearest half-hour, how many hours have you spent on the boat, away from the dock, today", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 90.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "If NOT a shore-only angler", 
-      "val_max": 24.0
-    }
-  }, 
-  {
-    "pk": 306, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-hrshore", 
-      "layout": null, 
-      "eng_text": "How many additional hours do you expect to fish from shore today? That is, how many more will you actually have your gear in the water", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 100.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "decimal", 
-      "eng_tooltip": "", 
-      "val_max": 24.0
-    }
-  }, 
-  {
-    "pk": 307, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-sptgt1", 
-      "layout": null, 
-      "eng_text": "If you were fishing for a particular kind of fish today, what was your primary target", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 110.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 308, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-sptgt2", 
-      "layout": null, 
-      "eng_text": "If you were particularly fishing for multiple species of fish today, what was your secondary target", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 120.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 309, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-daysyr", 
-      "layout": null, 
-      "eng_text": "Not counting today, within the past 12 months, this is since (insert month) of last year, how many days have you gone saltwater sport fin fishing in this state or from a boat launched in this state", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 130.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 365.0
-    }
-  }, 
-  {
-    "pk": 310, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-dayyrbl", 
-      "layout": null, 
-      "eng_text": "If the previous question was not answered, why not", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 140.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
-        "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
-        "c86ea121-1a1e-11e1-b833-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "radio", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 311, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-days2mo", 
-      "layout": null, 
-      "eng_text": "Not counting today, within the past 2 months, how many days", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 150.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": 0.0, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": 62.0
-    }
-  }, 
-  {
-    "pk": 312, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-day2mbl", 
-      "layout": null, 
-      "eng_text": "If the previous question was not answered, why not", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 160.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
-        "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
-        "c86ea121-1a1e-11e1-b833-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "radio", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 313, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-statres", 
-      "layout": null, 
-      "eng_text": "What is your state of residence", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 170.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 314, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-counres", 
-      "layout": null, 
-      "eng_text": "What is your county of residence", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 180.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "take city/town name if county unknown", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 315, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-zipknow", 
-      "layout": null, 
-      "eng_text": "What is the ZIP code of your residence", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 190.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "If they know/have one", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 316, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-zipblnk", 
-      "layout": null, 
-      "eng_text": "If ZIP code was not given, why not", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 200.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "4889634f-1a1e-11e1-8a69-0016760580f0", 
-        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
-        "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
-        "c86ea121-1a1e-11e1-b833-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "radio", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 317, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-house", 
-      "layout": null, 
-      "eng_text": "Do you live in a private residence, or in some type of housing such as dorm, barracks, nursing home or rooming house", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 210.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "5624d11e-1a1e-11e1-9603-0016760580f0", 
-        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
-        "6fe0a580-1a1e-11e1-80dd-0016760580f0", 
-        "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
-        "c86ea121-1a1e-11e1-b833-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "radio", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 318, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "tf-landlin", 
-      "layout": null, 
-      "eng_text": "Does your home have a <u>landline</u> telephone? That is, a telephone other than a cellular phone", 
-      "int_group": 18, 
-      "question_set": 1, 
-      "display_order": 220.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "5f3a5780-1ab4-11e1-a7aa-0016760580f0", 
-        "a28", 
-        "a29", 
-        "bdf1ff80-1a1e-11e1-85af-0016760580f0", 
-        "c86ea121-1a1e-11e1-b833-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -1569,55 +1408,13 @@
     }
   }, 
   {
-    "pk": 322, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "td-speclst", 
-      "layout": null, 
-      "eng_text": "Names of the species discarded", 
-      "int_group": 19, 
-      "question_set": 2, 
-      "display_order": 110.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "textarea", 
-      "eng_tooltip": "Separate by DASHES", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 323, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "td-spccode", 
-      "layout": null, 
-      "eng_text": "Codes of the species discarded", 
-      "int_group": 19, 
-      "question_set": 2, 
-      "display_order": 120.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "textarea", 
-      "eng_tooltip": "Maintain order, separate with DASHES", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 324, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
-      "all_resources": false, 
+      "all_resources": true, 
       "code": "td-lngths", 
       "layout": null, 
-      "eng_text": "Lengths of the species discarded", 
+      "eng_text": "Lengths", 
       "int_group": 19, 
       "question_set": 2, 
       "display_order": 130.0, 
@@ -1657,18 +1454,1556 @@
     "model": "gwst_app.interviewquestion", 
     "fields": {
       "all_resources": false, 
-      "code": "ts-income", 
+      "code": "ts-trpdura", 
       "layout": null, 
-      "eng_text": "What is your total annual household income", 
+      "eng_text": "Is this fishing trip part of a longer trip in which you will spend at least one night away from your permanent or seasonal residence, or is this a one-day fishing trip", 
       "int_group": 20, 
       "question_set": 1, 
       "display_order": 10.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "af5c2c1e-1a1e-11e1-973d-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0", 
+        "d1220ab0-2c15-11e1-a1dd-0016760580f0", 
+        "da76f52e-2c15-11e1-8ec4-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 357, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-ntawyct", 
+      "layout": null, 
+      "eng_text": "If \"longer\", how many nights will you be away from your residence on this trip", 
+      "int_group": 20, 
+      "question_set": 1, 
+      "display_order": 20.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
       "val_min": 0.0, 
       "val_default": "", 
       "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
+    }
+  }, 
+  {
+    "pk": 358, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-ntawyun", 
+      "layout": null, 
+      "eng_text": "If unanswered, why", 
+      "int_group": 20, 
+      "question_set": 1, 
+      "display_order": 30.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "bdf1ff80-1a1e-11e1-85af-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 359, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-dayfish", 
+      "layout": null, 
+      "eng_text": "How many days of this trip will you go fishing", 
+      "int_group": 20, 
+      "question_set": 1, 
+      "display_order": 40.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 365.0
+    }
+  }, 
+  {
+    "pk": 360, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-dyfshun", 
+      "layout": null, 
+      "eng_text": "If unanswered, why", 
+      "int_group": 20, 
+      "question_set": 1, 
+      "display_order": 50.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "bdf1ff80-1a1e-11e1-85af-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 361, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-trppurp", 
+      "layout": null, 
+      "eng_text": "Did you make this trip <u>primarily</u> to go fishing", 
+      "int_group": 20, 
+      "question_set": 1, 
+      "display_order": 60.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "a28", 
+        "a29", 
+        "bdf1ff80-1a1e-11e1-85af-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 362, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-travct", 
+      "layout": null, 
+      "eng_text": "Including yourself, how many people are traveling together today", 
+      "int_group": 20, 
+      "question_set": 1, 
+      "display_order": 70.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 363, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-tpctun", 
+      "layout": null, 
+      "eng_text": "If unanswered, why", 
+      "int_group": 20, 
+      "question_set": 1, 
+      "display_order": 80.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "bdf1ff80-1a1e-11e1-85af-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 364, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-numfish", 
+      "layout": null, 
+      "eng_text": "Including yourself, how many people fished today", 
+      "int_group": 20, 
+      "question_set": 1, 
+      "display_order": 90.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 365, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-nmfshun", 
+      "layout": null, 
+      "eng_text": "If unanswered, why", 
+      "int_group": 20, 
+      "question_set": 1, 
+      "display_order": 100.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "bdf1ff80-1a1e-11e1-85af-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 366, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-a-amt", 
+      "layout": null, 
+      "eng_text": "Auto/truck fuel amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 110.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 367, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-a-covrd", 
+      "layout": null, 
+      "eng_text": "Auto/truck fuel # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 120.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 368, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-b-amt", 
+      "layout": null, 
+      "eng_text": "Auto/RV rental expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 130.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 369, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-b-covrd", 
+      "layout": null, 
+      "eng_text": "Auto/RV rental # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 140.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 370, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-c-amt", 
+      "layout": null, 
+      "eng_text": "Public transportation expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 150.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 371, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-c-covrd", 
+      "layout": null, 
+      "eng_text": "Public transportation # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 160.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 372, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-d-amt", 
+      "layout": null, 
+      "eng_text": "Lodging expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 170.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 373, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-d-covrd", 
+      "layout": null, 
+      "eng_text": "Lodging # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 180.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 374, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-e-amt", 
+      "layout": null, 
+      "eng_text": "Food and drink from grocery stores expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 190.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 375, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-e-covrd", 
+      "layout": null, 
+      "eng_text": "Food and drink from grocery store # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 200.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 376, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-f-amt", 
+      "layout": null, 
+      "eng_text": "Food and drink from restaurants expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 210.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 377, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-f-covrd", 
+      "layout": null, 
+      "eng_text": "Food and drink from restaurants # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 220.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 378, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-g-amt", 
+      "layout": null, 
+      "eng_text": "Fishing tackle bought for this trip expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 230.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 379, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-g-covrd", 
+      "layout": null, 
+      "eng_text": "Fishing tackle bought for this trip # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 240.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 380, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-h-amt", 
+      "layout": null, 
+      "eng_text": "Bait expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 250.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 381, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-h-covrd", 
+      "layout": null, 
+      "eng_text": "Bait # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 260.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 382, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-i-amt", 
+      "layout": null, 
+      "eng_text": "Ice expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 270.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 383, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-i-covrd", 
+      "layout": null, 
+      "eng_text": "Ice # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 280.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 384, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-j-amt", 
+      "layout": null, 
+      "eng_text": "Tournament/derby/jackpot fees expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 290.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 385, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-j-covrd", 
+      "layout": null, 
+      "eng_text": "Tournament/derby/jackpot fees # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 300.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 386, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-k-amt", 
+      "layout": null, 
+      "eng_text": "Parking/access/boat launching/moorage fees expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 310.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 387, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-k-covrd", 
+      "layout": null, 
+      "eng_text": "Parking/access/boat launching/moorage fees # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 320.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 388, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-l-amt", 
+      "layout": null, 
+      "eng_text": "Gifts & souvenirs expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 330.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 389, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-l-covrd", 
+      "layout": null, 
+      "eng_text": "Gifts & souvenirs # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 340.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 392, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-m-other", 
+      "layout": null, 
+      "eng_text": "Other cost type", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 345.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 390, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-m-amt", 
+      "layout": null, 
+      "eng_text": "Other costs expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 350.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 391, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-m-covrd", 
+      "layout": null, 
+      "eng_text": "Other costs # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 360.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 393, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-n-amt", 
+      "layout": null, 
+      "eng_text": "Boat fuel expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 380.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 394, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-n-covrd", 
+      "layout": null, 
+      "eng_text": "Boat fuel # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 390.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 395, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-o-amt", 
+      "layout": null, 
+      "eng_text": "Boat rental expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 400.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 396, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-o-covrd", 
+      "layout": null, 
+      "eng_text": "Boat rental # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 410.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 397, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-p-amt", 
+      "layout": null, 
+      "eng_text": "Party, charter, or guide fees expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 420.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 398, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-p-covrd", 
+      "layout": null, 
+      "eng_text": "Party, charter, or guide fees # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 430.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 399, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-q-amt", 
+      "layout": null, 
+      "eng_text": "Fish filleting fee paid to charter operator or crew expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 440.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 400, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-q-covrd", 
+      "layout": null, 
+      "eng_text": "Fish filleting fee paid to charter operator or crew # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 450.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 401, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-r-amt", 
+      "layout": null, 
+      "eng_text": "Processing, freezing, or shipping paid to processing company expenditure amount", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 460.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "money", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 402, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-r-covrd", 
+      "layout": null, 
+      "eng_text": "Processing, freezing, or shipping paid to processing company # you paid for", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 470.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 403, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-pctstat", 
+      "layout": null, 
+      "eng_text": "What percentage of the expenditures you just described were made in this state", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 480.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.0, 
+      "val_default": "", 
+      "answer_type": "percent", 
+      "eng_tooltip": "", 
+      "val_max": 100.0
+    }
+  }, 
+  {
+    "pk": 404, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ts-pctstun", 
+      "layout": null, 
+      "eng_text": "If unanswered, why", 
+      "int_group": 20, 
+      "question_set": 2, 
+      "display_order": 490.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "bdf1ff80-1a1e-11e1-85af-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 331, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-seefish", 
+      "layout": null, 
+      "eng_text": "Did you catch any fish while you were fishing that I might be able to look at", 
+      "int_group": 21, 
+      "question_set": 1, 
+      "display_order": 210.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "9401bfb0-2bf5-11e1-ba39-0016760580f0", 
+        "a28", 
+        "a29"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 329, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-seeothf", 
+      "layout": null, 
+      "eng_text": "If fish are on another angler's form, which interview # or which interviewer, date, and assignment number was it", 
+      "int_group": 21, 
+      "question_set": 1, 
+      "display_order": 220.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 330, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-whocght", 
+      "layout": null, 
+      "eng_text": "Did you catch these yourself or did someone else catch some of them", 
+      "int_group": 21, 
+      "question_set": 1, 
+      "display_order": 230.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "382ce100-2bf6-11e1-bf62-0016760580f0", 
+        "aa0ac540-2bf5-11e1-b9bd-0016760580f0", 
+        "e3355291-2bf5-11e1-987b-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 332, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-separat", 
+      "layout": null, 
+      "eng_text": "Can you separate out your individual catch", 
+      "int_group": 21, 
+      "question_set": 1, 
+      "display_order": 240.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "a28", 
+        "a29", 
+        "aa0ac540-2bf5-11e1-b9bd-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 333, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-ctangca", 
+      "layout": null, 
+      "eng_text": "How many anglers including yourself have their catch here", 
+      "int_group": 21, 
+      "question_set": 1, 
+      "display_order": 250.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 334, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-ctangbt", 
+      "layout": null, 
+      "eng_text": "How many people fished on your boat today", 
+      "int_group": 21, 
+      "question_set": 1, 
+      "display_order": 260.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 335, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-1stint", 
+      "layout": null, 
+      "eng_text": "Interview # or interviewer, date, and assignment # of first interview for fishing party", 
+      "int_group": 21, 
+      "question_set": 1, 
+      "display_order": 270.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 336, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-veslist", 
+      "layout": null, 
+      "eng_text": "Is this vessel on the list", 
+      "int_group": 21, 
+      "question_set": 1, 
+      "display_order": 280.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "a28", 
+        "a29", 
+        "af5c2c1e-1a1e-11e1-973d-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 337, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-vesname", 
+      "layout": null, 
+      "eng_text": "What is the name (or registration #) of the vessel", 
+      "int_group": 21, 
+      "question_set": 1, 
+      "display_order": 290.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 349, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-look", 
+      "layout": null, 
+      "eng_text": "May I look at your fish", 
+      "int_group": 21, 
+      "question_set": 2, 
+      "display_order": 10.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "a28", 
+        "a29"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 346, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "ac-numfish", 
+      "layout": null, 
+      "eng_text": "Number of fish", 
+      "int_group": 21, 
+      "question_set": 3, 
+      "display_order": 110.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 1.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 999.0
+    }
+  }, 
+  {
+    "pk": 347, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "ac-length", 
+      "layout": null, 
+      "eng_text": "Length (mm)", 
+      "int_group": 21, 
+      "question_set": 3, 
+      "display_order": 120.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 1.0, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": 9999.0
+    }
+  }, 
+  {
+    "pk": 348, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "ac-weight", 
+      "layout": null, 
+      "eng_text": "Weight (kg)", 
+      "int_group": 21, 
+      "question_set": 3, 
+      "display_order": 130.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": 0.01, 
+      "val_default": "", 
+      "answer_type": "decimal", 
+      "eng_tooltip": "", 
+      "val_max": 999.99000000000001
+    }
+  }, 
+  {
+    "pk": 351, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "ac-disp", 
+      "layout": null, 
+      "eng_text": "Disposition method", 
+      "int_group": 21, 
+      "question_set": 3, 
+      "display_order": 140.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "43b48a00-2bf6-11e1-9068-0016760580f0", 
+        "4e78bbf0-2bf6-11e1-a5b8-0016760580f0", 
+        "54fdbd8f-2bf6-11e1-a326-0016760580f0", 
+        "653707c0-2bf6-11e1-9955-0016760580f0", 
+        "6cdede80-2bf6-11e1-99b3-0016760580f0", 
+        "7a3c31de-2bf6-11e1-94a5-0016760580f0", 
+        "c86ea121-1a1e-11e1-b833-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 350, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "ac-usemaj", 
+      "layout": null, 
+      "eng_text": "What do you do with the majority of this species", 
+      "int_group": 21, 
+      "question_set": 3, 
+      "display_order": 150.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 352, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "ac-notes", 
+      "layout": null, 
+      "eng_text": "Notes/Comments", 
+      "int_group": 21, 
+      "question_set": 3, 
+      "display_order": 160.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "textarea", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 354, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "un-hbride", 
+      "layout": null, 
+      "eng_text": "Was this a Head Boat ride", 
+      "int_group": 22, 
+      "question_set": 1, 
+      "display_order": 10.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "a28", 
+        "a29"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 355, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "un-discmon", 
+      "layout": null, 
+      "eng_text": "If yes, is this one of the anglers you monitored for discard (type 9) catch", 
+      "int_group": 22, 
+      "question_set": 1, 
+      "display_order": 20.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "a28", 
+        "a29"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 356, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "un-notes", 
+      "layout": null, 
+      "eng_text": "Notes/comments", 
+      "int_group": 22, 
+      "question_set": 1, 
+      "display_order": 30.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "textarea", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 303, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "un-spcount", 
+      "layout": null, 
+      "eng_text": "Number of fish", 
+      "int_group": 22, 
+      "question_set": 2, 
+      "display_order": 70.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 304, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": true, 
+      "code": "un-spdisp", 
+      "layout": null, 
+      "eng_text": "Disposition method", 
+      "int_group": 22, 
+      "question_set": 2, 
+      "display_order": 80.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "43b48a00-2bf6-11e1-9068-0016760580f0", 
+        "4e78bbf0-2bf6-11e1-a5b8-0016760580f0", 
+        "54fdbd8f-2bf6-11e1-a326-0016760580f0", 
+        "653707c0-2bf6-11e1-9955-0016760580f0", 
+        "6cdede80-2bf6-11e1-99b3-0016760580f0", 
+        "de6ba011-2bf6-11e1-85fa-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "select", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 353, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "mp-drawyn", 
+      "layout": null, 
+      "eng_text": "Would you like to map where you caught the majority of your fish today", 
+      "int_group": 23, 
+      "question_set": 1, 
+      "display_order": 10.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "a28", 
+        "a29"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }

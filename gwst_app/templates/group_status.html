@@ -97,13 +97,13 @@ function skip_res_verify(link) {
                 {% endifnotequal %}
             {% endifequal %}
             {% ifequal r.group_memb.status "in-progress" %}
+                {% ifnotequal draw_res_count 1 %}
+                    <li>Done. <a href="/select_group_resources/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}</a></li>
+                {% endifnotequal %}    
+                {% ifnotequal res_q_count 0 %}
+                    <li>Done. <a href="/review_resource_questions/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
+                {% endifnotequal %}
                 {% if r.group_memb.int_group.user_draws_shapes %}
-                    {% ifnotequal draw_res_count 1 %}
-                        <li>Done. <a href="/select_group_resources/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}</a></li>
-                    {% endifnotequal %}    
-                    {% ifnotequal res_q_count 0 %}
-                        <li>Done. <a href="/review_resource_questions/{{r.group_memb.int_group.id}}/">Edit {{interview.resource_name}}-specific answers</a></li>
-                    {% endifnotequal %}
                     
                     {% ifnotequal r.group_memb.num_complete_resources 0 %}
                         {% ifequal r.group_memb.num_incomplete_resources 0 %}  
