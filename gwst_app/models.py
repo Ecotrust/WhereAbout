@@ -97,6 +97,12 @@ class InterviewGroup(Model):
     page_template = CharField( max_length=60, default="base_form.html" )
     question_width = IntegerField( default = 275 )
     default_pct_involvement = IntegerField(blank=True, null=True)
+    resource_name = CharField( max_length=60, default='species' )
+    resource_name_plural = CharField( max_length=60, default='species' )
+    resource_action = CharField( max_length=20, default='target' )
+    resource_action_past_tense = CharField( max_length=20, default='targeted' )
+    shape_name = CharField( max_length=20, default='fishing ground' )
+    shape_name_plural = CharField( max_length=20, default='fishing grounds' )
     class Meta:
         db_table = u'gwst_group'
         unique_together = (("interview", "code"),("interview", "name"))
@@ -345,7 +351,8 @@ class InterviewShape(Model):
     # boundary_e = CharField( max_length=100, blank=True, null=True )
     # boundary_w = CharField( max_length=100, blank=True, null=True )
     note_text = CharField( max_length=1000, blank=True, null=True )
-    days_visited = IntegerField( blank=True, null=True )
+    # days_visited = IntegerField( blank=True, null=True )
+    pct_catch = IntegerField( blank=True, null=True )
     creation_date = DateTimeField(default=datetime.datetime.now)
     objects = InterviewShapeManager()
     

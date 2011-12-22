@@ -246,6 +246,10 @@ td, th {
     font-family: "Lucida Grande", Verdana, Arial, sans-serif;
 }
 
+td.soceconAnswer {
+    width: 115px;
+}
+
 th {
     text-align: left;
     font-size: 12px;
@@ -679,4 +683,10 @@ a.deletelink:hover {
 	background:#f9f9f9; 
     padding-bottom: 6px;
     Margin-bottom: 10px;
-	}
+}
+
+/* CONDITIONAL STYLING */
+.conditional {
+    background:#DDD;
+    border: 1px solid #cccccc;
+}

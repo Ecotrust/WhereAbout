@@ -373,7 +373,7 @@ class InterviewShapeAttributeForm(forms.ModelForm):
         exclude = ('user','int_group','resource','geometry','geometry_clipped','geometry_edited','edit_notes','edit_status','creation_date','last_modified','num_times_saved')
 
 class GroupMemberResourceForm(forms.Form):
-    def __init__(self, interview, resources, *args, **kwargs):
+    def __init__(self, group, resources, *args, **kwargs):
 
         forms.Form.__init__(self, *args, **kwargs) 
         choices = []
@@ -382,7 +382,7 @@ class GroupMemberResourceForm(forms.Form):
                 choices.append((resource.id, resource.verbose_name))
             else:
                 choices.append((resource.id, unicode(resource.verbose_name)+': '+unicode(resource.select_description)))
-        label = str(interview.resource_name).capitalize()+' groups'
+        label = str(group.resource_name).capitalize()+' groups'
         self.fields['resources'] = forms.MultipleChoiceField(label=label, choices=choices, widget=forms.CheckboxSelectMultiple(), required = False)
 
     def save(self, group_memb, profile_callback=None):

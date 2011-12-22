@@ -42,11 +42,18 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             width: 127
         });
         
-        this.days_visited = new Ext.form.NumberField({
-            fieldLabel: 'Number of days this site was visited in 2011',
-            name: 'days_visited',
-            maxValue: this.days_max,
-            minValue: 1
+        // this.days_visiteddays_visited = new Ext.form.NumberField({
+            // fieldLabel: 'Number of days this site was visited in 2011',
+            // name: 'days_visited',
+            // maxValue: this.days_max,
+            // minValue: 1
+        // });
+        
+        this.pct_harvested = new Ext.form.NumberField({
+            fieldLabel: 'Percent of today\'s catch from this location',
+            name: 'pct_catch',
+            maxValue: 100,
+            minValue: 0
         });
 
 		this.inner_form_panel = new Ext.form.FormPanel({
@@ -58,7 +65,8 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             url:'save-form.php',
             defaultType: 'textfield',
             items: [
-            this.days_visited,
+            // this.days_visited,
+            this.pct_harvested,
             // {
                 // fieldLabel: 'North Boundary',
                 // name: 'boundary_n'
@@ -94,7 +102,8 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
 
     update: function(config) {
         Ext.apply(this, config);
-        this.days_visited.applyState({maxValue: this.days_max});
+        // this.days_visited.applyState({maxValue: this.days_max});
+        this.pct_catch.applyState({maxValue: 100});
         this.inner_form_panel.getForm().reset();
         // this.inner_form_panel.getForm().reset();
     },

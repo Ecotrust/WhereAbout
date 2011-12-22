@@ -424,8 +424,8 @@ def group_status(request):
             #'num shapes' is how many have been drawn
             num_shapes = InterviewShape.objects.filter(user=request.session['interviewee'],int_group=group_memb.int_group).count()
             
-            shape_name_plural = request.session['interview'].shape_name_plural
-            resource_name = request.session['interview'].resource_name
+            shape_name_plural = group_memb.int_group.shape_name_plural
+            resource_name = group_memb.int_group.resource_name
             if num_shapes == 0:
                 group_memb.user_status_msg = 'no '+shape_name_plural+' drawn'
                 
@@ -675,22 +675,22 @@ def answer_questions(request,group_id):
                 updated_group = group_memb[0]
                 if updated_group.status == 'not yet started':
                     updated_group.date_started = datetime.datetime.now()
-                    if updated_group.int_group.user_draws_shapes:
-                        #determine how many resource options are available, skip if only 1.
-                        resources = group.resources.all().order_by('name')
-                        if resources.count() == 1:
+                    resources = group.resources.all().order_by('name')
+                    #determine how many resource options are available, skip if only 1.
+                    if resources.count() == 1:
+                        updated_group.status = 'in-progress'
+                        res = resources[0]
+                        cur_resource = GroupMemberResource.objects.filter(group_membership=group_memb, resource=res)
+                        if len(cur_resource) == 0:              
+                            gmr = GroupMemberResource()       
+                            gmr.resource = res
+                            gmr.group_membership = updated_group  
+                            gmr.save()
+                    else:
+                        if resources.count() == 0:
                             updated_group.status = 'in-progress'
-                            res = resources[0]
-                            cur_resource = GroupMemberResource.objects.filter(group_membership=group_memb, resource=res)
-                            if len(cur_resource) == 0:              
-                                gmr = GroupMemberResource()       
-                                gmr.resource = res
-                                gmr.group_membership = updated_group  
-                                gmr.save()
                         else:
                             updated_group.status = 'selecting resources'
-                    else:
-                        updated_group.status = 'in-progress'
                 updated_group.save()
             else: #404
                 return render_to_response( '404.html', RequestContext(request,{}))
@@ -702,11 +702,6 @@ def answer_questions(request,group_id):
                 return HttpResponse(simplejson.dumps(result), mimetype='application/json')
             else:
                 return HttpResponseRedirect('/group_status#main_menu')
-            
-    # q_width = group.question_width
-    # if dm_request:
-        # #Handle form requests from draw manager js panels
-        # return utils.JsonResponse(form.as_extjs())   
         else :
             return render_to_response( group.page_template, RequestContext(request,{'title':title, 'instructions':instructions, 'form': form, 'value':'Continue'}))     
     
@@ -745,11 +740,11 @@ def select_group_resources(request, group_id):
         for resource in GroupMemberResource.objects.filter(group_membership=group_memb):
             resource_list.append(resource.resource_id);
         if resource_list == []:
-            form = GroupMemberResourceForm(interview, resources) 
+            form = GroupMemberResourceForm(group, resources) 
         else:
-            form = GroupMemberResourceForm(interview, resources, {'resources':resource_list})
+            form = GroupMemberResourceForm(group, resources, {'resources':resource_list})
     else:       
-        form = GroupMemberResourceForm(interview, resources, request.POST)
+        form = GroupMemberResourceForm(group, resources, request.POST)
         if form.is_valid():
             form.save(group_memb)
             return HttpResponseRedirect('/answer_resource_questions/'+str(group_id)+'/')
@@ -1249,12 +1244,12 @@ def draw_settings(request, id) :
     }     
     #Interview settings
     result['interview'] = {
-		'resource_name': interview.resource_name,
-	    'resource_name_plural': interview.resource_name_plural,
+		'resource_name': int_group.resource_name,
+	    'resource_name_plural': int_group.resource_name_plural,
     	'resource_action': interview.resource_action,
     	'resource_action_past_tense': interview.resource_action_past_tense,
-        'shape_name_plural': interview.shape_name_plural,
-        'shape_name': interview.shape_name
+        'shape_name_plural': int_group.shape_name_plural,
+        'shape_name': int_group.shape_name
     }    
     #Group settings
     result['group'] = {
@@ -1360,22 +1355,18 @@ def shapes(request, id=None):
             geom = GEOSGeometry(feat.get('geometry'), srid=settings.CLIENT_SRID)
             geom.transform(settings.SERVER_SRID)                        
 
-            if feat.get('days_visited') == '':
-                days_visited = None
+            if feat.get('pct_catch') == '':
+                pct_catch = None
             else:
-                days_visited = feat.get('days_visited')
+                pct_catch = feat.get('pct_catch')
 
             new_shape = InterviewShape(
                 user = request.session['interviewee'],
                 geometry = geom,
-                # boundary_n = feat.get('boundary_n'),
-                # boundary_s = feat.get('boundary_s'),
-                # boundary_e = feat.get('boundary_e'),
-                # boundary_w = feat.get('boundary_w'),
                 note_text = feat.get('note_text'),
                 int_group_id = feat.get('group_id'),
                 resource_id = feat.get('resource_id'),
-                days_visited = days_visited
+                pct_catch = pct_catch
             )
             new_shape.save() 
             
