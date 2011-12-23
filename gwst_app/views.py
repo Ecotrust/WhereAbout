@@ -810,6 +810,17 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
     answers = InterviewAnswer.objects.filter(user=request.session['interviewee'], int_question__in=questions)
     forms = {}
 
+    if sel_resources.count() == 0 :
+        group_memb = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__pk=group_id)
+        if group_memb.count()==1:
+            updated_group = group_memb[0]
+            if updated_group.status == 'selecting resources':
+                updated_group.date_started = datetime.datetime.now()
+                updated_group.status = 'in-progress'
+            updated_group.save()
+            return HttpResponseRedirect('/group_status#main_menu')
+        else: #404
+            return render_to_response( '404.html', RequestContext(request,{}))
     if request.method == 'GET':
         if group.independent:
             resource_id = resource
@@ -861,7 +872,7 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
                     return HttpResponseRedirect(next_url)
                 else:
                     return HttpResponseRedirect('/group_status#main_menu')
-    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':520}))
+    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':350}))
 
 @login_required
 def draw_group_resources(request, group_id):
@@ -963,9 +974,9 @@ def finalize_group(request,id):
             if id == main_group_id:
                 #Create a unique, human readable identifier for the interview
                 update_user = User.objects.get(username = request.session['interviewee'])
-                user_profile = UserProfile.objects.get(user = update_user)
-                user_profile.assignment_no = InterviewAnswer.objects.get(user = request.session['interviewee'], int_question = assignment_no_id).text_val
-                user_profile.save()
+                int_status = InterviewStatus.objects.get(user = update_user, interview = cur_interview)
+                int_status.assignment_no = InterviewAnswer.objects.get(user = request.session['interviewee'], int_question = assignment_no_id).text_val
+                int_status.save()
 
                 request.session['interviewee'].username = update_user.username
             

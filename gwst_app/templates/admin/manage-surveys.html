@@ -53,7 +53,7 @@
             <tr>
                 <td>{{ survey.status.creation_date }}</td>
                 <td>{{ survey.profile.created_by.first_name }} ({{survey.profile.created_by.email}})</td>
-                <td>{{ survey.profile.assignment_no }}</td>
+                <td>{{ survey.status.assignment_no }}</td>
                 <td>{{ survey.status.completed }}</td>
                 <td><a href="/accounts/login_as/?next_user={{ survey.profile.user.id }}">Continue survey</a></td>
                 <td><a href="/admin/auth/user/{{ survey.profile.user.id }}/delete/">Delete survey</a></td>

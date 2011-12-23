@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block content %}
+{% if instructions %}
+<div style='width:600px'>{{ instructions.main|safe }}</div>
+{% endif %}
+   <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+   {{ form.non_field_errors }}
+   
+    {% for field in form %}
+        {% ifequal forloop.counter 3 %}
+            <div class="conditional">
+            <h4>If there are fish to see:</h4>
+        {% endifequal %}
+        {% if field.field.question_set %}
+            {% with field.field.question_set as index %}
+                <p><div class="question_set"></div>
+                {% for key, val in instructions.items %}
+                    {% ifequal key index %}
+                        {{ val|safe }}
+                    {% endifequal %}
+                {% endfor %}
+                </p>
+            {% endwith %}
+        {% endif %}
+        <p><div class="fieldWrapper">
+            {{ field.errors }}
+            {% ifequal field.field.question.layout 'vertical' %}
+                <table>
+                    <tr>
+                        <td>
+                            {{ field.label|safe }}:
+                        </td>
+                    </tr><tr>
+                        <td>
+                            {{ field }}
+                        </td>
+                    </tr>
+                </table>
+            {% else %}
+                <table>
+                    <tr>
+                        <td style='width:{{ q_width }}px'>
+                            {{ field.label|safe }}:
+                        </td>
+                        <td>
+                            {{ field }}
+                        </td>
+                    </tr>
+                </table>
+            {% endifequal %}
+        </div></p>
+        {% ifequal forloop.counter 6 %}
+            </div>
+        {% endifequal %}
+    {% endfor %}   
+   
+   <p><input id="submit" type="submit" value="{{ value }}" style="margin:15px"/>
+   {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+   </p>
+   </form>
+{% endblock %}

@@ -333,6 +333,9 @@ class InterviewStatus(Model):
     num_logins = IntegerField(default=0)
     complete_date = DateTimeField(null=True)
     notes = TextField(null=True)
+    assignment_no = TextField(null=True)
+    refused_key = BooleanField(default=False)
+    refused_non_key = BooleanField(default=False)
     
     class Meta:
         db_table = u'gwst_userstatus'
@@ -405,7 +408,6 @@ class UserProfile(models.Model):
         
     user = models.ForeignKey(User, unique=True)
     created_by = models.ForeignKey(User, related_name="user_creator_fk", null=True)
-    assignment_no = TextField(null=True)
     
 def user_post_save(sender, instance, **kwargs):
     qs = User.objects.filter(is_staff=True).order_by('-last_login')

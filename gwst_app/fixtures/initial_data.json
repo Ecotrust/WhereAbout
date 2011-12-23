@@ -154,7 +154,7 @@
       "preselect": true, 
       "user_draws_shapes": false, 
       "member_title": "Angler", 
-      "page_template": "base_form.html", 
+      "page_template": "fishing_form.html", 
       "name": "Fishing", 
       "resource_action_past_tense": "targeted"
     }
@@ -248,7 +248,7 @@
       "preselect": true, 
       "user_draws_shapes": false, 
       "member_title": "Angler", 
-      "page_template": "base_form.html", 
+      "page_template": "available_form.html", 
       "name": "Available Catch", 
       "resource_action_past_tense": "targeted"
     }
@@ -1360,6 +1360,94 @@
       "int_group": 18, 
       "question_set": 1, 
       "display_order": 50.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 334, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-ctangbt", 
+      "layout": null, 
+      "eng_text": "How many people fished on your boat today", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 260.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "integer", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 335, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-1stint", 
+      "layout": null, 
+      "eng_text": "Interview # or interviewer, date, and assignment # of first interview for fishing party", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 270.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "text", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 336, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-veslist", 
+      "layout": null, 
+      "eng_text": "Is this vessel on the list", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 280.0, 
+      "required": false, 
+      "question_group": null, 
+      "options": [
+        "a28", 
+        "a29", 
+        "af5c2c1e-1a1e-11e1-973d-0016760580f0"
+      ], 
+      "val_min": null, 
+      "val_default": "", 
+      "answer_type": "radio", 
+      "eng_tooltip": "", 
+      "val_max": null
+    }
+  }, 
+  {
+    "pk": 337, 
+    "model": "gwst_app.interviewquestion", 
+    "fields": {
+      "all_resources": false, 
+      "code": "ac-vesname", 
+      "layout": null, 
+      "eng_text": "What is the name (or registration #) of the vessel", 
+      "int_group": 18, 
+      "question_set": 1, 
+      "display_order": 290.0, 
       "required": false, 
       "question_group": null, 
       "options": [], 
@@ -2549,7 +2637,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -2595,7 +2683,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -2620,7 +2708,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }
@@ -2647,94 +2735,6 @@
     }
   }, 
   {
-    "pk": 334, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "ac-ctangbt", 
-      "layout": null, 
-      "eng_text": "How many people fished on your boat today", 
-      "int_group": 21, 
-      "question_set": 1, 
-      "display_order": 260.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "integer", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 335, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "ac-1stint", 
-      "layout": null, 
-      "eng_text": "Interview # or interviewer, date, and assignment # of first interview for fishing party", 
-      "int_group": 21, 
-      "question_set": 1, 
-      "display_order": 270.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 336, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "ac-veslist", 
-      "layout": null, 
-      "eng_text": "Is this vessel on the list", 
-      "int_group": 21, 
-      "question_set": 1, 
-      "display_order": 280.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [
-        "a28", 
-        "a29", 
-        "af5c2c1e-1a1e-11e1-973d-0016760580f0"
-      ], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "select", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
-    "pk": 337, 
-    "model": "gwst_app.interviewquestion", 
-    "fields": {
-      "all_resources": false, 
-      "code": "ac-vesname", 
-      "layout": null, 
-      "eng_text": "What is the name (or registration #) of the vessel", 
-      "int_group": 21, 
-      "question_set": 1, 
-      "display_order": 290.0, 
-      "required": false, 
-      "question_group": null, 
-      "options": [], 
-      "val_min": null, 
-      "val_default": "", 
-      "answer_type": "text", 
-      "eng_tooltip": "", 
-      "val_max": null
-    }
-  }, 
-  {
     "pk": 349, 
     "model": "gwst_app.interviewquestion", 
     "fields": {
@@ -2753,7 +2753,7 @@
       ], 
       "val_min": null, 
       "val_default": "", 
-      "answer_type": "select", 
+      "answer_type": "radio", 
       "eng_tooltip": "", 
       "val_max": null
     }
