@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block js %}
+ function skip_group_verify(link) {
+            var agree=confirm("Are you sure you want to skip this group?  You won't be able to undo this action.");
+            if (agree) {
+                location.href=link;
+            }
+            else {
+                location.href="/group_qs/{{form.group_id}}/answer";
+            }
+        }
+
+{% endblock %}
+
+{% block content %}
+{% if instructions %}
+<div style='width:600px'>{{ instructions.main|safe }}</div>
+{% endif %}
+    <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+    {{ form.non_field_errors }}
+    
+        <p style="margin: 0px"><b>Impacts to fishing grounds affect not only fishermen but also coastal economies. The data you provide below will help us associate the value of your fishing grounds to the revenue your fishing brings to coastal communities. This information is important to complete as it will support future analyses to guide the placement of wave energy facilities in ways that reduce impacts to fishermen and coastal communities.</b></p>
+        <br />
+        <p>This section is optional. If you wish, you may <a onclick="skip_group_verify('/skip_group/{{form.group_id}}/')">skip this section</a>.</p>   
+    
+    {% for question in form %}
+        {% if forloop.counter < 11 %}
+            {% ifequal forloop.counter 2 %}   
+                <br />
+                <div class="conditional">
+                <h4>Answer these questions if angler answered "Longer"</h4>
+            {% endifequal %}
+            {% ifequal forloop.counter 6 %}   
+                </div>
+                <br />
+            {% endifequal %}
+            {% ifequal forloop.counter 3 %}   
+                <p><div class="fieldWrapper">
+                    {{ question.errors }}
+                    <table>
+                        <tr>
+                            <td style='vertical-align: bottom'>
+                                {{ question }}
+                            </td>
+                        </tr>
+                    </table>
+                </div></p>
+            {% else %}
+                {% ifequal forloop.counter 5 %}   
+                    <p><div class="fieldWrapper">
+                        {{ question.errors }}
+                        <table>
+                            <tr>
+                                <td style='vertical-align: bottom'>
+                                    {{ question }}
+                                </td>
+                            </tr>
+                        </table>
+                    </div></p>
+                {% else %}
+                    {% ifequal forloop.counter 8 %}   
+                        <p><div class="fieldWrapper">
+                            {{ question.errors }}
+                            <table>
+                                <tr>
+                                    <td style='vertical-align: bottom'>
+                                        {{ question }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div></p>
+                    {% else %}
+                        {% ifequal forloop.counter 10 %}   
+                            <p><div class="fieldWrapper">
+                                {{ question.errors }}
+                                <table>
+                                    <tr>
+                                        <td style='vertical-align: bottom'>
+                                            {{ question }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div></p>
+                        {% else %}
+                            <p><div class="fieldWrapper">
+                                {{ question.errors }}
+                                <table>
+                                    <tr>
+                                        <td style='width:400px'>
+                                            {{ question.label_tag|safe }}: 
+                                        </td>
+                                        <td style='vertical-align: bottom'>
+                                            {{ question }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div></p>
+                        {% endifequal %}
+                    {% endifequal %}
+                {% endifequal %}
+            {% endifequal %}
+            {{ question.errors }}
+        {% else %}
+            {% if forloop.counter < 48 %}
+                {% ifequal forloop.counter 11 %}   
+                    <br />
+                    <p>
+                        Now I'd like to ask you about the amount of money you will spend for this <u>entire trip away from home</u>, not just the time spent fishing. For each category, please estimate your expenditures and tell us how many people shared expenses on this trip for each item.
+                    <p>
+                    <table border="0">
+                    <tr>
+                        <td style="padding-right: 0px;">
+                            <table border="1">
+                                <tr>
+                                    <th><b>Type of Expenditure</b></th>
+                                    <th><b>Expenditure Amount</b></th>
+                                    <th><b># You Paid For</b></th>
+                                </tr>
+                {% endifequal %}
+                {% ifequal forloop.counter 38 %}   
+                            <tr>
+                                <td colspan=3 ><b>ASK ONLY IF MODE = PRIVATE/RENTAL</b></td>
+                            </tr>
+                {% endifequal %}
+                {% ifequal forloop.counter 42 %}   
+                            <tr>
+                                <td colspan=3 ><b>ASK ONLY IF MODE = P/C, CH, or HB</b></td>
+                            </tr>
+                {% endifequal %}
+                {% ifequal forloop.counter 35 %}   
+                            <tr>
+                                <td>{{ question.label_tag|safe }}: {{ question }}</td>
+                {% else %}
+                    {% if forloop.counter < 35 %}
+                        {% if forloop.counter|divisibleby:2 %}
+                                        <td class='soceconAnswer'>{{ question }}</td>
+                                    </tr>
+                        {% else %}
+                                    <tr>
+                                        <td>{{ question.label_tag|safe }}</td>
+                                        <td class='soceconAnswer'>$ {{ question }}</td>
+                        {% endif %}
+                    {% else %}
+                        {% ifequal forloop.counter 36 %}
+                                <td>$ {{ question }}</td>
+                        {% else %}
+                            {% if forloop.counter|divisibleby:2 %}
+                                        <tr>
+                                            <td>{{ question.label_tag|safe }}</td>
+                                            <td class='soceconAnswer'>$ {{ question }}</td>
+                            {% else %}
+                                            <td class='soceconAnswer'>{{ question }}</td>
+                                        </tr>
+                            {% endif %}
+                        {% endifequal %}
+                    {% endif %}
+                {% endifequal %}
+            {% else %}
+                {% ifequal forloop.counter 49 %}   
+                    <p><div class="fieldWrapper">
+                        {{ question.errors }}
+                        <table>
+                            <tr>
+                                <td style='vertical-align: bottom'>
+                                    {{ question }}
+                                </td>
+                            </tr>
+                        </table>
+                    </div></p>
+                {% else %}
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <p><div class="fieldWrapper">
+                        {{ question.errors }}
+                        <table>
+                            <tr>
+                                <td style='width:400px'>
+                                    {{ question.label_tag|safe }}: 
+                                </td>
+                                <td style='vertical-align: bottom'>
+                                    {{ question }} %
+                                </td>
+                            </tr>
+                        </table>
+                    </div></p>
+                {% endifequal %}
+            {% endif %}
+        {% endif %}
+
+    {% endfor %}   
+        <p><input id="submit" type="submit" value="{{ value }}" style="margin: 20px"/>
+    {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+        </p>
+    </form>
+{% endblock %}
