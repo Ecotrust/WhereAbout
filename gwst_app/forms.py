@@ -127,10 +127,11 @@ class AnswerForm(forms.Form):
                 self.fields['question_' + str(question.id) + resource_postfix] = select_form
                 
             elif question.answer_type == 'radio': #radio button list
-                dynamic_args['choices'] = question.options.order_by('display_order').values_list()
-                dynamic_args['widget'] = forms.RadioSelect()
-
-                radio_form = forms.ChoiceField( **dynamic_args )
+                dynamic_args['widget'] = forms.RadioSelect()                
+                dynamic_args['queryset'] = question.options
+                dynamic_args['empty_label'] = None
+                radio_form = forms.ModelChoiceField( **dynamic_args )
+                radio_form.queryset = radio_form.queryset.order_by('display_order')
                 self.fields['question_' + str(question.id) + resource_postfix] = radio_form
                 
             elif question.answer_type == 'checkbox': #checkbox list 
