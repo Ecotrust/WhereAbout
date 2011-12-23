@@ -103,7 +103,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
     update: function(config) {
         Ext.apply(this, config);
         // this.days_visited.applyState({maxValue: this.days_max});
-        this.pct_catch.applyState({maxValue: 100});
+        this.pct_harvested.applyState({maxValue: 100});
         this.inner_form_panel.getForm().reset();
         // this.inner_form_panel.getForm().reset();
     },
