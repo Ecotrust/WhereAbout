@@ -43,9 +43,8 @@
         <caption>{% trans 'Survey management' %}</caption>
             <tr>
                 <th>Created</th>
-                <th>First name</th>
-                <th>Last name</th>
                 <th>Interviewer</th>
+                <th>Assignment</th>
                 <th>Completed</th>
                 <th>Continue</a></th>
                 <th>Delete</a></th>
@@ -53,12 +52,11 @@
             {% for survey in survey_list %}
             <tr>
                 <td>{{ survey.status.creation_date }}</td>
-                <td>{{ survey.profile.user.first_name }}</td>
-                <td>{{ survey.profile.user.last_name }}</td>
                 <td>{{ survey.profile.created_by.first_name }} ({{survey.profile.created_by.email}})</td>
+                <td>{{ survey.profile.assignment_no }}</td>
                 <td>{{ survey.status.completed }}</td>
-                <td><a href="/accounts/login_as/?next_user={{ survey.profile.user.id }}">Continue survey for {{ survey.profile.user.first_name }} {{ survey.profile.user.last_name }}</a></td>
-                <td><a href="/admin/auth/user/{{ survey.profile.user.id }}/delete/">Delete survey for {{ survey.profile.user.first_name }} {{ survey.profile.user.last_name }}</a></td>
+                <td><a href="/accounts/login_as/?next_user={{ survey.profile.user.id }}">Continue survey</a></td>
+                <td><a href="/admin/auth/user/{{ survey.profile.user.id }}/delete/">Delete survey</a></td>
             </tr>
             {% endfor %}
         </table>

@@ -911,8 +911,7 @@ def finalize_group(request,id):
 
     if (cur_interview.id == 7):     #commercial survey
         main_group_id = '17'
-        f_name_id = 291
-        # l_name_id = 292
+        assignment_no_id = 291
 
     # make sure the user has a valid session in-progress
     try:
@@ -962,15 +961,12 @@ def finalize_group(request,id):
             update_memb.save()
 
             if id == main_group_id:
+                #Create a unique, human readable identifier for the interview
                 update_user = User.objects.get(username = request.session['interviewee'])
-                first_name = InterviewAnswer.objects.get(user = request.session['interviewee'], int_question = f_name_id).text_val.capitalize()
-                # last_name = InterviewAnswer.objects.get(user = request.session['interviewee'], int_question = l_name_id).text_val.capitalize()
-                update_user.first_name = first_name
-                update_user.last_name = first_name
-                update_user.save()
+                user_profile = UserProfile.objects.get(user = update_user)
+                user_profile.assignment_no = InterviewAnswer.objects.get(user = request.session['interviewee'], int_question = assignment_no_id).text_val
+                user_profile.save()
 
-                request.session['interviewee'].first_name = update_user.first_name
-                request.session['interviewee'].last_name = update_user.last_name
                 request.session['interviewee'].username = update_user.username
             
         else: #404

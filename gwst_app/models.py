@@ -405,6 +405,7 @@ class UserProfile(models.Model):
         
     user = models.ForeignKey(User, unique=True)
     created_by = models.ForeignKey(User, related_name="user_creator_fk", null=True)
+    assignment_no = TextField(null=True)
     
 def user_post_save(sender, instance, **kwargs):
     qs = User.objects.filter(is_staff=True).order_by('-last_login')
