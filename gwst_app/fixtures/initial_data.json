@@ -32,62 +32,50 @@
     }
   }, 
   {
-    "pk": "fis-spc1", 
+    "pk": "fis-trt", 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
       "select_description": "", 
-      "code": "fis_spc1", 
-      "name": "Species 1", 
-      "verbose_name": "Species 1 - 00001", 
+      "code": "fis_trt", 
+      "name": "Trout", 
+      "verbose_name": "Trout", 
       "method": "Fishery"
     }
   }, 
   {
-    "pk": "fis-spc2", 
+    "pk": "fis-bass", 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
       "select_description": "", 
-      "code": "fis_spc2", 
-      "name": "Species 2", 
-      "verbose_name": "Species 2 - 00002", 
+      "code": "fis_bass", 
+      "name": "Bass", 
+      "verbose_name": "Bass", 
       "method": "Fishery"
     }
   }, 
   {
-    "pk": "fis-spc3", 
+    "pk": "fis-tuna", 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
       "select_description": "", 
-      "code": "fis_spc3", 
-      "name": "Species 3", 
-      "verbose_name": "Species 3 - 00003", 
+      "code": "fis_tuna", 
+      "name": "Tuna", 
+      "verbose_name": "Tuna", 
       "method": "Fishery"
     }
   }, 
   {
-    "pk": "fis-spc4", 
+    "pk": "fis-rckf", 
     "model": "gwst_app.resource", 
     "fields": {
       "shape_color": "FFFF00", 
       "select_description": "", 
-      "code": "fis_spc4", 
-      "name": "Species 4", 
-      "verbose_name": "Species 4 - 00004", 
-      "method": "Fishery"
-    }
-  }, 
-  {
-    "pk": "fis-spc5", 
-    "model": "gwst_app.resource", 
-    "fields": {
-      "shape_color": "FFFF00", 
-      "select_description": "", 
-      "code": "fis_spc5", 
-      "name": "Species 5", 
-      "verbose_name": "Species 5 - 00005", 
+      "code": "fis_rckf", 
+      "name": "Rockfish", 
+      "verbose_name": "Rockfish", 
       "method": "Fishery"
     }
   }, 
@@ -187,11 +175,10 @@
       "shape_name_plural": "fishing grounds", 
       "interview": 7, 
       "resources": [
-        "fis-spc1", 
-        "fis-spc2", 
-        "fis-spc3", 
-        "fis-spc4", 
-        "fis-spc5"
+        "fis-bass", 
+        "fis-rckf", 
+        "fis-trt", 
+        "fis-tuna"
       ], 
       "independent": false, 
       "resource_name": "species", 
@@ -249,11 +236,10 @@
       "shape_name_plural": "fishing grounds", 
       "interview": 7, 
       "resources": [
-        "fis-spc1", 
-        "fis-spc2", 
-        "fis-spc3", 
-        "fis-spc4", 
-        "fis-spc5"
+        "fis-bass", 
+        "fis-rckf", 
+        "fis-trt", 
+        "fis-tuna"
       ], 
       "independent": false, 
       "resource_name": "species", 
@@ -283,11 +269,10 @@
       "shape_name_plural": "fishing grounds", 
       "interview": 7, 
       "resources": [
-        "fis-spc1", 
-        "fis-spc2", 
-        "fis-spc3", 
-        "fis-spc4", 
-        "fis-spc5"
+        "fis-bass", 
+        "fis-rckf", 
+        "fis-trt", 
+        "fis-tuna"
       ], 
       "independent": false, 
       "resource_name": "species", 
@@ -1613,7 +1598,7 @@
       "all_resources": false, 
       "code": "ts-trppurp", 
       "layout": null, 
-      "eng_text": "Did you make this trip <u>primarily</u> to go fishing", 
+      "eng_text": "Did you make this trip PRIMARILY to go fishing", 
       "int_group": 20, 
       "question_set": 1, 
       "display_order": 60.0, 
