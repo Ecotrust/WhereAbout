@@ -294,18 +294,18 @@
       "code": "ttfs-map", 
       "is_user_group": false, 
       "select_resource_text": "", 
-      "resource_action": "target", 
+      "resource_action": "do", 
       "default_pct_involvement": 85, 
       "question_width": 275, 
-      "shape_name": "fishing ground", 
-      "resource_name_plural": "species", 
-      "shape_name_plural": "fishing grounds", 
+      "shape_name": "area", 
+      "resource_name_plural": "activities", 
+      "shape_name_plural": "areas", 
       "interview": 7, 
       "resources": [
         "recfishing_act"
       ], 
       "independent": false, 
-      "resource_name": "species", 
+      "resource_name": "activity", 
       "description": "Map Areas", 
       "required_group": false, 
       "preselect": true, 
@@ -313,7 +313,7 @@
       "member_title": "Angler", 
       "page_template": "base_form.html", 
       "name": "Map Areas", 
-      "resource_action_past_tense": "targeted"
+      "resource_action_past_tense": "done"
     }
   }, 
   {
