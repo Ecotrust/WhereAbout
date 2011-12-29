@@ -136,6 +136,7 @@ class InterviewGroupMembership(Model):
     opt_out = BooleanField( default=False )
     objects = InterviewGroupMembershipManager()   
     order = IntegerField( blank=True, null=True)
+    is_current = BooleanField( default=False )
  
     class Meta:
         db_table = u'gwst_groupmemb'

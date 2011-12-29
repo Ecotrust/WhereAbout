@@ -454,9 +454,16 @@ def group_status(request):
 
     # if user has finalized each of their registered groups, let them finalize their interview
     finalized_groups = InterviewGroupMembership.objects.filter(Q(status='finalized') | Q(status='skipped')).filter(user=request.session['interviewee'], int_group__in=int_groups)
-    allow_finalize = qs.count() == finalized_groups.count()
+    allow_finalize = check_req_groups(qs.filter(int_group__required_group = True))
 
     return render_to_response( 'group_status.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'result':result, 'allow_finalize':allow_finalize, 'num_shapes':num_shapes, 'res_q_count':res_q_count, 'draw_res_count':draw_res_count}))
+    
+def check_req_groups(memberships):
+    all_complete = True
+    for membership in memberships:
+        if membership.status != 'finalized':
+            all_complete = False
+    return all_complete
     
 @login_required    
 def view_answers(request,group_id):
@@ -927,7 +934,6 @@ def finalize_group(request,id):
     # make sure the user has a valid session in-progress
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
-        
         status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
         status = status_object_qs[0]
@@ -935,12 +941,10 @@ def finalize_group(request,id):
     except Exception, e:
         return HttpResponseRedirect('/select_interview/')
 
- 
     # see if the interview has been marked complete
     if status.completed:
         # redirect to interview_complete
         return HttpResponseRedirect('/interview_complete/')
-        
         
     if request.method == 'GET':
         # update InterviewGroupMembership record
@@ -969,6 +973,7 @@ def finalize_group(request,id):
             update_memb = group_memb[0]
             update_memb.status = 'finalized'
             update_memb.date_completed = datetime.datetime.now()
+            update_memb.is_current = False
             update_memb.save()
 
             if id == main_group_id:
@@ -993,7 +998,6 @@ def skip_res_finalize_group(request,id):
     # make sure the user has a valid session in-progress
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
-        
         status_object_qs = InterviewStatus.objects.filter(interview=request.session['interview'], user=request.session['interviewee'])
 
         status = status_object_qs[0]
@@ -1001,7 +1005,6 @@ def skip_res_finalize_group(request,id):
     except Exception, e:
         return HttpResponseRedirect('/select_interview/')
 
- 
     # see if the interview has been marked complete
     if status.completed:
         # redirect to interview_complete
@@ -1032,6 +1035,7 @@ def skip_res_finalize_group(request,id):
             update_memb = group_memb[0]
             update_memb.status = 'finalized'
             update_memb.date_completed = datetime.datetime.now()
+            update_memb.is_current = False
             update_memb.save()
             
         else: #404
@@ -1068,8 +1072,13 @@ def unskip_group(request,id):
         
         if group_memb.count() == 1:
         
+            cur_group = InterviewGroupMembership.objects.get_current_group(request.session['interviewee'], request.session['interview'])
+            if cur_group != None:
+                cur_group.is_current = False
+                cur_group.save()
             update_memb = group_memb[0]
             update_memb.status = 'not yet started'
+            update_memb.is_current = True
             update_memb.save()
             
         else: #404
@@ -1106,8 +1115,14 @@ def unfinalize_group(request,id):
         
         if group_memb.count() == 1:
         
+            cur_group = InterviewGroupMembership.objects.get_current_group(request.session['interviewee'], request.session['interview'])
+            if cur_group != None:
+                cur_group.is_current = False
+                cur_group.save()
             update_memb = group_memb[0]
-            update_memb.status = 'in-progress'
+            if update_memb.status == 'finalized':
+                update_memb.status = 'in-progress'
+            update_memb.is_current = True
             update_memb.save()
             
         else: #404
@@ -1125,6 +1140,7 @@ def skip_group(request, id):
     group_memb = InterviewGroupMembership.objects.get(user=request.session['interviewee'], int_group=int_group)
     group_memb.opt_out = True
     group_memb.status = 'skipped'
+    group_memb.is_current = False
     group_memb.save()
     return HttpResponseRedirect('/group_status#main_menu')
         

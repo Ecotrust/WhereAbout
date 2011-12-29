@@ -122,6 +122,12 @@ function skip_res_verify(link) {
                     <li class='current-item'><a href="/finalize_group/{{r.group_memb.int_group.id}}/">Finalize this group</a></li>       
                 {% endif %}
             {% endifequal %}
+        {% else %}
+            {% ifnotequal r.group_memb.status "finalized" %}
+                {% ifnotequal r.group_memb.status "skipped" %}
+                    <li><a class='menu-disabled' href="/unfinalize_group/{{r.group_memb.int_group.id}}/">Open this group</a></li>
+                {% endifnotequal %}
+            {% endifnotequal %}
         {% endif %}
     {% endifequal %}
     </ul>
