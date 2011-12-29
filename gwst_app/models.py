@@ -33,29 +33,6 @@ class ClipRegion(Model):
     def __unicode__(self):
         return unicode('%s' % (self.name))   
 
-class CaCoastPlacemarks(Model):
-    pk_uid = IntegerField(primary_key = True)
-    name = CharField(max_length=25)
-    featuretyp = CharField(max_length=25)
-    county = CharField(max_length=25)
-    lat = FloatField()
-    long = FloatField()
-    site_group = CharField(max_length=35, blank = True, null=True)
-    the_geom = PointField(srid=3310)        
-    objects = GeoManager()
-    class Meta:
-        db_table = u'acc_pts'
-        
-class AbalonePunchCardSites(Model):
-    pk_uid = IntegerField(primary_key = True)
-    site = CharField(max_length=40)
-    county = CharField(max_length=25)
-    class Meta:
-        db_table = u'abalone_sites'
-        
-    def __unicode__(self):
-        return unicode('%s - %s' % (self.site, self.county))
-        
 class Resource(Model):
 
     MethodChoices = (
