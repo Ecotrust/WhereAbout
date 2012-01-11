@@ -28,6 +28,18 @@
         </p>
         {% endwith %}
         {% endif %}
+        {% ifequal forloop.counter 2 %}
+        <table><tr><td>
+        {% endifequal %}
+        {% ifequal forloop.counter 3 %}
+        </td><td>
+        {% endifequal %}
+        {% ifequal forloop.counter 4 %}
+        </td></tr><tr><td>
+        {% endifequal %}
+        {% ifequal forloop.counter 5 %}
+        </td><td>
+        {% endifequal %}
         <p><div class="fieldWrapper">
             {{ field.errors }}
             <table>
@@ -41,6 +53,9 @@
                 </tr>
             </table>
         </div></p>
+        {% ifequal forloop.counter 5 %}
+        </td></tr></table>
+        {% endifequal %}        
     {% endfor %}
    
    <p><input id="submit" type="submit" value="{{ value }}" />

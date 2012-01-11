@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block content %}
+{% if instructions %}
+<div style='width:600px'>{{ instructions.main|safe }}</div>
+{% endif %}
+   <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+   {{ form.non_field_errors }}
+   
+    {% for field in form %}
+    
+        {% ifequal forloop.counter 1 %}
+
+            <p><div class="fieldWrapper">
+                {{ field.errors }}
+                {% ifequal field.field.question.layout 'vertical' %}
+                    <table>
+                        <tr>
+                            <td>
+                                {{ field.label|safe }}:
+                            </td>
+                        </tr><tr>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% else %}
+                    <table>
+                        <tr>
+                            <td style='width:{{ q_width }}px'>
+                                {{ field.label|safe }}:
+                            </td>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% endifequal %}
+            </div></p>
+        {% endifequal %}
+        {% if forloop.counter > 1 %}
+            {% if forloop.counter < 11 %}
+                {% ifequal forloop.counter 2 %}
+                    <br />
+                    About your vessels:<br /><br />
+                    <table border="1">
+                        <tr align="center">
+                            <th>Vessel</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                        </tr>
+                        <tr><td><b>Name</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 5 %}
+                    </tr><tr><td><b>Length (ft)</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 8 %}
+                    </tr><tr><td><b>Passenger Capacity</b></td>
+                {% endifequal %}
+                <td><div class="fieldWrapper">{{ field }}</td>
+                {% ifequal forloop.counter 10 %}
+                        </tr>
+                    </table>
+                {% endifequal %}
+            {% endif %}
+        {% endif %}
+        {% if forloop.counter > 10 %}        
+            <p><div class="fieldWrapper">
+                {{ field.errors }}
+                {% ifequal field.field.question.layout 'vertical' %}
+                    <table>
+                        <tr>
+                            <td>
+                                {{ field.label|safe }}:
+                            </td>
+                        </tr><tr>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% else %}
+                    <table>
+                        <tr>
+                            <td style='width:{{ q_width }}px'>
+                                {{ field.label|safe }}:
+                            </td>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% endifequal %}
+            </div></p>
+        {% endif %}
+    {% endfor %}   
+   
+   <p><input id="submit" type="submit" value="{{ value }}" style="margin:15px"/>
+   {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+   </p>
+   </form>
+{% endblock %}
