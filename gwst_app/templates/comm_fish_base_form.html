@@ -65,7 +65,7 @@
                 {% endifequal %}
             {% endif %}    
         {% endif %}    
-        {% if forloop.counter < 17 %}    
+        {% if forloop.counter < 18 %}    
             {% if forloop.counter > 12 %}    
                 <p><div class="fieldWrapper">
                     {{ field.errors }}
@@ -96,9 +96,9 @@
                 </div></p>
             {% endif %}    
         {% endif %}
-        {% if forloop.counter < 32 %}    
-            {% if forloop.counter > 16 %} 
-                {% ifequal forloop.counter 17 %}
+        {% if forloop.counter < 33 %}    
+            {% if forloop.counter > 17 %} 
+                {% ifequal forloop.counter 18 %}
                     <br />
                     About your vessels:<br /><br />
                     <table border="1">
@@ -110,29 +110,29 @@
                         </tr>
                         <tr><td><b>Name</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 20 %}
+                {% ifequal forloop.counter 21 %}
                     </tr><tr><td><b>Federal Vessel ID</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 23 %}
+                {% ifequal forloop.counter 24 %}
                     </tr><tr><td><b>State ID</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 26 %}
+                {% ifequal forloop.counter 27 %}
                     </tr><tr><td><b>Length (ft)</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 29 %}
+                {% ifequal forloop.counter 30 %}
                     </tr><tr><td><b>Motor (HP)</b></td>
                 {% endifequal %}
                 <td><div class="fieldWrapper">{{ field }}</td>
-                {% ifequal forloop.counter 31 %}
+                {% ifequal forloop.counter 32 %}
                         </tr>
                     </table>
                 {% endifequal %}
 
             {% endif %}    
         {% endif %}
-        {% if forloop.counter < 38 %}    
-            {% if forloop.counter > 31 %}    
-                {% ifequal forloop.counter 32 %}
+        {% if forloop.counter < 39 %}    
+            {% if forloop.counter > 32 %}    
+                {% ifequal forloop.counter 33 %}
                     <br />
                     <b>Percentage</b> of <u>total gross fishing revenue</u> used for:<br /><br />
                     <table border="1">
@@ -144,21 +144,21 @@
                         </tr>
                         <tr><td><b>Overall Operating Costs</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 35 %}
+                {% ifequal forloop.counter 36 %}
                     </tr><tr><td><b>Urchin walk-on<br />
                         divers only</u>:<br />
                         Given to boat<br />
                         operating costs</b></td>
                 {% endifequal %}
                 <td><div class="fieldWrapper">{{ field }}</td>
-                {% ifequal forloop.counter 37 %}
+                {% ifequal forloop.counter 38 %}
                         </tr>
                     </table>
                 {% endifequal %}
 
             {% endif %}    
         {% endif %}
-        {% if forloop.counter > 37 %}        
+        {% if forloop.counter > 38 %}        
             <p><div class="fieldWrapper">
                 {{ field.errors }}
                 {% ifequal field.field.question.layout 'vertical' %}

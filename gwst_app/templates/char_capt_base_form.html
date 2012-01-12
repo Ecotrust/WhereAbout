@@ -11,7 +11,7 @@
    
     {% for field in form %}
     
-        {% ifequal forloop.counter 1 %}
+        {% if forloop.counter < 3 %}
 
             <p><div class="fieldWrapper">
                 {{ field.errors }}
@@ -40,10 +40,10 @@
                     </table>
                 {% endifequal %}
             </div></p>
-        {% endifequal %}
-        {% if forloop.counter > 1 %}
-            {% if forloop.counter < 11 %}
-                {% ifequal forloop.counter 2 %}
+        {% endif %}
+        {% if forloop.counter > 2 %}
+            {% if forloop.counter < 12 %}
+                {% ifequal forloop.counter 3 %}
                     <br />
                     About your vessels:<br /><br />
                     <table border="1">
@@ -55,20 +55,20 @@
                         </tr>
                         <tr><td><b>Name</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 5 %}
+                {% ifequal forloop.counter 6 %}
                     </tr><tr><td><b>Length (ft)</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 8 %}
+                {% ifequal forloop.counter 9 %}
                     </tr><tr><td><b>Passenger Capacity</b></td>
                 {% endifequal %}
                 <td><div class="fieldWrapper">{{ field }}</td>
-                {% ifequal forloop.counter 10 %}
+                {% ifequal forloop.counter 11 %}
                         </tr>
                     </table>
                 {% endifequal %}
             {% endif %}
         {% endif %}
-        {% if forloop.counter > 10 %}        
+        {% if forloop.counter > 11 %}        
             <p><div class="fieldWrapper">
                 {{ field.errors }}
                 {% ifequal field.field.question.layout 'vertical' %}
