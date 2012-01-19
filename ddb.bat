@@ -1,1 +1,1 @@
-dropdb -U postgres ccacm-comm-charter-survey
+dropdb -U postgres scacm-comm-charter-survey

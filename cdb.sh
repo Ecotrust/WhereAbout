@@ -2,7 +2,7 @@
 
 export DJANGO_SETTINGS_MODULE=settings
 
-DB="ccac-comm-charter-survey"
+DB="scac-comm-charter-survey"
 
 export PYTHONPATH=$PYTHONPATH:/usr/local/django-trunk/:/usr/local/django-apps/:.
 

@@ -98,7 +98,7 @@ class InnoScript:
         #    print >> ofi, r'Name: "{group}\%s"; Filename: "{app}\%s"; WorkingDir: {app}' % \
         #          (self.name, path)       
         print >> ofi, 'Name: "{group}\%s"; Filename: "{app}\\run-desktop.bat"' % self.name		
-        print >> ofi, 'Name: "{group}\User Guide"; Filename: "{app}\site-media\README.doc"'		
+        print >> ofi, 'Name: "{group}\User Guide"; Filename: "{app}\media\README.doc"'		
         print >> ofi, 'Name: "{group}\Uninstall %s"; Filename: "{uninstallexe}"' % self.name
 
     def compile(self):
@@ -196,7 +196,7 @@ if django_admin_path:
     py2exe_data_files += add_path_tree( django_gis_path, 'templates', 'templates' )
 
     py2exe_data_files += add_path_tree( '', 'database', 'database' )
-    py2exe_data_files += add_path_tree( '', 'site-media', 'site-media' )
+    py2exe_data_files += add_path_tree( '', 'media', 'site-media' )
     py2exe_data_files += add_path_tree( '', 'lib', 'lib' )
     py2exe_data_files += add_path_tree( '', 'gwst_app/templates', 'gwst_app/templates' )
     py2exe_data_files += add_path_tree( '', 'registration_custom/templates', 'registration_custom/templates' )

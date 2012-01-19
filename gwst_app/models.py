@@ -24,8 +24,8 @@ class ClipRegion(Model):
     pk_uid = IntegerField(primary_key = True)
     name = models.TextField()
     feature = CharField( max_length=50 )
-    Geometry = PolygonField(srid=settings.SERVER_SRID) # for spatialite testing
-    # geom = MultiPolygonField(srid=settings.SERVER_SRID)
+    # Geometry = PolygonField(srid=settings.SERVER_SRID) # for spatialite testing
+    Geometry = MultiPolygonField(srid=settings.SERVER_SRID)
     objects = GeoManager()
     class Meta:
         db_table = u'gwst_region_clip'

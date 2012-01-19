@@ -1088,7 +1088,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     testShapeValidate: function() {
     
-        var test_poly_origin = new OpenLayers.Geometry.Point(-13704582,4246483);
+        var test_poly_origin = new OpenLayers.Geometry.Point(-13230629,3963316);
         var test_poly = OpenLayers.Geometry.Polygon.createRegularPolygon(test_poly_origin, 1, 3, 0);
     
         Ext.Ajax.request({
