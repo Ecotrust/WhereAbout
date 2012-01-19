@@ -2995,6 +2995,14 @@
     }
   },
   {
+    "pk": "79fbf4ee-4239-11e1-8588-001b21c231d0",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 450.0,
+      "eng_text": "I did not participate in this fishery/activity in previous seasons"
+    }
+  },
+  {
     "pk": "a1",
     "model": "gwst_app.questiongroupvalidator",
     "fields": {
@@ -9786,7 +9794,7 @@
         "44dd2e4f-833b-11e0-a4c2-0016760580f0",
         "48817e30-833b-11e0-a8ff-0016760580f0",
         "50eccc00-833b-11e0-bf4f-0016760580f0",
-        "5c9f7ca1-833b-11e0-9310-0016760580f0"
+        "79fbf4ee-4239-11e1-8588-001b21c231d0"
       ],
       "val_min": null,
       "val_default": "",

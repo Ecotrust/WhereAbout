@@ -1607,6 +1607,7 @@ def gen_validate_response(code, message, geom):
         'message':message,
         'geom':geom
     }
+
     return HttpResponse(geojson_encode(result))
 
 # Save a user-drawn shape.  Shape should already have been validated 
