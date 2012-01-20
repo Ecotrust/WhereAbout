@@ -178,7 +178,7 @@
       "shape_color": "FFFFFF",
       "code": "ttfs-discd",
       "is_user_group": false,
-      "select_resource_text": "",
+      "select_resource_text": "NOTE: Fish recorded on the Discard Form should not be recorded as Type 2 Catch on the Intercept form.",
       "resource_action": "target",
       "default_pct_involvement": 0,
       "question_width": 275,
@@ -240,7 +240,7 @@
       "shape_color": "FFFFFF",
       "code": "ttfs-avcat",
       "is_user_group": false,
-      "select_resource_text": "Select each species found in the catch:",
+      "select_resource_text": "Select each species found in the catch.\r\nINDIVIDUAL CATCH IN WHOLE FORM",
       "resource_action": "target",
       "default_pct_involvement": 90,
       "question_width": 330,
@@ -1140,6 +1140,14 @@
     }
   },
   {
+    "pk": "9b15d770-439a-11e1-af24-001b21c231d0",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 1530.0,
+      "eng_text": "Thrown back dead/ Plan to throw away (comment required)"
+    }
+  },
+  {
     "pk": "a1",
     "model": "gwst_app.questiongroupvalidator",
     "fields": {
@@ -1566,9 +1574,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": true,
-      "code": "td-lngths",
+      "code": "td-lngth",
       "layout": null,
-      "eng_text": "Lengths",
+      "eng_text": "Length (mm - total length of all fish caught)",
       "int_group": 19,
       "question_set": 2,
       "display_order": 130.0,
@@ -1577,8 +1585,77 @@
       "options": [],
       "val_min": null,
       "val_default": "",
+      "answer_type": "decimal",
+      "eng_tooltip": "",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 408,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": true,
+      "code": "td-disp",
+      "layout": null,
+      "eng_text": "Disposition method (how did/will you discard the majority of this species)",
+      "int_group": 19,
+      "question_set": 2,
+      "display_order": 140.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9b15d770-439a-11e1-af24-001b21c231d0",
+        "de6ba011-2bf6-11e1-85fa-0016760580f0"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "radio",
+      "eng_tooltip": "",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 409,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": true,
+      "code": "td-dispcom",
+      "layout": null,
+      "eng_text": "Comments",
+      "int_group": 19,
+      "question_set": 2,
+      "display_order": 150.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
       "answer_type": "textarea",
-      "eng_tooltip": "maintain order, separate with DASHES",
+      "eng_tooltip": "",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 410,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": true,
+      "code": "td-observ",
+      "layout": null,
+      "eng_text": "Observed",
+      "int_group": 19,
+      "question_set": 2,
+      "display_order": 160.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "a28",
+        "a29"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "radio",
+      "eng_tooltip": "",
       "val_max": null
     }
   },
@@ -1636,7 +1713,7 @@
       "all_resources": false,
       "code": "ts-ntawyct",
       "layout": "vertical",
-      "eng_text": "If \"longer\", how many nights will you be away from your residence on this trip",
+      "eng_text": "a. If \"longer\", how many nights will you be away from your residence on this trip",
       "int_group": 20,
       "question_set": 1,
       "display_order": 20.0,
@@ -1681,7 +1758,7 @@
       "all_resources": false,
       "code": "ts-dayfish",
       "layout": null,
-      "eng_text": "How many days of this trip will you go fishing",
+      "eng_text": "b. How many days of this trip will you go fishing",
       "int_group": 20,
       "question_set": 1,
       "display_order": 40.0,
@@ -1726,7 +1803,7 @@
       "all_resources": false,
       "code": "ts-trppurp",
       "layout": null,
-      "eng_text": "Did you make this trip PRIMARILY to go fishing",
+      "eng_text": "c. Did you make this trip PRIMARILY to go fishing",
       "int_group": 20,
       "question_set": 1,
       "display_order": 60.0,
@@ -2710,7 +2787,7 @@
       "all_resources": false,
       "code": "ac-whocght",
       "layout": null,
-      "eng_text": "Did you catch these yourself or did someone else catch some of them",
+      "eng_text": "a. Did you catch these yourself or did someone else catch some of them",
       "int_group": 21,
       "question_set": 1,
       "display_order": 230.0,
@@ -2735,7 +2812,7 @@
       "all_resources": false,
       "code": "ac-separat",
       "layout": null,
-      "eng_text": "Can you separate out your individual catch",
+      "eng_text": "b. Can you separate out your individual catch",
       "int_group": 21,
       "question_set": 1,
       "display_order": 240.0,
@@ -2760,7 +2837,7 @@
       "all_resources": false,
       "code": "ac-ctangca",
       "layout": null,
-      "eng_text": "How many anglers including yourself have their catch here",
+      "eng_text": "c. How many anglers including yourself have their catch here",
       "int_group": 21,
       "question_set": 1,
       "display_order": 250.0,
@@ -2775,13 +2852,36 @@
     }
   },
   {
+    "pk": 407,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "ac-ctangap",
+      "layout": null,
+      "eng_text": "&nbsp;",
+      "int_group": 21,
+      "question_set": 1,
+      "display_order": 260.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "aa0ac540-2bf5-11e1-b9bd-0016760580f0"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "checkbox",
+      "eng_tooltip": "",
+      "val_max": null
+    }
+  },
+  {
     "pk": 349,
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
       "code": "ac-look",
       "layout": null,
-      "eng_text": "May I look at your fish",
+      "eng_text": "d. May I look at your fish",
       "int_group": 21,
       "question_set": 2,
       "display_order": 10.0,
@@ -2826,7 +2926,7 @@
       "all_resources": true,
       "code": "ac-length",
       "layout": null,
-      "eng_text": "Length (mm)",
+      "eng_text": "Length (mm - include total length of all fish caught)",
       "int_group": 21,
       "question_set": 3,
       "display_order": 120.0,
@@ -2837,7 +2937,7 @@
       "val_default": "",
       "answer_type": "integer",
       "eng_tooltip": "",
-      "val_max": 9999.0
+      "val_max": null
     }
   },
   {
@@ -2847,7 +2947,7 @@
       "all_resources": true,
       "code": "ac-weight",
       "layout": null,
-      "eng_text": "Weight (kg)",
+      "eng_text": "Weight (kg - include total weight of all fish caught)",
       "int_group": 21,
       "question_set": 3,
       "display_order": 130.0,
@@ -2868,7 +2968,7 @@
       "all_resources": true,
       "code": "ac-disp",
       "layout": null,
-      "eng_text": "Disposition method",
+      "eng_text": "Disposition method (what do you do with the majority of this species)",
       "int_group": 21,
       "question_set": 3,
       "display_order": 140.0,
@@ -2886,27 +2986,6 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "select",
-      "eng_tooltip": "",
-      "val_max": null
-    }
-  },
-  {
-    "pk": 350,
-    "model": "gwst_app.interviewquestion",
-    "fields": {
-      "all_resources": true,
-      "code": "ac-usemaj",
-      "layout": null,
-      "eng_text": "What do you do with the majority of this species",
-      "int_group": 21,
-      "question_set": 3,
-      "display_order": 150.0,
-      "required": false,
-      "question_group": null,
-      "options": [],
-      "val_min": null,
-      "val_default": "",
-      "answer_type": "text",
       "eng_tooltip": "",
       "val_max": null
     }

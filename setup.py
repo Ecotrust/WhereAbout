@@ -3,27 +3,27 @@ import py2exe
 import os, sys
 
 #Build tree of files given a dir (for appending to py2exe data_files)
-def add_path_tree( base_path, path, skip_dirs=[ '.svn', '.git'  ]):
-	  path = os.path.join( base_path, path )
-	  partial_data_files = []
-	  for root, dirs, files in os.walk( os.path.join( path )):
-	    sample_list = []
-	    for skip_dir in skip_dirs:
-	      if skip_dir in dirs:
-	        dirs.remove( skip_dir )
-	    if files:
-	      for filename in files:
-	        sample_list.append( os.path.join( root, filename ))
-	    if sample_list:
-	      partial_data_files.append((
-	        root.replace(
-	          base_path + os.sep if base_path else '',
-	          '',
-	          1
-	        ),
-	        sample_list
-	      ))
-	  return partial_data_files
+def add_path_tree( base_path, source_path, target_path, skip_dirs=[ '.svn', '.git'  ]):
+    path = os.path.join( base_path, source_path )
+    partial_data_files = []
+    for root, dirs, files in os.walk( os.path.join( path )):
+      sample_list = []
+      for skip_dir in skip_dirs:
+        if skip_dir in dirs:
+          dirs.remove( skip_dir )
+      if files:
+        for filename in files:
+          sample_list.append( os.path.join( root, filename ))
+      if sample_list:
+        partial_data_files.append((
+          root.replace(
+            path if path else '',
+            target_path if target_path else '',
+            1
+          ),
+          sample_list
+        ))
+    return partial_data_files
 
 	
 ################################################################
@@ -35,7 +35,7 @@ class InnoScript:
                  dist_dir,
                  windows_exe_files = [],
                  lib_files = [],
-                 version = "0.02"):
+                 version = "0.05"):
         self.lib_dir = lib_dir
         self.dist_dir = dist_dir
         if not self.dist_dir[-1] in "\\/":
@@ -164,38 +164,46 @@ django_admin_path = None
 for django_path in os.environ[ 'PYTHONPATH' ].split( ';' ):
     # does lib/site-packages/django exist?
     if os.path.exists( os.path.normpath( django_path + '/lib/site-packages/django/' )):
+        django_admin_static_path = os.path.normpath( django_path + '/lib/site-packages/django/contrib/admin/static/' )
         django_admin_path = os.path.normpath( django_path + '/lib/site-packages/django/contrib/admin/' )
         django_gis_path = os.path.normpath( django_path + '/lib/site-packages/django/contrib/gis/' )
         break
         
     # does django/contrib directory exist?
     if os.path.exists( os.path.normpath( django_path + '/django/contrib/' )):
+        django_admin_static_path = os.path.normpath( django_path + '/django/contrib/admin/static/' )
         django_admin_path = os.path.normpath( django_path + '/django/contrib/admin/' )
         django_gis_path = os.path.normpath( django_path + '/django/contrib/gis/' )
         break
 
     # does contrib directory exist?
     if os.path.exists( os.path.normpath( django_path + '/contrib/' )):
+        django_admin_static_path = os.path.normpath( django_path + '/contrib/admin/static/' )
         django_admin_path = os.path.normpath( django_path + '/contrib/admin/' )
         django_gis_path = os.path.normpath( django_path + '/contrib/gis/' )
         break
         
 if django_admin_path:
     
+    #New Django has moved the media files into admin/static/admin. If old Django, ignore.
+    if not django_admin_static_path:
+        django_admin_static_path = django_admin_path
+    
     py2exe_data_files = [(".",["run-desktop.bat","path_test.bat"])]
 
-    py2exe_data_files += add_path_tree( django_admin_path, 'templates' )
-    py2exe_data_files += add_path_tree( django_admin_path, 'media' )
-    py2exe_data_files += add_path_tree( django_gis_path, 'templates' )
+    py2exe_data_files += add_path_tree( django_admin_path, 'templates', 'templates' )
+    py2exe_data_files += add_path_tree( django_admin_static_path, 'admin', 'admin-media' )
+    py2exe_data_files += add_path_tree( django_gis_path, 'templates', 'templates' )
 
-    py2exe_data_files += add_path_tree( '', 'database' )
-    py2exe_data_files += add_path_tree( '', 'site-media' )
-    py2exe_data_files += add_path_tree( '', 'lib' )
-    py2exe_data_files += add_path_tree( '', 'gwst_app/templates' )
-    py2exe_data_files += add_path_tree( '', 'registration_custom/templates' )
-    py2exe_data_files += add_path_tree( '', 'admin_utils/templates' )
-    py2exe_data_files += add_path_tree( '', 'tiles' )
-    py2exe_data_files += add_path_tree( '', 'gdal_data' )
+    py2exe_data_files += add_path_tree( '', 'database', 'database' )
+    py2exe_data_files += add_path_tree( '', 'site-media', 'site-media' )
+    py2exe_data_files += add_path_tree( '', 'lib', 'lib' )
+    py2exe_data_files += add_path_tree( '', 'gwst_app/templates', 'gwst_app/templates' )
+    py2exe_data_files += add_path_tree( '', 'registration_custom/templates', 'registration_custom/templates' )
+    py2exe_data_files += add_path_tree( '', 'admin_utils/templates', 'admin_utils/templates' )
+    py2exe_data_files += add_path_tree( '', 'tiles', 'tiles' )
+    py2exe_data_files += add_path_tree( '', 'gdal_data', 'gdal_data' )
+    #py2exe_data_files += add_path_tree( '', 'install-media' )
 
     setup(
         options = {"py2exe": {"compressed": False,

@@ -42,11 +42,18 @@
             {% else %}
                 <table>
                     <tr>
+                    {% ifequal forloop.counter 6 %}
+                        <td style='width:{{ q_width }}px; margin-top: -15px;'>
+                        </td>
+                        <td style='padding-top:0'>
+                            {{ field }}
+                    {% else %}
                         <td style='width:{{ q_width }}px'>
                             {{ field.label|safe }}:
                         </td>
                         <td>
                             {{ field }}
+                    {% endifequal %}
                         </td>
                     </tr>
                 </table>
@@ -58,7 +65,11 @@
         {% ifequal forloop.counter 2 %}
             <table style="margin-top: -20px; margin-bottom: 20px;"><tr><td style="width: 50px;"></td><td>If fish are on another form, skip to discard section.</td></tr></table>
         {% endifequal %}
-        {% ifequal forloop.counter 6 %}
+        {% ifequal forloop.counter 3 %}
+            <table style="margin-top: -40px;"><tr><td style="width: 20px;"></td><td>If all caught by angler, code b & c as "Not applicable".<br />If not applicable, skip to next page.</td></tr></table>
+        {% endifequal %}
+        {% ifequal forloop.counter 7 %}
+            <table style="margin-top: -40px;"><tr><td style="width: 20px;"></td><td>If no, skip to "Map Areas" section</td></tr></table>
             </div>
         {% endifequal %}
     {% endfor %}   

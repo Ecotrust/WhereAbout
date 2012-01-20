@@ -28,7 +28,7 @@
                 <div class="conditional">
                 <h4>Answer these questions if angler answered "Longer"</h4>
             {% endifequal %}
-            {% ifequal forloop.counter 6 %}   
+            {% ifequal forloop.counter 7 %}   
                 </div>
                 <br />
             {% endifequal %}
@@ -96,6 +96,9 @@
                         {% endifequal %}
                     {% endifequal %}
                 {% endifequal %}
+                {% ifequal forloop.counter 1 %}
+                    <table style="margin-top: -40px;"><tr><td style="width: 20px;"></td><td>If answer is "One day", code a, b, and c and "Don't Know/Not Applicable".</td></tr></table>
+                {% endifequal %}
             {% endifequal %}
             {{ question.errors }}
         {% else %}
@@ -111,7 +114,7 @@
                             <table border="1">
                                 <tr>
                                     <th><b>Type of Expenditure</b></th>
-                                    <th><b>Expenditure Amount</b></th>
+                                    <th style="width:150px;"><b>Expenditure Amount</b></th>
                                     <th><b># You Paid For</b></th>
                                 </tr>
                 {% endifequal %}

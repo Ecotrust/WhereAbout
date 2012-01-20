@@ -1018,6 +1018,32 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 
         this.loadResourceStore(gwst.settings.group.sel_resources);
         this.loadUnfinishedResource();
+        this.testShapeValidate();
+    },
+    
+    testShapeValidate: function() {
+    
+        var test_poly_origin = new OpenLayers.Geometry.Point(0,0);
+        var test_poly = OpenLayers.Geometry.Polygon.createRegularPolygon(test_poly_origin, 1, 3, 0);
+    
+        Ext.Ajax.request({
+	        url: gwst.settings.urls.shape_validate,
+	        method: 'POST',
+	        disableCachingParam: true,
+	        params: { 
+	            geometry : test_poly.toString(),
+	            resource : gwst.settings.survey_group_id+'-'+ gwst.settings.resourceStore.getAt(0).get('id')
+	        },
+	        success: this.finTestShapeValidate,
+           	failure: function(response, opts) {
+        		this.finTestShapeValidate();
+           	},
+            scope: this
+	    });
+    },
+    
+    finTestShapeValidate: function(response, opts) {
+    
         this.fireEvent('settings-loaded');      
     },
     
