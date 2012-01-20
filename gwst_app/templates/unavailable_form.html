@@ -10,11 +10,6 @@
    {{ form.non_field_errors }}
    
     {% for field in form %}
-        {% ifequal forloop.counter 9 %}
-            </div>
-            <div class="conditional">
-            <h4>If fishing took place on a vessel:</h4>
-        {% endifequal %}
         {% if field.field.question_set %}
             {% with field.field.question_set as index %}
                 <p><div class="question_set"></div>
@@ -53,9 +48,10 @@
                 </table>
             {% endifequal %}
         </div></p>
-        {% ifequal forloop.counter 10 %}
-            <p><b>Note: This question <u>must</u> be completed for <u>all</u> charter and head boat interviews</b></p>
-            </div>
+        {% ifequal forloop.counter 3 %}
+            <table style="margin-top: -30px;"><tr><td style="width: 20px;"></td><td>For example, any that you may have thrown back or used for bait?<br />
+            IF YES, ANSWER THE FOLLOWING QUESTIONS FOR THIS INDIVIDUAL ANGLER, NOT GROUP CATCH.<br />
+            NOTE: FILLETS ARE UNAVAILABLE CATCH.</td></tr></table>
         {% endifequal %}
     {% endfor %}   
    

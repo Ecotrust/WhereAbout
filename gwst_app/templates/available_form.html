@@ -52,6 +52,12 @@
                 </table>
             {% endifequal %}
         </div></p>
+        {% ifequal forloop.counter 1 %}
+            <table style="margin-top: -40px;"><tr><td style="width: 20px;"></td><td>If no, skip to next page.</td></tr></table>
+        {% endifequal %}
+        {% ifequal forloop.counter 2 %}
+            <table style="margin-top: -20px; margin-bottom: 20px;"><tr><td style="width: 50px;"></td><td>If fish are on another form, skip to discard section.</td></tr></table>
+        {% endifequal %}
         {% ifequal forloop.counter 6 %}
             </div>
         {% endifequal %}
