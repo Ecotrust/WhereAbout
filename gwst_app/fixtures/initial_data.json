@@ -240,7 +240,7 @@
       "shape_color": "FFFFFF",
       "code": "ttfs-avcat",
       "is_user_group": false,
-      "select_resource_text": "Select each species found in the catch.\r\nINDIVIDUAL CATCH IN WHOLE FORM",
+      "select_resource_text": "Select each species found in the catch.<br />\r\nINDIVIDUAL CATCH IN WHOLE FORM",
       "resource_action": "target",
       "default_pct_involvement": 90,
       "question_width": 330,
@@ -1446,7 +1446,7 @@
       "all_resources": false,
       "code": "ac-1stint",
       "layout": null,
-      "eng_text": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If \"no\", what was the interviewer, date, and <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;interviewer, date, and assignment # of first interview for fishing party",
+      "eng_text": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If \"no\", what was the interviewer, date, and <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;interviewer, date, and assignment # of first<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;interview for fishing party",
       "int_group": 18,
       "question_set": 1,
       "display_order": 270.0,
@@ -1615,27 +1615,6 @@
     }
   },
   {
-    "pk": 409,
-    "model": "gwst_app.interviewquestion",
-    "fields": {
-      "all_resources": true,
-      "code": "td-dispcom",
-      "layout": null,
-      "eng_text": "Comments",
-      "int_group": 19,
-      "question_set": 2,
-      "display_order": 150.0,
-      "required": false,
-      "question_group": null,
-      "options": [],
-      "val_min": null,
-      "val_default": "",
-      "answer_type": "textarea",
-      "eng_tooltip": "",
-      "val_max": null
-    }
-  },
-  {
     "pk": 410,
     "model": "gwst_app.interviewquestion",
     "fields": {
@@ -1645,7 +1624,7 @@
       "eng_text": "Observed",
       "int_group": 19,
       "question_set": 2,
-      "display_order": 160.0,
+      "display_order": 150.0,
       "required": false,
       "question_group": null,
       "options": [
@@ -1655,6 +1634,27 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "radio",
+      "eng_tooltip": "",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 409,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": true,
+      "code": "td-dispcom",
+      "layout": null,
+      "eng_text": "Comments",
+      "int_group": 19,
+      "question_set": 2,
+      "display_order": 160.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
       "eng_tooltip": "",
       "val_max": null
     }
