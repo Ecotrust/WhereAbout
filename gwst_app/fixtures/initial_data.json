@@ -1446,7 +1446,7 @@
       "all_resources": false,
       "code": "ac-1stint",
       "layout": null,
-      "eng_text": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If \"no\", what was the interviewer, date, and <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assignment # of first interview for fishing party",
+      "eng_text": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If \"no\", what was the interviewer, date, and <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;interviewer, date, and assignment # of first interview for fishing party",
       "int_group": 18,
       "question_set": 1,
       "display_order": 270.0,

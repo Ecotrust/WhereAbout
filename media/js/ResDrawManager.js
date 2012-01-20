@@ -1036,7 +1036,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 	        },
 	        success: this.finTestShapeValidate,
            	failure: function(response, opts) {
-        		this.finTestShapeValidate();
+        		this.finTestShapeValidate(response, opts);
            	},
             scope: this
 	    });

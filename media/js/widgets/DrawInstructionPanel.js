@@ -29,7 +29,7 @@ gwst.widgets.DrawInstructionPanel = Ext.extend(Ext.Panel, {
             },{
                 html: '<img src="/site-media/images/draw_1.png">'
             },{
-                html: '<p>c. Move mouse and click to create a second point.</p>'
+                html: '<p>c. Click elsewhere on the map to create a second point.</p>'
             },{
                 html: '<img src="/site-media/images/draw_2.png">'
             },{
