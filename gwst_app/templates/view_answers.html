@@ -9,7 +9,7 @@
                 <table>
                     <tr>
                         <td style='width:{{ q_width }}px; padding-right:20px'>
-                            {{ question.eng_text }}:
+                            {{ question.eng_text|safe }}:
                         </td>
                         <td style='width:150px; vertical-align:bottom' >
                             {{ answer.text_val }}

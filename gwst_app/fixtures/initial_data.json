@@ -1446,7 +1446,7 @@
       "all_resources": false,
       "code": "ac-1stint",
       "layout": null,
-      "eng_text": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If \"no\", what was the interviewer, date, and <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;interviewer, date, and assignment # of first<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;interview for fishing party",
+      "eng_text": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If \"no\", what was the intercept # and <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assignment # of first interview for fishing party",
       "int_group": 18,
       "question_set": 1,
       "display_order": 270.0,
@@ -2766,7 +2766,7 @@
       "all_resources": false,
       "code": "ac-seeothf",
       "layout": null,
-      "eng_text": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If fish are on another angler's form, which <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;interviewer, date, and assignment # was it",
+      "eng_text": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If fish are on another angler's form, which <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;intercept # and assignment # was it",
       "int_group": 21,
       "question_set": 1,
       "display_order": 220.0,
@@ -2775,7 +2775,7 @@
       "options": [],
       "val_min": null,
       "val_default": "",
-      "answer_type": "text",
+      "answer_type": "textarea",
       "eng_tooltip": "",
       "val_max": null
     }
