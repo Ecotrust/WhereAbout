@@ -1549,27 +1549,6 @@
     }
   },
   {
-    "pk": 321,
-    "model": "gwst_app.interviewquestion",
-    "fields": {
-      "all_resources": false,
-      "code": "td-total",
-      "layout": null,
-      "eng_text": "How many fish did you catch total",
-      "int_group": 19,
-      "question_set": 1,
-      "display_order": 30.0,
-      "required": false,
-      "question_group": null,
-      "options": [],
-      "val_min": 0.0,
-      "val_default": "",
-      "answer_type": "integer",
-      "eng_tooltip": "",
-      "val_max": null
-    }
-  },
-  {
     "pk": 324,
     "model": "gwst_app.interviewquestion",
     "fields": {
@@ -2968,7 +2947,7 @@
       "all_resources": true,
       "code": "ac-disp",
       "layout": null,
-      "eng_text": "Disposition method (what do you do with the majority of this species)",
+      "eng_text": "Disposition method (what do you plan to do with the majority of this species)",
       "int_group": 21,
       "question_set": 3,
       "display_order": 140.0,
@@ -3018,7 +2997,7 @@
       "all_resources": false,
       "code": "un-hbride",
       "layout": null,
-      "eng_text": "Was this a Head Boat ride",
+      "eng_text": "Was this a Head Boat ride-along",
       "int_group": 22,
       "question_set": 1,
       "display_order": 10.0,

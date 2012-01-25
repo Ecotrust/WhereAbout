@@ -97,7 +97,7 @@
                     {% endifequal %}
                 {% endifequal %}
                 {% ifequal forloop.counter 1 %}
-                    <table style="margin-top: -40px;"><tr><td style="width: 20px;"></td><td>If answer is "One day", code a, b, and c and "Don't Know/Not Applicable".</td></tr></table>
+                    <table style="margin-top: -40px;"><tr><td style="width: 20px;"></td><td class="skip-note">If answer is "One day", code a, b, and c and "Don't Know/Not Applicable".</td></tr></table>
                 {% endifequal %}
             {% endifequal %}
             {{ question.errors }}

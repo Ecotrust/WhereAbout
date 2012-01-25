@@ -250,6 +250,10 @@ td.soceconAnswer {
     width: 115px;
 }
 
+td.skip-note {
+    border: medium solid black;
+}
+
 th {
     text-align: left;
     font-size: 12px;
