@@ -976,6 +976,14 @@ def finalize_group(request,id):
         main_group_id = '14'
         f_name_id = 219
         l_name_id = 220
+    if (cur_interview.id == 7):     #South Coast charter survey
+        main_group_id = '17'
+        f_name_id = 115
+        l_name_id = 116
+    if (cur_interview.id == 8):     #South Coast commercial survey
+        main_group_id = '20'
+        f_name_id = 115
+        l_name_id = 116
 
     # make sure the user has a valid session in-progress
     try:

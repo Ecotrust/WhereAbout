@@ -212,11 +212,11 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             
         }
 
-        this.mpa_ncc = new OpenLayers.Layer.Vector("NCC MPAs", {
+        this.mpa_ccac = new OpenLayers.Layer.Vector("Central Coast MPAs", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/ncc_mpa_existing_all.kml",
+                url: "/site-media/kml/CC_existing_mpas.kml",
                 format: new OpenLayers.Format.KML({
                     extractStyles: true, 
                     extractAttributes: true,
@@ -225,18 +225,18 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             })
         });
         
-        this.mpa_ncc.events.on({
+        this.mpa_ccac.events.on({
             "featureselected": this.onFeatureSelect,
             "featureunselected": this.onFeatureUnselect
         });
         
-        this.layer_array[this.layer_array.length] = this.mpa_ncc;
+        this.layer_array[this.layer_array.length] = this.mpa_ccac;
         
         this.mpa_smr = new OpenLayers.Layer.Vector("State Marine Reserves", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/CC_existing_SMR_mpas.kml",
+                url: "/site-media/kml/SC_existing_SMR_mpas.kml",
                 format: new OpenLayers.Format.KML({
                     extractStyles: true, 
                     extractAttributes: true,
@@ -256,7 +256,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/CC_existing_SMCA_mpas.kml",
+                url: "/site-media/kml/SC_existing_SMCA_mpas.kml",
                 format: new OpenLayers.Format.KML({
                     extractStyles: true, 
                     extractAttributes: true,
@@ -272,11 +272,11 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         
         this.layer_array[this.layer_array.length] = this.mpa_smca;
         
-        this.mpa_smrma = new OpenLayers.Layer.Vector("State Marine Recreational Management Area", {
+        this.mpa_smrma = new OpenLayers.Layer.Vector("State Marine Rec. Mgmt. Areas", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/CC_existing_SMRMA_mpas.kml",
+                url: "/site-media/kml/SC_existing_SMRMA_mpas.kml",
                 format: new OpenLayers.Format.KML({
                     extractStyles: true, 
                     extractAttributes: true,
@@ -291,6 +291,26 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         });
         
         this.layer_array[this.layer_array.length] = this.mpa_smrma;
+        
+        this.mpa_spcl = new OpenLayers.Layer.Vector("Special Closures", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/SC_existing_SP_CL_mpas.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.mpa_spcl.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.layer_array[this.layer_array.length] = this.mpa_spcl;
 
         this.vecLayer = new OpenLayers.Layer.Vector('Target Areas',{
             styleMap: myStyle
@@ -335,7 +355,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
        	map.addControl(this.drawResControl);
         map.addLayers(this.layer_array);
         
-        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.mpa_smr, this.mpa_smca, this.mpa_smrma]);
+        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.mpa_smr, this.mpa_smca, this.mpa_smrma, this.mpa_spcl]);
         map.addControl(this.selectControl);
         this.selectControl.activate();
 
