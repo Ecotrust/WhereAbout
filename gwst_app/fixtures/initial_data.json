@@ -1429,7 +1429,7 @@
       "user_draws_shapes": true,
       "interview": 7,
       "member_title": "Operator",
-      "page_template": "base_form.html",
+      "page_template": "sc_char_op_base_form.html",
       "resources": [
         "ab_fs",
         "albtuna_fs",
@@ -1501,7 +1501,7 @@
       "user_draws_shapes": false,
       "interview": 8,
       "member_title": "Owner",
-      "page_template": "base_form.html",
+      "page_template": "sc_comm_own_base_form.html",
       "resources": [],
       "description": "Owners only"
     }
@@ -1522,7 +1522,7 @@
       "user_draws_shapes": true,
       "interview": 8,
       "member_title": "Fisherman",
-      "page_template": "base_form.html",
+      "page_template": "sc_comm_fish_base_form.html",
       "resources": [
         "bonito_seine",
         "calhalibut_lngln",
@@ -10392,7 +10392,7 @@
     "pk": 544,
     "model": "gwst_app.interviewquestion",
     "fields": {
-      "all_resources": false,
+      "all_resources": true,
       "code": "sha_choth",
       "layout": null,
       "eng_text": "Were there any OTHER differences/changes the fisherman noticed that significantly affected their fishing or this activity in 2011",

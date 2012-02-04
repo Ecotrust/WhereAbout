@@ -26,7 +26,7 @@ import datetime
 def login(request, template_name='registration/login.html'):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/select_interview/')
-    if settings.DESKTOP_BUILD:   #For Desktop, we want to force user to log in through admin.
+    if not settings.FULL_ADMIN:   #For Desktop, we want to force user to log in through admin.
         return HttpResponseRedirect('/admin-lite-login/')
     else:
         return HttpResponseRedirect('/admin/')
@@ -34,7 +34,7 @@ def login(request, template_name='registration/login.html'):
     # return default_login(request, template_name)
 
 def logout(request, template_name='admin/logged_out.html'):
-    if settings.DESKTOP_BUILD:
+    if not settings.FULL_ADMIN:
         "Logs out the user and displays 'You are logged out' message."
         from django.contrib.auth import logout
         logout(request)
@@ -877,7 +877,7 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
                     return HttpResponseRedirect(next_url)
                 else:
                     return HttpResponseRedirect('/group_status#main_menu')
-    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':520}))
+    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':420}))
 
 @login_required
 def draw_group_resources(request, group_id):

@@ -7,7 +7,7 @@ Tools to be used for admin-lite. Desktop installs can use these shortcuts to mak
 and easier to use.
 """
 def create_superuser(username, email):
-    if settings.DESKTOP_BUILD:
+    if not settings.FULL_ADMIN:
         new_admin, created = User.objects.get_or_create(first_name = username, email = email, is_staff = True, is_active = True, is_superuser = True )
         if created:
             new_admin.username = new_admin.id
@@ -19,7 +19,7 @@ def create_superuser(username, email):
     return False
             
 def create_user():
-    if settings.DESKTOP_BUILD:
+    if not settings.FULL_ADMIN:
     
         users = User.objects.filter(is_staff = False, is_superuser = False)
         user_count = users.count()

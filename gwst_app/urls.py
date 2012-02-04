@@ -61,7 +61,7 @@ urlpatterns = patterns('',
     
 )
 
-if settings.DESKTOP_BUILD:
+if not settings.FULL_ADMIN:
     urlpatterns += patterns ( '',
         (r'^accounts/login_as/([A-Za-z0-9_-]+)$', login_as_admin ),
         (r'^admin/logout/$', logout ),

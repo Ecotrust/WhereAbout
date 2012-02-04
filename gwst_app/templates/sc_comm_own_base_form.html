@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block content %}
+{% if instructions %}
+<div style='width:600px'>{{ instructions.main|safe }}</div>
+{% endif %}
+   <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+   {{ form.non_field_errors }}
+   
+    {% for field in form %}
+    
+        {% if forloop.counter < 7 %}
+    
+            <!--
+            {% if field.field.question_set %}
+                {% with field.field.question_set as index %}
+                    <p><div class="question_set"></div>
+                    {% for key, val in instructions.items %}
+                        {% ifequal key index %}
+                            {{ val|safe }}
+                        {% endifequal %}
+                    {% endfor %}
+                    </p>
+                {% endwith %}
+            {% endif %}
+            -->
+
+            <p><div class="fieldWrapper">
+                {{ field.errors }}
+                {% ifequal field.field.question.layout 'vertical' %}
+                    <table>
+                        <tr>
+                            <td>
+                                {{ field.label|safe }}:
+                            </td>
+                        </tr><tr>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% else %}
+                    <table>
+                        <tr>
+                            <td style='width:{{ q_width }}px'>
+                                {{ field.label|safe }}:
+                            </td>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% endifequal %}
+            </div></p>
+        {% endif %}    
+        {% if forloop.counter < 25 %}    
+            {% if forloop.counter > 6 %} 
+                {% ifequal forloop.counter 7 %}
+                    <br />
+                    About your vessels:<br /><br />
+                    <table border="1">
+                        <tr align="center">
+                            <th>Vessel</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                        </tr>
+                        <tr><td><b>Name</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 10 %}
+                    </tr><tr><td><b>Captain</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 13 %}
+                    </tr><tr><td><b>Federal Vessel ID</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 16 %}
+                    </tr><tr><td><b>State ID</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 19 %}
+                    </tr><tr><td><b>Length (ft)</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 22 %}
+                    </tr><tr><td><b>Motor (HP)</b></td>
+                {% endifequal %}
+                <td><div class="fieldWrapper">{{ field }}</td>
+                {% ifequal forloop.counter 24 %}
+                        </tr>
+                    </table>
+                {% endifequal %}
+
+            {% endif %}    
+        {% endif %}
+        {% if forloop.counter < 34 %}    
+            {% if forloop.counter > 24 %}    
+                {% ifequal forloop.counter 25 %}
+                    <br />
+                    <b>Percentage</b> of <u>total gross fishing revenue</u> used for:<br /><br />
+                    <table border="1">
+                        <tr align="center">
+                            <th></th>
+                            <th>In 2011</th>
+                            <th>In 2008</th>
+                            <th>Reason (if there is a significant difference)</th>
+                        </tr>
+                        <tr><td><b>Fuel</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 28 %}
+                    </tr><tr><td><b>Crew/Labor</b><br />
+                        including hired<br />
+                        captain)</td>
+                {% endifequal %}
+                {% ifequal forloop.counter 31 %}
+                </tr><tr><td><b>All other<br />
+                        operating costs</b></td>
+                {% endifequal %}
+                <td><div class="fieldWrapper">{{ field }}</td>
+                {% ifequal forloop.counter 33 %}
+                        </tr>
+                    </table>
+                {% endifequal %}
+
+            {% endif %}    
+        {% endif %}
+        {% if forloop.counter > 33 %}        
+            <p><div class="fieldWrapper">
+                {{ field.errors }}
+                {% ifequal field.field.question.layout 'vertical' %}
+                    <table>
+                        <tr>
+                            <td>
+                                {{ field.label|safe }}:
+                            </td>
+                        </tr><tr>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% else %}
+                    <table>
+                        <tr>
+                            <td style='width:{{ q_width }}px'>
+                                {{ field.label|safe }}:
+                            </td>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% endifequal %}
+            </div></p>
+        {% endif %}
+    {% endfor %}   
+   
+   <p><input id="submit" type="submit" value="{{ value }}" style="margin:15px"/>
+   {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+   </p>
+   </form>
+{% endblock %}
