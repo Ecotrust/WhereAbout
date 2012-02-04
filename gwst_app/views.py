@@ -807,6 +807,7 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
     # error checks done, get on with it
     title = group.name + ' Resource Questions'
     instructions_qs = InterviewInstructions.objects.filter(int_group__pk=group_id).order_by('-question_set')
+    q_width = 420 #default q_width if not set later
     
     instructions = {}
     for instruct in instructions_qs:
@@ -835,6 +836,7 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
             return utils.JsonResponse(form.as_extjs())
         else:
             # show questions for this group, with any existing user answers
+            q_width = group.resource_question_width
             for sel_resource in sel_resources:
                 form = AnswerForm( questions, answers, group_id, sel_resource.resource.id)
                 forms[sel_resource.resource.verbose_name]=form
@@ -877,7 +879,8 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
                     return HttpResponseRedirect(next_url)
                 else:
                     return HttpResponseRedirect('/group_status#main_menu')
-    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':420}))
+    # return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':420}))
+    return render_to_response( group.resource_page_template, RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':q_width}))
 
 @login_required
 def draw_group_resources(request, group_id):
