@@ -1408,7 +1408,7 @@
       "user_draws_shapes": false,
       "interview": 7,
       "member_title": "Owner",
-      "page_template": "base_form.html",
+      "page_template": "sc_char_own_base_form.html",
       "resources": [],
       "description": "Owners only"
     }

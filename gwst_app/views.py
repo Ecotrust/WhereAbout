@@ -967,7 +967,7 @@ def penny_overview(request, group_id):
 def finalize_group(request,id):
 
     cur_interview = request.session['interview']
-    
+
     if (cur_interview.id == 5):     #commercial survey
         main_group_id = '11'
         f_name_id = 115
@@ -978,12 +978,12 @@ def finalize_group(request,id):
         l_name_id = 220
     if (cur_interview.id == 7):     #South Coast charter survey
         main_group_id = '17'
-        f_name_id = 115
-        l_name_id = 116
+        f_name_id = 416
+        l_name_id = 417
     if (cur_interview.id == 8):     #South Coast commercial survey
         main_group_id = '20'
-        f_name_id = 115
-        l_name_id = 116
+        f_name_id = 310
+        l_name_id = 311
 
     # make sure the user has a valid session in-progress
     try:
