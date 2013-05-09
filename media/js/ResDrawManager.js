@@ -39,8 +39,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     startInit: function(){
         this.createError();
-    	// this.on('settings-loaded', this.finInit, this);
-    	this.on('settings-loaded', this.loadCaCoastPlacemarks, this);
+    	this.on('settings-loaded', this.finInit, this);
     	this.on('shape-saved', this.startAnotherShapeStep, this);
         this.fetchSettings();
         this.loadWait('While the drawing tool loads');
@@ -59,7 +58,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /*load unfinished resource tool if there is one */
     startSplashStep: function() {
         if (this.curResource) {
-            gwst.settings.resource_days = this.getAnswer('day_specie', this.curResource.get('id'), this.getResDays);
             this.startUnfinishedResourceStartStep();
         } else {
             this.loadSplash();
@@ -69,7 +67,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     /* Finish splash and start resource selection */
     finSplashStep: function() {
     	this.startResSelStep();
-        this.startMPAQuestionsStep();
     },
     
     /******************** Unfinished Resource Start Step *******************/
@@ -95,33 +92,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     },
     
     /******************** Resource Selection Step *******************/
-    
-    /*
-     *  Setup MPA questions step 
-     */
-    startMPAQuestionsStep: function() {
-        // this.getQuestionForm(8, this.finGetMPAQuestionForm);
-        this.loadMPAQuestionPanel();
-    },
-    
-    /*
-     *  If user knows of specific MPAs, ask them which.  Else, move on to resource select. 
-     */
-    contMPAQuestionsStep: function() {
-        if (this.MPAQuestionPanel.question_panel.getForm().getFieldValues().question_91.length != 0 ) {
-            this.loadSpecificMPAQuestionPanel();
-        } else {
-            this.finMPAQuestionsStep();
-        }
-    },
-    
-    /*
-     *  cleanup MPA Questions and redirect to resource selection step 
-     */
-    finMPAQuestionsStep: function() {
-        this.startResSelStep();
-    },
-    
+
     /*
      *  Setup resource selection step 
      */
@@ -134,7 +105,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      */
     finResSelStep: function(obj, resource_id) {
         this.curResource = gwst.settings.resourceStore.getById(resource_id);
-        gwst.settings.resource_days = this.getAnswer('day_specie', this.curResource.get('id'), this.getResDays);
         if (this.curResource.get('finished') == true) {
             this.loadFinishedResourceSelectedWindow();
         } else {    
@@ -158,42 +128,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     backResSelStep: function(){
          this.loadSplash();
          this.startMPAQuestionsStep();
-    },
-    
-    /******************** Resource Question Step *******************/
-        
-    /*
-     *  Go back from the resource selection step 
-     */
-    backResourceQuestionStep: function() {
-        this.startPennyStep()
-    },
-        
-    /*
-     *  Setup resource selection step 
-     */
-    startResourceQuestionStep: function() {
-        this.load2009LocationQuestionPanel();
-    },
-    
-    /*
-     *  If user knows of specific MPAs, ask them which.  Else, move on to resource select. 
-     */
-    contResourceQuestionStep: function() {
-        this.yes_val = "a28"; //the id for option value of "yes"
-        this.val_93 = this.ResourceQuestionPanel.question_panel.getForm().getFieldValues()['question_93_'+this.curResource.id];
-        if (this.val_93 == this.yes_val) {
-            this.load2009LocationQuestionPanel();
-        } else {
-            this.finResourceQuestionStep();
-        }
-    },
-    
-    /* 
-     * Process resource selection and go to Navigation instructions 
-     */
-    finResourceQuestionStep: function() {
-        this.startFinishStep();
     },
     
     /******************** Navigation Step *******************/
@@ -401,16 +335,40 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     startAttribStep: function() {
         this.loadAttribPanel();        
     },
+    
+    /*
+     * Setup UI for Edit Shape Attribute step
+     */
+    editAttrib: function(feature) {
+        this.curUpdateRecord = feature;
+        this.loadAttribPanel();
+    },
        
     /*
      * Process and finish Shape Attribute step
      */
-    finAttribStep: function(boundary_values_obj) {
-        this.saveNewShape(boundary_values_obj);    
+    finAttribStep: function(obj) {
+        if (obj.feature == 'unknown' || obj.feature == null) {
+            this.saveNewShape(obj.values);
+        } else {
+            this.curUpdateRecord.beginEdit();
+            this.curUpdateRecord.set('days_visited', obj.values.days_visited);
+            this.curUpdateRecord.set('boundary_n', obj.values.boundary_n);
+            this.curUpdateRecord.set('boundary_s', obj.values.boundary_s);
+            this.curUpdateRecord.set('boundary_e', obj.values.boundary_e);
+            this.curUpdateRecord.set('boundary_w', obj.values.boundary_w);
+            this.curUpdateRecord.set('note_text', obj.values.note_text);
+            this.curUpdateRecord.endEdit();
+            this.curUpdateRecord = null;
+            this.startDraw2Step();
+        }
     },    
     
     backAttribStep: function() {
-        this.mapPanel.removeLastShape();
+        if (this.curUpdateRecord == null) {
+            this.mapPanel.removeLastShape();
+        }
+        this.curUpdateRecord = null;
         this.startDraw2Step();
     },
     
@@ -478,7 +436,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
      * Process penny allocation step
      */
     finPennyStep: function() {
-        this.startResourceQuestionStep();
+        this.startFinishStep();
     },
     
     /*
@@ -648,33 +606,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.viewport.setWestPanel(this.unfinResStartPanel); 
     },
 
-    loadMPAQuestionPanel: function() {
-    	if (!this.MPAQuestionPanel) {
-            this.MPAQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
-                xtype: 'gwst-group-questions-panel',
-                instructions: '<p>Marine protected area closures were recently implemented in the North Central Coast (Point Arena to Half Moon Bay).</p>',
-                group_name: 'MPA',
-                form_url: gwst.settings.urls.questions + '8/answer/'
-            });
-            this.MPAQuestionPanel.on('grp-qstn-cont', this.contMPAQuestionsStep, this);
-            this.MPAQuestionPanel.on('grp-qstn-back', this.startSplashStep, this);
-        }
-        this.viewport.setWestPanel(this.MPAQuestionPanel);    	
-    },
-    
-    loadSpecificMPAQuestionPanel: function() {
-    	if (!this.specMPAQuestionPanel) {
-            this.specMPAQuestionPanel = new gwst.widgets.GroupQuestionsPanel({
-                xtype: 'gwst-group-questions-panel',
-                group_name: 'Specific MPA',
-                form_url: gwst.settings.urls.questions + '9/answer/'
-            });
-            this.specMPAQuestionPanel.on('grp-qstn-cont', this.finMPAQuestionsStep, this);
-            this.specMPAQuestionPanel.on('grp-qstn-back', this.startMPAQuestionsStep, this);
-        }
-        this.viewport.setWestPanel(this.specMPAQuestionPanel);    	
-    },    
-
     loadResSelPanel: function() {
     	if (!this.resSelPanel) {
             this.resSelPanel = new gwst.widgets.SelResPanel({
@@ -811,6 +742,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.draw2Panel.on('draw-two-cont', this.finDraw2Step, this);
             this.draw2Panel.on('draw-two-back', this.backDraw2Step, this);
             this.draw2Panel.on('draw-two-delete', this.deleteShapeHandler, this);
+            this.draw2Panel.on('draw-two-edit-shape', this.editAttrib, this);
             this.draw2Panel.on('draw-two-zoom-shape', this.zoomMapToShape, this);
             this.draw2Panel.on('draw-two-zoom-all', this.zoomToAllShapes, this);
         } else {
@@ -928,8 +860,8 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.shapeAttribPanel = new gwst.widgets.ShapeAttribPanel({
                 xtype: 'gwst-shape-attrib-panel',
                 shape_name: gwst.settings.interview.shape_name,
-                days_max: gwst.settings.resource_days,
-                resource: this.curResource.get('name')
+                resource: this.curResource.get('name'),
+                feature: this.curUpdateRecord
             });
             //When panel fires event saying it's all done, we want to process it and move on 
             this.shapeAttribPanel.on('shape-attrib-cont', this.finAttribStep, this);
@@ -939,7 +871,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.shapeAttribPanel.update({
                 shape_name: gwst.settings.interview.shape_name,
                 resource: this.curResource.get('name'),
-                days_max: gwst.settings.resource_days
+                feature: this.curUpdateRecord
             });
         }
         this.viewport.setWestPanel(this.shapeAttribPanel);    	
@@ -950,7 +882,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	if (!this.drawOrDropPanel) {
             this.drawOrDropPanel = new gwst.widgets.DrawOrDropPanel({
                 xtype: 'gwst-draw-or-drop-panel',
-                resource: this.curResource.get('name'),
+                resource: this.curResource.get('name'),
                 action: gwst.settings.interview.resource_action,
                 user_group: gwst.settings.group.member_title,
                 res_group_name: gwst.settings.interview.resource_name,
@@ -1019,30 +951,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
         this.viewport.setWestPanel(this.pennyPanel);    	
     },
-        
-    load2009LocationQuestionPanel: function() {
-        if (!this.OldLocationQuestionPanel) {
-            this.OldLocationQuestionPanel = new gwst.widgets.AccessQuestionsPanel({
-                xtype: 'gwst-group-questions-panel',
-                group_name: 'Previous Location',
-                form_url: gwst.settings.urls.resource_questions + '10/None/' + this.curResource.get('id') + '/',
-                resource_id: this.curResource.get('id'),
-                resource: this.curResource.get('name')
-            });
-            this.OldLocationQuestionPanel.on('grp-qstn-cont', this.finResourceQuestionStep, this);
-            this.OldLocationQuestionPanel.on('grp-qstn-back', this.backResourceQuestionStep, this);
-            this.OldLocationQuestionPanel.on('place-selected', this.zoomToPlacemark, this);
-        } else {
-            context = {
-                form_url: gwst.settings.urls.resource_questions + '10/None/' + this.curResource.get('id') + '/',
-                resource_id: this.curResource.get('id'),
-                resource: this.curResource.get('name')
-            };
-            this.OldLocationQuestionPanel.update(context);
-        }
-        this.viewport.setWestPanel(this.OldLocationQuestionPanel);    	
-    },
-        
+ 
     /* Load the finish/finish later/select another resource west panel */
     loadFinishPanel: function() {
     	if (!this.finishPanel) {
@@ -1201,6 +1110,31 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
 
         this.loadResourceStore(gwst.settings.group.sel_resources);
         this.loadUnfinishedResource();
+        this.testShapeValidate();
+    },
+    
+    testShapeValidate: function() {
+    
+        var test_poly_origin = new OpenLayers.Geometry.Point(-13230629,3963316);
+        var test_poly = OpenLayers.Geometry.Polygon.createRegularPolygon(test_poly_origin, 1, 3, 0);
+    
+        Ext.Ajax.request({
+	        url: gwst.settings.urls.shape_validate,
+	        method: 'POST',
+	        disableCachingParam: true,
+	        params: { 
+	            geometry : test_poly.toString(),
+	            resource : gwst.settings.survey_group_id+'-'+ gwst.settings.resourceStore.getAt(0).get('id')
+	        },
+	        success: this.finTestShapeValidate,
+           	failure: function(response, opts) {
+        		this.finTestShapeValidate(response, opts);
+           	},
+            scope: this
+	    });
+    },
+    
+    finTestShapeValidate: function(response, opts) {
         this.fireEvent('settings-loaded');      
     },
     
@@ -1281,10 +1215,19 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	var new_feat = Ext.decode(response.responseText);
     	//Update the new record with its unique id assigned on the server
     	//This will let us update it later
+        this.curSaveRecord.beginEdit();
     	this.curSaveRecord.set('id', new_feat.feature.id);
-    	this.hideWait.defer(500, this);
-    	this.fireEvent('shape-saved');
+    	this.curSaveRecord.set('days_visited', new_feat.feature.days_visited);
+    	this.curSaveRecord.set('boundary_n', new_feat.feature.boundary_n);
+    	this.curSaveRecord.set('boundary_e', new_feat.feature.boundary_e);
+    	this.curSaveRecord.set('boundary_s', new_feat.feature.boundary_s);
+    	this.curSaveRecord.set('boundary_w', new_feat.feature.boundary_w);
+    	this.curSaveRecord.set('note_text', new_feat.feature.note_text);
+        this.curSaveRecord.endEdit();
     	gwst.settings.shapeStore.commitChanges();
+    	this.hideWait.defer(500, this);
+        this.curSaveRecord = null;
+    	this.fireEvent('shape-saved');
     },
     
     //Remove a shape already saved on the server
@@ -1346,12 +1289,30 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     
     //Update a shape already saved on the server
     updateSavedShape: function(store, record, operation) {
-    	//if the pennies weren't modified, ignore it
-    	if (record.modified == null || record.modified.pennies == 'undefined' || record.modified.pennies == null) {
-    		return;
+        if (record.data != null &&
+            gwst.settings.shapeStore.find('id', record.data.id) == -1 &&
+                (
+                record.modified == null ||
+                record.modified.state == null &&
+                record.modified.boundary_n == null &&
+                record.modified.boundary_e == null &&
+                record.modified.boundary_s == null &&
+                record.modified.boundary_w == null &&
+                record.modified.days_visited == null &&
+                record.modified.note_text == null &&
+                record.modified.pennies == null
+                ) 
+            ){
+    		return;                                     //This is not a saved shape and it is not ready to be saved.
     	}
     	var data = {
             pennies: parseInt(record.get('pennies')),
+            days_visited: parseInt(record.get('days_visited')),
+            boundary_n: record.get('boundary_n'),
+            boundary_s: record.get('boundary_s'),
+            boundary_e: record.get('boundary_e'),
+            boundary_w: record.get('boundary_w'),
+            note_text: record.get('note_text'),
             group_id: gwst.settings.survey_group_id,
             resource_id: this.curResource.id
         };
@@ -1410,11 +1371,6 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         
     finGetAnswer: function(response, opts) {
         this.answer_obj = Ext.decode(response.responseText);
-    },
-    
-    getResDays: function(response, opts) {
-        this.answer_obj = Ext.decode(response.responseText).answer;
-        gwst.settings.resource_days = this.answer_obj.value;
     },
     
     //if not resource specific, use ''
@@ -1476,13 +1432,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         this.hideWait.defer(500, this);
         gwst.settings.question_form = Ext.decode(response.responseText);
     },
-    
-    finGetMPAQuestionForm: function(response, opts){
-        this.hideWait.defer(500, this);
-        gwst.settings.question_form = Ext.decode(response.responseText);
-        this.loadMPAQuestionPanel()
-    },
-    
+
     /******************** Utility Methods ********************/
     
     loadResourceStore: function(resources) {
@@ -1557,6 +1507,13 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                     name: 'boundary_w',
                     type: 'string',
                     defaultValue: ''
+                },{
+                    name: 'days_visited',
+                    type:'int'
+                },{
+                    name: 'note_text',
+                    type:'string',
+                    defaultValue: ''
                 }],	        
                 autoLoad: autoLoad  
             });
@@ -1610,6 +1567,13 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                     name: 'boundary_w',
                     type: 'string',
                     defaultValue: ''
+                },{
+                    name: 'days_visited',
+                    type:'int'
+                },{
+                    name: 'note_text',
+                    type:'string',
+                    defaultValue: ''
                 }],	        
                 autoLoad: autoLoad  
             });
@@ -1629,54 +1593,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
         }
 	    
     },
-    
-    loadCaCoastPlacemarks: function() {
-    	this.loadWait('Loading California North Central Coast Placemarks...');
-        gwst.settings.placemarkStore = new GeoExt.data.FeatureStore({
-            proxy:  new GeoExt.data.ProtocolProxy({
-                protocol: new OpenLayers.Protocol.HTTP({
-                    url: '/ca_coast_placemarks/json/',     
-                    format: new OpenLayers.Format.GeoJSON()
-                })
-            }),
-            fields: [{
-                name:'name',
-                type:'string',
-                defaultValue: null
-            }],	        
-            autoLoad: true  
-        });
-        gwst.settings.placemarkStore.on('load', this.getAbalonePunchCardSites, this);
-    },    
 
-    getAbalonePunchCardSites: function() {
-        Ext.Ajax.request({
-        	url: gwst.settings.urls.abalone_card_sites,
-           	disableCachingParam: true,
-            method: 'GET',
-            // params: this.params,
-           	scope: this,
-           	success: this.loadAbalonePunchCardSites,
-           	failure: function(response, opts) {
-        		// Change to error window
-              	alert('get abalone sites request failed: ' + response.status);
-           	}
-        });
-    },
-    
-    loadAbalonePunchCardSites: function(response, opts) {
-        this.sites_obj = Ext.decode(response.responseText);
-        gwst.settings.abaloneSiteList = this.sites_obj;
-        this.finLoadStores();
-        
-    },
-    
-    
-    finLoadStores: function() {
-        this.hideWait();
-    	this.finInit();
-    },
-    
     //remove listener and zoom in - listener removed because 'load' is firing when a new shape is drawn and saved.
     afterShapesLoaded: function() {
         this.zoomToAllShapes();

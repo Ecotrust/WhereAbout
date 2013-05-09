@@ -20,7 +20,10 @@ gwst.widgets.DrawPolyWindow = Ext.extend(Ext.Window, {
 				iconCls: 'poly-icon',
 				handler: this.drawClicked,
 				scope: this
-            }]                   
+            }],
+            tbarCfg: [{
+                cls: 'map-action-button'
+            }]
         });
 		gwst.widgets.DrawPolyWindow.superclass.initComponent.call(this);		
 	},

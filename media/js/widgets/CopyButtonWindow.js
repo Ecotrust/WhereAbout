@@ -18,7 +18,10 @@ gwst.widgets.CopyButtonWindow = Ext.extend(Ext.Window, {
 				iconCls: 'copy-button',
 				handler: this.copyFeature,
 				scope: this
-            }]                   
+            }],
+            tbarCfg: [{
+                cls: 'map-action-button'
+            }]
         });
 		gwst.widgets.CopyButtonWindow.superclass.initComponent.call(this);		
 	},

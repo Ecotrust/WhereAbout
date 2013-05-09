@@ -18,7 +18,10 @@ gwst.widgets.QuitWindow = Ext.extend(Ext.Window, {
 				iconCls: 'quit-main',
 				handler: this.goToMain,
 				scope: this
-            }]                   
+            }],
+            tbarCfg: [{
+                cls: 'map-action-button'
+            }]
         });
 		gwst.widgets.QuitWindow.superclass.initComponent.call(this);		
 	},

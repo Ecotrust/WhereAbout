@@ -31,10 +31,15 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
             labelWidth: 50,
             items: [ this.pennies_field ],
             id: 'penny-window-form-panel',
+            keys: [{
+                key: [Ext.EventObject.UP, Ext.EventObject.DOWN, Ext.EventObject.LEFT, Ext.EventObject.RIGHT, Ext.EventObject.INSERT, Ext.EventObject.HOME, Ext.EventObject.END, Ext.EventObject.PAGEUP, Ext.EventObject.PAGEDOWN], 
+                handler: function(keyCode, event) {
+                    event.stopPropagation();
+                }
+            }],
             defaultType: 'numberfield'
         });
         
-        this.on('show', this.prepPennyForm);
         this.pennies_field.on(
             'keypress', 
             function(el, ev) {
@@ -44,6 +49,7 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
             }, 
             this
         );
+        this.on('show', this.prepPennyForm);
                 
         this.pennies_left_panel = new Ext.Panel({
             id: 'penny-left-panel',
@@ -100,14 +106,13 @@ gwst.widgets.PennyWindow = Ext.extend(Ext.Window, {
     
     prepPennyForm: function() {
         this.pennies_field.setRawValue(null);
-        this.pennies_field.reset();
-        // this.pennies_field.focus(true, false);
+        this.pennies_field.focus(false, 100);
     },
     
     saveBtnClicked: function() {
         var penny_form = this.penny_form.getForm();
         if (penny_form.isValid()) {
-            var pennies_value = penny_form.getValues().pennies;
+            var pennies_value = parseInt(penny_form.getValues().pennies, 10);
             this.fireEvent('penny-set', pennies_value);          
             this.hide();
         }

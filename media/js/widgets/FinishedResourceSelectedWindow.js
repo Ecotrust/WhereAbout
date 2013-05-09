@@ -15,7 +15,7 @@ gwst.widgets.FinishedResourceSelectedWindow = Ext.extend(Ext.Window, {
         	layout:'fit',
             width:260,
             // html: this.getHtmlText(),
-            height:130,
+            height:170,
             plain: true,
             bodyStyle: 'padding: 8px',
             closeAction:'hide',

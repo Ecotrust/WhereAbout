@@ -22,6 +22,7 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
         this.addEvents('draw-two-instructions');
         this.addEvents('draw-two-zoom-shape');
         this.addEvents('draw-two-zoom-all');
+        this.addEvents('draw-two-edit-shape');
         
         // Call parent (required)
         gwst.widgets.Draw2Panel.superclass.initComponent.apply(
@@ -77,6 +78,9 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
             });
         } else if(action == 'shape-zoom') {
             this.fireEvent('draw-two-zoom-shape', record);
+        } else if(action == 'shape-edit') {
+            this.cur_action_record = record;
+            this.fireEvent('draw-two-edit-shape', record);
         }
     },
     
@@ -117,11 +121,14 @@ gwst.widgets.Draw2Panel = Ext.extend(gwst.widgets.WestPanel, {
 			 keepSelection:true,
 			 actions:[{
 				iconCls:'shape-delete',
-				text: 'Remove'
+				text: ''
 			},{
 				iconCls:'shape-zoom',
-				text: 'Zoom To'
-			}]
+				text: ''
+			},{
+                iconCls:'shape-edit',
+                text:''
+            }]
 		});
 
 		//Grid button event handlers

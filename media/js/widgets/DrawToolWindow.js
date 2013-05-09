@@ -20,7 +20,10 @@ gwst.widgets.DrawToolWindow = Ext.extend(Ext.Window, {
 				iconCls: 'cancel-draw',
 				handler: this.cancelShape,
 				scope: this
-            }]                   
+            }],
+            tbarCfg: [{
+                cls: 'map-action-button'
+            }]
         });
 		gwst.widgets.DrawToolWindow.superclass.initComponent.call(this);		
 	},
