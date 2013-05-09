@@ -24,8 +24,8 @@ class ClipRegion(Model):
     pk_uid = IntegerField(primary_key = True)
     name = models.TextField()
     feature = CharField( max_length=50 )
-    Geometry = PolygonField(srid=settings.SERVER_SRID) # for spatialite testing
-    # geom = MultiPolygonField(srid=settings.SERVER_SRID)
+    # Geometry = PolygonField(srid=settings.SERVER_SRID) # for spatialite testing
+    Geometry = PolygonField(srid=settings.SERVER_SRID)
     objects = GeoManager()
     class Meta:
         db_table = u'gwst_region_clip'
@@ -33,43 +33,37 @@ class ClipRegion(Model):
     def __unicode__(self):
         return unicode('%s' % (self.name))   
 
-class CaCoastPlacemarks(Model):
-    pk_uid = IntegerField(primary_key = True)
-    name = CharField(max_length=25)
-    featuretyp = CharField(max_length=25)
-    county = CharField(max_length=25)
-    lat = FloatField()
-    long = FloatField()
-    site_group = CharField(max_length=35, blank = True, null=True)
-    the_geom = PointField(srid=3310)        
-    objects = GeoManager()
-    class Meta:
-        db_table = u'acc_pts'
-        
-class AbalonePunchCardSites(Model):
-    pk_uid = IntegerField(primary_key = True)
-    site = CharField(max_length=40)
-    county = CharField(max_length=25)
-    class Meta:
-        db_table = u'abalone_sites'
-        
-    def __unicode__(self):
-        return unicode('%s - %s' % (self.site, self.county))
-        
 class Resource(Model):
 
     MethodChoices = (
+        ('Dip Net', 'Dip Net'),
         ('Dive', 'Dive'),
-        ('Shore picking', 'Shore picking'),
-        ('Spearfish', 'Spearfish')
+        ('Drift or Set Gill Net', 'Drift or Set Gill Net'),
+        ('Gillnet', 'Gillnet'),
+        ('Handgear/Longline', 'Handgear/Longline'),
+        ('Handgear/Longline/Gillnet', 'Handgear/longline/Gillnet'),
+        ('Handpicking', 'Handpicking'),
+        ('Hook and Line', 'Hook and Line'),
+        ('Hook and Line/Longline', 'Hook and Line/Longline'),
+        ('Longline', 'Longline'),
+        ('Net', 'Net'),
+        ('Seine', 'Seine'),
+        ('Seine or Dip Net', 'Seine or Dip Net'),
+        ('Set Gill Net', 'Set Gill Net'),
+        ('Trap', 'Trap'),
+        ('Trawl', 'Trawl'),
+        ('Troll', 'Troll'),
+        ('Fishery', 'Fishery'),
+        ('Activity', 'Activity')
     )    
     name = CharField( max_length=100 )
     verbose_name = CharField( max_length=133, unique=True ) #Should be name - method
     id = CharField( max_length=133, primary_key=True ) #Should be name - method
-    method = CharField( max_length=30, choices = MethodChoices, blank = True, default = 'diving' )
+    method = CharField( max_length=30, choices = MethodChoices, blank = True, default = 'Dive' )
     code = CharField( max_length=133, default='' )
     select_description = CharField( max_length=300, default = '', blank=True) #Holds information on why you would/should select this resource
     shape_color = CharField( max_length=6, default = 'FFFF00', blank=True )
+    display_order = FloatField(default = 0)
     
     class Meta:
         db_table = u'gwst_resource'
@@ -93,8 +87,10 @@ class Interview(Model):
     resource_name = CharField( max_length=60, default='species' )
     resource_name_plural = CharField( max_length=60, default='species' )
     resource_action = CharField( max_length=20, default='target' )
+    resource_action_past_tense = CharField( max_length=20, default='targeted' )
     shape_name = CharField( max_length=20, default='fishing ground' )
     shape_name_plural = CharField( max_length=20, default='fishing grounds' )
+    multiple_user_groups = BooleanField( default=True )
     class Meta:
         db_table = u'gwst_interview'
         
@@ -105,6 +101,7 @@ class InterviewGroup(Model):
     id = models.AutoField( primary_key = True )
     interview = ForeignKey(Interview)
     name = CharField( max_length=100 )
+    header = CharField( max_length=100, blank=True, null=True, default='' )
     description = CharField( max_length=200 )
     code = CharField( max_length=10 )
     resources = ManyToManyField(Resource,blank=True,null=True,verbose_name='Resource Groups')
@@ -118,6 +115,8 @@ class InterviewGroup(Model):
     member_title = CharField( max_length=50, default='' )
     page_template = CharField( max_length=60, default="base_form.html" )
     question_width = IntegerField( default = 275 )
+    resource_page_template = CharField( max_length=60, default="base_formset.html" )
+    resource_question_width = IntegerField( default = 420 )
     class Meta:
         db_table = u'gwst_group'
         unique_together = (("interview", "code"),("interview", "name"))
@@ -234,7 +233,7 @@ class InterviewQuestion(Model):
         ( 'boolean', 'boolean (true/false) value' ),
         ( 'select', 'select from list of values' ),
         ( 'checkbox', 'check box' ),
-        ( 'other', 'list of values w/"other" text' ),
+        ( 'selectmultiple', 'select multiple from a list' ),
         ( 'text', 'enter text' ),
         ( 'phone', 'phone number' ),
         ( 'money', 'dollar amount'),
@@ -262,6 +261,7 @@ class InterviewQuestion(Model):
     required = BooleanField( help_text='require that this field be filled out', default=False)
     all_resources = BooleanField( help_text='is this a question to be asked once for each resource?', default=False)
     layout = CharField( max_length=20, choices=LayoutChoices, default=None, blank=True, null=True )
+    header_name = CharField( max_length=200, default='', blank=True, null=True )
         
     class Meta:
         db_table = u'gwst_question'
@@ -357,28 +357,6 @@ class InterviewStatus(Model):
         return unicode('%s: %s' % (self.user, self.interview))
 
 class InterviewShape(Model):
-    AccessMethodChoices = (
-        ('Swimming', 'Swimming'),
-        ('Kayak', 'Kayak'),
-        ('Sport boat', 'Sport boat'),
-        ('Charter boat', 'Charter boat'),
-        ('Paddleboard', 'Paddleboard')
-    )
-    
-    AbaloneHarvestChoices = (
-        ('The first available abalone', 'The first available abalone'),
-        ('Abalone based on size', 'Abalone based on size')
-    )
-    
-    AbaloneTimeChoices = (
-        ('Significantly more time', 'Significantly more time'),
-        ('Somewhat more time', 'Somewhat more time'),
-        ('The same amount of time', 'The same amount of time'),
-        ('Somewhat less time', 'Somewhat less time'),
-        ('Significantly less time', 'Significantly less time'),
-        ('Didn\'t target last year', 'Didn\'t target last year')
-    )
-
     user = ForeignKey(User)
     int_group = ForeignKey(InterviewGroup)
     resource = ForeignKey(Resource)
@@ -390,22 +368,8 @@ class InterviewShape(Model):
     boundary_w = CharField( max_length=100, blank=True, null=True )
     note_text = CharField( max_length=1000, blank=True, null=True )
     days_visited = IntegerField( blank=True, null=True )
-    primary_acc_point = ForeignKey(CaCoastPlacemarks, blank=True, null=True)
-    primary_acc_method = CharField( max_length=20, choices=AccessMethodChoices, default=None, blank=True, null=True )
-    abalone_harvest = CharField( max_length=30, choices=AbaloneHarvestChoices, default=None, blank=True, null=True )
-    abalone_time = CharField( max_length=30, choices=AbaloneTimeChoices, default=None, blank=True, null=True )
-    abalone_site = CharField(max_length=40, default=None, null=True, blank=True)
     creation_date = DateTimeField(default=datetime.datetime.now)
     objects = InterviewShapeManager()
-    species_size_factor = BooleanField(default=False)
-    species_abundance_factor = BooleanField(default=False)
-    ease_of_access_factor = BooleanField(default=False)
-    close_to_home_factor = BooleanField(default=False)
-    close_to_base_factor = BooleanField(default=False)
-    weather_protection_factor = BooleanField(default=False)
-    close_to_facilities_factor = BooleanField(default=False)
-    new_place_factor = BooleanField(default=False)
-    other_factor = CharField( max_length=150, blank=True, null=True )
     
     class Meta:
         db_table = u'gwst_usershape'
@@ -415,6 +379,37 @@ class InterviewShape(Model):
 
     def int_group_name(self):
         return unicode('%s' % self.int_group.name)        
+
+class InterviewShapeShapefile(Model):
+    shape = CharField( max_length=300, blank=False, null=False)
+    user = CharField( max_length=300, blank=False, null=False)
+    f_name = CharField( max_length=300, blank=False, null=False)
+    l_name = CharField( max_length=300, blank=False, null=False)
+    l_num = CharField( max_length=300, blank=True, null=True)
+    home_port = CharField( max_length=300, blank=True, null=True)
+    interview = CharField( max_length=300, blank=False, null=False)
+    int_name = CharField( max_length=100, blank=False, null=False)
+    group = ForeignKey(InterviewGroup)
+    grp_name = CharField( max_length=100, blank=False, null=False)
+    resource =  CharField( max_length=300, blank=False, null=False)
+    res_name = CharField( max_length=300, blank=False, null=False)
+    res_method = CharField( max_length=300, blank=False, null=False)
+    geometry = PolygonField(srid=settings.SERVER_SRID)
+    pennies = IntegerField()
+    bound_n = CharField( max_length=100, blank=True, null=True ) 
+    bound_s = CharField( max_length=100, blank=True, null=True )
+    bound_e = CharField( max_length=100, blank=True, null=True )
+    bound_w = CharField( max_length=100, blank=True, null=True )
+    note_text = CharField( max_length=1000, blank=True, null=True )
+    days_visit = IntegerField( blank=True, null=True )
+    date = CharField( max_length=100, blank=False, null=False )
+    objects = models.GeoManager() 
+    
+    class Meta:
+        db_table = u'gwst_usershape_shapefile'
+        
+    def __unicode__(self):
+        return unicode('%s: %s %s' % (self.user, self.resource.code, self.group))
         
 class FaqGroup(models.Model):
     class Meta:

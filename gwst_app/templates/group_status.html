@@ -80,7 +80,7 @@ function skip_res_verify(link) {
     
         {% if r.current %}
             {% if not r.group_memb.int_group.required_group %}      {#  NOT REQUIRED  #}
-                <li><a href='#main_menu' onclick="skip_group_verify('/skip_group/{{r.group_memb.int_group.id}}/')">Skip this group</a></li>
+                <!--<li><a href='#main_menu' onclick="skip_group_verify('/skip_group/{{r.group_memb.int_group.id}}/')">Skip this group</a></li>-->
             {% endif %}
             {% ifequal r.group_memb.status "in-progress" %}   
                 <li>Done. <a href="/group_qs/{{r.group_memb.int_group.id}}/answer/">Edit answers</a></li>
@@ -109,6 +109,7 @@ function skip_res_verify(link) {
                         {% endifequal %}
                     {% else %}
                         <li class='current-item'><a href="/draw_group_resources/{{r.group_memb.int_group.id}}/">Draw {{interview.shape_name_plural}}</a></li>
+                        <li><a href='#main_menu' onclick="skip_res_verify('/skip_res_finalize_group/{{r.group_memb.int_group.id}}/')">Skip drawing {{interview.resource_name_plural}} and finalize this group</a></li>
                     {% endifnotequal %}
                 {% else %}  
                     <li class='current-item'><a href="/finalize_group/{{r.group_memb.int_group.id}}/">Finalize this group</a></li>       

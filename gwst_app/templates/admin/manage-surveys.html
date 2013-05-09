@@ -43,6 +43,8 @@
         <caption>{% trans 'Survey management' %}</caption>
             <tr>
                 <th>Created</th>
+                <th>Interview</th>
+                <th>Group</th>
                 <th>First name</th>
                 <th>Last name</th>
                 <th>Interviewer</th>
@@ -53,11 +55,13 @@
             {% for survey in survey_list %}
             <tr>
                 <td>{{ survey.status.creation_date }}</td>
+                <td>{{ survey.status.interview.name }}</td>
+                <td>{{ survey.group }}</td>
                 <td>{{ survey.profile.user.first_name }}</td>
                 <td>{{ survey.profile.user.last_name }}</td>
                 <td>{{ survey.profile.created_by.first_name }} ({{survey.profile.created_by.email}})</td>
                 <td>{{ survey.status.completed }}</td>
-                <td><a href="/accounts/login_as/?next_user={{ survey.profile.user.id }}">Continue survey for {{ survey.profile.user.first_name }} {{ survey.profile.user.last_name }}</a></td>
+                <td><a href="/accounts/login_as/?next_user={{ survey.profile.user.id }}&int_id={{survey.status.interview_id}}">Continue survey for {{ survey.profile.user.first_name }} {{ survey.profile.user.last_name }}</a></td>
                 <td><a href="/admin/auth/user/{{ survey.profile.user.id }}/delete/">Delete survey for {{ survey.profile.user.first_name }} {{ survey.profile.user.last_name }}</a></td>
             </tr>
             {% endfor %}

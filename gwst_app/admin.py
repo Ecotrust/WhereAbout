@@ -37,7 +37,7 @@ class InterviewAdmin(admin.ModelAdmin):
     ]
     
 class InterviewGroupAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'name','code','description')
+    list_display = ('__unicode__', 'name','header','code','description')
     list_filter = ('interview',)
     inlines = [
         InterviewQuestionInline,
@@ -53,7 +53,7 @@ class InterviewAnswerAdmin(admin.ModelAdmin):
 
 class InterviewAnswerOptionAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'display_order', 'id')
-    ordering = ('display_order','__unicode__')    
+    ordering = ('display_order','eng_text')    
     
 class InterviewShapeAdmin(GeoModelAdmin):
     list_display = ('user', 'int_group_name', 'resource','pennies')
@@ -63,8 +63,8 @@ class FaqAdmin(admin.ModelAdmin):
     list_display = ('question','importance','faq_group')   
 
 class ResourceAdmin(admin.ModelAdmin):
-    list_display = ('name','verbose_name','method','code','select_description','shape_color')
-    ordering = ('name','method','code')
+    list_display = ('name','display_order','verbose_name','method','code','select_description','shape_color')
+    ordering = ('display_order','name','method','code')
 
 class FaqGroupAdmin(admin.ModelAdmin):
     pass

@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block content %}
+{% if instructions %}
+<div style='width:600px'>{{ instructions.main|safe }}</div>
+{% endif %}
+   <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+   {{ form.non_field_errors }}
+   
+    {% for field in form %}
+    
+        {% if forloop.counter < 7 %}
+
+            <p><div class="fieldWrapper">
+                {{ field.errors }}
+                {% ifequal field.field.question.layout 'vertical' %}
+                    <table>
+                        <tr>
+                            <td>
+                                {{ field.label|safe }}:
+                            </td>
+                        </tr><tr>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% else %}
+                    <table>
+                        <tr>
+                            <td style='width:{{ q_width }}px'>
+                                {{ field.label|safe }}:
+                            </td>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% endifequal %}
+            </div></p>
+        {% endif %}    
+        {% if forloop.counter < 13 %}    
+            {% if forloop.counter > 6 %}    
+                {% ifequal forloop.counter 7 %}
+                    <br />
+                    Fishing permits owned that you did not fish last year (2011):<br /><br />
+                    <table border="1">
+                        <tr align="center">
+                            <th>Permit</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                        </tr>
+                        <tr><td><b>Type</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 10 %}
+                    </tr><tr><td><b>Reason</b></td>
+                {% endifequal %}
+                <td><div class="fieldWrapper">{{ field }}</td>
+                {% ifequal forloop.counter 12 %}
+                        </tr>
+                    </table>
+                {% endifequal %}
+            {% endif %}    
+        {% endif %}    
+        {% if forloop.counter < 18 %}    
+            {% if forloop.counter > 12 %}    
+                <p><div class="fieldWrapper">
+                    {{ field.errors }}
+                    {% ifequal field.field.question.layout 'vertical' %}
+                        <table>
+                            <tr>
+                                <td>
+                                    {{ field.label|safe }}:
+                                </td>
+                            </tr><tr>
+                                <td>
+                                    {{ field }}
+                                </td>
+                            </tr>
+                        </table>
+                    {% else %}
+                        <table>
+                            <tr>
+                                <td style='width:{{ q_width }}px'>
+                                    {{ field.label|safe }}:
+                                </td>
+                                <td>
+                                    {{ field }}
+                                </td>
+                            </tr>
+                        </table>
+                    {% endifequal %}
+                </div></p>
+            {% endif %}    
+        {% endif %}
+        {% if forloop.counter < 33 %}    
+            {% if forloop.counter > 17 %} 
+                {% ifequal forloop.counter 18 %}
+                    <br />
+                    About your vessels:<br /><br />
+                    <table border="1">
+                        <tr align="center">
+                            <th>Vessel</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                        </tr>
+                        <tr><td><b>Name</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 21 %}
+                    </tr><tr><td><b>Federal Vessel ID</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 24 %}
+                    </tr><tr><td><b>State ID</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 27 %}
+                    </tr><tr><td><b>Length (ft)</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 30 %}
+                    </tr><tr><td><b>Motor (HP)</b></td>
+                {% endifequal %}
+                <td><div class="fieldWrapper">{{ field }}</td>
+                {% ifequal forloop.counter 32 %}
+                        </tr>
+                    </table>
+                {% endifequal %}
+
+            {% endif %}    
+        {% endif %}
+        {% if forloop.counter < 39 %}    
+            {% if forloop.counter > 32 %}    
+                {% ifequal forloop.counter 33 %}
+                    <br />
+                    <b>Percentage</b> of <u>total gross fishing revenue</u> used for:<br /><br />
+                    <table border="1">
+                        <tr align="center">
+                            <th></th>
+                            <th>In 2011</th>
+                            <th>In 2006</th>
+                            <th>Reason (if there is a significant difference)</th>
+                        </tr>
+                        <tr><td><b>Overall Operating Costs</b></td>
+                {% endifequal %}
+                {% ifequal forloop.counter 36 %}
+                    </tr><tr><td><b>Urchin walk-on<br />
+                        divers only</u>:<br />
+                        Given to boat<br />
+                        operating costs</b></td>
+                {% endifequal %}
+                <td><div class="fieldWrapper">{{ field }}</td>
+                {% ifequal forloop.counter 38 %}
+                        </tr>
+                    </table>
+                {% endifequal %}
+
+            {% endif %}    
+        {% endif %}
+        {% if forloop.counter > 38 %}        
+            <p><div class="fieldWrapper">
+                {{ field.errors }}
+                {% ifequal field.field.question.layout 'vertical' %}
+                    <table>
+                        <tr>
+                            <td>
+                                {{ field.label|safe }}:
+                            </td>
+                        </tr><tr>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% else %}
+                    <table>
+                        <tr>
+                            <td style='width:{{ q_width }}px'>
+                                {{ field.label|safe }}:
+                            </td>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% endifequal %}
+            </div></p>
+        {% endif %}
+    {% endfor %}   
+   
+   <p><input id="submit" type="submit" value="{{ value }}" style="margin:15px"/>
+   {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+   </p>
+   </form>
+{% endblock %}

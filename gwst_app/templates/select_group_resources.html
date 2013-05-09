@@ -11,7 +11,6 @@
 
 {% block content %}
 <h2>{{ group.name }} Group {{interview.resource_name|capfirst}} Selection</h2>
-<p style='width: 600px'>Please select <b><u>all</u></b> of the {{interview.resource_name_plural}} you {{interview.resource_action}} <u><b>for the {{group.description}} only</b></u> in the last year (2010):</p>
 <p style='width: 600px'>{{group.select_resource_text|safe}}</p>
 
    <form style='width: 600px' class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
@@ -29,6 +28,18 @@
         </p>
         {% endwith %}
         {% endif %}
+        {% ifequal forloop.counter 2 %}
+        <table><tr><td>
+        {% endifequal %}
+        {% ifequal forloop.counter 3 %}
+        </td><td>
+        {% endifequal %}
+        {% ifequal forloop.counter 4 %}
+        </td></tr><tr><td>
+        {% endifequal %}
+        {% ifequal forloop.counter 5 %}
+        </td><td>
+        {% endifequal %}
         <p><div class="fieldWrapper">
             {{ field.errors }}
             <table>
@@ -42,6 +53,9 @@
                 </tr>
             </table>
         </div></p>
+        {% ifequal forloop.counter 5 %}
+        </td></tr></table>
+        {% endifequal %}        
     {% endfor %}
    
    <p><input id="submit" type="submit" value="{{ value }}" />

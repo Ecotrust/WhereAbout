@@ -18,6 +18,9 @@ class NameModelMultipleChoiceField(forms.ModelMultipleChoiceField):
 class SelectInterviewForm( forms.Form ):
     interview = NameModelChoiceField(label='Select the interview',queryset=None,required=True)
     
+class SelectInterviewGroupForm( forms.Form ):
+    group = NameModelChoiceField(label='Select the group you belong to',queryset=None,required=True)
+    
 class SelectInterviewGroupsForm( forms.Form ):
     #groups = NameModelMultipleChoiceField(label='Select the groups you belong to',queryset=None,required=True)
     def __init__(self, groups, *args, **kwargs):
@@ -137,6 +140,21 @@ class AnswerForm(forms.Form):
                 dynamic_args['initial']= option_list
                 self.fields['question_' + str(question.id) + resource_postfix] = forms.MultipleChoiceField( **dynamic_args )
 
+            elif question.answer_type == 'selectmultiple': #choice list 
+                option_values = question.options.values().order_by('display_order')
+                choices = []
+                for val in option_values:
+                    choices.append((val.get('id'), val.get('eng_text')))
+                dynamic_args['choices'] = choices
+                dynamic_args['widget'] = forms.SelectMultiple(attrs={'style':'height:250px'})
+                option_list = []
+                for ans in answer:
+                    if ans.boolean_val:
+                        option_list.append(ans.option_id)
+                if not option_list.__len__() == 0:
+                    dynamic_args['initial']= option_list
+                self.fields['question_' + str(question.id) + resource_postfix] = forms.MultipleChoiceField( **dynamic_args )
+                
             elif question.answer_type == 'other': #choice w/enter text for other
                 dynamic_args['queryset'] = question.options
                 other_dynamic_args['label'] = 'Other value for '+question.eng_text
@@ -163,7 +181,6 @@ class AnswerForm(forms.Form):
                 self.fields['question_' + str(question.id) + resource_postfix] = forms.CharField( **dynamic_args )
              
             elif question.answer_type == 'textarea': #text area
-                dynamic_args['max_length'] = 1000
                 if answer.count() == 1:
                     dynamic_args['initial']=answer[0].text_val
                 elif question.val_default != '':
@@ -191,7 +208,7 @@ class AnswerForm(forms.Form):
                 if answer.count() == 1:
                     ans = answer[0].text_val
                     dynamic_args['initial']=ans
-                elif question.val_default != '':
+                else:
                     dynamic_args['initial']=question.val_default                    
                 self.fields['question_' + str(question.id) + resource_postfix] = PercentField( **dynamic_args )
             
@@ -214,14 +231,12 @@ class AnswerForm(forms.Form):
     def clean(self): 
         # first loop through all answers and clean out unnecessary characters
         for question in self.questions:
-            key = 'question_'+unicode(question.id)
+            key = 'question_'+ unicode(question.id) + self.resource_postfix
             # Due to new custom types (percent & money) proper values aren't populated in cleaned_data.
             if question.answer_type == "money":
                 self.cleaned_data[key] = re.sub("\$","",str(self.data[key]))
             elif question.answer_type == "percent":
                 self.cleaned_data[key] = re.sub("%","",str(self.data[key]))
-            if self.data.get(key) == "" and (question.answer_type == "money" or question.answer_type == "percent"):
-                self.cleaned_data[key] = 0
 
         # now loop again running validation assuming all fields have been cleaned.
         for question in self.questions:        
@@ -240,7 +255,7 @@ class AnswerForm(forms.Form):
             #Get answers to these questions from the form
             answers = {}           
             for q in qs:
-                key = 'question_'+unicode(q.id)
+                key = 'question_'+unicode(q.id) + self.resource_postfix
                 
                 #If any individual fields in the group already have errors, 
                 #skip the group validation until they're fixed
@@ -262,6 +277,7 @@ class AnswerForm(forms.Form):
 
     def validate_sum(self, target, answers):
         sum = 0
+        key = ''
         for key, value in answers.iteritems():
             if str(value) != "":
                 sum += float(value)
@@ -287,9 +303,13 @@ class AnswerForm(forms.Form):
             if field.question.answer_type == 'integer' or field.question.answer_type == 'percent':
                 answer.integer_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 answer.text_val = str(answer.integer_val) # makes the db a little more human readable
+                if answer.integer_val == '':
+                    answer.integer_val = None
             elif field.question.answer_type == 'decimal' or field.question.answer_type == 'money':
                 answer.decimal_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 answer.text_val = str(answer.decimal_val) # makes the db a little more human readable
+                if answer.decimal_val == '':
+                    answer.decimal_val = None
             elif field.question.answer_type == 'boolean':
                 answer.boolean_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 answer.text_val = str(answer.boolean_val) # makes the db a little more human readable
@@ -297,7 +317,7 @@ class AnswerForm(forms.Form):
                 answer.option_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 if answer.option_val:
                     answer.text_val = answer.option_val.eng_text # makes the db a little more human readable
-            elif field.question.answer_type == 'checkbox':
+            elif field.question.answer_type == 'checkbox' or field.question.answer_type == 'selectmultiple':
                 answer_ids = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 answers = [InterviewAnswerOption.objects.get(pk=opt_id) for opt_id in answer_ids]
                 all_options = [InterviewAnswerOption.objects.get(pk=opt['id']) for opt in InterviewQuestion.objects.get(id=field.question.id).options.values()]
@@ -327,17 +347,14 @@ class AnswerForm(forms.Form):
                             answer.boolean_val = True
                         else:
                             answer.boolean_val = False
-                        answer.save()
-                    
-                        
-                        
+                        answer.save()                        
                         
             elif field.question.answer_type == 'other':
                 answer.option_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix]
                 answer.text_val = self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix + '_other']
             elif field.question.answer_type == 'text' or field.question.answer_type == 'phone' or field.question.answer_type == 'textarea':
                 answer.text_val = str(self.cleaned_data['question_' + str(field.question.id) + self.resource_postfix])
-            if field.question.answer_type != 'checkbox':
+            if field.question.answer_type != 'checkbox' and field.question.answer_type != 'selectmultiple':
                 answer.save()
         
 
@@ -363,7 +380,14 @@ class InterviewShapeAttributeForm(forms.ModelForm):
 
 class GroupMemberResourceForm(forms.Form):
     def __init__(self, interview, resources, *args, **kwargs):
-        method_options = InterviewAnswerOption.objects.filter(display_order__in=[210, 220, 230])
+        #TODO: Automate this - needs a Method Model
+            #Methods should be associated with an interview
+        if interview.name == 'South CA Commercial Monitoring':
+            method_options = InterviewAnswerOption.objects.filter(display_order__in=[2000, 2010, 2020, 2030, 2040, 2050, 2060, 2070, 2080, 2090, 2100, 2110, 2120, 2130, 2140])
+        else :
+            method_options = InterviewAnswerOption.objects.filter(display_order__in=[2200, 2210])
+        method_options = method_options.order_by('display_order')
+    
         new_res_1 = forms.CharField( max_length=100, label='Other ' + interview.resource_name + ' option', required=False, initial = '' ) 
         new_method_1 = forms.ModelChoiceField( label='Method', queryset=method_options, required = False);
         new_res_2 = forms.CharField( max_length=100, label='Other ' + interview.resource_name + ' option', required=False, initial = '' )

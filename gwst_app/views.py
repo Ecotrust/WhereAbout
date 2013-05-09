@@ -25,8 +25,8 @@ import datetime
 #Pass extra settings around whether user can self-register
 def login(request, template_name='registration/login.html'):
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/select_interview/')
-    if settings.DESKTOP_BUILD:   #For Desktop, we want to force user to log in through admin.
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
+    if not settings.FULL_ADMIN:   #For Desktop, we want to force user to log in through admin.
         return HttpResponseRedirect('/admin-lite-login/')
     else:
         return HttpResponseRedirect('/admin/')
@@ -34,7 +34,7 @@ def login(request, template_name='registration/login.html'):
     # return default_login(request, template_name)
 
 def logout(request, template_name='admin/logged_out.html'):
-    if settings.DESKTOP_BUILD:
+    if not settings.FULL_ADMIN:
         "Logs out the user and displays 'You are logged out' message."
         from django.contrib.auth import logout
         logout(request)
@@ -46,13 +46,19 @@ def logout(request, template_name='admin/logged_out.html'):
 Admin tool allowing staff user to set the interviewee user and proceed with interview with their credentials 
 '''
 # @login_required
-def login_as(request, next_user_str = None):
+def login_as(request, next_user_str = None, interview_id = None):
     if request.user.is_authenticated() and request.user.is_staff:
         if not next_user_str:
             next_user_str = request.REQUEST.get('next_user', '')
+        if not interview_id:
+            interview_id = request.REQUEST.get('int_id', '')
         if next_user_str:
             next_user_obj = get_object_or_404(User,pk=next_user_str)
             request.session['interviewee'] = next_user_obj
+            if interview_id:
+                selected_interview = Interview.objects.get(id=interview_id)
+                if selected_interview:
+                    return handleSelectInterview( request, selected_interview )
             return HttpResponseRedirect('/select_interview/')
 			
     return HttpResponseRedirect('/accounts/login/')
@@ -96,8 +102,16 @@ def survey_management(request):
         survey = {}
         survey['status'] = status
         survey['profile'] = UserProfile.objects.get(user = status.user)
+        # Need to tease out the member's title for the screen - this assumes that their defining group has the highest percent involvement and is not 'Main'
+        gmems = InterviewGroupMembership.objects.filter(user=status.user, int_group__interview=status.interview).exclude(int_group__name='Main Questions').order_by('percent_involvement').reverse()
+        if gmems.count() > 0:
+            survey['group'] = gmems[0].int_group.member_title
+        else:
+            survey['group'] = '?'
+            
         survey_list.append(survey)
 
+        
     context = {
         'survey_list': survey_list
     }
@@ -123,9 +137,11 @@ def admin_lite_login(request, error_message='', extra_context=None):
     context_instance = template.RequestContext(request, {'admin_logins': admin_logins})
     
     if request.method == 'POST':
-        admin_id = admin_utils.create_superuser(request.POST.get('username'), request.POST.get('email'))
-
-        return login_as_admin(request, admin_id)
+        if request.POST.get('username') == '' or request.POST.get('email') == '':
+             context['error_message'] = 'Please provide a username AND email'
+        else:
+            admin_id = admin_utils.create_superuser(request.POST.get('username'), request.POST.get('email'))
+            return login_as_admin(request, admin_id)
     
     return render_to_response( 'admin/admin-lite-login.html', context, context_instance=context_instance)
 
@@ -152,22 +168,16 @@ def handleSelectInterview(request,selected_interview):
         status.save()
         
         # create group records for any required groups
-        # required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
-        all_groups = InterviewGroup.objects.filter(interview=selected_interview)
-        
-        #for group in required_groups:
-        for group in all_groups:
+        required_groups = InterviewGroup.objects.filter(interview=selected_interview, required_group=True)
+        for group in required_groups:
             
             membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=group)
             membership.user = request.session['interviewee']
             membership.int_group = group
-            if (group.required_group == True) :
-                if (group.name != 'Main Questions'):
-                    membership.percent_involvement = 0
-                else :
-                    membership.percent_involvement = 101
-            else:
-                membership.percent_involvement = 50
+            if (group.name != 'Main Questions'):
+                membership.percent_involvement = 0
+            else :
+                membership.percent_involvement = 101
             membership.save()
     
         # redirect to assign_groups
@@ -246,7 +256,6 @@ def select_interview(request):
         # handle the user's interview selection from a POST
         form = SelectInterviewForm(request.POST)
         form.fields['interview'].queryset = active_interviews
-        
         if form.is_valid():
             selected_interview = form.cleaned_data['interview']
             return handleSelectInterview( request, selected_interview )
@@ -268,7 +277,7 @@ def assign_groups(request):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
     # see if the interview has been marked complete
     if status.completed:
@@ -284,80 +293,118 @@ def assign_groups(request):
         # let user select which groups they are in
         groups = InterviewGroup.objects.filter(interview=interview,is_user_group=True)
         
-        form = SelectInterviewGroupsForm( groups)
+        if interview.multiple_user_groups:
         
-        if groups.count() == 1:
-            group = groups[0]
-                    
-            membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=group)
-            membership.user = request.session['interviewee']
-            membership.int_group = group
-            membership.percent_involvement = 100 #form.cleaned_data['group_%s_pc' % field.group.id]
-            membership.order = 5
-            membership.save()
-                
-            qs = InterviewGroupMembership.objects.all()
-            for q in qs:
-                if q.int_group_id == 9:
-                    q.order = 1000 
-                    q.save()
-                else:
-                    q.order = 0
-                    q.save()
-                
-            # redirect to interview_group_status
-            return HttpResponseRedirect('/group_status/')
+            form = SelectInterviewGroupsForm( groups)
             
-        if groups.count() == 0:
-            qs = InterviewGroupMembership.objects.all()
-            for q in qs:
-                if q.int_group_id == 9:
-                    q.order = 1000 
-                    q.save()
-                else:
-                    q.order = 0
-                    q.save()
+            if groups.count() == 1:
+                group = groups[0]
+                        
+                membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=group)
+                membership.user = request.session['interviewee']
+                membership.int_group = group
+                membership.percent_involvement = 100 #form.cleaned_data['group_%s_pc' % field.group.id]
+                membership.order = 5
+                membership.save()
+                    
+                qs = InterviewGroupMembership.objects.filter(int_group__is_user_group=False, user=request.session['interviewee'])
+                for q in qs:
+                    if q.int_group.name == 'Socio-Economic Questions':
+                        q.order = 1000 
+                        q.save()
+                    else:
+                        q.order = 0
+                        q.save()
+                    
+                # redirect to interview_group_status
+                return HttpResponseRedirect('/group_status/')
                 
-            # redirect to interview_group_status
-            return HttpResponseRedirect('/group_status/')
+            if groups.count() == 0:
+                qs = InterviewGroupMembership.objects.filter(int_group__is_user_group=False, user=request.session['interviewee'])
+                for q in qs:
+                    if q.int_group.name == 'Socio-Economic Questions':
+                        q.order = 1000 
+                        q.save()
+                    else:
+                        q.order = 0
+                        q.save()
+                    
+                # redirect to interview_group_status
+                return HttpResponseRedirect('/group_status/')
         
+        else:
+            form = SelectInterviewGroupForm()
+            
+            form.fields['group'].queryset = groups
+
         
         return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'form': form, 'instructions':instructions, 'value':'Continue', 'q_width':265}))
         
     else:
         groups = InterviewGroup.objects.filter(interview=request.session['interview'],required_group=False)
 
-        form = SelectInterviewGroupsForm( groups, request.POST )
+        if interview.multiple_user_groups:
         
-        if form.is_valid():       
-            # save InterviewGroupMembership records
-            for field_name in form.fields:
-                field = form.fields[field_name]
+            form = SelectInterviewGroupsForm( groups, request.POST )
+
+            if form.is_valid():       
+                # save InterviewGroupMembership records
+                for field_name in form.fields:
+                    field = form.fields[field_name]
+                    
+                    if field.group and (form.cleaned_data['group_%s_pc' % field.group.id] > 0 or field.group.is_user_group == False):
+                        if (field.group.name != 'Socio-Economic Questions'):
+                            membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=field.group)
+                            membership.user = request.session['interviewee']
+                            membership.int_group = field.group
+                            membership.percent_involvement = form.cleaned_data['group_%s_pc' % field.group.id]
+                            membership.order = 5
+                            membership.save()
                 
-                if field.group and (form.cleaned_data['group_%s_pc' % field.group.id] > 0 or field.group.is_user_group == False):
-                    if (field.group.name != 'Socio-Economic Questions'):
-                        membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=field.group)
-                        membership.user = request.session['interviewee']
-                        membership.int_group = field.group
-                        membership.percent_involvement = form.cleaned_data['group_%s_pc' % field.group.id]
-                        membership.order = 5
-                        membership.save()
+                qs = InterviewGroupMembership.objects.filter(int_group__is_user_group=False, user=request.session['interviewee'])
+                for q in qs:
+                    if q.int_group.name == 'Socio-Economic Questions':
+                        q.order = 1000 
+                        q.save()
+                    else:
+                        q.order = 0
+                        q.save()
+                    
+                # redirect to interview_group_status
+                return HttpResponseRedirect('/group_status/')
+                
+            # validation errors        
+            return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': SelectInterviewGroupsForm( InterviewGroup.objects.filter(interview=interview,is_user_group=True), request.POST ), 'value':'Continue', 'q_width':265}))
+                
+        else:
+            form = SelectInterviewGroupForm( request.POST )
             
-            qs = InterviewGroupMembership.objects.all()
-            for q in qs:
-                if q.int_group_id == 9:
-                    q.order = 1000 
-                    q.save()
-                else:
-                    q.order = 0
-                    q.save()
+            form.fields['group'].queryset = groups
+            
+            if form.is_valid():
+     
+                selected_group = form.cleaned_data['group']
                 
-            # redirect to interview_group_status
-            return HttpResponseRedirect('/group_status/')
+                membership, created = InterviewGroupMembership.objects.get_or_create(user=request.session['interviewee'], int_group=selected_group)
+                membership.user = request.session['interviewee']
+                membership.int_group = selected_group
+                membership.percent_involvement = 100
+                membership.order = 5
+                membership.save()
+
+                qs = InterviewGroupMembership.objects.filter(int_group__is_user_group=False, user=request.session['interviewee'])
+                for q in qs:
+                    if q.int_group.name == 'Socio-Economic Questions':
+                        q.order = 1000 
+                        q.save()
+                    else:
+                        q.order = 0
+                        q.save()
+                
+                return HttpResponseRedirect('/group_status/')
         
-        
-        # validation errors        
-        return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': SelectInterviewGroupsForm( InterviewGroup.objects.filter(interview=interview,is_user_group=True), request.POST ), 'value':'Continue', 'q_width':265}))
+            # validation errors        
+            return render_to_response( 'base_form.html', RequestContext(request,{'title':title, 'instructions':instructions, 'form': SelectInterviewGroupForm( InterviewGroup.objects.filter(interview=interview,is_user_group=True), request.POST ), 'value':'Continue', 'q_width':265}))
     
 # show a list of user's groups and current status of each
 @login_required
@@ -372,7 +419,7 @@ def group_status(request):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
  
     # see if the interview has been marked complete
@@ -470,7 +517,7 @@ def view_answers(request,group_id):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
  
     # see if the interview has been marked complete
@@ -525,6 +572,8 @@ def answers(request, id=None):
                 elif question.answer_type == 'select':
                     value = answer.option_val
                 elif question.answer_type == 'checkbox':
+                    value = answer.option
+                elif question.answer_type == 'selectmultiple':
                     value = answer.option
                 elif question.answer_type == 'other':
                     value = answer.text_val
@@ -582,6 +631,8 @@ def answers(request, id=None):
                 answer.option_val = request.POST.get('value')
             elif question.answer_type == 'checkbox':
                 answer.option = request.POST.get('value')
+            elif question.answer_type == 'selectmultiple':
+                answer.option = request.POST.get('value')
             elif question.answer_type == 'other':
                 answer.text_val = request.POST.get('value')
             elif question.answer_type == 'text':
@@ -624,7 +675,7 @@ def answer_questions(request,group_id):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
  
     # see if the interview has been marked complete
@@ -709,7 +760,7 @@ def select_group_resources(request, group_id):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
  
     # see if the interview has been marked complete
     if status.completed:
@@ -725,7 +776,7 @@ def select_group_resources(request, group_id):
 
     #Get all resources for current group
 
-    resources = group.resources.all().order_by('name')
+    resources = group.resources.all().order_by('display_order','name')
     resource_id = None
 
     if request.method == 'GET':  
@@ -756,7 +807,7 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
     # see if the interview has been marked complete
     if status.completed:
@@ -775,6 +826,7 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
     # error checks done, get on with it
     title = group.name + ' Resource Questions'
     instructions_qs = InterviewInstructions.objects.filter(int_group__pk=group_id).order_by('-question_set')
+    q_width = 420 #default q_width if not set later
     
     instructions = {}
     for instruct in instructions_qs:
@@ -803,6 +855,7 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
             return utils.JsonResponse(form.as_extjs())
         else:
             # show questions for this group, with any existing user answers
+            q_width = group.resource_question_width
             for sel_resource in sel_resources:
                 form = AnswerForm( questions, answers, group_id, sel_resource.resource.id)
                 forms[sel_resource.resource.verbose_name]=form
@@ -845,7 +898,8 @@ def answer_resource_questions(request, group_id, next_url=None, resource=None):
                     return HttpResponseRedirect(next_url)
                 else:
                     return HttpResponseRedirect('/group_status#main_menu')
-    return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':520}))
+    # return render_to_response( 'base_formset.html', RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':420}))
+    return render_to_response( group.resource_page_template, RequestContext(request,{'group':group, 'forms': forms, 'value':'Continue', 'instructions':instructions, 'q_width':q_width}))
 
 @login_required
 def draw_group_resources(request, group_id):
@@ -858,7 +912,7 @@ def draw_group_resources(request, group_id):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
  
     # see if the interview has been marked complete
@@ -893,22 +947,6 @@ def draw_group_resources(request, group_id):
         else:
             return render_to_response( 'draw_group_resources.html', RequestContext(request, {'title':title, 'group_id':group_id,  'group_name':group.name, 'GMAPS_API_KEY': settings.GMAPS_API_KEY}))
   
-'''
-California coast placemark geojson service
-'''
-def ca_coast_placemarks(request):    
-    """Coast placemarks web service"""    
-    qs = CaCoastPlacemarks.objects.filter().order_by('-lat').exclude(featuretyp='Cemetery').exclude(featuretyp='Airport').exclude(featuretyp='Building').exclude(featuretyp='Canal').exclude(featuretyp='Census').exclude(featuretyp='Church').exclude(featuretyp='Channel').exclude(featuretyp='Civil').exclude(featuretyp='Gut').exclude(featuretyp='Mine').exclude(featuretyp='Populated Place').exclude(featuretyp='Post Office').exclude(featuretyp='School').exclude(featuretyp='Tower').exclude(featuretyp='Civil').exclude(featuretyp='Dam').exclude(featuretyp='Hospital').exclude(featuretyp='Military').exclude(featuretyp='Military (Historical)').exclude(featuretyp='Spring').exclude(featuretyp='Swamp').exclude(featuretyp='Valley').distinct()
-
-    return render_to_geojson(
-        qs,
-        geom_attribute='the_geom',
-        excluded_fields=['long','lat','featuretyp','county'],
-        mimetype = 'text/plain',
-        proj_transform=900913,
-        pretty_print=True
-    )
-    
 '''
 Load the Abalone Punch Card Sites
 '''
@@ -950,9 +988,24 @@ def penny_overview(request, group_id):
 @login_required
 def finalize_group(request,id):
 
-    main_group_id = '4'
-    f_name_id = 54
-    l_name_id = 55
+    cur_interview = request.session['interview']
+
+    if (cur_interview.id == 5):     #commercial survey
+        main_group_id = '11'
+        f_name_id = 115
+        l_name_id = 116
+    if (cur_interview.id == 6):     #charter survey
+        main_group_id = '14'
+        f_name_id = 219
+        l_name_id = 220
+    if (cur_interview.id == 7):     #South Coast charter survey
+        main_group_id = '17'
+        f_name_id = 416
+        l_name_id = 417
+    if (cur_interview.id == 8):     #South Coast commercial survey
+        main_group_id = '20'
+        f_name_id = 310
+        l_name_id = 311
 
     # make sure the user has a valid session in-progress
     try:
@@ -963,7 +1016,7 @@ def finalize_group(request,id):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
  
     # see if the interview has been marked complete
@@ -1039,7 +1092,7 @@ def skip_res_finalize_group(request,id):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
  
     # see if the interview has been marked complete
@@ -1074,11 +1127,7 @@ def skip_res_finalize_group(request,id):
                             resource_shapes.delete()
                         else: 
                             total_shape_count = total_shape_count + shape_count
-                    
-                # check if user failed to draw any shapes
-                if total_shape_count == 0:
-                    return HttpResponseRedirect('/group_status#main_menu')
-                
+
             update_memb = group_memb[0]
             update_memb.status = 'finalized'
             update_memb.date_completed = datetime.datetime.now()
@@ -1101,7 +1150,7 @@ def unskip_group(request,id):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
     # see if the interview has been marked complete
     if status.completed:
@@ -1139,7 +1188,7 @@ def unfinalize_group(request,id):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
     # see if the interview has been marked complete
     if status.completed:
@@ -1192,7 +1241,7 @@ def finalize_interview(request,id):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
  
     # see if the interview has been marked complete
@@ -1228,7 +1277,7 @@ def reopen_interview(request, id):
         status = status_object_qs[0]
         
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
     if request.method == 'GET':
 
@@ -1249,7 +1298,7 @@ def interview_complete(request):
     try:
         int_groups = InterviewGroup.objects.filter(interview=request.session['interview'])
     except Exception, e:
-        return HttpResponseRedirect('/select_interview/')
+        return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 
     title = request.session['interview'].name + ' Completed'
     return render_to_response( 'interview_complete.html', RequestContext(request,{'title':title, 'interview':request.session['interview'], 'SELF_SURVEY_RESET':settings.SELF_SURVEY_RESET}))
@@ -1309,6 +1358,7 @@ def draw_settings(request, id) :
 		'resource_name': interview.resource_name,
 	    'resource_name_plural': interview.resource_name_plural,
     	'resource_action': interview.resource_action,
+    	'resource_action_past_tense': interview.resource_action_past_tense,
         'shape_name_plural': interview.shape_name_plural,
         'shape_name': interview.shape_name
     }    
@@ -1403,6 +1453,12 @@ def shapes(request, id=None):
             shape = InterviewShape.objects.get(pk=id)
             
             if (shape.user == request.session['interviewee']):
+                shape.days_visited = feat.get('days_visited')
+                shape.boundary_n = feat.get('boundary_n')
+                shape.boundary_s = feat.get('boundary_s')
+                shape.boundary_e = feat.get('boundary_e')
+                shape.boundary_w = feat.get('boundary_w')
+                shape.note_text = feat.get('note_text')
                 shape.pennies = feat.get('pennies')
                 shape.save()
                 result = {"success":True, "message":"Updated successfully"}
@@ -1417,38 +1473,10 @@ def shapes(request, id=None):
             geom = GEOSGeometry(feat.get('geometry'), srid=settings.CLIENT_SRID)
             geom.transform(settings.SERVER_SRID)                        
 
-            if feat.get('species_size_factor') == None:
-                species_size_factor = False
+            if feat.get('days_visited') == '':
+                days_visited = None
             else:
-                species_size_factor = True
-            if feat.get('species_abundance_factor') == None:
-                species_abundance_factor = False
-            else:
-                species_abundance_factor = True
-            if feat.get('ease_of_access_factor') == None:
-                ease_of_access_factor = False
-            else:
-                ease_of_access_factor = True
-            if feat.get('close_to_home_factor') == None:
-                close_to_home_factor = False
-            else:
-                close_to_home_factor = True
-            if feat.get('close_to_base_factor') == None:
-                close_to_base_factor = False
-            else:
-                close_to_base_factor = True
-            if feat.get('weather_protection_factor') == None:
-                weather_protection_factor = False
-            else:
-                weather_protection_factor = True
-            if feat.get('close_to_facilities_factor') == None:
-                close_to_facilities_factor = False
-            else:
-                close_to_facilities_factor = True
-            if feat.get('new_place_factor') == None:
-                new_place_factor = False
-            else:
-                new_place_factor = True
+                days_visited = feat.get('days_visited')
 
             new_shape = InterviewShape(
                 user = request.session['interviewee'],
@@ -1460,21 +1488,7 @@ def shapes(request, id=None):
                 note_text = feat.get('note_text'),
                 int_group_id = feat.get('group_id'),
                 resource_id = feat.get('resource_id'),
-                primary_acc_point_id = feat.get('primary_acc_point'),
-                primary_acc_method = feat.get('primary_acc_method'),
-                abalone_harvest = feat.get('abalone_criteria'),
-                abalone_time = feat.get('abalone_time'),
-                abalone_site = feat.get('abalone_site'),
-                days_visited = feat.get('days_visited'),
-                species_size_factor = species_size_factor,
-                species_abundance_factor = species_abundance_factor,
-                ease_of_access_factor = ease_of_access_factor,
-                close_to_home_factor = close_to_home_factor,
-                close_to_base_factor = close_to_base_factor,
-                weather_protection_factor = weather_protection_factor,
-                close_to_facilities_factor = close_to_facilities_factor,
-                new_place_factor = new_place_factor,
-                other_factor = feat.get('other-reason')
+                days_visited = days_visited
             )
             new_shape.save() 
             
@@ -1569,13 +1583,7 @@ def validate_shape(request):
 
         #Clip the shape to the region
         if settings.CLIP_FEATURES:
-
-            method = Resource.objects.get(id = resource_id).method
-
-            if method == 'Shore picking':
-                regions = ClipRegion.objects.filter(feature = 'Shore')
-            else:
-                regions = ClipRegion.objects.filter(feature = 'Sea')
+            regions = ClipRegion.objects.filter(feature = 'Sea')
             if regions.count() < 1:
                 regions = interview.clip_region
 
@@ -1631,6 +1639,7 @@ def gen_validate_response(code, message, geom):
         'message':message,
         'geom':geom
     }
+
     return HttpResponse(geojson_encode(result))
 
 # Save a user-drawn shape.  Shape should already have been validated 
