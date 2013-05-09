@@ -1,6 +1,6 @@
 # local settings.  Override default settings.py
 
-# import os, sys
+import os, sys
 
 DEBUG = True
 
@@ -10,19 +10,39 @@ DESKTOP_BUILD = False
 
 FULL_ADMIN = True
 
-DATABASE_NAME = '' 
+INTERVIEW = ''
 
-DATABASE_ENGINE = '' # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+PASSWORD = ''   #The password used for all users on desktop surveys (in admin lite)
 
-DATABASE_USER = '' #no need if using spatialite
+LOGIN_REDIRECT_URL = '/management/'
 
-DATABASE_PASSWORD = "" #no need if using spatialite
-    
-DATABASE_HOST = '' #no need if using spatialite
-    
-DATABASE_PORT = '' #no need if using spatialite
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.', # Add 'postgis', 'spatialite', 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '',                        # DB name -- or path to database file if using sqlite3.
+        # 'USER': '',                      # Not used with sqlite3.
+        # 'PASSWORD': '',                  # Not used with sqlite3.
+        # 'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        # 'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
 
-MEDIA_ROOT = '' # like: /site-media - where the Django development server goes to look for your static files
+CLIP_FEATURES = True    #Enable clipping on the map-drawing portion
+
+if DESKTOP_BUILD and not FULL_ADMIN:
+    MEDIA_ROOT = os.path.abspath(os.path.dirname(sys.argv[0])) + '/site-media' # like: /site-media - where the Django development server goes to look for your static files
+    MEDIA_URL = '/media/'
+    ADMIN_MEDIA_PREFIX = '/admin-media/'
+else:
+    MEDIA_ROOT = os.path.abspath(os.path.dirname(sys.argv[0])) + '/media' # like: /site-media - where the Django development server goes to look for your static files
+    MEDIA_URL = '/site-media/'
+    ADMIN_MEDIA_PREFIX = '/install-media/admin/'
+
+STATIC_URL = '' # like: /install-media - where the Django development server goes to look for your static files from multiple applications
+
+ADMIN_MEDIA_ROOT = os.path.abspath(os.path.dirname(sys.argv[0])) + ADMIN_MEDIA_PREFIX 
+# STATICFILES_ROOT = os.path.abspath(os.path.dirname(sys.argv[0])) + STATIC_URL
+STATIC_ROOT = os.path.abspath(os.path.dirname(sys.argv[0])) + STATIC_URL
 
 SECRET_KEY = ''
 
@@ -30,4 +50,10 @@ GMAPS_API_KEY = ''
 
 EMAIL_HOST_PASSWORD=''
 
-TILE_BASE = ''
+TILE_BASE = os.path.abspath(os.path.dirname(sys.argv[0])) + '' # like: /tiles/
+
+SHP_UPLOAD_DIR = '' # like: MEDIA_ROOT + '/shapes/'
+
+STATICFILES_DIRS = (
+    os.path.abspath('') # like: c:\\Python27\Lib\site-packages\django_extjs\static
+)

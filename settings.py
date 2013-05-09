@@ -63,15 +63,16 @@ SECRET_KEY = 'set-in-local_settings'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.loader',
-#     'django.template.loaders.eggs.load_template_source',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    # 'django.template.loaders.eggs.load_template_source',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -79,6 +80,8 @@ ROOT_URLCONF = 'urls'
 import os, sys
 
 TILE_BASE = 'set-in-local_settings' #os.path.abspath(os.path.dirname(sys.argv[0])) + '/tiles/'
+
+SHP_UPLOAD_DIR = 'set-in-local-settings'
 
 TEMPLATE_DIRS = ( # use os.path.abspath(os.path.dirname(sys.argv[0])) to get a directory root that will be correct for py2exe'd version
     os.path.abspath(os.path.dirname(sys.argv[0])) +'/gwst_app/templates/',
@@ -102,11 +105,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'registration_custom',
     'gwst_app',
-    #'gwst_surveymonkey',
     'compress',
     'django_extensions',
     'django_extjs',
-    'admin_utils'
+    'admin_utils',
+    'shapes',
+    'longerusername'
 )
 
 SELF_REGISTRATION=False
@@ -128,15 +132,15 @@ COMPRESS_CSS = {}
 
 COMPRESS_JS = {
     'gwst_compressed': {
-        'source_filenames':('third-party/GeoExt-0.6/widgets/MapPanel.js',	
-            'third-party/GeoExt-0.6/data/LayerRecord.js',
-            'third-party/GeoExt-0.6/data/LayerReader.js',
-            'third-party/GeoExt-0.6/data/LayerStore.js',
-            'third-party/GeoExt-0.6/data/ProtocolProxy.js',	
-            'third-party/GeoExt-0.6/data/FeatureRecord.js',
-            'third-party/GeoExt-0.6/data/FeatureReader.js',
-            'third-party/GeoExt-0.6/data/FeatureStore.js',		
-            'third-party/GeoExt-0.6/widgets/grid/FeatureSelectionModel.js',
+        'source_filenames':('third-party/GeoExt-1.0/GeoExt/lib/GeoExt/widgets/MapPanel.js',	
+            'third-party/GeoExt-1.0/GeoExt/lib/GeoExt/data/LayerRecord.js',
+            'third-party/GeoExt-1.0/GeoExt/lib/GeoExt/data/LayerReader.js',
+            'third-party/GeoExt-1.0/GeoExt/lib/GeoExt/data/LayerStore.js',
+            'third-party/GeoExt-1.0/GeoExt/lib/GeoExt/data/ProtocolProxy.js',	
+            'third-party/GeoExt-1.0/GeoExt/lib/GeoExt/data/FeatureRecord.js',
+            'third-party/GeoExt-1.0/GeoExt/lib/GeoExt/data/FeatureReader.js',
+            'third-party/GeoExt-1.0/GeoExt/lib/GeoExt/data/FeatureStore.js',		
+            'third-party/GeoExt-1.0/GeoExt/lib/GeoExt/widgets/grid/FeatureSelectionModel.js',
             'third-party/ext-ux/multiselect/MultiSelect.js',
             'third-party/ext-ux/multiselect/DDView.js',
             'third-party/ext-ux/grid/RowActions.js',

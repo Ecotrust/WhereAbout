@@ -1,1 +1,1 @@
-dropdb -U postgres or-charter-survey
+dropdb -U postgres scac-comm-charter-survey

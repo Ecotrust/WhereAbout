@@ -49,6 +49,34 @@ CONFIGURE SETTINGS.PY
     - controls model def for clip region and local tile loading in client js
 
 --------------------------    
+UPDATE LIB FOLDER
+--------------------------    
+    If you already have dll files in your lib folder, they are very likely out of date.
+        GDAL -
+            gdal#.dll:          ? (maybe from OSGeo4W\bin\gdal#.dll)
+        OSGEOS4W -
+            libcurl.dll:        OSGeos4W\bin\libcurl.dll
+            libeay32.dll:       OSGeos4W\bin\libeay32.dll
+            msvcp71.dll:        OSGeos4W\bin\msvcp71.dll
+            msvcr71.dll:        OSGeos4W\bin\msvcr71.dll
+            proj.dll:           OSGeos4W\bin\proj.dll
+            ssleay32.dll:       OSGeos4W\bin\ssleay32.dll
+            zlib1.dll:          OSGeos4W\bin\zlib1.dll
+        Spatialite - 
+            libspatialite-1.dll:Spatialite\libspatialite-win-x86-#.#.#\bin\libspatialite-1.dll
+            libiconv2.dll:      Spatialite\libiconv-win-x86-#.#.#\bin\libiconv2.dll    ? (maybe OSGeos4W\bin\libiconv-2.dll)
+            libproj-0.dll:      Spatialite\proj-win-x86-#.#.#\bin\libproj-0.dll
+        GEOS -
+            geos_c.dll:         OSGeos4W\bin\geos_c.dll
+            libgeos_c-1.dll:    Spatialite\geos-win-x86-#.#.#\bin\libgeos_c-1.dll
+            libgeos-#-#-#.dll:  Spatialite\geos-win-x86-#.#.#\bin\libgeos-#-#-#.dll
+            
+--------------------------    
+UPDATE gdal_data FOLDER
+--------------------------    
+    copy the folder OSGeo4W\share\gdal and name it gdal_data
+    
+--------------------------    
 CREATE THE DATABASE
 --------------------------    
     run cdb-spatialite.bat
@@ -96,6 +124,8 @@ RUN THE PROGRAM
 --------------------------        
     recompress javascript - manage.py synccompress
 
+    Make sure the version # in setup.py is up to date
+    
     setup.py py2exe
 
     dist/run-desktop.bat to run
