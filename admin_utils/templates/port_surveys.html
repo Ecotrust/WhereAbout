@@ -23,6 +23,14 @@
       {{ export_form.as_p }}
       <input type="submit" value="Export Surveys">
       </form>
+      <form action="../export_shapefile/" method="post">
+      {{ export_form.as_p }}
+      <input type="submit" value="Export Shapefile">
+      </form>
+      <form action="../export_csv/" method="post">
+      {{ export_form.as_p }}
+      <input type="submit" value="Export CSV">
+      </form>
       </p>
       <p>
       <form action="../import_surveys/" method="post" enctype="multipart/form-data">
