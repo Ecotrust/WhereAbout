@@ -1,3 +1,3 @@
 #!/bin/bash
 
-dropdb scac-comm-charter-survey
+dropdb sccam_db

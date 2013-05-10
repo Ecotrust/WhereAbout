@@ -1,1 +1,1 @@
-del database\scac_db.sqlite
+del database\sccam_db.sqlite
