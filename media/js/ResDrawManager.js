@@ -358,6 +358,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             this.curUpdateRecord.set('boundary_e', obj.values.boundary_e);
             this.curUpdateRecord.set('boundary_w', obj.values.boundary_w);
             this.curUpdateRecord.set('note_text', obj.values.note_text);
+            this.curUpdateRecord.set('importance', obj.values.importance);
             this.curUpdateRecord.endEdit();
             this.curUpdateRecord = null;
             this.startDraw2Step();
@@ -1223,6 +1224,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
     	this.curSaveRecord.set('boundary_s', new_feat.feature.boundary_s);
     	this.curSaveRecord.set('boundary_w', new_feat.feature.boundary_w);
     	this.curSaveRecord.set('note_text', new_feat.feature.note_text);
+    	this.curSaveRecord.set('importance', new_feat.feature.importance);
         this.curSaveRecord.endEdit();
     	gwst.settings.shapeStore.commitChanges();
     	this.hideWait.defer(500, this);
@@ -1300,6 +1302,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                 record.modified.boundary_w == null &&
                 record.modified.days_visited == null &&
                 record.modified.note_text == null &&
+                record.modified.importance == null &&
                 record.modified.pennies == null
                 ) 
             ){
@@ -1313,6 +1316,7 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
             boundary_e: record.get('boundary_e'),
             boundary_w: record.get('boundary_w'),
             note_text: record.get('note_text'),
+            importance: record.get('importance'),
             group_id: gwst.settings.survey_group_id,
             resource_id: this.curResource.id
         };
@@ -1514,6 +1518,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                     name: 'note_text',
                     type:'string',
                     defaultValue: ''
+                },{
+                    name: 'importance',
+                    type:'string',
+                    defaultValue: ''
                 }],	        
                 autoLoad: autoLoad  
             });
@@ -1572,6 +1580,10 @@ gwst.ResDrawManager = Ext.extend(Ext.util.Observable, {
                     type:'int'
                 },{
                     name: 'note_text',
+                    type:'string',
+                    defaultValue: ''
+                },{
+                    name: 'importance',
                     type:'string',
                     defaultValue: ''
                 }],	        

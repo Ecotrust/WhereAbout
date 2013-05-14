@@ -72,7 +72,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
         
         this.importance = new Ext.form.TextArea({
             fieldLabel: 'Why this area is important to you',
-            name: 'note_text',
+            name: 'importance',
             autoHeight: false,
             height: 100,
             width: 127
@@ -98,7 +98,8 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
                 this.boundary_e,
                 this.boundary_s,
                 this.boundary_w,
-                this.notes_area 
+                this.notes_area,
+                this.importance
             ]
 		});
         
@@ -130,6 +131,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             this.boundary_e.setValue(this.feature.get('boundary_e'));
             this.boundary_w.setValue(this.feature.get('boundary_w'));
             this.notes_area.setValue(this.feature.get('note_text'));
+            this.importance.setValue(this.feature.get('importance'));
         } else {
             this.days_visited.setRawValue(null);
             this.boundary_n.setRawValue(null);
@@ -137,6 +139,7 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             this.boundary_s.setRawValue(null);
             this.boundary_w.setRawValue(null);
             this.notes_area.setRawValue(null);
+            this.importance.setRawValue(null);
         }
     },
 
