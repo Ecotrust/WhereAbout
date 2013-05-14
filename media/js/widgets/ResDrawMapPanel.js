@@ -211,6 +211,28 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         catch (e) {
             
         }
+        
+        this.Rocky_habitat = new OpenLayers.Layer.Vector("Rocky Habitat", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/Rocky_habitat_smooth5.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.Rocky_habitat.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.Rocky_habitat.setOpacity(0.4);
+        
+        this.layer_array[this.layer_array.length] = this.Rocky_habitat;
 
         this.blockLayer = new OpenLayers.Layer.TMS(
             "California Landing Blocks", 
@@ -239,11 +261,33 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 
         this.layer_array[this.layer_array.length] = this.blockLayer;
 
-        this.mpa_ccac = new OpenLayers.Layer.Vector("Central Coast MPAs", {
+        // this.mpa_ccac = new OpenLayers.Layer.Vector("Central Coast MPAs", {
+            // strategies: [new OpenLayers.Strategy.Fixed()],
+            // projection: map_options.displayProjection,
+            // protocol: new OpenLayers.Protocol.HTTP({
+                // url: "/site-media/kml/CC_existing_mpas.kml",
+                // format: new OpenLayers.Format.KML({
+                    // extractStyles: true, 
+                    // extractAttributes: true,
+                    // maxDepth: 2
+                // })
+            // })
+        // });
+        
+        // this.mpa_ccac.events.on({
+            // "featureselected": this.onFeatureSelect,
+            // "featureunselected": this.onFeatureUnselect
+        // });
+        
+        // this.mpa_ccac.setOpacity(0.4);
+        
+        // this.layer_array[this.layer_array.length] = this.mpa_ccac;
+        
+        this.Military_safety_areas = new OpenLayers.Layer.Vector("Military Safety Areas", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/CC_existing_mpas.kml",
+                url: "/site-media/kml/Military_safety_areas.kml",
                 format: new OpenLayers.Format.KML({
                     extractStyles: true, 
                     extractAttributes: true,
@@ -252,15 +296,191 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             })
         });
         
-        this.mpa_ccac.events.on({
+        this.Military_safety_areas.events.on({
             "featureselected": this.onFeatureSelect,
             "featureunselected": this.onFeatureUnselect
         });
         
-        this.mpa_ccac.setOpacity(0.4);
+        this.Military_safety_areas.setOpacity(0.4);
         
-        this.layer_array[this.layer_array.length] = this.mpa_ccac;
+        this.layer_array[this.layer_array.length] = this.Military_safety_areas;
         
+        this.MPA_SC_Fed_SMCA = new OpenLayers.Layer.Vector("Federal Marine Conservation Areas", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/MPA_SC_Fed_SMCA.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.MPA_SC_Fed_SMCA.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.MPA_SC_Fed_SMCA.setOpacity(0.4);
+        
+        this.layer_array[this.layer_array.length] = this.MPA_SC_Fed_SMCA;
+        
+        this.MPA_SC_Fed_SMR = new OpenLayers.Layer.Vector("Federal Marine Reserves", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/MPA_SC_Fed_SMR.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.MPA_SC_Fed_SMR.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.MPA_SC_Fed_SMR.setOpacity(0.4);
+        
+        this.layer_array[this.layer_array.length] = this.MPA_SC_Fed_SMR;
+
+        this.MPA_SC_RCA_NT = new OpenLayers.Layer.Vector("Rockfish Conservation Area Non-Trawl", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/MPA_SC_RCA_NT.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.MPA_SC_RCA_NT.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.MPA_SC_RCA_NT.setOpacity(0.4);
+        
+        this.layer_array[this.layer_array.length] = this.MPA_SC_RCA_NT;
+
+        this.MPA_SC_RCA_Rec = new OpenLayers.Layer.Vector("Rockfish Conservation Area: Rec", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/MPA_SC_RCA_Rec.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.MPA_SC_RCA_Rec.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.MPA_SC_RCA_Rec.setOpacity(0.4);
+        
+        this.layer_array[this.layer_array.length] = this.MPA_SC_RCA_Rec;
+
+        this.MPA_SC_RCA_T = new OpenLayers.Layer.Vector("Rockfish Conservation Area Trawl", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/MPA_SC_RCA_T.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.MPA_SC_RCA_T.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.MPA_SC_RCA_T.setOpacity(0.4);
+        
+        this.layer_array[this.layer_array.length] = this.MPA_SC_RCA_T;
+
+        this.MPA_SC_SCM_CowcodCA = new OpenLayers.Layer.Vector("Cowcod Conservation Area", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/MPA_SC_SCM_CowcodCA.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.MPA_SC_SCM_CowcodCA.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.MPA_SC_SCM_CowcodCA.setOpacity(0.4);
+        
+        this.layer_array[this.layer_array.length] = this.MPA_SC_SCM_CowcodCA;
+
+        this.MPA_SC_SMP = new OpenLayers.Layer.Vector("State Marine Park", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/MPA_SC_SMP.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.MPA_SC_SMP.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.MPA_SC_SMP.setOpacity(0.4);
+        
+        this.layer_array[this.layer_array.length] = this.MPA_SC_SMP;
+
+        this.MPA_SC_SMRMA = new OpenLayers.Layer.Vector("State Marine Rec. Mgmt. Area", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/MPA_SC_SMRMA.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        });
+        
+        this.MPA_SC_SMRMA.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.MPA_SC_SMRMA.setOpacity(0.4);
+        
+        this.layer_array[this.layer_array.length] = this.MPA_SC_SMRMA;
+
         this.mpa_smr = new OpenLayers.Layer.Vector("State Marine Reserves", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,

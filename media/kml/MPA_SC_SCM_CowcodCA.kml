@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
+<Document id="Cowcod_Cons_Area">
+  <name>Cowcod_Cons_Area</name>
+  <Snippet></Snippet>
+  <Folder id="FeatureLayer0">
+    <name>Cowcod_Cons_Area</name>
+    <Snippet></Snippet>
+    <Placemark id="ID_00000">
+      <name>Cowcod Conservation Area East Essential Fish Habitat Conservation Area</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>Cowcod Conservation Area East Essential Fish Habitat Conservation Area</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>FID</td>
+<td>0</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Site_ID</td>
+<td>NMF919</td>
+</tr>
+<tr>
+<td>Area_KM_To</td>
+<td>383.535</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Shape_Leng</td>
+<td>80078.628001</td>
+</tr>
+<tr>
+<td>Site_Name</td>
+<td>Cowcod Conservation Area East Essential Fish Habitat Conservation Area</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Site_Label</td>
+<td>CCA East EFH CA</td>
+</tr>
+<tr>
+<td>Gov_Level</td>
+<td>Federal</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>State</td>
+<td>National Marine Fisheries Service</td>
+</tr>
+<tr>
+<td>GIS_Data</td>
+<td>Yes</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>NS_Full</td>
+<td>Eligible</td>
+</tr>
+<tr>
+<td>Prot_Lvl</td>
+<td>Uniform Multiple Use</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Mgmt_Plan</td>
+<td>Non-MPA Programmatic Fisheries Management Plan</td>
+</tr>
+<tr>
+<td>Mgmt_Agen</td>
+<td>National Marine Fisheries Service</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Fish_Rstr</td>
+<td>Commercial Fishing Restricted</td>
+</tr>
+<tr>
+<td>Pri_Con_Fo</td>
+<td>Sustainable Production</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Cons_Focus</td>
+<td>Natural Heritage and Sustainable Production</td>
+</tr>
+<tr>
+<td>Prot_Focus</td>
+<td>Focal Resource</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Permanence</td>
+<td>Permanent</td>
+</tr>
+<tr>
+<td>Constancy</td>
+<td>Year-round</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Estab_Yr</td>
+<td>2006</td>
+</tr>
+<tr>
+<td>URL</td>
+<td></td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Vessel</td>
+<td>Unrestricted</td>
+</tr>
+<tr>
+<td>Anchor</td>
+<td>Unrestricted</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>URL_Viewer</td>
+<td><a target="_blank" href="http://www.mpa.gov/dataanalysis/mpainventory/mpaviewer/mpaviewer.swf?sid=NMF919">http://www.mpa.gov/dataanalysis/mpainventory/mpaviewer/mpaviewer.swf?sid=NMF919</a></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampedToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -117.8520757247423,32.57576647959851,0 -117.833333333205,32.61166666504181,0 -117.8333333335363,32.69999999853967,0 -118.0333329997635,32.69999999853967,0 -118.0333333330688,32.69999999853965,0 -118.0333333330856,32.68583333127113,0 -118.0333333328554,32.67483333181426,0 -118.0333333329093,32.49999999804698,0 -118.0333330000916,32.49999999888883,0 -117.8916670007571,32.49999999888883,0 -117.8916666663916,32.49999999804698,0 -117.8520757247423,32.57576647959851,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00001">
+      <name>Western and Eastern Cowcod Conservation Areas</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>Western and Eastern Cowcod Conservation Areas</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>FID</td>
+<td>1</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Site_ID</td>
+<td>NMF80</td>
+</tr>
+<tr>
+<td>Area_KM_To</td>
+<td>13785.4</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Shape_Leng</td>
+<td>625551.893333</td>
+</tr>
+<tr>
+<td>Site_Name</td>
+<td>Western and Eastern Cowcod Conservation Areas</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Site_Label</td>
+<td>Western and Eastern CCAs</td>
+</tr>
+<tr>
+<td>Gov_Level</td>
+<td>Federal</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>State</td>
+<td>National Marine Fisheries Service</td>
+</tr>
+<tr>
+<td>GIS_Data</td>
+<td>Yes</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>NS_Full</td>
+<td>Eligible</td>
+</tr>
+<tr>
+<td>Prot_Lvl</td>
+<td>Zoned Multiple Use</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Mgmt_Plan</td>
+<td>Non-MPA Programmatic Fisheries Management Plan</td>
+</tr>
+<tr>
+<td>Mgmt_Agen</td>
+<td>National Marine Fisheries Service</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Fish_Rstr</td>
+<td>Commercial and Recreational Fishing Restricted</td>
+</tr>
+<tr>
+<td>Pri_Con_Fo</td>
+<td>Sustainable Production</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Cons_Focus</td>
+<td>Sustainable Production</td>
+</tr>
+<tr>
+<td>Prot_Focus</td>
+<td>Focal Resource</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Permanence</td>
+<td>Permanent</td>
+</tr>
+<tr>
+<td>Constancy</td>
+<td>Year-round</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Estab_Yr</td>
+<td>2001</td>
+</tr>
+<tr>
+<td>URL</td>
+<td></td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Vessel</td>
+<td>Unrestricted</td>
+</tr>
+<tr>
+<td>Anchor</td>
+<td>Unrestricted</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>URL_Viewer</td>
+<td><a target="_blank" href="http://www.mpa.gov/dataanalysis/mpainventory/mpaviewer/mpaviewer.swf?sid=NMF80">http://www.mpa.gov/dataanalysis/mpainventory/mpaviewer/mpaviewer.swf?sid=NMF80</a></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampedToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -117.8916670007571,32.49999999888883,0 -117.8520757247423,32.57576647959851,0 -117.833332999988,32.6116669995041,0 -117.8333330002309,32.69999999853967,0 -117.8333333335363,32.69999999853967,0 -118.0333329997635,32.69999999853967,0 -118.0333330000916,32.49999999888883,0 -117.8916670007571,32.49999999888883,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00002">
+      <name>Western and Eastern Cowcod Conservation Areas</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>Western and Eastern Cowcod Conservation Areas</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>FID</td>
+<td>2</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Site_ID</td>
+<td>NMF80</td>
+</tr>
+<tr>
+<td>Area_KM_To</td>
+<td>13785.4</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Shape_Leng</td>
+<td>625551.893333</td>
+</tr>
+<tr>
+<td>Site_Name</td>
+<td>Western and Eastern Cowcod Conservation Areas</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Site_Label</td>
+<td>Western and Eastern CCAs</td>
+</tr>
+<tr>
+<td>Gov_Level</td>
+<td>Federal</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>State</td>
+<td>National Marine Fisheries Service</td>
+</tr>
+<tr>
+<td>GIS_Data</td>
+<td>Yes</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>NS_Full</td>
+<td>Eligible</td>
+</tr>
+<tr>
+<td>Prot_Lvl</td>
+<td>Zoned Multiple Use</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Mgmt_Plan</td>
+<td>Non-MPA Programmatic Fisheries Management Plan</td>
+</tr>
+<tr>
+<td>Mgmt_Agen</td>
+<td>National Marine Fisheries Service</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Fish_Rstr</td>
+<td>Commercial and Recreational Fishing Restricted</td>
+</tr>
+<tr>
+<td>Pri_Con_Fo</td>
+<td>Sustainable Production</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Cons_Focus</td>
+<td>Sustainable Production</td>
+</tr>
+<tr>
+<td>Prot_Focus</td>
+<td>Focal Resource</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Permanence</td>
+<td>Permanent</td>
+</tr>
+<tr>
+<td>Constancy</td>
+<td>Year-round</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Estab_Yr</td>
+<td>2001</td>
+</tr>
+<tr>
+<td>URL</td>
+<td></td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Vessel</td>
+<td>Unrestricted</td>
+</tr>
+<tr>
+<td>Anchor</td>
+<td>Unrestricted</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>URL_Viewer</td>
+<td><a target="_blank" href="http://www.mpa.gov/dataanalysis/mpainventory/mpaviewer/mpaviewer.swf?sid=NMF80">http://www.mpa.gov/dataanalysis/mpainventory/mpaviewer/mpaviewer.swf?sid=NMF80</a></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampedToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -118.8333330003579,33.83333299865411,0 -119.4999999993874,33.83332999877568,0 -119.4999999992615,33.54999999934579,0 -119.8833330004356,33.5499999993458,0 -119.8832122009938,33.49999999819596,0 -119.8829844063804,33.33333333175649,0 -119.8833330000786,32.99999999914181,0 -119.6166670002027,32.99999999914181,0 -119.6163194589803,32.47204945561597,0 -119.6166670000521,32.33333299926314,0 -119.2697223697125,32.33333299926315,0 -118.8333329996721,32.33333299926314,0 -118.832649398061,32.43743299137368,0 -118.8321889846288,32.51814081576191,0 -118.8333330003579,33.83333299865411,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+  </Folder>
+  <Style id="PolyStyle00">
+    <LabelStyle>
+      <color>00000000</color>
+      <scale>0.000000</scale>
+    </LabelStyle>
+    <LineStyle>
+      <color>ff6e6e6e</color>
+      <width>0.400000</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>ffd2f2f7</color>
+      <outline>1</outline>
+    </PolyStyle>
+  </Style>
+</Document>
+</kml>

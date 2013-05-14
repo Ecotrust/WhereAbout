@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
+<Document id="Fed_SMCA">
+  <name>Fed_SMCA</name>
+  <Snippet></Snippet>
+  <Folder id="FeatureLayer0">
+    <name>Fed_SMCA</name>
+    <Snippet></Snippet>
+    <Placemark id="ID_00000">
+      <name>Anacapa Island Essential Fish Habitat Conservation Area</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>Anacapa Island Essential Fish Habitat Conservation Area</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>FID</td>
+<td>0</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Site_ID</td>
+<td>NMF936</td>
+</tr>
+<tr>
+<td>Area_KM_To</td>
+<td>64.7454</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Shape_Leng</td>
+<td>35225.297591</td>
+</tr>
+<tr>
+<td>Site_Name</td>
+<td>Anacapa Island Essential Fish Habitat Conservation Area</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Site_Label</td>
+<td>Anacapa Island EFH CA</td>
+</tr>
+<tr>
+<td>Gov_Level</td>
+<td>Federal</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>State</td>
+<td>National Marine Fisheries Service</td>
+</tr>
+<tr>
+<td>GIS_Data</td>
+<td>Yes</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>NS_Full</td>
+<td>Eligible</td>
+</tr>
+<tr>
+<td>Prot_Lvl</td>
+<td>Uniform Multiple Use</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Mgmt_Plan</td>
+<td>Non-MPA Programmatic Fisheries Management Plan</td>
+</tr>
+<tr>
+<td>Mgmt_Agen</td>
+<td>National Marine Fisheries Service</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Fish_Rstr</td>
+<td>Commercial Fishing Restricted</td>
+</tr>
+<tr>
+<td>Pri_Con_Fo</td>
+<td>Sustainable Production</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Cons_Focus</td>
+<td>Natural Heritage and Sustainable Production</td>
+</tr>
+<tr>
+<td>Prot_Focus</td>
+<td>Focal Resource</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Permanence</td>
+<td>Permanent</td>
+</tr>
+<tr>
+<td>Constancy</td>
+<td>Year-round</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Estab_Yr</td>
+<td>2006</td>
+</tr>
+<tr>
+<td>URL</td>
+<td></td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Vessel</td>
+<td>Unrestricted</td>
+</tr>
+<tr>
+<td>Anchor</td>
+<td>Unrestricted</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>URL_Viewer</td>
+<td><a target="_blank" href="http://www.mpa.gov/dataanalysis/mpainventory/mpaviewer/mpaviewer.swf?sid=NMF936">http://www.mpa.gov/dataanalysis/mpainventory/mpaviewer/mpaviewer.swf?sid=NMF936</a></td>
+</tr>
+<tr>
+<td>Type</td>
+<td>Fed SMCA</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampedToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -119.4099640009939,34.08333333195621,0 -119.41000000024,34.08333333195621,0 -119.4450000005493,34.0833333319562,0 -119.4449955814014,34.06595332300138,0 -119.4445225165782,34.06603347026345,0 -119.4434896874231,34.06619287184587,0 -119.4424536724356,34.06633723979806,0 -119.4414147813495,34.06646652816798,0 -119.4403733349604,34.06658070020145,0 -119.4393296540638,34.06667971913647,0 -119.4382840483936,34.06676355740915,0 -119.4372368387452,34.0668321874471,0 -119.4361883569763,34.06688558166964,0 -119.4351389128205,34.06692374010637,0 -119.4340888270734,34.06694663516,0 -119.4330384094688,34.06695427604913,0 -119.4319880029261,34.06694663516011,0 -119.4309379171791,34.0669237401064,0 -119.4298884730232,34.0668855816698,0 -119.4288399801924,34.06683218744709,0 -119.427792781606,34.06676355740915,0 -119.4267471759357,34.06667971913655,0 -119.4257034950391,34.06658070020144,0 -119.42466204865,34.06646652816798,0 -119.4236231575639,34.06633723979806,0 -119.4225871425765,34.06619287184587,0 -119.4215543134215,34.06603347026348,0 -119.4209781976727,34.06593778313889,0 -119.4207898132101,34.06593528831242,0 -119.4197397385249,34.06591239298288,0 -119.4186903054311,34.0658742340868,0 -119.417641834724,34.06582083922083,0 -119.4165946361376,34.06575220835624,0 -119.4155490525911,34.06566836907376,0 -119.4145053716945,34.06556934894589,0 -119.4134639474293,34.06545517553711,0 -119.4124250674052,34.06532588560995,0 -119.4113890634797,34.06518152512481,0 -119.4103562453864,34.06502212162243,0 -119.4099999998468,34.0649617646678,0 -119.4099999998468,34.06496268337417,0 -119.4099640009939,34.08333333195621,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+  </Folder>
+  <Style id="PolyStyle00">
+    <LabelStyle>
+      <color>00000000</color>
+      <scale>0.000000</scale>
+    </LabelStyle>
+    <LineStyle>
+      <color>ffff7000</color>
+      <width>1.500000</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>ffff7000</color>
+      <outline>1</outline>
+    </PolyStyle>
+  </Style>
+</Document>
+</kml>
