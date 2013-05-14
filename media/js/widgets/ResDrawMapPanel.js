@@ -437,28 +437,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         
         this.layer_array[this.layer_array.length] = this.MPA_SC_SCM_CowcodCA;
 
-        this.MPA_SC_SMP = new OpenLayers.Layer.Vector("State Marine Park", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_SMP.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            })
-        });
-        
-        this.MPA_SC_SMP.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.MPA_SC_SMP.setOpacity(0.4);
-        
-        this.layer_array[this.layer_array.length] = this.MPA_SC_SMP;
-
         this.MPA_SC_SMRMA = new OpenLayers.Layer.Vector("State Marine Rec. Mgmt. Area", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,

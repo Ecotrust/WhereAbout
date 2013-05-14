@@ -69,6 +69,14 @@ gwst.widgets.ShapeAttribPanel = Ext.extend(gwst.widgets.WestPanel, {
             fieldLabel: 'West Boundary',
             name: 'boundary_w'
         });
+        
+        this.importance = new Ext.form.TextArea({
+            fieldLabel: 'Why this area is important to you',
+            name: 'note_text',
+            autoHeight: false,
+            height: 100,
+            width: 127
+        });
 
 		this.inner_form_panel = new Ext.form.FormPanel({
             id: 'shape_attrib_form_panel',

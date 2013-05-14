@@ -1383,7 +1383,7 @@ def draw_settings(request, id) :
 '''
 Shape web service - 
 GET: filter by interview group: 'group_id'
-POST - expects {'feature':{geometry, group_id, resource_id, boundary_n, boundary_s, boundary_e, boundary_w}}
+POST - expects {'feature':{geometry, group_id, resource_id, boundary_n, boundary_s, boundary_e, boundary_w, note_text, pennies, importance}}
 DELETE - expects a shape id /shapes/id or resource_id param
 '''
 def shapes(request, id=None):  
@@ -1459,6 +1459,7 @@ def shapes(request, id=None):
                 shape.boundary_e = feat.get('boundary_e')
                 shape.boundary_w = feat.get('boundary_w')
                 shape.note_text = feat.get('note_text')
+                # shape.importance = feat.get('importance')
                 shape.pennies = feat.get('pennies')
                 shape.save()
                 result = {"success":True, "message":"Updated successfully"}
@@ -1486,6 +1487,7 @@ def shapes(request, id=None):
                 boundary_e = feat.get('boundary_e'),
                 boundary_w = feat.get('boundary_w'),
                 note_text = feat.get('note_text'),
+                # importance = feat.get('importance'),
                 int_group_id = feat.get('group_id'),
                 resource_id = feat.get('resource_id'),
                 days_visited = days_visited
