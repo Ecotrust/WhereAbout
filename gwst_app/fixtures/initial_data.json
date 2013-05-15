@@ -7538,7 +7538,7 @@
     "fields": {
       "all_resources": false,
       "code": "sf_pct08_2",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "What factors have <b><u>most</u></b> affected changes in the percent of your personal income from fishing since 2008",
       "int_group": 22,
       "question_set": 0,
@@ -7566,7 +7566,7 @@
     "fields": {
       "all_resources": false,
       "code": "sf_expln01",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "Explanation",
       "int_group": 22,
       "question_set": 0,
@@ -7924,7 +7924,7 @@
     "fields": {
       "all_resources": false,
       "code": "sf_permown",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "Do you own any of the following permits",
       "int_group": 22,
       "question_set": 2,
@@ -8417,7 +8417,7 @@
     "fields": {
       "all_resources": false,
       "code": "sf_propfac",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "What factors have <b><u>most</u></b> affected changes in the percent of revenue used for your overall operating costs",
       "int_group": 22,
       "question_set": 4,
@@ -8706,7 +8706,11 @@
       "display_order": 640.0,
       "required": false,
       "question_group": null,
-      "options": [],
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
       "val_min": null,
       "val_default": "",
       "answer_type": "select",

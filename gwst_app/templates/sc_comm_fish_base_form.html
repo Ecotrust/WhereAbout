@@ -10,8 +10,7 @@
    {{ form.non_field_errors }}
    
     {% for field in form %}
-    
-        {% if forloop.counter < 7 %}
+        {% if forloop.counter < 8 %}
 
             <p><div class="fieldWrapper">
                 {{ field.errors }}
@@ -41,11 +40,36 @@
                 {% endifequal %}
             </div></p>
         {% endif %}    
-        {% if forloop.counter < 15 %}    
-            {% if forloop.counter > 6 %}    
-                {% ifequal forloop.counter 7 %}
+        
+        {% if forloop.counter < 14 %}
+            {% if forloop.counter > 7 %}    
+                {% ifequal forloop.counter 8 %}
                     <br />
-                    Fishing permits owned that you did not fish last year (2011):<br /><br />
+                    Are there any fisheries you have added or dropped since 2008? If yes, which fisheries and why:<br /><br />
+                    <table class="custom" border="1">
+                        <tr align="center">
+                            <th>Fishery</th>
+                            <th>Added or dropped?</th>
+                            <th>Why?</th>
+                        </tr>
+                        <tr>
+                {% endifequal %}
+                {% ifequal forloop.counter 11 %}
+                        </tr><tr>
+                {% endifequal %}
+                <td><div class="fieldWrapper">{{ field }}</td>
+            {% endif %}    
+        {% endif %}    
+        {% ifequal forloop.counter 14 %}
+                </tr>
+            </table>
+        {% endifequal %}
+        
+        {% if forloop.counter < 22 %}    
+            {% if forloop.counter > 13 %}    
+                {% ifequal forloop.counter 14 %}
+                    <br />
+                    Fishing permits owned that you did not fish last year (2012):<br /><br />
                     <table class="custom" border="1">
                         <tr align="center">
                             <th>Permit</th>
@@ -53,24 +77,24 @@
                         </tr>
                         <tr>
                 {% endifequal %}
-                {% ifequal forloop.counter 9 %}
+                {% ifequal forloop.counter 16 %}
                     </tr><tr>
                 {% endifequal %}
-                {% ifequal forloop.counter 11 %}
+                {% ifequal forloop.counter 18 %}
                     </tr><tr>
                 {% endifequal %}
-                {% ifequal forloop.counter 13 %}
+                {% ifequal forloop.counter 20 %}
                     </tr><tr>
                 {% endifequal %}
                 <td><div class="fieldWrapper">{{ field }}</td>
-                {% ifequal forloop.counter 14 %}
+            {% endif %}    
+        {% endif %}    
+        {% if forloop.counter < 27 %}    
+            {% if forloop.counter > 21 %}    
+                {% ifequal forloop.counter 22 %}
                         </tr>
                     </table>
                 {% endifequal %}
-            {% endif %}    
-        {% endif %}    
-        {% if forloop.counter < 20 %}    
-            {% if forloop.counter > 14 %}    
                 <p><div class="fieldWrapper">
                     {{ field.errors }}
                     {% ifequal field.field.question.layout 'vertical' %}
@@ -100,9 +124,9 @@
                 </div></p>
             {% endif %}    
         {% endif %}
-        {% if forloop.counter < 35 %}    
-            {% if forloop.counter > 19 %} 
-                {% ifequal forloop.counter 20 %}
+        {% if forloop.counter < 42 %}    
+            {% if forloop.counter > 26 %} 
+                {% ifequal forloop.counter 27 %}
                     <br />
                     About your vessels:<br /><br />
                     <table class="custom" border="1">
@@ -114,27 +138,46 @@
                         </tr>
                         <tr><td><b>Name</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 23 %}
+                {% ifequal forloop.counter 30 %}
                     </tr><tr><td><b>Federal Vessel ID</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 26 %}
+                {% ifequal forloop.counter 33 %}
                     </tr><tr><td><b>State ID</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 29 %}
+                {% ifequal forloop.counter 36 %}
                     </tr><tr><td><b>Length (ft)</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 32 %}
+                {% ifequal forloop.counter 39 %}
                     </tr><tr><td><b>Motor (HP)</b></td>
                 {% endifequal %}
                 <td><div class="fieldWrapper">{{ field }}</td>
-                {% ifequal forloop.counter 34 %}
+                {% ifequal forloop.counter 41 %}
                         </tr>
                     </table>
                 {% endifequal %}
 
             {% endif %}    
         {% endif %}
-        {% if forloop.counter > 34 %}          
+        
+        
+        
+        
+        
+        
+        {% if forloop.counter > 41 %}          
+            {% ifequal forloop.counter 47 %}
+                <div class="well">
+                <br />
+                <b>Job Satisfaction Questions:</b> Now I want to ask some questions about the level of satisfaction 
+                you have with your work. Using the scale of happy, neutral, and unhappy I want you to indicate the 
+                level of satisfaction with the following aspects of your work.<br /><br />
+            {% endifequal %}
+            {% ifequal forloop.counter 66 %}
+                <div class="well">
+                <br />
+                <b>Satisfaction with Life Scale:</b> Below are five statements that you may agree or disagree with. 
+                Using the 1 - 7 scale below (show the scale), please tell me your agreement with each.<br /><br />
+            {% endifequal %}
             <p><div class="fieldWrapper">
                 {{ field.errors }}
                 {% ifequal field.field.question.layout 'vertical' %}
@@ -162,6 +205,12 @@
                     </table>
                 {% endifequal %}
             </div></p>
+            {% ifequal forloop.counter 64 %}
+                </div>
+            {% endifequal %}
+            {% ifequal forloop.counter 70 %}
+                </div>
+            {% endifequal %}
         {% endif %}
     {% endfor %}   
    

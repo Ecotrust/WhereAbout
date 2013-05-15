@@ -697,3 +697,9 @@ a.deletelink:hover {
     padding-bottom: 6px;
     Margin-bottom: 10px;
 	}
+    
+.well {
+    background: #e9e9e9; 
+    padding: 10px;
+    margin: 10px;
+}
