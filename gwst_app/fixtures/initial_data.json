@@ -1280,9 +1280,9 @@
       "is_user_group": true,
       "required_group": false,
       "question_width": 435,
-      "select_resource_text": "Please select <b><u>all</u></b> of the fisheries/activities in which the operator participated in from 2008-2011",
+      "select_resource_text": "Please select <b><u>all</u></b> of the fisheries/activities in which the operator participated in from 2008-2012",
       "resource_question_width": 420,
-      "header": "SC Charter Operator",
+      "header": "SC CPFV Operator",
       "preselect": true,
       "resources": [
         "ab_fs",
@@ -1325,7 +1325,7 @@
       "member_title": "Operator",
       "page_template": "sc_char_op_base_form.html",
       "resource_page_template": "sc_char_op_base_formset.html",
-      "description": "Charter Operator Group"
+      "description": "CPFV Operator Group"
     }
   },
   {
@@ -4665,7 +4665,7 @@
       "all_resources": false,
       "code": "shp_cptype",
       "layout": null,
-      "eng_text": "In 2011 were you a hired captain or an owner and captain",
+      "eng_text": "In 2012 were you a hired captain or an owner and captain",
       "int_group": 19,
       "question_set": 0,
       "display_order": 100.0,
@@ -4679,7 +4679,7 @@
       "val_default": "",
       "answer_type": "select",
       "eng_tooltip": "hired or owner and captain",
-      "header_name": "hired or owner and captain 2011",
+      "header_name": "hired or owner and captain 2012",
       "val_max": null
     }
   },
@@ -4690,7 +4690,7 @@
       "all_resources": false,
       "code": "shp_numves",
       "layout": null,
-      "eng_text": "Number of charter boats owned/operated in 2011",
+      "eng_text": "Number of CPFV boats owned/operated in 2012",
       "int_group": 19,
       "question_set": 0,
       "display_order": 1100.0,
@@ -4700,8 +4700,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "integer",
-      "eng_tooltip": "Number of vessels in 2011",
-      "header_name": "Number of vessels in 2011",
+      "eng_tooltip": "Number of vessels in 2012",
+      "header_name": "Number of vessels in 2012",
       "val_max": null
     }
   },
@@ -4908,9 +4908,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shp_port11",
+      "code": "shp_port12",
       "layout": null,
-      "eng_text": "Home port in 2011",
+      "eng_text": "Home port in 2012",
       "int_group": 19,
       "question_set": 2,
       "display_order": 300.0,
@@ -4920,8 +4920,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "text",
-      "eng_tooltip": "port 11",
-      "header_name": "Home port in 2011",
+      "eng_tooltip": "port 12",
+      "header_name": "Home port in 2012",
       "val_max": null
     }
   },
@@ -4954,7 +4954,7 @@
       "all_resources": false,
       "code": "shp_portdi",
       "layout": null,
-      "eng_text": "<i>If there is a change in home port between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "eng_text": "<i>If there is a change in home port between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 19,
       "question_set": 2,
       "display_order": 320.0,
@@ -4976,7 +4976,7 @@
       "all_resources": false,
       "code": "shp_yrsown",
       "layout": null,
-      "eng_text": "Number of years owning charter boats",
+      "eng_text": "Number of years owning CPFV boats",
       "int_group": 19,
       "question_set": 2,
       "display_order": 330.0,
@@ -4987,7 +4987,7 @@
       "val_default": "",
       "answer_type": "decimal",
       "eng_tooltip": "years owning",
-      "header_name": "years owning charter boats",
+      "header_name": "years owning CPFV boats",
       "val_max": null
     }
   },
@@ -4998,7 +4998,7 @@
       "all_resources": false,
       "code": "shp_yrsop",
       "layout": null,
-      "eng_text": "Number of years operating charter boats",
+      "eng_text": "Number of years operating CPFV boats",
       "int_group": 19,
       "question_set": 2,
       "display_order": 340.0,
@@ -5009,7 +5009,7 @@
       "val_default": "",
       "answer_type": "decimal",
       "eng_tooltip": "years operating",
-      "header_name": "years operating charter boats",
+      "header_name": "years operating CPFV boats",
       "val_max": null
     }
   },
@@ -5018,9 +5018,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shp_pinc11",
+      "code": "shp_pinc12",
       "layout": null,
-      "eng_text": "Percentage of personal income from owning/operating charter boats in 2011",
+      "eng_text": "Percentage of personal income from owning/operating CPFV boats in 2012",
       "int_group": 19,
       "question_set": 2,
       "display_order": 350.0,
@@ -5030,8 +5030,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "% income in 2011",
-      "header_name": "% income from charter in 2011",
+      "eng_tooltip": "% income in 2012",
+      "header_name": "% income from CPFV in 2012",
       "val_max": null
     }
   },
@@ -5042,7 +5042,7 @@
       "all_resources": false,
       "code": "shp_pinc08",
       "layout": null,
-      "eng_text": "Percentage of personal income from owning/operating charter boats in 2008",
+      "eng_text": "Percentage of personal income from owning/operating CPFV boats in 2008",
       "int_group": 19,
       "question_set": 2,
       "display_order": 360.0,
@@ -5053,7 +5053,7 @@
       "val_default": "",
       "answer_type": "percent",
       "eng_tooltip": "% income in 2008",
-      "header_name": "% income from charter in 2008",
+      "header_name": "% income from CPFV in 2008",
       "val_max": null
     }
   },
@@ -5064,7 +5064,7 @@
       "all_resources": false,
       "code": "shp_pincdi",
       "layout": null,
-      "eng_text": "<i>If there is a significant difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "eng_text": "<i>If there is a significant difference between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 19,
       "question_set": 2,
       "display_order": 370.0,
@@ -5075,7 +5075,7 @@
       "val_default": "",
       "answer_type": "textarea",
       "eng_tooltip": "% income difference",
-      "header_name": "% income from charter difference 08 to 11",
+      "header_name": "% income from CPFV difference 08 to 12",
       "val_max": null
     }
   },
@@ -5086,7 +5086,7 @@
       "all_resources": false,
       "code": "shp_othinc",
       "layout": null,
-      "eng_text": "Other sources of income/employment in 2011 [Separate with DASHES]",
+      "eng_text": "Other sources of income/employment in 2012 [Separate with DASHES]",
       "int_group": 19,
       "question_set": 2,
       "display_order": 380.0,
@@ -5097,7 +5097,7 @@
       "val_default": "",
       "answer_type": "textarea",
       "eng_tooltip": "separate with DASHES",
-      "header_name": "other sources of income 2011",
+      "header_name": "other sources of income 2012",
       "val_max": null
     }
   },
@@ -5106,9 +5106,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shp_tgr11",
+      "code": "shp_tgr12",
       "layout": null,
-      "eng_text": "Annual total gross revenue from charter operations in 2011",
+      "eng_text": "Annual total gross revenue from CPFV operations in 2012",
       "int_group": 19,
       "question_set": 2,
       "display_order": 390.0,
@@ -5118,8 +5118,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "money",
-      "eng_tooltip": "Total GR in 2011",
-      "header_name": "Total GR in 2011 from charter",
+      "eng_tooltip": "Total GR in 2012",
+      "header_name": "Total GR in 2012 from CPFV ",
       "val_max": null
     }
   },
@@ -5130,7 +5130,7 @@
       "all_resources": false,
       "code": "shp_tgr08",
       "layout": null,
-      "eng_text": "Annual total gross revenue from charter operations in 2008",
+      "eng_text": "Annual total gross revenue from CPFV operations in 2008",
       "int_group": 19,
       "question_set": 2,
       "display_order": 400.0,
@@ -5141,7 +5141,7 @@
       "val_default": "",
       "answer_type": "money",
       "eng_tooltip": "Total GR in 2008",
-      "header_name": "Total GR in 2008 from charter",
+      "header_name": "Total GR in 2008 from CPFV ",
       "val_max": null
     }
   },
@@ -5152,7 +5152,7 @@
       "all_resources": false,
       "code": "shp_tgrdif",
       "layout": null,
-      "eng_text": "<i>If there is a significant difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "eng_text": "<i>If there is a significant difference between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 19,
       "question_set": 2,
       "display_order": 410.0,
@@ -5163,7 +5163,7 @@
       "val_default": "",
       "answer_type": "textarea",
       "eng_tooltip": "Total GR difference",
-      "header_name": "Total GR change from charter 08 to 11",
+      "header_name": "Total GR change from CPFV 08 to 12",
       "val_max": null
     }
   },
@@ -5172,9 +5172,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shp_pfl11",
+      "code": "shp_pfl12",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue for fuel (2011)",
+      "eng_text": "Percentage of total gross revenue for fuel (2012)",
       "int_group": 19,
       "question_set": 2,
       "display_order": 420.0,
@@ -5184,8 +5184,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for fuel in 2011",
-      "header_name": "%GR for fuel in 2011",
+      "eng_tooltip": "%GR for fuel in 2012",
+      "header_name": "%GR for fuel in 2012",
       "val_max": null
     }
   },
@@ -5194,9 +5194,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shp_pcw11",
+      "code": "shp_pcw12",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for crew/labor (including a hired captain) (2011)",
+      "eng_text": "Percentage of total gross revenue used for crew/labor (including a hired captain) (2012)",
       "int_group": 19,
       "question_set": 2,
       "display_order": 430.0,
@@ -5206,8 +5206,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for crew in 2011",
-      "header_name": "%GR for crew in 2011",
+      "eng_tooltip": "%GR for crew in 2012",
+      "header_name": "%GR for crew in 2012",
       "val_max": null
     }
   },
@@ -5216,9 +5216,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shp_poth11",
+      "code": "shp_poth12",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for all other operating costs (2011)",
+      "eng_text": "Percentage of total gross revenue used for all other operating costs (2012)",
       "int_group": 19,
       "question_set": 2,
       "display_order": 440.0,
@@ -5228,8 +5228,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for other costs 2011",
-      "header_name": "%GR for other costs 2011",
+      "eng_tooltip": "%GR for other costs 2012",
+      "header_name": "%GR for other costs 2012",
       "val_max": null
     }
   },
@@ -5320,7 +5320,7 @@
       "all_resources": false,
       "code": "shp_cnpass",
       "layout": null,
-      "eng_text": "Average number of passengers on a <b>consumptive</b> charter trip in 2011",
+      "eng_text": "Average number of passengers on a <b>consumptive</b> CPFV trip in 2012",
       "int_group": 19,
       "question_set": 3,
       "display_order": 500.0,
@@ -5331,7 +5331,7 @@
       "val_default": "",
       "answer_type": "integer",
       "eng_tooltip": "consumptive: passenger count",
-      "header_name": "consumptive: passenger count 2011",
+      "header_name": "consumptive: passenger count 2012",
       "val_max": null
     }
   },
@@ -5342,7 +5342,7 @@
       "all_resources": false,
       "code": "shp_cppp",
       "layout": null,
-      "eng_text": "Average price per passenger for a <b>consumptive</b> charter trip in 2011",
+      "eng_text": "Average price per passenger for a <b>consumptive</b> CPFV trip in 2012",
       "int_group": 19,
       "question_set": 3,
       "display_order": 510.0,
@@ -5352,8 +5352,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "money",
-      "eng_tooltip": "consumptive: $ per passenger 2011",
-      "header_name": "consumptive: $ per passenger 2011",
+      "eng_tooltip": "consumptive: $ per passenger 2012",
+      "header_name": "consumptive: $ per passenger 2012",
       "val_max": null
     }
   },
@@ -5364,7 +5364,7 @@
       "all_resources": false,
       "code": "shp_cntrip",
       "layout": null,
-      "eng_text": "Number of <b>consumptive</b> charter trips taken in 2011",
+      "eng_text": "Number of <b>consumptive</b> CPFV trips taken in 2012",
       "int_group": 19,
       "question_set": 3,
       "display_order": 520.0,
@@ -5375,7 +5375,7 @@
       "val_default": "",
       "answer_type": "integer",
       "eng_tooltip": "consumptive: number of trips",
-      "header_name": "consumptive: number of trips in 2011",
+      "header_name": "consumptive: number of trips in 2012",
       "val_max": null
     }
   },
@@ -5386,7 +5386,7 @@
       "all_resources": false,
       "code": "shp_ctr08",
       "layout": null,
-      "eng_text": "Number of <b>consumptive</b> charter trips taken in 2008",
+      "eng_text": "Number of <b>consumptive</b> CPFV trips taken in 2008",
       "int_group": 19,
       "question_set": 3,
       "display_order": 523.0,
@@ -5408,7 +5408,7 @@
       "all_resources": false,
       "code": "shp_ctrdif",
       "layout": null,
-      "eng_text": "If there is a difference between 2011 and 2008 - Cause of change",
+      "eng_text": "If there is a difference between 2012 and 2008 - Cause of change",
       "int_group": 19,
       "question_set": 3,
       "display_order": 526.0,
@@ -5430,7 +5430,7 @@
       "all_resources": false,
       "code": "shp_cncrew",
       "layout": null,
-      "eng_text": "Average number of crew used per <b>consumptive</b> trip (not including hired captain) in 2011",
+      "eng_text": "Average number of crew used per <b>consumptive</b> trip (not including hired captain) in 2012",
       "int_group": 19,
       "question_set": 3,
       "display_order": 530.0,
@@ -5441,7 +5441,7 @@
       "val_default": "",
       "answer_type": "integer",
       "eng_tooltip": "consumptive: num crew",
-      "header_name": "consumptive: num crew 2011",
+      "header_name": "consumptive: num crew 2012",
       "val_max": null
     }
   },
@@ -5452,7 +5452,7 @@
       "all_resources": false,
       "code": "shp_nnpass",
       "layout": null,
-      "eng_text": "Average number of passengers on a <b>non-consumptive</b> charter trip in 2011",
+      "eng_text": "Average number of passengers on a <b>non-consumptive</b> CPFV trip in 2012",
       "int_group": 19,
       "question_set": 3,
       "display_order": 540.0,
@@ -5463,7 +5463,7 @@
       "val_default": "",
       "answer_type": "integer",
       "eng_tooltip": "non: num passengers",
-      "header_name": "non: num passengers 2011",
+      "header_name": "non: num passengers 2012",
       "val_max": null
     }
   },
@@ -5474,7 +5474,7 @@
       "all_resources": false,
       "code": "shp_nppp",
       "layout": null,
-      "eng_text": "Average price per passenger for a <b>non-consumptive</b> charter trip in 2011",
+      "eng_text": "Average price per passenger for a <b>non-consumptive</b> CPFV trip in 2012",
       "int_group": 19,
       "question_set": 3,
       "display_order": 550.0,
@@ -5485,7 +5485,7 @@
       "val_default": "",
       "answer_type": "money",
       "eng_tooltip": "non: $ per passenger",
-      "header_name": "non: $ per passenger 2011",
+      "header_name": "non: $ per passenger 2012",
       "val_max": null
     }
   },
@@ -5496,7 +5496,7 @@
       "all_resources": false,
       "code": "shp_nntrip",
       "layout": null,
-      "eng_text": "Number of <b>non-consumptive</b> charter trips taken in 2011",
+      "eng_text": "Number of <b>non-consumptive</b> CPFV trips taken in 2012",
       "int_group": 19,
       "question_set": 3,
       "display_order": 560.0,
@@ -5506,8 +5506,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "integer",
-      "eng_tooltip": "non: num trips 2011",
-      "header_name": "non: num trips 2011",
+      "eng_tooltip": "non: num trips 2012",
+      "header_name": "non: num trips 2012",
       "val_max": null
     }
   },
@@ -5518,7 +5518,7 @@
       "all_resources": false,
       "code": "shp_ntr08",
       "layout": null,
-      "eng_text": "Number of <b>non-consumptive</b> charter trips taken in 2008",
+      "eng_text": "Number of <b>non-consumptive</b> CPFV trips taken in 2008",
       "int_group": 19,
       "question_set": 3,
       "display_order": 563.0,
@@ -5540,7 +5540,7 @@
       "all_resources": false,
       "code": "shp_ntrdif",
       "layout": null,
-      "eng_text": "If there is a difference between 2011 and 2008 - Cause of change",
+      "eng_text": "If there is a difference between 2012 and 2008 - Cause of change",
       "int_group": 19,
       "question_set": 3,
       "display_order": 566.0,
@@ -5562,7 +5562,7 @@
       "all_resources": false,
       "code": "shp_nncrew",
       "layout": null,
-      "eng_text": "Average number of crew used per <b>non-consumptive</b> trip (not including hired captain) in 2011",
+      "eng_text": "Average number of crew used per <b>non-consumptive</b> trip (not including hired captain) in 2012",
       "int_group": 19,
       "question_set": 3,
       "display_order": 570.0,
@@ -5573,7 +5573,7 @@
       "val_default": "",
       "answer_type": "integer",
       "eng_tooltip": "non: num crew",
-      "header_name": "non: num crew 2011",
+      "header_name": "non: num crew 2012",
       "val_max": null
     }
   },
@@ -5694,7 +5694,7 @@
       "all_resources": true,
       "code": "sha_addrop",
       "layout": null,
-      "eng_text": "Did the operator add or drop this fishery/activity since the beginning of 2008 or not offer this fishery/activity in 2011",
+      "eng_text": "Did the operator add or drop this fishery/activity since the beginning of 2008 or not offer this fishery/activity in 2012",
       "int_group": 19,
       "question_set": 6,
       "display_order": 1100.0,
@@ -5721,7 +5721,7 @@
       "all_resources": true,
       "code": "sha_whyad",
       "layout": null,
-      "eng_text": "Reason this fishery/activity was added or dropped since 2008 or not offered in 2011",
+      "eng_text": "Reason this fishery/activity was added or dropped since 2008 or not offered in 2012",
       "int_group": 19,
       "question_set": 6,
       "display_order": 1110.0,
@@ -5743,7 +5743,7 @@
       "all_resources": true,
       "code": "sha_numday",
       "layout": null,
-      "eng_text": "Number of days last season (2011) fishing for this species or operating this type of activity",
+      "eng_text": "Number of days last season (2012) fishing for this species or operating this type of activity",
       "int_group": 19,
       "question_set": 6,
       "display_order": 1120.0,
@@ -5754,7 +5754,7 @@
       "val_default": "",
       "answer_type": "integer",
       "eng_tooltip": "",
-      "header_name": "#days 2011 for resource",
+      "header_name": "#days 2012 for resource",
       "val_max": 365.0
     }
   },
@@ -5765,7 +5765,7 @@
       "all_resources": true,
       "code": "sha_pctgr",
       "layout": null,
-      "eng_text": "Percent of gross revenue from this activity/fishery for 2011",
+      "eng_text": "Percent of gross revenue from this activity/fishery for 2012",
       "int_group": 19,
       "question_set": 6,
       "display_order": 1130.0,
@@ -5776,7 +5776,7 @@
       "val_default": "",
       "answer_type": "percent",
       "eng_tooltip": "Must add up to 100%",
-      "header_name": "%GER from resource 2011",
+      "header_name": "%GER from resource 2012",
       "val_max": null
     }
   },
@@ -6338,7 +6338,7 @@
       "all_resources": true,
       "code": "sha_succmp",
       "layout": null,
-      "eng_text": "How would you compare your success with last year's fishery/activity (2011) to past years (in the last 5 years)",
+      "eng_text": "How would you compare your success with last year's fishery/activity (2012) to past years (in the last 5 years)",
       "int_group": 19,
       "question_set": 6,
       "display_order": 1310.0,
@@ -6356,7 +6356,7 @@
       "val_default": "",
       "answer_type": "select",
       "eng_tooltip": "",
-      "header_name": "compare success 2011 with last 5",
+      "header_name": "compare success 2012 with last 5",
       "val_max": null
     }
   },
@@ -6367,7 +6367,7 @@
       "all_resources": true,
       "code": "sha_checon",
       "layout": null,
-      "eng_text": "Were there any ECONOMIC differences/changes the fisherman noticed that significantly affected their fishing or this activity in 2011",
+      "eng_text": "Were there any ECONOMIC differences/changes the fisherman noticed that significantly affected their fishing or this activity in 2012",
       "int_group": 19,
       "question_set": 6,
       "display_order": 1320.0,
@@ -6389,7 +6389,7 @@
       "all_resources": true,
       "code": "sha_chenv",
       "layout": null,
-      "eng_text": "Were there any ENVIRONMENTAL differences/changes the fisherman noticed that significantly affected their fishing or this activity in 2011",
+      "eng_text": "Were there any ENVIRONMENTAL differences/changes the fisherman noticed that significantly affected their fishing or this activity in 2012",
       "int_group": 19,
       "question_set": 6,
       "display_order": 1330.0,
@@ -6411,7 +6411,7 @@
       "all_resources": true,
       "code": "sha_chreg",
       "layout": null,
-      "eng_text": "Were there any REGULATION/POLICY differences/changes the fisherman noticed that significantly affected their fishing or this activity in 2011",
+      "eng_text": "Were there any REGULATION/POLICY differences/changes the fisherman noticed that significantly affected their fishing or this activity in 2012",
       "int_group": 19,
       "question_set": 6,
       "display_order": 1340.0,
@@ -6433,7 +6433,7 @@
       "all_resources": true,
       "code": "sha_choth",
       "layout": null,
-      "eng_text": "Were there any OTHER differences/changes the fisherman noticed that significantly affected their fishing or this activity in 2011",
+      "eng_text": "Were there any OTHER differences/changes the fisherman noticed that significantly affected their fishing or this activity in 2012",
       "int_group": 19,
       "question_set": 6,
       "display_order": 1350.0,
