@@ -25,7 +25,7 @@
                 </p>
             {% endwith %}
         {% endif %}
-        {% if forloop.counter < 10 %}
+        {% if forloop.counter < 8 %}
             <p><div class="fieldWrapper">
                 {{ field.errors }}
                 {% ifequal field.field.question.layout 'vertical' %}
@@ -55,32 +55,32 @@
                 {% endifequal %}
             </div></p>
         {% endif %}
-        {% if forloop.counter > 9 %}
-            {% if forloop.counter < 15 %}
-                {% ifequal forloop.counter 10 %}
+        {% if forloop.counter > 7 %}
+            {% if forloop.counter < 13 %}
+                {% ifequal forloop.counter 8 %}
                     <table border="1" rules="none">
                         <tr><td><b>If yes:</b></td></tr>
                         <tr><td>For how many years have you done direct marketing for this fishery?</td>
                         <td>{{ field }}</td></tr>
                 {% endifequal %}
-                {% ifequal forloop.counter 11 %}
+                {% ifequal forloop.counter 9 %}
                         <tr><td>What percent of your <b>gross revenue from this fishery</b> is from direct marketing in 2011?</td>
                         <td>{{ field }}</td></tr>
                 {% endifequal %}
-                {% ifequal forloop.counter 12 %}
+                {% ifequal forloop.counter 10 %}
                         <tr><td><b>If no:</b></td></tr>
                         <tr><td>Would you be interested in direct marketing your catch for this fishery?</td>
                         <td>{{ field }}</td></tr>
                 {% endifequal %}
-                {% ifequal forloop.counter 13 %}
+                {% ifequal forloop.counter 11 %}
                         <tr><td>What are the major barriers to directly marketing your catch in this fishery?</td>
                         <td>{{ field }}</td></tr>
                     </table>
                 {% endifequal %}
             {% endif %}
         {% endif %}
-        {% if forloop.counter > 13 %}
-            {% if forloop.counter < 18 %}
+        {% if forloop.counter > 11 %}
+            {% if forloop.counter < 19 %}
                 <p><div class="fieldWrapper">
                     {{ field.errors }}
                     {% ifequal field.field.question.layout 'vertical' %}
@@ -111,11 +111,11 @@
                 </div></p>
             {% endif %}
         {% endif %}
-        {% if forloop.counter > 17 %}
-            {% if forloop.counter < 30 %}
-                {% ifequal forloop.counter 18 %}
+        {% if forloop.counter > 18 %}
+            {% if forloop.counter < 25 %}
+                {% ifequal forloop.counter 19 %}
                     <br />
-                    If yes, which MPAs have affected this fishery/activity and in which ways?<br /><br />
+                    Are there any specific MPAs that have significantly impacted you in a particular way?<br /><br />
                     <table border="1">
                         <tr align="center">
                             <th>MPA</th>
@@ -124,55 +124,68 @@
                         </tr>
                         <tr>
                 {% endifequal %}
-                {% ifequal forloop.counter 21 %}
-                    </tr><tr>
-                {% endifequal %}
-                {% ifequal forloop.counter 24 %}
-                    </tr><tr>
-                {% endifequal %}
-                {% ifequal forloop.counter 27 %}
+                {% ifequal forloop.counter 22 %}
                     </tr><tr>
                 {% endifequal %}
                 <td><div class="fieldWrapper">{{ field }}</td>
-                {% ifequal forloop.counter 29 %}
+                {% ifequal forloop.counter 24 %}
                         </tr>
                     </table>
                 {% endifequal %}
             {% endif %}
         {% endif %}
-        
-        {% if forloop.counter > 29 %}
-            <p><div class="fieldWrapper">
-                {{ field.errors }}
-                {% ifequal field.field.question.layout 'vertical' %}
-                    <table>
-                        <tr>
-                            <td>
-                                {{ field.label|safe }}:
-                            </td>
-                        </tr><tr>
-                            <td>
-                                {{ field }}
-                            </td>
-                        </tr>
-                    </table>
-                {% else %}
 
-                    <table>
-                        <tr>
-                            <td style='width:{{ q_width }}px'>
-                                {{ field.label|safe }}:
-                            </td>
-                            <td>
-                                {{ field }}
-                            </td>
-                        </tr>
-                    </table>
-                {% endifequal %}
-            </div></p>
+        {% if forloop.counter > 24 %}
+            {% if forloop.counter < 27 %}
+                <p><div class="fieldWrapper">
+                    {{ field.errors }}
+                    {% ifequal field.field.question.layout 'vertical' %}
+                        <table>
+                            <tr>
+                                <td>
+                                    {{ field.label|safe }}:
+                                </td>
+                            </tr><tr>
+                                <td>
+                                    {{ field }}
+                                </td>
+                            </tr>
+                        </table>
+                    {% else %}
+
+                        <table>
+                            <tr>
+                                <td style='width:{{ q_width }}px'>
+                                    {{ field.label|safe }}:
+                                </td>
+                                <td>
+                                    {{ field }}
+                                </td>
+                            </tr>
+                        </table>
+                    {% endifequal %}
+                </div></p>
+            {% endif %}
         {% endif %}
-    {% endfor %}   
     
+        {% ifequal forloop.counter 27 %}
+            What factors most affected your success in this fishery/activity in 2012?<br /><br />
+            <table border="1" rules="none">
+                <tr><th>Factor</th><th>Effects</th></tr>
+                <tr><td><b>ECONOMIC</b></td><td>{{ field }}</td></tr>
+        {% endifequal %}
+        {% ifequal forloop.counter 28 %}
+                <tr><td><b>ENVIRONMENTAL</b></td><td>{{ field }}</td></tr>
+        {% endifequal %}
+        {% ifequal forloop.counter 28 %}
+                <tr><td><b>REGULATION/POLICY</b></td><td>{{ field }}</td></tr>
+        {% endifequal %}
+        {% ifequal forloop.counter 28 %}
+                <tr><td><b>OTHER</b></td><td>{{ field }}</td></tr>
+            </table><br /><br />
+        {% endifequal %}
+        
+    {% endfor %}   
    {% endfor %}
 
    <p><input id="submit" type="submit" value="{{ value }}" />
