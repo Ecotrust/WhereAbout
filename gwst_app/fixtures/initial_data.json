@@ -2685,6 +2685,118 @@
     }
   },
   {
+    "pk": "557cae1e-bcf5-11e2-930a-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 250.0,
+      "eng_text": "Changes in the market/economy"
+    }
+  },
+  {
+    "pk": "5b983f8f-bcf5-11e2-8ed2-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 260.0,
+      "eng_text": "Changes in fish abundance/presence"
+    }
+  },
+  {
+    "pk": "60878600-bcf5-11e2-9ef8-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 270.0,
+      "eng_text": "Changes in regulations"
+    }
+  },
+  {
+    "pk": "685952f0-bcf5-11e2-bc40-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 280.0,
+      "eng_text": "Personal reasons"
+    }
+  },
+  {
+    "pk": "9e97479e-bcf5-11e2-a642-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 370.0,
+      "eng_text": "Happy"
+    }
+  },
+  {
+    "pk": "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 380.0,
+      "eng_text": "Neutral"
+    }
+  },
+  {
+    "pk": "a95dea8f-bcf5-11e2-82a6-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 390.0,
+      "eng_text": "Unhappy"
+    }
+  },
+  {
+    "pk": "15274ccf-bcf6-11e2-a4d5-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 1100.0,
+      "eng_text": "Strongly agree"
+    }
+  },
+  {
+    "pk": "18f85200-bcf6-11e2-a55a-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 1110.0,
+      "eng_text": "Agree"
+    }
+  },
+  {
+    "pk": "1f426d80-bcf6-11e2-9357-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 1120.0,
+      "eng_text": "Slightly agree"
+    }
+  },
+  {
+    "pk": "28d0b780-bcf6-11e2-8b51-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 1130.0,
+      "eng_text": "Neither agree nor disagree"
+    }
+  },
+  {
+    "pk": "3297ebcf-bcf6-11e2-8c54-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 1140.0,
+      "eng_text": "Slightly disagree"
+    }
+  },
+  {
+    "pk": "3841818f-bcf6-11e2-a279-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 1150.0,
+      "eng_text": "Disagree"
+    }
+  },
+  {
+    "pk": "3f2767e1-bcf6-11e2-9436-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 1160.0,
+      "eng_text": "Strongly disagree"
+    }
+  },
+  {
     "pk": "a1",
     "model": "gwst_app.questiongroupvalidator",
     "fields": {
@@ -7329,7 +7441,7 @@
       "all_resources": false,
       "code": "sf_type",
       "layout": null,
-      "eng_text": "In 2011 were you a hired captain, an owner and captain, or a walk-on diver",
+      "eng_text": "In 2012 were you a hired captain, an owner and captain, or a walk-on diver",
       "int_group": 22,
       "question_set": 0,
       "display_order": 100.0,
@@ -7377,7 +7489,7 @@
       "all_resources": false,
       "code": "sf_pct2011",
       "layout": null,
-      "eng_text": "Percentage of personal income from commercial fishing in California in 2011",
+      "eng_text": "Percentage of personal income from commercial fishing in California in 2012",
       "int_group": 22,
       "question_set": 0,
       "display_order": 120.0,
@@ -7397,20 +7509,54 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "sf_pct2008",
+      "code": "sf_pct08_1",
       "layout": null,
-      "eng_text": "Percentage of personal income from commercial fishing in California in 2008",
+      "eng_text": "How has the percentage of your personal income from fishing changed since 2008",
       "int_group": 22,
       "question_set": 0,
       "display_order": 130.0,
       "required": false,
       "question_group": null,
-      "options": [],
+      "options": [
+        "0810300f-4160-11e1-9148-001b21c231d0",
+        "a21",
+        "a22",
+        "a24",
+        "a25"
+      ],
       "val_min": null,
       "val_default": "",
-      "answer_type": "percent",
+      "answer_type": "select",
       "eng_tooltip": "",
-      "header_name": "%income commercial CA 2008",
+      "header_name": "%income change commercial CA 2008",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 581,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_pct08_2",
+      "layout": null,
+      "eng_text": "What factors have <b><u>most</u></b> affected changes in the percent of your personal income from fishing since 2008",
+      "int_group": 22,
+      "question_set": 0,
+      "display_order": 135.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "557cae1e-bcf5-11e2-930a-00224d544aba",
+        "5b983f8f-bcf5-11e2-8ed2-00224d544aba",
+        "60878600-bcf5-11e2-9ef8-00224d544aba",
+        "685952f0-bcf5-11e2-bc40-00224d544aba",
+        "9e5a7d80-fca8-11df-9e09-0016760580f0"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "checkbox",
+      "eng_tooltip": "",
+      "header_name": "%income change commercial CA 2008 factors",
       "val_max": null
     }
   },
@@ -7419,9 +7565,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "sf_pctdiff",
+      "code": "sf_expln01",
       "layout": null,
-      "eng_text": "<i>If there is a difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "eng_text": "Explanation",
       "int_group": 22,
       "question_set": 0,
       "display_order": 140.0,
@@ -7443,7 +7589,7 @@
       "all_resources": false,
       "code": "sf_othinc",
       "layout": null,
-      "eng_text": "Other sources of income/employment in 2011 (this includes salmon disaster money) [Separate using DASHES]",
+      "eng_text": "Other sources of income/employment in 2012 (this includes salmon disaster money) [Separate using DASHES]",
       "int_group": 22,
       "question_set": 0,
       "display_order": 150.0,
@@ -7459,13 +7605,151 @@
     }
   },
   {
+    "pk": 582,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_ad_f_1",
+      "layout": null,
+      "eng_text": "Fishery 1",
+      "int_group": 22,
+      "question_set": 0,
+      "display_order": 160.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "text",
+      "eng_tooltip": "",
+      "header_name": "Fishery added or dropped 1 - Fishery",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 583,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_ad_ad_1",
+      "layout": null,
+      "eng_text": "Added or Dropped 1",
+      "int_group": 22,
+      "question_set": 0,
+      "display_order": 163.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "0dbbf49e-8332-11e0-8a87-0016760580f0",
+        "1223bb8f-8332-11e0-8b69-0016760580f0"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Fishery Added or Dropped 1 - add or drop",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 584,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_ad_why1",
+      "layout": null,
+      "eng_text": "Why added or dropped 1",
+      "int_group": 22,
+      "question_set": 0,
+      "display_order": 166.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "Why added or dropped 1",
+      "header_name": "Fishery added or dropped 1 - why",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 585,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_ad_f_2",
+      "layout": null,
+      "eng_text": "Fishery added or dropped 2",
+      "int_group": 22,
+      "question_set": 0,
+      "display_order": 170.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "text",
+      "eng_tooltip": "Fishery 2",
+      "header_name": "Fishery added or dropped 2 - Fishery",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 586,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_ad_ad2",
+      "layout": null,
+      "eng_text": "Added or dropped 2",
+      "int_group": 22,
+      "question_set": 0,
+      "display_order": 173.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "0dbbf49e-8332-11e0-8a87-0016760580f0",
+        "1223bb8f-8332-11e0-8b69-0016760580f0"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "Added or dropped 2",
+      "header_name": "Fishery added or dropped - add or drop 2",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 587,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_ad_why2",
+      "layout": null,
+      "eng_text": "Why added or dropped 2",
+      "int_group": 22,
+      "question_set": 0,
+      "display_order": 176.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "Why added or dropped 2",
+      "header_name": "Fishery added or dropped - Why 2",
+      "val_max": null
+    }
+  },
+  {
     "pk": 328,
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
       "code": "sf_perm1",
       "layout": null,
-      "eng_text": "Fishing permit owned that you did not fish last year (2011) [1]",
+      "eng_text": "Fishing permit owned that you did not fish last year (2012) [1]",
       "int_group": 22,
       "question_set": 1,
       "display_order": 200.0,
@@ -7509,7 +7793,7 @@
       "all_resources": false,
       "code": "sf_perm2",
       "layout": null,
-      "eng_text": "Fishing permit owned that you did not fish last year (2011) [2]",
+      "eng_text": "Fishing permit owned that you did not fish last year (2012) [2]",
       "int_group": 22,
       "question_set": 1,
       "display_order": 210.0,
@@ -7553,7 +7837,7 @@
       "all_resources": false,
       "code": "sf_perm3",
       "layout": null,
-      "eng_text": "Fishing permit owned that you did not fish last year (2011) [3]",
+      "eng_text": "Fishing permit owned that you did not fish last year (2012) [3]",
       "int_group": 22,
       "question_set": 1,
       "display_order": 220.0,
@@ -7597,7 +7881,7 @@
       "all_resources": false,
       "code": "sf_perm4",
       "layout": null,
-      "eng_text": "Fishing permit owned that you did not fish last year (2011) [4]",
+      "eng_text": "Fishing permit owned that you did not fish last year (2012) [4]",
       "int_group": 22,
       "question_set": 1,
       "display_order": 230.0,
@@ -7664,9 +7948,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "sf_port11",
+      "code": "sf_port12",
       "layout": null,
-      "eng_text": "Home port in 2011",
+      "eng_text": "Home port in 2012",
       "int_group": 22,
       "question_set": 2,
       "display_order": 260.0,
@@ -7710,7 +7994,7 @@
       "all_resources": false,
       "code": "sf_homedif",
       "layout": null,
-      "eng_text": "<i>If there is a change in home port between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "eng_text": "<i>If there is a change in home port between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 22,
       "question_set": 2,
       "display_order": 280.0,
@@ -7730,9 +8014,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "sf_numv_11",
+      "code": "sf_numv_12",
       "layout": null,
-      "eng_text": "Number of vessels owned/operated in 2011",
+      "eng_text": "Number of vessels owned/operated in 2012",
       "int_group": 22,
       "question_set": 2,
       "display_order": 300.0,
@@ -8084,7 +8368,7 @@
       "all_resources": false,
       "code": "sf_prvop11",
       "layout": null,
-      "eng_text": "Percentage of total gross fishing revenue used for overall operating costs (California fishing only) (2011)",
+      "eng_text": "Percentage of total gross fishing revenue used for overall operating costs (California fishing only) (2012)",
       "int_group": 22,
       "question_set": 4,
       "display_order": 500.0,
@@ -8113,9 +8397,9 @@
       "required": false,
       "question_group": null,
       "options": [
+        "0810300f-4160-11e1-9148-001b21c231d0",
         "a21",
         "a22",
-        "a23",
         "a24",
         "a25"
       ],
@@ -8184,9 +8468,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "sf_grwd_11",
+      "code": "sf_grwd_12",
       "layout": null,
-      "eng_text": "<b>Urchin Walk-on Divers Only:</b> Percentage of total gross fishing revenue given to boat operating costs (2011)",
+      "eng_text": "For <b>Urchin Walk-on Divers Only:</b> Percentage of total gross fishing revenue given to boat operating costs (2012)",
       "int_group": 22,
       "question_set": 4,
       "display_order": 540.0,
@@ -8202,6 +8486,664 @@
     }
   },
   {
+    "pk": 588,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_01",
+      "layout": null,
+      "eng_text": "1.\tThe physical demands of the work",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 600.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "JS 1",
+      "header_name": "Job Sat 1 - Physical demands",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 589,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_02",
+      "layout": null,
+      "eng_text": "2.\tYour fellow workers",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 605.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "JS 2",
+      "header_name": "Jon Sat 2 - Fellow Workers",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 590,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_03",
+      "layout": null,
+      "eng_text": "3.\tMental pressure of the work",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 610.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 3 - Mental Pressure",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 591,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_04",
+      "layout": null,
+      "eng_text": "4.\tManagement of the rules",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 615.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 4 - Rule Management",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 592,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_05",
+      "layout": null,
+      "eng_text": "5.\tThe challenge",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 620.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 5 - Challenge",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 593,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_06",
+      "layout": null,
+      "eng_text": "6.\tPredictability of your earnings",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 625.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 6 - Earnings Predictability",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 594,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_07",
+      "layout": null,
+      "eng_text": "7.\tYour work schedule",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 630.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 7 - Work Schedule",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 595,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_08",
+      "layout": null,
+      "eng_text": "8.\tTime for family",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 635.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 8 - Family Time",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 596,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_09",
+      "layout": null,
+      "eng_text": "9.\tThe adventure",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 640.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 9 - Adventure",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 597,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_10",
+      "layout": null,
+      "eng_text": "10.\tNumber of hours you work per week",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 645.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 10 - Hours per Week",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 598,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_11",
+      "layout": null,
+      "eng_text": "11.\tWorking in connection with the sea",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 650.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 11 - Connection to Sea",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 599,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_12",
+      "layout": null,
+      "eng_text": "12.\tJob safety",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 655.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 12 - Safety",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 600,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_13",
+      "layout": null,
+      "eng_text": "13.\tFeeling of autonomy",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 660.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 13 - Autonomy",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 601,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_14",
+      "layout": null,
+      "eng_text": "14.\tTime away from home",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 665.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 14 - Time Away from Home",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 602,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_15",
+      "layout": null,
+      "eng_text": "15.\tThe respect people give you as a fisherman",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 670.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 15 - Respect",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 603,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_16",
+      "layout": null,
+      "eng_text": "16.\tFeeling you are doing something worthwhile",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 675.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 16 - Worthwhile",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 604,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_17",
+      "layout": null,
+      "eng_text": "17.\tFeeling you will have a future in this line of work",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 680.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 17 - Future in this Work",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 605,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_18",
+      "layout": null,
+      "eng_text": "18.\tThe amount of money you earn",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 685.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Job Sat 18 - Money",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 606,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_js_chng",
+      "layout": null,
+      "eng_text": "If you could change an aspect of your job, what would it be",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 700.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "",
+      "header_name": "Change Job Aspect",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 607,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_ls_01",
+      "layout": null,
+      "eng_text": "In most ways my life is close to my ideal",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 710.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "15274ccf-bcf6-11e2-a4d5-00224d544aba",
+        "18f85200-bcf6-11e2-a55a-00224d544aba",
+        "1f426d80-bcf6-11e2-9357-00224d544aba",
+        "28d0b780-bcf6-11e2-8b51-00224d544aba",
+        "3297ebcf-bcf6-11e2-8c54-00224d544aba",
+        "3841818f-bcf6-11e2-a279-00224d544aba",
+        "3f2767e1-bcf6-11e2-9436-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Life Sat 1 - Life is Ideal",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 608,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_ls_02",
+      "layout": null,
+      "eng_text": "The conditions of my life are excellent",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 715.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "15274ccf-bcf6-11e2-a4d5-00224d544aba",
+        "18f85200-bcf6-11e2-a55a-00224d544aba",
+        "1f426d80-bcf6-11e2-9357-00224d544aba",
+        "28d0b780-bcf6-11e2-8b51-00224d544aba",
+        "3297ebcf-bcf6-11e2-8c54-00224d544aba",
+        "3841818f-bcf6-11e2-a279-00224d544aba",
+        "3f2767e1-bcf6-11e2-9436-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Life Sat 2 - Excellent Conditions",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 609,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_ls_03",
+      "layout": null,
+      "eng_text": "I am satisfied with my life",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 720.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "15274ccf-bcf6-11e2-a4d5-00224d544aba",
+        "18f85200-bcf6-11e2-a55a-00224d544aba",
+        "1f426d80-bcf6-11e2-9357-00224d544aba",
+        "28d0b780-bcf6-11e2-8b51-00224d544aba",
+        "3297ebcf-bcf6-11e2-8c54-00224d544aba",
+        "3841818f-bcf6-11e2-a279-00224d544aba",
+        "3f2767e1-bcf6-11e2-9436-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Life Sat 3 - Satisfied",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 610,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_ls_04",
+      "layout": null,
+      "eng_text": "So far I have gotten the important things I want in life",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 725.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "15274ccf-bcf6-11e2-a4d5-00224d544aba",
+        "18f85200-bcf6-11e2-a55a-00224d544aba",
+        "1f426d80-bcf6-11e2-9357-00224d544aba",
+        "28d0b780-bcf6-11e2-8b51-00224d544aba",
+        "3297ebcf-bcf6-11e2-8c54-00224d544aba",
+        "3841818f-bcf6-11e2-a279-00224d544aba",
+        "3f2767e1-bcf6-11e2-9436-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Life Sat 4 - Important Things",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 611,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_ls_05",
+      "layout": null,
+      "eng_text": "If I could live my life over, I would change almost nothing",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 730.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "15274ccf-bcf6-11e2-a4d5-00224d544aba",
+        "18f85200-bcf6-11e2-a55a-00224d544aba",
+        "1f426d80-bcf6-11e2-9357-00224d544aba",
+        "28d0b780-bcf6-11e2-8b51-00224d544aba",
+        "3297ebcf-bcf6-11e2-8c54-00224d544aba",
+        "3841818f-bcf6-11e2-a279-00224d544aba",
+        "3f2767e1-bcf6-11e2-9436-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "",
+      "header_name": "Life Sat 5 - Would Not Change",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 612,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sf_com_imp",
+      "layout": null,
+      "eng_text": "Have you seen an impact on your fishing community or your community as a whole from MPAs",
+      "int_group": 22,
+      "question_set": 5,
+      "display_order": 800.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "",
+      "header_name": "Community Impacts of MPAs",
+      "val_max": null
+    }
+  },
+  {
     "pk": 362,
     "model": "gwst_app.interviewquestion",
     "fields": {
@@ -8210,8 +9152,8 @@
       "layout": null,
       "eng_text": "Notes",
       "int_group": 22,
-      "question_set": 5,
-      "display_order": 600.0,
+      "question_set": 6,
+      "display_order": 999.0,
       "required": false,
       "question_group": null,
       "options": [],
