@@ -5658,6 +5658,850 @@
     }
   },
   {
+    "pk": 615,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ad_na1",
+      "layout": null,
+      "eng_text": "A/D Name 1",
+      "int_group": 19,
+      "question_set": 3,
+      "display_order": 600.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "text",
+      "eng_tooltip": "A/D Name 1",
+      "header_name": "Add_Drop Fish_Act 1",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 616,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ad_ad1",
+      "layout": null,
+      "eng_text": "A/D Add/Drop 1",
+      "int_group": 19,
+      "question_set": 3,
+      "display_order": 610.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "0dbbf49e-8332-11e0-8a87-0016760580f0",
+        "1223bb8f-8332-11e0-8b69-0016760580f0"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "A/D Add/Drop 1",
+      "header_name": "Add or drop 1",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 617,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ad_wy1",
+      "layout": null,
+      "eng_text": "A/D Why 1",
+      "int_group": 19,
+      "question_set": 3,
+      "display_order": 620.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "A/D Why 1",
+      "header_name": "add_drop why 1",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 618,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ad_na2",
+      "layout": null,
+      "eng_text": "A/D Name 2",
+      "int_group": 19,
+      "question_set": 3,
+      "display_order": 630.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "text",
+      "eng_tooltip": "A/D Name 2",
+      "header_name": "add_drop name 2",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 619,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ad_ad2",
+      "layout": null,
+      "eng_text": "A/D Added or Dropped 2",
+      "int_group": 19,
+      "question_set": 3,
+      "display_order": 640.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "0dbbf49e-8332-11e0-8a87-0016760580f0",
+        "1223bb8f-8332-11e0-8b69-0016760580f0"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "A/D Added or Dropped 2",
+      "header_name": "added or dropped 2",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 620,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ad_wy2",
+      "layout": null,
+      "eng_text": "A/D Why 2",
+      "int_group": 19,
+      "question_set": 3,
+      "display_order": 650.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "A/D Why 2",
+      "header_name": "add_drop why 2",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 621,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_01",
+      "layout": null,
+      "eng_text": "1.\tThe physical demands of the work",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 700.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "The physical demands of the work",
+      "header_name": "CPFV Job Sat 1 - Physical Demands",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 622,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_02",
+      "layout": null,
+      "eng_text": "2.\tYour fellow workers",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 710.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "2 Fellow Workers",
+      "header_name": "CPFV Job Sat 2 - Fellow Workers",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 623,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_03",
+      "layout": null,
+      "eng_text": "3.\tMental pressure of the work",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 720.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "3. Mental Pressure",
+      "header_name": "CPFV Job Sat 3 - Mental Pressure",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 624,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_04",
+      "layout": null,
+      "eng_text": "4.\tManagement of the rules",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 730.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "4.\tManagement of the rules",
+      "header_name": "CPFV Job Sat 4 - Mgmt of Rules",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 625,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_05",
+      "layout": null,
+      "eng_text": "5.\tThe challenge",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 740.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "5.\tThe challenge",
+      "header_name": "CPFV Job Sat 5 - Challenge",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 626,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_06",
+      "layout": null,
+      "eng_text": "6.\tPredictability of your earnings",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 750.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "6.\tPredictability of your earnings",
+      "header_name": "CPFV Job Sat 6 - Predict Earnings",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 627,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_07",
+      "layout": null,
+      "eng_text": "7.\tYour work schedule",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 760.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "7.\tYour work schedule",
+      "header_name": "CPFV Job Sat 7 - Schedule",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 628,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_08",
+      "layout": null,
+      "eng_text": "8.\tTime for family",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 770.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "8.\tTime for family",
+      "header_name": "CPFV Job Sat 8 - Family Time",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 629,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_09",
+      "layout": null,
+      "eng_text": "9.\tThe adventure",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 780.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "9.\tThe adventure",
+      "header_name": "CPFV Job Sat 9 - Adventure",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 630,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_10",
+      "layout": null,
+      "eng_text": "10.\tNumber of hours you work per week",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 790.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "10.\tNumber of hours you work per week",
+      "header_name": "CPFV Job Sat 10 - Hrs Per Wk",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 631,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_11",
+      "layout": null,
+      "eng_text": "11.\tWorking in connection with the sea",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 800.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "11.\tWorking in connection with the sea",
+      "header_name": "CPFV Job Sat 11 - Connect w Sea",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 632,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_12",
+      "layout": null,
+      "eng_text": "12.\tJob safety",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 810.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "12.\tJob safety",
+      "header_name": "CPFV Job Sat 12 - Job Safety",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 633,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_13",
+      "layout": null,
+      "eng_text": "13.\tFeeling of autonomy",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 820.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "13.\tFeeling of autonomy",
+      "header_name": "CPFV Job Sat 13 - Autonomy",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 634,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_14",
+      "layout": null,
+      "eng_text": "14.\tTime away from home",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 830.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "14.\tTime away from home",
+      "header_name": "CPFV Job Sat 14 - Time from Home",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 635,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_15",
+      "layout": null,
+      "eng_text": "15.\tThe respect people give you as a fisherman",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 840.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "15.\tThe respect people give you as a fisherman",
+      "header_name": "CPFV Job Sat 15 - Respect",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 636,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_16",
+      "layout": null,
+      "eng_text": "16.\tFeeling you are doing something worthwhile",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 850.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "16.\tFeeling you are doing something worthwhile",
+      "header_name": "CPFV Job Sat 16 - Worthwhile Work",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 637,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_17",
+      "layout": null,
+      "eng_text": "17.\tFeeling you will have a future in this line of work",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 860.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "17.\tFeeling you will have a future in this line of work",
+      "header_name": "CPFV Job Sat 17 - Future in Line",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 638,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_18",
+      "layout": null,
+      "eng_text": "18.\tThe amount of money you earn",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 870.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "9e97479e-bcf5-11e2-a642-00224d544aba",
+        "a4ed4a00-bcf5-11e2-9080-00224d544aba",
+        "a95dea8f-bcf5-11e2-82a6-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "18.\tThe amount of money you earn",
+      "header_name": "CPFV Job Sat 18 - Money",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 639,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_js_chg",
+      "layout": null,
+      "eng_text": "If you could change an aspect of your job, what would it be",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 880.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "Change aspect of life",
+      "header_name": "CPFV Change life aspect",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 640,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ls_01",
+      "layout": null,
+      "eng_text": "In most ways my life is close to my ideal",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 900.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "15274ccf-bcf6-11e2-a4d5-00224d544aba",
+        "18f85200-bcf6-11e2-a55a-00224d544aba",
+        "1f426d80-bcf6-11e2-9357-00224d544aba",
+        "28d0b780-bcf6-11e2-8b51-00224d544aba",
+        "3297ebcf-bcf6-11e2-8c54-00224d544aba",
+        "3841818f-bcf6-11e2-a279-00224d544aba",
+        "3f2767e1-bcf6-11e2-9436-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "ideal life",
+      "header_name": "CPFV Life Sat 1 - Life is Ideal",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 641,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ls_02",
+      "layout": null,
+      "eng_text": "The conditions of my life are excellent",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 910.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "15274ccf-bcf6-11e2-a4d5-00224d544aba",
+        "18f85200-bcf6-11e2-a55a-00224d544aba",
+        "1f426d80-bcf6-11e2-9357-00224d544aba",
+        "28d0b780-bcf6-11e2-8b51-00224d544aba",
+        "3297ebcf-bcf6-11e2-8c54-00224d544aba",
+        "3841818f-bcf6-11e2-a279-00224d544aba",
+        "3f2767e1-bcf6-11e2-9436-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "excellent life conditions",
+      "header_name": "CPFV Life Sat 2 - Excellent Life Conditions",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 642,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ls_03",
+      "layout": null,
+      "eng_text": "I am satisfied with my life",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 920.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "15274ccf-bcf6-11e2-a4d5-00224d544aba",
+        "18f85200-bcf6-11e2-a55a-00224d544aba",
+        "1f426d80-bcf6-11e2-9357-00224d544aba",
+        "28d0b780-bcf6-11e2-8b51-00224d544aba",
+        "3297ebcf-bcf6-11e2-8c54-00224d544aba",
+        "3841818f-bcf6-11e2-a279-00224d544aba",
+        "3f2767e1-bcf6-11e2-9436-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "I am satisfied with my life",
+      "header_name": "CPFV Life Sat 3 - Satisfied w Life",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 643,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ls_04",
+      "layout": null,
+      "eng_text": "So far I have gotten the important things I want in life",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 930.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "15274ccf-bcf6-11e2-a4d5-00224d544aba",
+        "18f85200-bcf6-11e2-a55a-00224d544aba",
+        "1f426d80-bcf6-11e2-9357-00224d544aba",
+        "28d0b780-bcf6-11e2-8b51-00224d544aba",
+        "3297ebcf-bcf6-11e2-8c54-00224d544aba",
+        "3841818f-bcf6-11e2-a279-00224d544aba",
+        "3f2767e1-bcf6-11e2-9436-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "Have what I want",
+      "header_name": "CPFV Life Sat 4 - Have What Wanted",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 644,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ls_05",
+      "layout": null,
+      "eng_text": "If I could live my life over, I would change almost nothing",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 940.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "15274ccf-bcf6-11e2-a4d5-00224d544aba",
+        "18f85200-bcf6-11e2-a55a-00224d544aba",
+        "1f426d80-bcf6-11e2-9357-00224d544aba",
+        "28d0b780-bcf6-11e2-8b51-00224d544aba",
+        "3297ebcf-bcf6-11e2-8c54-00224d544aba",
+        "3841818f-bcf6-11e2-a279-00224d544aba",
+        "3f2767e1-bcf6-11e2-9436-00224d544aba"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "select",
+      "eng_tooltip": "Change nothing",
+      "header_name": "CPFV Life Sat 5 - Change Nothing",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 645,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ci_1",
+      "layout": null,
+      "eng_text": "Have you seen an impact on your fishing community or your community as a whole from MPAs",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 950.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "Seen MPA impact on Community",
+      "header_name": "CPFV Comm Impact 1 - Seen",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 646,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ci_2",
+      "layout": null,
+      "eng_text": "What comments and questions do customers have regarding MPAs",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 960.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "Comments/Questions",
+      "header_name": "CPFV Comm Impact 2 - Questions",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 647,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shp_ci_3",
+      "layout": null,
+      "eng_text": "What is the general attitude of customers towards MPAs",
+      "int_group": 19,
+      "question_set": 4,
+      "display_order": 970.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "MPA General Attitude",
+      "header_name": "CPFV Comm Impact 3 - Attitude",
+      "val_max": null
+    }
+  },
+  {
     "pk": 530,
     "model": "gwst_app.interviewquestion",
     "fields": {
