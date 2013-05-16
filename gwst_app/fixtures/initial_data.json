@@ -1258,7 +1258,7 @@
       "question_width": 435,
       "select_resource_text": "",
       "resource_question_width": 420,
-      "header": "SC Charter Owner",
+      "header": "SC CPFV Owner",
       "preselect": true,
       "resources": [],
       "user_draws_shapes": false,
@@ -3187,7 +3187,7 @@
       "all_resources": false,
       "code": "shw_numves",
       "layout": null,
-      "eng_text": "Number of charter boats owned in 2011",
+      "eng_text": "Number of CPFV boats owned in 2012",
       "int_group": 18,
       "question_set": 0,
       "display_order": 100.0,
@@ -3198,7 +3198,7 @@
       "val_default": "",
       "answer_type": "integer",
       "eng_tooltip": "",
-      "header_name": "charter boats owned in 2011",
+      "header_name": "CPFV boats owned in 2012",
       "val_max": null
     }
   },
@@ -3209,7 +3209,7 @@
       "all_resources": false,
       "code": "shw_yrsown",
       "layout": null,
-      "eng_text": "Number of years owning charter boats",
+      "eng_text": "Number of years owning CPFV boats",
       "int_group": 18,
       "question_set": 0,
       "display_order": 110.0,
@@ -3220,7 +3220,7 @@
       "val_default": "",
       "answer_type": "integer",
       "eng_tooltip": "",
-      "header_name": "years owning charter boats",
+      "header_name": "years owning CPFV boats",
       "val_max": null
     }
   },
@@ -3229,9 +3229,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pinc11",
+      "code": "shw_pinc12",
       "layout": null,
-      "eng_text": "Percentage of personal income from charter boat ownership in 2011",
+      "eng_text": "Percentage of personal income from CPFV boat ownership in 2012",
       "int_group": 18,
       "question_set": 0,
       "display_order": 120.0,
@@ -3241,8 +3241,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%inc from charter ownership 2011",
-      "header_name": "%inc from charter ownership 2011",
+      "eng_tooltip": "%inc from CPFV ownership 2012",
+      "header_name": "%inc from CPFV ownership 2012",
       "val_max": null
     }
   },
@@ -3253,18 +3253,52 @@
       "all_resources": false,
       "code": "shw_pinc08",
       "layout": null,
-      "eng_text": "Percentage of personal income from charter boat ownership in 2008",
+      "eng_text": "How has the percentage of your personal income from CPFV boat ownership changed since 2008",
       "int_group": 18,
       "question_set": 0,
       "display_order": 130.0,
       "required": false,
       "question_group": null,
-      "options": [],
+      "options": [
+        "0810300f-4160-11e1-9148-001b21c231d0",
+        "a21",
+        "a22",
+        "a24",
+        "a25"
+      ],
       "val_min": null,
       "val_default": "",
-      "answer_type": "percent",
-      "eng_tooltip": "%inc from charter 2008",
-      "header_name": "%inc from charter 2008",
+      "answer_type": "select",
+      "eng_tooltip": "chg %inc from CPFV 2008",
+      "header_name": "chg %inc from CPFV 2008",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 649,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shw_pincfa",
+      "layout": "vertical",
+      "eng_text": "What factors have <b><u>most</u></b> affected changes in the percent of your personal income from CPFV ownership/operation since 2008",
+      "int_group": 18,
+      "question_set": 0,
+      "display_order": 135.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "557cae1e-bcf5-11e2-930a-00224d544aba",
+        "5b983f8f-bcf5-11e2-8ed2-00224d544aba",
+        "60878600-bcf5-11e2-9ef8-00224d544aba",
+        "685952f0-bcf5-11e2-bc40-00224d544aba",
+        "9e5a7d80-fca8-11df-9e09-0016760580f0"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "checkbox",
+      "eng_tooltip": "",
+      "header_name": "factors chg %inc CPFV Owner",
       "val_max": null
     }
   },
@@ -3274,8 +3308,8 @@
     "fields": {
       "all_resources": false,
       "code": "she_pincdi",
-      "layout": null,
-      "eng_text": "<i>If there is a significant difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "layout": "vertical",
+      "eng_text": "Explanation",
       "int_group": 18,
       "question_set": 0,
       "display_order": 140.0,
@@ -3285,8 +3319,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "textarea",
-      "eng_tooltip": "%inc charter difference",
-      "header_name": "Cause of income change",
+      "eng_tooltip": "%inc CPFV difference",
+      "header_name": "Expln chg %inc CPFV Owner",
       "val_max": null
     }
   },
@@ -3295,9 +3329,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_port11",
+      "code": "shw_port12",
       "layout": null,
-      "eng_text": "Homeport in 2011",
+      "eng_text": "Homeport in 2012",
       "int_group": 18,
       "question_set": 0,
       "display_order": 150.0,
@@ -3307,8 +3341,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "text",
-      "eng_tooltip": "home port 2011",
-      "header_name": "home port 2011",
+      "eng_tooltip": "home port 2012",
+      "header_name": "home port 2012",
       "val_max": null
     }
   },
@@ -3340,8 +3374,8 @@
     "fields": {
       "all_resources": false,
       "code": "shw_portdi",
-      "layout": null,
-      "eng_text": "<i>If there is a significant difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "layout": "vertical",
+      "eng_text": "<i>If there is a significant difference between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 18,
       "question_set": 0,
       "display_order": 170.0,
@@ -3362,8 +3396,8 @@
     "fields": {
       "all_resources": false,
       "code": "shw_othinc",
-      "layout": null,
-      "eng_text": "Other sources of income/employment in 2011 [Separate with DASHES]",
+      "layout": "vertical",
+      "eng_text": "Other sources of income/employment in 2012",
       "int_group": 18,
       "question_set": 0,
       "display_order": 180.0,
@@ -3374,7 +3408,7 @@
       "val_default": "",
       "answer_type": "textarea",
       "eng_tooltip": "Separate with DASHES",
-      "header_name": "Other sources of income 2011",
+      "header_name": "Other sources of income 2012",
       "val_max": null
     }
   },
@@ -3383,9 +3417,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_grev11",
+      "code": "shw_grev12",
       "layout": null,
-      "eng_text": "Annual total gross revenue from charter operations in 2011",
+      "eng_text": "Annual total gross revenue from CPFV operations for 2012",
       "int_group": 18,
       "question_set": 0,
       "display_order": 190.0,
@@ -3395,8 +3429,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "money",
-      "eng_tooltip": "GREV charter 2011",
-      "header_name": "GREV charter 2011",
+      "eng_tooltip": "GREV CPFV 2012",
+      "header_name": "GREV CPFV 2012",
       "val_max": null
     }
   },
@@ -3407,18 +3441,52 @@
       "all_resources": false,
       "code": "shw_grev08",
       "layout": null,
-      "eng_text": "Annual total gross revenue from charter operations in 2008",
+      "eng_text": "How has your annual total gross revenue from CPFV operations changed since 2008",
       "int_group": 18,
       "question_set": 0,
       "display_order": 200.0,
       "required": false,
       "question_group": null,
-      "options": [],
+      "options": [
+        "0810300f-4160-11e1-9148-001b21c231d0",
+        "a21",
+        "a22",
+        "a24",
+        "a25"
+      ],
       "val_min": null,
       "val_default": "",
-      "answer_type": "money",
-      "eng_tooltip": "GREV charter 2008",
-      "header_name": "GREV charter 2008",
+      "answer_type": "select",
+      "eng_tooltip": "GREV CPFV 2008",
+      "header_name": "chg GREV CPFV 2008",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 650,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shw_grevfa",
+      "layout": "vertical",
+      "eng_text": "What factors have <b><u>most</u></b> affected changes in your total gross revenue from CPFV operations changed since 2008",
+      "int_group": 18,
+      "question_set": 0,
+      "display_order": 205.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "557cae1e-bcf5-11e2-930a-00224d544aba",
+        "5b983f8f-bcf5-11e2-8ed2-00224d544aba",
+        "60878600-bcf5-11e2-9ef8-00224d544aba",
+        "685952f0-bcf5-11e2-bc40-00224d544aba",
+        "9e5a7d80-fca8-11df-9e09-0016760580f0"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "checkbox",
+      "eng_tooltip": "",
+      "header_name": "factors change GREV CPFV Own",
       "val_max": null
     }
   },
@@ -3428,8 +3496,8 @@
     "fields": {
       "all_resources": false,
       "code": "shw_grevdi",
-      "layout": null,
-      "eng_text": "<i>If there is a significant difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "layout": "vertical",
+      "eng_text": "Explanation",
       "int_group": 18,
       "question_set": 0,
       "display_order": 210.0,
@@ -3439,8 +3507,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "textarea",
-      "eng_tooltip": "GREV charter difference",
-      "header_name": "GREV charter change",
+      "eng_tooltip": "GREV CPFV difference",
+      "header_name": "chg GREV CPFV cause",
       "val_max": null
     }
   },
@@ -3473,7 +3541,7 @@
       "all_resources": false,
       "code": "shw_vcap1",
       "layout": null,
-      "eng_text": "Name of captain in 2011 who operated vessel 1",
+      "eng_text": "Name of captain in 2012 who operated vessel 1",
       "int_group": 18,
       "question_set": 1,
       "display_order": 310.0,
@@ -3493,9 +3561,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_vgr111",
+      "code": "shw_vgr121",
       "layout": null,
-      "eng_text": "2011 GER from vessel 1",
+      "eng_text": "2012 GER from vessel 1",
       "int_group": 18,
       "question_set": 1,
       "display_order": 320.0,
@@ -3505,8 +3573,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "money",
-      "eng_tooltip": "2011 GER from vessel 1",
-      "header_name": "2011 GER from vessel 1",
+      "eng_tooltip": "2012 GER from vessel 1",
+      "header_name": "2012 GER from vessel 1",
       "val_max": null
     }
   },
@@ -3523,10 +3591,16 @@
       "display_order": 330.0,
       "required": false,
       "question_group": null,
-      "options": [],
+      "options": [
+        "0810300f-4160-11e1-9148-001b21c231d0",
+        "a21",
+        "a22",
+        "a24",
+        "a25"
+      ],
       "val_min": null,
       "val_default": "",
-      "answer_type": "money",
+      "answer_type": "select",
       "eng_tooltip": "2008 GER from vessel 1",
       "header_name": "2008 GER from vessel 1",
       "val_max": null
@@ -3539,7 +3613,7 @@
       "all_resources": false,
       "code": "shw_vgrdi1",
       "layout": null,
-      "eng_text": "<i>If there is a significant difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "eng_text": "<i>If there is a significant difference between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 18,
       "question_set": 1,
       "display_order": 340.0,
@@ -3583,7 +3657,7 @@
       "all_resources": false,
       "code": "shw_vcap2",
       "layout": null,
-      "eng_text": "Name of captain in 2011 who operated vessel 2",
+      "eng_text": "Name of captain in 2012 who operated vessel 2",
       "int_group": 18,
       "question_set": 1,
       "display_order": 410.0,
@@ -3603,9 +3677,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_vgr112",
+      "code": "shw_vgr122",
       "layout": null,
-      "eng_text": "2011 GER from vessel 2",
+      "eng_text": "2012 GER from vessel 2",
       "int_group": 18,
       "question_set": 1,
       "display_order": 420.0,
@@ -3615,8 +3689,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "money",
-      "eng_tooltip": "2011 GER from vessel 2",
-      "header_name": "2011 GER from vessel 2",
+      "eng_tooltip": "2012 GER from vessel 2",
+      "header_name": "2012 GER from vessel 2",
       "val_max": null
     }
   },
@@ -3633,10 +3707,16 @@
       "display_order": 430.0,
       "required": false,
       "question_group": null,
-      "options": [],
+      "options": [
+        "0810300f-4160-11e1-9148-001b21c231d0",
+        "a21",
+        "a22",
+        "a24",
+        "a25"
+      ],
       "val_min": null,
       "val_default": "",
-      "answer_type": "money",
+      "answer_type": "select",
       "eng_tooltip": "2008 GER from vessel 2",
       "header_name": "2008 GER from vessel 2",
       "val_max": null
@@ -3649,7 +3729,7 @@
       "all_resources": false,
       "code": "shw_vgrdi2",
       "layout": null,
-      "eng_text": "<i>If there is a significant difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "eng_text": "<i>If there is a significant difference between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 18,
       "question_set": 1,
       "display_order": 440.0,
@@ -3693,7 +3773,7 @@
       "all_resources": false,
       "code": "shw_vcap3",
       "layout": null,
-      "eng_text": "Name of captain in 2011 who operated vessel 3",
+      "eng_text": "Name of captain in 2012 who operated vessel 3",
       "int_group": 18,
       "question_set": 1,
       "display_order": 510.0,
@@ -3713,9 +3793,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_vgr113",
+      "code": "shw_vgr123",
       "layout": null,
-      "eng_text": "2011 GER from vessel 3",
+      "eng_text": "2012 GER from vessel 3",
       "int_group": 18,
       "question_set": 1,
       "display_order": 520.0,
@@ -3725,8 +3805,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "money",
-      "eng_tooltip": "2011 GER from vessel 3",
-      "header_name": "2011 GER from vessel 3",
+      "eng_tooltip": "2012 GER from vessel 3",
+      "header_name": "2012 GER from vessel 3",
       "val_max": null
     }
   },
@@ -3743,10 +3823,16 @@
       "display_order": 530.0,
       "required": false,
       "question_group": null,
-      "options": [],
+      "options": [
+        "0810300f-4160-11e1-9148-001b21c231d0",
+        "a21",
+        "a22",
+        "a24",
+        "a25"
+      ],
       "val_min": null,
       "val_default": "",
-      "answer_type": "money",
+      "answer_type": "select",
       "eng_tooltip": "2008 GER from vessel 3",
       "header_name": "2008 GER from vessel 3",
       "val_max": null
@@ -3759,7 +3845,7 @@
       "all_resources": false,
       "code": "shw_vgrdi3",
       "layout": null,
-      "eng_text": "<i>If there is a significant difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "eng_text": "<i>If there is a significant difference between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 18,
       "question_set": 1,
       "display_order": 540.0,
@@ -3803,7 +3889,7 @@
       "all_resources": false,
       "code": "shw_vcap4",
       "layout": null,
-      "eng_text": "Name of captain in 2011 who operated vessel 4",
+      "eng_text": "Name of captain in 2012 who operated vessel 4",
       "int_group": 18,
       "question_set": 1,
       "display_order": 610.0,
@@ -3823,9 +3909,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_vgr114",
+      "code": "shw_vgr124",
       "layout": null,
-      "eng_text": "2011 GER from vessel 4",
+      "eng_text": "2012 GER from vessel 4",
       "int_group": 18,
       "question_set": 1,
       "display_order": 620.0,
@@ -3835,8 +3921,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "money",
-      "eng_tooltip": "2011 GER from vessel 4",
-      "header_name": "2011 GER from vessel 4",
+      "eng_tooltip": "2012 GER from vessel 4",
+      "header_name": "2012 GER from vessel 4",
       "val_max": null
     }
   },
@@ -3853,10 +3939,16 @@
       "display_order": 630.0,
       "required": false,
       "question_group": null,
-      "options": [],
+      "options": [
+        "0810300f-4160-11e1-9148-001b21c231d0",
+        "a21",
+        "a22",
+        "a24",
+        "a25"
+      ],
       "val_min": null,
       "val_default": "",
-      "answer_type": "money",
+      "answer_type": "select",
       "eng_tooltip": "2008 GER from vessel 4",
       "header_name": "2008 GER from vessel 4",
       "val_max": null
@@ -3869,7 +3961,7 @@
       "all_resources": false,
       "code": "shw_vgrdi4",
       "layout": null,
-      "eng_text": "<i>If there is a significant difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "eng_text": "<i>If there is a significant difference between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 18,
       "question_set": 1,
       "display_order": 640.0,
@@ -3913,7 +4005,7 @@
       "all_resources": false,
       "code": "shw_vcap5",
       "layout": null,
-      "eng_text": "Name of captain in 2011 who operated vessel 5",
+      "eng_text": "Name of captain in 2012 who operated vessel 5",
       "int_group": 18,
       "question_set": 1,
       "display_order": 710.0,
@@ -3933,9 +4025,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_vgr115",
+      "code": "shw_vgr125",
       "layout": null,
-      "eng_text": "2011 GER from vessel 5",
+      "eng_text": "2012 GER from vessel 5",
       "int_group": 18,
       "question_set": 1,
       "display_order": 720.0,
@@ -3945,8 +4037,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "money",
-      "eng_tooltip": "2011 GER from vessel 5",
-      "header_name": "2011 GER from vessel 5",
+      "eng_tooltip": "2012 GER from vessel 5",
+      "header_name": "2012 GER from vessel 5",
       "val_max": null
     }
   },
@@ -3963,10 +4055,16 @@
       "display_order": 730.0,
       "required": false,
       "question_group": null,
-      "options": [],
+      "options": [
+        "0810300f-4160-11e1-9148-001b21c231d0",
+        "a21",
+        "a22",
+        "a24",
+        "a25"
+      ],
       "val_min": null,
       "val_default": "",
-      "answer_type": "money",
+      "answer_type": "select",
       "eng_tooltip": "2008 GER from vessel 5",
       "header_name": "2008 GER from vessel 5",
       "val_max": null
@@ -3979,7 +4077,7 @@
       "all_resources": false,
       "code": "shw_vgrdi5",
       "layout": null,
-      "eng_text": "<i>If there is a significant difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "eng_text": "<i>If there is a significant difference between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 18,
       "question_set": 1,
       "display_order": 740.0,
@@ -4023,7 +4121,7 @@
       "all_resources": false,
       "code": "shw_vcap6",
       "layout": null,
-      "eng_text": "Name of captain in 2011 who operated vessel 6",
+      "eng_text": "Name of captain in 2012 who operated vessel 6",
       "int_group": 18,
       "question_set": 1,
       "display_order": 810.0,
@@ -4043,9 +4141,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_vgr116",
+      "code": "shw_vgr126",
       "layout": null,
-      "eng_text": "2011 GER from vessel 6",
+      "eng_text": "2012 GER from vessel 6",
       "int_group": 18,
       "question_set": 1,
       "display_order": 820.0,
@@ -4055,8 +4153,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "money",
-      "eng_tooltip": "2011 GER from vessel 6",
-      "header_name": "2011 GER from vessel 6",
+      "eng_tooltip": "2012 GER from vessel 6",
+      "header_name": "2012 GER from vessel 6",
       "val_max": null
     }
   },
@@ -4073,10 +4171,16 @@
       "display_order": 830.0,
       "required": false,
       "question_group": null,
-      "options": [],
+      "options": [
+        "0810300f-4160-11e1-9148-001b21c231d0",
+        "a21",
+        "a22",
+        "a24",
+        "a25"
+      ],
       "val_min": null,
       "val_default": "",
-      "answer_type": "money",
+      "answer_type": "select",
       "eng_tooltip": "2008 GER from vessel 6",
       "header_name": "2008 GER from vessel 6",
       "val_max": null
@@ -4089,7 +4193,7 @@
       "all_resources": false,
       "code": "shw_vgrdi6",
       "layout": null,
-      "eng_text": "<i>If there is a significant difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "eng_text": "<i>If there is a significant difference between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 18,
       "question_set": 1,
       "display_order": 840.0,
@@ -4109,9 +4213,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pfl111",
+      "code": "shw_pfl121",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue for fuel (2011) for vessel 1",
+      "eng_text": "Percentage of total gross revenue for fuel (2012) for vessel 1",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1000.0,
@@ -4121,8 +4225,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for fuel in 2011 for vessel 1",
-      "header_name": "%GR for fuel in 2011 for vessel 1",
+      "eng_tooltip": "%GR for fuel in 2012 for vessel 1",
+      "header_name": "%GR for fuel in 2012 for vessel 1",
       "val_max": null
     }
   },
@@ -4131,9 +4235,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pcw111",
+      "code": "shw_pcw121",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for crew/labor (including hired captain) (2011) for vessel 1",
+      "eng_text": "Percentage of total gross revenue used for crew/labor (including hired captain) (2012) for vessel 1",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1010.0,
@@ -4143,8 +4247,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for crew 2011 for vessel 1",
-      "header_name": "%GR for crew 2011 for vessel 1",
+      "eng_tooltip": "%GR for crew 2012 for vessel 1",
+      "header_name": "%GR for crew 2012 for vessel 1",
       "val_max": null
     }
   },
@@ -4153,9 +4257,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pot111",
+      "code": "shw_pot121",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for all other operating costs (2011) for vessel 1",
+      "eng_text": "Percentage of total gross revenue used for all other operating costs (2012) for vessel 1",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1020.0,
@@ -4175,9 +4279,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pfl112",
+      "code": "shw_pfl122",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue for fuel (2011) for vessel 2",
+      "eng_text": "Percentage of total gross revenue for fuel (2012) for vessel 2",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1100.0,
@@ -4187,8 +4291,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for fuel in 2011 for vessel 2",
-      "header_name": "%GR for fuel in 2011 for vessel 2",
+      "eng_tooltip": "%GR for fuel in 2012 for vessel 2",
+      "header_name": "%GR for fuel in 2012 for vessel 2",
       "val_max": null
     }
   },
@@ -4197,9 +4301,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pcw112",
+      "code": "shw_pcw122",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for crew/labor (including hired captain) (2011) for vessel 2",
+      "eng_text": "Percentage of total gross revenue used for crew/labor (including hired captain) (2012) for vessel 2",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1110.0,
@@ -4209,8 +4313,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for crew 2011 for vessel 2",
-      "header_name": "%GR for crew 2011 for vessel 2",
+      "eng_tooltip": "%GR for crew 2012 for vessel 2",
+      "header_name": "%GR for crew 2012 for vessel 2",
       "val_max": null
     }
   },
@@ -4219,9 +4323,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pot112",
+      "code": "shw_pot122",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for all other operating costs (2011) for vessel 2",
+      "eng_text": "Percentage of total gross revenue used for all other operating costs (2012) for vessel 2",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1120.0,
@@ -4241,9 +4345,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pfl113",
+      "code": "shw_pfl123",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue for fuel (2011) for vessel 3",
+      "eng_text": "Percentage of total gross revenue for fuel (2012) for vessel 3",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1200.0,
@@ -4253,8 +4357,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for fuel in 2011 for vessel 3",
-      "header_name": "%GR for fuel in 2011 for vessel 3",
+      "eng_tooltip": "%GR for fuel in 2012 for vessel 3",
+      "header_name": "%GR for fuel in 2012 for vessel 3",
       "val_max": null
     }
   },
@@ -4263,9 +4367,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pcw113",
+      "code": "shw_pcw123",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for crew/labor (including hired captain) (2011) for vessel 3",
+      "eng_text": "Percentage of total gross revenue used for crew/labor (including hired captain) (2012) for vessel 3",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1210.0,
@@ -4275,8 +4379,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for crew 2011 for vessel 3",
-      "header_name": "%GR for crew 2011 for vessel 3",
+      "eng_tooltip": "%GR for crew 2012 for vessel 3",
+      "header_name": "%GR for crew 2012 for vessel 3",
       "val_max": null
     }
   },
@@ -4285,9 +4389,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pot113",
+      "code": "shw_pot123",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for all other operating costs (2011) for vessel 3",
+      "eng_text": "Percentage of total gross revenue used for all other operating costs (2012) for vessel 3",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1220.0,
@@ -4307,9 +4411,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pfl114",
+      "code": "shw_pfl124",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue for fuel (2011) for vessel 4",
+      "eng_text": "Percentage of total gross revenue for fuel (2012) for vessel 4",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1300.0,
@@ -4319,8 +4423,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for fuel in 2011 for vessel 4",
-      "header_name": "%GR for fuel in 2011 for vessel 4",
+      "eng_tooltip": "%GR for fuel in 2012 for vessel 4",
+      "header_name": "%GR for fuel in 2012 for vessel 4",
       "val_max": null
     }
   },
@@ -4329,9 +4433,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pcw114",
+      "code": "shw_pcw124",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for crew/labor (including hired captain) (2011) for vessel 4",
+      "eng_text": "Percentage of total gross revenue used for crew/labor (including hired captain) (2012) for vessel 4",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1310.0,
@@ -4341,8 +4445,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for crew 2011 for vessel 4",
-      "header_name": "%GR for crew 2011 for vessel 4",
+      "eng_tooltip": "%GR for crew 2012 for vessel 4",
+      "header_name": "%GR for crew 2012 for vessel 4",
       "val_max": null
     }
   },
@@ -4351,9 +4455,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pot114",
+      "code": "shw_pot124",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for all other operating costs (2011) for vessel 4",
+      "eng_text": "Percentage of total gross revenue used for all other operating costs (2012) for vessel 4",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1320.0,
@@ -4373,9 +4477,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pfl115",
+      "code": "shw_pfl125",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue for fuel (2011) for vessel 5",
+      "eng_text": "Percentage of total gross revenue for fuel (2012) for vessel 5",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1400.0,
@@ -4385,8 +4489,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for fuel in 2011 for vessel 5",
-      "header_name": "%GR for fuel in 2011 for vessel 5",
+      "eng_tooltip": "%GR for fuel in 2012 for vessel 5",
+      "header_name": "%GR for fuel in 2012 for vessel 5",
       "val_max": null
     }
   },
@@ -4395,9 +4499,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pcw115",
+      "code": "shw_pcw125",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for crew/labor (including hired captain) (2011) for vessel 5",
+      "eng_text": "Percentage of total gross revenue used for crew/labor (including hired captain) (2012) for vessel 5",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1410.0,
@@ -4407,8 +4511,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for crew 2011 for vessel 5",
-      "header_name": "%GR for crew 2011 for vessel 5",
+      "eng_tooltip": "%GR for crew 2012 for vessel 5",
+      "header_name": "%GR for crew 2012 for vessel 5",
       "val_max": null
     }
   },
@@ -4417,9 +4521,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pot115",
+      "code": "shw_pot125",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for all other operating costs (2011) for vessel 5",
+      "eng_text": "Percentage of total gross revenue used for all other operating costs (2012) for vessel 5",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1420.0,
@@ -4439,9 +4543,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pfl116",
+      "code": "shw_pfl126",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue for fuel (2011) for vessel 6",
+      "eng_text": "Percentage of total gross revenue for fuel (2012) for vessel 6",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1500.0,
@@ -4451,8 +4555,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for fuel in 2011 for vessel 6",
-      "header_name": "%GR for fuel in 2011 for vessel 6",
+      "eng_tooltip": "%GR for fuel in 2012 for vessel 6",
+      "header_name": "%GR for fuel in 2012 for vessel 6",
       "val_max": null
     }
   },
@@ -4461,9 +4565,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pcw116",
+      "code": "shw_pcw126",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for crew/labor (including hired captain) (2011) for vessel 6",
+      "eng_text": "Percentage of total gross revenue used for crew/labor (including hired captain) (2012) for vessel 6",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1510.0,
@@ -4473,8 +4577,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%GR for crew 2011 for vessel 6",
-      "header_name": "%GR for crew 2011 for vessel 6",
+      "eng_tooltip": "%GR for crew 2012 for vessel 6",
+      "header_name": "%GR for crew 2012 for vessel 6",
       "val_max": null
     }
   },
@@ -4483,9 +4587,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "shw_pot116",
+      "code": "shw_pot126",
       "layout": null,
-      "eng_text": "Percentage of total gross revenue used for all other operating costs (2011) for vessel 6",
+      "eng_text": "Percentage of total gross revenue used for all other operating costs (2012) for vessel 6",
       "int_group": 18,
       "question_set": 2,
       "display_order": 1520.0,
@@ -4534,7 +4638,7 @@
     "fields": {
       "all_resources": false,
       "code": "shw_opfctr",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "What factors have <b><u>most</u></b> affected changes in the percent of revenue used for operating costs",
       "int_group": 18,
       "question_set": 3,
@@ -4564,7 +4668,7 @@
     "fields": {
       "all_resources": false,
       "code": "shw_opfoth",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "If \"other\" factors were selected, what were they",
       "int_group": 18,
       "question_set": 3,
@@ -4587,7 +4691,7 @@
       "all_resources": false,
       "code": "shw_cmpprv",
       "layout": null,
-      "eng_text": "How would you compare your success with last year\u2019s charter business (2011) to past years (in the last five years)",
+      "eng_text": "How would you compare your success with last year\u2019s CPFV business (2012) to past years (in the last ten years)",
       "int_group": 18,
       "question_set": 3,
       "display_order": 2020.0,
@@ -4604,7 +4708,7 @@
       "val_default": "",
       "answer_type": "select",
       "eng_tooltip": "",
-      "header_name": "compare 2011 success with last 5 yrs",
+      "header_name": "compare 2012 success with last 10 yrs",
       "val_max": null
     }
   },
@@ -4614,8 +4718,8 @@
     "fields": {
       "all_resources": false,
       "code": "shw_sucfac",
-      "layout": null,
-      "eng_text": "What primary factors affected the success of your charter business last year (2011)",
+      "layout": "vertical",
+      "eng_text": "What primary factors affected the success of your CPFV business last year (2012)",
       "int_group": 18,
       "question_set": 3,
       "display_order": 2030.0,
@@ -4626,7 +4730,7 @@
       "val_default": "",
       "answer_type": "textarea",
       "eng_tooltip": "",
-      "header_name": "primary factors affecting charter success in 2011",
+      "header_name": "primary factors affecting CPFV success in 2012",
       "val_max": null
     }
   },
@@ -4636,8 +4740,8 @@
     "fields": {
       "all_resources": false,
       "code": "shw_mpaimp",
-      "layout": null,
-      "eng_text": "How have recently implement MPAs impacted your charter business",
+      "layout": "vertical",
+      "eng_text": "How have recently implement MPAs impacted your CPFV business",
       "int_group": 18,
       "question_set": 3,
       "display_order": 2040.0,
@@ -4648,7 +4752,7 @@
       "val_default": "",
       "answer_type": "textarea",
       "eng_tooltip": "",
-      "header_name": "effects of MPAs on charter business",
+      "header_name": "effects of MPAs on CPFV business",
       "val_max": null
     }
   },
@@ -4658,7 +4762,7 @@
     "fields": {
       "all_resources": false,
       "code": "shw_notes",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "Notes",
       "int_group": 18,
       "question_set": 3,
