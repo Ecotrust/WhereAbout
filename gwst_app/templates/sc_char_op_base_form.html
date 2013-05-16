@@ -124,12 +124,17 @@
         {% if forloop.counter > 49 %}        
             {% ifequal forloop.counter 50 %}
                 <div class="well">
+                <p><b>Job Satisfaction Questions:</b> Now I want to ask some questions about the level of satisfaction you have with your work. 
+                    Using the scale of happy, neutral, and unhappy I want you to indicate the level of satisfaction with the following 
+                    aspects of your work.</p>
             {% endifequal %}
             {% ifequal forloop.counter 69 %}
                 <div class="well">
+                <p><b>Satisfaction with Life Scale:</b> Below are five statements that you may agree or disagree with.</p>
             {% endifequal %}
             {% ifequal forloop.counter 74 %}
                 <div class="well">
+                <p><b>Community Impacts</b></p>
             {% endifequal %}
             <p><div class="fieldWrapper">
                 {{ field.errors }}
