@@ -5335,7 +5335,7 @@
     "fields": {
       "all_resources": false,
       "code": "shp_chfctr",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "What factors have <b><u>most</u></b> affected changes in the percent of revenue used for your operating costs",
       "int_group": 19,
       "question_set": 2,
@@ -5354,7 +5354,7 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "checkbox",
-      "eng_tooltip": "Separate with DASHES",
+      "eng_tooltip": "",
       "header_name": "factors in change %GER to op costs",
       "val_max": null
     }

@@ -69,7 +69,7 @@
             {% endif %}
         {% endif %}
         {% if forloop.counter > 11 %}        
-            {% if forloop.counter < 100 %}        
+            {% if forloop.counter < 44 %}        
                 <p><div class="fieldWrapper">
                     {{ field.errors }}
                     {% ifequal field.field.question.layout 'vertical' %}
@@ -99,11 +99,81 @@
                 </div></p>
             {% endif %}
         {% endif %}
+        
+        {% if forloop.counter > 43 %}        
+            {% if forloop.counter < 50 %}
+                {% ifequal forloop.counter 44 %}
+                    <p>Are there any fisheries/activities you have added or dropped since 2008? If yes, which fisheries/activities and why.</p>
+                    <table border="1">
+                    <tr><th></th><th>Name</th><th>add/drop</th><th>Why?</th></tr>
+                    <tr><td>1</td>
+                {% endifequal %}
+                {% ifequal forloop.counter 47 %}
+                    </tr><tr><td>2</td>
+                {% endifequal %}
+                
+                <td><div class="fieldWrapper">{{ field }}</td>
+                
+                {% ifequal forloop.counter 49 %}
+                </tr></table>
+                {% endifequal %}
+                
+            {% endif %}
+        {% endif %}
+
+        {% if forloop.counter > 49 %}        
+            {% ifequal forloop.counter 50 %}
+                <div class="well">
+            {% endifequal %}
+            {% ifequal forloop.counter 69 %}
+                <div class="well">
+            {% endifequal %}
+            {% ifequal forloop.counter 74 %}
+                <div class="well">
+            {% endifequal %}
+            <p><div class="fieldWrapper">
+                {{ field.errors }}
+                {% ifequal field.field.question.layout 'vertical' %}
+                    <table>
+                        <tr>
+                            <td>
+                                {{ field.label|safe }}:
+                            </td>
+                        </tr><tr>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% else %}
+                    <table>
+                        <tr>
+                            <td style='width:{{ q_width }}px'>
+                                {{ field.label|safe }}:
+                            </td>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% endifequal %}
+            </div></p>
+            {% ifequal forloop.counter 67 %}
+                </div>
+            {% endifequal %}
+            {% ifequal forloop.counter 73 %}
+                </div>
+            {% endifequal %}
+            {% ifequal forloop.counter 76 %}
+                </div>
+            {% endifequal %}
+        {% endif %}
+        
     {% endfor %}   
 
    
    <p><input id="submit" type="submit" value="{{ value }}" style="margin:15px"/>
    {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
    </p>
-   </form>
+                    </form>
 {% endblock %}
