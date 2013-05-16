@@ -2797,6 +2797,22 @@
     }
   },
   {
+    "pk": "eb17485e-be57-11e2-a580-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 940.0,
+      "eng_text": "Making less revenue in this fishery"
+    }
+  },
+  {
+    "pk": "f1245ade-be57-11e2-ae04-00224d544aba",
+    "model": "gwst_app.interviewansweroption",
+    "fields": {
+      "display_order": 940.0,
+      "eng_text": "Making less revenue overall"
+    }
+  },
+  {
     "pk": "a1",
     "model": "gwst_app.questiongroupvalidator",
     "fields": {
@@ -7318,9 +7334,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "sow_pinc11",
+      "code": "sow_pinc12",
       "layout": null,
-      "eng_text": "Percentage of personal income from commercial fishing in California in 2011",
+      "eng_text": "Percentage of personal income from commercial fishing in California in 2012",
       "int_group": 21,
       "question_set": 0,
       "display_order": 110.0,
@@ -7331,7 +7347,7 @@
       "val_default": "",
       "answer_type": "percent",
       "eng_tooltip": "",
-      "header_name": "%income commercial CA 2011",
+      "header_name": "%income commercial CA 2012",
       "val_max": null
     }
   },
@@ -7342,18 +7358,52 @@
       "all_resources": false,
       "code": "sow_pinc08",
       "layout": null,
-      "eng_text": "Percentage of personal income from commercial fishing in California in 2008",
+      "eng_text": "How has the percentage of your personal income from fishing changed since 2008",
       "int_group": 21,
       "question_set": 0,
       "display_order": 120.0,
       "required": false,
       "question_group": null,
-      "options": [],
+      "options": [
+        "0810300f-4160-11e1-9148-001b21c231d0",
+        "a21",
+        "a22",
+        "a24",
+        "a25"
+      ],
       "val_min": null,
       "val_default": "",
-      "answer_type": "percent",
+      "answer_type": "select",
       "eng_tooltip": "",
-      "header_name": "%income commercial CA 2008",
+      "header_name": "chg in %income commercial CA 2008",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 648,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "sow_pincfa",
+      "layout": "vertical",
+      "eng_text": "What factors have <b><u>most</u></b> affected changes in the percent of your personal income from fishing since 2008",
+      "int_group": 21,
+      "question_set": 0,
+      "display_order": 125.0,
+      "required": false,
+      "question_group": null,
+      "options": [
+        "557cae1e-bcf5-11e2-930a-00224d544aba",
+        "5b983f8f-bcf5-11e2-8ed2-00224d544aba",
+        "60878600-bcf5-11e2-9ef8-00224d544aba",
+        "685952f0-bcf5-11e2-bc40-00224d544aba",
+        "a20"
+      ],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "checkbox",
+      "eng_tooltip": "",
+      "header_name": "factors chg in %income commercial CA",
       "val_max": null
     }
   },
@@ -7363,8 +7413,8 @@
     "fields": {
       "all_resources": false,
       "code": "sow_pincdi",
-      "layout": null,
-      "eng_text": "<i>If there is a significant difference between 2011 and 2008 -</i><br/>\r\nCause of change",
+      "layout": "vertical",
+      "eng_text": "Explanation",
       "int_group": 21,
       "question_set": 0,
       "display_order": 130.0,
@@ -7385,8 +7435,8 @@
     "fields": {
       "all_resources": false,
       "code": "sow_othinc",
-      "layout": null,
-      "eng_text": "Other sources of income/employment in 2011 (this includes salmon disaster money) [Separate with DASHES]",
+      "layout": "vertical",
+      "eng_text": "Other sources of income/employment in 2012 (this includes salmon disaster money) [Separate with DASHES]",
       "int_group": 21,
       "question_set": 0,
       "display_order": 140.0,
@@ -7397,7 +7447,7 @@
       "val_default": "",
       "answer_type": "textarea",
       "eng_tooltip": "Use DASHES to separate items",
-      "header_name": "other sources of income 2011",
+      "header_name": "other sources of income 2012",
       "val_max": null
     }
   },
@@ -7408,7 +7458,7 @@
       "all_resources": false,
       "code": "sow_numves",
       "layout": null,
-      "eng_text": "Number of vessels owned in 2011",
+      "eng_text": "Number of vessels owned in 2012",
       "int_group": 21,
       "question_set": 0,
       "display_order": 150.0,
@@ -7419,7 +7469,7 @@
       "val_default": "",
       "answer_type": "integer",
       "eng_tooltip": "",
-      "header_name": "#vessels owned in 2011",
+      "header_name": "#vessels owned in 2012",
       "val_max": 100.0
     }
   },
@@ -7824,9 +7874,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "sow_pfl11",
+      "code": "sow_pfl12",
       "layout": null,
-      "eng_text": "Percentage of total gross fishing revenue used for <b>fuel</b> (2011) (California only)",
+      "eng_text": "Percentage of total gross fishing revenue used for <b>fuel</b> (2012) (California only)",
       "int_group": 21,
       "question_set": 2,
       "display_order": 400.0,
@@ -7836,8 +7886,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%rev for fuel 2011",
-      "header_name": "%rev for fuel 2011",
+      "eng_tooltip": "%rev for fuel 2012",
+      "header_name": "%rev for fuel 2012",
       "val_max": null
     }
   },
@@ -7846,9 +7896,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "sow_pcw11",
+      "code": "sow_pcw12",
       "layout": null,
-      "eng_text": "Percentage of total gross fishing revenue used for <b>crew or labor</b> (including hired captain) (2011) (California only)",
+      "eng_text": "Percentage of total gross fishing revenue used for <b>crew or labor</b> (including hired captain) (2012) (California only)",
       "int_group": 21,
       "question_set": 2,
       "display_order": 430.0,
@@ -7858,8 +7908,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%rev for crew 2011",
-      "header_name": "%rev for crew 2011",
+      "eng_tooltip": "%rev for crew 2012",
+      "header_name": "%rev for crew 2012",
       "val_max": null
     }
   },
@@ -7868,9 +7918,9 @@
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
-      "code": "sow_poth11",
+      "code": "sow_poth12",
       "layout": null,
-      "eng_text": "Percentage of total gross fishing revenue used for <b>all other operating costs</b> (2011) (California only)",
+      "eng_text": "Percentage of total gross fishing revenue used for <b>all other operating costs</b> (2012) (California only)",
       "int_group": 21,
       "question_set": 2,
       "display_order": 460.0,
@@ -7880,8 +7930,8 @@
       "val_min": null,
       "val_default": "",
       "answer_type": "percent",
-      "eng_tooltip": "%rev for other 2011",
-      "header_name": "%rev for other 2011",
+      "eng_tooltip": "%rev for other 2012",
+      "header_name": "%rev for other 2012",
       "val_max": null
     }
   },
@@ -7899,9 +7949,9 @@
       "required": false,
       "question_group": null,
       "options": [
+        "0810300f-4160-11e1-9148-001b21c231d0",
         "a21",
         "a22",
-        "a23",
         "a24",
         "a25"
       ],
@@ -7919,7 +7969,7 @@
     "fields": {
       "all_resources": false,
       "code": "sow_popfac",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "What factors have <b><u>most</u></b> affected changes in the percent of revenue used for your overall operating costs",
       "int_group": 21,
       "question_set": 2,
@@ -7931,9 +7981,9 @@
         "504785e1-5100-11e1-b222-001b21c231d0",
         "5eece9a1-5100-11e1-be5b-001b21c231d0",
         "6b4d6670-5100-11e1-ad57-001b21c231d0",
-        "71c5bdde-5100-11e1-a3b6-001b21c231d0",
         "7ea5a3e1-5100-11e1-b2cb-001b21c231d0",
-        "9e5a7d80-fca8-11df-9e09-0016760580f0"
+        "9e5a7d80-fca8-11df-9e09-0016760580f0",
+        "f1245ade-be57-11e2-ae04-00224d544aba"
       ],
       "val_min": null,
       "val_default": "",
@@ -7949,7 +7999,7 @@
     "fields": {
       "all_resources": false,
       "code": "sow_popfot",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "If \"other\" factors were selected, what were they",
       "int_group": 21,
       "question_set": 2,
@@ -7971,7 +8021,7 @@
     "fields": {
       "all_resources": false,
       "code": "sow_notes",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "Notes",
       "int_group": 21,
       "question_set": 3,
@@ -9834,9 +9884,9 @@
         "504785e1-5100-11e1-b222-001b21c231d0",
         "5eece9a1-5100-11e1-be5b-001b21c231d0",
         "6b4d6670-5100-11e1-ad57-001b21c231d0",
-        "71c5bdde-5100-11e1-a3b6-001b21c231d0",
         "7ea5a3e1-5100-11e1-b2cb-001b21c231d0",
-        "9e5a7d80-fca8-11df-9e09-0016760580f0"
+        "9e5a7d80-fca8-11df-9e09-0016760580f0",
+        "eb17485e-be57-11e2-a580-00224d544aba"
       ],
       "val_min": null,
       "val_default": "",

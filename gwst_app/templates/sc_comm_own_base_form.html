@@ -11,7 +11,7 @@
    
     {% for field in form %}
     
-        {% if forloop.counter < 7 %}
+        {% if forloop.counter < 8 %}
     
             <!--
             {% if field.field.question_set %}
@@ -55,9 +55,9 @@
                 {% endifequal %}
             </div></p>
         {% endif %}    
-        {% if forloop.counter < 25 %}    
-            {% if forloop.counter > 6 %} 
-                {% ifequal forloop.counter 7 %}
+        {% if forloop.counter < 26 %}    
+            {% if forloop.counter > 7 %} 
+                {% ifequal forloop.counter 8 %}
                     <br />
                     About your vessels:<br /><br />
                     <table class="custom" border="1">
@@ -69,30 +69,30 @@
                         </tr>
                         <tr><td><b>Name</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 10 %}
+                {% ifequal forloop.counter 11 %}
                     </tr><tr><td><b>Captain</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 13 %}
+                {% ifequal forloop.counter 14 %}
                     </tr><tr><td><b>Federal Vessel ID</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 16 %}
+                {% ifequal forloop.counter 17 %}
                     </tr><tr><td><b>State ID</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 19 %}
+                {% ifequal forloop.counter 20 %}
                     </tr><tr><td><b>Length (ft)</b></td>
                 {% endifequal %}
-                {% ifequal forloop.counter 22 %}
+                {% ifequal forloop.counter 23 %}
                     </tr><tr><td><b>Motor (HP)</b></td>
                 {% endifequal %}
                 <td><div class="fieldWrapper">{{ field }}</td>
-                {% ifequal forloop.counter 24 %}
+                {% ifequal forloop.counter 25 %}
                         </tr>
                     </table>
                 {% endifequal %}
 
             {% endif %}    
         {% endif %}
-        {% if forloop.counter > 24 %}    
+        {% if forloop.counter > 25 %}    
             <p><div class="fieldWrapper">
                 {{ field.errors }}
                 {% ifequal field.field.question.layout 'vertical' %}
