@@ -239,3 +239,7 @@ p.x-panel-static{
     border: none;
     margin: 3px 0 0 0px;
 }
+
+.olLayerGooglePoweredBy.olLayerGoogleV3.gmnoprint {
+visibility:hidden;
+}
