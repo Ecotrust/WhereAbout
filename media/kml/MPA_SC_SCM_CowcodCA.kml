@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
-<Document id="SCM_Cowcod_Conservation_Areas">
-  <name>SCM_Cowcod_Conservation_Areas</name>
+<Document id="Cowcod_Cons_Area">
+  <name>Cowcod_Cons_Area</name>
   <Snippet></Snippet>
   <Folder id="FeatureLayer0">
-    <name>SCM_Cowcod_Conservation_Areas</name>
+    <name>Cowcod_Cons_Area</name>
     <Snippet></Snippet>
     <description><![CDATA[The MPA Inventory is a comprehensive catalog that provides detailed information for existing marine protected areas in the United States. The inventory provides geospatial boundary information (in polygon format) and classification attributes that seek to define the conservation objectives, protection level, governance and related management criteria for all sites in the database. The comprehensive inventory of federal, state and territorial MPA sites provides governments and stakeholders with access to information to make better decisions about the current and future use of place-based conservation. The information also will be used to inform the development of the national system of marine protected areas as required by Executive Order 13158.]]></description>
     <Placemark id="ID_00000">
@@ -131,7 +131,7 @@
       <MultiGeometry>
         <Polygon>
           <extrude>0</extrude>          <altitudeMode>clampedToGround</altitudeMode>
-          <outerBoundaryIs><LinearRing><coordinates> -117.8520757247423,32.57576648045503,0 -117.833333333205,32.61166666589882,0 -117.8333333335363,32.69999999939788,0 -118.0333329997635,32.69999999939788,0 -118.0333333330688,32.69999999939788,0 -118.0333333330856,32.68583333212914,0 -118.0333333328554,32.67483333267213,0 -118.0333333329093,32.49999999890245,0 -118.0333330000916,32.49999999974428,0 -117.8916670007571,32.49999999974428,0 -117.8916666663916,32.49999999890245,0 -117.8520757247423,32.57576648045503,0</coordinates></LinearRing></outerBoundaryIs>
+          <outerBoundaryIs><LinearRing><coordinates> -117.8520757247423,32.57576647959851,0 -117.833333333205,32.61166666504181,0 -117.8333333335363,32.69999999853967,0 -118.0333329997635,32.69999999853967,0 -118.0333333330688,32.69999999853965,0 -118.0333333330856,32.68583333127113,0 -118.0333333328554,32.67483333181426,0 -118.0333333329093,32.49999999804698,0 -118.0333330000916,32.49999999888883,0 -117.8916670007571,32.49999999888883,0 -117.8916666663916,32.49999999804698,0 -117.8520757247423,32.57576647959851,0</coordinates></LinearRing></outerBoundaryIs>
         </Polygon>
       </MultiGeometry>
     </Placemark>
@@ -258,7 +258,7 @@
       <MultiGeometry>
         <Polygon>
           <extrude>0</extrude>          <altitudeMode>clampedToGround</altitudeMode>
-          <outerBoundaryIs><LinearRing><coordinates> -117.8916670007571,32.49999999974428,0 -117.8520757247423,32.57576648045503,0 -117.833332999988,32.61166700036112,0 -117.8333330002309,32.69999999939788,0 -117.8333333335363,32.69999999939788,0 -118.0333329997635,32.69999999939788,0 -118.0333330000916,32.49999999974428,0 -117.8916670007571,32.49999999974428,0</coordinates></LinearRing></outerBoundaryIs>
+          <outerBoundaryIs><LinearRing><coordinates> -117.8916670007571,32.49999999888883,0 -117.8520757247423,32.57576647959851,0 -117.833332999988,32.6116669995041,0 -117.8333330002309,32.69999999853967,0 -117.8333333335363,32.69999999853967,0 -118.0333329997635,32.69999999853967,0 -118.0333330000916,32.49999999888883,0 -117.8916670007571,32.49999999888883,0</coordinates></LinearRing></outerBoundaryIs>
         </Polygon>
       </MultiGeometry>
     </Placemark>
@@ -385,7 +385,7 @@
       <MultiGeometry>
         <Polygon>
           <extrude>0</extrude>          <altitudeMode>clampedToGround</altitudeMode>
-          <outerBoundaryIs><LinearRing><coordinates> -118.8333330003579,33.83333299952714,0 -119.4999999993874,33.83332999964873,0 -119.4999999992615,33.55000000021525,0 -119.8833330004356,33.55000000021525,0 -119.8832122009938,33.49999999906479,0 -119.8829844063804,33.33333333262316,0 -119.8833330000786,33.0000000000041,0 -119.6166670002027,33.0000000000041,0 -119.6163194589803,32.47204945647107,0 -119.6166670000521,32.33333300011628,0 -119.2697223697125,32.33333300011628,0 -118.8333329996721,32.33333300011628,0 -118.832649398061,32.43743299222827,0 -118.8321889846288,32.51814081661763,0 -118.8333330003579,33.83333299952714,0</coordinates></LinearRing></outerBoundaryIs>
+          <outerBoundaryIs><LinearRing><coordinates> -118.8333330003579,33.83333299865411,0 -119.4999999993874,33.83332999877568,0 -119.4999999992615,33.54999999934579,0 -119.8833330004356,33.5499999993458,0 -119.8832122009938,33.49999999819596,0 -119.8829844063804,33.33333333175649,0 -119.8833330000786,32.99999999914181,0 -119.6166670002027,32.99999999914181,0 -119.6163194589803,32.47204945561597,0 -119.6166670000521,32.33333299926314,0 -119.2697223697125,32.33333299926315,0 -118.8333329996721,32.33333299926314,0 -118.832649398061,32.43743299137368,0 -118.8321889846288,32.51814081576191,0 -118.8333330003579,33.83333299865411,0</coordinates></LinearRing></outerBoundaryIs>
         </Polygon>
       </MultiGeometry>
     </Placemark>
@@ -396,8 +396,8 @@
       <scale>0.000000</scale>
     </LabelStyle>
     <LineStyle>
-      <color>ff00ff55</color>
-      <width>1.500000</width>
+      <color>ff00a838</color>
+      <width>3.000000</width>
     </LineStyle>
     <PolyStyle>
       <color>00ffffff</color>

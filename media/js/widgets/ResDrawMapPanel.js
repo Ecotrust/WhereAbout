@@ -261,28 +261,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
 
         this.layer_array[this.layer_array.length] = this.blockLayer;
 
-        // this.mpa_ccac = new OpenLayers.Layer.Vector("Central Coast MPAs", {
-            // strategies: [new OpenLayers.Strategy.Fixed()],
-            // projection: map_options.displayProjection,
-            // protocol: new OpenLayers.Protocol.HTTP({
-                // url: "/site-media/kml/CC_existing_mpas.kml",
-                // format: new OpenLayers.Format.KML({
-                    // extractStyles: true, 
-                    // extractAttributes: true,
-                    // maxDepth: 2
-                // })
-            // })
-        // });
-        
-        // this.mpa_ccac.events.on({
-            // "featureselected": this.onFeatureSelect,
-            // "featureunselected": this.onFeatureUnselect
-        // });
-        
-        // this.mpa_ccac.setOpacity(0.4);
-        
-        // this.layer_array[this.layer_array.length] = this.mpa_ccac;
-        
         this.Military_safety_areas = new OpenLayers.Layer.Vector("Military Safety Areas", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
@@ -293,7 +271,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     extractAttributes: true,
                     maxDepth: 2
                 })
-            })
+            }),
+            visibility: false
         });
         
         this.Military_safety_areas.events.on({
@@ -301,7 +280,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             "featureunselected": this.onFeatureUnselect
         });
         
-        this.Military_safety_areas.setOpacity(0.4);
+        this.Military_safety_areas.setOpacity(0.5);
         
         this.layer_array[this.layer_array.length] = this.Military_safety_areas;
         
@@ -315,7 +294,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     extractAttributes: true,
                     maxDepth: 2
                 })
-            })
+            }),
+            visibility: true
         });
         
         this.MPA_SC_Fed_SMCA.events.on({
@@ -337,7 +317,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     extractAttributes: true,
                     maxDepth: 2
                 })
-            })
+            }),
+            visibility: true
         });
         
         this.MPA_SC_Fed_SMR.events.on({
@@ -359,7 +340,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     extractAttributes: true,
                     maxDepth: 2
                 })
-            })
+            }),
+            visibility: false
         });
         
         this.MPA_SC_RCA_NT.events.on({
@@ -381,7 +363,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     extractAttributes: true,
                     maxDepth: 2
                 })
-            })
+            }),
+            visibility: false
         });
         
         this.MPA_SC_RCA_Rec.events.on({
@@ -389,7 +372,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             "featureunselected": this.onFeatureUnselect
         });
         
-        this.MPA_SC_RCA_Rec.setOpacity(0.4);
+        this.MPA_SC_RCA_Rec.setOpacity(0.3);
         
         this.layer_array[this.layer_array.length] = this.MPA_SC_RCA_Rec;
 
@@ -403,7 +386,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     extractAttributes: true,
                     maxDepth: 2
                 })
-            })
+            }),
+            visibility: false
         });
         
         this.MPA_SC_RCA_T.events.on({
@@ -411,7 +395,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             "featureunselected": this.onFeatureUnselect
         });
         
-        this.MPA_SC_RCA_T.setOpacity(0.4);
+        this.MPA_SC_RCA_T.setOpacity(0.6);
         
         this.layer_array[this.layer_array.length] = this.MPA_SC_RCA_T;
 
@@ -425,7 +409,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     extractAttributes: true,
                     maxDepth: 2
                 })
-            })
+            }),
+            visibility: false
         });
         
         this.MPA_SC_SCM_CowcodCA.events.on({
@@ -433,7 +418,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             "featureunselected": this.onFeatureUnselect
         });
         
-        this.MPA_SC_SCM_CowcodCA.setOpacity(0.4);
+        this.MPA_SC_SCM_CowcodCA.setOpacity(0.7);
         
         this.layer_array[this.layer_array.length] = this.MPA_SC_SCM_CowcodCA;
 
@@ -447,7 +432,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     extractAttributes: true,
                     maxDepth: 2
                 })
-            })
+            }),
+            visibility: true
         });
         
         this.MPA_SC_SMRMA.events.on({
@@ -469,7 +455,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     extractAttributes: true,
                     maxDepth: 2
                 })
-            })
+            }),
+            visibility: true
         });
         
         this.mpa_smr.events.on({
@@ -491,7 +478,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     extractAttributes: true,
                     maxDepth: 2
                 })
-            })
+            }),
+            visibility: true
         });
         
         this.mpa_smca.events.on({
@@ -513,7 +501,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     extractAttributes: true,
                     maxDepth: 2
                 })
-            })
+            }),
+            visibility: true
         });
         
         this.mpa_smcant.events.on({
@@ -535,7 +524,8 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     extractAttributes: true,
                     maxDepth: 2
                 })
-            })
+            }),
+            visibility: true
         });
         
         this.mpa_spcl.events.on({
