@@ -132,10 +132,6 @@
                 <div class="well">
                 <p><b>Satisfaction with Life Scale:</b> Below are five statements that you may agree or disagree with.</p>
             {% endifequal %}
-            {% ifequal forloop.counter 74 %}
-                <div class="well">
-                <p><b>Community Impacts</b></p>
-            {% endifequal %}
             <p><div class="fieldWrapper">
                 {{ field.errors }}
                 {% ifequal field.field.question.layout 'vertical' %}
@@ -167,9 +163,6 @@
                 </div>
             {% endifequal %}
             {% ifequal forloop.counter 73 %}
-                </div>
-            {% endifequal %}
-            {% ifequal forloop.counter 76 %}
                 </div>
             {% endifequal %}
         {% endif %}

@@ -3453,7 +3453,7 @@
       "all_resources": false,
       "code": "shw_othinc",
       "layout": "vertical",
-      "eng_text": "Other sources of income/employment in 2012",
+      "eng_text": "Other sources of income/employment in 2012 [Separate using DASHES]",
       "int_group": 18,
       "question_set": 0,
       "display_order": 180.0,
@@ -5129,7 +5129,7 @@
     "fields": {
       "all_resources": false,
       "code": "shp_portdi",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "<i>If there is a change in home port between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 19,
       "question_set": 2,
@@ -5295,7 +5295,7 @@
     "fields": {
       "all_resources": false,
       "code": "shp_othinc",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "Other sources of income/employment in 2012 [Separate with DASHES]",
       "int_group": 19,
       "question_set": 2,
@@ -5541,7 +5541,7 @@
     "fields": {
       "all_resources": false,
       "code": "shp_chfoth",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "If \"other\" factors were selected, what were they",
       "int_group": 19,
       "question_set": 2,
@@ -5657,8 +5657,8 @@
     "fields": {
       "all_resources": false,
       "code": "shp_ctrdif",
-      "layout": null,
-      "eng_text": "What factors have most affected the change in the number of <b>consumptive</b> CPFV trips since 2008",
+      "layout": "vertical",
+      "eng_text": "What factors have <b><u>most</u></b> affected the change in the number of <b>consumptive</b> CPFV trips since 2008",
       "int_group": 19,
       "question_set": 3,
       "display_order": 526.0,
@@ -5795,7 +5795,7 @@
     "fields": {
       "all_resources": false,
       "code": "shp_ntrdif",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "What factors have <b><u>most</u></b> affected the change in the number of <b>non-consumptive</b> CPFV trips since 2008",
       "int_group": 19,
       "question_set": 3,
@@ -6445,7 +6445,7 @@
     "fields": {
       "all_resources": false,
       "code": "shp_js_chg",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "If you could change an aspect of your job, what would it be",
       "int_group": 19,
       "question_set": 4,
@@ -6617,7 +6617,7 @@
     "fields": {
       "all_resources": false,
       "code": "shp_notes",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "Notes",
       "int_group": 19,
       "question_set": 5,
@@ -6736,7 +6736,7 @@
     "fields": {
       "all_resources": true,
       "code": "sha_mpaot1",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "If impacted in 'other' ways, explain",
       "int_group": 19,
       "question_set": 6,
@@ -6834,7 +6834,7 @@
     "fields": {
       "all_resources": true,
       "code": "sha_mpaoth",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "If 'other', which MPAs not listed above impacted this fishery/activity",
       "int_group": 19,
       "question_set": 6,

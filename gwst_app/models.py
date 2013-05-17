@@ -269,7 +269,7 @@ class InterviewQuestion(Model):
         ordering = ('int_group__interview','int_group','question_set','display_order')
         
     def __unicode__(self):
-        return unicode('%s-%s' % (self.int_group, self.code))
+        return unicode('%s-%s:%s' % (self.int_group, self.code,self.header_name))
     
 class InterviewInstructions(Model):
     int_group = ForeignKey(InterviewGroup)
