@@ -80,7 +80,7 @@
             {% endif %}
         {% endif %}
         {% if forloop.counter > 11 %}
-            {% if forloop.counter < 19 %}
+            {% if forloop.counter < 20 %}
                 <p><div class="fieldWrapper">
                     {{ field.errors }}
                     {% ifequal field.field.question.layout 'vertical' %}
@@ -111,9 +111,9 @@
                 </div></p>
             {% endif %}
         {% endif %}
-        {% if forloop.counter > 18 %}
-            {% if forloop.counter < 25 %}
-                {% ifequal forloop.counter 19 %}
+        {% if forloop.counter > 19 %}
+            {% if forloop.counter < 26 %}
+                {% ifequal forloop.counter 20 %}
                     <br />
                     Are there any specific MPAs that have significantly impacted you in a particular way?<br /><br />
                     <table border="1">
@@ -124,18 +124,18 @@
                         </tr>
                         <tr>
                 {% endifequal %}
-                {% ifequal forloop.counter 22 %}
+                {% ifequal forloop.counter 23 %}
                     </tr><tr>
                 {% endifequal %}
                 <td><div class="fieldWrapper">{{ field }}</td>
-                {% ifequal forloop.counter 24 %}
+                {% ifequal forloop.counter 25 %}
                         </tr>
                     </table>
                 {% endifequal %}
             {% endif %}
         {% endif %}
 
-        {% if forloop.counter > 24 %}
+        {% if forloop.counter > 25 %}
             {% if forloop.counter < 27 %}
                 <p><div class="fieldWrapper">
                     {{ field.errors }}

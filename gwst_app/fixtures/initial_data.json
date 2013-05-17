@@ -1178,8 +1178,8 @@
     "model": "gwst_app.interview",
     "fields": {
       "multiple_user_groups": false,
-      "code": "scac_char",
-      "description": "SCM Charter Desktop Survey",
+      "code": "scac_cpfv",
+      "description": "SCM CPFV Desktop Survey",
       "shape_name_plural": "activity areas",
       "region": "a8e71930-3e32-11e1-bccc-001b21c231d0",
       "resource_name_plural": "activities",
@@ -1194,7 +1194,7 @@
       "resource_action_past_tense": "participated in",
       "clip_region": 2,
       "interview_complete_text": "",
-      "name": "South CA Charter Monitoring"
+      "name": "South CA CPFV Monitoring"
     }
   },
   {
@@ -1234,13 +1234,14 @@
       "question_width": 275,
       "select_resource_text": "",
       "resource_question_width": 420,
-      "header": "SC Charter Main",
+      "header": "SC CPFV Main",
       "preselect": true,
       "resources": [],
       "user_draws_shapes": false,
       "interview": 7,
       "member_title": "Operator",
       "page_template": "base_form.html",
+      "order": 0,
       "resource_page_template": "base_formset.html",
       "description": "General Questions"
     }
@@ -1265,6 +1266,7 @@
       "interview": 7,
       "member_title": "Owner",
       "page_template": "sc_char_own_base_form.html",
+      "order": 50,
       "resource_page_template": "base_formset.html",
       "description": "Owners only"
     }
@@ -1324,6 +1326,7 @@
       "interview": 7,
       "member_title": "Operator",
       "page_template": "sc_char_op_base_form.html",
+      "order": 50,
       "resource_page_template": "sc_char_op_base_formset.html",
       "description": "CPFV Operator Group"
     }
@@ -1348,6 +1351,7 @@
       "interview": 8,
       "member_title": "Owner or Fisherman",
       "page_template": "base_form.html",
+      "order": 0,
       "resource_page_template": "base_formset.html",
       "description": "General Questions"
     }
@@ -1372,6 +1376,7 @@
       "interview": 8,
       "member_title": "Owner",
       "page_template": "sc_comm_own_base_form.html",
+      "order": 50,
       "resource_page_template": "base_formset.html",
       "description": "Owners only"
     }
@@ -1387,7 +1392,7 @@
       "is_user_group": true,
       "required_group": false,
       "question_width": 445,
-      "select_resource_text": "Please select <b><u>all</u></b> of the species in which the fisherman targeted between 2008-2012",
+      "select_resource_text": "Please select <b><u>all</u></b> fisheries that you targeted last year (2012)",
       "resource_question_width": 420,
       "header": "SC Commercial Fisherman",
       "preselect": false,
@@ -1440,8 +1445,59 @@
       "interview": 8,
       "member_title": "Fisherman",
       "page_template": "sc_comm_fish_base_form.html",
+      "order": 50,
       "resource_page_template": "sc_comm_fish_base_formset.html",
       "description": "Hired Captains, Captain/Owners, & Walk-on Divers Group"
+    }
+  },
+  {
+    "pk": 23,
+    "model": "gwst_app.interviewgroup",
+    "fields": {
+      "shape_color": "FFFFFF",
+      "independent": false,
+      "code": "scco_coim",
+      "name": "Community Impacts Questions",
+      "is_user_group": false,
+      "required_group": true,
+      "question_width": 275,
+      "select_resource_text": "",
+      "resource_question_width": 420,
+      "header": "SC Commercial Community Impacts",
+      "preselect": false,
+      "resources": [],
+      "user_draws_shapes": false,
+      "interview": 8,
+      "member_title": "Owner-Fisherman",
+      "page_template": "base_form.html",
+      "order": 101,
+      "resource_page_template": "base_formset.html",
+      "description": "How MPAs are affecting the community"
+    }
+  },
+  {
+    "pk": 24,
+    "model": "gwst_app.interviewgroup",
+    "fields": {
+      "shape_color": "FFFFFF",
+      "independent": false,
+      "code": "scch_coim",
+      "name": "Community Impacts Questions",
+      "is_user_group": false,
+      "required_group": true,
+      "question_width": 275,
+      "select_resource_text": "",
+      "resource_question_width": 420,
+      "header": "SC CPFV Community Impacts",
+      "preselect": false,
+      "resources": [],
+      "user_draws_shapes": false,
+      "interview": 7,
+      "member_title": "Owner-Operator",
+      "page_template": "base_form.html",
+      "order": 101,
+      "resource_page_template": "base_formset.html",
+      "description": "How MPAs are affecting the community"
     }
   },
   {
@@ -6556,72 +6612,6 @@
     }
   },
   {
-    "pk": 645,
-    "model": "gwst_app.interviewquestion",
-    "fields": {
-      "all_resources": false,
-      "code": "shp_ci_1",
-      "layout": null,
-      "eng_text": "Have you seen an impact on your fishing community or your community as a whole from MPAs",
-      "int_group": 19,
-      "question_set": 4,
-      "display_order": 950.0,
-      "required": false,
-      "question_group": null,
-      "options": [],
-      "val_min": null,
-      "val_default": "",
-      "answer_type": "textarea",
-      "eng_tooltip": "Seen MPA impact on Community",
-      "header_name": "CPFV Comm Impact 1 - Seen",
-      "val_max": null
-    }
-  },
-  {
-    "pk": 646,
-    "model": "gwst_app.interviewquestion",
-    "fields": {
-      "all_resources": false,
-      "code": "shp_ci_2",
-      "layout": null,
-      "eng_text": "What comments and questions do customers have regarding MPAs",
-      "int_group": 19,
-      "question_set": 4,
-      "display_order": 960.0,
-      "required": false,
-      "question_group": null,
-      "options": [],
-      "val_min": null,
-      "val_default": "",
-      "answer_type": "textarea",
-      "eng_tooltip": "Comments/Questions",
-      "header_name": "CPFV Comm Impact 2 - Questions",
-      "val_max": null
-    }
-  },
-  {
-    "pk": 647,
-    "model": "gwst_app.interviewquestion",
-    "fields": {
-      "all_resources": false,
-      "code": "shp_ci_3",
-      "layout": null,
-      "eng_text": "What is the general attitude of customers towards MPAs",
-      "int_group": 19,
-      "question_set": 4,
-      "display_order": 970.0,
-      "required": false,
-      "question_group": null,
-      "options": [],
-      "val_min": null,
-      "val_default": "",
-      "answer_type": "textarea",
-      "eng_tooltip": "MPA General Attitude",
-      "header_name": "CPFV Comm Impact 3 - Attitude",
-      "val_max": null
-    }
-  },
-  {
     "pk": 530,
     "model": "gwst_app.interviewquestion",
     "fields": {
@@ -7118,6 +7108,72 @@
       "answer_type": "textarea",
       "eng_tooltip": "",
       "header_name": "other effects",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 652,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shc_comm",
+      "layout": "vertical",
+      "eng_text": "Have you seen an impact on your fishing community or your community as a whole from MPAs",
+      "int_group": 24,
+      "question_set": 0,
+      "display_order": 10.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "Seen MPA impact on Community",
+      "header_name": "CPFV Community Impact",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 653,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shc_custq",
+      "layout": "vertical",
+      "eng_text": "What comments and questions do customers have regarding MPAs",
+      "int_group": 24,
+      "question_set": 0,
+      "display_order": 20.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "Customer MPA Questions",
+      "header_name": "CPFV MPA Customer Questions",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 654,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shc_custat",
+      "layout": "vertical",
+      "eng_text": "What is the general attitude of customers towards MPAs",
+      "int_group": 24,
+      "question_set": 0,
+      "display_order": 30.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "Customer Attitudes",
+      "header_name": "CPFV MPA Customer Attitudes",
       "val_max": null
     }
   },
@@ -8295,8 +8351,8 @@
     "fields": {
       "all_resources": false,
       "code": "sf_othinc",
-      "layout": null,
-      "eng_text": "Other sources of income/employment in 2012 (this includes salmon disaster money) [Separate using DASHES]",
+      "layout": "vertical",
+      "eng_text": "Other sources of income/employment in 2012 (this includes salmon disaster money)",
       "int_group": 22,
       "question_set": 0,
       "display_order": 150.0,
@@ -8700,7 +8756,7 @@
     "fields": {
       "all_resources": false,
       "code": "sf_homedif",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "<i>If there is a change in home port between 2012 and 2008 -</i><br/>\r\nCause of change",
       "int_group": 22,
       "question_set": 2,
@@ -9154,7 +9210,7 @@
     "fields": {
       "all_resources": false,
       "code": "sf_propfot",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "If \"other\" factors were selected, what were they",
       "int_group": 22,
       "question_set": 4,
@@ -9666,7 +9722,7 @@
     "fields": {
       "all_resources": false,
       "code": "sf_js_chng",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "If you could change an aspect of your job, what would it be",
       "int_group": 22,
       "question_set": 5,
@@ -9833,34 +9889,12 @@
     }
   },
   {
-    "pk": 612,
-    "model": "gwst_app.interviewquestion",
-    "fields": {
-      "all_resources": false,
-      "code": "sf_com_imp",
-      "layout": null,
-      "eng_text": "Have you seen an impact on your fishing community or your community as a whole from MPAs",
-      "int_group": 22,
-      "question_set": 5,
-      "display_order": 800.0,
-      "required": false,
-      "question_group": null,
-      "options": [],
-      "val_min": null,
-      "val_default": "",
-      "answer_type": "textarea",
-      "eng_tooltip": "",
-      "header_name": "Community Impacts of MPAs",
-      "val_max": null
-    }
-  },
-  {
     "pk": 362,
     "model": "gwst_app.interviewquestion",
     "fields": {
       "all_resources": false,
       "code": "sf_notes",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "Notes",
       "int_group": 22,
       "question_set": 6,
@@ -10006,7 +10040,7 @@
     "fields": {
       "all_resources": true,
       "code": "sf_gropfot",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "If \"other\" factors were selected, what were they",
       "int_group": 22,
       "question_set": 6,
@@ -10263,7 +10297,7 @@
     "fields": {
       "all_resources": true,
       "code": "sf_mpaoth1",
-      "layout": null,
+      "layout": "vertical",
       "eng_text": "If other, in what ways were you affected",
       "int_group": 22,
       "question_set": 6,
@@ -10352,6 +10386,28 @@
       "answer_type": "checkbox",
       "eng_tooltip": "",
       "header_name": "Which MPAs 1",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 375,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": true,
+      "code": "sf_newmpa",
+      "layout": "vertical",
+      "eng_text": "If the fisherman was affected by MPAs not on the above list, list the MPA(s) and how they were affected here",
+      "int_group": 22,
+      "question_set": 6,
+      "display_order": 1200.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "Separate with DASHES",
+      "header_name": "Other MPAs",
       "val_max": null
     }
   },
@@ -10500,28 +10556,6 @@
     }
   },
   {
-    "pk": 375,
-    "model": "gwst_app.interviewquestion",
-    "fields": {
-      "all_resources": true,
-      "code": "sf_newmpa",
-      "layout": null,
-      "eng_text": "If the fisherman was affected by MPAs not on the above list, list the MPA(s) and how they were affected here",
-      "int_group": 22,
-      "question_set": 6,
-      "display_order": 1310.0,
-      "required": false,
-      "question_group": null,
-      "options": [],
-      "val_min": null,
-      "val_default": "",
-      "answer_type": "textarea",
-      "eng_tooltip": "Separate with DASHES",
-      "header_name": "Other MPAs",
-      "val_max": null
-    }
-  },
-  {
     "pk": 376,
     "model": "gwst_app.interviewquestion",
     "fields": {
@@ -10635,6 +10669,28 @@
       "answer_type": "textarea",
       "eng_tooltip": "",
       "header_name": "Other change effects 2012",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 651,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "cf_com_imp",
+      "layout": "vertical",
+      "eng_text": "Have you seen an impact on your fishing community or your community as a whole from MPAs",
+      "int_group": 23,
+      "question_set": 0,
+      "display_order": 10.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "",
+      "header_name": "Commercial Comm Impact",
       "val_max": null
     }
   }

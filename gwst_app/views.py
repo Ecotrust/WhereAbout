@@ -177,7 +177,7 @@ def handleSelectInterview(request,selected_interview):
             if (group.name != 'Main Questions'):
                 membership.percent_involvement = 0
             else :
-                membership.percent_involvement = 101
+                membership.percent_involvement = group.order
             membership.save()
     
         # redirect to assign_groups
@@ -313,7 +313,7 @@ def assign_groups(request):
                         q.order = 1000 
                         q.save()
                     else:
-                        q.order = 0
+                        q.order = q.int_group.order
                         q.save()
                     
                 # redirect to interview_group_status
@@ -326,7 +326,7 @@ def assign_groups(request):
                         q.order = 1000 
                         q.save()
                     else:
-                        q.order = 0
+                        q.order = q.int_group.order
                         q.save()
                     
                 # redirect to interview_group_status
@@ -367,7 +367,7 @@ def assign_groups(request):
                         q.order = 1000 
                         q.save()
                     else:
-                        q.order = 0
+                        q.order = q.int_group.order
                         q.save()
                     
                 # redirect to interview_group_status
@@ -398,7 +398,7 @@ def assign_groups(request):
                         q.order = 1000 
                         q.save()
                     else:
-                        q.order = 0
+                        q.order = q.int_group.order
                         q.save()
                 
                 return HttpResponseRedirect('/group_status/')
@@ -431,7 +431,7 @@ def group_status(request):
     # show list of interview groups with current status (including global interview questions)
     
     title = request.session['interview'].name + ' Status'
-       
+
     qs = InterviewGroupMembership.objects.filter(user=request.session['interviewee'], int_group__in=int_groups).order_by('order','-percent_involvement','int_group')
     
     num_shapes = None
