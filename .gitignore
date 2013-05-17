@@ -4,3 +4,4 @@ database/*.sqlite
 env
 local_settings.py
 tiles/*
+install-media/
