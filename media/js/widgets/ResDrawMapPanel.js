@@ -284,52 +284,6 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         
         this.layer_array[this.layer_array.length] = this.Military_safety_areas;
         
-        this.MPA_SC_Fed_SMCA = new OpenLayers.Layer.Vector("Federal Marine Conservation Areas", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_Fed_SMCA.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            }),
-            visibility: true
-        });
-        
-        this.MPA_SC_Fed_SMCA.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.MPA_SC_Fed_SMCA.setOpacity(0.4);
-        
-        this.layer_array[this.layer_array.length] = this.MPA_SC_Fed_SMCA;
-        
-        this.MPA_SC_Fed_SMR = new OpenLayers.Layer.Vector("Federal Marine Reserves", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_Fed_SMR.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            }),
-            visibility: true
-        });
-        
-        this.MPA_SC_Fed_SMR.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.MPA_SC_Fed_SMR.setOpacity(0.4);
-        
-        this.layer_array[this.layer_array.length] = this.MPA_SC_Fed_SMR;
-
         this.MPA_SC_RCA_NT = new OpenLayers.Layer.Vector("Rockfish Conservation Area Non-Trawl", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
@@ -444,6 +398,52 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         this.MPA_SC_SMRMA.setOpacity(0.4);
         
         this.layer_array[this.layer_array.length] = this.MPA_SC_SMRMA;
+
+        this.MPA_SC_Fed_SMCA = new OpenLayers.Layer.Vector("Federal Marine Conservation Areas", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/MPA_SC_Fed_SMCA.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            }),
+            visibility: true
+        });
+        
+        this.MPA_SC_Fed_SMCA.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.MPA_SC_Fed_SMCA.setOpacity(0.4);
+        
+        this.layer_array[this.layer_array.length] = this.MPA_SC_Fed_SMCA;
+        
+        this.MPA_SC_Fed_SMR = new OpenLayers.Layer.Vector("Federal Marine Reserves", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection: map_options.displayProjection,
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "/site-media/kml/MPA_SC_Fed_SMR.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            }),
+            visibility: true
+        });
+        
+        this.MPA_SC_Fed_SMR.events.on({
+            "featureselected": this.onFeatureSelect,
+            "featureunselected": this.onFeatureUnselect
+        });
+        
+        this.MPA_SC_Fed_SMR.setOpacity(0.4);
+        
+        this.layer_array[this.layer_array.length] = this.MPA_SC_Fed_SMR;
 
         this.mpa_smr = new OpenLayers.Layer.Vector("State Marine Reserves", {
             strategies: [new OpenLayers.Strategy.Fixed()],
@@ -580,7 +580,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
        	map.addControl(this.drawResControl);
         map.addLayers(this.layer_array);
         
-        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.mpa_smr, this.mpa_smca, this.mpa_smcant, this.mpa_spcl]);
+        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.mpa_smr, this.mpa_smca, this.mpa_smcant, this.mpa_spcl, this.MPA_SC_SMRMA, this.MPA_SC_Fed_SMCA, this.MPA_SC_Fed_SMR]);
         map.addControl(this.selectControl);
         this.selectControl.activate();
 

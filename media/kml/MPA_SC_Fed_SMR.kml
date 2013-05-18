@@ -7,8 +7,9 @@
   <Folder id="FeatureLayer0">
     <name>Fed_SMR</name>
     <Snippet></Snippet>
+    <description><![CDATA[The MPA Inventory is a comprehensive catalog that provides detailed information for existing marine protected areas in the United States. The inventory provides geospatial boundary information (in polygon format) and classification attributes that seek to define the conservation objectives, protection level, governance and related management criteria for all sites in the database. The comprehensive inventory of federal, state and territorial MPA sites provides governments and stakeholders with access to information to make better decisions about the current and future use of place-based conservation. The information also will be used to inform the development of the national system of marine protected areas as required by Executive Order 13158.]]></description>
     <Placemark id="ID_00000">
-      <name>Footprint Essential Fish Habitat Conservation Area</name>
+      <name>Footprint FMR</name>
       <Snippet></Snippet>
       <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
 <head>
@@ -18,7 +19,7 @@
 <body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
 <table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
 <tr style="text-align:center;font-weight:bold;background:#9CBCE2">
-<td>Footprint Essential Fish Habitat Conservation Area</td>
+<td>Footprint FMR</td>
 </tr>
 <tr>
 <td>
@@ -41,7 +42,7 @@
 </tr>
 <tr>
 <td>Site_Name</td>
-<td>Footprint Essential Fish Habitat Conservation Area</td>
+<td>Footprint FMR</td>
 </tr>
 <tr bgcolor="#D4E4F3">
 <td>Site_Label</td>
@@ -123,6 +124,10 @@
 <td>Type</td>
 <td>Fed SMR</td>
 </tr>
+<tr bgcolor="#D4E4F3">
+<td>Name</td>
+<td>Footprint FMR</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -139,7 +144,7 @@
       </MultiGeometry>
     </Placemark>
     <Placemark id="ID_00001">
-      <name>Richardson Rock Essential Fish Habitat Conservation Area</name>
+      <name>Richardson Rock FMR</name>
       <Snippet></Snippet>
       <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
 <head>
@@ -149,7 +154,7 @@
 <body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
 <table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
 <tr style="text-align:center;font-weight:bold;background:#9CBCE2">
-<td>Richardson Rock Essential Fish Habitat Conservation Area</td>
+<td>Richardson Rock FMR</td>
 </tr>
 <tr>
 <td>
@@ -172,7 +177,7 @@
 </tr>
 <tr>
 <td>Site_Name</td>
-<td>Richardson Rock Essential Fish Habitat Conservation Area</td>
+<td>Richardson Rock FMR</td>
 </tr>
 <tr bgcolor="#D4E4F3">
 <td>Site_Label</td>
@@ -254,6 +259,10 @@
 <td>Type</td>
 <td>Fed SMR</td>
 </tr>
+<tr bgcolor="#D4E4F3">
+<td>Name</td>
+<td>Richardson FMR</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -270,7 +279,7 @@
       </MultiGeometry>
     </Placemark>
     <Placemark id="ID_00002">
-      <name>Gull Island Essential Fish Habitat Conservation Area</name>
+      <name>Gull Island FMR</name>
       <Snippet></Snippet>
       <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
 <head>
@@ -280,7 +289,7 @@
 <body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
 <table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
 <tr style="text-align:center;font-weight:bold;background:#9CBCE2">
-<td>Gull Island Essential Fish Habitat Conservation Area</td>
+<td>Gull Island FMR</td>
 </tr>
 <tr>
 <td>
@@ -303,7 +312,7 @@
 </tr>
 <tr>
 <td>Site_Name</td>
-<td>Gull Island Essential Fish Habitat Conservation Area</td>
+<td>Gull Island FMR</td>
 </tr>
 <tr bgcolor="#D4E4F3">
 <td>Site_Label</td>
@@ -385,6 +394,10 @@
 <td>Type</td>
 <td>Fed SMR</td>
 </tr>
+<tr bgcolor="#D4E4F3">
+<td>Name</td>
+<td>Gull Island FMR</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -401,7 +414,7 @@
       </MultiGeometry>
     </Placemark>
     <Placemark id="ID_00003">
-      <name>Harris Point Essential Fish Habitat Conservation Area</name>
+      <name>Harris Point FMR</name>
       <Snippet></Snippet>
       <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
 <head>
@@ -411,7 +424,7 @@
 <body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
 <table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
 <tr style="text-align:center;font-weight:bold;background:#9CBCE2">
-<td>Harris Point Essential Fish Habitat Conservation Area</td>
+<td>Harris Point FMR</td>
 </tr>
 <tr>
 <td>
@@ -434,7 +447,7 @@
 </tr>
 <tr>
 <td>Site_Name</td>
-<td>Harris Point Essential Fish Habitat Conservation Area</td>
+<td>Harris Point FMR</td>
 </tr>
 <tr bgcolor="#D4E4F3">
 <td>Site_Label</td>
@@ -516,6 +529,10 @@
 <td>Type</td>
 <td>Fed SMR</td>
 </tr>
+<tr bgcolor="#D4E4F3">
+<td>Name</td>
+<td>Harris Point FMR</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -532,7 +549,7 @@
       </MultiGeometry>
     </Placemark>
     <Placemark id="ID_00004">
-      <name>Scorpion Essential Fish Habitat Conservation Area</name>
+      <name>Scorpion FMR</name>
       <Snippet></Snippet>
       <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
 <head>
@@ -542,7 +559,7 @@
 <body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
 <table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
 <tr style="text-align:center;font-weight:bold;background:#9CBCE2">
-<td>Scorpion Essential Fish Habitat Conservation Area</td>
+<td>Scorpion FMR</td>
 </tr>
 <tr>
 <td>
@@ -565,7 +582,7 @@
 </tr>
 <tr>
 <td>Site_Name</td>
-<td>Scorpion Essential Fish Habitat Conservation Area</td>
+<td>Scorpion FMR</td>
 </tr>
 <tr bgcolor="#D4E4F3">
 <td>Site_Label</td>
@@ -647,6 +664,10 @@
 <td>Type</td>
 <td>Fed SMR</td>
 </tr>
+<tr bgcolor="#D4E4F3">
+<td>Name</td>
+<td>Scorpion FMR</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -663,7 +684,7 @@
       </MultiGeometry>
     </Placemark>
     <Placemark id="ID_00005">
-      <name>South Point Essential Fish Habitat Conservation Area</name>
+      <name>South Point FMR</name>
       <Snippet></Snippet>
       <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
 <head>
@@ -673,7 +694,7 @@
 <body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
 <table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
 <tr style="text-align:center;font-weight:bold;background:#9CBCE2">
-<td>South Point Essential Fish Habitat Conservation Area</td>
+<td>South Point FMR</td>
 </tr>
 <tr>
 <td>
@@ -696,7 +717,7 @@
 </tr>
 <tr>
 <td>Site_Name</td>
-<td>South Point Essential Fish Habitat Conservation Area</td>
+<td>South Point FMR</td>
 </tr>
 <tr bgcolor="#D4E4F3">
 <td>Site_Label</td>
@@ -778,6 +799,10 @@
 <td>Type</td>
 <td>Fed SMR</td>
 </tr>
+<tr bgcolor="#D4E4F3">
+<td>Name</td>
+<td>South Point FMR</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -794,7 +819,7 @@
       </MultiGeometry>
     </Placemark>
     <Placemark id="ID_00006">
-      <name>Anacapa Island Essential Fish Habitat Conservation Area</name>
+      <name>Anacapa Island FMR</name>
       <Snippet></Snippet>
       <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
 <head>
@@ -804,7 +829,7 @@
 <body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
 <table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
 <tr style="text-align:center;font-weight:bold;background:#9CBCE2">
-<td>Anacapa Island Essential Fish Habitat Conservation Area</td>
+<td>Anacapa Island FMR</td>
 </tr>
 <tr>
 <td>
@@ -827,7 +852,7 @@
 </tr>
 <tr>
 <td>Site_Name</td>
-<td>Anacapa Island Essential Fish Habitat Conservation Area</td>
+<td>Anacapa Island FMR</td>
 </tr>
 <tr bgcolor="#D4E4F3">
 <td>Site_Label</td>
@@ -909,6 +934,10 @@
 <td>Type</td>
 <td>Fed SMR</td>
 </tr>
+<tr bgcolor="#D4E4F3">
+<td>Name</td>
+<td>Anacapa Island FMR</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -925,7 +954,7 @@
       </MultiGeometry>
     </Placemark>
     <Placemark id="ID_00007">
-      <name>Santa Barbara Island Essential Fish Habitat Conservation Area</name>
+      <name>Santa Barbara Island FMR</name>
       <Snippet></Snippet>
       <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
 <head>
@@ -935,7 +964,7 @@
 <body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
 <table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
 <tr style="text-align:center;font-weight:bold;background:#9CBCE2">
-<td>Santa Barbara Island Essential Fish Habitat Conservation Area</td>
+<td>Santa Barbara Island FMR</td>
 </tr>
 <tr>
 <td>
@@ -958,7 +987,7 @@
 </tr>
 <tr>
 <td>Site_Name</td>
-<td>Santa Barbara Island Essential Fish Habitat Conservation Area</td>
+<td>Santa Barbara Island FMR</td>
 </tr>
 <tr bgcolor="#D4E4F3">
 <td>Site_Label</td>
@@ -1039,6 +1068,10 @@
 <tr>
 <td>Type</td>
 <td>Fed SMR</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Name</td>
+<td>Santa Barbara Island FMR</td>
 </tr>
 </table>
 </td>

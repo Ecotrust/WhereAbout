@@ -7,8 +7,9 @@
   <Folder id="FeatureLayer0">
     <name>Fed_SMCA</name>
     <Snippet></Snippet>
+    <description><![CDATA[The MPA Inventory is a comprehensive catalog that provides detailed information for existing marine protected areas in the United States. The inventory provides geospatial boundary information (in polygon format) and classification attributes that seek to define the conservation objectives, protection level, governance and related management criteria for all sites in the database. The comprehensive inventory of federal, state and territorial MPA sites provides governments and stakeholders with access to information to make better decisions about the current and future use of place-based conservation. The information also will be used to inform the development of the national system of marine protected areas as required by Executive Order 13158.]]></description>
     <Placemark id="ID_00000">
-      <name>Anacapa Island Essential Fish Habitat Conservation Area</name>
+      <name>Anacapa Island FMCA</name>
       <Snippet></Snippet>
       <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
 <head>
@@ -18,7 +19,7 @@
 <body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
 <table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
 <tr style="text-align:center;font-weight:bold;background:#9CBCE2">
-<td>Anacapa Island Essential Fish Habitat Conservation Area</td>
+<td>Anacapa Island FMCA</td>
 </tr>
 <tr>
 <td>
@@ -41,7 +42,7 @@
 </tr>
 <tr>
 <td>Site_Name</td>
-<td>Anacapa Island Essential Fish Habitat Conservation Area</td>
+<td>Anacapa Island FMCA</td>
 </tr>
 <tr bgcolor="#D4E4F3">
 <td>Site_Label</td>
@@ -122,6 +123,10 @@
 <tr>
 <td>Type</td>
 <td>Fed SMCA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Name</td>
+<td>Anacapa Island FMCA</td>
 </tr>
 </table>
 </td>
