@@ -35,7 +35,7 @@ class InnoScript:
                  dist_dir,
                  windows_exe_files = [],
                  lib_files = [],
-                 version = "1.02"):
+                 version = "0.1"):
         self.lib_dir = lib_dir
         self.dist_dir = dist_dir
         if not self.dist_dir[-1] in "\\/":
@@ -62,7 +62,7 @@ class InnoScript:
         print >> ofi, r"DefaultGroupName=%s" % self.name
         print >> ofi, r"VersionInfoVersion=%s" % self.version
         print >> ofi, r"VersionInfoCompany=Ecotrust"
-        print >> ofi, r"VersionInfoDescription=CA South Coast Commercial And Charter Monitoring 2012 v%s" % self.version
+        print >> ofi, r"VersionInfoDescription=CA South Coast Commercial And Charter Monitoring 2013 v%s" % self.version
         print >> ofi, r"VersionInfoCopyright=Ecotrust"
         print >> ofi, r"AppCopyright=Ecotrust"
         print >> ofi, r"InfoAfterFile=" + curr_dir + "\desktop-packaging\README.TXT"
@@ -144,7 +144,7 @@ class build_installer(py2exe):
         dist_dir = self.dist_dir
         
         # create the Installer, using the files py2exe has created.
-        script = InnoScript("SCAC 2012 Commercial Charter",
+        script = InnoScript("SCAC 2013 Commercial Charter",
                             lib_dir,
                             dist_dir,
                             self.console_exe_files,
