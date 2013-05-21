@@ -224,6 +224,7 @@ def compile_completed_shapes():
             new_shapefile_shape.bound_s = shape.boundary_s
             new_shapefile_shape.bound_e = shape.boundary_e
             new_shapefile_shape.bound_w = shape.boundary_w
+            new_shapefile_shape.importance = shape.importance
             new_shapefile_shape.note_text = shape.note_text
             new_shapefile_shape.days_visit = shape.days_visited
             year = str(shape.creation_date.year)
@@ -253,7 +254,7 @@ def compile_completed_shapes():
                     new_shapefile_shape.l_num = None
             else:
                 new_shapefile_shape.l_num = None
-            port_q = InterviewQuestion.objects.filter(code__contains="port11", int_group__interview=interview)
+            port_q = InterviewQuestion.objects.filter(code__contains="port12", int_group__interview=interview)
             if port_q.count() > 0:
                 port_a = InterviewAnswer.objects.filter(int_question=port_q[0], user=user)
                 if port_a.count() > 0:

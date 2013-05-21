@@ -403,6 +403,7 @@ class InterviewShapeShapefile(Model):
     bound_e = CharField( max_length=100, blank=True, null=True )
     bound_w = CharField( max_length=100, blank=True, null=True )
     note_text = CharField( max_length=1000, blank=True, null=True )
+    importance = CharField( max_length=1000, blank=True, null=True )
     days_visit = IntegerField( blank=True, null=True )
     date = CharField( max_length=100, blank=False, null=False )
     objects = models.GeoManager() 
