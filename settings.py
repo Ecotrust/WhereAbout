@@ -109,8 +109,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'django_extjs',
     'admin_utils',
-    'shapes',
-    'longerusername'
+    'shapes'
 )
 
 SELF_REGISTRATION=False
