@@ -59,7 +59,7 @@
             {% if forloop.counter < 13 %}
                 {% ifequal forloop.counter 8 %}
                     <table border="1" rules="none">
-                        <tr><td><b>If yes:</b></td></tr>
+                        <tr><td><b>If yes:</b></td><td></td></tr>
                         <tr><td>For how many years have you done direct marketing for this fishery?</td>
                         <td>{{ field }}</td></tr>
                 {% endifequal %}
@@ -68,7 +68,7 @@
                         <td>{{ field }}</td></tr>
                 {% endifequal %}
                 {% ifequal forloop.counter 10 %}
-                        <tr><td><b>If no:</b></td></tr>
+                        <tr><td><b>If no:</b></td><td></td></tr>
                         <tr><td>Would you be interested in direct marketing your catch for this fishery?</td>
                         <td>{{ field }}</td></tr>
                 {% endifequal %}
