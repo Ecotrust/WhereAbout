@@ -1,4 +1,5 @@
 # Django settings for gwst project.
+import os, sys
 
 #DATABASE_ENGINE = 'django.contrib.gis.db.backends.postgis'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 #DATABASE_NAME = 'gwst'             # Or path to database file if using sqlite3.
@@ -20,6 +21,7 @@ AUTH_PROFILE_MODULE = 'gwst_app.userprofile'
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
 TIME_ZONE = 'America/Los_Angeles'
+# TIME_ZONE = pytz.timezone('US/Pacific').zone
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -109,7 +111,8 @@ INSTALLED_APPS = (
     'django_extensions',
     'django_extjs',
     'admin_utils',
-    'shapes'
+    'shapes',
+    'pytz'
 )
 
 SELF_REGISTRATION=False

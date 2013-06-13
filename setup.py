@@ -192,11 +192,11 @@ if django_admin_path:
     py2exe_data_files = [(".",["run-desktop.bat","path_test.bat"])]
 
     py2exe_data_files += add_path_tree( django_admin_path, 'templates', 'templates' )
-    py2exe_data_files += add_path_tree( django_admin_static_path, 'admin', 'admin-media' )
+    py2exe_data_files += add_path_tree( django_admin_path, 'media', 'admin-media' )
     py2exe_data_files += add_path_tree( django_gis_path, 'templates', 'templates' )
 
     py2exe_data_files += add_path_tree( '', 'database', 'database' )
-    py2exe_data_files += add_path_tree( '', 'media', 'site-media' )
+    py2exe_data_files += add_path_tree( '', 'media', 'media' )
     py2exe_data_files += add_path_tree( '', 'lib', 'lib' )
     py2exe_data_files += add_path_tree( '', 'gwst_app/templates', 'gwst_app/templates' )
     py2exe_data_files += add_path_tree( '', 'registration_custom/templates', 'registration_custom/templates' )
