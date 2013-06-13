@@ -844,8 +844,8 @@
       "code": "net_squid",
       "name": "Squid (Market)",
       "display_order": 0.0,
-      "verbose_name": "Squid (Market) - Net",
-      "method": "Net"
+      "verbose_name": "Squid (Market) - Net or Seine",
+      "method": "Net or Seine"
     }
   },
   {
@@ -1171,6 +1171,32 @@
       "display_order": 60.0,
       "verbose_name": "Sandbass/Calico Bass Group (SB and Oxnard) - Fishery",
       "method": "Fishery"
+    }
+  },
+  {
+    "pk": "squid_brail",
+    "model": "gwst_app.resource",
+    "fields": {
+      "shape_color": "FFFF00",
+      "select_description": "",
+      "code": "brl_squid",
+      "name": "Squid (Market)",
+      "display_order": 0.0,
+      "verbose_name": "Squid (Market) - Brail",
+      "method": "Brail"
+    }
+  },
+  {
+    "pk": "whelk_div",
+    "model": "gwst_app.resource",
+    "fields": {
+      "shape_color": "FFFF00",
+      "select_description": "",
+      "code": "div_whelk",
+      "name": "Whelk",
+      "display_order": 0.0,
+      "verbose_name": "Whelk - Dive",
+      "method": "Dive"
     }
   },
   {

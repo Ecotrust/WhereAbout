@@ -36,6 +36,7 @@ class ClipRegion(Model):
 class Resource(Model):
 
     MethodChoices = (
+        ('Brail', 'Brail'),
         ('Dip Net', 'Dip Net'),
         ('Dive', 'Dive'),
         ('Drift or Set Gill Net', 'Drift or Set Gill Net'),
@@ -47,6 +48,7 @@ class Resource(Model):
         ('Hook and Line/Longline', 'Hook and Line/Longline'),
         ('Longline', 'Longline'),
         ('Net', 'Net'),
+        ('Net or Seine', 'Net or Seine'),
         ('Seine', 'Seine'),
         ('Seine or Dip Net', 'Seine or Dip Net'),
         ('Set Gill Net', 'Set Gill Net'),
