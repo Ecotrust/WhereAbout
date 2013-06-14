@@ -7206,6 +7206,28 @@
     }
   },
   {
+    "pk": 655,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "shc_lndnot",
+      "layout": "vertical",
+      "eng_text": "Notes on landings data review",
+      "int_group": 24,
+      "question_set": 0,
+      "display_order": 40.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "Place notes here as you review landings data. You can click & drag the lower right corner to expand this box.",
+      "header_name": "CPFV Landings Notes",
+      "val_max": null
+    }
+  },
+  {
     "pk": 309,
     "model": "gwst_app.interviewquestion",
     "fields": {
@@ -10719,6 +10741,28 @@
       "answer_type": "textarea",
       "eng_tooltip": "",
       "header_name": "Commercial Comm Impact",
+      "val_max": null
+    }
+  },
+  {
+    "pk": 656,
+    "model": "gwst_app.interviewquestion",
+    "fields": {
+      "all_resources": false,
+      "code": "cf_lndnot",
+      "layout": "vertical",
+      "eng_text": "Notes on landings data review",
+      "int_group": 23,
+      "question_set": 0,
+      "display_order": 20.0,
+      "required": false,
+      "question_group": null,
+      "options": [],
+      "val_min": null,
+      "val_default": "",
+      "answer_type": "textarea",
+      "eng_tooltip": "Place notes here as you review landings data. You can click & drag the lower right corner to expand this box.",
+      "header_name": "Comm Landings Notes",
       "val_max": null
     }
   }
