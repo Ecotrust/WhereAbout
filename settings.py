@@ -97,6 +97,7 @@ TEMPLATE_DIRS = ( # use os.path.abspath(os.path.dirname(sys.argv[0])) to get a d
 
 INSTALLED_APPS = (
     'django.contrib.auth',
+    'django.contrib.messages',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
