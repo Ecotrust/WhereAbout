@@ -122,10 +122,16 @@ MISC
 --------------------------    
 RUN THE PROGRAM
 --------------------------        
+    Make sure the version # in setup.py is up to date
+
+    local settings: Full_admin: False, Desktop_build: True
+
+    Clear/rebuild the DB
+
+    import relevant data (if not handled by cdb)
+
     recompress javascript - manage.py synccompress
 
-    Make sure the version # in setup.py is up to date
-    
     setup.py py2exe
 
     dist/run-desktop.bat to run

@@ -6,7 +6,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
     defaultZoom: 8,
     maxZoom: 16,
     minZoom: 8,
-    maxGoogleZoom: 13,
+    maxGoogleZoom: 14,
     minGoogleZoom: 5,
     autoZoom: false,
     
@@ -177,7 +177,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     var z = map.getZoom();
                     var url = this.url;
                     var path = 'blank.png' ;
-                    if ( z <= 13 && z >= 6 ) {
+                    if ( z <= 14 && z >= 6 ) {
                         var res = map.getResolution();
                         var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
                         var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
@@ -246,7 +246,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
                     var z = map.getZoom();
                     var url = this.url;
                     var path = 'blank.png' ;
-                    if ( z <= 13 && z >= 6 ) {
+                    if ( z <= 14 && z >= 6 ) {
                         var res = map.getResolution();
                         var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
                         var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
@@ -260,127 +260,12 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         );
 
         this.layer_array[this.layer_array.length] = this.blockLayer;
-
-        this.Military_safety_areas = new OpenLayers.Layer.Vector("Military Safety Areas", {
+        
+        this.MPA_NC_SMRMA = new OpenLayers.Layer.Vector("State Marine Rec. Mgmt. Area", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/Military_safety_areas.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            }),
-            visibility: false
-        });
-        
-        this.Military_safety_areas.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.Military_safety_areas.setOpacity(0.5);
-        
-        this.layer_array[this.layer_array.length] = this.Military_safety_areas;
-        
-        this.MPA_SC_RCA_NT = new OpenLayers.Layer.Vector("Rockfish Conservation Area Non-Trawl", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_RCA_NT.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            }),
-            visibility: false
-        });
-        
-        this.MPA_SC_RCA_NT.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.MPA_SC_RCA_NT.setOpacity(0.4);
-        
-        this.layer_array[this.layer_array.length] = this.MPA_SC_RCA_NT;
-
-        this.MPA_SC_RCA_Rec = new OpenLayers.Layer.Vector("Rockfish Conservation Area: Rec", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_RCA_Rec.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            }),
-            visibility: false
-        });
-        
-        this.MPA_SC_RCA_Rec.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.MPA_SC_RCA_Rec.setOpacity(0.3);
-        
-        this.layer_array[this.layer_array.length] = this.MPA_SC_RCA_Rec;
-
-        this.MPA_SC_RCA_T = new OpenLayers.Layer.Vector("Rockfish Conservation Area Trawl", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_RCA_T.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            }),
-            visibility: false
-        });
-        
-        this.MPA_SC_RCA_T.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.MPA_SC_RCA_T.setOpacity(0.6);
-        
-        this.layer_array[this.layer_array.length] = this.MPA_SC_RCA_T;
-
-        this.MPA_SC_SCM_CowcodCA = new OpenLayers.Layer.Vector("Cowcod Conservation Area", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_SCM_CowcodCA.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            }),
-            visibility: false
-        });
-        
-        this.MPA_SC_SCM_CowcodCA.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.MPA_SC_SCM_CowcodCA.setOpacity(0.7);
-        
-        this.layer_array[this.layer_array.length] = this.MPA_SC_SCM_CowcodCA;
-
-        this.MPA_SC_SMRMA = new OpenLayers.Layer.Vector("State Marine Rec. Mgmt. Area", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_SMRMA.kml",
+                url: "/site-media/kml/NCAC_SMRMA.kml",
                 format: new OpenLayers.Format.KML({
                     extractStyles: true, 
                     extractAttributes: true,
@@ -390,66 +275,20 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             visibility: true
         });
         
-        this.MPA_SC_SMRMA.events.on({
+        this.MPA_NC_SMRMA.events.on({
             "featureselected": this.onFeatureSelect,
             "featureunselected": this.onFeatureUnselect
         });
         
-        this.MPA_SC_SMRMA.setOpacity(0.4);
+        this.MPA_NC_SMRMA.setOpacity(0.4);
         
-        this.layer_array[this.layer_array.length] = this.MPA_SC_SMRMA;
-
-        this.MPA_SC_Fed_SMCA = new OpenLayers.Layer.Vector("Federal Marine Conservation Areas", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_Fed_SMCA.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            }),
-            visibility: true
-        });
-        
-        this.MPA_SC_Fed_SMCA.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.MPA_SC_Fed_SMCA.setOpacity(0.4);
-        
-        this.layer_array[this.layer_array.length] = this.MPA_SC_Fed_SMCA;
-        
-        this.MPA_SC_Fed_SMR = new OpenLayers.Layer.Vector("Federal Marine Reserves", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_Fed_SMR.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            }),
-            visibility: true
-        });
-        
-        this.MPA_SC_Fed_SMR.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.MPA_SC_Fed_SMR.setOpacity(0.4);
-        
-        this.layer_array[this.layer_array.length] = this.MPA_SC_Fed_SMR;
+        this.layer_array[this.layer_array.length] = this.MPA_NC_SMRMA;
 
         this.mpa_smr = new OpenLayers.Layer.Vector("State Marine Reserves", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_SMR.kml",
+                url: "/site-media/kml/NCAC_SMR.kml",
                 format: new OpenLayers.Format.KML({
                     extractStyles: true, 
                     extractAttributes: true,
@@ -472,7 +311,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_SMCA.kml",
+                url: "/site-media/kml/NCAC_SMCA.kml",
                 format: new OpenLayers.Format.KML({
                     extractStyles: true, 
                     extractAttributes: true,
@@ -491,34 +330,11 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
         
         this.layer_array[this.layer_array.length] = this.mpa_smca;
         
-        this.mpa_smcant = new OpenLayers.Layer.Vector("State Marine Conservation Areas - No Take", {
-            strategies: [new OpenLayers.Strategy.Fixed()],
-            projection: map_options.displayProjection,
-            protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_SMCA_NT.kml",
-                format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
-                    extractAttributes: true,
-                    maxDepth: 2
-                })
-            }),
-            visibility: true
-        });
-        
-        this.mpa_smcant.events.on({
-            "featureselected": this.onFeatureSelect,
-            "featureunselected": this.onFeatureUnselect
-        });
-        
-        this.mpa_smcant.setOpacity(0.4);
-        
-        this.layer_array[this.layer_array.length] = this.mpa_smcant;
-        
         this.mpa_spcl = new OpenLayers.Layer.Vector("Special Closures", {
             strategies: [new OpenLayers.Strategy.Fixed()],
             projection: map_options.displayProjection,
             protocol: new OpenLayers.Protocol.HTTP({
-                url: "/site-media/kml/MPA_SC_SPCL.kml",
+                url: "/site-media/kml/NCAC_SC.kml",
                 format: new OpenLayers.Format.KML({
                     extractStyles: true, 
                     extractAttributes: true,
@@ -580,7 +396,7 @@ gwst.widgets.ResDrawMapPanel = Ext.extend(GeoExt.MapPanel, {
        	map.addControl(this.drawResControl);
         map.addLayers(this.layer_array);
         
-        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.mpa_smr, this.mpa_smca, this.mpa_smcant, this.mpa_spcl, this.MPA_SC_SMRMA, this.MPA_SC_Fed_SMCA, this.MPA_SC_Fed_SMR]);
+        this.selectControl = new OpenLayers.Control.SelectFeature([this.vecLayer, this.vecOtherLayer, this.mpa_smr, this.mpa_smca, this.mpa_spcl, this.MPA_NC_SMRMA]);
         map.addControl(this.selectControl);
         this.selectControl.activate();
 
