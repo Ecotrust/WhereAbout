@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block content %}
+{% if instructions %}
+<div style='width:600px'>{{ instructions.main|safe }}</div>
+{% endif %}
+<div style='width:600px'>
+</div>
+   <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+   {% for verbose_name, form in forms.items %}
+   {{ form.non_field_errors }}
+   
+    {% for field in form %}
+        {% if field.field.question_set %}
+            {% with field.field.question_set as index %}
+                <p><div class="question_set"></div>
+                <h3 class='resource-header'>{{ verbose_name }}</h3>
+                {% for key, val in instructions.items %}
+                    {% ifequal key index %}
+                        {{ val|safe }}
+                    {% endifequal %}
+                {% endfor %}
+                </p>
+            {% endwith %}
+        {% endif %}
+        {% if forloop.counter < 12 %}
+            <p><div class="fieldWrapper">
+                {{ field.errors }}
+                {% ifequal field.field.question.layout 'vertical' %}
+                    <table>
+                        <tr>
+                            <td>
+                                {{ field.label|safe }}:
+                            </td>
+                        </tr><tr>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% else %}
+
+                    <table>
+                        <tr>
+                            <td style='width:{{ q_width }}px'>
+                                {{ field.label|safe }}:
+                            </td>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% endifequal %}
+            </div></p>
+        {% endif %}
+
+        {% if forloop.counter > 11 %}
+            {% if forloop.counter < 18 %}
+                {% ifequal forloop.counter 12 %}
+                    <br />
+                    Are there any specific MPAs that have significantly impacted you in a particular way?<br /><br />
+                    <table border="1">
+                        <tr align="center">
+                            <th>MPA</th>
+                            <th>Effects</th>
+                            <th>Other Effects</th>
+                        </tr>
+                        <tr>
+                {% endifequal %}
+                {% ifequal forloop.counter 15 %}
+                    </tr><tr>
+                {% endifequal %}
+                <td><div class="fieldWrapper">{{ field }}</td>
+                {% ifequal forloop.counter 17 %}
+                        </tr>
+                    </table>
+                {% endifequal %}
+            {% endif %}
+        {% endif %}
+
+        {% if forloop.counter > 17 %}
+            <p><div class="fieldWrapper">
+                {{ field.errors }}
+                {% ifequal field.field.question.layout 'vertical' %}
+                    <table>
+                        <tr>
+                            <td>
+                                {{ field.label|safe }}:
+                            </td>
+                        </tr><tr>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% else %}
+
+                    <table>
+                        <tr>
+                            <td style='width:{{ q_width }}px'>
+                                {{ field.label|safe }}:
+                            </td>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% endifequal %}
+            </div></p>
+        {% endif %}
+        
+    {% endfor %}   
+   {% endfor %}
+
+   <p><input id="submit" type="submit" value="{{ value }}" />
+   {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+   </p>
+   </form>
+{% endblock %}
