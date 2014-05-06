@@ -2,7 +2,7 @@
 
 export DJANGO_SETTINGS_MODULE=settings
 
-DB="sccam_db"
+DB="ncacc_db"
 
 export PYTHONPATH=$PYTHONPATH:/usr/local/django-trunk/:/usr/local/django-apps/:.
 

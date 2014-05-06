@@ -1,3 +1,3 @@
 #!/bin/bash
 
-dropdb sccam_db
+dropdb ncacc_db
