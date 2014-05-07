@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block header %}{% if not action %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block content %}
+{% if instructions %}
+<div style='width:600px'>{{ instructions.main|safe }}</div>
+{% endif %}
+<div style='width:600px'>
+</div>
+   <form class="gwst-form" method="post" action="{% if action %}{{ action }}{% else %}.{% endif %}">
+   {% for verbose_name, form in forms.items %}
+   {{ form.non_field_errors }}
+   
+    {% for field in form %}
+        {% if field.field.question_set %}
+            {% with field.field.question_set as index %}
+                <p><div class="question_set"></div>
+                <h3 class='resource-header'>{{ verbose_name }}</h3>
+                {% for key, val in instructions.items %}
+                    {% ifequal key index %}
+                        {{ val|safe }}
+                    {% endifequal %}
+                {% endfor %}
+                </p>
+            {% endwith %}
+        {% endif %}
+        {% if forloop.counter < 8 %}
+            {% ifnotequal forloop.counter 2 %}
+                <p><div class="fieldWrapper">
+                    {{ field.errors }}
+                    {% ifequal field.field.question.layout 'vertical' %}
+                        <table>
+                            <tr>
+                                <td>
+                                    {{ field.label|safe }}:
+                                </td>
+                            </tr><tr>
+                                <td>
+                                    {{ field }}
+                                </td>
+                            </tr>
+                        </table>
+                    {% else %}
+
+                        <table>
+                            <tr>
+                                <td style='width:{{ q_width }}px'>
+                                    {{ field.label|safe }}:
+                                </td>
+                                <td>
+                                    {{ field }}
+                                </td>
+                            </tr>
+                        </table>
+                    {% endifequal %}
+                </div></p>
+            {% endifnotequal %}
+        {% endif %}
+        {% if forloop.counter > 7 %}
+            {% if forloop.counter < 14 %}
+                {% ifequal forloop.counter 8 %}
+                    <br />
+                    Are there any specific MPAs that have significantly impacted you?<br /><br />
+                    <table border="1">
+                        <tr align="center">
+                            <th>MPA</th>
+                            <th>Effects</th>
+                            <th>Other Effects</th>
+                        </tr>
+                        <tr>
+                {% endifequal %}
+                {% ifequal forloop.counter 11 %}
+                    </tr><tr>
+                {% endifequal %}
+                <td><div class="fieldWrapper">{{ field }}</td>
+                {% ifequal forloop.counter 13 %}
+                        </tr>
+                    </table>
+                {% endifequal %}
+            {% endif %}
+        {% endif %}
+        {% if forloop.counter > 13 %}
+            <p><div class="fieldWrapper">
+                {{ field.errors }}
+                {% ifequal field.field.question.layout 'vertical' %}
+                    <table>
+                        <tr>
+                            <td>
+                                {{ field.label|safe }}:
+                            </td>
+                        </tr><tr>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% else %}
+
+                    <table>
+                        <tr>
+                            <td style='width:{{ q_width }}px'>
+                                {{ field.label|safe }}:
+                            </td>
+                            <td>
+                                {{ field }}
+                            </td>
+                        </tr>
+                    </table>
+                {% endifequal %}
+            </div></p>
+        {% endif %}
+    {% endfor %}   
+    
+    {% endfor %}
+    <p>Percentage of gross revenue from each fishery/activity for 2013?</p>
+    <table border="1" rules="none" style="margin: 0px auto 8px 35px;">
+    {% for verbose_name, form in forms.items %}
+    {% for field in form %}
+    {% ifequal forloop.counter 2 %}
+    <tr><td>{{ verbose_name }}:</td><td>{{ field }}</td></tr>
+    {% endifequal %}
+    {% endfor %}   
+    {% endfor %}   
+    </table>
+   
+   <p style="margin-left: 35px">Please check that all percentages add up to 100%.</p>
+   
+   <p><input id="submit" type="submit" value="{{ value }}" />
+   {% if action %}<button type="button" class="gwst_cancel" id="cancel" value="Cancel">Cancel</button>{% endif %}
+   </p>
+   </form>
+{% endblock %}
