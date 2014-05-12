@@ -2,13 +2,12 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>NCAC_SMCA.kml</name>
-	<open>1</open>
 	<Style id="style">
 		<LineStyle>
-			<color>b2ff5500</color>
+			<color>ffff5500</color>
 		</LineStyle>
 		<PolyStyle>
-			<color>b2ff5500</color>
+			<color>ffff5500</color>
 		</PolyStyle>
 	</Style>
 	<StyleMap id="stylemap_id0">
@@ -23,10 +22,10 @@
 	</StyleMap>
 	<Style id="style0">
 		<LineStyle>
-			<color>b2ff5500</color>
+			<color>ffff5500</color>
 		</LineStyle>
 		<PolyStyle>
-			<color>b2ff5500</color>
+			<color>ffff5500</color>
 		</PolyStyle>
 	</Style>
 	<Folder>
