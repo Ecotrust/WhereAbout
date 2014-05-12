@@ -17,7 +17,7 @@ mapping = {
 }
 
 def run(verbose=True) :
-    shp = os.path.abspath(os.path.join(os.path.dirname(__file__), 'database/data/OregonRecClipRegion.shp'))
+    shp = os.path.abspath(os.path.join(os.path.dirname(__file__), 'database/data/NC_clip_region.shp'))
     lm = LayerMapping(
         ClipRegion, 
         shp, 

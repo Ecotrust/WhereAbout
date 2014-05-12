@@ -1237,7 +1237,7 @@
       "shape_name_plural": "fishing grounds",
       "region": "2885d60f-bc42-11e3-9e49-00224d544aba",
       "resource_name_plural": "species",
-      "draw_shape_text": "This survey is now complete.  If you have any questions or concerns, please feel free to contact us at <a href='mailto:fish@ecotrust.org'>fish at ecotrust dot org</a>",
+      "draw_shape_text": "This survey is now complete.  If you have any questions or concerns, please feel free to contact us at <a href='mailto:rhodges@ecotrust.org'>fish at ecotrust dot org</a>",
       "resource_action": "target",
       "group_status_text": "MAIN MENU: There are several groups of questions. You are asked to complete these groups in order. Before moving on to a new group, you must complete and finalize the previous group of questions. You may review or even reopen a 'finalized' group later if you change your mind.  You cannot complete the survey until all required groups of questions are finalized.  You are free to skip any groups that give you the option.",
       "resource_name": "species",

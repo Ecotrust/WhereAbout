@@ -33,7 +33,7 @@ SITE_ID = '1'
 # to load the internationalization machinery.
 USE_I18N = True
 
-SERVER_EMAIL='fish@ecotrust.org'
+SERVER_EMAIL='rhodges@ecotrust.org'
 
 SEND_BROKEN_LINK_EMAILS = False
 
@@ -119,7 +119,7 @@ INSTALLED_APPS = (
 SELF_REGISTRATION=False
 SELF_SURVEY_RESET=False
 
-DEFAULT_FROM_EMAIL='fish@ecotrust.org'
+DEFAULT_FROM_EMAIL='rhodges@ecotrust.org'
 BCC_EMAIL='fish@ecotrust.org' # Addresses to blind carbon copy on each automated registration (SurveyMonkey)
 EMAIL_HOST='mail.ecotrust.org'
 EMAIL_PORT=610

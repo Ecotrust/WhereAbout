@@ -1,1 +1,1 @@
-dropdb -U postgres sccam_db
+dropdb -U postgres ncacc_db

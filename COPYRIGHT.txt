@@ -19,7 +19,7 @@ Copyright (C) 2010 Ecotrust
 Contributors: Tim Welch, Ken Vollmer, and Ryan Hodges
 
 Contact: 
-fish@ecotrust.org
+rhodges@ecotrust.org
     (OR)
 Ecotrust Marine Planning Project
 721 NW 9th Ave, Suite 200

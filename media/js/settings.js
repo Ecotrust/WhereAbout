@@ -8,7 +8,7 @@ Ext.namespace('gwst');
 */
 
 gwst.settings = {
-    adminEmail: 'fish@ecotrust.org',
+    adminEmail: 'rhodges@ecotrust.org',
     displayProjection: new OpenLayers.Projection("EPSG:900913"),
     unusedProjection: new OpenLayers.Projection("EPSG:4326"),
     equalAreaProjection: new OpenLayers.Projection("EPSG:3310"),

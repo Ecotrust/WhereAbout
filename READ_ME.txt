@@ -208,7 +208,7 @@ TO EXPORT:
         NOTE: By default, this should be:   C:\users\{YOUR WINDOWS USERNAME}\My Documents\Downloads                     ----REVIEW----
         The file will be called {YOUR SURVEY ADMIN USERNAME}_{YEAR-MONTH-DAY}.json
     Copy your data to \\daryl\gis\projects\SpatialWebSurveyTool\OR-Intercept-NonConSurvey\exported_survey_data          ----REVIEW----
-        If you can't do that, email it to fish@ecotrust.org                                                             ----REVIEW----
+        If you can't do that, email it to rhodges@ecotrust.org                                                             ----REVIEW----
         
 TO IMPORT:
     Save the json file somewhere you can find it, or 
