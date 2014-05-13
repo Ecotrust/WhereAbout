@@ -49,6 +49,10 @@
                     </td>
                     <td>
                         {% ifequal forloop.counter 1%}
+                            <!-- 
+                                Following code modified from solution found at:
+                                http://ilian.i-n-i.org/django-forms-choicefield-and-custom-html-output/
+                            -->
                             <ul>
                             {% for choice in resource_choices %}
                               <li>
