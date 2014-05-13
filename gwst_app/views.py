@@ -793,7 +793,7 @@ def select_group_resources(request, group_id):
             form.save(group_memb)
             return HttpResponseRedirect('/answer_resource_questions/'+str(group_id)+'/')
     
-    return render_to_response( 'select_group_resources.html', RequestContext(request,{'group':group, 'form': form, 'value':'Continue','interview':request.session['interview']}))     
+    return render_to_response( 'select_group_resources.html', RequestContext(request,{'group':group, 'form': form, 'value':'Continue','interview':request.session['interview'], 'resource_choices':form.fields['resources'].choices}))     
     
 @login_required
 def answer_resource_questions(request, group_id, next_url=None, resource=None):

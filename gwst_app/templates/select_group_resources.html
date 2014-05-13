@@ -45,10 +45,24 @@
             <table>
                 <tr>
                     <td style='width:{{ q_width }}px'>
-                        {{ field.label_tag }}:
+                        {{field.label_tag}}:
                     </td>
                     <td>
-                        {{ field }}
+                        {% ifequal forloop.counter 1%}
+                            <ul>
+                            {% for choice in resource_choices %}
+                              <li>
+                                <input type="checkbox" name="resources" value="{{choice.0}}"
+                                  {% if choice.0 in form.data.resources %}
+                                     checked="checked"
+                                  {% endif %}/>
+                                <label for="">{{choice.1|safe}}</label>
+                              </li>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            {{field}}
+                        {% endifequal %}
                     </td>
                 </tr>
             </table>

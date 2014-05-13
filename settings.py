@@ -194,6 +194,27 @@ COMPRESS_JS = {
     }
 }
 
+REQUIRED_RESOURCES = [
+    'Nearshore Finfish Dead - Hook and Line',
+    'Nearshore Finfish Dead - Longline',
+    'Nearshore Finfish Live - Hook and Line',
+    'Nearshore Finfish Live - Longline',
+    'Nearshore Finfish Live - Trap',
+    'Dungeness Crab - Trap',
+    'Salmon - Troll',
+    'Shrimp - Trap',
+    'Urchin - Dive',
+    'California Halibut - Fishery',
+    'Dungeness Crab - Fishery',
+    'Humboldt Squid - Fishery',
+    'Pacific Halibut - Fishery',
+    'Rockfish/Lingcod - Fishery',
+    'Salmon - Fishery',
+    'Tuna and Dorado - Fishery',
+    'Marine Mammal Viewing - Activity',
+    'Whale Watching - Activity'
+]
+
 try:
     from local_settings import *
 except ImportError, exp:

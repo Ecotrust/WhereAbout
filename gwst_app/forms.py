@@ -380,6 +380,7 @@ class InterviewShapeAttributeForm(forms.ModelForm):
 
 class GroupMemberResourceForm(forms.Form):
     def __init__(self, interview, resources, *args, **kwargs):
+        from django.conf import settings
         #TODO: Automate this - needs a Method Model
             #Methods should be associated with an interview
         if interview.name == 'South CA Commercial Monitoring':
@@ -393,13 +394,16 @@ class GroupMemberResourceForm(forms.Form):
         new_res_2 = forms.CharField( max_length=100, label='Other ' + interview.resource_name + ' option', required=False, initial = '' )
         new_method_2 = forms.ModelChoiceField( label='Method', queryset=method_options, required = False);
         forms.Form.__init__(self, *args, **kwargs) 
-        #choices = [(resource.id, resource.name+') for resource in resources]
         choices = []
         for resource in resources:
             if not resource.select_description:
-                choices.append((resource.id, resource.verbose_name))
+                verbose_name = resource.verbose_name
             else:
-                choices.append((resource.id, unicode(resource.verbose_name)+': '+unicode(resource.select_description)))
+                verbose_name = unicode(resource.verbose_name)+': '+unicode(resource.select_description)
+            if settings.REQUIRED_RESOURCES and resource.verbose_name in settings.REQUIRED_RESOURCES:
+                choices.append((resource.id, '<b>' + resource.verbose_name + '</b>'))
+            else:
+                choices.append((resource.id, resource.verbose_name))
         label = str(interview.resource_name).capitalize()+' groups'
         self.fields['resources'] = forms.MultipleChoiceField(label=label, choices=choices, widget=forms.CheckboxSelectMultiple(), required = False)
         self.fields['new_field_1'] = new_res_1
