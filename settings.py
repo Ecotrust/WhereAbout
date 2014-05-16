@@ -202,7 +202,6 @@ REQUIRED_RESOURCES = [
     'Nearshore Finfish Live - Trap',
     'Dungeness Crab - Trap',
     'Salmon - Troll',
-    'Shrimp - Trap',
     'Urchin - Dive',
     'California Halibut - Fishery',
     'Dungeness Crab - Fishery',
