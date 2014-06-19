@@ -1,13 +1,3 @@
-SpatiaLite version ..: 2.3.1	Supported Extensions:
-	- 'VirtualShape'	[direct Shapefile access]
-	- 'VirtualText'		[direct CSV/TXT access]
-	- 'VirtualNetwork	[Dijkstra shortest path]
-	- 'RTree'		[Spatial Index - R*Tree]
-	- 'MbrCache'		[Spatial Index - MBR cache]
-	- 'VirtualFDO'		[FDO-OGR interoperability]
-	- 'SpatiaLite'		[Spatial SQL - OGC]
-PROJ.4 Rel. 4.6.1, 21 August 2008
-GEOS version 3.3.1-CAPI-1.7.1
 [
   {
     "pk": 1,
